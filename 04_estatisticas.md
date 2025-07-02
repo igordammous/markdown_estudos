@@ -1,5 +1,26 @@
 # Estatística
 
+## Variáveis
+### Qualitativas(Categóricas)
+As variáveis categóricas são um tipo de variável usado em Ciência de Dados para representar dados que podem ser classificados em diferentes categorias ou grupos. Por exemplo, se uma pessoa cientista de dados estiver analisando o desempenho acadêmico de estudantes em uma escola, ela pode usar variáveis categóricas para classificar o desempenho dessas pessoas em diferentes grupos, como *"excelente", "bom" ou "regular"*. Isso permite identificar padrões ou tendências no desempenho.
+#### 1. Ordinais
+Possuem uma ordem específica entre as categorias. Por exemplo, se a pessoa cientista de dados estiver analisando a escolaridade de um grupo de pessoas, ela pode usar esse tipo de variável para classificar as pessoas em diferentes grupos, como: **"ensino fundamental completo"**, **"ensino médio completo"** ou **"ensino superior completo"** e assim por diante.
+
+#### 2. Nominais
+São aquelas que não possuem uma ordem ou hierarquia específica entre as categorias. Por exemplo, se uma pessoa cientista de dados estiver analisando a preferência musical de um grupo de pessoas, ela pode usar variáveis categóricas nominais para classificar as pessoas em diferentes grupos, como: **"rock"**, **"jazz"** ou **"pop"**.
+
+#### 3. Binárias
+São um tipo especial de variável categórica nominal que possui apenas duas categorias possíveis, por exemplo: **sim/não**, **verdadeiro/falso** ou **presente/ausente**. As variáveis categóricas binárias são úteis porque permitem que cientistas de dados analisem a distribuição de dados em apenas duas categorias possíveis.
+
+
+### Quantitativas
+São as características que podem ser medidas em uma escala **quantitativa**, ou seja, apresentam valores numéricos que fazem sentido. Podem ser contínuas ou discretas.
+
+Por exemplo, a variável `idade`, medida em anos completos, é **quantitativa** (contínua); mas, se for informada apenas a `faixa etária` (0 a 5 anos, 6 a 10 anos, etc...), é **qualitativa** (ordinal). Outro exemplo é o `peso` dos lutadores de boxe, uma variável **quantitativa** (contínua) se trabalhamos com o valor obtido na balança, mas **qualitativa** (ordinal) se o classificarmos nas `categorias` do boxe (peso-pena, peso-leve, peso-pesado, etc.).
+
+Outro ponto importante é que nem sempre uma variável representada por números é quantitativa. O número do `telefone` de uma pessoa, o `número da casa`, o número de sua `identidade`. Às vezes o `sexo` do indivíduo é registrado na planilha de dados como *1 se macho e 2 se fêmea*, por exemplo. Isto não significa que a variável sexo passou a ser **quantitativa**!
+
+## Probabilidade
 ### valor-p
 p < 0,05 é um critério estatístico frequentemente usado em pesquisas científicas para determinar significância estatística. Vamos explicar o que isso significa:
 
@@ -44,25 +65,42 @@ Se p < 0,05, rejeita-se H₀ (resultado estatisticamente significativo).
 
 Se p ≥ 0,05, não se rejeita H₀ (resultado não significativo).
 
-**2. Intervalo de Confiança de 95% (IC 95%)**
+#### Intervalo de confiança
 **O que é?**
-É uma faixa de valores dentro da qual temos 95% de confiança de que o verdadeiro parâmetro populacional (como a média ou diferença entre grupos) está contido.
+Quando você diz que o intervalo de confiança (IC) é de 95, significa que há 95% de chance do parâmetro que estou procurando estar dentro do intervalo dos dados.
 
-**Exemplo:** Se um estudo estima que a diferença entre dois tratamentos é de 10 pontos, com IC 95% = [5, 15], significa que há 95% de confiança de que o efeito real está entre 5 e 15.
+#### Com desvio padrão populacional conhecido
 
-Relação com o valor-p:
+## $\mu = \bar{x} \pm z\frac{\sigma}{\sqrt{n}}$
 
-Se o IC 95% não incluir o valor nulo (geralmente 0 para diferenças ou 1 para razões de chances), então p < 0,05.
+#### Com desvio padrão populacional desconhecido
 
-Se o IC 95% incluir o valor nulo, então p ≥ 0,05.
+## $\mu = \bar{x} \pm z\frac{s}{\sqrt{n}}$
+Onde:
+
+$\mu = parâmetro populacional (média)
+
+$\bar{x}$ = média da amostragem
+
+$z \frac{\sigma}{\sqrt{n}}$ = erro inferencial
+
+&plusmn; = Tanto mais quanto menos porque irá encontrar o intervalo superior e o inferior
+
+### Valores de $z$ para os níveis de confiança mais utilizados
+
+|Nível de<br>confiança|Valor da área sob<br>a curva normal| $z$ |
+|:----------------:|:---------------------------------:|:---:|
+|90%               |0,95                               |1,645|
+|95%               |0,975                              |1,96 |
+|99%               |0,995                              |2,575|
 
 **Comparação Direta**
-|Critério                | Valor-p (p-value)                                           | Intervalo de Confiança 95% (IC 95%) |
-|------------------------|-------------------------------------------------------------|-------------------------------------|
+|Critério                | Valor-p (p-value)                                           | Intervalo de Confiança 95% (IC 95%)               |
+|------------------------|-------------------------------------------------------------|---------------------------------------------------|
 |O que mede?             | Probabilidade de obter dados extremos se H₀ for verdadeira. | Faixa de valores plausíveis para o parâmetro real.|
-|Limiar de significância | p < 0,05 → Significativo.                                   | IC 95% não inclui o valor nulo → Significativo.|
-|Vantagem                | Simples para testes de hipóteses.                           |Mostra a magnitude e precisão do efeito.|
-|Exemplo                 | p = 0,03 → Significativo.                                   | IC 95% = [2, 8] (não inclui 0) → Significativo.|
+|Limiar de significância | p < 0,05 → Significativo.                                   | IC 95% não inclui o valor nulo → Significativo.   |
+|Vantagem                | Simples para testes de hipóteses.                           |Mostra a magnitude e precisão do efeito.           |
+|Exemplo                 | p = 0,03 → Significativo.                                   | IC 95% = [2, 8] (não inclui 0) → Significativo.   |
 
 
 ## Distribuições de Probabilidade 
@@ -269,34 +307,6 @@ Se o erro máximo aceitável é de 10%, isso significa que queremos que a margem
 Portanto, se o erro percentual é de 10% (ou 0.10) e a média da amostra ($\bar{x}$) é R\$ 45,50, o erro máximo aceitável em termos absolutos (R\$ 45,50), o erro máximo aceitável em termos absolutos ($e$) é calculado como:
 $e = \text{Média} \times \text{Erro Percentual}$$ -> $$e = 45,50 \times 0.10$$ -> $$e = 4,55$$
 
-#### Intervalo de confiança
-**O que é?**
-Quando você diz que o intervalo de confiança (IC) é de 95, significa que há 95% de chance do parâmetro que estou procurando estar dentro do intervalo dos dados.
-
-#### Com desvio padrão populacional conhecido
-
-## $\mu = \bar{x} \pm z\frac{\sigma}{\sqrt{n}}$
-
-#### Com desvio padrão populacional desconhecido
-
-## $\mu = \bar{x} \pm z\frac{s}{\sqrt{n}}$
-Onde:
-
-$\mu = parâmetro populacional (média)
-
-$\bar{x}$ = média da amostragem
-
-$z \frac{\sigma}{\sqrt{n}}$ = erro inferencial
-
-&plusmn; = Tanto mais quanto menos porque irá encontrar o intervalo superior e o inferior
-
-### Valores de $z$ para os níveis de confiança mais utilizados
-
-|Nível de<br>confiança|Valor da área sob<br>a curva normal| $z$ |
-|:----------------:|:---------------------------------:|:---:|
-|90%               |0,95                               |1,645|
-|95%               |0,975                              |1,96 |
-|99%               |0,995                              |2,575|
 
 ### Cálculo do Tamanho da Amostra
 É derivada do erro inferencial
