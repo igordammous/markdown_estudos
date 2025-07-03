@@ -1,5 +1,5 @@
 # PANDAS
-
+[Limpeza e tratamentos de dados por Escola de Data Science](https://cdn3.gnarususercontent.com.br/2929-pandas/Cheat+Sheet+-+Pandas_Limpeza+e+tratamento+de+dados.pdf)
 ### CONCAT, JOIN e MERGE
 #### CONCAT
 A biblioteca pandas oferece várias ferramentas para trabalhar com *DataFrames*, incluindo a capacidade de combinar, juntar e mesclá-los. Essas operações são úteis para combinar dados de diferentes fontes em um único *DataFrame*. Existem três principais métodos de união de *DataFrames* em `pandas`: `concat`, `join` e `merge`.  
