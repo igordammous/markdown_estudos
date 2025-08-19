@@ -22,6 +22,23 @@ Pensando nisso, o Power BI oferece a opção de filtrar os dados das tabelas, po
 
 Ao ativar a opção de criação de perfil da coluna com base em todo o conjunto de dados, o Power BI analisará todas as linhas do conjunto de dados, permitindo identificar padrões, distribuições e problemas de qualidade que podem não ser detectados apenas com uma amostra limitada de linhas.
 
+## Mesclagem
+Uma das principais funcionalidades é a capacidade de mesclar dados de diferentes fontes em um único conjunto de dados para análise.
+<img src="https://cdn3.gnarususercontent.com.br/2956-power-bi-desktop/Images/aula4_img_tipos_de_juncao.jpg" alt="Tipos de mesclagem, Fonte: Alura" />
+
+* **Esquerda Externa (Left Outer Join):** Retorna todas as linhas da tabela esquerda e as linhas correspondentes da tabela direita com base em um critério de correspondência dos relacionamentos entre chaves primárias e estrangeiras das tabelas. Se não houver correspondência na tabela direita, os valores serão preenchidos com nulos.
+
+* **Direita Externa (Right Outer Join)**: Retorna todas as linhas da tabela direita e as linhas correspondentes da tabela esquerda com base em um critério de correspondência. Se não houver correspondência na tabela esquerda, os valores serão preenchidos com nulos.
+
+* **Completa Externa (Full Outer Join)**: Retorna todas as linhas das duas tabelas, combinando registros com base em um critério de correspondência. Se não houver correspondência em uma das tabelas, os valores correspondentes serão preenchidos com nulos.
+
+* **Interna (Inner Join)**: Retorna apenas as linhas correspondentes das duas tabelas com base em um critério de correspondência. As linhas não correspondentes são excluídas do resultado final da mesclagem.
+
+* **Anti Esquerda (Left Anti Join)**: Retorna apenas as linhas da tabela esquerda que não possuem correspondência com base em um critério de correspondência. As linhas correspondentes da tabela direita são excluídas do resultado.
+
+* **Anti Direita (Right Anti Join)**: Retorna apenas as linhas da tabela direita que não possuem correspondência com base em um critério de correspondência. As linhas correspondentes da tabela esquerda são excluídas do resultado.
+
+
 ## Medidas
 No Power BI, medidas são elementos essenciais para realizar cálculos e análises sobre os dados. Elas podem ser classificadas em **medidas implícitas** e **medidas explícitas**.
 ### Medidas Implícitas
@@ -50,6 +67,26 @@ Como funcionam: Você cria uma nova medida e escreve uma fórmula DAX que define
 * **Medidas Explícitas**: Use quando precisar de cálculos personalizados, complexos ou que não podem ser feitos com as agregações padrão do Power BI.
 
 Como boa prática, opte por medidas explícitas pois, além dos benefícios apresentados, você tem o poder de desenvolver cálculos mais complexos utilizando filtros e relacionamentos.
+
+## Parâmetros
+[Artigo Alura - Parâmetros](https://www.alura.com.br/artigos/power-bi-parametros-e-exportacao-de-modelos)
+A função de parâmetros no Power BI permite criar relatórios mais interativos e personalizados. Imagine que você tem um relatório de vendas e quer permitir que os usuários filtrem os dados por estado. Em vez de criar um relatório separado para cada estado, você pode criar um parâmetro que permite ao usuário selecionar o estado desejado.  
+O processo envolve a criação de uma consulta que lista todos os estados disponíveis e, em seguida, a criação de um parâmetro que permite ao usuário selecionar um ou mais estados dessa lista.
+
+Uma vez que o parâmetro é criado, você pode usá-lo para filtrar os dados no seu relatório. Isso é feito criando uma consulta que usa o valor do parâmetro para restringir os dados exibidos. Por exemplo, você pode criar uma consulta que retorna apenas as vendas para os estados selecionados no parâmetro.
+
+### Criando parâmetros
+Para criar um parâmetro, acessei o **Power Query** procurando pela opção **Gerenciar Parâmetros** dentro da guia **Página Inicial** e selecionei **Novo Parâmetro**. Abrindo a janela do gerenciador, existem opções para nomear e até mesmo colocar uma descrição no parâmetro, mas o que merece destaque é o campo de **Valores Sugeridos**, no qual possui três opções que fazem toda a diferença no resultado final da criação do parâmetro.
+
+As três opções são:
+
+* **Qualquer valor** - pode inserir qualquer valor porém ele é fixo, não se altera.
+* **Lista de valores** - pode inserir uma lista personalizada de valores.
+* **Consulta** - pode inserir uma consulta criada ou baseada na coluna de uma tabela.
+
+### Usando como filtro
+Dentro da janela Filtrar Linhas, existe a opção de inserir o parâmetro como filtro.
+
 
 ## Hierarquia
 Os rótulos de hierarquia no Power BI são uma poderosa ferramenta que permite organizar e apresentar dados de forma estruturada e hierárquica. Com eles, é possível criar visualizações mais intuitivas e explorar a relação entre diferentes níveis de informações.
