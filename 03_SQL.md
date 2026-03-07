@@ -2,8 +2,29 @@
 
 Uma linguagem que foi construída para interagir com um banco de dados através de SGBD (Sistemas Gerenciadores de Banco de Dados), como Oracle, MySQL, MariaDB, PostgreSQL, Microsoft SQL Server e outros.
 
+## Comandos
+Executados resultam em efeito persistente sobre dados e estruturas, ou controlam transações, conexões, sessões, etc. 
+* SELECT, INSERT, UPDATE, DELETE, CREATE TABLE, GRANT, etc.
+
+## Cláusulas
+Componentes dos comandos. Em muitos casos, alguns são opcionais. 
+* FROM, WHERE, GROUP BY 
+
+## Expressões
+Os quais produzem tanto valores escalares, como tabelas consistindo de colunas e linhas 
+* A+B, A*ABS(B-20)
+
+## Predicatos
+especificam condições que podem ser avaliadas pela lógica, retornando verdadeiro, falso ou desconhecido
+* A>B, C BETWEEN 20 AND 200 
+
+## Query
+Que retornam dados baseados nos critérios específicos que foram especificados acima
+* SELECT COLUNA FROM TABELA
+
+
 ### DDL (Data Definition Language)
-Os comandos DDL são usados para definir a estrutura do banco de dados:
+Os **comandos** DDL são usados para definir a estrutura do banco de dados:
 
 * CREATE: cria objetos de banco de dados, como tabelas, índices, visões e procedimentos armazenados.
 * ALTER: modifica a estrutura de objetos de banco de dados existentes, como adicionar ou remover colunas de tabelas.
@@ -11,7 +32,7 @@ Os comandos DDL são usados para definir a estrutura do banco de dados:
 * TRUNCATE: Remove todos os registros de uma tabela, mas mantém sua estrutura.
 
 ### DQL – Data Query Language
-É um grupo de comandos dentro do SQL. Os comandos DQL são usados para **CONSULTAS**:
+É um grupo de **comandos** dentro do SQL. Os **comandos** DQL são usados para **CONSULTAS**:
 * **SELECT**: recupera dados de uma ou mais tabelas do banco de dados. É o comando principal para consultas.
 
 Aqui temos a forma que é feita a seleção tanto geral *, ou com parametros. Numa tabela chamada clientes, com 5 colunas (id, nome, telefone, gênero e data_cadastro) qualquer uma dessas colunas pode ser consultada. Com 5 linhas (cabeçalho, 1, 2, 3, 4) que também podem ser consultadas a qualquer momento.
