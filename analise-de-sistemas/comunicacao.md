@@ -112,3 +112,78 @@ Como lembra Thelma de carvalho Guimarães, em seu livro Comunicação e Linguage
     mente do consumidor com mensagens cuidadosamente elaboradas. Os slogans “Vem pra Caixa você também!” e “Lojas Marabraz, 
     preço menor ninguém faz” são exemplos disso.”
 
+## Denotação
+
+Considerando que o objetivo principal aqui é levá-lo a compreender a função da comunicação e da informação no contexto social. 
+A princípio, você precisa ficar atento aos sentidos que as palavras podem apresentar a partir dos contextos em que elas são utilizadas, pois muitas delas podem mudar de sentido a partir das circunstâncias em que são empregadas. Por essa razão, quando estiver escrevendo ou mesmo falando, mantenha o radar ligado para não incorrer em incorreções e acabar não comunicando o que deseja. Vejamos um exemplo de como isso pode ocorrer:
+
+**Ex.: O quadro está *pregado* na parede.** -> *Denotação*
+
+**Ex.: Trabalhei muito hoje. Estou *pregado*!**
+
+Observe que a palavra *“pregado”* apresentou sentidos bem distintos nos dois exemplos anteriores. No primeiro caso, o termo foi empregado em seu sentido literal (ao pé da letra), ou seja, no sentido denotativo.
+
+A palavra denotação tem origem no latim denotatione, que significa indicação. Trata-se de um aspecto da linguagem mais frequentemente encontrado no discurso científico, que tem como característica principal a inequivocidade  de sentido *(apenas um)* das palavras. A denotação é equivalente à função referencial que, é também chamada de função denotativa. Nesse sentido, os **textos de caráter informativo**, que apresentam **linguagem objetiva**, também fazem uso da **denotação (manuais, livros didáticos, memorando, e-mails interdepartamentais etc.)**.
+
+**No universo profissional, é justamente a *linguagem denotativa que predomina*. Nada de sentido figurado ou ambiguidade, tudo tem de ser o mais transparente possível, sob pena de gerar ruídos infindáveis na comunicação.**
+
+## Conotação
+
+Voltando ao exemplo mostrado acima.
+
+**Ex.: O quadro está *pregado* na parede.** 
+
+**Ex.: Trabalhei muito hoje. Estou *pregado*!** -> *Conotação*
+
+Já no segundo uso a palavra *pregado*, foi utilizado conotação figurada para expressar exaustão extrema e falta de energia física ou mental, indicando que a pessoa está imóvel ou sem forças, semelhante a estar fixado a algo.
+
+Há momentos em que a linguagem conotativa impera, ou seja, naquelas ocasiões em que as palavras ou expressões empregadas têm seu sentido literal alterado, devido, muitas vezes, a certas associações mentais e por meio de encadeamento de imagens ou alusões que normalmente fazemos. A palavra conotação também tem origem no latim cum + notatione: notação, marca. Se a denotação tem seu equivalente na função referencial, a conotação tem o seu na função poética. A poesia é, por excelência, conotativa, pois, nesse âmbito, cada palavra pode assumir mais de um sentido.
+
+## Informatividade
+
+Trata-se de um aspecto da comunicação relacionado ao grau de informação que um ato comunicativo contém. Muitos textos, sobretudo aqueles gerados por inteligência artificial com pouca capacidade, apresentam um baixo teor de informatividade.
+
+Podemos notar a falta de informatividade quando ao lermos o que nos é apresentado, temos a sensação de estarmos lendo sempre a mesma coisa, mas com palavras diferentes.
+
+Uma metáfora que se enquadra bem aqui, a do pastel de vento: ao comermos um pastel, esperamos logo pelo recheio, a parte mais substancial. Ocorre que o pastel de vento não contém recheio, só casca. Com textos de baixa ou nenhuma informatividade é a mesma coisa: muitas palavras, mas pouca informação.
+
+ Normalmente, os estudiosos desse assunto dizem que existem três graus de informatividade: baixo, médio e alto. Dizemos que um ato comunicativo apresenta baixo grau de informatividade, quando a informação apresentada é bastante previsível pelo interlocutor. Quanto mais previsível for a informação que se deseja transmitir, mais baixo será o grau de informatividade.
+
+ Por exemplo, uma **placa de trânsito** contém normalmente **baixo grau de informatividade**, ou seja, contém alta previsibilidade, pois a intenção é fazer com que o motorista assimile imediatamente seu sentido.
+
+ Dizemos que um ato comunicativo apresenta um grau de **informatividade médio**, quando as informações nele contidas são **menos previsíveis**, ou seja, há certa presença de novidade, de dados que não eram tão esperados por parte do interlocutor. Deve haver equilíbrio entre as informações novas e as que já são de conhecimento, de modo que o interlocutor compreenda o que está sendo transmitido.
+
+ Quando um ato comunicativo apresenta informações que não estão no grupo nem dos mais prováveis e nem no dos menos prováveis, dizemos, então, que seu grau de informatividade é alto. Embora não seja fácil saber qual é a expectativa do interlocutor, espera-se que aqui que haja uma quebra de expectativas, que se desautomatize a percepção do receptor. Ocorrências assim demandam mais atenção e fontes de processamentos mais elaboradas.
+
+ Embora fiquemos tentados a sempre querer imprimir um alto grau de informatividade em nossa comunicação, ou seja, nos expressarmos de modo incomum, super original, não é a todo momento que esse registro funciona. A comunicação mais eficiente é aquela que ocorre sem grandes dificuldades para o receptor, logo, é preciso encontrar um meio-termo entre a necessidade de ser original e a obrigação de se fazer entender. Ou seja, **informatividade é uma questão de dosagem**. 
+
+ ## Redundância
+
+ Redundância tem a ver com repetição de informação em uma comunicação, com o objetivo de assegurar que nosso interlocutor compreenda plenamente a mensagem e que eventuais interferências não prejudiquem a clareza da informação.
+
+As línguas naturais, geralmente, apresentam muita redundância. Nossa língua portuguesa, por exemplo, apresenta um alto nível de redundância na sua estrutura. Esse é um aspecto que não corre na língua inglesa, por exemplo. A título de demonstração, observe esta comparação de uma mesma sentença escrita em português e em inglês, notando as partes sublinhadas: 
+
+Todo**s** o**s** livro**s** pode**m** ser lido**s**.
+
+All book**s** can be read.
+
+Repare como para transmitir a mesma ideia, a língua portuguesa recorre a nada menos do que **cinco marcações de plural** (as partes em negrito de cada palavra). Já a língua inglesa é muito menos exigente, pois requer apenas **uma marcação**.
+
+Como tudo que ocorre em exagero, a redundância em excesso pode ser prejudicial à comunicação, sobretudo, quando a repetição extrapola o limite do necessário e começa a minar o grau de informatividade do texto. Como no caso da informatividade, **a redundância também é uma questão de equilíbrio, de dosagem certa**.
+
+## Ruído
+
+Uma definição possível de ruído seria **tudo aquilo que interfere negativamente na transmissão de uma mensagem**, impedindo que os interlocutores interajam com fluência. Pensando nos seis elementos de Jakobson, o **canal** é o mais sujeito a ruídos, ou seja, o meio físico por onde a mensagem é transmitida.
+
+**Ex.** Um **borrão na mensagem escrita**, ou um **som de uma buzina durante um diálogo** podem ser exemplos de **ruídos**.
+
+Não é por acaso que nossa comunicação cotidiana está cheia de expressões que visam detectar ou eliminar ruídos, tal como ocorre nas frases: *“Alô? Está me escutando?*,  *“Pronto, pode falar.”*, *“Pode seguir, estou te escutando.”* É como se disséssemos ao nosso interlocutor: **“Pode passar a mensagem, o canal está funcionando, não há interferências.”**
+
+Frequentemente, quando um **ato comunicativo não cumpre com o seu papel** ouvimos os interlocutores mencionarem que **houve ruído na comunicação**, que nesse contexto, é sinônimo de um ***mal-entendido***. Ou seja, assim como no exemplo acima, é possível dizer que o ruído pode ocorrer em todos os elementos.
+
+De acordo com *Izidoro Blikstein* em **Técnicas de comunicação escrita**,há no mínimo, três tipos de interferências geradoras de ruídos: 
+* **interferência física**: dificuldade visual, má grafia de palavras, cansaço, falta de iluminação etc.; 
+* **interferência cultural**: palavras ou frases complicadas ou ambíguas, diferenças de nível social etc.
+* **interferência psicológica**: agressividade, aspereza, antipatia etc.”
+
+O mesmo autor conclui: *“Se o remetente e o destinatário não estiverem conscientes de suas respectivas funções e atentos ao seu papel, a estrutura da comunicação ficará bem vulnerável a ruídos.”*
