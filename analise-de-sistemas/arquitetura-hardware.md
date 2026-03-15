@@ -209,6 +209,16 @@ Quanto é 16 exabytes?
 |Registradores|64 bits|128 bits|Todo dado ocuparia o dobro de espaço, mesmo os pequenos |
 |Consumo de energia|Atual|Maior|Mais bits = mais transistores chaveando = mais calor|
 
+#### Conclusão
+Os registradores são o "espaço de trabalho imediato" da CPU, essenciais para performance . O limite de 64 bits não é técnico - podemos construir processadores de 128 bits - mas sim uma questão de engenharia e necessidade :
+
+* 64 bits já endereça mais memória do que qualquer sistema precisa (16 EB é absurdo)
+* Aumentar para 128 bits traria custos: chips maiores, mais consumo, mais calor
+* Não há ganho prático: programas não precisam endereçar mais memória que isso
+* Lei dos rendimentos decrescentes: o custo supera o benefício
+
+A história mostra que só migramos quando batemos no limite: 8 bits → 16 bits → 32 bits → 64 bits. Como 64 bits deve durar décadas, a pergunta "por que não 128?" só fará sentido quando estivermos próximos do limite novamente
+
 ### 5- Computador quântico, quais são as suas bases e diferenças com um hardware padrão?
 
 ### 6- Em um hardware de 64 bits, o que diferencia dos bits mais significativos para os menos?
