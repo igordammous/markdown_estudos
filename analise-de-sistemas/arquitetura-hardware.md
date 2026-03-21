@@ -98,9 +98,64 @@ Observação Importante: Existem também portas combinadas muito usadas, como a 
 #### Combinação Lógica
 Combinando portas lógicas, formam-se circuitos lógicos. E ao combinando milhares (ou bilhões) dessas portas simples, criamos circuitos complexos. Dois exemplos clássicos que você verá no Capítulo 3 de Null & Lobur:
 
-* **Meio Somador (Half Adder)**: Um circuito que soma dois bits (0+0, 0+1, 1+0, 1+1). Ele tem duas saídas: a Soma (S) e o Vai-um (Carry - C). Ele é feito com uma porta XOR (OU Exclusivo, uma variação) e uma porta AND.
+##### **Meio Somador (Half Adder)**: 
+Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C`). Ele é feito com uma porta `XOR` (OU Exclusivo, uma variação) e uma porta `AND`.
 
-* **Somador Completo (Full Adder)**: Um circuito mais complexo que soma dois bits considerando também um "vem-um" de uma soma anterior. É assim que o computador soma números de vários bits (como 8, 16 ou 32 bits).
+|A|B|Sum|Carry|
+|-|-|---|-----|
+|0|0| 0 |  0  |
+|0|1| 1 |  0  |
+|1|0| 1 |  0  |
+|1|1| 0 |  1  |
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017121522/xorkmap.jpg" alt="SUM = A XOR B" style="width: 20%" title="SUM A XOR B" />
+
+**SUM = A XOR B**
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017125041/Inkedandkmap1-200x155.jpg" alt="CARRY= A AND B" style="width: 20%" title="SUM A XOR B" />
+
+**CARRY = A AND B**
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Half_Adder.jpg" alt="Implementação meio somador" style="width: 50%" title="Implementação meio somador" />
+
+##### **Somador Completo (Full Adder)**:
+Um circuito mais complexo que soma dois bits(`A`, `B`) considerando também um "vem-um"(`C - IN`) de uma soma anterior. É assim que o computador soma números de vários bits (como 8, 16 ou 32 bits). E também tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C - OUT`)
+
+|  A  |  B  |C-IN |Sum|C-OUT|
+|-----|-----|-----|---|-----|
+|  0  |  0  |  0  | 0 |  0  |
+|  0  |  0  |  1  | 1 |  0  |
+|  0  |  1  |  0  | 1 |  0  |
+|  0  |  1  |  1  | 0 |  1  |
+|  1  |  0  |  0  | 1 |  0  |
+|  1  |  0  |  1  | 0 |  1  |
+|  1  |  1  |  0  | 0 |  1  |
+|  1  |  1  |  1  | 1 |  1  | 
+
+* Para Soma `S`:
+    * Se tiver **um** ou **três** entradas com valores iguais, `S` será verdadeiro `1`.
+    * Se tiver **zero** ou **duas** entradas com valores iguais, `S` será falso `0`.
+> Escala seguindo padrão: par será falso, ímpar será verdadeiro
+
+* Para Carry `C - OUT`:
+    * Se tiver ao menos **duas** entradas com valores verdadeiras(`1`), `C-OUT` será verdadeiro.
+    * Se tiver ao menos **duas** entradas com valores falso(`0`), `C-OUT` será falso.
+
+O carry (`C-OUT`) é implementado usando portas `XOR`, `AND` e `OR`: então segue as duas saídas das portas `AND` são combinadas usando uma porta `OR` para gerar a saída final `C-OUT`.
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122505812069/frame_274.webp" alt="Implementação somador completo" style="width: 100%" />
+
+
+**Implementação do Somador Completo usando Meio Somador**
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122601572749/frame_277.webp" alt="Implementação somador completo c/ meio somador" style="width: 100%" />
+
+**Implementação do Somador Completo usando Portas `NAND`**
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122706449172/frame_275.webp" alt="Implementação somador completo c/ portas NAND" style="width: 100%" />
+
+**Implementação do Somador Completo usando Portas `NOR`**
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122756356070/frame_276.webp" alt="Implementação somador completo c/ portas NOR" style="width: 100%" />
 
 ### 3- Porque computadores usam base binária e como seria se usassem outra base, a respeito principal de custos e perfomance. (CURIOSIDADE)
 A escolha da base binária não foi acidental, mas sim uma decisão de engenharia baseada em custo, confiabilidade e performance. A resposta curta é: **simplicidade e confiabilidade na implementação física**. Os computadores são construídos com milhões (ou bilhões) de transistores, que funcionam como interruptores. Esses interruptores têm dois estados fundamentaism **1(conduzindo corrente)** e **0(não conduzindo)**.
@@ -356,7 +411,7 @@ Um conceito crucial: quando um valor de 64 bits é armazenado na memória, os by
 |Little-endian|LSB no menor endereço|78 56 34 12|
 |Big-endian   |MSB no menor endereço|12 34 56 78|
 
-`Importante: A arquitetura x86-64 (Intel/AMD) usa little-endian. Isso significa que o bit menos significativo é armazenado primeiro na memória.`
+> Importante: A arquitetura x86-64 (Intel/AMD) usa little-endian. Isso significa que o bit menos significativo é armazenado primeiro na memória.
 
 #### Impacto no Hardware e na Programação
 ##### No Hardware
@@ -414,9 +469,9 @@ A resposta curta é que a mesma porta lógica forma a base de todos esses compon
 
 |Componente|Construído a partir de|Função Principal|Característica de Controle|
 |----------------|-------------------|-------------------|-----------------|
-|Latch|Um pequeno número de portas lógicas (ex: 2 portas NAND ou NOR) |Armazenar 1 bit de informação|Sensível ao nível (transparente enquanto o sinal de habilitação está ativo)| 
-|Flip-Flop|Várias portas lógicas, geralmente organizadas como dois latches em "master-slave" |Armazenar 1 bit de forma estável|Sensível à borda (muda de estado apenas na borda de subida ou descida do clock) |
-|Registrador|Um grupo de flip-flops (ou latches) ligados em paralelo |Armazenar uma palavra de múltiplos bits (ex: 32, 64 bits) dentro da CPU|Controlado por um único sinal de clock e enable |
+|Latch ↓|Um pequeno número de portas lógicas (ex: 2 portas NAND ou NOR) |Armazenar 1 bit de informação|Sensível ao nível (transparente enquanto o sinal de habilitação está ativo)| 
+|Flip-Flop ↓|Várias portas lógicas, geralmente organizadas como dois latches em "master-slave" |Armazenar 1 bit de forma estável|Sensível à borda (muda de estado apenas na borda de subida ou descida do clock) |
+|Registrador ↓|Um grupo de flip-flops (ou latches) ligados em paralelo |Armazenar uma palavra de múltiplos bits (ex: 32, 64 bits) dentro da CPU|Controlado por um único sinal de clock e enable |
 |Memória Cache (SRAM)|Uma grande matriz de células de memória, cada uma construída com múltiplos transistores (ex: 6T SRAM) que se comportam como um latch |Armazenar grandes quantidades de dados (MBs a dezenas de MBs) de alta velocidade, próxima à CPU|Endereçável por linhas e colunas, com circuitos de controle complexos|
 
 #### 1- O Alicerce: A Porta Lógica como Memória
@@ -448,6 +503,44 @@ Para resolver os problemas dos latches, foram criados os **Flip-Flops (FFs)** . 
 * **Como funciona**: Um flip-flop D mestre-escravo, por exemplo, usa dois latches em série. O primeiro (mestre) "segue" a entrada `D` enquanto o clock está baixo, mas o segundo (escravo) está isolado. Na **borda de subida do clock**, o valor do mestre é transferido para o escravo e aparece na saída `Q` .
 * **Vantagem**: A saída Q muda apenas em um instante preciso (a borda do clock). Isso torna o comportamento do circuito **previsível e síncrono**, permitindo a construção de sistemas complexos como processadores
 
+<img src="https://www.estudegratis.com.br/images/questoes/dcf8d49d250980846720.jpg" alt="Flip-Flop JK mestre-escravo" style="width: 70%" />
+
+#### 4- Registradores: Agrupando Flip-Flops na CPU
+
+Um registrador de 64 bits é, em essência, um conjunto de 64 flip-flops que compartilham o mesmo sinal de clock e um sinal de enable de escrita (Write Enable). Podem ser definidos como **pequenas porções de memória de altíssima velocidade** localizadas dentro da CPU (processador), por isso é a memória mais **rápida do computador** e são utilizadas para **armazenar temporariamente dados e instruções** que estão sendo processados naquele exato momento.
+* A figura abaixo ilustra exemplos de registradores. Cada quadrado representa um **flip-flop** (ou um *latch*, dependendo da implementação).
+<img src="https://www.newtoncbraga.com.br/images/stories/artigo2019/cur5011_0001.gif" alt="Registradores - Tipo D e J-K" style="width: 90%" />
+* **Funcionamento**: Quando o sinal `Write Enable` está ativo e uma borda de clock chega, todos os 32 flip-flops capturam, simultaneamente, os valores presentes nas 32 linhas de `Data In` . O valor armazenado é então disponibilizado nas linhas de `Data Out`.
+
+#### Tipos de Registradores
+* **Registradores Gerais**: Armazenam dados genéricos usados por instruções durante a execução de um programa.
+* **Contador de Programa (PC)**: Indica o endereço da próxima instrução a ser buscada.
+* **Registrador de Instrução (RI)**: Armazena o código da instrução que está sendo executada no momento.
+* **Registrador de Endereço de Memória (MAR)**: Armazena o endereço da memória a que o processador quer acessar.
+* **Registrador de Dados de Memória (MDR)**: Armazena o dado lido ou a ser escrito na memória.
+
+#### 5- Memória Cache: A Grande Matriz de Latches
+A memória cache (como L1, L2, L3) é construída com um tipo de memória estática chamada **SRAM (Static RAM**) . A célula de uma SRAM é muito similar a um latch, geralmente implementada com **6 transistores (6T)** que formam um circuito biestável, eliminando a necessidade de refresh. Tem como características:
+
+* **Alta Velocidade**: É mais rápida que a memória RAM, o que reduz o tempo de espera do processador para obter informações.
+* **Armazenamento Temporário**: Como é uma memória volátil, os dados são apagados quando o computador é desligado.
+* **Hierarquia de Níveis** (L1, L2, L3, L4):
+    * L1: Mais próxima da CPU, extremamente rápida e menor capacidade (geralmente dividida em instruções e dados).
+    * L2: Maior que a L1, porém um pouco mais lenta.
+    * L3: Compartilhada entre os núcleos do processador, maior e mais lenta que L1/L2, mas ainda muito mais rápida que a RAM.
+* **Princípio de Localidade**: A cache antecipa dados que o processador provavelmente precisará, baseando-se no que foi usado recentemente.
+* **Custo Elevado**: Devido à sua velocidade, é mais cara de produzir, por isso sua capacidade é **medida em kilobytes (KB) ou megabytes (MB)**, bem menor que a RAM (GB).
+
+A diferença fundamental de um registrador é a **arquitetura de matriz**:
+
+|Característica|Registrador|Memória Cache (SRAM)|
+|--------------|-----------|--------------------|
+|Organização   |Pequeno conjunto de flip-flops paralelos|Matriz gigante de células (linhas e colunas)|
+|Endereçamento |Implícito (o nome do registrador define qual usar)|Explícito (um endereço é decodificado para selecionar uma linha/coluna)|
+|Propósito     |Armazenar dados imediatos para a ALU|Armazenar blocos de dados recentemente usados da RAM|
+|Velocidade    |Máxima (1 ciclo de clock)|Muito alta (poucos ciclos de clock)|
+|Capacidade    |Muito pequena (KB)|Pequena a moderada (KB a dezenas de MB)|
+
 #### Resumo
 
 |Nível|Construção Básica|Unidade de Armazenamento|Sensibilidade|Controle|Localização Típica|
@@ -459,16 +552,156 @@ Para resolver os problemas dos latches, foram criados os **Flip-Flops (FFs)** . 
 |Cache (SRAM)|Matriz de células (6T SRAM)|KB a MB|Nível (célula tipo latch)|Endereço + Read/Write |Entre a CPU e a RAM (on-chip)|
 
 
-* **Latches** são a base, mas sua transparência os torna difíceis de usar em sistemas complexos.
-* **Flip**-flops adicionam um mecanismo de clock por borda, que sincroniza todas as operações e é a base da computação síncrona moderna .
+* **Latches são a base**, mas sua transparência os torna difíceis de usar em sistemas complexos.
+* **Flip-flops** adicionam um mecanismo de clock por borda, que sincroniza todas as operações e é a **base da computação síncrona moderna**.
 * **Registradores** são apenas grupos de flip-flops que compartilham um clock, formando a memória mais rápida do sistema .
-* **Memórias Cache** usam uma célula de memória estática (SRAM) que funciona como um latch, organizada em uma **matriz endereçável** para atingir um equilíbrio entre alta velocidade e capacidade razoável .
+* **Memórias Cache** usam uma célula de memória estática (SRAM) que funciona como um latch, organizada em uma **matriz endereçável** para atingir um **equilíbrio entre alta velocidade e capacidade razoável**.
 
 Com essa base, fica mais claro como o hardware gerencia o fluxo de dados, usando portas lógicas para operações (ALU) e suas variações (latches/flip-flops) para armazenar os resultados dessas operações em diferentes níveis da hierarquia de memória.
 ### 8- Qual a diferença entra um microprocessador de uso generalizado para os de uso específico, principalmente os que estão sendo usados na I.A.?
+A diferença fundamental entre um microprocessador de uso generalizado (como o CPU do seu computador) e um de uso específico para IA está na **arquitetura interna**: enquanto o primeiro é um ***"faz-tudo"*** otimizado para executar uma vasta gama de tarefas com eficiência razoável, os segundos são ***"especialistas"*** construídos para realizar um **tipo muito específico de cálculo (operações matriciais e vetoriais)** da maneira mais rápida e econômica possível.
 
-### 9- ASIC, resumo.
+#### 1- CPU (Central Processing Unit) - O Generalista
+O CPU é um "faz-tudo". Ele tem poucos núcleos (ex: 8, 16, 32) mas muito poderosos, capazes de executar qualquer tipo de instrução, desde as mais simples até as mais complexas . Sua força está na **latência baixa** e na **lógica de controle**.
+
+* **Onde é usado em IA**: Para rodar modelos pequenos (como detecção de objetos em uma câmera de segurança simples) ou como o "maestro" que *orquestra o trabalho* de GPUs e NPUs, preparando os dados e executando o código principal .
+* **Limitação**: Para treinar um modelo grande, um CPU levaria anos, enquanto uma GPU faz o mesmo trabalho em semanas . É como tentar cavar um buraco enorme com uma colher de chá.
+
+#### 2- GPU (Graphics Processing Unit) - O Paralelista de Alta Potência
+Originalmente criada para jogos, a GPU se mostrou perfeita para IA. Ela possui milhares de núcleos pequenos, especializados em fazer o mesmo tipo de conta (multiplicação de matrizes) em paralelo .
+
+* **Onde é usado em IA:** É a peça fundamental para o **treinamento** de modelos. Quase 100% dos modelos de linguagem (como o GPT) e de visão computacional são treinados em clusters massivos de GPUs, como as da série NVIDIA A100 ou H100 .
+* **Limitação**: Consome muita energia e esquenta bastante. Uma GPU de última geração pode consumir mais de 400W, o que inviabiliza seu uso em um smartphone
+
+####  3- NPU (Neural Processing Unit) - O Especialista em Eficiência Energética
+É o novo queridinho do mercado, presente em praticamente todos os celulares e nos novos computadores com selo "AI PC". O NPU é um hardware fixo, construído especificamente para executar as operações de uma rede neural (como convoluções) com a máxima eficiência possível .
+
+* **Onde é usado em IA**: Executa modelos de IA localmente no seu dispositivo. É o que permite:
+    * **Smartphones**: Desbloqueio facial, modo noturno das fotos, tradução em tempo real, remoção de objetos de fotos .
+    * **Notebooks**: Reuniões com efeitos de fundo em 4K, respostas inteligentes em e-mails, tudo sem sobrecarregar o processador e drenar a bateria
+* **Limitação**: Não serve para treinar modelos e, por ser um hardware fixo, pode não suportar novos tipos de operações que surjam no futuro. Se o modelo usar um operador que o NPU não entende, ele trava e a tarefa volta para o CPU
+
+#### A Nova Divisão do Trabalho: Especialistas em IA
+> Para visualizar essa diferença, pense em uma cozinha. O CPU é um chef de cozinha versátil, capaz de preparar qualquer prato, mas um de cada vez. O GPU é uma equipe de 100 cozinheiros que preparam o mesmo prato para 100 pessoas ao mesmo tempo. Já o NPU é uma máquina automática de fazer um único tipo de massa, que funciona 24/7 com o mínimo de eletricidade possível.
+
+|Tipo de Processador|Abreviação    |Papel na Arquitetura de IA|Analogia|Exemplos Práticos|
+|-------------------|--------------|--------------------------|--------|-----------------|
+|Microprocessador de Uso Generalizado|CPU|O "gerente de projeto". Executa o sistema operacional, coordena as tarefas e processa a lógica condicional (instruções `if/else`). Para IA, é usado em tarefas pequenas ou como **"suporte" para os outros chips**.|O Chef Executivo que comanda toda a cozinha e decide o cardápio.|Intel Core, AMD Ryzen, Apple M-series (parte do chip), ARM Cortex .|
+|Processador de Uso Específico (**Gráficos**)|GPU|O "bloco de carnaval". Possui milhares de núcleos pequenos otimizados para fazer cálculos de **matrizes e vetores** em paralelo. É o carro-chefe para **treinar** modelos de IA e executar inferências em grande escala, mas consome muita energia .|100 auxiliares de cozinha, cada um picando um lote diferente de cebolas ao mesmo tempo.|NVIDIA GeForce RTX (para PCs), NVIDIA A100/H100 (para data centers), AMD Radeon.|
+|Processador de Uso Específico (**Neural**)|NPU|O "especialista em baixo consumo". É um chip dedicado, geralmente embutido no processador principal (SoC) de celulares e computadores modernos. Projetado para executar modelos de IA de forma **ultraeficiente**, com um **consumo de energia 10x menor que uma GPU** para a mesma tarefa .|Uma máquina de fazer miojo: rápida, eficiente e que só faz uma coisa, mas faz muito bem.|Apple Neural Engine, Qualcomm Hexagon (Snapdragon), Intel AI Boost (Core Ultra).|
+|Processador de Uso Específico (**Tensor**)|TPU|O "engenheiro de obra pronta". É um **ASIC (circuito integrado de aplicação específica)** criado pelo Google exclusivamente para acelerar operações com **tensores** (matrizes multidimensionais) no seu data center. É uma solução de altíssimo desempenho e eficiência, porém proprietária e na nuvem .|Uma refinaria de petróleo construída para transformar petróleo bruto em gasolina da maneira mais eficiente possível.|Google TPU v4/v7 (usados exclusivamente na Google Cloud).|
+
+#### A Solução Moderna: O Sistema Heterogêneo
+A grande sacada da indústria hoje não é escolher um chip, mas sim combiná-los em um único sistema, chamado de SoC (System on a Chip) .
+
+Um chip moderno, como o Apple M3, o Snapdragon 8 Gen 3 ou o Intel Core Ultra, não é apenas um CPU, mas um sistema completo que contém:
+
+* **Núcleos de CPU** (2-4 de alta performance + 4-8 de alta eficiência) para a lógica e tarefas gerais.
+* **Núcleos de GPU** para gráficos e computação paralela pesada.
+* **Uma NPU dedicada** para executar modelos de IA de forma contínua e com baixíssimo consumo.
+
+Essa arquitetura é chamada de computação heterogênea. O sistema operacional e os aplicativos dividem a tarefa de forma inteligente: a lógica condicional vai para a CPU, a parte pesada de treinamento ou renderização vai para a GPU, e as tarefas contínuas de IA (como cancelamento de ruído) ficam na NPU, que as faz sem você nem perceber e sem gastar bateria
+### 9- ASCII, Unicode e Outras Codificações.
+ASCII e Unicode **são padrões de codificação de caracteres**. ASCII usa 7 bits para representar 128 caracteres básicos (inglês, números, símbolos). Unicode é um padrão universal, abrangendo mais de 149.000 caracteres, incluindo múltiplos idiomas, emojis e símbolos técnicos. Unicode é o padrão moderno, enquanto ASCII é limitado a caracteres ingleses.
+
+|Codificação|Tamanho|Capacidade|Principais Características|Uso Principal|
+|-----------|-------|----------|--------------------------|-------------|
+|ASCII|7 bits|128 caracteres|Padrão mais básico; só cobre o alfabeto inglês (sem acentos) .|Sistemas legados, protocolos de rede básicos .|
+|ISO-8859-1 (Latin-1)|8 bits|256 caracteres|Estende o ASCII para incluir acentos de línguas da **Europa Ocidental** (francês, alemão, espanhol, etc.) .|É o padrão mais usado no Brasil em sistemas legados e na web mais antiga .|
+|ISO-8859-2 (Latin-2)|8 bits|256 caracteres|Similar ao Latin-1, mas para línguas da **Europa Central e Oriental** (polonês, tcheco, húngaro) .|Países do Leste Europeu em sistemas mais antigos.|
+|Windows-1252|8 bits|256 caracteres|Variação da Microsoft do Latin-1; inclui caracteres adicionais como aspas curvas e o símbolo do Euro (€) .|Softwares e documentos legados do Windows (conhecido como "ANSI") .|
+|GB 2312 / Big5|Multibyte (1-2 bytes)|Milhares|Codificações para **chinês simplificado** (GB 2312, usado na China) e **chinês tradicional** (Big5, usado em Taiwan e Hong Kong) .|Sistemas legados na China e Taiwan.|
+|Shift_JIS / EUC-JP|Multibyte (1-2 bytes)|Milhares|Codificações populares para o **japonês** antes do Unicode .|Sistemas legados no Japão.|
+|KOI8-R / KOI8-U|8 bits|256 caracteres|Codificações populares para o **cirílico** (russo, ucraniano) antes do Unicode .|Sistemas legados na Rússia e Ucrânia.|
+|UTF-8|Variável (1 a 4 bytes)|**Todos** os caracteres do padrão Unicode (mais de 1 milhão)|É a codificação **padrão universal da internet**. Compatível com ASCII para os primeiros 128 caracteres, mas pode representar qualquer caractere de qualquer idioma, além de emojis e símbolos especiais .|**Padrão mundial atual**: sites, aplicativos modernos, bancos de dados, APIs e sistemas operacionais .|
+|UTF-16|16 bits (2 ou 4 bytes)|**Todos** os caracteres Unicode|Representa a maioria dos caracteres comuns em 2 bytes. Usado internamente por sistemas como Windows, Java e JavaScript .|Ambientes onde o desempenho com caracteres não-ASCII é priorizado.|
 
 ### 10- Decodificadores, como funcionam?
+Um decodificador é um **circuito combinacional** que converte **n entradas** (um número binário) em **2ⁿ saídas**, onde exatamente **uma saída é ativada** (nível lógico 1) e todas as outras permanecem desativadas (nível lógico 0) .
 
-### 11- 
+É como um **interruptor seletor**: você tem 3 fios de entrada que podem formar 8 combinações possíveis (000, 001, 010, ..., 111), e o decodificador ativa a saída correspondente à combinação recebida .
+
+#### Tabela Verdade de um Decodificador 2 para 4
+|Entrada A₁|Entrada A₀|Saída Y₃|Saída Y₂|Saída Y₁|Saída Y₀|Saída Ativa|
+|----------|----------|--------|--------|--------|--------|-----------|
+|0|0|0|0|0|1|Y₀|
+|0|1|0|0|1|0|Y₁|
+|1|0|0|1|0|0|Y₂|
+|1|1|1|0|0|0|Y₃|
+
+A entrada binária `A₁A₀` (que pode ser 00, 01, 10, 11) determina qual das quatro saídas será ativada.
+
+#### Decodificador n-para-2ⁿ
+O princípio se escala para qualquer número de entradas. Os tamanhos mais comuns são:
+
+|Decodificador|Número de Entradas|Número de Saídas|Uso Típico|
+|-------------|------------------|----------------|----------|
+|2 para 4|2 bits|4|Pequenos seletores, circuitos simples|
+|3 para 8|3 bits|8|Seleção de linha em memórias pequenas|
+|4 para 16|4 bits|16|Decodificação de nibble (4 bits)|
+|5 para 32|5 bits|32|Seleção de linha em memórias moderadas|
+|6 para 64|6 bits|64|Seleção de linha em memórias SRAM|
+
+#### Aplicações Fundamentais na Arquitetura de Hardware
+* **Memória RAM e Cache**
+Esta é a aplicação mais crítica. Um chip de memória RAM contém milhões de células de memória organizadas em uma matriz. O **decodificador de linha** e o **decodificador de coluna** convertem o endereço binário recebido pela CPU na ativação física da célula específica .
+
+```
+Endereço de 8 bits (256 posições possíveis)
+       ↓
+Decodificador 8-para-256
+       ↓
+Ativa a única linha de memória correspondente ao endereço
+```
+Sem o decodificador, seria impossível acessar uma posição específica da memória sem conectar milhões de fios individuais .
+
+* **Banco de Registradores**
+O banco de registradores da CPU contém múltiplos registradores (ex: 32 registradores de 64 bits). Quando uma instrução diz "use o registrador R5", um **decodificador** de endereço de registrador seleciona exatamente qual registrador será lido ou escrito .
+
+* **Seleção de Dispositivos (I/O)**
+Em sistemas com múltiplos dispositivos (como placas PCIe, USB, etc.), o decodificador de endereço determina qual dispositivo está sendo acessado quando a CPU emite um endereço específico.
+
+* **Display de 7 Segmentos**
+Um decodificador converte um número binário (0 a 9) nos sinais que acendem os segmentos corretos de um display de 7 segmentos para mostrar o dígito correspondente .
+
+* **Unidade de Controle (Control Unit)**
+Dentro da CPU, os decodificadores são usados para decodificar instruções. O opcode da instrução (ex: "ADD", "SUB", "LOAD") é passado por um decodificador que ativa o sinal de controle apropriado para que a ALU execute a operação correta .
+
+#### Decodificador vs. Multiplexador
+É comum confundir decodificadores com multiplexadores, mas eles têm funções opostas:
+
+|Componente|Função|Direção|
+|----------|------|-------|
+|Decodificador|Recebe n entradas (endereço) e ativa 1 de 2ⁿ saídas|Endereço → Múltiplas saídas|
+|Multiplexador (MUX)|Recebe 2ⁿ entradas de dados e 1 endereço, seleciona qual entra na saída|Múltiplas entradas → Saída única|
+
+Um decodificador é como um **carteiro** que entrega uma carta no endereço correto. Um multiplexador é como um **operador de central telefônica** que conecta uma das muitas linhas à única saída .
+
+#### Decodificadores em Escala: Endereçamento de Memória
+Em sistemas de 64 bits modernos, não usamos um único decodificador gigante (64-para-2⁶⁴ seria impossível!). Em vez disso, usamos uma **hierarquia de decodificadores**:
+
+```
+Endereço de 64 bits
+       ↓
+[Decodificador de Nível 1] → Seleciona um banco de memória
+       ↓
+[Decodificador de Nível 2] → Seleciona uma página dentro do banco
+       ↓
+[Decodificador de Nível 3] → Seleciona a linha dentro da página
+       ↓
+Célula de memória específica
+```
+Essa abordagem hierárquica é mais eficiente e **reduz a complexidade do circuito**.
+
+#### Resumo
+O decodificador é um dos circuitos combinacionais mais importantes em arquitetura de computadores porque:
+
+* **Permite endereçamento** – sem ele, não poderíamos acessar células de memória específicas
+* **Simplifica o hardware** – transforma a complexidade exponencial do endereçamento em um circuito estruturado e hierárquico
+* **É a base da seleção** – qualquer componente que precise escolher um entre muitos usa decodificadores
+
+Quando uma instrução do seu programa acessa uma variável na memória, há um decodificador (na verdade, uma cadeia deles) convertendo o endereço binário em um sinal físico que ativa exatamente a célula de memória correta entre bilhões de outras. É um dos exemplos mais elegantes de como a lógica digital simples constrói sistemas complexos.
+
+### 11- Adjacência Topológica
+
+### 12 - Código GRAY
