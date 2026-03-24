@@ -703,5 +703,156 @@ O decodificador é um dos circuitos combinacionais mais importantes em arquitetu
 Quando uma instrução do seu programa acessa uma variável na memória, há um decodificador (na verdade, uma cadeia deles) convertendo o endereço binário em um sinal físico que ativa exatamente a célula de memória correta entre bilhões de outras. É um dos exemplos mais elegantes de como a lógica digital simples constrói sistemas complexos.
 
 ### 11- Adjacência Topológica
+Também conhecida como a **"Geometria" da Simplificação Digital**. A adjacência topológica é um conceito fundamental no *Mapa de Karnaugh (K-map)* , que é a principal ferramenta visual para **simplificar circuitos digitais**.
+
+Em termos simples, ela descreve a regra de "vizinhança" especial entre células em um mapa, onde duas posições são consideradas adjacentes não apenas por estarem fisicamente lado a lado, mas também por estarem conectadas pelas bordas do mapa, como se estivessem desenhadas em um toro (uma rosquinha) . O objetivo é agrupar células para eliminar variáveis e simplificar a expressão lógica.
+
+
+|Critério de Adjacência|Descrição|Analogia Visual|Exemplo em um Mapa 4x4|
+|---------------------|-----------|----------------|----------------|
+|Vizinhança Imediata|Células que compartilham uma borda (vertical ou horizontal) .|São vizinhos de porta.|As células na posição (linha 1, coluna 2) e (linha 1, coluna 3) são adjacentes.(**Imagem 5 do tópico, na cor vermelha**)|
+|Adjacência por Enrolamento (Toroidal)|A borda superior é adjacente à borda inferior, e a borda esquerda é adjacente à borda direita .|Como se o mapa fosse uma folha de papel que você enrola para colar a borda de cima com a de baixo, formando um cilindro, e depois as laterais, formando um toro (rosquinha) .|As células nos cantos superior esquerdo e inferior esquerdo são adjacentes, assim como as dos cantos superior esquerdo e superior direito.(**Imagem 1 do tópico, na cor vermelha**)|
+|Agrupamento (Regras)|Os agrupamentos para simplificação devem ser retângulos (ou quadrados) com um número de células que seja uma potência de 2 (1, 2, 4, 8, 16...) .|Você só pode fazer grupos de 1, 2, 4, 8 ou 16 células. Não pode fazer um grupo de 3 ou 6.|Você pode agrupar 2, 4, 8 ou todas as 16 células, desde que formem um retângulo.(**Imagem 2 do tópico, na cor vermelha**)|
+
+
+
+<div style = "text-align: center;">
+<img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_1001/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-3-variaveis-CLP.png.webp" alt="Mapa de Karnaugh" style="width: 100%"/>
+<strong>Imagem 1: Com três variáveis</strong>     
+<img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_960,h_480/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-4-variaveis.png" alt="Mapa de Karnaugh" style="width: 100%"/>
+<strong>Imagem 2:Com quatro variáveis</strong>    
+</div>
+
+#### Como fazer um Mapa de Karnaugh?
+<div style = "text-align: center;">
+<img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-2.png.webp" alt="Mapa de Karnaugh" style="width: 50%"/>
+
+<strong>Imagem 3: Exemplo Mapa de Karnaugh com quatro variáveis</strong>    
+</div>
+<img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-3.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 4"/><img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-5-1.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 5"/>
+
+Cada um destes retângulos corresponde a um **termo mínimo (miniterm)** da função lógica. **Um miniterm é o E lógico (AND) das entradas** (eventualmente invertidas). **A função lógica é o OU lógico (OR) dos miniterms**.
+
+A construção dos miniterms é feita observando os valores das variáveis de entrada nos retângulos. Se uma variável aparece no retângulo com os dois valores (`0` e `1`), ela não aparece no miniterm. Se uma variável aparece apenas com `1`, ela entra no miniterm normalmente. Se uma variável aparece apenas com 0, ela entra no miniterm invertida.
+
+Aplicando isto ao nosso exemplo (`~` indica **negação**(`NOT`) e `.` indica `E` lógico):
+
+* **Retângulo amarelo**: `AB=00/10`, `CD=00/01`. `A` aparece com `0` e `1`, `B` somente com `0`, `C` somente com `0` e `D` com `0` e `1`. Miniterm = `~B.~C`
+* **Retângulo azul** (sobreposto ao amarelo): `AB=11/10`, `CD=01/11`. A aparece somente com `1`, B com `1` e 0, C com 0 e `1`, D com `1`. Miniterm = `A.D`
+* **Retângulo vermelho**: `AB=00/01`, `CD=10`. `A` aparece somente com `0`, `B` aparece com `0` e `1`, `C` somente `1` e `D` somente `0`. Miniterm = `~A.C.~D`
+`A função lógica fica  ~B.~C + A.D + ~A.C.~D`
+
+A beleza do Mapa de Karnaugh e do conceito de adjacência topológica é que ele transforma um problema de álgebra booleana em um problema de reconhecimento de padrões visuais . Em vez de aplicar regras algébricas, você simplesmente olha para o mapa e identifica os maiores retângulos possíveis que cobrem todos os 1s, respeitando as regras de adjacência e potência de 2.
+
+Mapas de Karnaugh são ferramentas fantásticas para **simplificar funções de até 5 ou 6 variáveis**. Para funções com mais variáveis, o processo se torna visualmente complexo, e engenheiros recorrem a **métodos algorítmicos computacionais como o Quine-McCluskey**.
 
 ### 12 - Código GRAY
+O Código Gray, também conhecido como código binário refletido, é uma forma de representação binária onde dois valores consecutivos diferem em apenas um bit. Foi desenvolvido por Frank Gray no Bell Labs em 1947 (patenteado em 1953) e tem **aplicações fundamentais em sistemas digitais onde a confiabilidade na transição entre estados é crítica**.
+
+#### Como Funciona?
+Enquanto na contagem binária tradicional vários bits podem mudar simultaneamente entre números consecutivos, no código Gray apenas um bit muda por vez.
+
+Vamos comparar:
+
+|Número Decimal|Binário Padrão|Código Gray|Bits que Mudam no Binário|Bits que Mudam no Gray|
+|-|---|---|-|-|
+|0|000|000|—|—|
+|1|001|001|1 bit (bit 0)|1 bit (bit 0)|
+|2|010|011|2 bits (bits 0 e 1)|1 bit (bit 1)|
+|3|011|010|1 bit (bit 0)|1 bit (bit 0)|
+|4|100|110|3 bits (todos)|1 bit (bit 2)|
+|5|101|111|1 bit (bit 0)|1 bit (bit 0)|
+|6|110|101|2 bits (bits 0 e 1)|1 bit (bit 1)|
+|7|111|100|1 bit (bit 0)|1 bit (bit 0)|
+
+Observe como, no código Gray, a transição entre 1 e 2 (001 → 011) muda apenas um bit, enquanto no binário (001 → 010) muda dois bits. O problema fica ainda mais evidente na transição de 3 para 4: binário (011 → 100) muda todos os três bits; Gray (010 → 110) muda apenas um bit.
+
+#### Por que o Código Gray é Importante?
+* **Codificadores de Posição (Encoders)**: Em sistemas que medem posição angular ou linear (como em *máquinas CNC, robótica, servomotores*), utilizam-se discos codificadores com trilhas concêntricas que geram um código binário de acordo com a posição.
+<div style = "text-align: center;">
+<img src="https://www.allaboutcircuits.com/uploads/articles/Gray_Code_encoding_wheel_resize.jpeg" alt="Codificador de posição" style="width: 80%" title = "Imagem 1 - Encoders"/>
+</div>
+
+> ***O problema do binário**: Se o disco estiver exatamente na fronteira entre duas posições, pode ocorrer uma leitura ambígua. Por exemplo, na transição de 3 (011) para 4 (100), se o leitor estiver levemente desalinhado, pode ler 111, 000 ou qualquer outra combinação intermediária, causando erros graves de posicionamento.*
+
+>***A solução Gray**: Como apenas um bit muda entre posições consecutivas, mesmo que o leitor esteja na fronteira, o erro máximo é de uma unidade (a posição vizinha), eliminando os erros catastróficos do binário .*
+
+* **Minimização de Erros em Transmissão**: Em sistemas de comunicação digital, transições simultâneas de múltiplos bits podem gerar ruído de comutação (glitches). O código Gray reduz drasticamente esse problema, pois apenas uma linha de sinal muda de estado por vez .
+
+* **Mapas de Karnaugh (Adjacência Topológica)**: *A organização do mapa segue exatamente a **lógica do código Gray***. As linhas e colunas são ordenadas em código Gray para que células adjacentes (inclusive nas bordas, por enrolamento) difiram em apenas uma variável, permitindo a simplificação visual.
+
+* **Geradores de Sequência e Contadores**: Em contadores de anel e contadores Johnson, utiliza-se código Gray para criar sequências onde a saída muda de forma suave e previsível, evitando picos de corrente e reduzindo interferência eletromagnética (EMI).
+
+#### Como Gerar o Código Gray?
+##### Método 1: Reflexão (Mais Simples de Visualizar)
+O código Gray é chamado de "binário refletido" porque pode ser construído recursivamente:
+* Comece com os códigos para 1 bit: `0`, `1`
+* Para obter o código de n+1 bits:
+  * Escreva a lista atual (n bits) com um `0` à esquerda
+  * Escreva a lista atual invertida (refletida) com um `1` à esquerda
+  * Concatene as duas listas
+
+> Exemplo para 2 bits:
+>* Lista de 1 bit: `0`, `1`
+>* Com `0` à esquerda: `00`, `01`
+>* Lista refletida de `1` bit: `1`, `0` → com `1` à esquerda: `11`, `10`
+>* Resultado: `00`, `01`, `11`, `10` (Gray de 2 bits)
+
+>Exemplo para 3 bits:
+>* Partindo do Gray de 2 bits: `00`, `01`, `11`, `10`
+>* Com 0 à esquerda: `000`, `001`, `011`, `010`
+>* Lista refletida do Gray de 2 bits: `10`, `11`, `01`, 00 → com 1 à esquerda: `110`, `111`, `101`, `100`
+>* Resultado: `000`, `001`, `011`, `010`, `110`, `111`, `101`, `100`
+
+##### Método 2: Fórmula Matemática
+Para converter um número binário n em código Gray g:
+
+```text
+g = n XOR (n >> 1)
+```
+Onde `>>` é o deslocamento à direita de um bit.
+
+> Exemplo: Para n = 5 (binário 101):
+>
+>n >> 1 = 2 (binário 010)
+>
+>101 XOR 010 = **111** (*código Gray para 5*)
+
+Tabela de Códigos Gray Comuns
+
+|Bits|Nome|Valores (em hexa)|Aplicação Típica|
+|----|----|------------|---------------|
+|2 bits|Gray 2|0, 1, 3, 2|Pequenos encoders|
+|3 bits|Gray 3|0, 1, 3, 2, 6, 7, 5, 4|Encoders industriais simples|
+|4 bits|Gray 4|0, 1, 3, 2, 6, 7, 5, 4, C, D, F, E, A, B, 9, 8|Encoders absolutos comuns|
+|5-10 bits|Gray estendido|—|Encoders de alta precisão, robótica|
+
+Nota: Na tabela acima, os valores de 4 bits estão em hexadecimal (C=12, D=13, F=15, E=14, A=10, B=11).
+
+💡 Exemplo Prático: Encoder Absoluto
+Imagine um braço robótico que precisa saber sua posição angular com precisão. Um encoder absoluto de 4 bits tem um disco com 16 posições. Se usar código binário, uma transição de 7 (0111) para 8 (1000) muda todos os bits simultaneamente. Um pequeno desalinhamento no sensor pode gerar qualquer leitura entre 0 e 15, fazendo o robô "enlouquecer".
+
+Com código Gray, a transição de 7 (0100) para 8 (1100) muda apenas o bit mais significativo. Mesmo na fronteira, a leitura será 7 ou 8 - um erro mínimo, aceitável e corrigível .
+
+#### Em Síntese
+**Gray vs. Binário: Comparação**
+
+|Aspecto|Binário Padrão|Código Gray|
+|-------|--------------|-----------|
+|Mudança entre consecutivos|Vários bits (até todos)|Exatamente 1 bit|
+|Ambiguidade em transições|Alta (possível leitura errática)|Baixa (erro de apenas 1 unidade)|
+|Complexidade de conversão|Direta|XOR com deslocamento|
+|Aritmética|Direta|Não adequada|
+|Aplicação principal|Computação geral|Sensores de posição, K-maps, comunicação confiável|
+
+O código Gray é uma codificação binária especializada onde a vizinhança é garantida: cada valor consecutivo difere em exatamente um bit. Suas principais aplicações são:
+
+* Codificadores de posição (encoders absolutos) - elimina ambiguidade em fronteiras
+* Mapas de Karnaugh - fundamenta a adjacência topológica que você aprendeu
+* Contadores digitais - reduz ruído de comutação e consumo
+* Transmissão de dados - minimiza erros em canais ruidosos
+
+Ele resolve um problema fundamental da eletrônica digital: quando múltiplos bits mudam simultaneamente em um sistema físico, os tempos de comutação diferentes podem causar leituras espúrias. O código Gray elimina esse problema ao garantir que, entre estados consecutivos, apenas um sinal físico precise mudar.
+
+
+
