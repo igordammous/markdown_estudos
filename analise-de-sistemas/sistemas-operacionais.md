@@ -6,7 +6,7 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
 * **Hardware**: Válvulas, sem transistores. Máquinas enormes, lentas, extremamente caras.
 * **Como funcionava**: Não havia SO. O programador se inscrevia para um horário, ia até a sala da máquina, conectava cabos em painéis de controle (programação "plug-board"), operava os painéis de fita perfurada e aguardava o resultado. Entre um programa e outro, o operador humano reconectava fisicamente o sistema.
 * **Problema**: O tempo do computador (o recurso mais caro) era desperdiçado nos intervalos entre programas e na configuração manual.
-<img src="https://www.aps.org/_ipx/w_828,q_90/https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fi2z87pbo%2Fproduction%2Fa9132a54f148d9eef366dbf5f7a8cb5c25603971-2500x1597.webp%3Fauto%3Dformat%26fit%3Dmax%26w%3D828%26q%3D90" alt="ENIAC" style="width: 100%" title = "Imagem 1 - Marlyn Wescoff (left) and Ruth Lichterman were two of the ENIAC’s first programmers. U.S. National Archives Education Updates"/>
+<img src="[https://www.aps.org/_ipx/w_828,q_90/https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fi2z87pbo%2Fproduction%2Fa9132a54f148d9eef366dbf5f7a8cb5c25603971-2500x1597.webp%3Fauto%3Dformat%26fit%3Dmax%26w%3D828%26q%3D90](https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2021/06/26776_1798DEE935286D54.jpg?w=1200&h=900&crop=0)" alt="ENIAC" style="width: 100%" title = "Imagem 1 - Marlyn Wescoff (left) and Ruth Lichterman were two of the ENIAC’s first programmers. U.S. National Archives Education Updates"/>
 *Marlyn Wescoff (left) and Ruth Lichterman were two of the ENIAC’s first programmers.
 U.S. National Archives Education Updates.*
 
