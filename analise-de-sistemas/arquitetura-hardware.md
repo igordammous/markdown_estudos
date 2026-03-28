@@ -1,5 +1,143 @@
 # Arquitetura de Hardware
 
+## 1- A Máquina IAS (Von Neumann)
+ IAS machine (também conhecida como computador de Von Neumann) foi o primeiro computador a implementar o conceito de programa armazenado , tornando-se o arquétipo de praticamente todos os computadores modernos. Desenvolvida no Institute for Advanced Study (IAS) em Princeton, sob a liderança de John von Neumann, sua construção começou em 1946 e foi concluída em 1951.
+
+### Contexto Histórico
+Após o ENIAC (1946), que precisava ser reprogramado fisicamente através de cabos e chaves, *Von Neumann* propôs um modelo revolucionário: armazenar o programa na mesma memória que os dados . Essa ideia foi formalizada no "First Draft of a Report on the EDVAC" (1945), um documento que se tornou o fundamento da arquitetura de computadores moderna .
+
+A **IAS machine** foi a materialização física desse conceito, servindo como modelo para computadores comerciais como a **IBM 701** e influenciando diretamente a arquitetura dos sistemas atuais.
+
+### Arquitetura da IAS Machine
+A máquina IAS implementou o que hoje chamamos de Arquitetura de Von Neumann, caracterizada por:
+
+|Componente|Descrição|
+|----------|---------|
+|Memória Principal|Única, armazenando tanto instruções quanto dados|
+|Unidade Aritmética e Lógica (ALU)|Realiza operações matemáticas e lógicas|
+|Unidade de Controle (UC)|Decodifica e coordena a execução das instruções|
+|Barramento Único|Via de comunicação compartilhada entre todos os componentes|
+|Registradores|Armazenamento temporário de alta velocidade dentro da CPU|
+
+**Diagrama da Arquitetura IAS**
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                         UNIDADE CENTRAL                          │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │               UNIDADE DE CONTROLE (UC)                  │    │
+│  │  ┌───────────┐  ┌───────────┐  ┌───────────────────┐  │    │
+│  │  │  PC (IR)  │  │  MBR (IBR)│  │    MAR (PC)       │  │    │
+│  │  │Program    │  │Instrução  │  │Endereço de       │  │    │
+│  │  │Counter    │  │Buffer     │  │Memória           │  │    │
+│  │  └───────────┘  └───────────┘  └───────────────────┘  │    │
+│  │                                                         │    │
+│  │  ┌───────────────────────────────────────────────────┐  │    │
+│  │  │              UNIDADE ARITMÉTICA (ALU)             │  │    │
+│  │  │  ┌───────────┐  ┌───────────┐  ┌───────────┐    │  │    │
+│  │  │  │   AC      │  │    MQ     │  │  MBR (Dados)│   │  │    │
+│  │  │  │Acumulador │  │Multiplier │  │Data Buffer │   │  │    │
+│  │  │  │           │  │  Quotient │  │            │   │  │    │
+│  │  │  └───────────┘  └───────────┘  └───────────┘    │  │    │
+│  │  └───────────────────────────────────────────────────┘  │    │
+│  └─────────────────────────────────────────────────────────┘    │
+│                              │                                   │
+│                              │ Barramento Único                  │
+│                              ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │                    MEMÓRIA PRINCIPAL                      │    │
+│  │  ┌─────────────────────────────────────────────────┐    │    │
+│  │  │         Instruções + Dados                       │    │    │
+│  │  │  (1.024 palavras de 40 bits)                     │    │    │
+│  │  └─────────────────────────────────────────────────┘    │    │
+│  └─────────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Especificações Técnicas
+|Especificação|Detalhe|
+|-------------|---------|
+|Ano de conclusão|1951|
+|Memória|1.024 palavras de 40 bits (cerca de 5 KB)|
+|Tipo de memória|Tubos de Williams (memória de tubo de raios catódicos) - o primeiro |tipo de memória de acesso aleatório (RAM)
+|Palavra (Word)|40 bits|
+|Instrução|20 bits (duas instruções por palavra)|
+|Números|Ponto fixo binário (sinal-magnitude)|
+|Velocidade|Ciclo de instrução: ~1.000 operações por segundo|
+|Componentes|Aproximadamente 2.300 válvulas (tubos de vácuo)|
+|Consumo|Cerca de 25 kW|
+
+### Formato das Instruções
+Uma das características mais interessantes da IAS machine era o empacotamento de duas instruções por palavra de 40 bits :
+
+```text
+┌─────────────────────────────────────────────────────────────────────┐
+│                      PALAVRA DE 40 BITS                              │
+├───────────────────────────────────┬─────────────────────────────────┤
+│         INSTRUÇÃO ESQUERDA         │        INSTRUÇÃO DIREITA        │
+│         (20 bits)                  │         (20 bits)               │
+├──────────────┬────────────────────┼──────────────┬──────────────────┤
+│  Opcode (8)  │  Endereço (12)     │  Opcode (8)  │  Endereço (12)   │
+└──────────────┴────────────────────┴──────────────┴──────────────────┘
+```
+Cada instrução de 20 bits continha:
+* **Opcode (8 bits)**: Código da operação a ser executada
+* **Endereço (12 bits)**: Endereço na memória (para buscar dados ou próximo salto)
+
+### Ciclo de Instrução (Fetch-Decode-Execute)
+O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computadores seguem até hoje:
+
+#### Passo a Passo
+1. **Busca (Fetch)**
+
+* O Program Counter (PC) contém o endereço da próxima palavra (40 bits) a ser buscada
+* A palavra é transferida da memória para o Memory Buffer Register (MBR)
+* Simultaneamente, o endereço é transferido para o Memory Address Register (MAR)
+* O Instruction Buffer Register (IBR) armazena a palavra enquanto ela é processada
+
+2. **Decodificação (Decode)**
+
+* A instrução esquerda (primeiros 20 bits) é transferida para o Instruction Register (IR)
+* O opcode e o endereço são separados e interpretados pela Unidade de Controle
+
+3. **Execução (Execute)**
+
+* A Unidade de Controle ativa os circuitos necessários para realizar a operação
+* Pode envolver:
+
+  * Buscar operandos na memória
+  * Executar operação na ALU
+  * Armazenar resultado
+  * Atualizar o PC para o próximo endereço
+
+4. **Próxima Instrução**
+
+* Se a palavra atual continha duas instruções, após executar a esquerda, a direita é carregada do IBR
+* Caso contrário, uma nova palavra é buscada da memória
+
+### Legado e Influência
+A IAS machine não foi comercializada, mas seu design serviu de modelo para praticamente todos os computadores que vieram depois:
+
+|Computador|Relação com IAS|
+|----------|---------------|
+|IBM 701 (1952)|Primeiro computador comercial da IBM, diretamente inspirado na IAS|
+|MANIAC I (1952)|Construído no Los Alamos National Laboratory, cópia da IAS|
+|ILLIAC I (1952)|Construído na Universidade de Illinois, também baseado na IAS|
+|ORACLE (1954)|Construído no Oak Ridge National Laboratory|
+|WEIZAC (1955)|Primeiro computador em Israel, baseado na IAS|
+
+Essas máquinas, chamadas de "máquinas von Neumann" , disseminaram a arquitetura pelo mundo e estabeleceram o padrão que persiste até hoje.
+
+**Comparação: IAS vs. Computadores Modernos**
+|Aspecto|IAS Machine (1951)|Computador Moderno (2024)|
+|-------|------------------|-------------------------|
+|Arquitetura|Von Neumann (barramento único)|Von Neumann (com hierarquias e barramentos dedicados)|
+|Memória|5 KB (tubos de Williams)|16-128 GB (DRAM) + cache (SRAM)|
+|Frequência|~1 kHz (ciclo de instrução)|3-5 GHz (bilhões de vezes mais rápida)|
+|Transistores|0 (válvulas)|~20 bilhões (CPU) + ~100 bilhões (GPU)|
+|Formato instrução|20 bits (8 opcode + 12 endereço)|32-64 bits, múltiplos formatos|
+|Registradores|7 registradores|16-32 registradores de uso geral + centenas especiais|
+|Pipelining|Não|Sim (instruções em estágios)|
+|Multiprocessamento|Não|Sim (múltiplos núcleos)|
 ## Dúvidas
 
 ### 1- Bases númericas e codificação de dados:
@@ -854,5 +992,301 @@ O código Gray é uma codificação binária especializada onde a vizinhança é
 
 Ele resolve um problema fundamental da eletrônica digital: quando múltiplos bits mudam simultaneamente em um sistema físico, os tempos de comutação diferentes podem causar leituras espúrias. O código Gray elimina esse problema ao garantir que, entre estados consecutivos, apenas um sinal físico precise mudar.
 
+### 13- Geração de Computadores
+#### Primeira Geração (1940-1956) - Válvulas Eletrônicas (Válvulas Termiônicas)
+**Características Principais**
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Válvulas eletrônicas (tubos de vácuo)|
+|Memória|Linhas de retardo de mercúrio, tambores magnéticos, relés|
+|Armazenamento|Cartões perfurados, fita magnética (emergente)|
+|Programação|Linguagem de máquina (binário direto), depois assembly|
+|Tamanho|Ocupavam salas inteiras (ex: ENIAC tinha 167 m²)|
+|Consumo|Extremamente alto (ENIAC consumia 150 kW)|
+|Confiabilidade|Baixíssima (válvulas queimavam frequentemente)|
+|Custo|Altíssimo, acessível apenas para governos e grandes universidades|
+
+**Principais Máquinas**
+* **ENIAC** (1946, EUA): Primeiro computador eletrônico de uso geral. Tinha 17.468 válvulas e realizava 5.000 operações por segundo .
+* **DVAC** (1949): Introduziu o conceito de programa armazenado (Arquitetura de Von Neumann) .
+* **NIVAC I**  (1951): Primeiro computador comercial produzido nos EUA .
+* **Colossus** (1943, Reino Unido): Usado na Segunda Guerra para decifrar códigos alemães .
+
+**Impacto na Arquitetura**
+* Estabeleceu os fundamentos da Arquitetura de Von Neumann: CPU, memória, barramento único para dados e instruções .
+* A programação era feita manualmente, conectando cabos e configurando chaves (no ENIAC) .
+#### Segunda Geração (1956-1963) - Transistores
+**Características Principais**
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Transistores (substituem as válvulas)|
+|Memória|Núcleo magnético (magnetic core memory)|
+|Armazenamento|Discos magnéticos, fitas magnéticas mais confiáveis|
+|Programação|Linguagens de alto nível (FORTRAN, COBOL, ALGOL)|
+|Tamanho|Redução significativa (gabinetes do tamanho de armários)|
+|Consumo|Muito menor que válvulas|
+|Confiabilidade|Muito superior às válvulas|
+|Custo|Redução gradual, mas ainda alto|
+
+**Principais Máquinas**
+* **IBM 1401** (1959): Computador comercial de grande sucesso.
+* **IBM 7090** (1959): Computador científico totalmente transistorizado.
+* **PDP-1** (1960): Primeiro minicomputador (DEC), com apenas 4 kW de consumo.
+
+**Inovações Arquiteturais**
+* Surgimento do barramento omnibus
+* Multiprogramação: capacidade de executar múltiplos programas de forma "simultânea"
+* Sistemas operacionais com gerenciamento básico de recursos
+* Canais de I/O independentes da CPU
+
+#### Terceira Geração (1964-1971) - Circuitos Integrados (CI)
+**Características Principais**
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Circuitos Integrados (múltiplos transistores em um único chip)|
+|Memória|Memória de semicondutor (começa a substituir núcleo magnético)|
+|Armazenamento|Discos magnéticos com capacidade crescente|
+|Programação|Linguagens estruturadas (Pascal, C), sistemas operacionais mais sofisticados|
+|Tamanho|Computadores de médio porte, minicomputadores|
+|Consumo|Redução drástica|
+|Confiabilidade|Alta|
+|Custo|Redução significativa, acessível para empresas médias|
+
+**Principais Máquinas**
+* **IBM System/360** (1964): Família de computadores compatíveis entre si (diferentes modelos rodavam o mesmo software). Marcou a consolidação da IBM como líder do setor .
+* **PDP-8** (1965): Minicomputador de baixo custo, popularizou a computação em laboratórios e universidades .
+* **CDC 6600** (1964): Considerado o primeiro supercomputador, projetado por Seymour Cray .
+
+**Inovações Arquiteturais**
+* Compatibilidade entre famílias (software podia migrar entre modelos)
+* Memória cache (introduzida no IBM 360/85)
+* Pipelining (execução simultânea de múltiplas instruções em estágios)
+* Multiprocessamento (múltiplas CPUs compartilhando memória)
+* Sistemas operacionais com time-sharing (compartilhamento de tempo)
+
+#### Quarta Geração (1971-presente) - Microprocessadores e VLSI
+**Características Principais**
+
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Microprocessador (CPU em um único chip) - tecnologia VLSI (Very Large Scale Integration)|
+|Memória|DRAM e SRAM de alta densidade|
+|Armazenamento|Discos rígidos, SSDs, armazenamento em nuvem|
+|Programação|Linguagens orientadas a objetos (C++, Java, Python), sistemas operacionais gráficos|
+|Tamanho|Computadores pessoais, notebooks, dispositivos móveis|
+|Consumo|Extremamente baixo (especialmente em dispositivos móveis)|
+|Confiabilidade|Altíssima|
+|Custo|Acessível ao consumidor final|
+
+**Principais Marcos**
+* **Intel 4004 (1971)**: Primeiro microprocessador comercial (4 bits)
+* **Intel 8080 (1974)**: Primeiro microprocessador de 8 bits de uso geral
+* **IBM PC (1981)**: Popularizou o computador pessoal
+* **Apple Macintosh (1984)**: Popularizou a interface gráfica
+* **Processadores x86, ARM (décadas seguintes)**: Dominaram os mercados de PC e dispositivos móveis
+
+**Inovações Arquiteturais**
+* Microprocessadores com milhões (hoje bilhões) de transistores
+* Memória cache hierárquica (L1, L2, L3)
+* Pipelines superescalares (múltiplas instruções por ciclo)
+* Multicore (múltiplos núcleos em um único chip)
+* Arquiteturas RISC vs. CISC
+* Computação móvel e embarcada
+* Processadores especializados (GPUs, NPUs, TPUs)
+
+>**Extensões e o Presente**
+Muitos autores consideram uma Quinta Geração (computação paralela massiva, inteligência artificial, computação quântica) ou até mesmo uma Sexta Geração (computação ubíqua, IoT, IA integrada). No entanto, a classificação tradicional vai até a quarta geração, com as demais sendo tratadas como desdobramentos da era dos microprocessadores.
+
+#### Tabela Síntese: Gerações de Computadores
+
+|Geração|Período|Tecnologia Central|Componentes por Chip|Arquitetura Principal|Representantes|
+|--|---------|--------|---|------------------------|---------------|
+|1ª|1940-1956|Válvulas|N/A|Von Neumann (conceitual)|ENIAC, UNIVAC I|
+|2ª|1956-1963|Transistores discretos|1 transistor por encapsulamento|Barramento omnibus|IBM 1401, PDP-1|
+|3ª|1964-1971|Circuitos Integrados (SSI/MSI)|Dezenas a centenas|Barramentos hierárquicos iniciais|IBM System/360, PDP-8|
+|4ª|1971-presente|Microprocessadores (VLSI)|Milhões a bilhões|Barramentos hierárquicos modernos|Intel x86, ARM, Apple M|
 
 
+### 14- Importância dos transistores para a arquitetura de hardware e computadores em geral
+O **transistor** é, sem exagero, o componente mais importante da eletrônica moderna. Sua invenção em 1947 (por John Bardeen, Walter Brattain e William Shockley, Bell Labs) revolucionou a computação.
+
+**O Que é um Transistor?**
+Um transistor é um interruptor controlado eletricamente (também pode funcionar como amplificador). Ele possui três terminais:
+
+* Coletor (entrada)
+* Emissor (saída)
+* Base (controle)
+
+Ao aplicar uma pequena tensão na base, o transistor "liga", permitindo a passagem de corrente entre coletor e emissor. Sem tensão na base, ele "desliga", bloqueando a passagem.
+
+<div style = "text-align: center;">
+<img src="https://www.pcbasic.com/Uploads/files/20250106/1f23d708257aa2b1adb9b323d0e344b2.webp" alt="Transistor" style="width: 50%" title = "Imagem - Transistor"/>
+</div>
+
+**Por que o Transistor foi Revolucionário?**
+
+|Aspecto|Válvula (1ª Geração)|Transistor (2ª Geração)|
+|-------|--------------------|-----------------------|
+|Tamanho|Centímetros|Milímetros|
+|Consumo|Alto (calor intenso)|Baixíssimo|
+|Vida útil|Centenas de horas|Praticamente ilimitada|
+|Aquecimento|Necessitava aquecimento prévio|Não necessita|
+|Confiabilidade|Baixa (queimava com frequência)|Altíssima|
+|Velocidade de chaveamento|Lenta (milissegundos)|Rápida (nanossegundos)|
+
+<div style = "text-align: center;">
+<img src="https://thumbs.dreamstime.com/z/grupo-do-vetor-de-componentes-eletr%C3%B4nicos-izometric-capacitores-diodo-105185439.jpg?ct=jpeg" alt="Transistor" style="width: 66%" title = "Imagem - Transistor"/>
+</div>
+
+**Impacto na Arquitetura de Hardware**
+Miniaturização: Com os transistores, os computadores deixaram de ocupar salas inteiras e passaram a caber em armários e, depois, em mesas.
+
+* **Redução de custos**: Menos material, menos energia, mais confiabilidade = custo reduzido drasticamente .
+* **Aumento de desempenho**: Transistores chaveiam muito mais rápido que válvulas, permitindo frequências de clock mais altas .
+* **Baixo consumo**: Possibilitou o uso de baterias e, eventualmente, computadores portáteis .
+* **Circuitos Integrados**: O transistor é o bloco fundamental que permite a criação de chips com bilhões de componentes .
+
+**Do Transistor ao Microprocessador**
+* **Década de 1950**: Circuitos com transistores discretos (cada transistor em um encapsulamento individual) .
+* **Década de 1960**: **Circuitos Integrados (CI)** - múltiplos transistores fabricados em um único chip de silício .
+* **Década de 1970**: **VLSI (Very Large Scale Integration)** - centenas de milhares de transistores por chip, permitindo a criação do microprocessador .
+* **Atualmente**: Bilhões de transistores em um único chip (um processador moderno tem cerca de ***10-20 bilhões de transistores***).
+
+Sem o transistor, não haveria computadores pessoais, smartphones, internet das coisas ou qualquer tecnologia digital que usamos hoje.
+
+### 15- Lei de Moore
+A Lei de Moore é uma observação empírica que se tornou uma "profecia autorrealizável" e guia de planejamento para a indústria de semicondutores.
+
+**Origem**
+Em 1965, Gordon Moore (cofundador da Intel) publicou um artigo observando que o número de transistores em um chip dobrava a cada ano. Em 1975, revisou a previsão para o dobro a cada dois anos (aproximadamente 18-24 meses) .
+
+**Formulação Clássica**
+"O número de transistores em um chip de circuito integrado dobra aproximadamente a cada 18 a 24 meses."
+
+Isso **não é uma lei física, mas uma observação de tendência que a indústria adotou como meta de desenvolvimento**.
+
+**Implicações da Lei de Moore**
+|Consequência|Descrição|
+|------------|---------|
+|Aumento de desempenho|Mais transistores permitem processadores mais complexos e mais rápidos|
+|Redução de custo por transistor|A cada nova geração, o custo por transistor cai exponencialmente|
+|Miniaturização|Componentes menores permitem dispositivos mais compactos|
+|Lei de Bell|A cada 10 anos, surge uma nova classe de computadores (mainframe → minicomputador → PC → notebook → smartphone)|
+|Lei de Kryder|A densidade de armazenamento em discos também dobra (mas não na mesma taxa)|
+
+**Exemplos da Lei de Moore em Ação**
+|Processador|Ano|Transistores|Tecnologia|
+|-----------|---|------------|----------|
+|Intel 4004|1971|2.300|10 µm|
+|Intel 8086|1978|29.000|3 µm|
+|Intel 80386|1985|275.000|1.5 µm|
+|Intel Pentium|1993|3,1 milhões|0.8 µm|
+|Intel Core i7 (Nehalem)|2008|731 milhões|45 nm|
+|Apple M3 Max|2023|92 bilhões|3 nm|
+
+**O Fim da Lei de Moore?**
+Atualmente, estamos atingindo limites físicos:
+* Tamanhos de transistores se aproximam do átomo (3 nm é cerca de 15 átomos de silício)
+* Efeitos quânticos começam a atrapalhar o funcionamento confiável
+* Custos de fabricação de novas fábricas (fabs) são astronômicos (US$ 20 bilhões para uma fábrica de 3 nm)
+
+**Soluções para Continuar o Avanço**
+* **Arquiteturas 3D**: Empilhar transistores verticalmente (FinFET, GAAFET)
+* **Processadores multicore**: Em vez de aumentar velocidade, aumentam número de núcleos
+* **Arquiteturas especializadas**: GPUs, NPUs, TPUs para tarefas específicas
+* **Materiais alternativos**: Silício pode ser substituído por grafeno ou outros materiais no futuro
+* **Computação quântica**: Paradigma totalmente diferente
+
+### 16- Barramento Omnibus
+
+O ***barramento omnibus*** (ou barramento único) é uma **arquitetura de interconexão onde todos os componentes de um sistema computacional compartilham um conjunto comum de linhas de comunicação**.
+
+#### **O Que é um Barramento?**
+Um barramento é um conjunto de fios condutores (linhas) que permitem a transferência de dados entre os componentes de um computador. Existem três tipos principais de linhas:
+
+|Tipo|Função|Direção|
+|----|------|-------|
+|Barramento de Dados|Transporta os dados propriamente ditos|Bidirecional|
+|Barramento de Endereços|Transporta o endereço da memória ou dispositivo a ser acessado|Unidirecional (da CPU)|
+|Barramento de Controle|Transporta sinais de controle (leitura, escrita, interrupção, etc.)|Bidirecional|
+
+**Arquitetura Omnibus** (Barramento Único)
+Na arquitetura omnibus, todos os componentes (CPU, memória, dispositivos de I/O) são conectados ao mesmo barramento compartilhado.
+
+```text
+    ┌─────────────────────────────────────────────────────────┐
+    │                    BARRAMENTO ÚNICO                      │
+    │  (Dados, Endereços e Controle compartilhados)           │
+    └─────────────────────────────────────────────────────────┘
+         │            │            │            │
+         ▼            ▼            ▼            ▼
+    ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+    │   CPU   │  │ Memória │  │  I/O 1  │  │  I/O 2  │
+    └─────────┘  └─────────┘  └─────────┘  └─────────┘
+```
+**Vantagens**
+|Vantagem    |Descrição|
+|------------|---------|
+|Simplicidade|Menos fios, mais fácil de projetar e fabricar|
+|Baixo custo |Menos componentes e conexões|
+|Modularidade|Fácil adicionar novos dispositivos (basta conectá-los ao barramento)|
+|Padronização|Barramentos padronizados (PCI, USB) permitem interoperabilidade|
+
+**Desvantagens**
+|Desvantagem|Descrição|
+|-----------|---------|
+|Gargalo (Bottleneck)|Apenas um dispositivo pode usar o barramento por vez. A CPU pode ficar esperando enquanto um dispositivo de I/O usa o barramento|
+|Contenção|Dispositivos competem pelo acesso ao barramento, exigindo mecanismos de arbitragem|
+|Limite de velocidade|A velocidade do barramento é limitada pelo dispositivo mais lento e pelo comprimento físico dos fios|
+Exemplos de Barramentos
+
+|Barramento|Tipo|Aplicação|
+|----------|----|---------|
+|PCI (Peripheral Component Interconnect)|Barramento paralelo|Conexão de placas em PCs (evoluído para PCIe)|
+|PCI Express (PCIe)|Barramento serial em ponto a ponto|Substituiu o PCI, oferece alta velocidade e conexões dedicadas|
+|USB (Universal Serial Bus)|Barramento serial externo|Conexão de periféricos externos|
+|SATA|Barramento serial|Conexão de discos rígidos e SSDs|
+|Front Side Bus (FSB)|Barramento CPU-memória|Usado em processadores Intel antigos (substituído por HyperTransport e QuickPath)|
+
+#### **Evolução: Do Barramento Único aos Barramentos Hierárquicos**
+Nos sistemas modernos, a arquitetura de barramento único foi substituída por arquiteturas hierárquicas com múltiplos barramentos para evitar gargalos:
+
+```text
+                    ┌─────────────────┐
+                    │      CPU        │
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+                    │  Cache L2/L3    │ (barramento rápido interno)
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+         ┌─────────►│  Northbridge    │◄─────────┐
+         │          │  (Controladora  │          │
+         │          │   de Memória)   │          │
+         │          └────────┬────────┘          │
+         │                   │                   │
+         ▼                   ▼                   ▼
+   ┌───────────┐     ┌───────────┐     ┌───────────┐
+   │  Memória  │     │   PCIe    │     │   GPU     │
+   │   RAM     │     │ (barramento│     │           │
+   └───────────┘     │  de alta  │     └───────────┘
+                     │ velocidade)│
+                     └─────┬─────┘
+                           │
+                    ┌──────▼──────┐
+                    │ Southbridge │
+                    │ (I/O lento) │
+                    └──────┬──────┘
+                           │
+         ┌─────────────────┼─────────────────┐
+         ▼                 ▼                 ▼
+   ┌───────────┐    ┌───────────┐    ┌───────────┐
+   │   SATA    │    │   USB     │    │   Áudio   │
+   │  (Discos) │    │(Periféricos│   │   Rede    │
+   └───────────┘    └───────────┘    └───────────┘
+```
+**Nessa arquitetura moderna**:
+* Barramentos dedicados de alta velocidade conectam CPU e memória (evitando contenção)
+* PCIe oferece conexões ponto a ponto com largura de banda dedicada
+* Dispositivos lentos ficam em barramentos separados, não interferindo no fluxo principal
