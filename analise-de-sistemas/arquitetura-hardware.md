@@ -354,7 +354,7 @@ Por fim, apesar da vantagem matemática do ternário, o binário se consolidou p
 #### O que são
 Se imaginarmos a CPU como uma mesa de trabalho. Você tem:
 
-* **Memória RAM (HD/SSD)**: Seriam as gavetas e estantes da sala - muito espaço, mas demora para pegar as coisas .
+* **Memória RAM (HD/SSD)**: Seriam as gavetas e estantes da sala - muito espaço, mas demora para pegar as coisas.
 * **Registradores**: São os itens que estão em cima da sua mesa, ao alcance imediato das mãos. São pequenas áreas de armazenamento dentro do próprio processador .
 
 Em termos técnicos: registradores são memórias de altíssima velocidade localizadas no chip da CPU. Eles armazenam temporariamente os dados que estão sendo usados no momento . Quando a CPU precisa fazer um cálculo, os valores envolvidos são transferidos da memória RAM para os registradores.
@@ -499,11 +499,13 @@ O grande desafio atual é que os qubits são extremamente sensíveis a perturba�
 #### Bits mais e menos significativos 
 Em um número binário de 64 bits, cada bit ocupa uma posição com um peso diferente. Quanto mais à esquerda, maior o peso (mais significativo); quanto mais à direita, menor o peso (menos significativo).
 Vamos usar um exemplo com um número de 8 bits para facilitar (o conceito é idêntico para 64 bits):
-```text
-Número binário: 1 0 1 1 0 1 0 0
-Posição:       7 6 5 4 3 2 1 0
-Peso:         128 64 32 16 8 4 2 1
-```
+|Número binário:| 1 | 0 | 1 | 1 | 0 | 1 | 0 | 0 |
+|---------------|---|---|---|---|---|---|---|---|
+|Posição:       | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+|Notação:       |2⁷ |2⁶ |2⁵ |2⁴ |2³ |2² |2¹ | 2⁰|
+|Peso:          |128| 64| 32| 16| 8 | 4 | 2 | 1 |
+|               | MSB | < |---|  |  |---| > | LSB|
+
 |Termo|Abreviação           |Significado|
 |-----|---------------------|-----------|
 |MSB  |Most Significant Bit |Bit de maior peso (mais à esquerda)|
@@ -578,6 +580,8 @@ uint8_t byte_medio = (valor >> 8) & 0xFF;
 int64_t valor_signed = (int64_t)valor;
 int e_negativo = (valor_signed < 0);  // verifica o MSB
 ```
+> Para maiores detalhes sob o código acima [Códigos e Explicações detalhadas](https://github.com/igordammous/markdown_estudos/blob/main/01_python.md)
+
 #### Conclusão
 
 **Tabela Resumo: Bits Mais vs. Menos Significativos**
