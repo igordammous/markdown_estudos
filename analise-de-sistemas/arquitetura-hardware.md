@@ -580,7 +580,7 @@ uint8_t byte_medio = (valor >> 8) & 0xFF;
 int64_t valor_signed = (int64_t)valor;
 int e_negativo = (valor_signed < 0);  // verifica o MSB
 ```
-> Para maiores detalhes sob o código acima [Códigos e Explicações detalhadas](https://github.com/igordammous/markdown_estudos/blob/main/01_python.md)
+> Para maiores detalhes sob o código acima [Códigos e Explicações detalhadas](https://github.com/igordammous/markdown_estudos/blob/b13cec5b79a5423202938f1139e00938f1c69d6b/analise-de-sistemas/arquitetura-hardware-codigo.md)
 
 #### Conclusão
 
@@ -1017,7 +1017,7 @@ Ele resolve um problema fundamental da eletrônica digital: quando múltiplos bi
 * **Colossus** (1943, Reino Unido): Usado na Segunda Guerra para decifrar códigos alemães .
 
 **Impacto na Arquitetura**
-* Estabeleceu os fundamentos da Arquitetura de Von Neumann: CPU, memória, barramento único para dados e instruções .
+* Estabeleceu os fundamentos da **Arquitetura de Von Neumann**: CPU, memória, barramento único para dados e instruções .
 * A programação era feita manualmente, conectando cabos e configurando chaves (no ENIAC) .
 #### Segunda Geração (1956-1963) - Transistores
 **Características Principais**

@@ -1,5 +1,5 @@
 # Explicação Mais completa de Códigos ou Conceitos
-## Item 6 - Em um hardware de 64 bits, o que diferencia dos bits mais significativos para os menos?
+## [Item 6]() - Em um hardware de 64 bits, o que diferencia dos bits mais significativos para os menos?
 ### Impacto no Hardware e na Programação - Na Programação
 ```c
 // Exemplo em C: manipulando bits em um número de 64 bits
