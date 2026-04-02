@@ -98,12 +98,123 @@ Tipos de manutenção (Corretiva, Adaptativa, Perfectiva, Preventiva):
     * **Monitoramento contínuo de desempenho e feedback dos usuários**: O monitoramento contínuo permite detectar e resolver problemas antes que afetem os usuários. Coletar e analisar o feedback dos usuários ajuda a identificar áreas de melhoria e a priorizar novas funcionalidades.
     * **Planejamento para ciclos de atualização futuros**: A manutenção eficaz requer um planejamento contínuo para futuros ciclos de atualização. Esse planejamento inclui a preparação para grandes atualizações de versão e a alocação de recursos para projetos de melhoria contínua.
 
-## 3. Processos Fundamentais
+## 3. Processos Gerais do Ciclo de Vida de um Software
 <div style = "text-align: center;">
 <img src="https://media.licdn.com/dms/image/v2/D4D12AQFSwTQNEVK-Lg/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1666502303386?e=1776902400&v=beta&t=kmeQTt-DNL7XLwm4WE1m0JHhODjfTlerpoxvtL-npFA" alt="Processos Gerais do Ciclo de Vida Software" style="width: 80%" title = "Imagem 2 - Processos Gerais do Ciclo de Vida de um Software"/>
 
 *Imagem 2 - Processos Gerais do Ciclo de Vida de um Software*.
 </div>
+
+### 3.1 Processos Fundamentais
+São os processos **essenciais para a existência do software**. Eles representam as atividades diretamente ligadas à criação, entrega e operação do produto. Sem eles, simplesmente não há software.
+
+|Processo|Descrição|Atividades Principais|
+|--------|---------|---------------------|
+|Aquisição|Processo de obter o software (seja comprando, contratando ou desenvolvendo internamente).|Definir escopo, selecionar fornecedor, negociar contrato, aceitar o produto.|
+|Fornecimento|Processo de entregar o software ao cliente (o lado do fornecedor/desenvolvedor).|Preparar proposta, executar o contrato, entregar o produto.|
+|Desenvolvimento|Processo de construir o software propriamente dito.|Levantamento de requisitos, projeto, codificação, testes, implantação.|
+|Operação|Processo de executar o software em ambiente de produção.|Execução do sistema, suporte ao usuário, monitoramento.|
+|Manutenção|Processo de modificar o software após a entrega.|Correções, adaptações, melhorias, migrações.|
+
+### 3.2 Processos de Apoio
+São os processos que **auxiliam os processos fundamentais** durante toda a execução. Eles são aplicados de forma transversal, ou seja, podem ser acionados em qualquer momento do desenvolvimento ou operação.
+
+|Processo|Descrição|Atividades Principais|
+|--------|---------|---------------------|
+|Documentação|Registro formal da informação gerada ao longo do projeto.|Criar, revisar, versionar e manter documentos (requisitos, arquitetura, manuais).|
+|Garantia da Qualidade|Assegurar que processos e produtos atendem aos padrões e requisitos.|Auditorias, revisões técnicas, definição de métricas de qualidade.|
+|Verificação e Validação (V&V)|Confirmar que o software está correto (verificação) e atende às necessidades (validação).|Testes, inspeções, análises estáticas.|
+|Auditoria|Avaliação independente para verificar conformidade com requisitos, planos e contratos.|Auditorias de processo, auditorias de produto.|
+|Resolução de Problemas|Identificar, analisar e resolver problemas que surgem durante o projeto.|Análise de causa raiz, plano de ação, rastreamento de incidentes.|
+|Gerência de Configuração|Controlar versões e integridade dos artefatos do projeto.|Controle de versão (Git), gerenciamento de mudanças, baseline.|
+
+### 3.3 Processos Organizacionais
+São os processos que atuam no nível da organização como um todo, criando as condições para que os processos fundamentais e de apoio possam ocorrer de forma eficaz e contínua.
+
+|Processo|Descrição|Atividades Principais|
+|--------|---------|---------------------|
+|Gestão|Planejamento, monitoramento e controle de projetos e recursos.|Alocação de pessoas, gestão de riscos, acompanhamento de prazos e orçamento.|
+|Infraestrutura|Estabelecer e manter a base tecnológica e física para os projetos.|Ambientes de desenvolvimento, servidores, redes, ferramentas corporativas.|
+|Melhoria de Processos|Avaliar e aprimorar continuamente os processos da organização.|Avaliação de maturidade (CMMI, MPS.BR), definição de melhorias, treinamentos.|
+|Recursos Humanos|Gestão de pessoas, competências e capacitação.|Recrutamento, treinamento, desenvolvimento de carreira.|
+|Reúso|Gerenciar ativos reutilizáveis (bibliotecas, componentes, padrões).|Catálogo de componentes, governança de reúso.|
+
+### 3.4 Como um Influencia o Outro?
+A [ISO/IEC 12207](https://www.iso.org/standard/63712.html) considera que esses processos **não são estanques**. Eles formam um **sistema de interdependências**. Um processo mal executado compromete todos os outros. Vamos entender essa dinâmica.
+
+#### 3.4.1 Influência dos Processos Organizacionais sobre os Fundamentais e de Apoio
+Os processos organizacionais são o *"ambiente"* onde os demais operam. Eles criam as condições de base.
+
+|Influência|Exemplo Concreto|
+|----------|----------------|
+|Gestão → Desenvolvimento|Uma gestão que não faz controle de riscos adequado pode deixar que problemas críticos (ex: dependência de um fornecedor) explodam no meio do projeto, paralisando o desenvolvimento.|
+|Infraestrutura → Testes|Se a organização não provê ambientes de homologação adequados (processo de infraestrutura), os testes (processo d'e apoio) não conseguem ser executados com qualidade, comprometendo a validação.|
+|Melhoria de Processos → Garantia da Qualidade|Se a organização não investe em melhoria contínua, o processo de garantia da qualidade fica engessado, repetindo os mesmos erros de projeto para projeto.|
+|Recursos Humanos → Aquisição|Se a organização não tem pessoas capacitadas em gestão de contratos, o processo de aquisição pode firmar acordos mal estruturados com fornecedores, gerando litígios e atrasos.|
+#### 3.4.2 Influência dos Processos Fundamentais sobre os de Apoio e Organizacionais
+Os processos fundamentais são os que geram *produtos* e *artefatos concretos*. Eles alimentam os demais com informações e demandas.
+
+|Influência|Exemplo Concreto|
+|----------|----------------|
+|Desenvolvimento → Documentação|Um desenvolvimento feito sem seguir padrões de arquitetura gera código confuso. A documentação (apoio) precisa então ser excessivamente detalhada para compensar a falta de clareza, ou o projeto acumula dívida técnica.|
+|Desenvolvimento → Garantia da Qualidade|Se o desenvolvimento não produz testes unitários, o processo de garantia da qualidade (apoio) precisa investir muito mais tempo em testes de sistema, aumentando custo e prazo.|
+|Operação → Gerência de Configuração|Problemas em produção (falhas, incidentes) geram demandas urgentes para a gerência de configuração (apoio), que precisa controlar versões de hotfix com muito mais rigor e velocidade.|
+|Manutenção → Melhoria de Processos|Se a manutenção (fundamental) identifica que 80% dos bugs vêm de um tipo específico de erro (ex: falta de validação de entrada), essa informação alimenta a melhoria de processos (organizacional) para que os próximos projetos evitem o mesmo padrão.|
+#### 3.4.3 Influência dos Processos de Apoio sobre os Fundamentais e Organizacionais
+Os processos de apoio são os *"vigilantes"* e *"organizadores"*. Eles garantem que os fundamentais não saiam do controle e geram dados para os organizacionais.
+
+|Influência|Exemplo Concreto|
+|----------|----------------|
+|Verificação e Validação → Desenvolvimento|Testes (V&V) encontram um bug crítico em uma funcionalidade. Isso força o desenvolvimento a refatorar aquela parte, evitando que o defeito chegue à produção.|
+|Garantia da Qualidade → Gestão|Auditorias de qualidade apontam que os prazos estão sendo sistematicamente subestimados. Esse dado alimenta a gestão (organizacional) para ajustar as políticas de estimativa.|
+|Gerência de Configuração → Operação|Um controle de versão bem estruturado permite que a operação faça rollback imediato de uma atualização problemática, reduzindo o tempo de indisponibilidade.|
+|Resolução de Problemas → Melhoria de Processos|A análise de causa raiz de um incidente grave revela falhas no processo de aquisição (fundamental). A melhoria de processos (organizacional) revisa o fluxo de contratação de fornecedores.|
+
+#### Diagrama de Influência
+Para visualizar melhor, imagine uma **pirâmide de influência**:
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                   PROCESSOS ORGANIZACIONAIS                  │
+│  (Criam o ambiente: gestão, infraestrutura, pessoas,        │
+│   melhoria contínua, reúso)                                 │
+│              ↓ (condicionam e capacitam)                    │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    PROCESSOS DE APOIO                        │
+│  (Monitoram e organizam: documentação, qualidade, testes,   │
+│   configuração, auditoria, resolução de problemas)          │
+│         ↓ (garantem integridade e qualidade)                │
+│              ↓ (geram dados para melhoria)                  │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│                  PROCESSOS FUNDAMENTAIS                      │
+│  (O coração do software: aquisição, fornecimento,           │
+│   desenvolvimento, operação, manutenção)                    │
+│         ↓ (produzem os artefatos)                           │
+│              ↓ (alimentam os processos de apoio)            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### Exemplo Prático: Como se Aplica em um Aplicativo
+Em um projeto de aplicativo por exemplo, temos:
+
+|Tipo de Processo|Exemplo no Seu Projeto|
+|----------------|----------------------|
+|Fundamental - Desenvolvimento|Construir o app (frontend React, backend Django, integração com APIs de pagamento).|
+|Fundamental - Operação|O app rodando em produção, usuários fazendo buscas, servidores na nuvem.|
+|Fundamental - Manutenção|Correções de bugs, adaptações para novas versões de iOS/Android, novas funcionalidades.|
+|Apoio - Documentação|Especificação de requisitos (que estamos fazendo), documentação de API, manual do usuário.|
+|Apoio - V&V (Testes)|Testes unitários, testes de integração, testes de aceitação com usuários reais.|
+|Apoio - Gerência de Configuração|Código versionado no GitHub, controle de versões, gestão de mudanças.|
+|Apoio - Garantia da Qualidade|Revisões de código, auditoria de conformidade com LGPD, definição de métricas.|
+|Organizacional - Gestão|Planejamento de sprints, alocação de equipe, controle de orçamento e prazos.|
+|Organizacional - Infraestrutura|Contas na AWS/Vercel, ferramentas de CI/CD (GitHub Actions), banco de dados em nuvem.|
+|Organizacional - Recursos Humanos|Contratação de desenvolvedores, treinamento em novas tecnologias.|
+|Organizacional - Melhoria de Processos|Após o lançamento, avaliar o que deu certo/errado e ajustar processos para a versão 2.0.|
+
 
 ## 4. Métodos Tradicionais de Ciclo de Vida (Não Ágeis)
 Antes da popularização das metodologias ágeis, os modelos de processo seguiam abordagens mais estruturadas e sequenciais. Estes são os principais métodos não ágeis:
@@ -150,11 +261,101 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 
 **Quando usar**: Projetos com alta criticidade (sistemas médicos, aeroespaciais), onde falhas não são toleradas.
 
-### 4.3. Modelo Incremental
+### 4.3 Modelo de Prototipação
 <div style = "text-align: center;">
-<img src="https://www.researchgate.net/profile/Washington-Almeida-2/publication/334683819/figure/fig1/AS:784598753636353@1564074328073/Figura-34-Modelo-Incremental-Pressman-2016.jpg" alt="Método Incremental" style="width: 60%" title = "Imagem 5 - Modelo Incremental"/>
+<img src="https://www.researchgate.net/profile/Junia-Anacleto/publication/224827635/figure/fig1/AS:340265534541824@1458137033750/Figura-2-Modelo-de-processo-Prototipacao-Apoiado-por-Padroes-para-prototipos.png" alt="Método prototipação" style="width: 75%" title = "Imagem 5 - Método de Prototipação"/>
 
-*Imagem 5 - Modelo Incremental*.
+*Imagem 5 - Método de Prototipação*.
+</div>
+
+A Prototipação é um modelo de processo que **enfatiza a construção de versões experimentais** (protótipos) de um sistema antes de desenvolver o produto final completo. É uma abordagem iterativa que coloca o usuário no centro do processo. A ideia é criar rapidamente um modelo funcional da interface e das principais funcionalidades, permitindo que o usuário "veja" e "toque" no sistema desde cedo. O protótipo não é o produto final, mas uma ferramenta para extrair feedback e refinar os requisitos
+
+#### Tipos de Prototipação
+|Tipo|Descrição|Uso Típico|
+|----|---------|----------|
+|Descartável (Throwaway)|Protótipo criado para validar requisitos e depois descartado; o software final é construído do zero|Requisitos muito incertos; validação de conceito|
+|Evolucionária (Evolutionary)|Protótipo é continuamente refinado até se tornar o produto final|Quando os requisitos são razoavelmente conhecidos; projetos menores|
+#### Vantagens e Desvantagens
+
+|Vantagens|Desvantagens|
+|---------|------------|
+|Redução de riscos e mal-entendidos sobre requisitos|Usuário pode confundir protótipo com produto final|
+|Feedback constante do usuário desde o início|Pode levar a "scope creep" (aumento descontrolado do escopo)|
+|Identificação precoce de problemas de usabilidade|Se mal gerenciado, pode gerar retrabalho excessivo|
+|Maior satisfação do usuário com o produto final|Pode dar falsa sensação de progresso|
+#### Quando Usar
+
+* Requisitos vagos ou mal compreendidos
+* Projetos com forte componente de interface com o usuário
+* Sistemas onde a experiência do usuário é crítica
+* Quando há necessidade de validação rápida de conceitos
+
+### 4.4 Modelo RAD(Rapid Application Development)
+<div style = "text-align: center;">
+<img src="https://julianakolb.wordpress.com/wp-content/uploads/2013/12/rad.png" alt="Método RAD" style="width: 75%" title = "Imagem 6 - Método RAD"/>
+
+*Imagem 6 - Método RAD*.
+</div>
+
+O RAD (Desenvolvimento Rápido de Aplicações) foi formalizado por James Martin em 1991 como uma resposta direta ao modelo Cascata, que era criticado por sua rigidez e ineficiência. O RAD é um modelo de processo incremental que enfatiza ciclos de desenvolvimento extremamente curtos (60 a 90 dias) usando construção baseada em componentes.
+
+#### As 5 Fases do RAD (segundo Pressman)
+**O modelo RAD, conforme descrito por Roger S. Pressman, é dividido em 5 fases principais**:
+
+|Fase|Descrição|Atividades Principais|
+|----|---------|---------------------|
+|1. Modelagem do Negócio|Levantamento do fluxo de informações entre as funções do negócio|Identificar processos suportados pelo sistema; responder "quem faz o quê" e "qual informação é gerada"|
+|2. Modelagem dos Dados|Refinamento do fluxo de informação para extrair os objetos de dados|Identificar composição, localização e relações entre objetos de dados|
+|3. Modelagem do Processo|Transformação dos objetos de dados no fluxo necessário para implementar funções do negócio|Descrições de processamento para adicionar, modificar ou recuperar dados|
+|4. Geração da Aplicação|Construção do software usando ferramentas automatizadas e componentes reutilizáveis|Uso de linguagens de 4ª geração, CASE tools, componentes prontos|
+|5. Teste e Modificação|Testes e integração de todos os componentes|Como muitos componentes já estão testados (reuso), o tempo total de teste é reduzido|
+#### Características Fundamentais do RAD
+* **Time-boxing**: Prazos fixos e curtos (geralmente 60-90 dias) para cada ciclo
+* **Desenvolvimento paralelo**: Múltiplas equipes trabalham em diferentes componentes simultaneamente
+* **Reutilização extensiva**: Aproveitamento de componentes, classes e APIs preexistentes
+* **Alto envolvimento do usuário**: Participação ativa em todas as fases
+* **Foco nas necessidades do negócio**: Excelência técnica é secundária em relação ao atendimento ao usuário
+
+#### Vantagens e Desvantagens
+|Vantagens|Desvantagens|
+|---------|------------|
+|Desenvolvimento acelerado (60-90 dias)|Requer equipes experientes e bem treinadas|
+|Maior flexibilidade e adaptabilidade|Não adequado para projetos de alto risco técnico|
+|Feedback constante e relevante do usuário|Exige recursos humanos suficientes para múltiplas equipes|
+|Redução de codificação manual|Pode acumular dívida técnica se não houver disciplina|
+|Progresso mensurável a cada ciclo|Menos ênfase em planejamento e documentação formal|
+#### Quando Usar RAD
+* Projetos com escopo modularizável (pode ser dividido em componentes independentes)
+* Equipes experientes com acesso a ferramentas CASE/4GL
+* Orçamento suficiente para ferramentas e múltiplas equipes
+* Prazos muito curtos (semanas a poucos meses)
+* Disponibilidade de usuários para participação contínua
+
+#### Quando NÃO Usar RAD
+* Alto risco técnico (teste de novas tecnologias)
+* Projetos de grande escala (exigem recursos humanos massivos)
+* Sistemas com forte interdependência entre módulos
+* Equipe pequena ou inexperiente
+* Projetos que exigem documentação extensiva e formal
+
+#### Ferramentas e Técnicas de 4GL no Contexto RAD
+O RAD frequentemente utiliza ferramentas de 4ª geração como parte essencial de sua estratégia de desenvolvimento rápido:
+
+|Ferramenta/Técnica|Descrição|Exemplos|
+|------------------|---------|--------|
+|GUI Builders|Construção visual de interfaces gráficas|Visual Basic, Delphi|
+|CASE Tools|Ferramentas de engenharia de software assistida por computador|Rational Rose, PowerDesigner|
+|Geradores de Código|Produção automática de código a partir de modelos|Geradores de ORM, scaffolding
+|Componentes Reutilizáveis|Bibliotecas de componentes pré-construídos|APIs, frameworks, componentes COM/.NET|
+|DBMS com 4GL integrada|Sistemas de gerenciamento de banco de dados com linguagem própria|SQL (Oracle, SQL Server, MySQL)|
+
+>Nota importante: O RAD frequentemente é confundido ou tratado como sinônimo de "low-code". Na verdade, o RAD é uma metodologia que utiliza ferramentas de 4GL, low-code e outras técnicas para atingir seus objetivos de rapidez. Low-code é uma das ferramentas que viabilizam o RAD
+
+### 4.5. Modelo Evolutivo Incremental
+<div style = "text-align: center;">
+<img src="https://www.researchgate.net/profile/Washington-Almeida-2/publication/334683819/figure/fig1/AS:784598753636353@1564074328073/Figura-34-Modelo-Incremental-Pressman-2016.jpg" alt="Método Incremental" style="width: 60%" title = "Imagem 7 - Modelo Incremental"/>
+
+*Imagem 7 - Modelo Incremental*.
 </div>
 
 **O que é**: O sistema é construído em partes (incrementos), cada uma entregando um conjunto de funcionalidades. O primeiro incremento é o núcleo básico, e os seguintes adicionam mais recursos.
@@ -165,11 +366,11 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 
 **Vantagens**: Cliente começa a usar valor mais cedo; reduz risco de entregar algo totalmente fora do esperado.
 
-### 4.4. Modelo Espiral
+### 4.6. Modelo Evolutivo Espiral
 <div style = "text-align: center;">
-<img src="https://engenhariasoftware.wordpress.com/wp-content/uploads/2013/02/espiral.gif" alt="Método Espiral" style="width: 60%" title = "Imagem 6 - Modelo Espiral"/>
+<img src="https://engenhariasoftware.wordpress.com/wp-content/uploads/2013/02/espiral.gif" alt="Método Espiral" style="width: 60%" title = "Imagem 8 - Modelo Espiral"/>
 
-*Imagem 6 - Modelo Espiral*.
+*Imagem 8 - Modelo Espiral*.
 </div>
 
 **O que é**: Modelo que combina desenvolvimento iterativo com análise de riscos. Cada volta na espiral representa uma fase do projeto, com quatro **quadrantes**: Determinar objetivos → Avaliar riscos → Desenvolver e testar → Planejar próximo ciclo.
@@ -180,6 +381,75 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 * Iterativo, mas com ênfase em prototipação e avaliação contínua.
 
 **Quando usar**: Projetos grandes, complexos e de alto risco (ex: sistemas de defesa, infraestrutura crítica).
+
+### 4.7 Técnicas de 4ª Geração (4GL)
+O que são Linguagens de 4ª Geração?
+As linguagens de 4ª Geração (4GL) são linguagens de programação de alto nível de abstração, mais próximas da linguagem humana do que as linguagens de 3ª geração (como Java, C++, Python). Elas foram desenvolvidas para reduzir o esforço e o custo do desenvolvimento de software, permitindo que os programadores especifiquem o que fazer, em vez de como fazer.
+
+#### Comparação entre Gerações de Linguagens
+|Geração|Características|Exemplos|
+|-------|---------------|--------|
+|1GL|Linguagem de máquina, binário, mais próximo do hardware|Código binário|
+|2GL|Linguagem Assembly, para kernels e aplicações de alta performance|Assembly|
+|3GL|Linguagens de propósito geral, compiladas, usam palavras em inglês|Java, C++, C#, JavaScript, Python|
+|4GL|Alto nível de abstração, focadas em tarefas específicas (bancos de dados, relatórios, GUIs)|SQL, Visual Basic, Delphi, PowerBuilder, MATLAB|
+|5GL|Usadas principalmente em IA e sistemas especialistas|Prolog, OPS5, Mercury|
+
+#### A Evolução: Low-Code e No-Code
+As técnicas de 4ª geração evoluíram naturalmente para o que hoje conhecemos como plataformas de low-code e no-code. Essas plataformas:
+* Permitem desenvolvimento com mínimo de codificação manual
+* Utilizam interfaces visuais de arrastar-e-soltar
+* Automatizam grande parte do ciclo de desenvolvimento
+* Têm ganhado enorme popularidade (mercado projetado para crescer 42.8% ao ano entre 2022-2027)
+
+## O que são Requisitos de Software e Regras de Negócio?
+Antes de detalhar as classificações, é essencial entender a diferença entre esses dois conceitos, que muitas vezes se confundem na prática.
+
+### Regras de Negócio
+**Definição**: São **políticas**, **diretrizes**, **condições** e **restrições** que governam **como o negócio opera**, independentemente de qualquer sistema de software. Elas expressam a lógica do negócio, não a lógica do sistema.
+
+#### Características:
+
+* Existem mesmo sem computadores (podem ser aplicadas manualmente).
+* São definidas pelos especialistas do negócio (stakeholders).
+* São estáveis por longos períodos.
+* Aplicam-se a toda a organização, não apenas a um sistema.
+
+**Exemplos** (para seu app de comparação de preços):
+>"Um mercado só pode se cadastrar com CNPJ válido."
+>"Uma promoção não pode ter duração superior a 15 dias consecutivos."
+>"Um consumidor pode favoritar produtos e receber alertas de preço mínimo."
+
+### Requisitos de Software
+**Definição**: São descrições do que o **sistema** de software **deve fazer** para **atender às regras de negócio e às necessidades dos usuários**. Eles são a ponte entre o negócio e a tecnologia.
+
+#### Características:
+
+* Existem porque o sistema de software existe.
+* São definidos por analistas, engenheiros e usuários.
+* Mudam conforme o sistema evolui.
+* Aplicam-se especificamente ao sistema em desenvolvimento.
+
+**Exemplos** (derivados das regras acima):
+> "O sistema deve consultar a API da Receita Federal para validar o CNPJ no momento do cadastro do mercado."
+> "O sistema deve impedir o cadastro de uma promoção com data final superior a 15 dias a partir da data atual."
+> "O sistema deve enviar uma notificação push ao consumidor quando o preço de um produto favoritado atingir ou ficar abaixo do valor mínimo definido."
+
+#### A Relação entre Regras de Negócio e Requisitos
+```text
+Regra de Negócio (o que o negócio exige)
+        ↓
+Deriva um ou mais Requisitos (o que o sistema deve fazer para atender à regra)
+        ↓
+Implementação técnica (código, banco de dados, APIs)
+```
+#### Exemplo prático completo:
+|Nível|Descrição|
+|-----|---------|
+|Regra de Negócio|"Um consumidor não pode avaliar um mercado sem ter interagido com ele."|
+|Requisito Funcional derivado|"O sistema deve registrar toda interação do consumidor com um mercado (visualização de produto, clique em promoção, compartilhamento)."|
+|Requisito Funcional derivado|"O sistema deve permitir que um consumidor avalie um mercado apenas se houver pelo menos uma interação registrada nos últimos 30 dias."|
+|Requisito Não Funcional derivado|"Os registros de interação devem ser armazenados com timestamp e retidos por no mínimo 90 dias para fins de auditoria."|
 
 ## Dúvidas
 
