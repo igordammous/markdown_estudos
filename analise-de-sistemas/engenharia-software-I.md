@@ -35,9 +35,9 @@ Na **teoria**, a engenharia de software abrange e é responsável por todas as e
 </div>
 
 ### Planejamento 
-O planejamento é a fase inicial e talvez a *mais crítica* do ciclo de vida de um software. Ele não só *estabelece uma direção clara*, como também *ajuda a evitar problemas futuros*, garantindo que todas as partes envolvidas estejam alinhadas e cientes de suas responsabilidades e expectativas.**É nessa etapa que as bases para todo o projeto são estabelicidas.** E essa etapa é dividida em alguns pontos:
+O planejamento é a fase inicial e talvez a *mais crítica* do ciclo de vida de um software. Ele não só *estabelece uma direção clara*, como também *ajuda a evitar problemas futuros*, garantindo que todas as partes envolvidas estejam alinhadas e cientes de suas responsabilidades e expectativas.**É nessa etapa que as bases para todo o projeto são estabelecidas.** E essa etapa é dividida em alguns pontos:
 * **Identificação das necessidades e requisitos do projeto**: Antes de iniciar o desenvolvimento é **fundamental compreender as necessidades dos stakeholders e dos usuários finais**. Ela é obtida através de reuniões, entrevistas e pesquisas.
-* **Definição dos objetivos de maneira clara e o escopo do trabalho que será realizado**: Após identificar as necessidades, **os objetivos** do projeto devem ser definidos, eles precisam ser **claros, específicos, mensuráveis, alcançáveis, relevantes e temporais(*SMART*)**. E o **escopo** do determinado para que se entenda o que está dentro e fora do alcance do desenvolvimento.
+* **Definição dos objetivos de maneira clara e o escopo do trabalho que será realizado**: Após identificar as necessidades, **os objetivos** do projeto devem ser definidos, eles precisam ser **claros, específicos, mensuráveis, alcançáveis, relevantes e temporais(*SMART*)**. E o **escopo** é determinado para que se entenda o que está dentro e fora do alcance do desenvolvimento.
 * **Análise da viabilidade e recursos necessários**: Essa análise avalia se o projeto **pode ser realizado**, considerando os *recursos técnicos, financeiros e de tempo*. Pode-se incluir a avaliação de riscos, a alocação de recursos e a análise de custos e benefícios.
 * **Criação de um plano de projeto detalhado**: Esse plano criado engloba todas as **atividades, cronogramas, marcos, recursos e responsabilidades**. Para então ele servir como guia para toda equipe de desenvolvimento e para ser usado pela equipe de monitoramento e controle do progresso do projeto.
 
@@ -46,7 +46,7 @@ Após a fase de planejamento, é preciso fazer a análise de requisitos, uma eta
 Vamos explorar os principais aspectos:
 * **Coleta e documentação dos requisitos dos usuários**: A coleta é feita através de reuniões, questionários, workshops e reuniões com os stakeholders. E é essencial documentar todas as expectativas e necessidades dos usuários.
 * **Entrevistas, questionários e reuniões com stakeholders**: Essas técnicas ajudam a identificar os requisitos específicos e expectativas dos diferentes grupos de interesse. As *entrevistas* individuais podem *revelar insights detalhados*, enquanto os *workshops* colaborativos podem *ajudar a alinhar diferentes perspectivas*.
-* **Criação de um documento de requisitos de software (SRS)**: O **SRS** é um documento formal que **descreve todas as funcionalidades e restrições do sistema**. Ele serve como uma *referência para todas as fases subsequentes do SDLC* e garante que todos os envolvidos tenham uma compreensão comum do que será desenvolvido.
+* **Criação de um documento de requisitos de software (SRS)**: O **SRS** é um documento formal que **descreve todas as funcionalidades e restrições do sistema**. Ele serve como uma *referência para todas as fases subsequentes do SDLC* e garante que todos os envolvidos tenham uma compreensão comum do que será desenvolvido. E muitas vezes serve como base para contrato entre cliente e equipe de desenvolvimento.
 * **Importância de entender as necessidades dos usuários finais**: A análise de requisitos precisa focar nas necessidades reais dos usuários finais, garantindo que o software seja útil e relevante. Uma compreensão inadequada dos requisitos pode levar a retrabalho e insatisfação do cliente.
 
 ### Design do sistema
@@ -450,6 +450,338 @@ Implementação técnica (código, banco de dados, APIs)
 |Requisito Funcional derivado|"O sistema deve registrar toda interação do consumidor com um mercado (visualização de produto, clique em promoção, compartilhamento)."|
 |Requisito Funcional derivado|"O sistema deve permitir que um consumidor avalie um mercado apenas se houver pelo menos uma interação registrada nos últimos 30 dias."|
 |Requisito Não Funcional derivado|"Os registros de interação devem ser armazenados com timestamp e retidos por no mínimo 90 dias para fins de auditoria."|
+
+#### Classificação
+##### 1. Quanto ao Nível de Detalhamento
+|Tipo|Descrição|Público-Alvo|Exemplo|
+|----|---------|------------|-------|
+|Requisitos de Usuário|Declarações em linguagem natural (não técnica) sobre quais serviços o sistema deve oferecer e sob quais restrições. Escritos para os usuários.|Clientes, usuários finais, gestores de negócio|"O aplicativo deve permitir que o consumidor busque produtos por nome, código de barras ou categoria."|
+|Requisitos de Sistema|Especificação detalhada e técnica das funcionalidades, restrições e comportamento do sistema. Serve como contrato entre cliente e desenvolvedor.|Engenheiros de software, arquitetos, testadores|*"O endpoint GET /api/products/search deve aceitar os parâmetros 'query', 'category_id' e 'market_id', retornando JSON com até 50 resultados ordenados por preço crescente, com tempo de resposta inferior a 2 segundos."*|
+
+> Relação entre eles: Os requisitos de sistema são uma expansão técnica dos requisitos de usuário. Um único requisito de usuário pode gerar dezenas de requisitos de sistema.
+
+##### 2. Quanto à Natureza (Funcionais vs. Não Funcionais)
+Esta é a classificação mais clássica e amplamente utilizada.
+
+**2.1 Requisitos Funcionais**
+Definição: Descrevem o que o sistema deve fazer — as funcionalidades, serviços, comportamentos e reações do sistema a estímulos específicos.
+
+Características:
+* Expressam ações, cálculos, processamentos.
+* Descrevem entradas, saídas e comportamentos.
+* São "visíveis" para o usuário (na maioria dos casos).
+* Podem ser testados funcionalmente (se a ação ocorre ou não).
+
+**2.2 Requisitos Não Funcionais (ou Requisitos de Qualidade)**
+Definição: Descrevem como o sistema deve ser — atributos de qualidade, restrições e propriedades que o sistema deve possuir.
+
+Características:
+
+* Frequentemente "invisíveis" para o usuário final, mas críticos para a experiência.
+* Aplicam-se ao sistema como um todo.
+* São mensuráveis (ou deveriam ser).
+* Podem entrar em conflito entre si (ex: segurança x desempenho).
+
+**Categorias de Requisitos Não Funcionais (segundo ISO 25010):**
+
+|Categoria|Descrição|Exemplo|
+|---------|---------|-------|
+|Usabilidade|Facilidade de uso, aprendizado, acessibilidade|"Um novo usuário deve conseguir realizar uma busca em menos de 2 minutos sem tutorial."|
+|Desempenho|Tempo de resposta, vazão, consumo de recursos|"A busca deve retornar resultados em menos de 2 segundos para 95% das requisições."|
+|Confiabilidade|Disponibilidade, tolerância a falhas, recuperação|*"O sistema deve ter disponibilidade de 99,9% (menos de 8,76h de indisponibilidade/ano)."*|
+|Segurança|Confidencialidade, integridade, autenticação, autorização|*"Todas as comunicações devem ser criptografadas com TLS 1.2+."*|
+|Manutenibilidade|Facilidade de correção, evolução e teste|"O código deve ter cobertura mínima de testes automatizados de 80%."|
+|Portabilidade|Capacidade de operar em diferentes ambientes|"O app deve suportar iOS (2 últimas versões) e Android (3 últimas versões)."|
+|Escalabilidade|Capacidade de crescer sem degradação|"O sistema deve suportar 10.000 requisições por segundo em horários de pico."|
+|Conformidade|Adequação a leis, normas e padrões|"O sistema deve estar em conformidade com a LGPD."|
+
+##### 3. Quanto ao Escopo ou Abrangência
+|Tipo|Descrição|Exemplo|
+|----|---------|-------|
+|Requisitos de Produto|Descrevem características do produto de software em si. São os requisitos "tradicionais" (funcionais + não funcionais).|"O app deve permitir busca por voz."|
+|Requisitos de Projeto|Restrições impostas ao processo de desenvolvimento ou ao ambiente de entrega.|"O desenvolvimento deve usar a linguagem TypeScript." "O código deve ser armazenado no repositório GitHub da empresa."|
+|Requisitos de Interface|Especificam como o sistema se conecta e interage com outros sistemas, hardware ou usuários.|"O app deve integrar com a API de pagamentos do Stripe." "A tela de cadastro deve seguir o padrão de design do Material Design 3."|
+##### 4. Quanto à Origem ou Fonte
+|Tipo|Descrição|Exemplo
+|Requisitos de Negócio|Originados das regras de negócio e objetivos estratégicos da organização.|"Aumentar a concorrência entre mercados para reduzir preços da cesta básica."|
+|Requisitos de Usuário|Originados das necessidades, desejos e limitações dos usuários finais.|"Consumidores idosos precisam de fontes grandes e contraste elevado."|
+|Requisitos Regulatórios|Originados de leis, normas técnicas e órgãos reguladores.|"Cumprir a LGPD para dados pessoais." "Atender ao Código de Defesa do Consumidor."|
+|Requisitos de Sistema|Originados de restrições técnicas do ambiente (hardware, software, rede).|"O backend deve ser compatível com o ambiente Linux da AWS."|
+
+##### 5. Quanto à Prioridade (MoSCoW)
+Esta classificação ajuda na negociação de escopo e planejamento de entregas.
+
+|Sigla|Significado|Descrição|Exemplo|
+|-----|-----------|---------|-------|
+|M|Must have (Obrigatório)|Essencial para o sistema funcionar. Sem ele, o sistema é inviável.|"Buscar produtos por nome."|
+|S|Should have (Deveria ter)|Muito importante, mas não crítico para o lançamento. Pode ser entregue depois.|"Buscar por código de barras."|
+|C|Could have (Poderia ter)|Desejável, mas de baixo impacto. Implementado se houver tempo/recurso.|"Buscar por imagem do produto."|
+|W|Won't have (Não terá agora)|Explicitamente excluído do escopo atual, mas pode ser considerado no futuro.|"Comparar preços de produtos orgânicos certificados."|
+##### 6. Quanto à Estabilidade
+|Tipo|Descrição|Exemplo|
+|----|---------|-------|
+|Requisitos Estáveis|Pouco prováveis de mudar durante o projeto. Geralmente regras de negócio centrais.|"Um produto é identificado pelo código EAN."|
+|Requisitos Voláteis|Sujeitos a mudanças frequentes, muitas vezes durante o desenvolvimento.|"O layout da tela de resultados de busca." "A ordem dos filtros disponíveis."|
+|Requisitos Emergentes|Descobertos ou criados durante o desenvolvimento, não previstos inicialmente.|"Os usuários pediram para comparar até 5 mercados lado a lado."|
+
+##### 7. Quanto à Qualidade (Atributos Desejáveis)
+Esta classificação se refere a como um bom requisito deve ser escrito (características de qualidade). É uma classificação "metalinguística" — sobre o requisito em si, não sobre o sistema.
+
+|Atributo|Descrição|Contraexemplo (ruim)|Exemplo (bom)|
+|--------|---------|--------------------|-------------|
+|Correto|Representa fielmente a necessidade do stakeholder.|"O sistema deve ser rápido."|"A busca deve retornar resultados em menos de 2 segundos."|
+|Claro|Unívoco, sem ambiguidades.|"O sistema deve tratar usuários especiais."|"Usuários com mais de 100 compras no último ano recebem badge 'Premium'."|
+|Completo|Descreve todas as informações necessárias sem lacunas.|"O sistema deve notificar o usuário."|"O sistema deve enviar notificação push ao usuário quando o preço de um produto favoritado cair 10% ou mais, entre 8h e 20h."|
+|Consistente|Não conflita com outros requisitos.|*RF01: "O usuário pode se cadastrar sem e-mail."* vs *RF23: "O envio de notificação exige e-mail confirmado."*|(Não há conflito entre requisitos)|
+|Verificável|Pode ser testado objetivamente.|"O sistema deve ser fácil de usar."|"90% dos usuários novos devem completar uma busca em menos de 2 minutos sem ajuda."|
+|Rastreável|Pode ser vinculado a fontes (regra de negócio, stakeholder, caso de uso) e a artefatos de projeto/teste.|Requisito sem identificador único e sem referência a fonte.|*"RF-034 (derivado da RN-12): ..."*|
+|Modificável|Pode ser alterado sem conflitos com outros requisitos.|Requisitos redundantes ou acoplados.|Cada requisito é único e referenciado por ID|
+
+##### 8. Por Classe: Funcionais (Evidente, Oculto e Decorativo) - Similar ao Item 2
+|Termo|Significado Prático|Equivalente na Literatura|Exemplo|
+|-----|-------------------|-------------------------|-------|
+|Evidente|Funcionalidade que o usuário vê e aciona diretamente|Requisito Funcional explícito; caso de uso primário|"Buscar produto por nome" — o usuário digita e vê o resultado|
+|Oculto|Funcionalidade que acontece "por trás", sem interação direta do usuário|Requisito Funcional de suporte; processo de backend|"Registrar log de cada busca para estatísticas" — o usuário não vê, mas acontece|
+|Decorativo|Funcionalidade que não afeta a operação principal, mas agrega valor|Requisito de usabilidade ou "bom de se ter"|"Animação sutil ao carregar resultados" — bonito, mas não essencial|
+
+Esta subdivisão, evidente, oculto e decorativo, não está presente em normas como IEEE 830 ou ISO 25010, mas é uma forma válida e didática de detalhar os requisitos funcionais. Ela pode ser vista como uma prática de mercado adotada por algumas organizações para refinar a elicitação.
+
+##### 9. Por Classe: Não Funcionais - Similar ao Item 2
+Essa classificação está alinhada com a literatura. Os requisitos **não funcionais** (também chamados de atributos de qualidade) são amplamente reconhecidos em todas as referências. O que está definido como ***"Detalhe"*** (Usuário, Sistema, Interface, Hardware, Software, Comunicação) é, na verdade, uma forma de detalhar os requisitos não funcionais por escopo ou tipo de interface, o que também é recomendado pelo padrão IEEE 830.
+
+|Detalhe|Corresponde a|Exemplo|
+|-------|-------------|-------|
+|Usuário|Interface com usuário (UI/UX)|"Telas com alto contraste para acessibilidade"|
+|Hardware|Restrição de infraestrutura|*"Compatível com dispositivos Android 10+"*|
+|Software|Requisito de plataforma/tecnologia|"Backend em Node.js, banco PostgreSQL"|
+|Comunicação|Protocolos, APIs, rede|"APIs RESTful com JSON, timeout de 5s"|
+
+O IEEE 830 na seção de **"Interfaces Externas"**, exige exatamente a especificação de:
+* Interfaces de usuário
+* Interfaces de hardware
+* Interfaces de software
+* Interfaces de comunicação 
+
+##### 10. Por Classe: Inversos
+Esta é uma classificação **mais avançada e menos comum, mas extremamente útil**. Há referência que se assemelham aos requisitos inversos (também chamados de negative requirements) na literatura de engenharia de segurança e sistemas críticos e na IEEE 830 menciona que o escopo do produto deve descrever **"o que o software não fará, se for o caso"**, mas não se trata de uma classificação *"oficial"*, como os não funcionais.
+
+>**Exemplo**: "O sistema não deve permitir que um cliente visualize dados de faturamento de outro cliente concorrente."
+
+##### 11. Por Proridade: Essencial, Importante e Desejável
+Esta classificação está diretamente alinhada com as recomendações do IEEE 830 e da engenharia de requisitos .
+
+|Termo|Equivalente na Literatura|Significado|
+|-----|-------------------------|-----------|
+Essencial|Must-have, crítico, obrigatório|Sem ele, o sistema não funciona ou não atende ao objetivo principal|
+Importante|Should-have, condicional|Muito desejável, mas pode ser postergado para uma próxima versão|
+Desejável|Optional, nice-to-have|Seria bom ter, mas não é crítico; pode ser cortado se houver restrição|
+
+A norma IEEE 830 afirma explicitamente que "cada requisito deve identificar seu grau de importância... essencial, condicional, opcional"
+
+##### Correspondência
+Mapa de Correspondência Completo
+|Classificação|Presente em Normas?|Presente em Bibliografia Clássica?|Status|
+|-------------|-------------------|----------------------------------|------|
+|Funcionais|Sim (IEEE 830, ISO 25010)|Sim (Pressman, Sommerville)|✅ Padrão|
+|└ Evidente|Não (classificação própria)|Não, mas equivalente a "requisito funcional explícito"|⚠️ Prática de mercado|
+|└ Oculto|Não (classificação própria)|Não, mas equivalente a "requisito de suporte/backoffice"|⚠️ Prática de mercado|
+|└ Decorativo|Não (classificação própria)|Não, mas se aproxima de "requisito de usabilidade"|⚠️ Prática de mercado|
+|Não Funcionais|Sim (ISO 25010, IEEE 830)|Sim (Pressman, Sommerville)|✅ Padrão|
+|Inversos|Parcial (IEEE 830 menciona "o que o software não fará")|Raro; mais comum em segurança de sistemas|✅ Válido, mas especializado|
+|Prioridade (Essencial/Importante/Desejável)|Sim (IEEE 830)|Sim (Sommerville, Paula Filho) |✅ Padrão|
+|Detalhe (Usuário/Hardware/Software/Comunicação)|Sim (IEEE 830 - Interfaces Externas) |Sim|✅ Padrão|
+
+##### Exemplo concreto dentro do ERS(SRS)
+Todos esses requisitos (com suas classificações) são organizados em um documento chamado Especificação de Requisitos de Software (ERS) ou Software Requirements Specification (SRS), conforme padrão IEEE 830. Uma estrutura típica do ERS inclui:
+* Introdução (propósito, escopo, definições)
+* Descrição Geral (perspectiva do produto, usuários, restrições)
+* Requisitos Funcionais (listados com IDs, descrições, prioridades)
+* Requisitos Não Funcionais (por categoria: usabilidade, desempenho, segurança...)
+* Regras de Negócio (derivadas dos stakeholders)
+* Modelos e Diagramas (casos de uso, fluxos, protótipos)
+* Rastreabilidade (matriz ligando requisitos a regras de negócio e a casos de teste)
+
+**Requisito** (versão de sistema):
+
+>"O sistema deve consultar a API de geolocalização do dispositivo (GPS) para obter a localização do consumidor, e então listar apenas os mercados localizados em um raio de até 30 km. Caso o GPS não esteja disponível, o sistema deve solicitar que o usuário digite manualmente seu CEP ou cidade. O tempo de resposta da busca geolocalizada não pode exceder 3 segundos. Esta funcionalidade é obrigatória para a primeira versão."
+
+|Classificação|Atribuição|
+|------------|----------|
+|Nível de detalhamento|Requisito de Sistema (pois é técnico e mensurável)|
+|Natureza|Misto: Funcional (a ação de consultar e filtrar) + Não Funcional (tempo de resposta de 3 segundos)|
+|Escopo|Requisito de Produto (característica do software)|
+|Origem|Requisito de Usuário (consumidores querem ver mercados próximos)|
+|Prioridade (MoSCoW)|Must have (obrigatório para primeira versão)|
+|Estabilidade|Estável (a necessidade de localização não deve mudar)|
+|Qualidade|Verificável (pode-se testar os 3 segundos), Claro (sem ambiguidade), Completo (cobre caso sem GPS)|
+
+## Especificação de Requisitos de Software (ERS)
+### Parte 1: Informações que Devem ser Coletadas
+O Documento de **Especificação de Requisitos de Software (ERS)** , também conhecido como *SRS (Software Requirements Specification)* conforme o padrão IEEE 830 (e sua sucessora ISO/IEC/IEEE 29148), deve conter um conjunto específico de informações. Suas categorias são:
+
+#### 1. Informações sobre o Propósito e Escopo
+|Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+Propósito do sistema|Por que o software está sendo desenvolvido? Qual problema ele resolve?|"Facilitar a comparação de preços de produtos da cesta básica entre mercados, aumentando a concorrência e beneficiando consumidores."
+Escopo funcional|Quais funções estão DENTRO e quais estão FORA do sistema?|Dentro: busca, comparação, cadastro de preços, promoções. Fora: entrega de produtos, pagamento in-app (inicialmente).
+Objetivos de negócio|Quais metas a organização espera alcançar com o sistema?|"Aumentar em 20% a economia média do consumidor na cesta básica em 12 meses."
+Partes interessadas (stakeholders)|Quem tem interesse ou será afetado pelo sistema?|Consumidores, mercados (pequenos, médios, grandes), desenvolvedores, investidores, órgãos reguladores (LGPD).
+#### 2. Informações sobre os Usuários
+Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+Perfis de usuário|Quais os diferentes tipos de usuários?|Consumidor (pessoa física), Mercado (estabelecimento), Administrador (plataforma), Anunciante (futuro).
+Características demográficas|Idade, escolaridade, familiaridade com tecnologia, localização geográfica|Consumidor: todas as idades, incluindo idosos com baixa familiaridade digital. Mercado: pequenos e médios empresários.
+Necessidades e dores|O que cada perfil precisa resolver? O que os frustra hoje?|Consumidor: "não sei se o preço está justo", "perco tempo indo de mercado em mercado". Mercado: "não consigo atrair novos clientes".
+Restrições e limitações|Quais as limitações de cada perfil?|Consumidor idoso: letras pequenas, gestos complexos. Mercado pequeno: orçamento limitado para TI.
+#### 3. Informações sobre o Ambiente e Contexto
+Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+|Ambiente operacional|Onde o sistema será executado?|Android/iOS (app), navegadores web (painel do mercado), servidores em nuvem (backend).|
+|Restrições de hardware/software|Quais dispositivos, sistemas operacionais, navegadores são suportados?|Android 10+, iOS 15+, Chrome 100+, Firefox 110+.|
+|Regulamentações aplicáveis|Quais leis, normas ou certificações o sistema deve atender?|LGPD (Lei Geral de Proteção de Dados), Código de Defesa do Consumidor.|
+|Integrações com sistemas externos|Quais outros sistemas o software precisa conversar?|API de geolocalização (Google Maps), API de validação de CNPJ (Receita Federal), sistemas de pagamento (Stripe/PicPay).|
+#### 4. Informações sobre Funcionalidades (Requisitos Funcionais)
+|Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+|Casos de uso|Quais são as principais interações usuário-sistema?|"Buscar produto por nome", "Cadastrar preço", "Criar promoção", "Comparar preços".
+|Fluxos principais (happy path)|Qual a sequência típica de eventos para uma funcionalidade funcionar?|Usuário abre app → digita "arroz" → vê lista de preços por mercado → clica no menor preço.
+|Fluxos alternativos e exceções|O que acontece em situações não ideais?|Busca sem resultados → sugestão de produtos similares. GPS desligado → solicitar CEP manual.
+|Regras de negócio associadas|Quais regras do negócio esta funcionalidade implementa?|"Promoções duram no máximo 15 dias" → sistema impede cadastro com data final maior.
+#### 5. Informações sobre Atributos de Qualidade (Requisitos Não Funcionais)
+|Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+|Metas de desempenho|Tempos de resposta, vazão, consumo de recursos.|"Busca em até 2 segundos", *"10.000 requisições/segundo"*.
+|Metas de usabilidade|Facilidade de aprendizado, eficiência, satisfação.|"Novo usuário realiza busca em 2 minutos", "acessibilidade para idosos".
+|Metas de disponibilidade|Percentual de tempo que o sistema deve ficar no ar.|"99,9% de disponibilidade" (menos de 8,76h de indisponibilidade/ano).
+|Metas de segurança|Confidencialidade, integridade, autenticação, autorização.|*"Criptografia TLS 1.2+"*, "2FA para mercados", "logs de auditoria".
+|Metas de manutenibilidade|Facilidade de correção, evolução e teste.|"Cobertura de testes >80%", "código modular".
+#### 6. Informações sobre Restrições e Suposições
+|Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+|Restrições de projeto|Limitações impostas ao time de desenvolvimento.|"Deve usar React Native para compartilhar código entre iOS e Android", "Prazo de 4 meses para MVP".|
+|Restrições orçamentárias|Limite de recursos financeiros disponíveis.|"Orçamento de R$ 150.000 para o desenvolvimento inicial".|
+|Restrições de prazo|Datas-limite para entregas parciais ou totais.|*"MVP até 30/06, versão 1.0 até 30/09"*.|
+|Suposições|O que a equipe está assumindo como verdadeiro (mas que pode mudar).|"Os mercados terão alguém para atualizar preços diariamente", "Os consumidores têm smartphones com GPS".|
+|Dependências|O que precisa acontecer ou estar disponível para o projeto prosseguir.|"A API de geolocalização do Google deve estar disponível", "A equipe de design entregar os protótipos até semana 2".|
+#### 7. Informações sobre Prioridades e Critérios de Aceitação
+|Informação|O que deve ser levantado|Exemplo|
+|----------|------------------------|-------|
+|Prioridades (MoSCoW)|O que é Must, Should, Could, Won't?|Must: busca, comparação. Should: histórico de preços. Could: busca por imagem.
+|Critérios de aceitação|Condições objetivas que indicam que um requisito foi atendido.|"Dado um produto válido, o sistema retorna pelo menos 3 mercados com preços em menos de 2 segundos".|
+|Métricas de sucesso (KPIs)|Como medir se o sistema atingiu os objetivos de negócio?|"Redução média de 10% no preço da cesta básica após 6 meses", "50.000 usuários ativos mensais".|
+
+### Parte 2: Técnicas de Coleta de Requisitos
+A engenharia de requisitos oferece diversas técnicas para extrair as informações acima dos stakeholders . Vou listar as mais eficazes.
+
+#### Técnicas de Elicitação (Coleta)
+|Técnica|Como funciona|Melhor para|Exemplo|
+|-------|-------------|-----------|-------|
+|Entrevistas|Conversa estruturada ou semiestruturada com stakeholders individuais ou em pequenos grupos|Obter visões aprofundadas de cada perfil de usuário|Entrevistar um dono de mercado pequeno sobre suas dificuldades em atrair clientes; entrevistar um consumidor idoso sobre como ele pesquisa preços hoje.|
+|Questionários e pesquisas|Formulários enviados a um grande número de pessoas, com perguntas fechadas e abertas|Coletar dados quantitativos de muitos stakeholders|Pesquisar com 500 consumidores: "Com que frequência você compara preços? Quais produtos da cesta básica você mais compra?"|
+|Oficinas (workshops)|Reuniões facilitadas com múltiplos stakeholders simultaneamente, com dinâmicas colaborativas|Alinhar diferentes perspectivas e construir consenso|Oficina com 3 donos de mercado, 5 consumidores e 2 especialistas em varejo para definir as regras de promoção.|
+|Observação etnográfica|Analisar os usuários em seu ambiente natural de trabalho/vida, sem interferência|Descobrir necessidades implícitas que os usuários não sabem expressar|Observar um consumidor fazendo compras em um mercado para ver como ele compara preços no mundo real.|
+|Análise de documentos|Examinar manuais, formulários, relatórios, sistemas existentes|Entender processos atuais e regras de negócio já documentadas|Analisar relatórios de vendas de mercados parceiros para entender quais produtos são mais pesquisados.|
+|Brainstorming|Sessão livre de geração de ideias, sem críticas iniciais|Explorar possibilidades criativas e requisitos inovadores|"Quais funcionalidades surpreendentes poderiam fidelizar consumidores?"|
+|Prototipação (baixa fidelidade)|Criar esboços, wireframes ou maquetes clicáveis para os usuários interagirem|Validar entendimento de interface e fluxos antes de codificar|Protótipo no Figma da tela de busca para consumidores testarem e darem feedback.|
+|Storyboarding|Narrativa visual sequencial mostrando como o usuário interage com o sistema em um cenário típico|Compreender fluxos completos e necessidades de contexto|Sequência de telas mostrando: consumidor abre app → busca "leite" → encontra promoção no mercado X → vai até o mercado.|
+#### Técnicas de Análise e Modelagem
+Após a coleta, as informações precisam ser organizadas e modeladas .
+
+|Técnica|O que produz|Exemplo|
+|-------|------------|-------|
+|Diagrama de Casos de Uso (UML)|Atores, casos de uso e seus relacionamentos|Atores: Consumidor, Mercado, Administrador. Casos: "Cadastrar produto", "Buscar preço", "Gerar relatório".|
+|Especificação de Casos de Uso|Descrição detalhada de fluxos, pré-condições, pós-condições, exceções|Fluxo principal, fluxo alternativo (GPS desligado), fluxo de exceção (produto não encontrado).|
+|Histórias de Usuário (Ágil)|"Como [ator], eu quero [ação] para [benefício]"|"Como consumidor, eu quero receber alerta de queda de preço para não perder promoções."|
+|Critérios de Aceitação (BDD)|Cenários no formato Dado-Quando-Então|"Dado que o usuário favoritou 'arroz 5kg', quando o preço cair 10%, então o sistema envia notificação push."|
+|Diagrama de Atividades (UML)|Fluxos de trabalho e decisões|Fluxo de cadastro de promoção: mercado insere dados → sistema valida duração → sistema aprova ou rejeita.|
+|Diagrama de Sequência (UML)|Interações temporais entre objetos|Sequência: app → backend → banco de dados → API de geolocalização → resposta.|
+|Modelo de Domínio / Diagrama de Classes|Entidades, atributos, relacionamentos|Classes: Produto, Mercado, Preço, Promoção, Consumidor, Favorito.|
+
+### Parte 3: Ferramentas para Facilitar a Coleta e Gestão de Requisitos
+#### Ferramentas de Elicitação e Prototipação
+|Ferramenta|Tipo|Descrição|Uso|
+|----------|----|---------|---|
+|Figma|Prototipação|Design de interfaces, wireframes, protótipos clicáveis|Criar telas de busca, resultado, cadastro de produto para validação com usuários.|
+|Miro|Colaboração|Quadro branco virtual para brainstorming, fluxogramas, diagramas|Oficinas remotas com stakeholders para mapear regras de negócio.|
+|Lucidchart|Diagramação|Diagramas UML, BPMN, fluxogramas|Criar diagramas de caso de uso e atividades.|
+|Draw.io (diagrams.net)|Diagramação|Gratuito, integrado com Google Drive/Confluence|Modelagem UML leve e colaborativa.|
+|Typeform / Google Forms|Pesquisas|Questionários online com lógica condicional|Pesquisa de satisfação e necessidades com consumidores.|
+|Hotjar / FullStory|Observação|Gravação de sessões de usuários em sites/apps|Observar como consumidores reais usam o protótipo ou MVP.|
+#### Ferramentas de Gestão de Requisitos
+|Ferramenta|Tipo|Descrição|Uso|
+|----------|----|---------|---|
+|Jira|Gestão ágil|Backlog de histórias, épicos, tarefas, rastreabilidade|Gerenciar requisitos como histórias de usuário, priorizar backlog (MoSCoW).|
+|Confluence|Documentação colaborativa|Wiki para documentar ERS, regras de negócio, atas de reunião|Documentar a versão final do ERS e mantê-lo atualizado.|
+|Notion|Documentação + Gestão|Flexível: docs, bancos de dados, kanban|Criar e compartilhar o ERS com rastreabilidade integrada.|
+|Trello|Gestão leve|Kanban simples para pequenos projetos|Gerenciar requisitos de um MVP simples.|
+|IBM DOORS|Gestão empresarial|Ferramenta pesada para rastreabilidade em larga escala|Projetos de grande porte, regulados (aeroespacial, médico) — exagerado para seu app.|
+|Jama Software|Gestão de requisitos|Alternativa moderna ao DOORS, com rastreabilidade|Projetos complexos com múltiplas versões e conformidade.|
+#### Ferramentas de Teste e Validação
+|Ferramenta|Tipo|Descrição|Uso|
+|----------|----|---------|---|
+|Cucumber / Gherkin|BDD|Execução de cenários Dado-Quando-Então|Validar automaticamente que os requisitos foram implementados corretamente.|
+|Postman / Insomnia|Teste de API|Validação de endpoints e contratos|Verificar se as APIs do backend atendem aos requisitos de interface.|
+|Selenium / Cypress|Teste automatizado|Testes end-to-end no navegador|Simular ações de usuário e verificar comportamento conforme especificado.|
+
+## Universo de Discurso (Universe of Discourse - UoD)
+O **Universo de Informação** ou **Universo de Discurso** (Universe of Discourse - UoD) é um tópico fundamental na fase de análise de requisitos e modelagem conceitual.
+
+Ele é o *ponto de partida para entender sobre o que o sistema precisa tratar* antes mesmo de pensar em telas ou código.
+
+### O que é o Universo de Discurso (UoD)?
+De acordo com a literatura de engenharia de software e sistemas de informação, o **Universo de Discurso é o contexto geral**, o domínio ou o recorte da realidade no qual o software será desenvolvido e irá operar.
+
+Em termos mais simples: é tudo aquilo que é relevante para o sistema. É a "fatia do mundo real" que o software precisa entender, representar e sobre a qual precisa agir.
+
+Imagine que você vai construir o sistema de uma biblioteca. O Universo de Discurso não é o software em si, mas sim o mundo real da biblioteca:
+* **Entidades**: Livros, Usuários, Autores, Empréstimos, Funcionários.
+* **Processos**: Como um livro é emprestado, como uma multa é calculada.
+* **Regras**: "Um usuário não pode pegar mais de 5 livros ao mesmo tempo" ou "Alunos têm prazo de 7 dias, professores de 30 dias".
+
+Para o um aplicativo de comparação de preços, o Universo de Discurso é o mundo dos mercados e dos consumidores. Ele inclui tudo o que precisa ser entendido para o sistema funcionar:
+
+* **Consumidor**: Pessoa que pesquisa, compara preços, favorita produtos.
+* **Mercado**: Estabelecimento que vende produtos, cadastra preços e promoções.
+* **Produto**: Item da cesta básica, com nome, marca, código de barras (EAN).
+* **Preço**: Valor atual de um produto em um mercado específico.
+* **Promoção**: Oferta temporária com regras específicas (ex: "Leve 2, pague 1" ou "10% de desconto").
+
+### Por que o UoD é tão importante?
+A principal razão é que o **software é uma representação (um modelo) de uma parcela da realidade**. Se essa representação for imprecisa ou incompleta, o software será falho, independentemente da qualidade do código.
+
+Os principais objetivos de estudar o **UoD** são:
+* **Estabelecer Limites (Escopo)**: O que ESTÁ dentro do sistema? O que está FORA? Isso evita o temido "scope creep". No seu app, "calcular a rota de entrega" pode estar fora do escopo inicial, enquanto "mostrar a localização do mercado no mapa" está dentro.
+* **Garantir um Entendimento Comum**: Serve como um contrato de comunicação entre os engenheiros de software e os stakeholders (clientes, usuários). Todos precisam concordar sobre o que é um "produto", um "mercado" ou uma "promoção".
+* **Descobrir Regras de Negócio**: Ao analisar o **UoD**, você identifica as regras que governam aquele domínio. No seu app, uma regra de negócio do **UoD** pode ser: "Uma promoção não pode ser cumulativa com outra para o mesmo produto".
+* **Fornecer a Base para a Modelagem**: O **UoD** é a matéria-prima para criar diagramas como o Diagrama de Classes da UML, o Diagrama Entidade-Relacionamento (DER) ou qualquer outra forma de modelo de dados.
+
+### Como Modelar o Universo de Discurso? (Técnicas)
+Na prática da engenharia de software, especialmente seguindo autores como Pressman, a modelagem do **UoD** se traduz em algumas atividades e artefatos concretos.
+
+1. Identificação dos Objetos ou Entidades
+Listar todos os substantivos relevantes que fazem parte do domínio do problema. Esses serão as futuras classes ou tabelas do seu sistema.
+
+>Exemplo: Produto, Mercado, Endereço, PreçoHistórico, ListaDeCompras.
+
+2. Descoberta dos Relacionamentos
+Como essas entidades se conectam no mundo real? Isso define a estrutura do banco de dados.
+
+>Exemplo: Um Mercado possui vários Produtos. Um Produto pode estar em vários Mercados.
+
+3. Definição dos Atributos
+Quais são as características relevantes de cada objeto?
+
+>Exemplo: Produto tem nome, marca, códigoEAN. Mercado tem CNPJ, nomeFantasia, endereço.
+
+4. Mapeamento dos Comportamentos e Regras (Dinâmica)
+Como esses objetos se comportam e interagem ao longo do tempo? Aqui entram as regras de negócio e os fluxos.
+
+>Exemplo: Um Preço é alterado por um Mercado. Uma Promoção é aplicada a um Produto por um período.
+
+### Resumindo: 
+Quando você está criando os Requisitos Funcionais (o sistema deve fazer X) e as Regras de Negócio (a empresa opera assim), você está, na verdade, descrevendo o Universo de Discurso do seu projeto. A modelagem do **UoD** é a técnica para fazer isso de forma estruturada e completa.
+
+
 
 ## Dúvidas
 
