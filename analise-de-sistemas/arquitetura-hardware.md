@@ -1,6 +1,146 @@
 # Arquitetura de Hardware
 
-## 1- A Máquina IAS (Von Neumann)
+## 1- Lógica Digital
+### Operação Lógica
+Ela é a base de tudo: é o conjunto de regras e componentes que permitem ao computador tomar decisões e realizar cálculos usando apenas 0s e 1s. Antes do hardware, vem a matemática. A lógica digital é a implementação física da Álgebra de Boole (ou Booleana), onde elas só podem ter dois valores:
+* **1 = Verdadeiro(True)**
+* **0 = Falso(False)**
+
+E as operações feitas são apenas lógicas, **AND**, **OR** e **NOT**.
+
+|Operação|Nome|Comportamento|
+|--------|----|------------|
+|AND     | E  |A saída é 1 somente se todas as entradas forem 1.|
+|OR      | OU |A saída é 1 se pelo menos uma das entradas for 1.|
+|NOT     | NÃO|Inverte o valor da entrada. Se entra 1, sai 0. Se entra 0, sai 1.|
+
+Tabelas Verdades, supondo duas entradas ou no caso da porta NOT, apenas uma:
+|Porta|Entrada|Saída|
+|-----|-------|-----|
+|NOT  | 1     |0    |
+|NOT  | 0     |1    |
+
+|Porta|Entrada A|Entrada B|Saída|
+|-----|---------|---------|-----|
+|AND | 0        |  0      |  0  |
+|AND | 0        |  1      |  0  |
+|AND | 1        |  0      |  0  |
+|AND | 1        |  1      |  1  |
+|----|----------|---------|-----|
+|OR  | 0        |    0    |  0  |
+|OR  | 0        |    1    |  1  |
+|OR  | 1        |    0    |  1  |
+|OR  | 1        |    1    |  1  |
+
+Observação Importante: Existem também portas combinadas muito usadas, como a **NAND (AND + NOT)** e a **NOR (OR + NOT)**, que são chamadas de "portas universais" porque, com elas, dá pra construir qualquer outro circuito.
+### Combinação Lógica
+Combinando portas lógicas, formam-se circuitos lógicos. E ao combinando milhares (ou bilhões) dessas portas simples, criamos circuitos complexos. Dois exemplos clássicos que você verá no Capítulo 3 de Null & Lobur:
+
+#### **Meio Somador (Half Adder)**: 
+Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C`). Ele é feito com uma porta `XOR` (OU Exclusivo, uma variação) e uma porta `AND`.
+
+|A|B|Sum|Carry|
+|-|-|---|-----|
+|0|0| 0 |  0  |
+|0|1| 1 |  0  |
+|1|0| 1 |  0  |
+|1|1| 0 |  1  |
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017121522/xorkmap.jpg" alt="SUM = A XOR B" style="width: 20%" title="SUM A XOR B" />
+
+**SUM = A XOR B**
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017125041/Inkedandkmap1-200x155.jpg" alt="CARRY= A AND B" style="width: 20%" title="SUM A XOR B" />
+
+**CARRY = A AND B**
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Half_Adder.jpg" alt="Implementação meio somador" style="width: 50%" title="Implementação meio somador" />
+
+#### **Somador Completo (Full Adder)**:
+Um circuito mais complexo que soma dois bits(`A`, `B`) considerando também um "vem-um"(`C - IN`) de uma soma anterior. É assim que o computador soma números de vários bits (como 8, 16 ou 32 bits). E também tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C - OUT`)
+
+|  A  |  B  |C-IN |Sum|C-OUT|
+|-----|-----|-----|---|-----|
+|  0  |  0  |  0  | 0 |  0  |
+|  0  |  0  |  1  | 1 |  0  |
+|  0  |  1  |  0  | 1 |  0  |
+|  0  |  1  |  1  | 0 |  1  |
+|  1  |  0  |  0  | 1 |  0  |
+|  1  |  0  |  1  | 0 |  1  |
+|  1  |  1  |  0  | 0 |  1  |
+|  1  |  1  |  1  | 1 |  1  | 
+
+* Para Soma `S`:
+    * Se tiver **um** ou **três** entradas com valores iguais, `S` será verdadeiro `1`.
+    * Se tiver **zero** ou **duas** entradas com valores iguais, `S` será falso `0`.
+> Escala seguindo padrão: par será falso, ímpar será verdadeiro
+
+* Para Carry `C - OUT`:
+    * Se tiver ao menos **duas** entradas com valores verdadeiras(`1`), `C-OUT` será verdadeiro.
+    * Se tiver ao menos **duas** entradas com valores falso(`0`), `C-OUT` será falso.
+
+O carry (`C-OUT`) é implementado usando portas `XOR`, `AND` e `OR`: então segue as duas saídas das portas `AND` são combinadas usando uma porta `OR` para gerar a saída final `C-OUT`.
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122505812069/frame_274.webp" alt="Implementação somador completo" style="width: 100%" />
+
+
+**Implementação do Somador Completo usando Meio Somador**
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122601572749/frame_277.webp" alt="Implementação somador completo c/ meio somador" style="width: 100%" />
+
+**Implementação do Somador Completo usando Portas `NAND`**
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122706449172/frame_275.webp" alt="Implementação somador completo c/ portas NAND" style="width: 100%" />
+
+**Implementação do Somador Completo usando Portas `NOR`**
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122756356070/frame_276.webp" alt="Implementação somador completo c/ portas NOR" style="width: 100%" />
+
+## 2- Adjacência Topológica
+Também conhecida como a **"Geometria" da Simplificação Digital**. A adjacência topológica é um conceito fundamental no *Mapa de Karnaugh (K-map)* , que é a principal ferramenta visual para **simplificar circuitos digitais**.
+
+Em termos simples, ela descreve a regra de "vizinhança" especial entre células em um mapa, onde duas posições são consideradas adjacentes não apenas por estarem fisicamente lado a lado, mas também por estarem conectadas pelas bordas do mapa, como se estivessem desenhadas em um toro (uma rosquinha) . O objetivo é agrupar células para eliminar variáveis e simplificar a expressão lógica.
+
+
+|Critério de Adjacência|Descrição|Analogia Visual|Exemplo em um Mapa 4x4|
+|---------------------|-----------|----------------|----------------|
+|Vizinhança Imediata|Células que compartilham uma borda (vertical ou horizontal) .|São vizinhos de porta.|As células na posição (linha 1, coluna 2) e (linha 1, coluna 3) são adjacentes.(**Imagem 5 do tópico, na cor vermelha**)|
+|Adjacência por Enrolamento (Toroidal)|A borda superior é adjacente à borda inferior, e a borda esquerda é adjacente à borda direita .|Como se o mapa fosse uma folha de papel que você enrola para colar a borda de cima com a de baixo, formando um cilindro, e depois as laterais, formando um toro (rosquinha) .|As células nos cantos superior esquerdo e inferior esquerdo são adjacentes, assim como as dos cantos superior esquerdo e superior direito.(**Imagem 1 do tópico, na cor vermelha**)|
+|Agrupamento (Regras)|Os agrupamentos para simplificação devem ser retângulos (ou quadrados) com um número de células que seja uma potência de 2 (1, 2, 4, 8, 16...) .|Você só pode fazer grupos de 1, 2, 4, 8 ou 16 células. Não pode fazer um grupo de 3 ou 6.|Você pode agrupar 2, 4, 8 ou todas as 16 células, desde que formem um retângulo.(**Imagem 2 do tópico, na cor vermelha**)|
+
+
+
+<div style = "text-align: center;">
+<img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_1001/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-3-variaveis-CLP.png.webp" alt="Mapa de Karnaugh" style="width: 100%"/>
+<strong>Imagem 1: Com três variáveis</strong>     
+<img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_960,h_480/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-4-variaveis.png" alt="Mapa de Karnaugh" style="width: 100%"/>
+<strong>Imagem 2:Com quatro variáveis</strong>    
+</div>
+
+### Como fazer um Mapa de Karnaugh?
+<div style = "text-align: center;">
+<img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-2.png.webp" alt="Mapa de Karnaugh" style="width: 50%"/>
+
+<strong>Imagem 3: Exemplo Mapa de Karnaugh com quatro variáveis</strong>    
+</div>
+<img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-3.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 4"/><img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-5-1.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 5"/>
+
+Cada um destes retângulos corresponde a um **termo mínimo (miniterm)** da função lógica. **Um miniterm é o E lógico (AND) das entradas** (eventualmente invertidas). **A função lógica é o OU lógico (OR) dos miniterms**.
+
+A construção dos miniterms é feita observando os valores das variáveis de entrada nos retângulos. Se uma variável aparece no retângulo com os dois valores (`0` e `1`), ela não aparece no miniterm. Se uma variável aparece apenas com `1`, ela entra no miniterm normalmente. Se uma variável aparece apenas com 0, ela entra no miniterm invertida.
+
+Aplicando isto ao nosso exemplo (`~` indica **negação**(`NOT`) e `.` indica `E` lógico):
+
+* **Retângulo amarelo**: `AB=00/10`, `CD=00/01`. `A` aparece com `0` e `1`, `B` somente com `0`, `C` somente com `0` e `D` com `0` e `1`. Miniterm = `~B.~C`
+* **Retângulo azul** (sobreposto ao amarelo): `AB=11/10`, `CD=01/11`. A aparece somente com `1`, B com `1` e 0, C com 0 e `1`, D com `1`. Miniterm = `A.D`
+* **Retângulo vermelho**: `AB=00/01`, `CD=10`. `A` aparece somente com `0`, `B` aparece com `0` e `1`, `C` somente `1` e `D` somente `0`. Miniterm = `~A.C.~D`
+`A função lógica fica  ~B.~C + A.D + ~A.C.~D`
+
+A beleza do Mapa de Karnaugh e do conceito de adjacência topológica é que ele transforma um problema de álgebra booleana em um problema de reconhecimento de padrões visuais . Em vez de aplicar regras algébricas, você simplesmente olha para o mapa e identifica os maiores retângulos possíveis que cobrem todos os 1s, respeitando as regras de adjacência e potência de 2.
+
+Mapas de Karnaugh são ferramentas fantásticas para **simplificar funções de até 5 ou 6 variáveis**. Para funções com mais variáveis, o processo se torna visualmente complexo, e engenheiros recorrem a **métodos algorítmicos computacionais como o Quine-McCluskey**.
+
+
+## 3- A Máquina IAS (Von Neumann)
  IAS machine (também conhecida como computador de Von Neumann) foi o primeiro computador a implementar o conceito de programa armazenado , tornando-se o arquétipo de praticamente todos os computadores modernos. Desenvolvida no Institute for Advanced Study (IAS) em Princeton, sob a liderança de John von Neumann, sua construção começou em 1946 e foi concluída em 1951.
 
 ### Contexto Histórico
@@ -83,6 +223,50 @@ Cada instrução de 20 bits continha:
 * **Opcode (8 bits)**: Código da operação a ser executada
 * **Endereço (12 bits)**: Endereço na memória (para buscar dados ou próximo salto)
 
+### Legado e Influência
+A IAS machine não foi comercializada, mas seu design serviu de modelo para praticamente todos os computadores que vieram depois:
+
+|Computador|Relação com IAS|
+|----------|---------------|
+|IBM 701 (1952)|Primeiro computador comercial da IBM, diretamente inspirado na IAS|
+|MANIAC I (1952)|Construído no Los Alamos National Laboratory, cópia da IAS|
+|ILLIAC I (1952)|Construído na Universidade de Illinois, também baseado na IAS|
+|ORACLE (1954)|Construído no Oak Ridge National Laboratory|
+|WEIZAC (1955)|Primeiro computador em Israel, baseado na IAS|
+
+Essas máquinas, chamadas de "máquinas von Neumann" , disseminaram a arquitetura pelo mundo e estabeleceram o padrão que persiste até hoje.
+
+**Comparação: IAS vs. Computadores Modernos**
+|Aspecto|IAS Machine (1951)|Computador Moderno (2024)|
+|-------|------------------|-------------------------|
+|Arquitetura|Von Neumann (barramento único)|Von Neumann (com hierarquias e barramentos dedicados)|
+|Memória|5 KB (tubos de Williams)|16-128 GB (DRAM) + cache (SRAM)|
+|Frequência|~1 kHz (ciclo de instrução)|3-5 GHz (bilhões de vezes mais rápida)|
+|Transistores|0 (válvulas)|~20 bilhões (CPU) + ~100 bilhões (GPU)|
+|Formato instrução|20 bits (8 opcode + 12 endereço)|32-64 bits, múltiplos formatos|
+|Registradores|7 registradores|16-32 registradores de uso geral + centenas especiais|
+|Pipelining|Não|Sim (instruções em estágios)|
+|Multiprocessamento|Não|Sim (múltiplos núcleos)|
+
+### O "Antes" e o "Depois" do Programa Armazenado
+Comparando o funcionamento dos computadores antes e depois do conceito de programa armazendo.
+
+|Aspecto|Antes: Máquinas de Programa Fixo|Depois: Máquina de Programa Armazenado (Von Neumann)|
+|-------|--------------------------------|----------------------------------------------------|
+|Onde o programa "vive"?|O programa era definido pelo hardware. A máquina era construída fisicamente para resolver um problema específico .|O programa é dado à máquina. Ele é armazenado na memória, junto com os dados.|
+|Como "programar"?|Através de painéis de ligação (plugboards), chaves ou cartões perfurados. Mudar a tarefa exigia um processo demorado de religar fisicamente a máquina, que podia levar semanas .|Através de software. Para mudar a tarefa, basta carregar um novo programa da memória secundária (HD, SSD) para a memória principal.|
+|Flexibilidade|Nenhuma. Era uma máquina "monotarefa" por design. O ENIAC, por exemplo, precisava ser "reprogramado" manualmente para cada novo cálculo .|Ilimitada. A mesma máquina pode processar textos, rodar jogos, navegar na internet ou simular o clima, simplesmente executando programas diferentes.|
+|Analogia com a Logística|Uma esteira de montagem construída apenas para engarrafar água. Ela não pode ser usada para montar carros sem uma reforma completa.|Um centro de distribuição (CD) moderno. O mesmo espaço físico (a memória) e os mesmos funcionários (a CPU) podem receber instruções diferentes (o programa) para separar livros hoje, roupas amanhã e eletrônicos na próxima semana.|
+
+### Os 5 Pilares (Ou "Órgãos") do Modelo Von Neumann
+Para que o conceito funcionasse na prática, von Neumann definiu uma estrutura clara de componentes. O documento de 1945 descrevia a máquina através destes 5 "órgãos":
+
+* **Memória (M)**: O local onde tanto as instruções (o programa) quanto os dados são armazenados. É um grande armário de gavetas numeradas (endereços).
+* **Unidade Aritmética e Lógica (CA)**: O "cérebro matemático". É responsável por executar as operações de fato, como somar, subtrair ou comparar dois números.
+* **Unidade de Controle (CC)**: O "maestro" da orquestra. É ela quem busca as instruções na memória, uma a uma, as decodifica (entende o que precisa ser feito) e então envia os sinais de controle para que a ULA e o resto do sistema executem a tarefa.
+* **Entrada (I)**: Os mecanismos para levar dados e programas do "mundo exterior" para a memória do computador.
+* **Saída (O)**: Os mecanismos para trazer os resultados processados da memória para o "mundo exterior".
+
 ### Ciclo de Instrução (Fetch-Decode-Execute)
 O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computadores seguem até hoje:
 
@@ -114,30 +298,289 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 * Se a palavra atual continha duas instruções, após executar a esquerda, a direita é carregada do IBR
 * Caso contrário, uma nova palavra é buscada da memória
 
-### Legado e Influência
-A IAS machine não foi comercializada, mas seu design serviu de modelo para praticamente todos os computadores que vieram depois:
+## 4- Geração de Computadores
+### Primeira Geração (1940-1956) - Válvulas Eletrônicas (Válvulas Termiônicas)
+**Características Principais**
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Válvulas eletrônicas (tubos de vácuo)|
+|Memória|Linhas de retardo de mercúrio, tambores magnéticos, relés|
+|Armazenamento|Cartões perfurados, fita magnética (emergente)|
+|Programação|Linguagem de máquina (binário direto), depois assembly|
+|Tamanho|Ocupavam salas inteiras (ex: ENIAC tinha 167 m²)|
+|Consumo|Extremamente alto (ENIAC consumia 150 kW)|
+|Confiabilidade|Baixíssima (válvulas queimavam frequentemente)|
+|Custo|Altíssimo, acessível apenas para governos e grandes universidades|
 
-|Computador|Relação com IAS|
-|----------|---------------|
-|IBM 701 (1952)|Primeiro computador comercial da IBM, diretamente inspirado na IAS|
-|MANIAC I (1952)|Construído no Los Alamos National Laboratory, cópia da IAS|
-|ILLIAC I (1952)|Construído na Universidade de Illinois, também baseado na IAS|
-|ORACLE (1954)|Construído no Oak Ridge National Laboratory|
-|WEIZAC (1955)|Primeiro computador em Israel, baseado na IAS|
+**Principais Máquinas**
+* **ENIAC** (1946, EUA): Primeiro computador eletrônico de uso geral. Tinha 17.468 válvulas e realizava 5.000 operações por segundo .
+* **DVAC** (1949): Introduziu o conceito de programa armazenado (Arquitetura de Von Neumann) .
+* **NIVAC I**  (1951): Primeiro computador comercial produzido nos EUA .
+* **Colossus** (1943, Reino Unido): Usado na Segunda Guerra para decifrar códigos alemães .
 
-Essas máquinas, chamadas de "máquinas von Neumann" , disseminaram a arquitetura pelo mundo e estabeleceram o padrão que persiste até hoje.
+**Impacto na Arquitetura**
+* Estabeleceu os fundamentos da **Arquitetura de Von Neumann**: CPU, memória, barramento único para dados e instruções .
+* A programação era feita manualmente, conectando cabos e configurando chaves (no ENIAC) .
+### Segunda Geração (1956-1963) - Transistores
+**Características Principais**
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Transistores (substituem as válvulas)|
+|Memória|Núcleo magnético (magnetic core memory)|
+|Armazenamento|Discos magnéticos, fitas magnéticas mais confiáveis|
+|Programação|Linguagens de alto nível (FORTRAN, COBOL, ALGOL)|
+|Tamanho|Redução significativa (gabinetes do tamanho de armários)|
+|Consumo|Muito menor que válvulas|
+|Confiabilidade|Muito superior às válvulas|
+|Custo|Redução gradual, mas ainda alto|
 
-**Comparação: IAS vs. Computadores Modernos**
-|Aspecto|IAS Machine (1951)|Computador Moderno (2024)|
-|-------|------------------|-------------------------|
-|Arquitetura|Von Neumann (barramento único)|Von Neumann (com hierarquias e barramentos dedicados)|
-|Memória|5 KB (tubos de Williams)|16-128 GB (DRAM) + cache (SRAM)|
-|Frequência|~1 kHz (ciclo de instrução)|3-5 GHz (bilhões de vezes mais rápida)|
-|Transistores|0 (válvulas)|~20 bilhões (CPU) + ~100 bilhões (GPU)|
-|Formato instrução|20 bits (8 opcode + 12 endereço)|32-64 bits, múltiplos formatos|
-|Registradores|7 registradores|16-32 registradores de uso geral + centenas especiais|
-|Pipelining|Não|Sim (instruções em estágios)|
-|Multiprocessamento|Não|Sim (múltiplos núcleos)|
+**Principais Máquinas**
+* **IBM 1401** (1959): Computador comercial de grande sucesso.
+* **IBM 7090** (1959): Computador científico totalmente transistorizado.
+* **PDP-1** (1960): Primeiro minicomputador (DEC), com apenas 4 kW de consumo.
+
+**Inovações Arquiteturais**
+* Surgimento do barramento omnibus
+* Multiprogramação: capacidade de executar múltiplos programas de forma "simultânea"
+* Sistemas operacionais com gerenciamento básico de recursos
+* Canais de I/O independentes da CPU
+
+### Terceira Geração (1964-1971) - Circuitos Integrados (CI)
+**Características Principais**
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Circuitos Integrados (múltiplos transistores em um único chip)|
+|Memória|Memória de semicondutor (começa a substituir núcleo magnético)|
+|Armazenamento|Discos magnéticos com capacidade crescente|
+|Programação|Linguagens estruturadas (Pascal, C), sistemas operacionais mais sofisticados|
+|Tamanho|Computadores de médio porte, minicomputadores|
+|Consumo|Redução drástica|
+|Confiabilidade|Alta|
+|Custo|Redução significativa, acessível para empresas médias|
+
+**Principais Máquinas**
+* **IBM System/360** (1964): Família de computadores compatíveis entre si (diferentes modelos rodavam o mesmo software). Marcou a consolidação da IBM como líder do setor .
+* **PDP-8** (1965): Minicomputador de baixo custo, popularizou a computação em laboratórios e universidades .
+* **CDC 6600** (1964): Considerado o primeiro supercomputador, projetado por Seymour Cray .
+
+**Inovações Arquiteturais**
+* Compatibilidade entre famílias (software podia migrar entre modelos)
+* Memória cache (introduzida no IBM 360/85)
+* Pipelining (execução simultânea de múltiplas instruções em estágios)
+* Multiprocessamento (múltiplas CPUs compartilhando memória)
+* Sistemas operacionais com time-sharing (compartilhamento de tempo)
+
+### Quarta Geração (1971-presente) - Microprocessadores e VLSI
+**Características Principais**
+
+|Aspecto|Descrição|
+|-------|---------|
+|Componente principal|Microprocessador (CPU em um único chip) - tecnologia VLSI (Very Large Scale Integration)|
+|Memória|DRAM e SRAM de alta densidade|
+|Armazenamento|Discos rígidos, SSDs, armazenamento em nuvem|
+|Programação|Linguagens orientadas a objetos (C++, Java, Python), sistemas operacionais gráficos|
+|Tamanho|Computadores pessoais, notebooks, dispositivos móveis|
+|Consumo|Extremamente baixo (especialmente em dispositivos móveis)|
+|Confiabilidade|Altíssima|
+|Custo|Acessível ao consumidor final|
+
+**Principais Marcos**
+* **Intel 4004 (1971)**: Primeiro microprocessador comercial (4 bits)
+* **Intel 8080 (1974)**: Primeiro microprocessador de 8 bits de uso geral
+* **IBM PC (1981)**: Popularizou o computador pessoal
+* **Apple Macintosh (1984)**: Popularizou a interface gráfica
+* **Processadores x86, ARM (décadas seguintes)**: Dominaram os mercados de PC e dispositivos móveis
+
+**Inovações Arquiteturais**
+* Microprocessadores com milhões (hoje bilhões) de transistores
+* Memória cache hierárquica (L1, L2, L3)
+* Pipelines superescalares (múltiplas instruções por ciclo)
+* Multicore (múltiplos núcleos em um único chip)
+* Arquiteturas RISC vs. CISC
+* Computação móvel e embarcada
+* Processadores especializados (GPUs, NPUs, TPUs)
+
+>**Extensões e o Presente**
+Muitos autores consideram uma Quinta Geração (computação paralela massiva, inteligência artificial, computação quântica) ou até mesmo uma Sexta Geração (computação ubíqua, IoT, IA integrada). No entanto, a classificação tradicional vai até a quarta geração, com as demais sendo tratadas como desdobramentos da era dos microprocessadores.
+
+### Tabela Síntese: Gerações de Computadores
+
+|Geração|Período|Tecnologia Central|Componentes por Chip|Arquitetura Principal|Representantes|
+|--|---------|--------|---|------------------------|---------------|
+|1ª|1940-1956|Válvulas|N/A|Von Neumann (conceitual)|ENIAC, UNIVAC I|
+|2ª|1956-1963|Transistores discretos|1 transistor por encapsulamento|Barramento omnibus|IBM 1401, PDP-1|
+|3ª|1964-1971|Circuitos Integrados (SSI/MSI)|Dezenas a centenas|Barramentos hierárquicos iniciais|IBM System/360, PDP-8|
+|4ª|1971-presente|Microprocessadores (VLSI)|Milhões a bilhões|Barramentos hierárquicos modernos|Intel x86, ARM, Apple M|
+
+## 5- Arquitetura x Organização
+Para entender a diferença, é preciso entender também a **Anatomia do Computador**.
+### Abordagem de cima para baixo
+Começamos pelo sistema inteiro e depois os dividimos em subpartes e em cada nível é preciso entender duas coisas:
+* **Estrutura**: O modo como os componentes de inter-relacionam.
+* **Função**: A operação individual de cada componente.
+
+Apesar da sua complexidade, no nível mais alto, o sistema executa apenas quatro funlões básicas:
+* **Processamento de dados**
+* **Arnazenamento de dados**
+* **Movimentação de dados**
+* **Controle**
+
+### Definições Fundamentais
+|Conceito|Definição|Pergunta que Responde|
+|--------|---------|---------------------|
+|Arquitetura (Arquitetura de Conjunto de Instruções - ISA)|O que o computador faz do ponto de vista do programador (compilador, assembly). É o contrato entre o hardware e o software|"O quê?" Quais operações estão disponíveis? Quantos registradores? Como a memória é endereçada?|
+|Organização (Microarquitetura)|Como a arquitetura é implementada fisicamente com portas lógicas, circuitos, transistores e sinais de controle|"Como?" Como a ULA é construída? Como o pipeline é organizado? Como a cache é implementada?|
+
+**Relação entre si**
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                     ARQUITETURA (ISA)                        │
+│  "O que o programador vê" - Conjunto de instruções,         │
+│  registradores, modos de endereçamento, modelo de memória   │
+│  É o MANUAL do processador (ex: Manual x86-64 da Intel)     │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              │ (implementa)
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    ORGANIZAÇÃO (μarch)                       │
+│  "Como o engenheiro projeta" - Pipeline, cache, unidades    │
+│  funcionais, barramentos internos, circuitos lógicos        │
+│  É o DIAGRAMA DE BLOCOS do processador                       │
+└─────────────────────────────────────────────────────────────┘
+```
+**Exemplo Prático**: A Família x86
+O exemplo mais clássico da distinção é a família de processadores x86 da Intel e AMD:
+
+|Processador|Ano|Arquitetura (ISA)|Organização (μarch)|
+|-----------|---|-----------------|-------------------|
+|Intel 8086|1978|x86-16|Original|
+|Intel 80386|1985|x86-32|Original com pipeline|
+|Intel Pentium|1993|x86-32|Superescalar (2 instruções/ciclo)|
+|Intel Core i7 (Nehalem)|2008|x86-64|Pipeline profundo, cache inteligente|
+|Intel Core i7 (Skylake)|2015|x86-64|μarch otimizada, melhor branch prediction|
+|AMD Ryzen (Zen 5)|2024|x86-64|μarch concorrente, chiplet design|
+
+**O que isso significa?**
+* Um programa escrito para o 8086 (em 1978) ainda roda em um processador Ryzen moderno (em 2024) porque a arquitetura x86 é compatível.
+* No entanto, a organização mudou completamente: pipeline, cache, unidades de execução, previsão de desvios, tudo é diferente.
+* A arquitetura é o contrato estável; a organização é a implementação que evolui.
+
+Tabela Comparativa Detalhada
+|Aspecto|Arquitetura (ISA)|Organização (μarch)|
+|-------|-----------------|-------------------|
+|Abstração|Nível do programador (software)|Nível do engenheiro (hardware)|
+|Estabilidade|Muda raramente (anos ou décadas)|Muda a cada geração (18-24 meses)|
+|Visibilidade|Visível para o programador assembly|Invisível para o programador (exceto em performance)|
+|Documentação|Manual do processador (Intel/AMD)|Diagramas internos (não públicos em detalhe)|
+|Exemplo|"O processador tem 16 registradores de 64 bits"|"A cache L1 é de 32KB com associatividade de 8 vias"|
+|Decisões|Quantos registradores? Modos de endereçamento?|Pipeline de quantos estágios? Cache hierárquica?|
+|Compatibilidade|Mantém compatibilidade com software antigo|Pode mudar completamente sem afetar software|
+
+### Conclusão
+**Tabela Resumo Final**
+|Aspecto|Arquitetura (ISA)|Organização (μarch)|
+|-------|-----------------|-------------------|
+|Definição curta|O contrato entre hardware e software|A implementação física do contrato|
+|Visível para|Programador assembly, compilador|Engenheiro de hardware, arquiteto de chips|
+|Muda com que frequência?|A cada 5-10 anos (ou mais)|A cada 18-24 meses|
+|Impacta compatibilidade?|SIM (mudar quebra software)|NÃO (pode mudar livremente)|
+|Impacta performance?|INDIRETO (via novas instruções)|DIRETO (pipeline, cache, paralelismo)|
+|Documentação|Manuais públicos (Intel, ARM, RISC-V)|Patentes, artigos, diagramas internos|
+|Exemplo concreto|"ADD R1, R2, R3" (instrução de soma)|Pipeline de 14 estágios com forwarding|
+|Analogia logística|Catálogo de serviços (O QUÊ)|Layout do CD, esteiras, equipes (COMO)|
+
+A distinção entre Arquitetura e Organização é o que permite que a indústria de computadores avance tão rapidamente:
+
+* **A arquitetura (ISA)** fornece estabilidade e compatibilidade com software existente. É o "contrato social" que permite que programas de décadas atrás ainda rodem em hardware novo.
+* **A organização (μarch)** fornece evolução e performance. Engenheiros podem redesenhar completamente a implementação interna a cada geração, desde que mantenham o mesmo contrato (ISA).
+
+## 6- Fundamentos da Arquitetura
+### Paralelo entre os 4 pilares de um computador com uma empresa de logística
+* **CPU (Unidade Central de Processamento)** - Processa instruções
+* **Memória** - Armazena dados e instruções
+* **Barramentos** - Conecta os componentes
+* **Dispositivos de Entrada/Saída (I/O)** - Comunica com o mundo externo
+
+|Pilar do Computador|Componente|Função|Correspondente na Logística|Função na Logística|
+|-------------------|----------|------|---------------------------|-------------------|
+|1. CPU|Unidade de Controle + ALU|Processar instruções, executar cálculos, tomar decisões|Centro de Distribuição (CD) + Diretoria|Coordenar operações, tomar decisões, gerenciar recursos|
+|2. Memória|RAM, Cache, Registradores|Armazenar temporariamente dados e instruções|Estoques, Pátios, Docas|Armazenar mercadorias temporariamente antes do envio|
+|3. Barramentos|Barramento de dados, endereços, controle|Transportar informações entre componentes|Frota de veículos (caminhões, vans, trens)|Transportar mercadorias entre CD, estoques e clientes|
+|4. I/O|Teclado, mouse, tela, rede, discos|Entrada/saída de dados|Clientes, Fornecedores, Sistema de gestão (WMS/TMS)|Entrada de pedidos, saída de entregas, comunicação externa|
+#### Detalhamento
+##### CPU = Centro de Distribuição (CD) + Diretoria
+|Subcomponente da CPU|Função|Correspondente na Logística|Função|
+|--------------------|------|---------------------------|------|
+|Unidade de Controle (UC)|Busca, decodifica e coordena a execução das instruções|Gerente do CD|Recebe pedidos, define prioridades, aloca recursos, decide a sequência de operações|
+|Unidade Lógica e Aritmética (ALU)|Realiza cálculos e operações lógicas|Equipe de separação e expedição|Calcula rotas, separa volumes, pesa cargas, verifica documentos|
+|Registradores|Armazenamento temporário ultra-rápido (dados em uso imediato)|Esteiras e balanças|Mantém produtos em movimento enquanto estão sendo processados|
+|Clock|Sincroniza as operações (ciclos por segundo)|Takt time / ritmo de produção|Define o ritmo das operações (ex: separar 1 pedido a cada 30 segundos)|
+
+>Imagine que o **Centro de Distribuição** (CPU) recebe constantemente pedidos (instruções). O **Gerente** (Unidade de Controle) lê cada pedido, decide o que fazer e em que ordem. A **Equipe de separação** (ALU) executa fisicamente: busca produtos nas prateleiras, calcula rotas, verifica quantidades. As **Esteiras** (Registradores) mantêm os produtos em trânsito durante o processamento imediato. O **ritmo de 30 segundos por pedido** (Clock) garante que tudo funcione sincronizado.
+
+##### Memória = Estoques e Pátios
+|Tipo de Memória|Tamanho típico|Velocidade|Correspondente na Logística|Característica|
+|---------------|--------------|----------|---------------------------|--------------|
+|Registradores|~64 palavras (KB)|1 ciclo (mais rápido)|Esteiras de separação|Capacidade minúscula, mas acesso instantâneo (o que está em processamento agora)|
+|Cache L1/L2/L3|32KB a 32MB|2-30 ciclos|Pátio de docas (doca de expedição imediata)|Pequeno, mas muito rápido (mercadorias prestes a sair)|
+|RAM (Memória Principal)|8GB a 128GB|50-100 ns|Estoque primário (racks principais)|Grande capacidade, acesso rápido (produtos que serão usados em breve)|
+|Disco (SSD/HD)|256GB a 4TB|0,1-10 ms|Estoque secundário (galpão de armazenamento)|Capacidade enorme, mas mais lento (produtos de giro menos frequente)|
+|Fita magnética (backup)|TB a PB|Muito lento|Arquivo morto / armazém remoto|Capacidade gigantesca, acesso muito lento (produtos sazonais ou históricos)|
+
+
+> Quando um pedido chega ao CD (CPU), ele precisa dos produtos. O **Gerente** (UC) primeiro olha na **esteira** (Registradores) - se o produto já está ali, é instantâneo. Se não, olha na **doca de expedição** (Cache) - muito rápido ainda. Se não, envia a equipe para buscar no **estoque principal** (RAM) - um pouco mais demorado, mas ainda rápido. Se o produto não está no CD principal, precisa requisitar do **galpão secundário** (Disco) - mais lento. Produtos históricos ou sazonais vão para o **arquivo morto** (Fita) - acesso muito lento, quase nunca usado.
+
+**Hierarquia de memória (velocidade vs. capacidade):**
+```text
+Registradores (esteiras)    → 1ns    → 64KB
+Cache L1 (doca imediata)    → 2ns    → 32KB
+Cache L2 (pré-doca)         → 10ns   → 256KB
+Cache L3 (área de triagem)  → 30ns   → 8MB
+RAM (estoque primário)      → 100ns  → 16GB
+SSD (galpão secundário)     → 100µs  → 1TB
+HD (armazém remoto)         → 10ms   → 4TB
+Fita (arquivo morto)        → 60s    → PB
+```
+
+##### Barramentos = Frota de Veículos
+|Tipo de Barramento|Função|Correspondente na Logística|Função|
+|------------------|------|---------------------------|------|
+|Barramento de Dados|Transporta os dados propriamente ditos|Caminhões de carga|Levam as mercadorias (dados) de um lugar para outro|
+|Barramento de Endereços|Transporta o endereço de destino (onde o dado deve ir)|GPS / Roteirizador / Endereço de entrega|Indica para onde o caminhão deve ir (destino do dado)|
+|Barramento de Controle|Sinais de controle (leitura, escrita, interrupção)|Motorista / Dispatcher / Rádio de comunicação|Coordena o tráfego: quando sair, onde parar, quem tem prioridade|
+
+>Imagine que a **CPU** precisa enviar uma instrução para a memória. O **Barramento de Endereços** é como o **GPS** que diz: "Vá para o endereço 0x1234". O **Barramento de Controle** é o **motorista** que decide: "É uma operação de ESCRITA, então vamos carregar o caminhão". O **Barramento de Dados** é o **caminhão** que transporta fisicamente os produtos (dados) até o destino.
+
+**Largura dos barramentos (capacidade dos veículos)**:
+|Largura|Bits por ciclo|Correspondente na Logística|
+|-------|--------------|---------------------------|
+|8 bits|1 byte|Van pequena - transporta pacotes pequenos|
+|32 bits|4 bytes|Caminhão toco - capacidade média|
+|64 bits|8 bytes|Carreta - capacidade grande|
+|128 bits (PCIe)|16 bytes|Trem de cargas - capacidade enorme|
+
+##### Dispositivos de Entrada/Saída (I/O) = Clientes, Fornecedores e Sistemas
+|Tipo de I/O|Função|Correspondente na Logística|Função|
+|-----------|------|---------------------------|------|
+|Entrada|Receber dados do mundo externo|Clientes (pedidos), Fornecedores (mercadorias)|Enviam pedidos (instruções) e insumos (dados) para o sistema|
+|Saída|Enviar dados para o mundo externo|Entregas aos clientes|Enviam produtos acabados (resultados) para fora|
+|Armazenamento secundário|Guardar dados persistentemente|Estoque de longo prazo|Mantém produtos que não estão em uso imediato|
+|Rede|Comunicação com outros sistemas|Parceiros logísticos (transportadoras, correios)|Interconectam diferentes sistemas de logística|
+
+**Exemplos específicos**:
+
+|Dispositivo de I/O|Correspondente na Logística|
+|------------------|---------------------------|
+|Teclado / Mouse|Leitor de código de barras, coletor de dados|
+|Monitor / Tela|Painel de controle do CD (status dos pedidos)|
+|Impressora|Etiquetadora, emissor de nota fiscal|
+|Scanner|Câmera de leitura de volumes|
+|Disco rígido (HD/SSD)|Estoque do galpão (produtos armazenados)|
+|Placa de rede|Telefone, rádio, sistema de comunicação com transportadoras|
+|USB|Porta de descarga (conexão temporária com parceiros)|
+
+
 ## Dúvidas
 
 ### 1- Bases númericas e codificação de dados:
@@ -199,101 +642,6 @@ Base hexadecimal principalmente usada em *dumps de memória, endereços de depur
 
 * **Assembly e Programação de Baixo Nível**: Ao programar próximo ao hardware, é muito comum usar hexadecimal para definir valores de registradores, máscaras de bits e endereços específicos.
 
-
-### 2- Lógica Digital
-#### Operação Lógica
-Ela é a base de tudo: é o conjunto de regras e componentes que permitem ao computador tomar decisões e realizar cálculos usando apenas 0s e 1s. Antes do hardware, vem a matemática. A lógica digital é a implementação física da Álgebra de Boole (ou Booleana), onde elas só podem ter dois valores:
-* **1 = Verdadeiro(True)**
-* **0 = Falso(False)**
-
-E as operações feitas são apenas lógicas, **AND**, **OR** e **NOT**.
-
-|Operação|Nome|Comportamento|
-|--------|----|------------|
-|AND     | E  |A saída é 1 somente se todas as entradas forem 1.|
-|OR      | OU |A saída é 1 se pelo menos uma das entradas for 1.|
-|NOT     | NÃO|Inverte o valor da entrada. Se entra 1, sai 0. Se entra 0, sai 1.|
-
-Tabelas Verdades, supondo duas entradas ou no caso da porta NOT, apenas uma:
-|Porta|Entrada|Saída|
-|-----|-------|-----|
-|NOT  | 1     |0    |
-|NOT  | 0     |1    |
-
-|Porta|Entrada A|Entrada B|Saída|
-|-----|---------|---------|-----|
-|AND | 0        |  0      |  0  |
-|AND | 0        |  1      |  0  |
-|AND | 1        |  0      |  0  |
-|AND | 1        |  1      |  1  |
-|----|----------|---------|-----|
-|OR  | 0        |    0    |  0  |
-|OR  | 0        |    1    |  1  |
-|OR  | 1        |    0    |  1  |
-|OR  | 1        |    1    |  1  |
-
-Observação Importante: Existem também portas combinadas muito usadas, como a **NAND (AND + NOT)** e a **NOR (OR + NOT)**, que são chamadas de "portas universais" porque, com elas, dá pra construir qualquer outro circuito.
-#### Combinação Lógica
-Combinando portas lógicas, formam-se circuitos lógicos. E ao combinando milhares (ou bilhões) dessas portas simples, criamos circuitos complexos. Dois exemplos clássicos que você verá no Capítulo 3 de Null & Lobur:
-
-##### **Meio Somador (Half Adder)**: 
-Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C`). Ele é feito com uma porta `XOR` (OU Exclusivo, uma variação) e uma porta `AND`.
-
-|A|B|Sum|Carry|
-|-|-|---|-----|
-|0|0| 0 |  0  |
-|0|1| 1 |  0  |
-|1|0| 1 |  0  |
-|1|1| 0 |  1  |
-
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017121522/xorkmap.jpg" alt="SUM = A XOR B" style="width: 20%" title="SUM A XOR B" />
-
-**SUM = A XOR B**
-
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017125041/Inkedandkmap1-200x155.jpg" alt="CARRY= A AND B" style="width: 20%" title="SUM A XOR B" />
-
-**CARRY = A AND B**
-
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Half_Adder.jpg" alt="Implementação meio somador" style="width: 50%" title="Implementação meio somador" />
-
-##### **Somador Completo (Full Adder)**:
-Um circuito mais complexo que soma dois bits(`A`, `B`) considerando também um "vem-um"(`C - IN`) de uma soma anterior. É assim que o computador soma números de vários bits (como 8, 16 ou 32 bits). E também tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C - OUT`)
-
-|  A  |  B  |C-IN |Sum|C-OUT|
-|-----|-----|-----|---|-----|
-|  0  |  0  |  0  | 0 |  0  |
-|  0  |  0  |  1  | 1 |  0  |
-|  0  |  1  |  0  | 1 |  0  |
-|  0  |  1  |  1  | 0 |  1  |
-|  1  |  0  |  0  | 1 |  0  |
-|  1  |  0  |  1  | 0 |  1  |
-|  1  |  1  |  0  | 0 |  1  |
-|  1  |  1  |  1  | 1 |  1  | 
-
-* Para Soma `S`:
-    * Se tiver **um** ou **três** entradas com valores iguais, `S` será verdadeiro `1`.
-    * Se tiver **zero** ou **duas** entradas com valores iguais, `S` será falso `0`.
-> Escala seguindo padrão: par será falso, ímpar será verdadeiro
-
-* Para Carry `C - OUT`:
-    * Se tiver ao menos **duas** entradas com valores verdadeiras(`1`), `C-OUT` será verdadeiro.
-    * Se tiver ao menos **duas** entradas com valores falso(`0`), `C-OUT` será falso.
-
-O carry (`C-OUT`) é implementado usando portas `XOR`, `AND` e `OR`: então segue as duas saídas das portas `AND` são combinadas usando uma porta `OR` para gerar a saída final `C-OUT`.
-
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122505812069/frame_274.webp" alt="Implementação somador completo" style="width: 100%" />
-
-
-**Implementação do Somador Completo usando Meio Somador**
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122601572749/frame_277.webp" alt="Implementação somador completo c/ meio somador" style="width: 100%" />
-
-**Implementação do Somador Completo usando Portas `NAND`**
-
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122706449172/frame_275.webp" alt="Implementação somador completo c/ portas NAND" style="width: 100%" />
-
-**Implementação do Somador Completo usando Portas `NOR`**
-
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122756356070/frame_276.webp" alt="Implementação somador completo c/ portas NOR" style="width: 100%" />
 
 ### 3- Porque computadores usam base binária e como seria se usassem outra base, a respeito principal de custos e perfomance. (CURIOSIDADE)
 A escolha da base binária não foi acidental, mas sim uma decisão de engenharia baseada em custo, confiabilidade e performance. A resposta curta é: **simplicidade e confiabilidade na implementação física**. Os computadores são construídos com milhões (ou bilhões) de transistores, que funcionam como interruptores. Esses interruptores têm dois estados fundamentaism **1(conduzindo corrente)** e **0(não conduzindo)**.
@@ -844,50 +1192,6 @@ O decodificador é um dos circuitos combinacionais mais importantes em arquitetu
 
 Quando uma instrução do seu programa acessa uma variável na memória, há um decodificador (na verdade, uma cadeia deles) convertendo o endereço binário em um sinal físico que ativa exatamente a célula de memória correta entre bilhões de outras. É um dos exemplos mais elegantes de como a lógica digital simples constrói sistemas complexos.
 
-### 11- Adjacência Topológica
-Também conhecida como a **"Geometria" da Simplificação Digital**. A adjacência topológica é um conceito fundamental no *Mapa de Karnaugh (K-map)* , que é a principal ferramenta visual para **simplificar circuitos digitais**.
-
-Em termos simples, ela descreve a regra de "vizinhança" especial entre células em um mapa, onde duas posições são consideradas adjacentes não apenas por estarem fisicamente lado a lado, mas também por estarem conectadas pelas bordas do mapa, como se estivessem desenhadas em um toro (uma rosquinha) . O objetivo é agrupar células para eliminar variáveis e simplificar a expressão lógica.
-
-
-|Critério de Adjacência|Descrição|Analogia Visual|Exemplo em um Mapa 4x4|
-|---------------------|-----------|----------------|----------------|
-|Vizinhança Imediata|Células que compartilham uma borda (vertical ou horizontal) .|São vizinhos de porta.|As células na posição (linha 1, coluna 2) e (linha 1, coluna 3) são adjacentes.(**Imagem 5 do tópico, na cor vermelha**)|
-|Adjacência por Enrolamento (Toroidal)|A borda superior é adjacente à borda inferior, e a borda esquerda é adjacente à borda direita .|Como se o mapa fosse uma folha de papel que você enrola para colar a borda de cima com a de baixo, formando um cilindro, e depois as laterais, formando um toro (rosquinha) .|As células nos cantos superior esquerdo e inferior esquerdo são adjacentes, assim como as dos cantos superior esquerdo e superior direito.(**Imagem 1 do tópico, na cor vermelha**)|
-|Agrupamento (Regras)|Os agrupamentos para simplificação devem ser retângulos (ou quadrados) com um número de células que seja uma potência de 2 (1, 2, 4, 8, 16...) .|Você só pode fazer grupos de 1, 2, 4, 8 ou 16 células. Não pode fazer um grupo de 3 ou 6.|Você pode agrupar 2, 4, 8 ou todas as 16 células, desde que formem um retângulo.(**Imagem 2 do tópico, na cor vermelha**)|
-
-
-
-<div style = "text-align: center;">
-<img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_1001/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-3-variaveis-CLP.png.webp" alt="Mapa de Karnaugh" style="width: 100%"/>
-<strong>Imagem 1: Com três variáveis</strong>     
-<img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_960,h_480/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-4-variaveis.png" alt="Mapa de Karnaugh" style="width: 100%"/>
-<strong>Imagem 2:Com quatro variáveis</strong>    
-</div>
-
-#### Como fazer um Mapa de Karnaugh?
-<div style = "text-align: center;">
-<img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-2.png.webp" alt="Mapa de Karnaugh" style="width: 50%"/>
-
-<strong>Imagem 3: Exemplo Mapa de Karnaugh com quatro variáveis</strong>    
-</div>
-<img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-3.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 4"/><img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-5-1.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 5"/>
-
-Cada um destes retângulos corresponde a um **termo mínimo (miniterm)** da função lógica. **Um miniterm é o E lógico (AND) das entradas** (eventualmente invertidas). **A função lógica é o OU lógico (OR) dos miniterms**.
-
-A construção dos miniterms é feita observando os valores das variáveis de entrada nos retângulos. Se uma variável aparece no retângulo com os dois valores (`0` e `1`), ela não aparece no miniterm. Se uma variável aparece apenas com `1`, ela entra no miniterm normalmente. Se uma variável aparece apenas com 0, ela entra no miniterm invertida.
-
-Aplicando isto ao nosso exemplo (`~` indica **negação**(`NOT`) e `.` indica `E` lógico):
-
-* **Retângulo amarelo**: `AB=00/10`, `CD=00/01`. `A` aparece com `0` e `1`, `B` somente com `0`, `C` somente com `0` e `D` com `0` e `1`. Miniterm = `~B.~C`
-* **Retângulo azul** (sobreposto ao amarelo): `AB=11/10`, `CD=01/11`. A aparece somente com `1`, B com `1` e 0, C com 0 e `1`, D com `1`. Miniterm = `A.D`
-* **Retângulo vermelho**: `AB=00/01`, `CD=10`. `A` aparece somente com `0`, `B` aparece com `0` e `1`, `C` somente `1` e `D` somente `0`. Miniterm = `~A.C.~D`
-`A função lógica fica  ~B.~C + A.D + ~A.C.~D`
-
-A beleza do Mapa de Karnaugh e do conceito de adjacência topológica é que ele transforma um problema de álgebra booleana em um problema de reconhecimento de padrões visuais . Em vez de aplicar regras algébricas, você simplesmente olha para o mapa e identifica os maiores retângulos possíveis que cobrem todos os 1s, respeitando as regras de adjacência e potência de 2.
-
-Mapas de Karnaugh são ferramentas fantásticas para **simplificar funções de até 5 ou 6 variáveis**. Para funções com mais variáveis, o processo se torna visualmente complexo, e engenheiros recorrem a **métodos algorítmicos computacionais como o Quine-McCluskey**.
-
 ### 12 - Código GRAY
 O Código Gray, também conhecido como código binário refletido, é uma forma de representação binária onde dois valores consecutivos diferem em apenas um bit. Foi desenvolvido por Frank Gray no Bell Labs em 1947 (patenteado em 1953) e tem **aplicações fundamentais em sistemas digitais onde a confiabilidade na transição entre estados é crítica**.
 
@@ -995,120 +1299,6 @@ O código Gray é uma codificação binária especializada onde a vizinhança é
 * Transmissão de dados - minimiza erros em canais ruidosos
 
 Ele resolve um problema fundamental da eletrônica digital: quando múltiplos bits mudam simultaneamente em um sistema físico, os tempos de comutação diferentes podem causar leituras espúrias. O código Gray elimina esse problema ao garantir que, entre estados consecutivos, apenas um sinal físico precise mudar.
-
-### 13- Geração de Computadores
-#### Primeira Geração (1940-1956) - Válvulas Eletrônicas (Válvulas Termiônicas)
-**Características Principais**
-|Aspecto|Descrição|
-|-------|---------|
-|Componente principal|Válvulas eletrônicas (tubos de vácuo)|
-|Memória|Linhas de retardo de mercúrio, tambores magnéticos, relés|
-|Armazenamento|Cartões perfurados, fita magnética (emergente)|
-|Programação|Linguagem de máquina (binário direto), depois assembly|
-|Tamanho|Ocupavam salas inteiras (ex: ENIAC tinha 167 m²)|
-|Consumo|Extremamente alto (ENIAC consumia 150 kW)|
-|Confiabilidade|Baixíssima (válvulas queimavam frequentemente)|
-|Custo|Altíssimo, acessível apenas para governos e grandes universidades|
-
-**Principais Máquinas**
-* **ENIAC** (1946, EUA): Primeiro computador eletrônico de uso geral. Tinha 17.468 válvulas e realizava 5.000 operações por segundo .
-* **DVAC** (1949): Introduziu o conceito de programa armazenado (Arquitetura de Von Neumann) .
-* **NIVAC I**  (1951): Primeiro computador comercial produzido nos EUA .
-* **Colossus** (1943, Reino Unido): Usado na Segunda Guerra para decifrar códigos alemães .
-
-**Impacto na Arquitetura**
-* Estabeleceu os fundamentos da **Arquitetura de Von Neumann**: CPU, memória, barramento único para dados e instruções .
-* A programação era feita manualmente, conectando cabos e configurando chaves (no ENIAC) .
-#### Segunda Geração (1956-1963) - Transistores
-**Características Principais**
-|Aspecto|Descrição|
-|-------|---------|
-|Componente principal|Transistores (substituem as válvulas)|
-|Memória|Núcleo magnético (magnetic core memory)|
-|Armazenamento|Discos magnéticos, fitas magnéticas mais confiáveis|
-|Programação|Linguagens de alto nível (FORTRAN, COBOL, ALGOL)|
-|Tamanho|Redução significativa (gabinetes do tamanho de armários)|
-|Consumo|Muito menor que válvulas|
-|Confiabilidade|Muito superior às válvulas|
-|Custo|Redução gradual, mas ainda alto|
-
-**Principais Máquinas**
-* **IBM 1401** (1959): Computador comercial de grande sucesso.
-* **IBM 7090** (1959): Computador científico totalmente transistorizado.
-* **PDP-1** (1960): Primeiro minicomputador (DEC), com apenas 4 kW de consumo.
-
-**Inovações Arquiteturais**
-* Surgimento do barramento omnibus
-* Multiprogramação: capacidade de executar múltiplos programas de forma "simultânea"
-* Sistemas operacionais com gerenciamento básico de recursos
-* Canais de I/O independentes da CPU
-
-#### Terceira Geração (1964-1971) - Circuitos Integrados (CI)
-**Características Principais**
-|Aspecto|Descrição|
-|-------|---------|
-|Componente principal|Circuitos Integrados (múltiplos transistores em um único chip)|
-|Memória|Memória de semicondutor (começa a substituir núcleo magnético)|
-|Armazenamento|Discos magnéticos com capacidade crescente|
-|Programação|Linguagens estruturadas (Pascal, C), sistemas operacionais mais sofisticados|
-|Tamanho|Computadores de médio porte, minicomputadores|
-|Consumo|Redução drástica|
-|Confiabilidade|Alta|
-|Custo|Redução significativa, acessível para empresas médias|
-
-**Principais Máquinas**
-* **IBM System/360** (1964): Família de computadores compatíveis entre si (diferentes modelos rodavam o mesmo software). Marcou a consolidação da IBM como líder do setor .
-* **PDP-8** (1965): Minicomputador de baixo custo, popularizou a computação em laboratórios e universidades .
-* **CDC 6600** (1964): Considerado o primeiro supercomputador, projetado por Seymour Cray .
-
-**Inovações Arquiteturais**
-* Compatibilidade entre famílias (software podia migrar entre modelos)
-* Memória cache (introduzida no IBM 360/85)
-* Pipelining (execução simultânea de múltiplas instruções em estágios)
-* Multiprocessamento (múltiplas CPUs compartilhando memória)
-* Sistemas operacionais com time-sharing (compartilhamento de tempo)
-
-#### Quarta Geração (1971-presente) - Microprocessadores e VLSI
-**Características Principais**
-
-|Aspecto|Descrição|
-|-------|---------|
-|Componente principal|Microprocessador (CPU em um único chip) - tecnologia VLSI (Very Large Scale Integration)|
-|Memória|DRAM e SRAM de alta densidade|
-|Armazenamento|Discos rígidos, SSDs, armazenamento em nuvem|
-|Programação|Linguagens orientadas a objetos (C++, Java, Python), sistemas operacionais gráficos|
-|Tamanho|Computadores pessoais, notebooks, dispositivos móveis|
-|Consumo|Extremamente baixo (especialmente em dispositivos móveis)|
-|Confiabilidade|Altíssima|
-|Custo|Acessível ao consumidor final|
-
-**Principais Marcos**
-* **Intel 4004 (1971)**: Primeiro microprocessador comercial (4 bits)
-* **Intel 8080 (1974)**: Primeiro microprocessador de 8 bits de uso geral
-* **IBM PC (1981)**: Popularizou o computador pessoal
-* **Apple Macintosh (1984)**: Popularizou a interface gráfica
-* **Processadores x86, ARM (décadas seguintes)**: Dominaram os mercados de PC e dispositivos móveis
-
-**Inovações Arquiteturais**
-* Microprocessadores com milhões (hoje bilhões) de transistores
-* Memória cache hierárquica (L1, L2, L3)
-* Pipelines superescalares (múltiplas instruções por ciclo)
-* Multicore (múltiplos núcleos em um único chip)
-* Arquiteturas RISC vs. CISC
-* Computação móvel e embarcada
-* Processadores especializados (GPUs, NPUs, TPUs)
-
->**Extensões e o Presente**
-Muitos autores consideram uma Quinta Geração (computação paralela massiva, inteligência artificial, computação quântica) ou até mesmo uma Sexta Geração (computação ubíqua, IoT, IA integrada). No entanto, a classificação tradicional vai até a quarta geração, com as demais sendo tratadas como desdobramentos da era dos microprocessadores.
-
-#### Tabela Síntese: Gerações de Computadores
-
-|Geração|Período|Tecnologia Central|Componentes por Chip|Arquitetura Principal|Representantes|
-|--|---------|--------|---|------------------------|---------------|
-|1ª|1940-1956|Válvulas|N/A|Von Neumann (conceitual)|ENIAC, UNIVAC I|
-|2ª|1956-1963|Transistores discretos|1 transistor por encapsulamento|Barramento omnibus|IBM 1401, PDP-1|
-|3ª|1964-1971|Circuitos Integrados (SSI/MSI)|Dezenas a centenas|Barramentos hierárquicos iniciais|IBM System/360, PDP-8|
-|4ª|1971-presente|Microprocessadores (VLSI)|Milhões a bilhões|Barramentos hierárquicos modernos|Intel x86, ARM, Apple M|
 
 
 ### 14- Importância dos transistores para a arquitetura de hardware e computadores em geral

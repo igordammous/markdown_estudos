@@ -402,10 +402,10 @@ As técnicas de 4ª geração evoluíram naturalmente para o que hoje conhecemos
 * Automatizam grande parte do ciclo de desenvolvimento
 * Têm ganhado enorme popularidade (mercado projetado para crescer 42.8% ao ano entre 2022-2027)
 
-## O que são Requisitos de Software e Regras de Negócio?
+## 5. O que são Requisitos de Software e Regras de Negócio?
 Antes de detalhar as classificações, é essencial entender a diferença entre esses dois conceitos, que muitas vezes se confundem na prática.
 
-### Regras de Negócio
+### 5.1 Regras de Negócio
 **Definição**: São **políticas**, **diretrizes**, **condições** e **restrições** que governam **como o negócio opera**, independentemente de qualquer sistema de software. Elas expressam a lógica do negócio, não a lógica do sistema.
 
 #### Características:
@@ -420,7 +420,7 @@ Antes de detalhar as classificações, é essencial entender a diferença entre 
 >"Uma promoção não pode ter duração superior a 15 dias consecutivos."
 >"Um consumidor pode favoritar produtos e receber alertas de preço mínimo."
 
-### Requisitos de Software
+### 5.2 Requisitos de Software
 **Definição**: São descrições do que o **sistema** de software **deve fazer** para **atender às regras de negócio e às necessidades dos usuários**. Eles são a ponte entre o negócio e a tecnologia.
 
 #### Características:
@@ -615,39 +615,39 @@ Todos esses requisitos (com suas classificações) são organizados em um docume
 |Estabilidade|Estável (a necessidade de localização não deve mudar)|
 |Qualidade|Verificável (pode-se testar os 3 segundos), Claro (sem ambiguidade), Completo (cobre caso sem GPS)|
 
-## Especificação de Requisitos de Software (ERS)
-### Parte 1: Informações que Devem ser Coletadas
+## 6. Especificação de Requisitos de Software (ERS)
+### 6.1 Parte 1: Informações que Devem ser Coletadas
 O Documento de **Especificação de Requisitos de Software (ERS)** , também conhecido como *SRS (Software Requirements Specification)* conforme o padrão IEEE 830 (e sua sucessora ISO/IEC/IEEE 29148), deve conter um conjunto específico de informações. Suas categorias são:
 
-#### 1. Informações sobre o Propósito e Escopo
+#### 6.1.1 Informações sobre o Propósito e Escopo
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 Propósito do sistema|Por que o software está sendo desenvolvido? Qual problema ele resolve?|"Facilitar a comparação de preços de produtos da cesta básica entre mercados, aumentando a concorrência e beneficiando consumidores."
 Escopo funcional|Quais funções estão DENTRO e quais estão FORA do sistema?|Dentro: busca, comparação, cadastro de preços, promoções. Fora: entrega de produtos, pagamento in-app (inicialmente).
 Objetivos de negócio|Quais metas a organização espera alcançar com o sistema?|"Aumentar em 20% a economia média do consumidor na cesta básica em 12 meses."
 Partes interessadas (stakeholders)|Quem tem interesse ou será afetado pelo sistema?|Consumidores, mercados (pequenos, médios, grandes), desenvolvedores, investidores, órgãos reguladores (LGPD).
-#### 2. Informações sobre os Usuários
+#### 6.1.2 Informações sobre os Usuários
 Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 Perfis de usuário|Quais os diferentes tipos de usuários?|Consumidor (pessoa física), Mercado (estabelecimento), Administrador (plataforma), Anunciante (futuro).
 Características demográficas|Idade, escolaridade, familiaridade com tecnologia, localização geográfica|Consumidor: todas as idades, incluindo idosos com baixa familiaridade digital. Mercado: pequenos e médios empresários.
 Necessidades e dores|O que cada perfil precisa resolver? O que os frustra hoje?|Consumidor: "não sei se o preço está justo", "perco tempo indo de mercado em mercado". Mercado: "não consigo atrair novos clientes".
 Restrições e limitações|Quais as limitações de cada perfil?|Consumidor idoso: letras pequenas, gestos complexos. Mercado pequeno: orçamento limitado para TI.
-#### 3. Informações sobre o Ambiente e Contexto
+#### 6.1.3 Informações sobre o Ambiente e Contexto
 Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Ambiente operacional|Onde o sistema será executado?|Android/iOS (app), navegadores web (painel do mercado), servidores em nuvem (backend).|
 |Restrições de hardware/software|Quais dispositivos, sistemas operacionais, navegadores são suportados?|Android 10+, iOS 15+, Chrome 100+, Firefox 110+.|
 |Regulamentações aplicáveis|Quais leis, normas ou certificações o sistema deve atender?|LGPD (Lei Geral de Proteção de Dados), Código de Defesa do Consumidor.|
 |Integrações com sistemas externos|Quais outros sistemas o software precisa conversar?|API de geolocalização (Google Maps), API de validação de CNPJ (Receita Federal), sistemas de pagamento (Stripe/PicPay).|
-#### 4. Informações sobre Funcionalidades (Requisitos Funcionais)
+#### 6.1.4 Informações sobre Funcionalidades (Requisitos Funcionais)
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Casos de uso|Quais são as principais interações usuário-sistema?|"Buscar produto por nome", "Cadastrar preço", "Criar promoção", "Comparar preços".
 |Fluxos principais (happy path)|Qual a sequência típica de eventos para uma funcionalidade funcionar?|Usuário abre app → digita "arroz" → vê lista de preços por mercado → clica no menor preço.
 |Fluxos alternativos e exceções|O que acontece em situações não ideais?|Busca sem resultados → sugestão de produtos similares. GPS desligado → solicitar CEP manual.
 |Regras de negócio associadas|Quais regras do negócio esta funcionalidade implementa?|"Promoções duram no máximo 15 dias" → sistema impede cadastro com data final maior.
-#### 5. Informações sobre Atributos de Qualidade (Requisitos Não Funcionais)
+#### 6.1.5 Informações sobre Atributos de Qualidade (Requisitos Não Funcionais)
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Metas de desempenho|Tempos de resposta, vazão, consumo de recursos.|"Busca em até 2 segundos", *"10.000 requisições/segundo"*.
@@ -655,7 +655,7 @@ Informação|O que deve ser levantado|Exemplo|
 |Metas de disponibilidade|Percentual de tempo que o sistema deve ficar no ar.|"99,9% de disponibilidade" (menos de 8,76h de indisponibilidade/ano).
 |Metas de segurança|Confidencialidade, integridade, autenticação, autorização.|*"Criptografia TLS 1.2+"*, "2FA para mercados", "logs de auditoria".
 |Metas de manutenibilidade|Facilidade de correção, evolução e teste.|"Cobertura de testes >80%", "código modular".
-#### 6. Informações sobre Restrições e Suposições
+#### 6.1.6 Informações sobre Restrições e Suposições
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Restrições de projeto|Limitações impostas ao time de desenvolvimento.|"Deve usar React Native para compartilhar código entre iOS e Android", "Prazo de 4 meses para MVP".|
@@ -663,17 +663,17 @@ Informação|O que deve ser levantado|Exemplo|
 |Restrições de prazo|Datas-limite para entregas parciais ou totais.|*"MVP até 30/06, versão 1.0 até 30/09"*.|
 |Suposições|O que a equipe está assumindo como verdadeiro (mas que pode mudar).|"Os mercados terão alguém para atualizar preços diariamente", "Os consumidores têm smartphones com GPS".|
 |Dependências|O que precisa acontecer ou estar disponível para o projeto prosseguir.|"A API de geolocalização do Google deve estar disponível", "A equipe de design entregar os protótipos até semana 2".|
-#### 7. Informações sobre Prioridades e Critérios de Aceitação
+#### 6.1.7 Informações sobre Prioridades e Critérios de Aceitação
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Prioridades (MoSCoW)|O que é Must, Should, Could, Won't?|Must: busca, comparação. Should: histórico de preços. Could: busca por imagem.
 |Critérios de aceitação|Condições objetivas que indicam que um requisito foi atendido.|"Dado um produto válido, o sistema retorna pelo menos 3 mercados com preços em menos de 2 segundos".|
 |Métricas de sucesso (KPIs)|Como medir se o sistema atingiu os objetivos de negócio?|"Redução média de 10% no preço da cesta básica após 6 meses", "50.000 usuários ativos mensais".|
 
-### Parte 2: Técnicas de Coleta de Requisitos
+### 6.2 Parte 2: Técnicas de Coleta de Requisitos
 A engenharia de requisitos oferece diversas técnicas para extrair as informações acima dos stakeholders . Vou listar as mais eficazes.
 
-#### Técnicas de Elicitação (Coleta)
+#### 6.2.1 Técnicas de Elicitação (Coleta)
 |Técnica|Como funciona|Melhor para|Exemplo|
 |-------|-------------|-----------|-------|
 |Entrevistas|Conversa estruturada ou semiestruturada com stakeholders individuais ou em pequenos grupos|Obter visões aprofundadas de cada perfil de usuário|Entrevistar um dono de mercado pequeno sobre suas dificuldades em atrair clientes; entrevistar um consumidor idoso sobre como ele pesquisa preços hoje.|
@@ -684,7 +684,7 @@ A engenharia de requisitos oferece diversas técnicas para extrair as informaç�
 |Brainstorming|Sessão livre de geração de ideias, sem críticas iniciais|Explorar possibilidades criativas e requisitos inovadores|"Quais funcionalidades surpreendentes poderiam fidelizar consumidores?"|
 |Prototipação (baixa fidelidade)|Criar esboços, wireframes ou maquetes clicáveis para os usuários interagirem|Validar entendimento de interface e fluxos antes de codificar|Protótipo no Figma da tela de busca para consumidores testarem e darem feedback.|
 |Storyboarding|Narrativa visual sequencial mostrando como o usuário interage com o sistema em um cenário típico|Compreender fluxos completos e necessidades de contexto|Sequência de telas mostrando: consumidor abre app → busca "leite" → encontra promoção no mercado X → vai até o mercado.|
-#### Técnicas de Análise e Modelagem
+#### 6.2.2 Técnicas de Análise e Modelagem
 Após a coleta, as informações precisam ser organizadas e modeladas .
 
 |Técnica|O que produz|Exemplo|
@@ -697,8 +697,8 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Diagrama de Sequência (UML)|Interações temporais entre objetos|Sequência: app → backend → banco de dados → API de geolocalização → resposta.|
 |Modelo de Domínio / Diagrama de Classes|Entidades, atributos, relacionamentos|Classes: Produto, Mercado, Preço, Promoção, Consumidor, Favorito.|
 
-### Parte 3: Ferramentas para Facilitar a Coleta e Gestão de Requisitos
-#### Ferramentas de Elicitação e Prototipação
+### 6.3 Parte 3: Ferramentas para Facilitar a Coleta e Gestão de Requisitos
+#### 6.3.1 Ferramentas de Elicitação e Prototipação
 |Ferramenta|Tipo|Descrição|Uso|
 |----------|----|---------|---|
 |Figma|Prototipação|Design de interfaces, wireframes, protótipos clicáveis|Criar telas de busca, resultado, cadastro de produto para validação com usuários.|
@@ -707,7 +707,7 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Draw.io (diagrams.net)|Diagramação|Gratuito, integrado com Google Drive/Confluence|Modelagem UML leve e colaborativa.|
 |Typeform / Google Forms|Pesquisas|Questionários online com lógica condicional|Pesquisa de satisfação e necessidades com consumidores.|
 |Hotjar / FullStory|Observação|Gravação de sessões de usuários em sites/apps|Observar como consumidores reais usam o protótipo ou MVP.|
-#### Ferramentas de Gestão de Requisitos
+#### 6.3.2 Ferramentas de Gestão de Requisitos
 |Ferramenta|Tipo|Descrição|Uso|
 |----------|----|---------|---|
 |Jira|Gestão ágil|Backlog de histórias, épicos, tarefas, rastreabilidade|Gerenciar requisitos como histórias de usuário, priorizar backlog (MoSCoW).|
@@ -716,19 +716,19 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Trello|Gestão leve|Kanban simples para pequenos projetos|Gerenciar requisitos de um MVP simples.|
 |IBM DOORS|Gestão empresarial|Ferramenta pesada para rastreabilidade em larga escala|Projetos de grande porte, regulados (aeroespacial, médico) — exagerado para seu app.|
 |Jama Software|Gestão de requisitos|Alternativa moderna ao DOORS, com rastreabilidade|Projetos complexos com múltiplas versões e conformidade.|
-#### Ferramentas de Teste e Validação
+#### 6.3.3 Ferramentas de Teste e Validação
 |Ferramenta|Tipo|Descrição|Uso|
 |----------|----|---------|---|
 |Cucumber / Gherkin|BDD|Execução de cenários Dado-Quando-Então|Validar automaticamente que os requisitos foram implementados corretamente.|
 |Postman / Insomnia|Teste de API|Validação de endpoints e contratos|Verificar se as APIs do backend atendem aos requisitos de interface.|
 |Selenium / Cypress|Teste automatizado|Testes end-to-end no navegador|Simular ações de usuário e verificar comportamento conforme especificado.|
 
-## Universo de Discurso (Universe of Discourse - UoD)
+## 7. Universo de Discurso (Universe of Discourse - UoD)
 O **Universo de Informação** ou **Universo de Discurso** (Universe of Discourse - UoD) é um tópico fundamental na fase de análise de requisitos e modelagem conceitual.
 
 Ele é o *ponto de partida para entender sobre o que o sistema precisa tratar* antes mesmo de pensar em telas ou código.
 
-### O que é o Universo de Discurso (UoD)?
+### 7.1 O que é o Universo de Discurso (UoD)?
 De acordo com a literatura de engenharia de software e sistemas de informação, o **Universo de Discurso é o contexto geral**, o domínio ou o recorte da realidade no qual o software será desenvolvido e irá operar.
 
 Em termos mais simples: é tudo aquilo que é relevante para o sistema. É a "fatia do mundo real" que o software precisa entender, representar e sobre a qual precisa agir.
@@ -746,7 +746,7 @@ Para o um aplicativo de comparação de preços, o Universo de Discurso é o mun
 * **Preço**: Valor atual de um produto em um mercado específico.
 * **Promoção**: Oferta temporária com regras específicas (ex: "Leve 2, pague 1" ou "10% de desconto").
 
-### Por que o UoD é tão importante?
+### 7.2 Por que o UoD é tão importante?
 A principal razão é que o **software é uma representação (um modelo) de uma parcela da realidade**. Se essa representação for imprecisa ou incompleta, o software será falho, independentemente da qualidade do código.
 
 Os principais objetivos de estudar o **UoD** são:
@@ -755,7 +755,7 @@ Os principais objetivos de estudar o **UoD** são:
 * **Descobrir Regras de Negócio**: Ao analisar o **UoD**, você identifica as regras que governam aquele domínio. No seu app, uma regra de negócio do **UoD** pode ser: "Uma promoção não pode ser cumulativa com outra para o mesmo produto".
 * **Fornecer a Base para a Modelagem**: O **UoD** é a matéria-prima para criar diagramas como o Diagrama de Classes da UML, o Diagrama Entidade-Relacionamento (DER) ou qualquer outra forma de modelo de dados.
 
-### Como Modelar o Universo de Discurso? (Técnicas)
+### 7.3 Como Modelar o Universo de Discurso? (Técnicas)
 Na prática da engenharia de software, especialmente seguindo autores como Pressman, a modelagem do **UoD** se traduz em algumas atividades e artefatos concretos.
 
 1. Identificação dos Objetos ou Entidades
