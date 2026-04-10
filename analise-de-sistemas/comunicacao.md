@@ -23,7 +23,7 @@ O modelo a seguir mostra como os diferentes elementos da comunicação se relaci
 * **o código**: um sistema de comunicação que emissor e receptor compartilham entre si; muitas vezes, pode ser associado a um idioma; pode ser verbal, quando se vale da palavra, seja ela falada ou escrita, e não verbal, quando não utiliza a palavra: gestos, sinais de trânsito, expressões faciais, cores etc.
 * **Referente ou contexto**: o assunto da mensagem, aquilo que é o tema gerador do ato comunicativo entre emissor e receptor.
 
-> **Ex.** Se você envia por celular uma** mensagem escrita**, via Whatsapp, a um **colega**, **convidando-o para um passeio**, a **mensagem seria o conteúdo enviado**. O **emissor seria você**; seu **colega seria o receptor**. O **referente, ou seja, o assunto** que motivou a troca de mensagens entre vocês seria o **passeio**. O **canal** estaria **representado pelo celular** e, por fim, o **código seria a língua portuguesa**.  Caso você desejasse fazer esse mesmo convite pessoalmente, a maioria dos elementos permaneceria quase sem alteração. A exceção seria o canal, que agora passaria a ser representado pelo ar, pelo qual sua voz se propagaria. Numa conversa dinâmica, face a face, as posições de emissor e receptor são intercambiáveis.
+> **Ex.** Se você envia por celular uma **mensagem escrita**, via Whatsapp, a um **colega**, **convidando-o para um passeio**, a **mensagem seria o conteúdo enviado**. O **emissor seria você**; seu **colega seria o receptor**. O **referente, ou seja, o assunto** que motivou a troca de mensagens entre vocês seria o **passeio**. O **canal** estaria **representado pelo celular** e, por fim, o **código seria a língua portuguesa**.  Caso você desejasse fazer esse mesmo convite pessoalmente, a maioria dos elementos permaneceria quase sem alteração. A exceção seria o canal, que agora passaria a ser representado pelo ar, pelo qual sua voz se propagaria. Numa conversa dinâmica, face a face, as posições de emissor e receptor são intercambiáveis.
 
 É relevante aqui que se houver qualquer ocorrência que prejudique a plena operação de cada um desses mecanismos, a comunicação poderá ser comprometida e não ocorrer efetivamente. Por isso, ao elaborar suas mensagens, sejam elas no ambiente profissional ou mesmo pessoal, é necessário certificar-se de que nenhum “ruído” esteja comprometendo o processo comunicativo.
 
@@ -108,9 +108,8 @@ O último elemento comunicativo do modelo de Jakobson, **a mensagem**, correspon
 Considerando que o objetivo principal aqui é levá-lo a compreender a função da comunicação e da informação no contexto social. 
 A princípio, você precisa ficar atento aos sentidos que as palavras podem apresentar a partir dos contextos em que elas são utilizadas, pois muitas delas podem mudar de sentido a partir das circunstâncias em que são empregadas. Por essa razão, quando estiver escrevendo ou mesmo falando, mantenha o radar ligado para não incorrer em incorreções e acabar não comunicando o que deseja. Vejamos um exemplo de como isso pode ocorrer:
 
-**Ex.: O quadro está *pregado* na parede.** -> *Denotação*
-
-**Ex.: Trabalhei muito hoje. Estou *pregado*!**
+>**Ex.: O quadro está *pregado* na parede.** -> *Denotação*
+>**Ex.: Trabalhei muito hoje. Estou *pregado*!**
 
 Observe que a palavra *“pregado”* apresentou sentidos bem distintos nos dois exemplos anteriores. No primeiro caso, o termo foi empregado em seu sentido literal (ao pé da letra), ou seja, no sentido denotativo.
 
@@ -123,7 +122,7 @@ A palavra denotação tem origem no latim denotatione, que significa indicação
 Voltando ao exemplo mostrado acima.
 
 > **Ex.: O quadro está *pregado* na parede.** 
-**Ex.: Trabalhei muito hoje. Estou *pregado*!** -> *Conotação*
+> **Ex.: Trabalhei muito hoje. Estou *pregado*!** -> *Conotação*
 
 Já no segundo uso a palavra *pregado*, foi utilizado conotação figurada para expressar exaustão extrema e falta de energia física ou mental, indicando que a pessoa está imóvel ou sem forças, semelhante a estar fixado a algo.
 
@@ -154,7 +153,7 @@ Uma metáfora que se enquadra bem aqui, a do pastel de vento: ao comermos um pas
 As línguas naturais, geralmente, apresentam muita redundância. Nossa língua portuguesa, por exemplo, apresenta um alto nível de redundância na sua estrutura. Esse é um aspecto que não corre na língua inglesa, por exemplo. A título de demonstração, observe esta comparação de uma mesma sentença escrita em português e em inglês, notando as partes sublinhadas: 
 
 > Todo**s** o**s** livro**s** pode**m** ser lido**s**.
-All book**s** can be read.
+> All book**s** can be read.
 
 Repare como para transmitir a mesma ideia, a língua portuguesa recorre a nada menos do que **cinco marcações de plural** (as partes em negrito de cada palavra). Já a língua inglesa é muito menos exigente, pois requer apenas **uma marcação**.
 

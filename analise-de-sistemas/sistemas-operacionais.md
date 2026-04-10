@@ -1,8 +1,7 @@
 # Sistemas Operacionais
-## Matéria
-### 1- História dos SO e tipos existentes
+## 1- História dos SO e tipos existentes
 A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Cada salto tecnológico no hardware criou uma nova classe de problemas que os SOs precisaram resolver.
-#### 1940s - 1950s: Ausência de SO (Processamento em Lote Simples)
+### 1940s - 1950s: Ausência de SO (Processamento em Lote Simples)
 * **Hardware**: Válvulas, sem transistores. Máquinas enormes, lentas, extremamente caras.
 * **Como funcionava**: Não havia SO. O programador se inscrevia para um horário, ia até a sala da máquina, conectava cabos em painéis de controle (programação "plug-board"), operava os painéis de fita perfurada e aguardava o resultado. Entre um programa e outro, o operador humano reconectava fisicamente o sistema.
 * **Problema**: O tempo do computador (o recurso mais caro) era desperdiçado nos intervalos entre programas e na configuração manual.
@@ -13,7 +12,7 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
 *Marlyn Wescoff (standing) and Ruth Lichterman were two of the ENIAC’s first programmers.
 </div>
 
-#### 1950s - 1960s: Sistemas em Lote (Batch Systems)
+### 1950s - 1960s: Sistemas em Lote (Batch Systems)
 * **Hardware**: Transistores, fitas magnéticas, primeiros discos magnéticos (bem caros).
 * **Inovação**: Surge o resident monitor (primeiro rudimento de SO). Um programa residente na memória que automatizava a transição entre programas. Os operadores agrupavam ("batelada") vários jobs em uma fita.
 * **Funcionamento**: O monitor residente carregava um job, executava até o fim (sem interrupção), descarregava a saída, carregava o próximo. A CPU ficava ociosa durante operações lentas de E/S (leitura de fita, impressão).
@@ -25,7 +24,7 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
 </div>
 
 
-#### 1960s: Multiprogramação e Sistemas de Tempo Compartilhado (Time-Sharing)
+### 1960s: Multiprogramação e Sistemas de Tempo Compartilhado (Time-Sharing)
 * **Hardware**: Discos magnéticos mais rápidos e baratos, proteção de memória (base e limite), interrupções de hardware maduras, início dos mainframes como IBM System/360.
 * **Inovação Crucial**: Percebeu-se que, enquanto um job esperava E/S, a CPU poderia executar outro job. Nasce a multiprogramação.
 * **Funcionamento**: Vários programas são mantidos na memória RAM simultaneamente. Quando um programa faz uma operação de E/S (lenta), o SO salva seu contexto e escalona outro programa para usar a CPU.
@@ -33,13 +32,13 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
 * **Exemplo histórico**: CTSS (MIT), Multics (projeto que inspirou tudo o que veio depois, incluindo Unix).
 <img src="https://www.storiainformatica.it/images/stories/history/os/origin/ibm_7094_ctss.jpeg" alt="IBM 7094" style="width: 100%" title = "Imagem 3 - IBM 7094 at MIT with CTSS"/>
 
-#### 1970s: Unix e o Surgimento dos Sistemas Modernos
+### 1970s: Unix e o Surgimento dos Sistemas Modernos
 * Hardware: Mini-computadores (DEC PDP-11) com memória virtual, barramentos padronizados, linguagem C.
 * Inovação: Ken Thompson e Dennis Ritchie (Bell Labs) criam o Unix. Escrito em C (não assembly), o que o tornou portável. Introduziu conceitos que são padrão até hoje: hierarquia de arquivos, pipes (comunicação entre processos), shell como um programa separado, filosofia de ferramentas pequenas que fazem uma coisa bem.
 * Simultaneamente: A IBM desenvolve sistemas robustos para seus mainframes (OS/360, MVS), focados em processamento transacional e confiabilidade extrema.
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/IBM_System_360_model_30_profile.agr.jpg/1280px-IBM_System_360_model_30_profile.agr.jpg" alt="By ArnoldReinhold - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=47096462" style="width: 100%" title = "Imagem 4 - IBM System 360/30 at the Computer History Museum."/>
 
-#### 1980s: A Era do PC e Sistemas de Rede
+### 1980s: A Era do PC e Sistemas de Rede
 * **Hardware**: Microprocessadores (Intel 8086, 80286, 80386), PCs baratos, redes locais (Ethernet).
 * **Eventos**:
 
@@ -50,7 +49,7 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
 
 * **Nasce o Linux**: Linus Torvalds (1991) cria um kernel Unix-like para a plataforma 386, aproveitando os recursos de memória virtual e proteção que o hardware Intel finalmente oferecia (modo protegido).
 
-#### 1990s - 2000s: SOs Modernos, Distribuídos e Móveis
+### 1990s - 2000s: SOs Modernos, Distribuídos e Móveis
 * **Hardware**: Sistemas multiprocessados (SMP), clusters, virtualização (VMware), chips para celulares (ARM).
 * **Eventos**:
 
@@ -60,14 +59,14 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
   * **Virtualização**: Xen, KVM – permitem rodar múltiplos SOs em uma única máquina física, separando o hardware do SO.
   * **Android e iOS**: SOs móveis baseados em Linux (Android) e Darwin/mach (iOS). Introduzem novas preocupações: gerenciamento agressivo de energia, sandboxing de aplicativos, segurança.
 
-#### 2010s - Presente: Nuvem, Contêineres e Computação Ubíqua
+### 2010s - Presente: Nuvem, Contêineres e Computação Ubíqua
 * **Hardware**: Computação heterogênea (CPU + GPU + NPU), SSDs NVMe, muitos núcleos (64+ cores), hardware de segurança (TPM, TrustZone).
 * **Tendências**:
   * **Contêineres (Docker, Kubernetes)**: Compartilham o mesmo kernel do SO, mas isolam processos em namespaces, oferecendo eficiência superior à virtualização completa.
   * **Sistemas operacionais para nuvem**: Kernel otimizado para máquinas virtuais (Firecracker) e workloads massivamente paralelos.
   * **SOs orientados a segurança**: SeLinux, securOS, foco em mitigação de vulnerabilidades de hardware (Spectre, Meltdown).
 
-#### Tipos de Sistemas Operacionais (Classificação)
+### Tipos de Sistemas Operacionais (Classificação)
 |Tipo|Características|Exemplos|Hardware Relacionado|
 |----|---------------|--------|--------------------|
 |Mainframe OS       |Ênfase em E/S massiva, confiabilidade, processamento transacional (transactions)|IBM z/OS|Hardware redundante, hot-swap, canais de E/S dedicados|
@@ -77,7 +76,7 @@ A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Ca
 |Móvel/Embarcado    |Ênfase em eficiência energética, gerenciamento de sensores, sandboxing|Android (Linux), iOS (Darwin)|SoC (System-on-Chip) com cores big.LITTLE, modem celular, sensores diversos, bateria|
 |Distribuído/Cluster|Ênfase em coordenação de múltiplas máquinas, tolerância a falhas|Plan9, sistemas que usam middleware (não um SO único)|Múltiplos nós interconectados por rede de alta velocidade|
 
-### 2- Estrutura principal de um SO
+## 2- Estrutura principal de um SO
 Visão Geral da Arquitetura. Um sistema operacional moderno é estruturado em camadas, com o núcleo (kernel) no centro, protegido do resto.
 ```text
 +--------------------------------------------------+
@@ -103,10 +102,10 @@ Visão Geral da Arquitetura. Um sistema operacional moderno é estruturado em ca
 |     (CPU, RAM, Discos, Placas de Rede, etc)      |
 +--------------------------------------------------+
 ```
-#### Kernel
+### Kernel
 O kernel é o **núcleo do SO**. Ele roda em um modo especial do processador chamado **modo kernel** (ou modo supervisor, modo privilegiado), que lhe dá acesso total ao hardware e permite executar instruções privilegiadas.
 
-##### Modos de Execução (Conexão com Hardware)
+#### Modos de Execução (Conexão com Hardware)
 A CPU, através do registrador de status (ex: `CS` em x86, ou `CPSR` em ARM), mantém um bit que indica o modo atual:
 
 |Modo|Privilégio|O que pode fazer|
@@ -119,7 +118,7 @@ A CPU, através do registrador de status (ex: `CS` em x86, ou `CPSR` em ARM), ma
 * Interrupções (externas, como timer ou teclado)
 * Exceções (erros como page fault, divisão por zero)
 
-##### Tipos de Kernel
+#### Tipos de Kernel
 
 |Tipo|Características|Vantagens|Desvantagens|Exemplos|
 |----|---------------|---------|------------|--------|
@@ -127,17 +126,17 @@ A CPU, através do registrador de status (ex: `CS` em x86, ou `CPSR` em ARM), ma
 |Microkernel|**Apenas o essencial roda em kernel**: comunicação entre processos (IPC), escalonamento básico, gerenciamento de memória mínima. Drivers, sistemas de arquivos são processos em modo usuário.|Estabilidade, modularidade, segurança.|Performance reduzida devido ao IPC constante entre componentes.|QNX, L4, Mach (base do macOS/XNU)
 |Híbrido|**Combina abordagens**. Geralmente um núcleo monolítico com partes em modo usuário, ou um microkernel com mais serviços no kernel por performance.|Equilíbrio entre performance e modularidade.|Complexidade de design.|Windows NT/10/11, macOS (XNU)|
 
-##### Principais Responsabilidades do Kernel
+#### Principais Responsabilidades do Kernel
 * **Gerenciamento de Processos e Threads**: Escalonamento, criação, término, comunicação entre processos (IPC), sincronização.
 * **Gerenciamento de Memória**: Manutenção das tabelas de páginas, tratamento de page faults, alocação de memória para processos, memória virtual.
 * **Gerenciamento de Dispositivos**: Drivers, tratamento de interrupções, abstração do hardware para o usuário (arquivos de dispositivo em `/dev` no Unix).
 * **Gerenciamento de Sistemas de Arquivos**: Abstração de armazenamento persistente, controle de permissões, cache de disco.
 * **Chamadas de Sistema**: Interface de entrada para o modo usuário solicitar serviços.
 
-#### Shell
+### Shell
 O shell não é o kernel. O shell é um programa comum de usuário (embora especial) que fornece uma interface para interagir com o SO.
 
-##### Tipos de Shell
+#### Tipos de Shell
 **Shell de Linha de Comando (CLI)**
 * **O que é**: Um programa que lê comandos digitados pelo usuário, interpreta-os e faz as chamadas de sistema correspondentes.
 * **Funcionamento**: O shell executa um loop: exibe um prompt ($ ou >), aguarda entrada, analisa (parseia) o comando, e tipicamente:
@@ -151,10 +150,10 @@ O shell não é o kernel. O shell é um programa comum de usuário (embora espec
 * **Funcionamento**: O servidor gráfico (ex: Xorg, Wayland compositor) gerencia a tela, mouse, teclado. O shell gráfico (ex: GNOME Shell, explorer.exe, Dock do macOS) é um cliente que desenha janelas, barras de tarefas, e responde a eventos de clique e tecla.
 * **Conexão com hardware**: A GPU (placa de vídeo) é programada pelo driver de vídeo. O servidor gráfico usa chamadas de sistema (como `ioctl`) para enviar comandos de desenho para o driver, que por sua vez programa a GPU.
 
-#### Chamadas de Sistema
+### Chamadas de Sistema
 As chamadas de sistema são a interface oficial entre os programas em modo usuário e o kernel. Elas são o único caminho para um programa solicitar um serviço privilegiado.
 
-##### Mecanismo (Como funciona em baixo nível)
+#### Mecanismo (Como funciona em baixo nível)
 * **Preparação**: O programa em modo usuário coloca os argumentos em locais conhecidos (geralmente registradores da CPU). Exemplo em x86-64:
 
   * `rax` = número da chamada de sistema (ex: 1 para `write`, 60 para `exit`)
@@ -178,7 +177,7 @@ As chamadas de sistema são a interface oficial entre os programas em modo usuá
 
 * **Retorno**: O kernel coloca o resultado em rax (modo usuário), restaura o contexto, executa a instrução `sysret` (ou `iret`), que retorna ao modo usuário e retoma a execução do programa logo após a instrução `syscall`.
 
-##### Categorias de Chamadas de Sistema
+#### Categorias de Chamadas de Sistema
 
 |Categoria|Exemplos (Linux)|Descrição|
 |---------|----------------|---------|
@@ -210,8 +209,8 @@ mov rsi, endereço_da_string
 mov rdx, 6          ; terceiro arg: tamanho
 syscall             ; faz a chamada de sistema
 ```
-### 3- UserMod e KernelMod
-#### **Fundamentos de Proteção de Hardware**
+## 3- UserMod e KernelMod
+### **Fundamentos de Proteção de Hardware**
 A separação entre User Mode e Kernel Mode não é uma decisão de software — é uma **característica do processador** projetada para garantir segurança e estabilidade. Todo processador moderno (x86, x86-64, ARM, RISC-V) implementa pelo menos dois níveis de privilégio.
 
 **Arquitetura x86/x86-64: Anéis de Proteção (Protection Rings)**
@@ -297,7 +296,7 @@ Tabela de Páginas (x86-64):
 ```
 Quando a CPU está em modo usuário, qualquer acesso a uma página com U/S=0 causa um page fault. O kernel trata essa falha e geralmente envia um sinal `SIGSEGV` (segmentation fault) para o processo.
 
-#### Usermod
+### Usermod
 **Características**:
 
 * Privilégio restrito (Ring 3 no x86, EL0 no ARM)
@@ -313,7 +312,7 @@ Quando a CPU está em modo usuário, qualquer acesso a uma página com U/S=0 cau
 * Shells (bash, zsh, PowerShell)
 * Bibliotecas de usuário (libc, GLib, etc.)
 
-#### Kernelmod
+### Kernelmod
 **Características**:
 
 * Privilégio total (Ring 0 no x86, EL1 no ARM)
@@ -329,7 +328,7 @@ Quando a CPU está em modo usuário, qualquer acesso a uma página com U/S=0 cau
 * Drivers de dispositivo (em kernels monolíticos)
 * Código de chamadas de sistema
 
-#### A Transição User → Kernel
+### A Transição User → Kernel
 As transições entre modos são caras em termos de desempenho. Vamos ver os custos envolvidos:
 
 |Operação|Ações da CPU/SO|Custo Aproximado (ciclos)|
@@ -367,7 +366,7 @@ Modo Usuário                     Modo Kernel
       |     restaura contexto         |
       |                               |
 ```
-#### **Mapeamento de Memória entre User e Kernel**
+### **Mapeamento de Memória entre User e Kernel**
 Um aspecto crucial: o kernel **mapeia parte de seu espaço de endereço em cada processo**.
 No Linux x86-64 típico:
 
@@ -394,10 +393,10 @@ Implicações:
 * Apenas o ponteiro de pilha (RSP) muda para a pilha do kernel
 * Isso torna as syscalls mais rápidas (não há TLB flush)
 
-### 4- Tipos de SO
+## 4- Tipos de SO
 Agora que entendemos a base de proteção (User/Kernel), podemos classificar os SOs pelo modo como gerenciam a execução e os recursos.
 
-#### 4.1 Monotarefa
+### 4.1 Monotarefa
 **Definição**: O SO executa apenas um programa por vez. Quando um programa está rodando, ele tem controle exclusivo da CPU, memória e dispositivos.
 
 Características:
@@ -431,7 +430,7 @@ Execução de um programa:
 * Não é possível rodar um programa em segundo plano enquanto se trabalha em outro
 * Desperdício de recursos (CPU fica ociosa durante operações de E/S)
 
-#### 4.2 Multitarefas
+### 4.2 Multitarefas
 Definição: Capacidade do SO de executar múltiplos programas (processos/threads) aparentemente em paralelo, alternando a CPU entre eles.
 
 4.2.1 Processos Preemptivos e Não-Preemptivos
@@ -444,7 +443,7 @@ Esta é uma distinção fundamental sobre quem decide quando um processo perde a
 |Confiabilidade|Um processo que não libera trava o sistema|SO mantém controle mesmo com processos mal-comportados|
 |Complexidade|Baixa|Alta (requer sincronização, atomicidade)|
 
-##### Processos preemptivos.
+#### Processos preemptivos.
 Mecanismo: O SO utiliza o timer interrupt (gerado pelo hardware de temporização) para periodicamente retomar o controle da CPU, independentemente do que o processo está fazendo.
 
 ```text
@@ -509,18 +508,18 @@ timer_interrupt_handler:
     ; Retorna para o próximo processo
     iretq  ; Interrupt Return
 ```
-**Vantagens**:
+##### **Vantagens**:
 
 * Sistema responsivo mesmo com processos mal-comportados
 * Melhor utilização de recursos
 * Essencial para sistemas de tempo compartilhado
 
-**Desvantagens**:
+##### **Desvantagens**:
 
 * Mais complexo (precisa proteger seções críticas com locks)
 * Overhead do timer interrupt e trocas de contexto frequentes
 
-##### Processos Não-preemptivos
+#### Processos Não-preemptivos
 **Mecanismo**: O SO aguarda que o processo ativo faça uma chamada de sistema (`yield()`, `sleep()`, `wait()`, ou operações de E/S) para então trocar para outro processo.
 
 ```text
@@ -538,25 +537,25 @@ Processo A          Processo B          Processo C
     |---executa-------->|                   |
     |                   |                   |
 ```    
-**Vantagens**:
+##### **Vantagens**:
 
 * Simples de implementar
 * Menos overhead de sincronização (não há interrupções inesperadas)
 * Previsível para o desenvolvedor (sabe quando pode ser interrompido)
 
-**Desvantagens**:
+##### **Desvantagens**:
 
 * Um processo com loop infinito trava todo o sistema
 * Programador precisa explicitamente ceder a CPU em pontos estratégicos
 * Má utilização de CPUs multicore (pouco usado nesse contexto)
 
-**Exemplos**:
+##### **Exemplos**:
 
 * Mac OS Classic (System 1-9)
 * Windows 3.1/9x (cooperativo para aplicações 16-bit)
 * Threads em modo usuário (green threads) em algumas linguagens (Go inicialmente, Erlang)
 
-#### 4.3 RTOS
+### 4.3 RTOS
 Definição: SO projetado para processar dados à medida que chegam, com garantias de tempo (determinismo). O correto funcionamento depende não apenas do resultado lógico, mas também do tempo em que ele é entregue.
 
 **Classificação de RTOS**
@@ -566,10 +565,10 @@ Definição: SO projetado para processar dados à medida que chegam, com garanti
 |Soft Real-Time|Perder prazos degrada performance, mas não causa falha catastrófica|Streaming de vídeo, áudio, jogos|
 
 **Características Fundamentais**
-**1. Determinismo**: O tempo de resposta deve ser previsível e constante
-**2. Preempção por prioridade**: Tarefas de maior prioridade interrompem tarefas de menor prioridade imediatamente
-**3. Latência de Interrupção mínima**: Tempo entre a interrupção de hardware e o início do tratamento deve ser pequeno e constante
-**4. Inversão de Prioridade tratada**: Mecanismos como Priority Inheritance Protocol (PIP) evitam que tarefas de alta prioridade fiquem bloqueadas por tarefas de baixa
+1. **Determinismo**: O tempo de resposta deve ser previsível e constante
+2. **Preempção por prioridade**: Tarefas de maior prioridade interrompem tarefas de menor prioridade imediatamente
+3. **Latência de Interrupção mínima**: Tempo entre a interrupção de hardware e o início do tratamento deve ser pequeno e constante
+4. **Inversão de Prioridade tratada**: Mecanismos como Priority Inheritance Protocol (PIP) evitam que tarefas de alta prioridade fiquem bloqueadas por tarefas de baixa
 
 **Exemplo de problema de inversão de prioridade**:
 
@@ -612,41 +611,41 @@ void vHighPriorityTask(void *pvParameters) {
 // Criação: prioridade 5 (maior que a do idle, que é 0)
 xTaskCreate(vHighPriorityTask, "Sensor", 1024, NULL, 5, NULL);
 ```
-#### 4.4 Distribuídos
+### 4.4 Distribuídos
 Definição: Um conjunto de computadores independentes que se apresentam ao usuário como um único sistema coerente. O SO gerencia recursos que estão fisicamente separados.
 
-##### **Características**
+#### **Características**
 * **Transparência**: O usuário não sabe (nem precisa saber) onde os recursos estão fisicamente
 * **Escalabilidade**: Adicionar mais nós aumenta a capacidade de processamento
 * **Tolerância** a falhas: Se um nó falha, o sistema continua operando
 * **Middleware**: Camada de software que abstrai a distribuição
 
-##### **Arquiteturas Comuns**
+#### **Arquiteturas Comuns**
 |Arquitetura|Descrição|Exemplos|
 |-----------|---------|--------|
 |Cliente-Servidor|Clientes solicitam serviços, servidores fornecem|NFS, servidores web|
 |Peer-to-Peer|Todos os nós são iguais, compartilham recursos|BitTorrent, blockchain|
 |Cluster|Múltiplas máquinas trabalhando como uma única|Kubernetes, Hadoop|
 
-**Exemplos de SO Distribuídos**
+#### **Exemplos de SO Distribuídos**
 * **Plan 9**: Bell Labs, tudo é representado como sistema de arquivos, rede transparente
 * **Amoeba**: Tanenbaum, microkernel para ambientes distribuídos
 * **Inferno**: Sucessor do Plan 9, com máquina virtual Dis
 * **Linux + Middleware**: A maioria dos sistemas distribuídos atuais usa Linux como base com camadas como Kubernetes, Hadoop, Spark
 
-#### Embarcados
+### Embarcados
 Definição: SO projetado para operar em dispositivos com recursos limitados (CPU, memória, energia) e propósito específico.
 
-**Características**
+#### **Características**
 * **Resource-constrained**: Memória RAM e flash limitadas (KB a MB)
 * **Eficiência energética**: Crítico para dispositivos com bateria
 * **Confiabilidade**: Muitas vezes operam sem supervisão por anos
 * **Propósito específico**: Diferente de um PC que roda aplicações variadas
 * **Boot rápido**: Segundos ou milissegundos
 
-Classificação de Sistemas Embarcados
+#### Classificação de Sistemas Embarcados
 |Tipo|Recursos|Exemplos|
-|----|-------|-------|
+|----|--------|--------|
 |Bare-metal|Sem SO, apenas loop principal|Microcontroladores simples (ATmega)|
 |RTOS embarcado|SO mínimo com escalonamento|FreeRTOS, Zephyr, ThreadX|
 |Linux embarcado|Linux reduzido (Yocto, Buildroot)|Raspberry Pi, roteadores, sistemas automotivos|
@@ -673,7 +672,7 @@ void sensor_task(void *pvParameters) {
     }
 }
 ```
-#### Resumo Comparativo
+### Resumo Comparativo
 |Tipo de SO|User/Kernel|Preempção|Garantia Temporal|Aplicação Típica|
 |----------|-----------|---------|-----------------|----------------|
 |Monotarefa|Geralmente sem separação|Não aplicável|Não|Bootloaders, sistemas muito simples|
@@ -696,9 +695,7 @@ O que você estudou em arquitetura de hardware se conecta diretamente a estes t�
 |Contexto da CPU (registradores)|Salvos/restaurados em cada troca de contexto|
 |SoC (System-on-Chip)|Base para sistemas embarcados (CPU + periféricos no mesmo chip)|
 
-## Dúvidas
-
-### 1- Escalonamento. O que é, e seus exemplos.
+## 5- Escalonamento. O que é, e seus exemplos.
 **Definição**: Escalonamento é o mecanismo pelo qual o sistema operacional decide qual processo/thread será executado pela CPU e por quanto tempo.
 
 O escalonador é ativado em quatro momentos principais:
@@ -722,7 +719,7 @@ O escalonador é ativado em quatro momentos principais:
 * Waiting Time = Tempo total que o processo esperou na fila de prontos
 * Response Time = Tempo desde a chegada até o primeiro atendimento (importante para interatividade)
 
-#### Algoritmos clássicos
+### 5.1 Algoritmos clássicos
 Algoritmos Clássicos de Escalonamento
 Vamos analisar cada algoritmo com exemplos práticos, considerando a seguinte lista de processos:
 |Processo|Tempo de Chegada|Tempo de Execução (Burst Time)|
@@ -732,7 +729,7 @@ Vamos analisar cada algoritmo com exemplos práticos, considerando a seguinte li
 |P3|2|2|
 |P4|3|6|
 
-##### First Come First Serve(FCFS)
+#### 5.1.1 First Come First Serve(FCFS)
 **Mecanismo**: O primeiro processo que chega é o primeiro a ser executado. É ***não-preemptivo***.
 **Funcionamento**:
 
@@ -740,9 +737,9 @@ Vamos analisar cada algoritmo com exemplos práticos, considerando a seguinte li
 Tempo: 0    2    4    6    8    10   12   14   16   18   20
        |----|----|----|----|----|----|----|----|----|----|
 P1:    [#########]                                        
-P2:         [####]                                        
-P3:              [##]                                      
-P4:                   [##########]                        
+P2:              [####]                                        
+P3:                   [##]                                      
+P4:                      [##########]                        
 
 Escala:
 P1: 0-8
@@ -763,7 +760,7 @@ P4: 14-20
 
 **Conexão com hardware**: Utiliza uma fila simples em memória; não requer timer interrupt para preempção.
 
-##### Shortest Job First (SJF)
+#### 5.1.2 Shortest Job First (SJF)
 Mecanismo: Executa o processo com o menor tempo de execução total. Pode ser não-preemptivo ou preemptivo (SRTF - Shortest Remaining Time First).
 
 **1. Versão Não-Preemptiva**
@@ -818,7 +815,7 @@ t=13-20: P1 completa
 
 **Conexão com hardware**: A versão preemptiva exige timer interrupt para permitir preempção a cada nova chegada.
 
-##### Round Robin(RR)
+#### 5.1.3 Round Robin(RR)
 Mecanismo: Cada processo recebe um quantum (fatia de tempo). Se não termina dentro do quantum, é preemptado e vai para o final da fila.
 
 **Quantum** = 4 unidades de tempo
@@ -870,7 +867,7 @@ Escolha do Quantum:
 
 **Conexão com hardware**: O quantum é implementado através do timer interrupt. O kernel configura o timer (PIT ou APIC) para gerar interrupção após o quantum. Quando a interrupção ocorre, o escalonador é invocado.
 
-##### Por Prioridade
+#### 5.1.4 Por Prioridade
 Mecanismo: Cada processo tem uma prioridade (numérica). O escalonador sempre escolhe o processo com maior prioridade (ou menor número, dependendo da convenção).
 
 **Exemplo com prioridade** (menor número = maior prioridade):
@@ -921,8 +918,8 @@ Regras típicas:
 3. Após quantum, vai para fila inferior
 4. Aging: após certo tempo, sobe para evitar starvation
 ```
-### 3- Diferença entre processo e thread
-#### Processo
+## 3- Diferença entre processo e thread
+### Processo
 **Definição**: Um processo é uma instância de um programa em execução. É a unidade de alocação de recursos.
 
 **Estrutura de um Processo** (PCB - Process Control Block):
@@ -984,7 +981,7 @@ Espaço de Endereço de um Processo (Linux x86-64 típico):
                    │   Código ( .text )  │ ← Geralmente somente leitura
 0x0000000000400000 └─────────────────────┘
 ```
-#### Thread
+### Thread
 Definição: Uma thread é uma unidade de execução dentro de um processo. Várias threads compartilham os recursos do mesmo processo.
 
 **Estrutura de uma Thread** (TCB - Thread Control Block):
@@ -1039,7 +1036,7 @@ Espaço de Endereço do Processo:
 └─────────────────────────────────────────┘
 ```
 
-#### Comparação Detalhada
+### Comparação Detalhada
 |Aspecto|Processo|Thread|
 |-------|--------|------|
 |Recursos|Cada processo tem seus próprios recursos (memória, arquivos)|Threads compartilham recursos do processo|
@@ -1086,7 +1083,9 @@ int main() {
     return 0;
 }
 ```
-### 4- RAM e SWAP, como funcionam e qual é a razão da mudança de velocidade do HD para o SSD
+## Dúvidas
+
+### 1- RAM e SWAP, como funcionam e qual é a razão da mudança de velocidade do HD para o SSD
 #### Funcionamento e Evolução HD → SSD
 **Hierarquia de Memória**
 ```text
