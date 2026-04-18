@@ -1484,3 +1484,317 @@ Nos sistemas modernos, a arquitetura de barramento único foi substituída por a
 * Barramentos dedicados de alta velocidade conectam CPU e memória (evitando contenção)
 * PCIe oferece conexões ponto a ponto com largura de banda dedicada
 * Dispositivos lentos ficam em barramentos separados, não interferindo no fluxo principal
+
+## Duvidas
+### 1. Overflow e como o hardware o detecta
+Overflow acontece quando o resultado de uma operação aritmética excede a capacidade máxima (ou é menor que a capacidade mínima) do registrador ou variável que deve armazená-lo.
+
+```text
+Exemplo com 8 bits (valores signed):
+- Valor máximo: 127 (0x7F)
+- Valor mínimo: -128 (0x80)
+
+Se tentarmos fazer 127 + 1 = 128 → OVERFLOW!
+Porque 128 não cabe em 8 bits com sinal (seria interpretado como -128)
+```
+#### 1.1. Tipos de Overflow
+|Tipo|Descrição|Exemplo (8 bits signed)|
+|----|---------|-----------------------|
+|Overflow positivo|Resultado ultrapassa o valor máximo positivo|127 + 1 = 128 (overflow)|
+|Overflow negativo|Resultado ultrapassa o valor mínimo negativo|-128 - 1 = -129 (overflow)|
+|Overflow em unsigned|Resultado ultrapassa o valor máximo sem sinal|255 + 1 = 256 (overflow)|
+|Underflow|Resultado é menor que o mínimo representável|0 - 1 = -1 (underflow em unsigned)|
+
+#### 1.2. Como o Hardware Detecta Overflow
+A detecção de overflow é feita através da análise dos bits de carry (vai-um) que entram e saem do bit mais significativo (MSB) durante a operação.
+
+**O Mecanismo Fundamental**
+Em uma operação de soma, o hardware analisa dois sinais:
+
+* **Carry In (Cᵢₙ)**: O "vai-um" que entra no bit mais significativo (MSB)
+* **Carry Out (Cₒᵤₜ)**: O "vai-um" que sai do MSB (indicando que o resultado não cabe)
+
+**Regra de Ouro para Detecção de Overflow**
+```text
+OVERFLOCW OCORRE QUANDO: CARRY IN ≠ CARRY OUT do MSB
+```
+Ou seja, overflow acontece quando o carry que entra no MSB é diferente do carry que sai do MSB.
+
+#### 1.3. Visualização com um Somador de 4 bits
+Vamos ver um exemplo prático com números de 4 bits (valores signed de -8 a +7):
+
+```text
+Exemplo 1: Soma sem overflow (3 + 2 = 5)
+  0011  (3)
++ 0010  (2)
+───────
+  0101  (5) ✓
+
+Carry out do MSB = 0
+Carry in do MSB = 0
+Cᵢₙ = Cₒᵤₜ → SEM OVERFLOW
+
+Exemplo 2: Overflow positivo (7 + 1 = 8 → overflow)
+  0111  (7)
++ 0001  (1)
+───────
+  1000  (-8) ✗ (resultado errado)
+
+Carry out do MSB = 0
+Carry in do MSB = 1 (veio do bit anterior)
+Cᵢₙ ≠ Cₒᵤₜ → OVERFLOW DETECTADO!
+
+Exemplo 3: Overflow negativo (-8 - 1 = -9 → overflow)
+  1000  (-8)
++ 1111  (-1 em complemento de dois)
+───────
+ 10111 → descarta carry out → 0111 (7) ✗
+
+Carry out do MSB = 1
+Carry in do MSB = 0
+Cᵢₙ ≠ Cₒᵤₜ → OVERFLOW DETECTADO!
+```
+#### 1.4. Implementação em Hardware: O Flag de Overflow
+**Registrador de Status (Flags)**
+Dentro da **Unidade de Controle**, existe um registrador especial chamado **Registrador de Status** (ou Program Status Word - PSW) que armazena bits indicadores (flags) sobre o resultado da última operação.
+
+|Flag|Nome|Significado|
+|----|----|-----------|
+|OF|Overflow Flag|Indica se ocorreu overflow na última operação aritmética|
+|CF|Carry Flag|Indica se houve "vai-um" do MSB (para unsigned)|
+|ZF|Zero Flag|Indica se o resultado foi zero|
+|SF|Sign Flag|Indica se o resultado é negativo (MSB = 1)|
+|AF|Auxiliary Flag|Carry do bit 3 para o bit 4 (usado em BCD)|
+|PF|Parity Flag|Indica se o número de bits 1 é par ou ímpar|
+
+#### 1.5. Como o Overflow(OF) é calculado
+```text
+OF = CARRY_OUT_MSB XOR CARRY_IN_MSB
+```
+Este **cálculo é feito em tempo real** durante a operação aritmética, **por uma porta XOR dedicada**.
+
+#### 1.6. Diagrama Simplificado
+```text
+                    ┌─────────────────────────────────┐
+                    │          ULA (ALU)               │
+                    │                                 │
+    A ─────────────┤  ┌───────────────────────────┐  │
+                    │  │       Somador Completo    │  │
+    B ─────────────┤  │                           │  │
+                    │  │  ┌─────┐     ┌─────┐     │  │
+    C₀ (carry_in) ─┼──┼──┤ Cᵢₙ ├─────┤ MSB ├─────┼──┼──► Cₒᵤₜ (carry_out)
+                    │  │  └─────┘     └─────┘     │  │
+                    │  │      │           │        │  │
+                    │  │      ▼           ▼        │  │
+                    │  │   ┌─────────────────┐    │  │
+                    │  │   │     XOR         │    │  │
+                    │  │   │  (OF detector)  │    │  │
+                    │  │   └────────┬────────┘    │  │
+                    │  │            ▼             │  │
+                    │  └────────────┼─────────────┘  │
+                    │               │                │
+                    └───────────────┼────────────────┘
+                                    ▼
+                              OF (Overflow Flag)
+```
+
+### 2. Bit de Paridade: Um Mecanismo Simples de Detecção de Erros
+Conceito Fundamental
+O bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
+
+#### 2.1. Tipos de Paridade
+|Tipo|Regra|Exemplo (dado = 0b1011001)|
+|----|-----|--------------------------|
+|Paridade Par (Even Parity)|Número total de bits 1 deve ser PAR|Dado tem 4 bits 1 → bit de paridade = 0 (4+0=4, par)|
+|Paridade Ímpar (Odd Parity)|Número total de bits 1 deve ser ÍMPAR|Dado tem 4 bits 1 → bit de paridade = 1 (4+1=5, ímpar)|
+
+#### 2.2. Como Funciona na Prática
+```text
+Transmissão de um byte (8 bits) com paridade par:
+
+Dado original: 10110010 (bits 1 = 4 → par)
+Bit de paridade: 0
+Palavra transmitida: 10110010 0 (9 bits)
+
+Se ocorrer um erro de 1 bit durante a transmissão:
+Dado recebido com erro: 10110010 1 (por exemplo)
+Bits 1 = 5 → ímpar → ERRO DETECTADO!
+```
+#### 2.3. Limitações do Bit de Paridade
+|Capacidade|Limitação|
+|----------|---------|
+|Detecta 1 bit errado|Não detecta 2 bits errados (a paridade pode voltar ao normal)|
+|Detecta número ímpar de erros|Não detecta número par de erros|
+|Simples e barato|Não corrige erros (apenas detecta)|
+|Adiciona apenas 1 bit por palavra|Alto overhead para palavras grandes|
+
+#### 2.4. Implementação em Hardware
+O bit de paridade é gerado por um circuito de portas XOR (ou XNOR) que contam o número de bits 1:
+
+```text
+Circuito gerador de paridade par para 4 bits:
+
+P = B3 XOR B2 XOR B1 XOR B0
+
+Se o resultado for 0 → número par de bits 1
+Se o resultado for 1 → número ímpar de bits 1
+```
+**Exemplo com 8 bits (hardware real)**
+```verilog
+// Módulo gerador de paridade par para 8 bits
+module parity_generator(
+    input [7:0] data,
+    output parity
+);
+    assign parity = ^data;  // XOR reduction: data[0]^data[1]^...^data[7]
+endmodule
+
+// Módulo verificador de paridade
+module parity_checker(
+    input [8:0] data_with_parity,  // 8 bits + 1 bit de paridade
+    output error
+);
+    wire parity_received = data_with_parity[8];
+    wire parity_calculated = ^data_with_parity[7:0];
+    assign error = (parity_received != parity_calculated);
+endmodule
+```
+
+#### 2.5. Mecanismos Mais Avançados de Detecção/Correção
+O bit de paridade é apenas o ponto de partida. Sistemas modernos usam mecanismos mais sofisticados:
+
+|Mecanismo|Capacidade|Overhead|Uso típico|
+|---------|----------|--------|----------|
+|Bit de paridade|Detecta 1 erro|12.5% (1/8)|UART, memória simples|
+|Código de Hamming|Detecta 2 erros, corrige 1|~25% (bits de paridade)|Memória ECC, comunicações|
+|CRC (Cyclic Redundancy Check)|Detecta rajadas de erros|2-32 bytes|Redes (Ethernet, Wi-Fi), discos|
+|Checksum (Internet)|Detecta múltiplos erros	16-32 bits|Protocolos de rede (TCP/IP)|
+|Reed-Solomon|Corrige rajadas de erros|Varia (ex: 25%)|CDs, DVDs, QR codes|
+
+> **Conexão entre os conceitos**
+> Ambos são exemplos de como o hardware monitora a integridade das operações:
+> * Overflow → monitora a correção dos cálculos
+> * Paridade → monitora a integridade dos dados
+>
+> Ambos **usam portas lógicas simples (XOR, AND** para gerar flags ou bits que indicam condições especiais, permitindo que o software (ou hardware superior) tome decisões apropriadas.
+
+### 3. Multiplexador e Decodificador: Blocos Essenciais em Sistemas Digitais
+Multiplexadores e decodificadores são **circuitos combinacionais fundamentais** que atuam como "funcionários especializados" na arquitetura de computadores. Enquanto o **decodificador distribui um sinal para múltiplos destinos**, o **multiplexador seleciona um entre múltiplas fontes**. Eles são, em certo sentido, operadores inversos.
+
+#### 3.1. Visão Geral Comparativa
+|Característica|DECODIFICADOR|MULTIPLEXADOR (MUX)|
+|--------------|-------------|-------------------|
+|Função principal|Distribui/Ativa|Seleciona|
+|Direção dos dados|1 entrada → N saídas|N entradas → 1 saída|
+|O que controla|Qual saída será ativada|Qual entrada chegará à saída|
+|Entradas de controle (n)|Ativam 1 de 2ⁿ saídas|Selecionam 1 de 2ⁿ entradas|
+|Número de saídas|2ⁿ (múltiplas)|1 (única)|
+|Analogia|Carteiro (entrega em um endereço)|Central telefônica (conecta uma linha à saída)|
+
+#### 3.2. Decodificador
+O decodificador converte um código binário de n entradas em 2ⁿ saídas mutuamente exclusivas (apenas uma saída ativa por vez).
+**Principais usos do decodificador**:
+* **Seleção de linha em memória RAM**: ativa a linha correta da matriz de células
+* **Seleção de registrador**: escolhe qual registrador será lido/escrito
+* **Decodificação de instrução (opcode)**: determina qual operação executar
+* **Acionamento de displays de 7 segmentos**: converte BCD para segmentos
+* **Seleção de dispositivos de I/O**: ativa o dispositivo correto no barramento
+
+
+#### 3.3. Multiplexador (MUX)
+O multiplexador (abreviação de multiple selector) é um comutador eletrônico que conecta uma de N entradas à saída, com base em um código binário aplicado às entradas de seleção.
+
+**MUX 4:1 (4 entradas de dados, 2 entradas de seleção)**
+```text
+Entradas de dados: I0, I1, I2, I3
+Entradas de seleção: S1 S0 (2 bits → selecionam 1 de 4 entradas)
+Saída: Y
+
+Tabela verdade:
+    S1 S0 | Y
+    0  0  | I0
+    0  1  | I1
+    1  0  | I2
+    1  1  | I3
+```
+
+**Expressão lógica**:
+```text
+Y = (S̅1·S̅0·I0) + (S̅1·S0·I1) + (S1·S̅0·I2) + (S1·S0·I3)
+```
+**Implementação interna** (portas lógicas):
+```text
+        I0 ──┐
+             AND ─┐
+        S0̅ ──┘    │
+        S1̅ ───────┤
+                  │
+        I1 ──┐    │
+             AND ─┼── OR ── Y
+        S0 ──┘    │
+        S1̅ ───────┤
+                  │
+        I2 ──┐    │
+             AND ─┤
+        S0̅ ──┘    │
+        S1 ───────┤
+                  │
+        I3 ──┐    │
+             AND ─┘
+        S0 ──┘
+        S1 ───
+```
+#### 3.4. Principais usos do multiplexador:
+* **Seleção de fonte de dados** (ex: escolher entre ALU, memória ou barramento de entrada)
+* **Implementação de funções lógicas** (MUX como "tabela verdade programável")
+* **Roteamento em barramentos** (conecta diferentes dispositivos ao barramento)
+* **Multiplexação de linhas de endereço** (em memórias DRAM)
+* **Conversão paralelo-serial**: transforma dados paralelos em fluxo serial
+
+#### 3.5. Aplicações Práticas Combinadas
+Em sistemas reais, decodificadores e multiplexadores trabalham juntos:
+
+|Sistema|Uso do Decodificador|Uso do Multiplexador|
+|-------|--------------------|--------------------|
+|Memória RAM|Seleciona a linha (wordline) da matriz|Seleciona a coluna (bitline) para leitura|
+|Banco de registradores|Decodifica endereço de escrita|Seleciona qual registrador ler|
+|Unidade de Controle|Decodifica o opcode da instrução|Seleciona a fonte do próximo endereço (PC, pilha, interrupção)|
+|Display de 7 segmentos|Converte BCD para segmentos|(Menos comum, mas usado em displays multiplexados)|
+|Conversor A/D|Seleciona qual canal converter|(Usado em sistemas com múltiplos sensores)|
+
+### 4. A Quinta Geração de Computadores: A Era da Computação em Paralelo e da Inteligência Artificial
+Diferente das **gerações anteriores**, que foram **definidas por inovações concretas em hardware** (válvulas, transistores, circuitos integrados e microprocessadores), a **Quinta Geração foi definida por um conceito e um objetivo ambicioso: unir computação massivamente paralela com inteligência artificial para criar máquinas capazes de "pensar"**.
+Ela **não é marcada por um único componente que revolucionou a indústria, mas por um projeto de pesquisa nacional**, liderado pelo Japão, que tentou – e ousou – redefinir o futuro da computação.
+
+#### 4.1. O Conceito da Quinta Geração: Mais do que Hardware, uma Nova Filosofia
+Enquanto as **quatro primeiras gerações focaram em aumentar a densidade de componentes em um único chip** (Lei de Moore), a visão da **quinta geração** era de uma **mudança de paradigma**. A meta era criar sistemas com duas características principais:
+
+* **Processamento de Informação por Conhecimento** (Knowledge Information Processing): A capacidade de lidar com símbolos, conceitos e regras lógicas, em vez de apenas realizar cálculos numéricos. O computador deveria "raciocinar" a partir de uma base de conhecimento para resolver problemas .
+* **Processamento Massivamente Paralelo** (Massively Parallel Processing): Para alcançar o desempenho necessário para esse raciocínio, a solução seria usar não um, mas milhares de processadores trabalhando em conjunto .
+
+O **objetivo final era uma máquina capaz de inferência lógica**, ou seja, de derivar novas informações a partir de fatos e regras pré-existentes, ***aproximando-se do raciocínio humano***.
+
+#### 4.2. O Marco Definidor: O Projeto FGCS do Japão
+Ainda não existe uma bibliografia, ou cientista específico(*como Von Neumann na primeira*) que define essa geração, por isso ela é definida(iniciada) por um projeto governamental de grande escala: o **Projeto Fifth Generation Computer Systems** (FGCS).
+
+* **Período e Idealizador**: Lançado em 1982 pelo Ministério do Comércio Internacional e Indústria do Japão (MITI) , com duração de 10 anos .
+* **A Instituição**: Para tocar o projeto, foi criado o Instituto para Nova Tecnologia de Computação (ICOT) , reunindo os maiores nomes da indústria japonesa da época (Fujitsu, NEC, Hitachi, etc.) .
+* **A Motivação**: O Japão, que até então seguia as inovações do Ocidente, queria assumir a liderança tecnológica mundial na próxima era da computação .
+As Armas Escolhidas: Prolog e Paralelismo
+
+#### 4.3. Para atingir esse ambicioso objetivo, o projeto FGCS definiu alicerces técnicos claros :
+* **Linguagem Base**: *Prolog*: Diferente das linguagens imperativas (C, Pascal), o **Prolog é uma linguagem de programação lógica**. O programador declara fatos e regras, e o computador usa inferência lógica para chegar a uma conclusão.
+* **Arquitetura**: *Paralelismo em Massa*: Para executar o Prolog em altíssima velocidade, era necessário um hardware especializado, as chamadas **Máquinas de Inferência Paralela**(Parallel Inference Machines - PIMs).
+
+#### 4.4. Os Computadores que Definiriam a Era: As PIMs (Parallel Inference Machines)
+O projeto FGCS produziu não uma, mas várias máquinas protótipos, conhecidas como PIMs. Elas são os principais candidatos a "hardware que define a 5ª geração" .
+* **PSI** (Personal Sequential Inference machine): Antes do grande salto ao paralelismo, foi desenvolvida uma estação de trabalho sequencial para programação e experimentação com a lógica Prolog .
+* **PIM** (Parallel Inference Machine): O ápice do projeto. Foram construídos diversos protótipos com arquiteturas diferentes (PIM/m, PIM/p, PIM/i, etc.) para teste .
+   * **PIM/p**: Continha 512 processadores elementares trabalhando em paralelo .
+   * **Desempenho**: O sistema final conseguia realizar cerca de 200 milhões de inferências lógicas por segundo (LIPS) . Um feito extraordinário para a época, considerando que as workstations comuns atingiam cerca de 100 mil LIPS.
+
+#### 4.5. Por que a Quinta Geração "Fracassou" e a Quarta Continuou?
+**Comercialmente, o projeto FGCS é considerado um fracasso**. Os computadores PIM nunca chegaram ao mercado. Várias razões explicam isso e justificam por que não trocamos nossos processadores Intel/AMD por máquinas de inferência lógica:
+* **O Avanço Implacável da Quarta Geração**: Enquanto o FGCS tentava construir hardware especializado, os microprocessadores tradicionais (4ª Geração) simplesmente ficaram extremamente rápidos. A Lei de Moore continuou agindo, e CPUs comuns logo superaram o desempenho das máquinas especializadas para a maioria das tarefas, a um custo muito menor .
+* **Dificuldades com Software**: A promessa de usar lógica pura para resolver problemas do mundo real mostrou-se muito mais complexa do que o imaginado. Criar software que aproveitasse todo aquele poder paralelo era um desafio imenso .
+* **A Revolução da Internet**: O projeto imaginava grandes bancos de dados centralizados. Não previu o impacto revolucionário da Internet e da Web, que mudou completamente a forma como acessamos e distribuímos informação .
