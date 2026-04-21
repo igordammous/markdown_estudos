@@ -1,20 +1,24 @@
 # Arquitetura de Hardware
 
-## 1- Lógica Digital
-### Operação Lógica
+## 1 - Lógica Digital
+
+### 1.1 - Operação Lógica
+
 Ela é a base de tudo: é o conjunto de regras e componentes que permitem ao computador tomar decisões e realizar cálculos usando apenas 0s e 1s. Antes do hardware, vem a matemática. A lógica digital é a implementação física da Álgebra de Boole (ou Booleana), onde elas só podem ter dois valores:
+
 * **1 = Verdadeiro(True)**
 * **0 = Falso(False)**
 
 E as operações feitas são apenas lógicas, **AND**, **OR** e **NOT**.
 
 |Operação|Nome|Comportamento|
-|--------|----|------------|
-|AND     | E  |A saída é 1 somente se todas as entradas forem 1.|
-|OR      | OU |A saída é 1 se pelo menos uma das entradas for 1.|
-|NOT     | NÃO|Inverte o valor da entrada. Se entra 1, sai 0. Se entra 0, sai 1.|
+|--------|----|-------------|
+|AND     | E  |A saída é 1 somente se todas as entradas forem 1|
+|OR      | OU |A saída é 1 se pelo menos uma das entradas for 1|
+|NOT     | NÃO|Inverte o valor da entrada. Se entra 1, sai 0. Se entra 0, sai 1|
 
 Tabelas Verdades, supondo duas entradas ou no caso da porta NOT, apenas uma:
+
 |Porta|Entrada|Saída|
 |-----|-------|-----|
 |NOT  | 1     |0    |
@@ -22,21 +26,24 @@ Tabelas Verdades, supondo duas entradas ou no caso da porta NOT, apenas uma:
 
 |Porta|Entrada A|Entrada B|Saída|
 |-----|---------|---------|-----|
-|AND | 0        |  0      |  0  |
-|AND | 0        |  1      |  0  |
-|AND | 1        |  0      |  0  |
-|AND | 1        |  1      |  1  |
-|----|----------|---------|-----|
-|OR  | 0        |    0    |  0  |
-|OR  | 0        |    1    |  1  |
-|OR  | 1        |    0    |  1  |
-|OR  | 1        |    1    |  1  |
+|AND  |0        |  0      |  0  |
+|AND  |0        |  1      |  0  |
+|AND  |1        |  0      |  0  |
+|AND  |1        |  1      |  1  |
+|-----|---------|---------|-----|
+|OR   | 0       |    0    |  0  |
+|OR   | 0       |    1    |  1  |
+|OR   | 1       |    0    |  1  |
+|OR   | 1       |    1    |  1  |
 
 Observação Importante: Existem também portas combinadas muito usadas, como a **NAND (AND + NOT)** e a **NOR (OR + NOT)**, que são chamadas de "portas universais" porque, com elas, dá pra construir qualquer outro circuito.
-### Combinação Lógica
+
+### 1.2 Combinação Lógica
+
 Combinando portas lógicas, formam-se circuitos lógicos. E ao combinando milhares (ou bilhões) dessas portas simples, criamos circuitos complexos. Dois exemplos clássicos que você verá no Capítulo 3 de Null & Lobur:
 
-#### **Meio Somador (Half Adder)**: 
+#### 1.2.1 Meio Somador (Half Adder)
+
 Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C`). Ele é feito com uma porta `XOR` (OU Exclusivo, uma variação) e uma porta `AND`.
 
 |A|B|Sum|Carry|
@@ -56,7 +63,8 @@ Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saí
 
 <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Half_Adder.jpg" alt="Implementação meio somador" style="width: 50%" title="Implementação meio somador" />
 
-#### **Somador Completo (Full Adder)**:
+#### 1.2.2 Somador Completo (Full Adder)
+
 Um circuito mais complexo que soma dois bits(`A`, `B`) considerando também um "vem-um"(`C - IN`) de uma soma anterior. É assim que o computador soma números de vários bits (como 8, 16 ou 32 bits). E também tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C - OUT`)
 
 |  A  |  B  |C-IN |Sum|C-OUT|
@@ -68,7 +76,7 @@ Um circuito mais complexo que soma dois bits(`A`, `B`) considerando também um "
 |  1  |  0  |  0  | 1 |  0  |
 |  1  |  0  |  1  | 0 |  1  |
 |  1  |  1  |  0  | 0 |  1  |
-|  1  |  1  |  1  | 1 |  1  | 
+|  1  |  1  |  1  | 1 |  1  |
 
 * Para Soma `S`:
     * Se tiver **um** ou **três** entradas com valores iguais, `S` será verdadeiro `1`.
@@ -83,8 +91,8 @@ O carry (`C-OUT`) é implementado usando portas `XOR`, `AND` e `OR`: então segu
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122505812069/frame_274.webp" alt="Implementação somador completo" style="width: 100%" />
 
-
 **Implementação do Somador Completo usando Meio Somador**
+
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122601572749/frame_277.webp" alt="Implementação somador completo c/ meio somador" style="width: 100%" />
 
 **Implementação do Somador Completo usando Portas `NAND`**
@@ -95,11 +103,11 @@ O carry (`C-OUT`) é implementado usando portas `XOR`, `AND` e `OR`: então segu
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250405122756356070/frame_276.webp" alt="Implementação somador completo c/ portas NOR" style="width: 100%" />
 
-## 2- Adjacência Topológica
+## 2 - Adjacência Topológica
+
 Também conhecida como a **"Geometria" da Simplificação Digital**. A adjacência topológica é um conceito fundamental no *Mapa de Karnaugh (K-map)* , que é a principal ferramenta visual para **simplificar circuitos digitais**.
 
 Em termos simples, ela descreve a regra de "vizinhança" especial entre células em um mapa, onde duas posições são consideradas adjacentes não apenas por estarem fisicamente lado a lado, mas também por estarem conectadas pelas bordas do mapa, como se estivessem desenhadas em um toro (uma rosquinha) . O objetivo é agrupar células para eliminar variáveis e simplificar a expressão lógica.
-
 
 |Critério de Adjacência|Descrição|Analogia Visual|Exemplo em um Mapa 4x4|
 |---------------------|-----------|----------------|----------------|
@@ -107,20 +115,19 @@ Em termos simples, ela descreve a regra de "vizinhança" especial entre células
 |Adjacência por Enrolamento (Toroidal)|A borda superior é adjacente à borda inferior, e a borda esquerda é adjacente à borda direita .|Como se o mapa fosse uma folha de papel que você enrola para colar a borda de cima com a de baixo, formando um cilindro, e depois as laterais, formando um toro (rosquinha) .|As células nos cantos superior esquerdo e inferior esquerdo são adjacentes, assim como as dos cantos superior esquerdo e superior direito.(**Imagem 1 do tópico, na cor vermelha**)|
 |Agrupamento (Regras)|Os agrupamentos para simplificação devem ser retângulos (ou quadrados) com um número de células que seja uma potência de 2 (1, 2, 4, 8, 16...) .|Você só pode fazer grupos de 1, 2, 4, 8 ou 16 células. Não pode fazer um grupo de 3 ou 6.|Você pode agrupar 2, 4, 8 ou todas as 16 células, desde que formem um retângulo.(**Imagem 2 do tópico, na cor vermelha**)|
 
-
-
 <div style = "text-align: center;">
 <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_1001/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-3-variaveis-CLP.png.webp" alt="Mapa de Karnaugh" style="width: 100%"/>
-<strong>Imagem 1: Com três variáveis</strong>     
+<strong>Imagem 1: Com três variáveis</strong>
 <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_960,h_480/https://learnchannel-tv.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-com-4-variaveis.png" alt="Mapa de Karnaugh" style="width: 100%"/>
-<strong>Imagem 2:Com quatro variáveis</strong>    
+<strong>Imagem 2:Com quatro variáveis</strong>
 </div>
 
-### Como fazer um Mapa de Karnaugh?
+### 2.1 Como fazer um Mapa de Karnaugh?
+
 <div style = "text-align: center;">
 <img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-2.png.webp" alt="Mapa de Karnaugh" style="width: 50%"/>
 
-<strong>Imagem 3: Exemplo Mapa de Karnaugh com quatro variáveis</strong>    
+<strong>Imagem 3: Exemplo Mapa de Karnaugh com quatro variáveis</strong>
 </div>
 <img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-3.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 4"/><img src="https://www.makerhero.com/wp-content/uploads/2024/08/Mapa-de-Karnaugh-Como-fazer-tabela-online-e-exercicios-img-blog-5-1.png.webp" alt="Mapa de Karnaugh" style="width: 50%" title = "Imagem 5"/>
 
@@ -139,16 +146,18 @@ A beleza do Mapa de Karnaugh e do conceito de adjacência topológica é que ele
 
 Mapas de Karnaugh são ferramentas fantásticas para **simplificar funções de até 5 ou 6 variáveis**. Para funções com mais variáveis, o processo se torna visualmente complexo, e engenheiros recorrem a **métodos algorítmicos computacionais como o Quine-McCluskey**.
 
+## 3 - A Máquina IAS (Von Neumann)
 
-## 3- A Máquina IAS (Von Neumann)
  IAS machine (também conhecida como computador de Von Neumann) foi o primeiro computador a implementar o conceito de programa armazenado , tornando-se o arquétipo de praticamente todos os computadores modernos. Desenvolvida no Institute for Advanced Study (IAS) em Princeton, sob a liderança de John von Neumann, sua construção começou em 1946 e foi concluída em 1951.
 
-### Contexto Histórico
+### 3.1 Contexto Histórico
+
 Após o ENIAC (1946), que precisava ser reprogramado fisicamente através de cabos e chaves, *Von Neumann* propôs um modelo revolucionário: armazenar o programa na mesma memória que os dados . Essa ideia foi formalizada no "First Draft of a Report on the EDVAC" (1945), um documento que se tornou o fundamento da arquitetura de computadores moderna .
 
 A **IAS machine** foi a materialização física desse conceito, servindo como modelo para computadores comerciais como a **IBM 701** e influenciando diretamente a arquitetura dos sistemas atuais.
 
-### Arquitetura da IAS Machine
+### 3.2 Arquitetura da IAS Machine
+
 A máquina IAS implementou o que hoje chamamos de Arquitetura de Von Neumann, caracterizada por:
 
 |Componente|Descrição|
@@ -159,7 +168,8 @@ A máquina IAS implementou o que hoje chamamos de Arquitetura de Von Neumann, ca
 |Barramento Único|Via de comunicação compartilhada entre todos os componentes|
 |Registradores|Armazenamento temporário de alta velocidade dentro da CPU|
 
-**Diagrama da Arquitetura IAS**
+#### 3.2.1 Diagrama da Arquitetura IAS
+
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                         UNIDADE CENTRAL                          │
@@ -193,12 +203,13 @@ A máquina IAS implementou o que hoje chamamos de Arquitetura de Von Neumann, ca
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Especificações Técnicas
+### 3.3 Especificações Técnicas
+
 |Especificação|Detalhe|
 |-------------|---------|
 |Ano de conclusão|1951|
 |Memória|1.024 palavras de 40 bits (cerca de 5 KB)|
-|Tipo de memória|Tubos de Williams (memória de tubo de raios catódicos) - o primeiro |tipo de memória de acesso aleatório (RAM)
+|Tipo de memória|Tubos de Williams (memória de tubo de raios catódicos) - o primeiro tipo de memória de acesso aleatório (RAM)|
 |Palavra (Word)|40 bits|
 |Instrução|20 bits (duas instruções por palavra)|
 |Números|Ponto fixo binário (sinal-magnitude)|
@@ -206,7 +217,8 @@ A máquina IAS implementou o que hoje chamamos de Arquitetura de Von Neumann, ca
 |Componentes|Aproximadamente 2.300 válvulas (tubos de vácuo)|
 |Consumo|Cerca de 25 kW|
 
-### Formato das Instruções
+### 3.4 Formato das Instruções
+
 Uma das características mais interessantes da IAS machine era o empacotamento de duas instruções por palavra de 40 bits :
 
 ```text
@@ -219,11 +231,14 @@ Uma das características mais interessantes da IAS machine era o empacotamento d
 │  Opcode (8)  │  Endereço (12)     │  Opcode (8)  │  Endereço (12)   │
 └──────────────┴────────────────────┴──────────────┴──────────────────┘
 ```
+
 Cada instrução de 20 bits continha:
+
 * **Opcode (8 bits)**: Código da operação a ser executada
 * **Endereço (12 bits)**: Endereço na memória (para buscar dados ou próximo salto)
 
-### Legado e Influência
+### 3.5 Legado e Influência
+
 A IAS machine não foi comercializada, mas seu design serviu de modelo para praticamente todos os computadores que vieram depois:
 
 |Computador|Relação com IAS|
@@ -236,7 +251,8 @@ A IAS machine não foi comercializada, mas seu design serviu de modelo para prat
 
 Essas máquinas, chamadas de "máquinas von Neumann" , disseminaram a arquitetura pelo mundo e estabeleceram o padrão que persiste até hoje.
 
-**Comparação: IAS vs. Computadores Modernos**
+### 3.6 Comparação: IAS vs. Computadores Modernos
+
 |Aspecto|IAS Machine (1951)|Computador Moderno (2024)|
 |-------|------------------|-------------------------|
 |Arquitetura|Von Neumann (barramento único)|Von Neumann (com hierarquias e barramentos dedicados)|
@@ -248,7 +264,8 @@ Essas máquinas, chamadas de "máquinas von Neumann" , disseminaram a arquitetur
 |Pipelining|Não|Sim (instruções em estágios)|
 |Multiprocessamento|Não|Sim (múltiplos núcleos)|
 
-### O "Antes" e o "Depois" do Programa Armazenado
+### 3.7 O "Antes" e o "Depois" do Programa Armazenado
+
 Comparando o funcionamento dos computadores antes e depois do conceito de programa armazendo.
 
 |Aspecto|Antes: Máquinas de Programa Fixo|Depois: Máquina de Programa Armazenado (Von Neumann)|
@@ -258,7 +275,8 @@ Comparando o funcionamento dos computadores antes e depois do conceito de progra
 |Flexibilidade|Nenhuma. Era uma máquina "monotarefa" por design. O ENIAC, por exemplo, precisava ser "reprogramado" manualmente para cada novo cálculo .|Ilimitada. A mesma máquina pode processar textos, rodar jogos, navegar na internet ou simular o clima, simplesmente executando programas diferentes.|
 |Analogia com a Logística|Uma esteira de montagem construída apenas para engarrafar água. Ela não pode ser usada para montar carros sem uma reforma completa.|Um centro de distribuição (CD) moderno. O mesmo espaço físico (a memória) e os mesmos funcionários (a CPU) podem receber instruções diferentes (o programa) para separar livros hoje, roupas amanhã e eletrônicos na próxima semana.|
 
-### Os 5 Pilares (Ou "Órgãos") do Modelo Von Neumann
+### 3.8 Os 5 Pilares (Ou "Órgãos") do Modelo Von Neumann
+
 Para que o conceito funcionasse na prática, von Neumann definiu uma estrutura clara de componentes. O documento de 1945 descrevia a máquina através destes 5 "órgãos":
 
 * **Memória (M)**: O local onde tanto as instruções (o programa) quanto os dados são armazenados. É um grande armário de gavetas numeradas (endereços).
@@ -267,10 +285,12 @@ Para que o conceito funcionasse na prática, von Neumann definiu uma estrutura c
 * **Entrada (I)**: Os mecanismos para levar dados e programas do "mundo exterior" para a memória do computador.
 * **Saída (O)**: Os mecanismos para trazer os resultados processados da memória para o "mundo exterior".
 
-### Ciclo de Instrução (Fetch-Decode-Execute)
+### 3.9 Ciclo de Instrução (Fetch-Decode-Execute)
+
 O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computadores seguem até hoje:
 
-#### Passo a Passo
+#### 3.9.1 Passo a Passo
+
 1. **Busca (Fetch)**
 
 * O Program Counter (PC) contém o endereço da próxima palavra (40 bits) a ser buscada
@@ -298,9 +318,12 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 * Se a palavra atual continha duas instruções, após executar a esquerda, a direita é carregada do IBR
 * Caso contrário, uma nova palavra é buscada da memória
 
-## 4- Geração de Computadores
-### Primeira Geração (1940-1956) - Válvulas Eletrônicas (Válvulas Termiônicas)
-**Características Principais**
+## 4 - Geração de Computadores
+
+### 4.1 Primeira Geração (1940-1956) - Válvulas Eletrônicas (Válvulas Termiônicas)
+
+#### 4.1.1 Características Principais
+
 |Aspecto|Descrição|
 |-------|---------|
 |Componente principal|Válvulas eletrônicas (tubos de vácuo)|
@@ -312,17 +335,22 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 |Confiabilidade|Baixíssima (válvulas queimavam frequentemente)|
 |Custo|Altíssimo, acessível apenas para governos e grandes universidades|
 
-**Principais Máquinas**
+#### 4.1.2 Principais Máquinas
+
 * **ENIAC** (1946, EUA): Primeiro computador eletrônico de uso geral. Tinha 17.468 válvulas e realizava 5.000 operações por segundo .
 * **DVAC** (1949): Introduziu o conceito de programa armazenado (Arquitetura de Von Neumann) .
 * **NIVAC I**  (1951): Primeiro computador comercial produzido nos EUA .
 * **Colossus** (1943, Reino Unido): Usado na Segunda Guerra para decifrar códigos alemães .
 
-**Impacto na Arquitetura**
+#### 4.1.3 Impacto na Arquitetura
+
 * Estabeleceu os fundamentos da **Arquitetura de Von Neumann**: CPU, memória, barramento único para dados e instruções .
 * A programação era feita manualmente, conectando cabos e configurando chaves (no ENIAC) .
-### Segunda Geração (1956-1963) - Transistores
-**Características Principais**
+
+### 4.2 Segunda Geração (1956-1963) - Transistores
+
+#### 4.2.1 Características Principais
+
 |Aspecto|Descrição|
 |-------|---------|
 |Componente principal|Transistores (substituem as válvulas)|
@@ -334,19 +362,23 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 |Confiabilidade|Muito superior às válvulas|
 |Custo|Redução gradual, mas ainda alto|
 
-**Principais Máquinas**
+#### 4.2.2 Principais Máquinas
+
 * **IBM 1401** (1959): Computador comercial de grande sucesso.
 * **IBM 7090** (1959): Computador científico totalmente transistorizado.
 * **PDP-1** (1960): Primeiro minicomputador (DEC), com apenas 4 kW de consumo.
 
-**Inovações Arquiteturais**
+#### 4.2.3 Inovações Arquiteturais
+
 * Surgimento do barramento omnibus
 * Multiprogramação: capacidade de executar múltiplos programas de forma "simultânea"
 * Sistemas operacionais com gerenciamento básico de recursos
 * Canais de I/O independentes da CPU
 
-### Terceira Geração (1964-1971) - Circuitos Integrados (CI)
-**Características Principais**
+### 4.3 Terceira Geração (1964-1971) - Circuitos Integrados (CI)
+
+#### 4.3.1 Características Principais
+
 |Aspecto|Descrição|
 |-------|---------|
 |Componente principal|Circuitos Integrados (múltiplos transistores em um único chip)|
@@ -358,20 +390,23 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 |Confiabilidade|Alta|
 |Custo|Redução significativa, acessível para empresas médias|
 
-**Principais Máquinas**
+#### 4.3.2 Principais Máquinas
+
 * **IBM System/360** (1964): Família de computadores compatíveis entre si (diferentes modelos rodavam o mesmo software). Marcou a consolidação da IBM como líder do setor .
 * **PDP-8** (1965): Minicomputador de baixo custo, popularizou a computação em laboratórios e universidades .
 * **CDC 6600** (1964): Considerado o primeiro supercomputador, projetado por Seymour Cray .
 
-**Inovações Arquiteturais**
+#### 4.3.3 Inovações Arquiteturais
+
 * Compatibilidade entre famílias (software podia migrar entre modelos)
 * Memória cache (introduzida no IBM 360/85)
 * Pipelining (execução simultânea de múltiplas instruções em estágios)
 * Multiprocessamento (múltiplas CPUs compartilhando memória)
 * Sistemas operacionais com time-sharing (compartilhamento de tempo)
 
-### Quarta Geração (1971-presente) - Microprocessadores e VLSI
-**Características Principais**
+### 4.4 Quarta Geração (1971-presente) - Microprocessadores e VLSI
+
+#### 4.4.1 Características Principais
 
 |Aspecto|Descrição|
 |-------|---------|
@@ -384,14 +419,16 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 |Confiabilidade|Altíssima|
 |Custo|Acessível ao consumidor final|
 
-**Principais Marcos**
+#### 4.4.2 Principais Marcos
+
 * **Intel 4004 (1971)**: Primeiro microprocessador comercial (4 bits)
 * **Intel 8080 (1974)**: Primeiro microprocessador de 8 bits de uso geral
 * **IBM PC (1981)**: Popularizou o computador pessoal
 * **Apple Macintosh (1984)**: Popularizou a interface gráfica
 * **Processadores x86, ARM (décadas seguintes)**: Dominaram os mercados de PC e dispositivos móveis
 
-**Inovações Arquiteturais**
+#### 4.4.3 Inovações Arquiteturais
+
 * Microprocessadores com milhões (hoje bilhões) de transistores
 * Memória cache hierárquica (L1, L2, L3)
 * Pipelines superescalares (múltiplas instruções por ciclo)
@@ -403,7 +440,7 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 >**Extensões e o Presente**
 Muitos autores consideram uma Quinta Geração (computação paralela massiva, inteligência artificial, computação quântica) ou até mesmo uma Sexta Geração (computação ubíqua, IoT, IA integrada). No entanto, a classificação tradicional vai até a quarta geração, com as demais sendo tratadas como desdobramentos da era dos microprocessadores.
 
-### Tabela Síntese: Gerações de Computadores
+### 4.5 Tabela Síntese: Gerações de Computadores
 
 |Geração|Período|Tecnologia Central|Componentes por Chip|Arquitetura Principal|Representantes|
 |--|---------|--------|---|------------------------|---------------|
@@ -413,6 +450,7 @@ Muitos autores consideram uma Quinta Geração (computação paralela massiva, i
 |4ª|1971-presente|Microprocessadores (VLSI)|Milhões a bilhões|Barramentos hierárquicos modernos|Intel x86, ARM, Apple M|
 
 ## 5- Arquitetura x Organização
+
 Para entender a diferença, é preciso entender também a **Anatomia do Computador**.
 ### Abordagem de cima para baixo
 Começamos pelo sistema inteiro e depois os dividimos em subpartes e em cada nível é preciso entender duas coisas:

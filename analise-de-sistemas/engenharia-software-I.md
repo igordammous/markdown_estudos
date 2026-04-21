@@ -17,6 +17,7 @@ Vale ressaltar que através do tempo algumas definições foram mudadas ou atual
 | Inteligência Artificial | Utiliza algoritmos não numéricos (como lógica simbólica, redes neurais) para resolver problemas complexos que não são passíveis de computação direta | Sistemas especialistas (para diagnóstico médico), Chatbots (ex: ChatGPT), Sistemas de reconhecimento facial, Algoritmos de robótica | 
 
 #### Por que a classificação mudou?
+
 A principal razão para essa evolução é o próprio avanço da tecnologia. O software se tornou muito mais complexo e "híbrido". A engenharia de software é uma ciência viva e **seus conceitos se atualizam para refletir a realidade do mercado**. Por exemplo:
 
 * **Ferramentas de Programação**: Hoje, um compilador (software de sistema) é desenvolvido e usado dentro de um ambiente de desenvolvimento (IDE), que é um Software de Aplicação. Sua natureza dupla dificulta uma classificação única e isolada .
@@ -26,6 +27,7 @@ A principal razão para essa evolução é o próprio avanço da tecnologia. O s
 * **Convergência**: Um software embutido no seu carro (categoria clássica) hoje pode se conectar à internet, receber atualizações (como um software de sistema) e rodar aplicativos (como o GPS). As fronteiras ficaram muito mais tênues .
 
 ## 2. Etapa de Vida de um Software, teoria e na prática.
+
 Na **teoria**, a engenharia de software abrange e é responsável por todas as etapas do ciclo de vida de um software. O objetivo da **engenharia de software** é justamente aplicar uma *abordagem sistemática, disciplinada e quantificável ao desenvolvimento, operação e manutenção* do software. Ou seja, ela não se preocupa apenas com a programação (codificação), mas com o processo como um todo.
 
 <div style = "text-align: center;">
@@ -34,41 +36,51 @@ Na **teoria**, a engenharia de software abrange e é responsável por todas as e
 *Imagem 1 - Ciclo de Vida de um Software*.
 </div>
 
-### Planejamento 
+### 2.1 Planejamento
+
 O planejamento é a fase inicial e talvez a *mais crítica* do ciclo de vida de um software. Ele não só *estabelece uma direção clara*, como também *ajuda a evitar problemas futuros*, garantindo que todas as partes envolvidas estejam alinhadas e cientes de suas responsabilidades e expectativas.**É nessa etapa que as bases para todo o projeto são estabelecidas.** E essa etapa é dividida em alguns pontos:
+
 * **Identificação das necessidades e requisitos do projeto**: Antes de iniciar o desenvolvimento é **fundamental compreender as necessidades dos stakeholders e dos usuários finais**. Ela é obtida através de reuniões, entrevistas e pesquisas.
 * **Definição dos objetivos de maneira clara e o escopo do trabalho que será realizado**: Após identificar as necessidades, **os objetivos** do projeto devem ser definidos, eles precisam ser **claros, específicos, mensuráveis, alcançáveis, relevantes e temporais(*SMART*)**. E o **escopo** é determinado para que se entenda o que está dentro e fora do alcance do desenvolvimento.
 * **Análise da viabilidade e recursos necessários**: Essa análise avalia se o projeto **pode ser realizado**, considerando os *recursos técnicos, financeiros e de tempo*. Pode-se incluir a avaliação de riscos, a alocação de recursos e a análise de custos e benefícios.
 * **Criação de um plano de projeto detalhado**: Esse plano criado engloba todas as **atividades, cronogramas, marcos, recursos e responsabilidades**. Para então ele servir como guia para toda equipe de desenvolvimento e para ser usado pela equipe de monitoramento e controle do progresso do projeto.
 
-### Análise de Requisitos
+### 2.2 Análise de Requisitos
+
 Após a fase de planejamento, é preciso fazer a análise de requisitos, uma etapa crucial para garantir que o software atenda às necessidades dos usuários e stakeholders. Essa fase **envolve uma compreensão detalhada dos requisitos funcionais e não funcionais** do sistema. Ela é fundamental para evitar ambiguidades e mal-entendidos. Uma documentação bem elaborada e a validação contínua com os stakeholders são essenciais para garantir que o desenvolvimento esteja alinhado com as expectativas do cliente.
 Vamos explorar os principais aspectos:
+
 * **Coleta e documentação dos requisitos dos usuários**: A coleta é feita através de reuniões, questionários, workshops e reuniões com os stakeholders. E é essencial documentar todas as expectativas e necessidades dos usuários.
 * **Entrevistas, questionários e reuniões com stakeholders**: Essas técnicas ajudam a identificar os requisitos específicos e expectativas dos diferentes grupos de interesse. As *entrevistas* individuais podem *revelar insights detalhados*, enquanto os *workshops* colaborativos podem *ajudar a alinhar diferentes perspectivas*.
 * **Criação de um documento de requisitos de software (SRS)**: O **SRS** é um documento formal que **descreve todas as funcionalidades e restrições do sistema**. Ele serve como uma *referência para todas as fases subsequentes do SDLC* e garante que todos os envolvidos tenham uma compreensão comum do que será desenvolvido. E muitas vezes serve como base para contrato entre cliente e equipe de desenvolvimento.
 * **Importância de entender as necessidades dos usuários finais**: A análise de requisitos precisa focar nas necessidades reais dos usuários finais, garantindo que o software seja útil e relevante. Uma compreensão inadequada dos requisitos pode levar a retrabalho e insatisfação do cliente.
 
-### Design do sistema
+### 2.3 Design do sistema
+
 Com os requisitos claramente definidos, o próximo passo é transformar esses requisitos em um design detalhado do sistema. A fase de design do sistema **envolve a criação da arquitetura do software, a definição das interfaces de usuário e a modelagem dos dados**. Ela é crítica para garantir que a solução técnica seja robusta e alinhada com os requisitos de negócio. Quando bem planejado **facilita a implementação** e reduz o risco de problemas técnicos durante o desenvolvimento.
 Vejamos a seguir os detalhes:
+
 * **Design de arquitetura do sistema**: A arquitetura do sistema **define a estrutura geral do software**, incluindo a divisão em módulos ou componentes, a interação entre eles e a escolha de tecnologias e frameworks. Uma boa arquitetura é **fundamental para garantir a escalabilidade**, desempenho e manutenibilidade do software.
 * **Design de interfaces de usuário (UI/UX)**: O design de interfaces de usuário **foca na criação de uma experiência de usuário intuitiva e eficiente**. Pode-se envolver a criação de wireframes, protótipos e a definição de padrões de design. O objetivo é garantir que o software seja fácil de usar e atenda às necessidades dos usuários.
 * **Modelagem de dados e design de banco de dados**: A modelagem de dados envolve a **definição das estruturas de dados necessárias para suportar as funcionalidades do sistema**. O design do banco de dados inclui a criação de diagramas de entidade-relacionamento (ERD) e a definição de tabelas, chaves e relacionamentos.
 * **Criação de protótipos e wireframes**: Protótipos e wireframes são ferramentas importantes para **visualizar e validar o design do sistema antes da implementação**. Eles permitem que os stakeholders forneçam feedback antecipado e façam ajustes antes que o desenvolvimento real comece.
 
-### Implementação
+### 2.4 Implementação
+
 A fase de implementação é para que as ideias e os planos se transformem em código funcional. Nessa etapa, os **desenvolvedores começam a codificar o software de acordo com o design e os requisitos previamente definidos**. Por isso é a etapa em que a maior parte do esforço de desenvolvimento é concentrada. É crucial **manter a comunicação e a colaboração eficazes** entre os membros da equipe para garantir que o software seja desenvolvido de acordo com os padrões e requisitos estabelecidos.
 Vamos explorar os principais aspectos da fase:
+
 * **Codificação e desenvolvimento de software**: Os desenvolvedores utilizam linguagens de programação e ferramentas de desenvolvimento para escrever o código-fonte do software. A implementação deve seguir os padrões de codificação e práticas recomendadas para garantir a qualidade do código.
 * **Uso de metodologias de desenvolvimento (Ágil, Scrum, Waterfall, etc.)**: A escolha da metodologia de desenvolvimento **impacta diretamente a maneira como o trabalho é organizado e executado**. Metodologias ágeis, como Scrum, permitem entregas incrementais e feedback contínuo, enquanto o Waterfall segue um processo linear e sequencial.
 * **Ferramentas e ambientes de desenvolvimento**: As ferramentas de desenvolvimento incluem IDEs (Integrated Development Environments), sistemas de controle de versão e plataformas de integração contínua (CI). Ambientes de desenvolvimento configurados corretamente são essenciais para a produtividade e colaboração da equipe.
 * **Boas práticas de programação e controle de versão**: Boas práticas incluem o **uso de padrões de codificação, revisões de código, testes automatizados e documentação clara**. O controle de versão permite que os desenvolvedores colaborem de forma eficaz, rastreando mudanças no código e revertendo a versões anteriores, se necessário.
 
-### Testes
+### 2.5 Testes
+
 A fase de testes é essencial para garantir que o software desenvolvido esteja **livre de erros e funcione conforme esperado**. Essa etapa **envolve a verificação e validação do software** por meio de diversos tipos de testes. E é crucial para assegurar que o software seja robusto e esteja pronto para a implantação. Quando bem planejados e executados ajudam a evitar problemas futuros, economizando tempo e recursos a longo prazo.
 
-#### Tipos de Testes (Unitário, Integração, Sistema, Aceitação):
+#### 2.5.1 Tipos de Testes (Unitário, Integração, Sistema, Aceitação):
+
 1. **Testes Unitários**: Testam individualmente pequenas partes do código (funções, métodos) para garantir que cada unidade funcione corretamente.
 2. **Testes de Integração**: Verificam a interação entre diferentes módulos ou componentes para garantir que funcionem bem juntos.
 3. **Testes de Sistema**: Avaliam o sistema completo em um ambiente que simula a produção, verificando se o software atende aos requisitos especificados.
@@ -76,20 +88,24 @@ A fase de testes é essencial para garantir que o software desenvolvido esteja *
     * **Importância de garantir a qualidade e funcionalidade do software**: Testes rigorosos são necessários para identificar e corrigir bugs, garantindo que o software seja confiável, eficiente e seguro. A qualidade do software afeta diretamente a satisfação do usuário e a reputação da empresa.
     * **Processo de detecção e correção de bugs**: Bugs identificados durante os testes são registrados, priorizados e corrigidos pelos desenvolvedores. Um ciclo de repetição de teste e correção continua até que o software atenda aos critérios de qualidade estabelecidos.
 
-### Implantação
+### 2.6 Implantação
+
 A fase de implantação é caracterizada pelo software desenvolvido, testado e colocado em uso no ambiente de produção. Essa fase é crucial para garantir que o software esteja disponível e funcionando conforme o esperado para os usuários finais. Ela exige um planejamento meticuloso e uma execução cuidadosa para minimizar o impacto nos usuários e garantir uma transição suave para o novo sistema.
 
 Vamos explorar os principais aspectos desta fase:
+
 * **Preparação para o lançamento do software:** Antes do lançamento, é essencial realizar verificações finais e garantir que todos os componentes do software estejam prontos. A validação final do código, a configuração do ambiente de produção e a preparação da infraestrutura necessária, são algumas estratégias usadas.
 * **Monitoramento e suporte pós-implantação**: Após a implantação, é vital monitorar o desempenho do software em tempo real para detectar e resolver quaisquer problemas rapidamente. Pode-se incluir o uso de ferramentas de monitoramento e a configuração de alertas para falhas críticas.
 * **Importância do treinamento de usuários finais**: Para garantir que os usuários finais possam utilizar o software de maneira eficaz, é necessário fornecer treinamento adequado. Estão inclusos a documentação, os tutoriais, os workshops e o suporte técnico contínuo.
 
-### Manutenção
+### 2.7 Manutenção
+
 A fase de manutenção é **contínua e começa imediatamente após a implantação** do software. Nesta etapa, o foco é garantir que o software continue a funcionar corretamente e a atender às necessidades dos usuários ao longo do tempo. Ela garante que o software **permaneça relevante e funcional ao longo do tempo**, adaptando-se às novas necessidades e mantendo um alto nível de satisfação do usuário.
 
 Vamos explorar os principais aspectos dessa etapa:
 
 Tipos de manutenção (Corretiva, Adaptativa, Perfectiva, Preventiva):
+
 1. **Manutenção corretiva**: Correção de bugs e problemas que surgem durante o uso do software.
 2. **Manutenção adaptativa**: Ajustes no software para mantê-lo funcional em um ambiente de TI em mudança (como atualizações de sistema operacional ou novas regulamentações).
 3. **Manutenção perfectiva**: Melhorias e otimizações no software para aumentar a eficiência e usabilidade, baseadas no feedback dos usuários.
@@ -99,6 +115,7 @@ Tipos de manutenção (Corretiva, Adaptativa, Perfectiva, Preventiva):
     * **Planejamento para ciclos de atualização futuros**: A manutenção eficaz requer um planejamento contínuo para futuros ciclos de atualização. Esse planejamento inclui a preparação para grandes atualizações de versão e a alocação de recursos para projetos de melhoria contínua.
 
 ## 3. Processos Gerais do Ciclo de Vida de um Software
+
 <div style = "text-align: center;">
 <img src="https://media.licdn.com/dms/image/v2/D4D12AQFSwTQNEVK-Lg/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1666502303386?e=1776902400&v=beta&t=kmeQTt-DNL7XLwm4WE1m0JHhODjfTlerpoxvtL-npFA" alt="Processos Gerais do Ciclo de Vida Software" style="width: 80%" title = "Imagem 2 - Processos Gerais do Ciclo de Vida de um Software"/>
 
@@ -106,6 +123,7 @@ Tipos de manutenção (Corretiva, Adaptativa, Perfectiva, Preventiva):
 </div>
 
 ### 3.1 Processos Fundamentais
+
 São os processos **essenciais para a existência do software**. Eles representam as atividades diretamente ligadas à criação, entrega e operação do produto. Sem eles, simplesmente não há software.
 
 |Processo|Descrição|Atividades Principais|
@@ -117,6 +135,7 @@ São os processos **essenciais para a existência do software**. Eles representa
 |Manutenção|Processo de modificar o software após a entrega.|Correções, adaptações, melhorias, migrações.|
 
 ### 3.2 Processos de Apoio
+
 São os processos que **auxiliam os processos fundamentais** durante toda a execução. Eles são aplicados de forma transversal, ou seja, podem ser acionados em qualquer momento do desenvolvimento ou operação.
 
 |Processo|Descrição|Atividades Principais|
@@ -129,6 +148,7 @@ São os processos que **auxiliam os processos fundamentais** durante toda a exec
 |Gerência de Configuração|Controlar versões e integridade dos artefatos do projeto.|Controle de versão (Git), gerenciamento de mudanças, baseline.|
 
 ### 3.3 Processos Organizacionais
+
 São os processos que atuam no nível da organização como um todo, criando as condições para que os processos fundamentais e de apoio possam ocorrer de forma eficaz e contínua.
 
 |Processo|Descrição|Atividades Principais|
@@ -140,9 +160,11 @@ São os processos que atuam no nível da organização como um todo, criando as 
 |Reúso|Gerenciar ativos reutilizáveis (bibliotecas, componentes, padrões).|Catálogo de componentes, governança de reúso.|
 
 ### 3.4 Como um Influencia o Outro?
+
 A [ISO/IEC 12207](https://www.iso.org/standard/63712.html) considera que esses processos **não são estanques**. Eles formam um **sistema de interdependências**. Um processo mal executado compromete todos os outros. Vamos entender essa dinâmica.
 
 #### 3.4.1 Influência dos Processos Organizacionais sobre os Fundamentais e de Apoio
+
 Os processos organizacionais são o *"ambiente"* onde os demais operam. Eles criam as condições de base.
 
 |Influência|Exemplo Concreto|
@@ -151,7 +173,9 @@ Os processos organizacionais são o *"ambiente"* onde os demais operam. Eles cri
 |Infraestrutura → Testes|Se a organização não provê ambientes de homologação adequados (processo de infraestrutura), os testes (processo d'e apoio) não conseguem ser executados com qualidade, comprometendo a validação.|
 |Melhoria de Processos → Garantia da Qualidade|Se a organização não investe em melhoria contínua, o processo de garantia da qualidade fica engessado, repetindo os mesmos erros de projeto para projeto.|
 |Recursos Humanos → Aquisição|Se a organização não tem pessoas capacitadas em gestão de contratos, o processo de aquisição pode firmar acordos mal estruturados com fornecedores, gerando litígios e atrasos.|
+
 #### 3.4.2 Influência dos Processos Fundamentais sobre os de Apoio e Organizacionais
+
 Os processos fundamentais são os que geram *produtos* e *artefatos concretos*. Eles alimentam os demais com informações e demandas.
 
 |Influência|Exemplo Concreto|
@@ -160,7 +184,9 @@ Os processos fundamentais são os que geram *produtos* e *artefatos concretos*. 
 |Desenvolvimento → Garantia da Qualidade|Se o desenvolvimento não produz testes unitários, o processo de garantia da qualidade (apoio) precisa investir muito mais tempo em testes de sistema, aumentando custo e prazo.|
 |Operação → Gerência de Configuração|Problemas em produção (falhas, incidentes) geram demandas urgentes para a gerência de configuração (apoio), que precisa controlar versões de hotfix com muito mais rigor e velocidade.|
 |Manutenção → Melhoria de Processos|Se a manutenção (fundamental) identifica que 80% dos bugs vêm de um tipo específico de erro (ex: falta de validação de entrada), essa informação alimenta a melhoria de processos (organizacional) para que os próximos projetos evitem o mesmo padrão.|
+
 #### 3.4.3 Influência dos Processos de Apoio sobre os Fundamentais e Organizacionais
+
 Os processos de apoio são os *"vigilantes"* e *"organizadores"*. Eles garantem que os fundamentais não saiam do controle e geram dados para os organizacionais.
 
 |Influência|Exemplo Concreto|
@@ -171,6 +197,7 @@ Os processos de apoio são os *"vigilantes"* e *"organizadores"*. Eles garantem 
 |Resolução de Problemas → Melhoria de Processos|A análise de causa raiz de um incidente grave revela falhas no processo de aquisição (fundamental). A melhoria de processos (organizacional) revisa o fluxo de contratação de fornecedores.|
 
 #### Diagrama de Influência
+
 Para visualizar melhor, imagine uma **pirâmide de influência**:
 
 ```text
@@ -199,6 +226,7 @@ Para visualizar melhor, imagine uma **pirâmide de influência**:
 ```
 
 #### Exemplo Prático: Como se Aplica em um Aplicativo
+
 Em um projeto de aplicativo por exemplo, temos:
 
 |Tipo de Processo|Exemplo no Seu Projeto|
@@ -217,9 +245,11 @@ Em um projeto de aplicativo por exemplo, temos:
 
 
 ## 4. Métodos Tradicionais de Ciclo de Vida (Não Ágeis)
+
 Antes da popularização das metodologias ágeis, os modelos de processo seguiam abordagens mais estruturadas e sequenciais. Estes são os principais métodos não ágeis:
 
 ### 4.1. Modelo Cascata (Waterfall)
+
 <div style = "text-align: center;">
 <img src="https://engenhariasoftware.wordpress.com/wp-content/uploads/2013/01/cascata.png" alt="Método de Cascata" style="width: 80%" title = "Imagem 3 - Método de Cascata"/>
 
@@ -227,11 +257,13 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 </div>
 
 **O que é**: O modelo mais antigo e clássico. As fases são executadas em sequência rígida: Requisitos → Projeto → Implementação → Testes → Implantação → Manutenção. Tem como características:
+
 * Cada fase só começa quando a anterior é completamente finalizada.
 * Forte ênfase em documentação.
 * O cliente vê o produto funcionando apenas no final do projeto.
 
 **Quando usar**:
+
 * Projetos com requisitos muito bem compreendidos e estáveis.
 * Sistemas críticos onde a segurança exige planejamento exaustivo.
 * Projetos de curta duração e baixa complexidade.
@@ -241,6 +273,7 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 **Desvantagens**: Baixa flexibilidade a mudanças; o cliente só valida no final; problemas descobertos tardiamente são muito caros de corrigir.
 
 ### 4.2. Modelo em V (V-Model)
+
 <div style = "text-align: center;">
 <img src="https://media.brainly.com.br/image/rs:fill/w:640/q:75/plain/https://pt-static.z-dn.net/files/db4/107b9807006564a9c26a4a2ab3b1aee3.png" alt="Método V" style="width: 60%" title = "Imagem 4 - Método de V"/>
 
@@ -262,6 +295,7 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 **Quando usar**: Projetos com alta criticidade (sistemas médicos, aeroespaciais), onde falhas não são toleradas.
 
 ### 4.3 Modelo de Prototipação
+
 <div style = "text-align: center;">
 <img src="https://www.researchgate.net/profile/Junia-Anacleto/publication/224827635/figure/fig1/AS:340265534541824@1458137033750/Figura-2-Modelo-de-processo-Prototipacao-Apoiado-por-Padroes-para-prototipos.png" alt="Método prototipação" style="width: 75%" title = "Imagem 5 - Método de Prototipação"/>
 
@@ -270,12 +304,14 @@ Antes da popularização das metodologias ágeis, os modelos de processo seguiam
 
 A Prototipação é um modelo de processo que **enfatiza a construção de versões experimentais** (protótipos) de um sistema antes de desenvolver o produto final completo. É uma abordagem iterativa que coloca o usuário no centro do processo. A ideia é criar rapidamente um modelo funcional da interface e das principais funcionalidades, permitindo que o usuário "veja" e "toque" no sistema desde cedo. O protótipo não é o produto final, mas uma ferramenta para extrair feedback e refinar os requisitos
 
-#### Tipos de Prototipação
+#### 4.3.1 Tipos de Prototipação
+
 |Tipo|Descrição|Uso Típico|
 |----|---------|----------|
 |Descartável (Throwaway)|Protótipo criado para validar requisitos e depois descartado; o software final é construído do zero|Requisitos muito incertos; validação de conceito|
 |Evolucionária (Evolutionary)|Protótipo é continuamente refinado até se tornar o produto final|Quando os requisitos são razoavelmente conhecidos; projetos menores|
-#### Vantagens e Desvantagens
+
+#### 4.3.2 Vantagens e Desvantagens
 
 |Vantagens|Desvantagens|
 |---------|------------|
@@ -283,7 +319,8 @@ A Prototipação é um modelo de processo que **enfatiza a construção de vers�
 |Feedback constante do usuário desde o início|Pode levar a "scope creep" (aumento descontrolado do escopo)|
 |Identificação precoce de problemas de usabilidade|Se mal gerenciado, pode gerar retrabalho excessivo|
 |Maior satisfação do usuário com o produto final|Pode dar falsa sensação de progresso|
-#### Quando Usar
+
+#### 4.3.3 Quando Usar
 
 * Requisitos vagos ou mal compreendidos
 * Projetos com forte componente de interface com o usuário
@@ -291,6 +328,7 @@ A Prototipação é um modelo de processo que **enfatiza a construção de vers�
 * Quando há necessidade de validação rápida de conceitos
 
 ### 4.4 Modelo RAD(Rapid Application Development)
+
 <div style = "text-align: center;">
 <img src="https://julianakolb.wordpress.com/wp-content/uploads/2013/12/rad.png" alt="Método RAD" style="width: 75%" title = "Imagem 6 - Método RAD"/>
 
@@ -299,7 +337,8 @@ A Prototipação é um modelo de processo que **enfatiza a construção de vers�
 
 O RAD (Desenvolvimento Rápido de Aplicações) foi formalizado por James Martin em 1991 como uma resposta direta ao modelo Cascata, que era criticado por sua rigidez e ineficiência. O RAD é um modelo de processo incremental que enfatiza ciclos de desenvolvimento extremamente curtos (60 a 90 dias) usando construção baseada em componentes.
 
-#### As 5 Fases do RAD (segundo Pressman)
+#### 4.4.1 As 5 Fases do RAD (segundo Pressman)
+
 **O modelo RAD, conforme descrito por Roger S. Pressman, é dividido em 5 fases principais**:
 
 |Fase|Descrição|Atividades Principais|
@@ -309,14 +348,17 @@ O RAD (Desenvolvimento Rápido de Aplicações) foi formalizado por James Martin
 |3. Modelagem do Processo|Transformação dos objetos de dados no fluxo necessário para implementar funções do negócio|Descrições de processamento para adicionar, modificar ou recuperar dados|
 |4. Geração da Aplicação|Construção do software usando ferramentas automatizadas e componentes reutilizáveis|Uso de linguagens de 4ª geração, CASE tools, componentes prontos|
 |5. Teste e Modificação|Testes e integração de todos os componentes|Como muitos componentes já estão testados (reuso), o tempo total de teste é reduzido|
-#### Características Fundamentais do RAD
+
+#### 4.4.2 Características Fundamentais do RAD
+
 * **Time-boxing**: Prazos fixos e curtos (geralmente 60-90 dias) para cada ciclo
 * **Desenvolvimento paralelo**: Múltiplas equipes trabalham em diferentes componentes simultaneamente
 * **Reutilização extensiva**: Aproveitamento de componentes, classes e APIs preexistentes
 * **Alto envolvimento do usuário**: Participação ativa em todas as fases
 * **Foco nas necessidades do negócio**: Excelência técnica é secundária em relação ao atendimento ao usuário
 
-#### Vantagens e Desvantagens
+#### 4.4.3 Vantagens e Desvantagens
+
 |Vantagens|Desvantagens|
 |---------|------------|
 |Desenvolvimento acelerado (60-90 dias)|Requer equipes experientes e bem treinadas|
@@ -324,21 +366,25 @@ O RAD (Desenvolvimento Rápido de Aplicações) foi formalizado por James Martin
 |Feedback constante e relevante do usuário|Exige recursos humanos suficientes para múltiplas equipes|
 |Redução de codificação manual|Pode acumular dívida técnica se não houver disciplina|
 |Progresso mensurável a cada ciclo|Menos ênfase em planejamento e documentação formal|
-#### Quando Usar RAD
+
+#### 4.4.4 Quando Usar RAD
+
 * Projetos com escopo modularizável (pode ser dividido em componentes independentes)
 * Equipes experientes com acesso a ferramentas CASE/4GL
 * Orçamento suficiente para ferramentas e múltiplas equipes
 * Prazos muito curtos (semanas a poucos meses)
 * Disponibilidade de usuários para participação contínua
 
-#### Quando NÃO Usar RAD
+#### 4.4.5 Quando NÃO Usar RAD
+
 * Alto risco técnico (teste de novas tecnologias)
 * Projetos de grande escala (exigem recursos humanos massivos)
 * Sistemas com forte interdependência entre módulos
 * Equipe pequena ou inexperiente
 * Projetos que exigem documentação extensiva e formal
 
-#### Ferramentas e Técnicas de 4GL no Contexto RAD
+#### 4.4.6 Ferramentas e Técnicas de 4GL no Contexto RAD
+
 O RAD frequentemente utiliza ferramentas de 4ª geração como parte essencial de sua estratégia de desenvolvimento rápido:
 
 |Ferramenta/Técnica|Descrição|Exemplos|
@@ -351,7 +397,8 @@ O RAD frequentemente utiliza ferramentas de 4ª geração como parte essencial d
 
 >Nota importante: O RAD frequentemente é confundido ou tratado como sinônimo de "low-code". Na verdade, o RAD é uma metodologia que utiliza ferramentas de 4GL, low-code e outras técnicas para atingir seus objetivos de rapidez. Low-code é uma das ferramentas que viabilizam o RAD
 
-### 4.5. Modelo Evolutivo Incremental
+### 4.5 Modelo Evolutivo Incremental
+
 <div style = "text-align: center;">
 <img src="https://www.researchgate.net/profile/Washington-Almeida-2/publication/334683819/figure/fig1/AS:784598753636353@1564074328073/Figura-34-Modelo-Incremental-Pressman-2016.jpg" alt="Método Incremental" style="width: 60%" title = "Imagem 7 - Modelo Incremental"/>
 
@@ -361,12 +408,14 @@ O RAD frequentemente utiliza ferramentas de 4ª geração como parte essencial d
 **O que é**: O sistema é construído em partes (incrementos), cada uma entregando um conjunto de funcionalidades. O primeiro incremento é o núcleo básico, e os seguintes adicionam mais recursos.
 
 **Características**:
+
 * Entrega parcial e funcional desde o início.
 * Combina aspectos lineares (planejamento) com entregas iterativas.
 
 **Vantagens**: Cliente começa a usar valor mais cedo; reduz risco de entregar algo totalmente fora do esperado.
 
 ### 4.6. Modelo Evolutivo Espiral
+
 <div style = "text-align: center;">
 <img src="https://engenhariasoftware.wordpress.com/wp-content/uploads/2013/02/espiral.gif" alt="Método Espiral" style="width: 60%" title = "Imagem 8 - Modelo Espiral"/>
 
@@ -383,10 +432,12 @@ O RAD frequentemente utiliza ferramentas de 4ª geração como parte essencial d
 **Quando usar**: Projetos grandes, complexos e de alto risco (ex: sistemas de defesa, infraestrutura crítica).
 
 ### 4.7 Técnicas de 4ª Geração (4GL)
+
 O que são Linguagens de 4ª Geração?
 As linguagens de 4ª Geração (4GL) são linguagens de programação de alto nível de abstração, mais próximas da linguagem humana do que as linguagens de 3ª geração (como Java, C++, Python). Elas foram desenvolvidas para reduzir o esforço e o custo do desenvolvimento de software, permitindo que os programadores especifiquem o que fazer, em vez de como fazer.
 
-#### Comparação entre Gerações de Linguagens
+#### 4.7.1 Comparação entre Gerações de Linguagens
+
 |Geração|Características|Exemplos|
 |-------|---------------|--------|
 |1GL|Linguagem de máquina, binário, mais próximo do hardware|Código binário|
@@ -395,20 +446,24 @@ As linguagens de 4ª Geração (4GL) são linguagens de programação de alto n�
 |4GL|Alto nível de abstração, focadas em tarefas específicas (bancos de dados, relatórios, GUIs)|SQL, Visual Basic, Delphi, PowerBuilder, MATLAB|
 |5GL|Usadas principalmente em IA e sistemas especialistas|Prolog, OPS5, Mercury|
 
-#### A Evolução: Low-Code e No-Code
+#### 4.7.2 A Evolução: Low-Code e No-Code
+
 As técnicas de 4ª geração evoluíram naturalmente para o que hoje conhecemos como plataformas de low-code e no-code. Essas plataformas:
+
 * Permitem desenvolvimento com mínimo de codificação manual
 * Utilizam interfaces visuais de arrastar-e-soltar
 * Automatizam grande parte do ciclo de desenvolvimento
 * Têm ganhado enorme popularidade (mercado projetado para crescer 42.8% ao ano entre 2022-2027)
 
 ## 5. O que são Requisitos de Software e Regras de Negócio?
+
 Antes de detalhar as classificações, é essencial entender a diferença entre esses dois conceitos, que muitas vezes se confundem na prática.
 
 ### 5.1 Regras de Negócio
+
 **Definição**: São **políticas**, **diretrizes**, **condições** e **restrições** que governam **como o negócio opera**, independentemente de qualquer sistema de software. Elas expressam a lógica do negócio, não a lógica do sistema.
 
-#### Características:
+#### 5.1.1 Características
 
 * Existem mesmo sem computadores (podem ser aplicadas manualmente).
 * São definidas pelos especialistas do negócio (stakeholders).
@@ -421,9 +476,10 @@ Antes de detalhar as classificações, é essencial entender a diferença entre 
 >"Um consumidor pode favoritar produtos e receber alertas de preço mínimo."
 
 ### 5.2 Requisitos de Software
+
 **Definição**: São descrições do que o **sistema** de software **deve fazer** para **atender às regras de negócio e às necessidades dos usuários**. Eles são a ponte entre o negócio e a tecnologia.
 
-#### Características:
+#### 5.2.1 Características
 
 * Existem porque o sistema de software existe.
 * São definidos por analistas, engenheiros e usuários.
@@ -435,7 +491,8 @@ Antes de detalhar as classificações, é essencial entender a diferença entre 
 > "O sistema deve impedir o cadastro de uma promoção com data final superior a 15 dias a partir da data atual."
 > "O sistema deve enviar uma notificação push ao consumidor quando o preço de um produto favoritado atingir ou ficar abaixo do valor mínimo definido."
 
-#### A Relação entre Regras de Negócio e Requisitos
+#### 5.2.2 A Relação entre Regras de Negócio e Requisitos
+
 ```text
 Regra de Negócio (o que o negócio exige)
         ↓
@@ -443,7 +500,9 @@ Deriva um ou mais Requisitos (o que o sistema deve fazer para atender à regra)
         ↓
 Implementação técnica (código, banco de dados, APIs)
 ```
-#### Exemplo prático completo:
+
+#### 5.2.3 Exemplo prático completo
+
 |Nível|Descrição|
 |-----|---------|
 |Regra de Negócio|"Um consumidor não pode avaliar um mercado sem ter interagido com ele."|
@@ -451,8 +510,10 @@ Implementação técnica (código, banco de dados, APIs)
 |Requisito Funcional derivado|"O sistema deve permitir que um consumidor avalie um mercado apenas se houver pelo menos uma interação registrada nos últimos 30 dias."|
 |Requisito Não Funcional derivado|"Os registros de interação devem ser armazenados com timestamp e retidos por no mínimo 90 dias para fins de auditoria."|
 
-#### Classificação
-##### 1. Quanto ao Nível de Detalhamento
+#### 5.2.4 Classificação
+
+##### 5.2.4.1 Quanto ao Nível de Detalhamento
+
 |Tipo|Descrição|Público-Alvo|Exemplo|
 |----|---------|------------|-------|
 |Requisitos de Usuário|Declarações em linguagem natural (não técnica) sobre quais serviços o sistema deve oferecer e sob quais restrições. Escritos para os usuários.|Clientes, usuários finais, gestores de negócio|"O aplicativo deve permitir que o consumidor busque produtos por nome, código de barras ou categoria."|
@@ -460,19 +521,21 @@ Implementação técnica (código, banco de dados, APIs)
 
 > Relação entre eles: Os requisitos de sistema são uma expansão técnica dos requisitos de usuário. Um único requisito de usuário pode gerar dezenas de requisitos de sistema.
 
-##### 2. Quanto à Natureza (Funcionais vs. Não Funcionais)
+##### 5.2.4.2 Quanto à Natureza (Funcionais vs. Não Funcionais)
+
 Esta é a classificação mais clássica e amplamente utilizada.
 
-**2.1 Requisitos Funcionais**
+**Requisitos Funcionais**
 Definição: Descrevem o que o sistema deve fazer — as funcionalidades, serviços, comportamentos e reações do sistema a estímulos específicos.
 
 Características:
+
 * Expressam ações, cálculos, processamentos.
 * Descrevem entradas, saídas e comportamentos.
 * São "visíveis" para o usuário (na maioria dos casos).
 * Podem ser testados funcionalmente (se a ação ocorre ou não).
 
-**2.2 Requisitos Não Funcionais (ou Requisitos de Qualidade)**
+**Requisitos Não Funcionais (ou Requisitos de Qualidade)**
 Definição: Descrevem como o sistema deve ser — atributos de qualidade, restrições e propriedades que o sistema deve possuir.
 
 Características:
@@ -495,20 +558,24 @@ Características:
 |Escalabilidade|Capacidade de crescer sem degradação|"O sistema deve suportar 10.000 requisições por segundo em horários de pico."|
 |Conformidade|Adequação a leis, normas e padrões|"O sistema deve estar em conformidade com a LGPD."|
 
-##### 3. Quanto ao Escopo ou Abrangência
+##### 5.2.4.3 Quanto ao Escopo ou Abrangência
+
 |Tipo|Descrição|Exemplo|
 |----|---------|-------|
 |Requisitos de Produto|Descrevem características do produto de software em si. São os requisitos "tradicionais" (funcionais + não funcionais).|"O app deve permitir busca por voz."|
 |Requisitos de Projeto|Restrições impostas ao processo de desenvolvimento ou ao ambiente de entrega.|"O desenvolvimento deve usar a linguagem TypeScript." "O código deve ser armazenado no repositório GitHub da empresa."|
 |Requisitos de Interface|Especificam como o sistema se conecta e interage com outros sistemas, hardware ou usuários.|"O app deve integrar com a API de pagamentos do Stripe." "A tela de cadastro deve seguir o padrão de design do Material Design 3."|
-##### 4. Quanto à Origem ou Fonte
+
+##### 5.2.4.4 Quanto à Origem ou Fonte
+
 |Tipo|Descrição|Exemplo
 |Requisitos de Negócio|Originados das regras de negócio e objetivos estratégicos da organização.|"Aumentar a concorrência entre mercados para reduzir preços da cesta básica."|
 |Requisitos de Usuário|Originados das necessidades, desejos e limitações dos usuários finais.|"Consumidores idosos precisam de fontes grandes e contraste elevado."|
 |Requisitos Regulatórios|Originados de leis, normas técnicas e órgãos reguladores.|"Cumprir a LGPD para dados pessoais." "Atender ao Código de Defesa do Consumidor."|
 |Requisitos de Sistema|Originados de restrições técnicas do ambiente (hardware, software, rede).|"O backend deve ser compatível com o ambiente Linux da AWS."|
 
-##### 5. Quanto à Prioridade (MoSCoW)
+##### 5.2.4.5 Quanto à Prioridade (MoSCoW)
+
 Esta classificação ajuda na negociação de escopo e planejamento de entregas.
 
 |Sigla|Significado|Descrição|Exemplo|
@@ -517,14 +584,17 @@ Esta classificação ajuda na negociação de escopo e planejamento de entregas.
 |S|Should have (Deveria ter)|Muito importante, mas não crítico para o lançamento. Pode ser entregue depois.|"Buscar por código de barras."|
 |C|Could have (Poderia ter)|Desejável, mas de baixo impacto. Implementado se houver tempo/recurso.|"Buscar por imagem do produto."|
 |W|Won't have (Não terá agora)|Explicitamente excluído do escopo atual, mas pode ser considerado no futuro.|"Comparar preços de produtos orgânicos certificados."|
-##### 6. Quanto à Estabilidade
+
+##### 5.2.4.6 Quanto à Estabilidade
+
 |Tipo|Descrição|Exemplo|
 |----|---------|-------|
 |Requisitos Estáveis|Pouco prováveis de mudar durante o projeto. Geralmente regras de negócio centrais.|"Um produto é identificado pelo código EAN."|
 |Requisitos Voláteis|Sujeitos a mudanças frequentes, muitas vezes durante o desenvolvimento.|"O layout da tela de resultados de busca." "A ordem dos filtros disponíveis."|
 |Requisitos Emergentes|Descobertos ou criados durante o desenvolvimento, não previstos inicialmente.|"Os usuários pediram para comparar até 5 mercados lado a lado."|
 
-##### 7. Quanto à Qualidade (Atributos Desejáveis)
+##### 5.2.4.7 Quanto à Qualidade (Atributos Desejáveis)
+
 Esta classificação se refere a como um bom requisito deve ser escrito (características de qualidade). É uma classificação "metalinguística" — sobre o requisito em si, não sobre o sistema.
 
 |Atributo|Descrição|Contraexemplo (ruim)|Exemplo (bom)|
@@ -537,7 +607,8 @@ Esta classificação se refere a como um bom requisito deve ser escrito (caracte
 |Rastreável|Pode ser vinculado a fontes (regra de negócio, stakeholder, caso de uso) e a artefatos de projeto/teste.|Requisito sem identificador único e sem referência a fonte.|*"RF-034 (derivado da RN-12): ..."*|
 |Modificável|Pode ser alterado sem conflitos com outros requisitos.|Requisitos redundantes ou acoplados.|Cada requisito é único e referenciado por ID|
 
-##### 8. Por Classe: Funcionais (Evidente, Oculto e Decorativo) - Similar ao Item 2
+##### 5.2.4.8 Por Classe: Funcionais (Evidente, Oculto e Decorativo) - Similar ao Item 2
+
 |Termo|Significado Prático|Equivalente na Literatura|Exemplo|
 |-----|-------------------|-------------------------|-------|
 |Evidente|Funcionalidade que o usuário vê e aciona diretamente|Requisito Funcional explícito; caso de uso primário|"Buscar produto por nome" — o usuário digita e vê o resultado|
@@ -546,7 +617,8 @@ Esta classificação se refere a como um bom requisito deve ser escrito (caracte
 
 Esta subdivisão, evidente, oculto e decorativo, não está presente em normas como IEEE 830 ou ISO 25010, mas é uma forma válida e didática de detalhar os requisitos funcionais. Ela pode ser vista como uma prática de mercado adotada por algumas organizações para refinar a elicitação.
 
-##### 9. Por Classe: Não Funcionais - Similar ao Item 2
+##### 5.2.4.9 Por Classe: Não Funcionais - Similar ao Item 2
+
 Essa classificação está alinhada com a literatura. Os requisitos **não funcionais** (também chamados de atributos de qualidade) são amplamente reconhecidos em todas as referências. O que está definido como ***"Detalhe"*** (Usuário, Sistema, Interface, Hardware, Software, Comunicação) é, na verdade, uma forma de detalhar os requisitos não funcionais por escopo ou tipo de interface, o que também é recomendado pelo padrão IEEE 830.
 
 |Detalhe|Corresponde a|Exemplo|
@@ -557,17 +629,20 @@ Essa classificação está alinhada com a literatura. Os requisitos **não funci
 |Comunicação|Protocolos, APIs, rede|"APIs RESTful com JSON, timeout de 5s"|
 
 O IEEE 830 na seção de **"Interfaces Externas"**, exige exatamente a especificação de:
+
 * Interfaces de usuário
 * Interfaces de hardware
 * Interfaces de software
 * Interfaces de comunicação 
 
-##### 10. Por Classe: Inversos
+##### 5.2.4.10 Por Classe: Inversos
+
 Esta é uma classificação **mais avançada e menos comum, mas extremamente útil**. Há referência que se assemelham aos requisitos inversos (também chamados de negative requirements) na literatura de engenharia de segurança e sistemas críticos e na IEEE 830 menciona que o escopo do produto deve descrever **"o que o software não fará, se for o caso"**, mas não se trata de uma classificação *"oficial"*, como os não funcionais.
 
 >**Exemplo**: "O sistema não deve permitir que um cliente visualize dados de faturamento de outro cliente concorrente."
 
-##### 11. Por Proridade: Essencial, Importante e Desejável
+##### 5.2.4.11 Por Proridade: Essencial, Importante e Desejável
+
 Esta classificação está diretamente alinhada com as recomendações do IEEE 830 e da engenharia de requisitos .
 
 |Termo|Equivalente na Literatura|Significado|
@@ -578,8 +653,10 @@ Desejável|Optional, nice-to-have|Seria bom ter, mas não é crítico; pode ser 
 
 A norma IEEE 830 afirma explicitamente que "cada requisito deve identificar seu grau de importância... essencial, condicional, opcional"
 
-##### Correspondência
+##### 5.2.4.12 Correspondência
+
 Mapa de Correspondência Completo
+
 |Classificação|Presente em Normas?|Presente em Bibliografia Clássica?|Status|
 |-------------|-------------------|----------------------------------|------|
 |Funcionais|Sim (IEEE 830, ISO 25010)|Sim (Pressman, Sommerville)|✅ Padrão|
@@ -591,8 +668,10 @@ Mapa de Correspondência Completo
 |Prioridade (Essencial/Importante/Desejável)|Sim (IEEE 830)|Sim (Sommerville, Paula Filho) |✅ Padrão|
 |Detalhe (Usuário/Hardware/Software/Comunicação)|Sim (IEEE 830 - Interfaces Externas) |Sim|✅ Padrão|
 
-##### Exemplo concreto dentro do ERS(SRS)
+##### 5.2.4.13 Exemplo concreto dentro do ERS(SRS)
+
 Todos esses requisitos (com suas classificações) são organizados em um documento chamado Especificação de Requisitos de Software (ERS) ou Software Requirements Specification (SRS), conforme padrão IEEE 830. Uma estrutura típica do ERS inclui:
+
 * Introdução (propósito, escopo, definições)
 * Descrição Geral (perspectiva do produto, usuários, restrições)
 * Requisitos Funcionais (listados com IDs, descrições, prioridades)
@@ -616,46 +695,59 @@ Todos esses requisitos (com suas classificações) são organizados em um docume
 |Qualidade|Verificável (pode-se testar os 3 segundos), Claro (sem ambiguidade), Completo (cobre caso sem GPS)|
 
 ## 6. Especificação de Requisitos de Software (ERS)
+
 ### 6.1 Parte 1: Informações que Devem ser Coletadas
+
 O Documento de **Especificação de Requisitos de Software (ERS)** , também conhecido como *SRS (Software Requirements Specification)* conforme o padrão IEEE 830 (e sua sucessora ISO/IEC/IEEE 29148), deve conter um conjunto específico de informações. Suas categorias são:
 
 #### 6.1.1 Informações sobre o Propósito e Escopo
+
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
-Propósito do sistema|Por que o software está sendo desenvolvido? Qual problema ele resolve?|"Facilitar a comparação de preços de produtos da cesta básica entre mercados, aumentando a concorrência e beneficiando consumidores."
-Escopo funcional|Quais funções estão DENTRO e quais estão FORA do sistema?|Dentro: busca, comparação, cadastro de preços, promoções. Fora: entrega de produtos, pagamento in-app (inicialmente).
-Objetivos de negócio|Quais metas a organização espera alcançar com o sistema?|"Aumentar em 20% a economia média do consumidor na cesta básica em 12 meses."
-Partes interessadas (stakeholders)|Quem tem interesse ou será afetado pelo sistema?|Consumidores, mercados (pequenos, médios, grandes), desenvolvedores, investidores, órgãos reguladores (LGPD).
+|Propósito do sistema|Por que o software está sendo desenvolvido? Qual problema ele resolve?|"Facilitar a comparação de preços de produtos da cesta básica entre mercados, aumentando a concorrência e beneficiando consumidores."|
+|Escopo funcional|Quais funções estão DENTRO e quais estão FORA do sistema?|Dentro: busca, comparação, cadastro de preços, promoções. Fora: entrega de produtos, pagamento in-app (inicialmente).|
+|Objetivos de negócio|Quais metas a organização espera alcançar com o sistema?|"Aumentar em 20% a economia média do consumidor na cesta básica em 12 meses."|
+|Partes interessadas (stakeholders)|Quem tem interesse ou será afetado pelo sistema?|Consumidores, mercados (pequenos, médios, grandes), desenvolvedores, investidores, órgãos reguladores (LGPD).|
+
 #### 6.1.2 Informações sobre os Usuários
-Informação|O que deve ser levantado|Exemplo|
+
+|Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
-Perfis de usuário|Quais os diferentes tipos de usuários?|Consumidor (pessoa física), Mercado (estabelecimento), Administrador (plataforma), Anunciante (futuro).
-Características demográficas|Idade, escolaridade, familiaridade com tecnologia, localização geográfica|Consumidor: todas as idades, incluindo idosos com baixa familiaridade digital. Mercado: pequenos e médios empresários.
-Necessidades e dores|O que cada perfil precisa resolver? O que os frustra hoje?|Consumidor: "não sei se o preço está justo", "perco tempo indo de mercado em mercado". Mercado: "não consigo atrair novos clientes".
-Restrições e limitações|Quais as limitações de cada perfil?|Consumidor idoso: letras pequenas, gestos complexos. Mercado pequeno: orçamento limitado para TI.
+|Perfis de usuário|Quais os diferentes tipos de usuários?|Consumidor (pessoa física), Mercado (estabelecimento), Administrador (plataforma), Anunciante (futuro).|
+|Características demográficas|Idade, escolaridade, familiaridade com tecnologia, localização geográfica|Consumidor: todas as idades, incluindo idosos com baixa familiaridade digital. Mercado: pequenos e médios empresários.|
+|Necessidades e dores|O que cada perfil precisa resolver? O que os frustra hoje?|Consumidor: "não sei se o preço está justo", "perco tempo indo de mercado em mercado". Mercado: "não consigo atrair novos clientes".|
+|Restrições e limitações|Quais as limitações de cada perfil?|Consumidor idoso: letras pequenas, gestos complexos. Mercado pequeno: orçamento limitado para TI.|
+
 #### 6.1.3 Informações sobre o Ambiente e Contexto
-Informação|O que deve ser levantado|Exemplo|
+
+|Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Ambiente operacional|Onde o sistema será executado?|Android/iOS (app), navegadores web (painel do mercado), servidores em nuvem (backend).|
 |Restrições de hardware/software|Quais dispositivos, sistemas operacionais, navegadores são suportados?|Android 10+, iOS 15+, Chrome 100+, Firefox 110+.|
 |Regulamentações aplicáveis|Quais leis, normas ou certificações o sistema deve atender?|LGPD (Lei Geral de Proteção de Dados), Código de Defesa do Consumidor.|
 |Integrações com sistemas externos|Quais outros sistemas o software precisa conversar?|API de geolocalização (Google Maps), API de validação de CNPJ (Receita Federal), sistemas de pagamento (Stripe/PicPay).|
+
 #### 6.1.4 Informações sobre Funcionalidades (Requisitos Funcionais)
+
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
-|Casos de uso|Quais são as principais interações usuário-sistema?|"Buscar produto por nome", "Cadastrar preço", "Criar promoção", "Comparar preços".
-|Fluxos principais (happy path)|Qual a sequência típica de eventos para uma funcionalidade funcionar?|Usuário abre app → digita "arroz" → vê lista de preços por mercado → clica no menor preço.
-|Fluxos alternativos e exceções|O que acontece em situações não ideais?|Busca sem resultados → sugestão de produtos similares. GPS desligado → solicitar CEP manual.
-|Regras de negócio associadas|Quais regras do negócio esta funcionalidade implementa?|"Promoções duram no máximo 15 dias" → sistema impede cadastro com data final maior.
+|Casos de uso|Quais são as principais interações usuário-sistema?|"Buscar produto por nome", "Cadastrar preço", "Criar promoção", "Comparar preços".|
+|Fluxos principais (happy path)|Qual a sequência típica de eventos para uma funcionalidade funcionar?|Usuário abre app → digita "arroz" → vê lista de preços por mercado → clica no menor preço.|
+|Fluxos alternativos e exceções|O que acontece em situações não ideais?|Busca sem resultados → sugestão de produtos similares. GPS desligado → solicitar CEP manual.|
+|Regras de negócio associadas|Quais regras do negócio esta funcionalidade implementa?|"Promoções duram no máximo 15 dias" → sistema impede cadastro com data final maior.|
+
 #### 6.1.5 Informações sobre Atributos de Qualidade (Requisitos Não Funcionais)
+
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
-|Metas de desempenho|Tempos de resposta, vazão, consumo de recursos.|"Busca em até 2 segundos", *"10.000 requisições/segundo"*.
-|Metas de usabilidade|Facilidade de aprendizado, eficiência, satisfação.|"Novo usuário realiza busca em 2 minutos", "acessibilidade para idosos".
-|Metas de disponibilidade|Percentual de tempo que o sistema deve ficar no ar.|"99,9% de disponibilidade" (menos de 8,76h de indisponibilidade/ano).
-|Metas de segurança|Confidencialidade, integridade, autenticação, autorização.|*"Criptografia TLS 1.2+"*, "2FA para mercados", "logs de auditoria".
-|Metas de manutenibilidade|Facilidade de correção, evolução e teste.|"Cobertura de testes >80%", "código modular".
+|Metas de desempenho|Tempos de resposta, vazão, consumo de recursos.|"Busca em até 2 segundos", *"10.000 requisições/segundo"*.|
+|Metas de usabilidade|Facilidade de aprendizado, eficiência, satisfação.|"Novo usuário realiza busca em 2 minutos", "acessibilidade para idosos".|
+|Metas de disponibilidade|Percentual de tempo que o sistema deve ficar no ar.|"99,9% de disponibilidade" (menos de 8,76h de indisponibilidade/ano).|
+|Metas de segurança|Confidencialidade, integridade, autenticação, autorização.|*"Criptografia TLS 1.2+"*, "2FA para mercados", "logs de auditoria".|
+|Metas de manutenibilidade|Facilidade de correção, evolução e teste.|"Cobertura de testes >80%", "código modular".|
+
 #### 6.1.6 Informações sobre Restrições e Suposições
+
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
 |Restrições de projeto|Limitações impostas ao time de desenvolvimento.|"Deve usar React Native para compartilhar código entre iOS e Android", "Prazo de 4 meses para MVP".|
@@ -663,17 +755,21 @@ Informação|O que deve ser levantado|Exemplo|
 |Restrições de prazo|Datas-limite para entregas parciais ou totais.|*"MVP até 30/06, versão 1.0 até 30/09"*.|
 |Suposições|O que a equipe está assumindo como verdadeiro (mas que pode mudar).|"Os mercados terão alguém para atualizar preços diariamente", "Os consumidores têm smartphones com GPS".|
 |Dependências|O que precisa acontecer ou estar disponível para o projeto prosseguir.|"A API de geolocalização do Google deve estar disponível", "A equipe de design entregar os protótipos até semana 2".|
+
 #### 6.1.7 Informações sobre Prioridades e Critérios de Aceitação
+
 |Informação|O que deve ser levantado|Exemplo|
 |----------|------------------------|-------|
-|Prioridades (MoSCoW)|O que é Must, Should, Could, Won't?|Must: busca, comparação. Should: histórico de preços. Could: busca por imagem.
+|Prioridades (MoSCoW)|O que é Must, Should, Could, Won't?|Must: busca, comparação. Should: histórico de preços. Could: busca por imagem.|
 |Critérios de aceitação|Condições objetivas que indicam que um requisito foi atendido.|"Dado um produto válido, o sistema retorna pelo menos 3 mercados com preços em menos de 2 segundos".|
 |Métricas de sucesso (KPIs)|Como medir se o sistema atingiu os objetivos de negócio?|"Redução média de 10% no preço da cesta básica após 6 meses", "50.000 usuários ativos mensais".|
 
 ### 6.2 Parte 2: Técnicas de Coleta de Requisitos
+
 A engenharia de requisitos oferece diversas técnicas para extrair as informações acima dos stakeholders . Vou listar as mais eficazes.
 
 #### 6.2.1 Técnicas de Elicitação (Coleta)
+
 |Técnica|Como funciona|Melhor para|Exemplo|
 |-------|-------------|-----------|-------|
 |Entrevistas|Conversa estruturada ou semiestruturada com stakeholders individuais ou em pequenos grupos|Obter visões aprofundadas de cada perfil de usuário|Entrevistar um dono de mercado pequeno sobre suas dificuldades em atrair clientes; entrevistar um consumidor idoso sobre como ele pesquisa preços hoje.|
@@ -684,7 +780,9 @@ A engenharia de requisitos oferece diversas técnicas para extrair as informaç�
 |Brainstorming|Sessão livre de geração de ideias, sem críticas iniciais|Explorar possibilidades criativas e requisitos inovadores|"Quais funcionalidades surpreendentes poderiam fidelizar consumidores?"|
 |Prototipação (baixa fidelidade)|Criar esboços, wireframes ou maquetes clicáveis para os usuários interagirem|Validar entendimento de interface e fluxos antes de codificar|Protótipo no Figma da tela de busca para consumidores testarem e darem feedback.|
 |Storyboarding|Narrativa visual sequencial mostrando como o usuário interage com o sistema em um cenário típico|Compreender fluxos completos e necessidades de contexto|Sequência de telas mostrando: consumidor abre app → busca "leite" → encontra promoção no mercado X → vai até o mercado.|
+
 #### 6.2.2 Técnicas de Análise e Modelagem
+
 Após a coleta, as informações precisam ser organizadas e modeladas .
 
 |Técnica|O que produz|Exemplo|
@@ -698,7 +796,9 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Modelo de Domínio / Diagrama de Classes|Entidades, atributos, relacionamentos|Classes: Produto, Mercado, Preço, Promoção, Consumidor, Favorito.|
 
 ### 6.3 Parte 3: Ferramentas para Facilitar a Coleta e Gestão de Requisitos
+
 #### 6.3.1 Ferramentas de Elicitação e Prototipação
+
 |Ferramenta|Tipo|Descrição|Uso|
 |----------|----|---------|---|
 |Figma|Prototipação|Design de interfaces, wireframes, protótipos clicáveis|Criar telas de busca, resultado, cadastro de produto para validação com usuários.|
@@ -707,7 +807,9 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Draw.io (diagrams.net)|Diagramação|Gratuito, integrado com Google Drive/Confluence|Modelagem UML leve e colaborativa.|
 |Typeform / Google Forms|Pesquisas|Questionários online com lógica condicional|Pesquisa de satisfação e necessidades com consumidores.|
 |Hotjar / FullStory|Observação|Gravação de sessões de usuários em sites/apps|Observar como consumidores reais usam o protótipo ou MVP.|
+
 #### 6.3.2 Ferramentas de Gestão de Requisitos
+
 |Ferramenta|Tipo|Descrição|Uso|
 |----------|----|---------|---|
 |Jira|Gestão ágil|Backlog de histórias, épicos, tarefas, rastreabilidade|Gerenciar requisitos como histórias de usuário, priorizar backlog (MoSCoW).|
@@ -716,7 +818,9 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Trello|Gestão leve|Kanban simples para pequenos projetos|Gerenciar requisitos de um MVP simples.|
 |IBM DOORS|Gestão empresarial|Ferramenta pesada para rastreabilidade em larga escala|Projetos de grande porte, regulados (aeroespacial, médico) — exagerado para seu app.|
 |Jama Software|Gestão de requisitos|Alternativa moderna ao DOORS, com rastreabilidade|Projetos complexos com múltiplas versões e conformidade.|
+
 #### 6.3.3 Ferramentas de Teste e Validação
+
 |Ferramenta|Tipo|Descrição|Uso|
 |----------|----|---------|---|
 |Cucumber / Gherkin|BDD|Execução de cenários Dado-Quando-Então|Validar automaticamente que os requisitos foram implementados corretamente.|
@@ -724,16 +828,19 @@ Após a coleta, as informações precisam ser organizadas e modeladas .
 |Selenium / Cypress|Teste automatizado|Testes end-to-end no navegador|Simular ações de usuário e verificar comportamento conforme especificado.|
 
 ## 7. Universo de Discurso (Universe of Discourse - UoD)
+
 O **Universo de Informação** ou **Universo de Discurso** (Universe of Discourse - UoD) é um tópico fundamental na fase de análise de requisitos e modelagem conceitual.
 
 Ele é o *ponto de partida para entender sobre o que o sistema precisa tratar* antes mesmo de pensar em telas ou código.
 
 ### 7.1 O que é o Universo de Discurso (UoD)?
+
 De acordo com a literatura de engenharia de software e sistemas de informação, o **Universo de Discurso é o contexto geral**, o domínio ou o recorte da realidade no qual o software será desenvolvido e irá operar.
 
 Em termos mais simples: é tudo aquilo que é relevante para o sistema. É a "fatia do mundo real" que o software precisa entender, representar e sobre a qual precisa agir.
 
 Imagine que você vai construir o sistema de uma biblioteca. O Universo de Discurso não é o software em si, mas sim o mundo real da biblioteca:
+
 * **Entidades**: Livros, Usuários, Autores, Empréstimos, Funcionários.
 * **Processos**: Como um livro é emprestado, como uma multa é calculada.
 * **Regras**: "Um usuário não pode pegar mais de 5 livros ao mesmo tempo" ou "Alunos têm prazo de 7 dias, professores de 30 dias".
@@ -747,15 +854,18 @@ Para o um aplicativo de comparação de preços, o Universo de Discurso é o mun
 * **Promoção**: Oferta temporária com regras específicas (ex: "Leve 2, pague 1" ou "10% de desconto").
 
 ### 7.2 Por que o UoD é tão importante?
+
 A principal razão é que o **software é uma representação (um modelo) de uma parcela da realidade**. Se essa representação for imprecisa ou incompleta, o software será falho, independentemente da qualidade do código.
 
 Os principais objetivos de estudar o **UoD** são:
+
 * **Estabelecer Limites (Escopo)**: O que ESTÁ dentro do sistema? O que está FORA? Isso evita o temido "scope creep". No seu app, "calcular a rota de entrega" pode estar fora do escopo inicial, enquanto "mostrar a localização do mercado no mapa" está dentro.
 * **Garantir um Entendimento Comum**: Serve como um contrato de comunicação entre os engenheiros de software e os stakeholders (clientes, usuários). Todos precisam concordar sobre o que é um "produto", um "mercado" ou uma "promoção".
 * **Descobrir Regras de Negócio**: Ao analisar o **UoD**, você identifica as regras que governam aquele domínio. No seu app, uma regra de negócio do **UoD** pode ser: "Uma promoção não pode ser cumulativa com outra para o mesmo produto".
 * **Fornecer a Base para a Modelagem**: O **UoD** é a matéria-prima para criar diagramas como o Diagrama de Classes da UML, o Diagrama Entidade-Relacionamento (DER) ou qualquer outra forma de modelo de dados.
 
 ### 7.3 Como Modelar o Universo de Discurso? (Técnicas)
+
 Na prática da engenharia de software, especialmente seguindo autores como Pressman, a modelagem do **UoD** se traduz em algumas atividades e artefatos concretos.
 
 1. Identificação dos Objetos ou Entidades
@@ -778,14 +888,14 @@ Como esses objetos se comportam e interagem ao longo do tempo? Aqui entram as re
 
 >Exemplo: Um Preço é alterado por um Mercado. Uma Promoção é aplicada a um Produto por um período.
 
-### Resumindo: 
+### 7.4 Resumindo
+
 Quando você está criando os Requisitos Funcionais (o sistema deve fazer X) e as Regras de Negócio (a empresa opera assim), você está, na verdade, descrevendo o Universo de Discurso do seu projeto. A modelagem do **UoD** é a técnica para fazer isso de forma estruturada e completa.
-
-
 
 ## Dúvidas
 
 ### 1. O que foi a crise de Software ? E quais foram as causas?
+
 A "crise do software" foi um termo cunhado na primeira conferência da OTAN sobre Engenharia de Software, em 1968, para descrever um problema generalizado que afetava a indústria de software. A definição clássica, endossada pela visão de Pressman, é a de que os **projetos de software estavam se tornando grandes e complexos demais para serem gerenciados com as abordagens "amadoras" e intuitivas da época**. Na prática, a crise se manifestava por uma série de sintomas recorrentes que tornavam o desenvolvimento de software uma atividade de altíssimo risco . Os softwares eram, cronicamente :
 
 * **Entregues com atraso**: Os prazos nunca eram cumpridos.
@@ -799,18 +909,21 @@ Pressman também notou que o perfil do programador havia mudado, passando de um 
 As causas da crise do software não são atribuídas a um único fator, mas a uma confluência de mudanças tecnológicas e práticas inadequadas. Segundo o contexto da obra de Pressman, podemos agrupar as causas da seguinte forma:
 
 #### 1.1. O "Gargalo" do Hardware vs. Software
+
 Esta foi a grande causa estrutural. Enquanto o hardware evoluía exponencialmente com a introdução dos microchips, tornando-se mais barato e poderoso, o software não conseguia acompanhar esse ritmo .
 
 * **Aumento da complexidade**: O hardware mais potente permitiu a criação de sistemas de software muito mais complexos e ambiciosos (como sistemas de tempo real e de controle militar), para os quais não havia métodos de desenvolvimento maduros .
 * **Demanda crescente**: A redução do custo do hardware popularizou os computadores em empresas e outros setores, aumentando dramaticamente a demanda por softwares dos mais variados tipos e para usuários não especialistas, uma heterogeneidade para a qual a indústria não estava preparada .
 
 #### 1.2. Ausência de Métodos e Disciplina
+
 O desenvolvimento de software era visto como uma arte ou uma atividade puramente criativa, sem a aplicação de princípios de engenharia .
 
 * **Falta de planeamento e processos**: Não havia processos definidos, e as fases de levantamento de requisitos, projeto e testes eram negligenciadas. A comunicação com o cliente era frequentemente insuficiente, partindo-se para a codificação com base em ideias vagas . Como Pressman destaca, um gestor que não fomenta a comunicação com o cliente "se arrisca a construir uma elegante solução para um problema equivocado" .
 * **Ausência de métricas**: Não se sabia como estimar custos, prazos ou medir a produtividade e a qualidade de forma objetiva . O primeiro livro sobre métricas de software só surgiu em 1976 .
 
 #### 1.3. A "Mão de Obra" e a Gestão Inadequada
+
 A forma como as equipas eram geridas e os profissionais trabalhavam também contribuía para o problema.
 
 * Cultura do "herói" e do "codificador solitário": O desenvolvimento era visto como um esforço individual, com programadores trabalhando de forma isolada, o que se tornou inviável com o aumento da complexidade e do tamanho das equipes .
@@ -824,14 +937,17 @@ Pressmann, Esmenger ou Brooks Jr. Eles defendem que ao conhecer o passado, será
 
 A teoria raramente se aplica de forma pura no mercado, que é mais dinâmico e adaptado às realidades de cada negócio. As principais diferenças e nuances são:
 
-#### 2.1. Modelos de Ciclo de Vida (Metodologias):
+#### 2.1. Modelos de Ciclo de Vida (Metodologias)
+
 Na teoria, estudamos modelos como Cascata, Espiral, Incremental. No mercado, o que impera hoje são as metodologias ágeis (Scrum, Kanban, XP).
 
 * Em vez de fases sequenciais e longas, o trabalho é dividido em pequenos ciclos (sprints) . Em cada sprint, você passa por todas as etapas (requisitos, design, código, teste) de forma acelerada para entregar uma pequena parte funcional do software.
 * Isso torna o processo mais flexível e adaptável a mudanças, algo que os modelos tradicionais (como o Cascata) não conseguem lidar bem.
 
-#### 2.2. A Divisão do Trabalho (Especialização x Generalização):
+#### 2.2. A Divisão do Trabalho (Especialização x Generalização)
+
 Na teoria, um engenheiro de software pode fazer um pouco de tudo. Na prática, em empresas de médio e grande porte, o trabalho é mais especializado, embora a linha seja tênue:
+
 * **Analista de Requisitos / Product Owner (PO)**: Foca nas etapas iniciais (levantamento de requisitos) e na priorização do que será desenvolvido, agindo como a "voz do cliente" dentro do time.
 * **Arquiteto de Software**: Responsável pelas decisões de alto nível do projeto (design da arquitetura), definindo as tecnologias e a estrutura geral do sistema.
 * **Desenvolvedor (Programador)**: Foco principal na implementação (codificação) e nos testes de unidade.
@@ -839,7 +955,8 @@ Na teoria, um engenheiro de software pode fazer um pouco de tudo. Na prática, e
 * **Engenheiro de DevOps**: Foca na implantação, automação e operação do software, garantindo que ele possa ser entregue de forma rápida e confiável (o "como" entregar).
 * **Engenheiro de Software (Generalista)**: Comum em startups ou times pequenos, onde uma pessoa pode atuar em várias frentes, desde a conversa com o cliente até a implantação.
 
-#### 2.3. A Manutenção é a "Rainha":
+#### 2.3. A Manutenção é a "Rainha"
+
 A teoria diz que a manutenção é a fase mais longa. No mercado, isso é uma verdade absoluta. A grande maioria dos engenheiros de software não trabalha em projetos "do zero" (greenfield), mas sim evoluindo e mantendo sistemas legados (brownfield). Grande parte do dia a dia é:
 
 * Corrigir bugs.
@@ -847,14 +964,18 @@ A teoria diz que a manutenção é a fase mais longa. No mercado, isso é uma ve
 * Adicionar pequenas funcionalidades a um sistema existente.
 * Integrar sistemas diferentes.
 
-#### 2.4. Nem Tudo é Seguido à Risco:
+#### 2.4. Nem Tudo é Seguido à Risco
+
 Em muitas empresas, principalmente as menores ou com menos maturidade em processos, algumas etapas formais da engenharia de software são "puladas" ou feitas de maneira muito informal:
+
 * A documentação pode ser mínima (resumida a ferramentas como o Jira e comentários no código).
 * Os testes podem ser menos rigorosos (foco apenas no teste manual).
 * O projeto (design) pode ser feito "na cabeça" ou em um guardanapo, sem uma documentação formal de arquitetura.
 
 ### 3. Vivemos uma Crise do Hardware?
-#### O que seria uma "crise do hardware"?
+
+#### 3.1 O que seria uma "crise do hardware"?
+
 Diferente da crise do software, que foi sobre métodos inadequados para lidar com a complexidade, uma **crise do hardware seria caracterizada por**:
 
 * Estagnação ou desaceleração drástica do avanço tecnológico.
@@ -862,7 +983,8 @@ Diferente da crise do software, que foi sobre métodos inadequados para lidar co
 * Escassez de componentes ou materiais críticos.
 * Custos crescentes que inviabilizam a evolução.
 
-#### Os Argumentos a Favor de uma Crise do Hardware
+#### 3.2 Os Argumentos a Favor de uma Crise do Hardware
+
 |Fator|Descrição|
 |-----|---------|
 |Fim da Lei de Moore|Gordon Moore previu que o número de transistores em um chip dobraria a cada 18-24 meses. Essa curva tem se achatado significativamente desde os 7nm, 5nm, 3nm. Os ganhos de desempenho por redução de litografia são cada vez menores e mais caros.|
@@ -871,7 +993,8 @@ Diferente da crise do software, que foi sobre métodos inadequados para lidar co
 |Aquecimento e consumo energético|Chips de alta performance consomem cada vez mais energia e geram calor extremo. O resfriamento de data centers e supercomputadores já é um dos maiores desafios de infraestrutura.|
 |Geopolítica e soberania tecnológica|A produção de semicondutores está concentrada em Taiwan (TSMC responde por mais de 50% dos chips avançados do mundo). Tensões geopolíticas (China vs. Taiwan) colocam toda a indústria global em risco. Países estão correndo para criar cadeias produtivas locais (EUA com o CHIPS Act, Europa com o European Chips Act).|
 
-#### Os Argumentos Contra uma Crise do Hardware
+#### 3.3 Os Argumentos Contra uma Crise do Hardware
+
 |Fator|Descrição|
 |-----|---------|
 |Inovação em arquitetura, não só em litografia|Embora a miniaturização esteja desacelerando, a inovação continua em outras frentes: arquiteturas heterogêneas (chiplet, 3D stacking), processamento neuromórfico, computação quântica, GPUs massivamente paralelas.|
@@ -879,7 +1002,8 @@ Diferente da crise do software, que foi sobre métodos inadequados para lidar co
 |Demanda e investimento sem precedentes|A indústria de semicondutores está recebendo investimentos bilionários de governos e empresas privadas. Em vez de uma crise de estagnação, vivemos um momento de realinhamento e reindustrialização.|
 |Software compensa hardware|Onde o hardware não avança tão rápido, o software compensa com otimizações, computação distribuída e novas arquiteturas. A nuvem permitiu que empresas escalassem sem depender de hardware próprio.|
 
-#### Conclusão Parcial: Crise ou Transição?
+#### 3.4 Conclusão Parcial: Crise ou Transição?
+
 A visão mais equilibrada é que não vivemos uma crise do hardware no mesmo sentido da crise do software, mas sim uma transição de paradigma:
 
 * O modelo de crescimento "mais transistores a cada 18 meses com o mesmo custo"(*Lei de Moore*) chegou ao fim. Isso é um fato físico.
@@ -887,9 +1011,11 @@ A visão mais equilibrada é que não vivemos uma crise do hardware no mesmo sen
 * A cadeia de suprimentos de semicondutores é um ponto único de fragilidade global, o que tem causado choques de oferta e movimentos de reindustrialização.
 
 ### 4. Principais Causas de Cancelamento de Projetos de Software
+
 Os números são impressionantes: cerca de 31,1% dos projetos de software são cancelados antes da conclusão, e apenas 16,2% são entregues no prazo e dentro do orçamento .
 
-#### Principais Causas (segundo pesquisas e especialistas)
+#### 4.1 Principais Causas (segundo pesquisas e especialistas)
+
 |Causa|Descrição|Dados|
 |-----|---------|-----|
 |Gestão de projeto inadequada|Falta de planejamento, controle e liderança eficaz.|47% dos projetos fracassados sofrem com isso .|
@@ -904,9 +1030,11 @@ Os números são impressionantes: cerca de 31,1% dos projetos de software são c
 |Negligência de testes e qualidade|Bugs descobertos tardiamente ou após o lançamento, gerando retrabalho e insatisfação.|—|
 
 ### 5. Como Orçar o Desenvolvimento de um Software
-Orçar software é uma das atividades mais desafiadoras da engenharia de software. As principais abordagens são:
+Orçar software é uma das atividades mais desafiadora
+s da engenharia de software. As principais abordagens são:
 
 #### 5.1. Principais Métodos de Estimativa
+
 |Método|Como Funciona|Quando Usar|
 |------|-------------|-----------|
 |Estimativa por Analogia|Compara o novo projeto com projetos anteriores similares.|Quando há histórico de projetos semelhantes.|
@@ -914,7 +1042,9 @@ Orçar software é uma das atividades mais desafiadoras da engenharia de softwar
 |Estimativa por Especialistas|Consulta a especialistas que opinam com base em experiência.|Fase inicial, com pouca informação disponível.|
 |Estimativa Paramétrica (COCOMO, SEER-SEM)|Usa fórmulas matemáticas baseadas em linhas de código estimadas e fatores de ajuste.|Projetos de médio a grande porte.|
 |Estimativa Ágil (Planning Poker)|A equipe atribui pontos de história (story points) a cada tarefa, baseando-se em complexidade relativa.|Metodologias ágeis (Scrum).|
+
 #### 5.2. Fatores que Influenciam o Custo
+
 * **Complexidade funcional:** Quantidade e complexidade das funcionalidades.
 * **Qualidade esperada**: Testes rigorosos, segurança, desempenho.
 * **Tamanho da equipe e senioridade**: Profissionais mais experientes custam mais, mas entregam mais rápido e com mais qualidade.
@@ -923,9 +1053,11 @@ Orçar software é uma das atividades mais desafiadoras da engenharia de softwar
 * **Prazos**: Prazos curtos exigem mais recursos paralelos e aumentam custo.
 
 ### 6. Frameworks e Templates Mais Usados no Desenvolvimento de Software
+
 Os frameworks são estruturas pré-construídas que fornecem uma base para o desenvolvimento, evitando que você comece "do zero" .
 
 #### 6.1. Classificação por Tipo
+
 |Tipo|Função|Exemplos Populares|
 |----|------|------------------|
 |Frontend|Interface visual, interação com usuário|React, Vue.js, Angular, Svelte |
@@ -934,29 +1066,31 @@ Os frameworks são estruturas pré-construídas que fornecem uma base para o des
 |CSS/UI|Estilização e componentes visuais|Bootstrap, Tailwind CSS |
 
 #### 6.2. Frameworks Mais Populares (2025/2026)
+
 |Framework|Linguagem|Tipo|Uso Principal|
 |---------|---------|----|-------------|
-|React|JavaScript/TypeScript|Biblioteca frontend|Interfaces dinâmicas e interativas; mantido pelo Meta |
-|Next.js|JavaScript/TypeScript|Fullstack (React)|Aplicações com SSR e otimização SEO |
-|Vue.js|JavaScript/TypeScript|Frontend progressivo|Curva de aprendizado suave, flexível |
-|Angular|TypeScript|Frontend completo|Grandes aplicações empresariais; mantido pelo Google |
-|Django|Python|Backend|Desenvolvimento rápido, seguro e com baterias inclusas |
-|Laravel|PHP|Backend|Sintaxe elegante, rico ecossistema |
-|Spring Boot|Java|Backend|Microserviços e aplicações empresariais Java |
-|Ruby on Rails|Ruby|Fullstack|Prototipação rápida, convenção sobre configuração |
-|Express.js|JavaScript/Node.js|Backend minimalista|APIs e aplicações Node.js |
-|Svelte|JavaScript/TypeScript|Frontend (compilador)|Código mais leve e performático |
+|React|JavaScript/TypeScript|Biblioteca frontend|Interfaces dinâmicas e interativas; mantido pelo Meta|
+|Next.js|JavaScript/TypeScript|Fullstack (React)|Aplicações com SSR e otimização SEO|
+|Vue.js|JavaScript/TypeScript|Frontend progressivo|Curva de aprendizado suave, flexível|
+|Angular|TypeScript|Frontend completo|Grandes aplicações empresariais; mantido pelo Google|
+|Django|Python|Backend|Desenvolvimento rápido, seguro e com baterias inclusas|
+|Laravel|PHP|Backend|Sintaxe elegante, rico ecossistema|
+|Spring Boot|Java|Backend|Microserviços e aplicações empresariais Java|
+|Ruby on Rails|Ruby|Fullstack|Prototipação rápida, convenção sobre configuração|
+|Express.js|JavaScript/Node.js|Backend minimalista|APIs e aplicações Node.js|
+|Svelte|JavaScript/TypeScript|Frontend (compilador)|Código mais leve e performático|
 
 #### 6.3. Templates e Ferramentas Complementares
+
 Além dos frameworks, os desenvolvedores utilizam templates (projetos iniciais prontos) e ferramentas que aceleram o desenvolvimento:
 
 |Categoria|Ferramentas/Exemplos|
 |---------|--------------------|
-|Boilerplates / Starter Kits|HTML5 Boilerplate, Create React App, Next.js starter, Vite templates |
-|Infraestrutura em Nuvem|Vercel, Fly.io, DigitalOcean, AWS, Cloudflare |
-|Bancos de Dados|PostgreSQL (Supabase, Neon), MongoDB Atlas, PlanetScale |
-|Autenticação|Clerk, Auth.js, Supabase Auth |
-|Pagamentos|Stripe (global), AbacatePay (Brasil) |
-|Monitoramento|Sentry (erros), Uptime Kuma (disponibilidade) |
-|E-mails|Resend (transacionais), Loops.so (marketing) |
-|Design/Protótipo|Figma, Coolors, Undraw |
+|Boilerplates / Starter Kits|HTML5 Boilerplate, Create React App, Next.js starter, Vite templates|
+|Infraestrutura em Nuvem|Vercel, Fly.io, DigitalOcean, AWS, Cloudflare|
+|Bancos de Dados|PostgreSQL (Supabase, Neon), MongoDB Atlas, PlanetScale|
+|Autenticação|Clerk, Auth.js, Supabase Auth|
+|Pagamentos|Stripe (global), AbacatePay (Brasil)|
+|Monitoramento|Sentry (erros), Uptime Kuma (disponibilidade)|
+|E-mails|Resend (transacionais), Loops.so (marketing)|
+|Design/Protótipo|Figma, Coolors, Undraw|
