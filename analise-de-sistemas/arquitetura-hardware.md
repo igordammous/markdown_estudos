@@ -1524,7 +1524,9 @@ Nos sistemas modernos, a arquitetura de barramento único foi substituída por a
 * Dispositivos lentos ficam em barramentos separados, não interferindo no fluxo principal
 
 ## Duvidas
+
 ### 1. Overflow e como o hardware o detecta
+
 Overflow acontece quando o resultado de uma operação aritmética excede a capacidade máxima (ou é menor que a capacidade mínima) do registrador ou variável que deve armazená-lo.
 
 ```text
@@ -1535,7 +1537,9 @@ Exemplo com 8 bits (valores signed):
 Se tentarmos fazer 127 + 1 = 128 → OVERFLOW!
 Porque 128 não cabe em 8 bits com sinal (seria interpretado como -128)
 ```
+
 #### 1.1. Tipos de Overflow
+
 |Tipo|Descrição|Exemplo (8 bits signed)|
 |----|---------|-----------------------|
 |Overflow positivo|Resultado ultrapassa o valor máximo positivo|127 + 1 = 128 (overflow)|
@@ -1544,6 +1548,7 @@ Porque 128 não cabe em 8 bits com sinal (seria interpretado como -128)
 |Underflow|Resultado é menor que o mínimo representável|0 - 1 = -1 (underflow em unsigned)|
 
 #### 1.2. Como o Hardware Detecta Overflow
+
 A detecção de overflow é feita através da análise dos bits de carry (vai-um) que entram e saem do bit mais significativo (MSB) durante a operação.
 
 **O Mecanismo Fundamental**
@@ -1553,12 +1558,15 @@ Em uma operação de soma, o hardware analisa dois sinais:
 * **Carry Out (Cₒᵤₜ)**: O "vai-um" que sai do MSB (indicando que o resultado não cabe)
 
 **Regra de Ouro para Detecção de Overflow**
+
 ```text
 OVERFLOCW OCORRE QUANDO: CARRY IN ≠ CARRY OUT do MSB
 ```
+
 Ou seja, overflow acontece quando o carry que entra no MSB é diferente do carry que sai do MSB.
 
 #### 1.3. Visualização com um Somador de 4 bits
+
 Vamos ver um exemplo prático com números de 4 bits (valores signed de -8 a +7):
 
 ```text
@@ -1592,7 +1600,9 @@ Carry out do MSB = 1
 Carry in do MSB = 0
 Cᵢₙ ≠ Cₒᵤₜ → OVERFLOW DETECTADO!
 ```
+
 #### 1.4. Implementação em Hardware: O Flag de Overflow
+
 **Registrador de Status (Flags)**
 Dentro da **Unidade de Controle**, existe um registrador especial chamado **Registrador de Status** (ou Program Status Word - PSW) que armazena bits indicadores (flags) sobre o resultado da última operação.
 
@@ -1606,12 +1616,15 @@ Dentro da **Unidade de Controle**, existe um registrador especial chamado **Regi
 |PF|Parity Flag|Indica se o número de bits 1 é par ou ímpar|
 
 #### 1.5. Como o Overflow(OF) é calculado
+
 ```text
 OF = CARRY_OUT_MSB XOR CARRY_IN_MSB
 ```
+
 Este **cálculo é feito em tempo real** durante a operação aritmética, **por uma porta XOR dedicada**.
 
 #### 1.6. Diagrama Simplificado
+
 ```text
                     ┌─────────────────────────────────┐
                     │          ULA (ALU)               │
@@ -1637,16 +1650,18 @@ Este **cálculo é feito em tempo real** durante a operação aritmética, **por
 ```
 
 ### 2. Bit de Paridade: Um Mecanismo Simples de Detecção de Erros
-Conceito Fundamental
-O bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
+
+O conceito fundamental do bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
 
 #### 2.1. Tipos de Paridade
+
 |Tipo|Regra|Exemplo (dado = 0b1011001)|
 |----|-----|--------------------------|
 |Paridade Par (Even Parity)|Número total de bits 1 deve ser PAR|Dado tem 4 bits 1 → bit de paridade = 0 (4+0=4, par)|
 |Paridade Ímpar (Odd Parity)|Número total de bits 1 deve ser ÍMPAR|Dado tem 4 bits 1 → bit de paridade = 1 (4+1=5, ímpar)|
 
 #### 2.2. Como Funciona na Prática
+
 ```text
 Transmissão de um byte (8 bits) com paridade par:
 
@@ -1658,7 +1673,9 @@ Se ocorrer um erro de 1 bit durante a transmissão:
 Dado recebido com erro: 10110010 1 (por exemplo)
 Bits 1 = 5 → ímpar → ERRO DETECTADO!
 ```
+
 #### 2.3. Limitações do Bit de Paridade
+
 |Capacidade|Limitação|
 |----------|---------|
 |Detecta 1 bit errado|Não detecta 2 bits errados (a paridade pode voltar ao normal)|
@@ -1667,6 +1684,7 @@ Bits 1 = 5 → ímpar → ERRO DETECTADO!
 |Adiciona apenas 1 bit por palavra|Alto overhead para palavras grandes|
 
 #### 2.4. Implementação em Hardware
+
 O bit de paridade é gerado por um circuito de portas XOR (ou XNOR) que contam o número de bits 1:
 
 ```text
@@ -1699,6 +1717,7 @@ endmodule
 ```
 
 #### 2.5. Mecanismos Mais Avançados de Detecção/Correção
+
 O bit de paridade é apenas o ponto de partida. Sistemas modernos usam mecanismos mais sofisticados:
 
 |Mecanismo|Capacidade|Overhead|Uso típico|
@@ -1711,15 +1730,18 @@ O bit de paridade é apenas o ponto de partida. Sistemas modernos usam mecanismo
 
 > **Conexão entre os conceitos**
 > Ambos são exemplos de como o hardware monitora a integridade das operações:
+> 
 > * Overflow → monitora a correção dos cálculos
 > * Paridade → monitora a integridade dos dados
 >
 > Ambos **usam portas lógicas simples (XOR, AND** para gerar flags ou bits que indicam condições especiais, permitindo que o software (ou hardware superior) tome decisões apropriadas.
 
 ### 3. Multiplexador e Decodificador: Blocos Essenciais em Sistemas Digitais
+
 Multiplexadores e decodificadores são **circuitos combinacionais fundamentais** que atuam como "funcionários especializados" na arquitetura de computadores. Enquanto o **decodificador distribui um sinal para múltiplos destinos**, o **multiplexador seleciona um entre múltiplas fontes**. Eles são, em certo sentido, operadores inversos.
 
 #### 3.1. Visão Geral Comparativa
+
 |Característica|DECODIFICADOR|MULTIPLEXADOR (MUX)|
 |--------------|-------------|-------------------|
 |Função principal|Distribui/Ativa|Seleciona|
@@ -1730,8 +1752,10 @@ Multiplexadores e decodificadores são **circuitos combinacionais fundamentais**
 |Analogia|Carteiro (entrega em um endereço)|Central telefônica (conecta uma linha à saída)|
 
 #### 3.2. Decodificador
+
 O decodificador converte um código binário de n entradas em 2ⁿ saídas mutuamente exclusivas (apenas uma saída ativa por vez).
 **Principais usos do decodificador**:
+
 * **Seleção de linha em memória RAM**: ativa a linha correta da matriz de células
 * **Seleção de registrador**: escolhe qual registrador será lido/escrito
 * **Decodificação de instrução (opcode)**: determina qual operação executar
@@ -1740,9 +1764,11 @@ O decodificador converte um código binário de n entradas em 2ⁿ saídas mutua
 
 
 #### 3.3. Multiplexador (MUX)
+
 O multiplexador (abreviação de multiple selector) é um comutador eletrônico que conecta uma de N entradas à saída, com base em um código binário aplicado às entradas de seleção.
 
 **MUX 4:1 (4 entradas de dados, 2 entradas de seleção)**
+
 ```text
 Entradas de dados: I0, I1, I2, I3
 Entradas de seleção: S1 S0 (2 bits → selecionam 1 de 4 entradas)
@@ -1782,7 +1808,8 @@ Y = (S̅1·S̅0·I0) + (S̅1·S0·I1) + (S1·S̅0·I2) + (S1·S0·I3)
         S0 ──┘
         S1 ───
 ```
-#### 3.4. Principais usos do multiplexador:
+#### 3.4. Principais usos do multiplexador
+
 * **Seleção de fonte de dados** (ex: escolher entre ALU, memória ou barramento de entrada)
 * **Implementação de funções lógicas** (MUX como "tabela verdade programável")
 * **Roteamento em barramentos** (conecta diferentes dispositivos ao barramento)
@@ -1790,6 +1817,7 @@ Y = (S̅1·S̅0·I0) + (S̅1·S0·I1) + (S1·S̅0·I2) + (S1·S0·I3)
 * **Conversão paralelo-serial**: transforma dados paralelos em fluxo serial
 
 #### 3.5. Aplicações Práticas Combinadas
+
 Em sistemas reais, decodificadores e multiplexadores trabalham juntos:
 
 |Sistema|Uso do Decodificador|Uso do Multiplexador|
@@ -1801,10 +1829,12 @@ Em sistemas reais, decodificadores e multiplexadores trabalham juntos:
 |Conversor A/D|Seleciona qual canal converter|(Usado em sistemas com múltiplos sensores)|
 
 ### 4. A Quinta Geração de Computadores: A Era da Computação em Paralelo e da Inteligência Artificial
+
 Diferente das **gerações anteriores**, que foram **definidas por inovações concretas em hardware** (válvulas, transistores, circuitos integrados e microprocessadores), a **Quinta Geração foi definida por um conceito e um objetivo ambicioso: unir computação massivamente paralela com inteligência artificial para criar máquinas capazes de "pensar"**.
 Ela **não é marcada por um único componente que revolucionou a indústria, mas por um projeto de pesquisa nacional**, liderado pelo Japão, que tentou – e ousou – redefinir o futuro da computação.
 
 #### 4.1. O Conceito da Quinta Geração: Mais do que Hardware, uma Nova Filosofia
+
 Enquanto as **quatro primeiras gerações focaram em aumentar a densidade de componentes em um único chip** (Lei de Moore), a visão da **quinta geração** era de uma **mudança de paradigma**. A meta era criar sistemas com duas características principais:
 
 * **Processamento de Informação por Conhecimento** (Knowledge Information Processing): A capacidade de lidar com símbolos, conceitos e regras lógicas, em vez de apenas realizar cálculos numéricos. O computador deveria "raciocinar" a partir de uma base de conhecimento para resolver problemas .
@@ -1813,6 +1843,7 @@ Enquanto as **quatro primeiras gerações focaram em aumentar a densidade de com
 O **objetivo final era uma máquina capaz de inferência lógica**, ou seja, de derivar novas informações a partir de fatos e regras pré-existentes, ***aproximando-se do raciocínio humano***.
 
 #### 4.2. O Marco Definidor: O Projeto FGCS do Japão
+
 Ainda não existe uma bibliografia, ou cientista específico(*como Von Neumann na primeira*) que define essa geração, por isso ela é definida(iniciada) por um projeto governamental de grande escala: o **Projeto Fifth Generation Computer Systems** (FGCS).
 
 * **Período e Idealizador**: Lançado em 1982 pelo Ministério do Comércio Internacional e Indústria do Japão (MITI) , com duração de 10 anos .
@@ -1820,11 +1851,13 @@ Ainda não existe uma bibliografia, ou cientista específico(*como Von Neumann n
 * **A Motivação**: O Japão, que até então seguia as inovações do Ocidente, queria assumir a liderança tecnológica mundial na próxima era da computação .
 As Armas Escolhidas: Prolog e Paralelismo
 
-#### 4.3. Para atingir esse ambicioso objetivo, o projeto FGCS definiu alicerces técnicos claros :
+#### 4.3. Para atingir esse ambicioso objetivo, o projeto FGCS definiu alicerces técnicos claros
+
 * **Linguagem Base**: *Prolog*: Diferente das linguagens imperativas (C, Pascal), o **Prolog é uma linguagem de programação lógica**. O programador declara fatos e regras, e o computador usa inferência lógica para chegar a uma conclusão.
 * **Arquitetura**: *Paralelismo em Massa*: Para executar o Prolog em altíssima velocidade, era necessário um hardware especializado, as chamadas **Máquinas de Inferência Paralela**(Parallel Inference Machines - PIMs).
 
 #### 4.4. Os Computadores que Definiriam a Era: As PIMs (Parallel Inference Machines)
+
 O projeto FGCS produziu não uma, mas várias máquinas protótipos, conhecidas como PIMs. Elas são os principais candidatos a "hardware que define a 5ª geração" .
 * **PSI** (Personal Sequential Inference machine): Antes do grande salto ao paralelismo, foi desenvolvida uma estação de trabalho sequencial para programação e experimentação com a lógica Prolog .
 * **PIM** (Parallel Inference Machine): O ápice do projeto. Foram construídos diversos protótipos com arquiteturas diferentes (PIM/m, PIM/p, PIM/i, etc.) para teste .
@@ -1832,7 +1865,175 @@ O projeto FGCS produziu não uma, mas várias máquinas protótipos, conhecidas 
    * **Desempenho**: O sistema final conseguia realizar cerca de 200 milhões de inferências lógicas por segundo (LIPS) . Um feito extraordinário para a época, considerando que as workstations comuns atingiam cerca de 100 mil LIPS.
 
 #### 4.5. Por que a Quinta Geração "Fracassou" e a Quarta Continuou?
+
 **Comercialmente, o projeto FGCS é considerado um fracasso**. Os computadores PIM nunca chegaram ao mercado. Várias razões explicam isso e justificam por que não trocamos nossos processadores Intel/AMD por máquinas de inferência lógica:
 * **O Avanço Implacável da Quarta Geração**: Enquanto o FGCS tentava construir hardware especializado, os microprocessadores tradicionais (4ª Geração) simplesmente ficaram extremamente rápidos. A Lei de Moore continuou agindo, e CPUs comuns logo superaram o desempenho das máquinas especializadas para a maioria das tarefas, a um custo muito menor .
 * **Dificuldades com Software**: A promessa de usar lógica pura para resolver problemas do mundo real mostrou-se muito mais complexa do que o imaginado. Criar software que aproveitasse todo aquele poder paralelo era um desafio imenso .
 * **A Revolução da Internet**: O projeto imaginava grandes bancos de dados centralizados. Não previu o impacto revolucionário da Internet e da Web, que mudou completamente a forma como acessamos e distribuímos informação .
+
+#### 4.6 Bibliografia e Referências da 5ª Geração
+
+As fontes primárias que definiram esse período, os principais documentos são:
+
+* **Livro Fundador**: "The Fifth Generation: Artificial Intelligence and Japan's Computer Challenge to the World" (1983), por Edward Feigenbaum e Pamela McCorduck . Este livro apresentou o projeto ao mundo Ocidental, causando grande impacto.
+* **Publicações Técnicas do ICOT**: Os relatórios anuais e os papers publicados pelo instituto são a bibliografia técnica oficial do projeto .
+* **Conferência Internacional**: O livro "Fifth Generation Computer Systems" (1982), editado por T. Moto-oka, compila os artigos da conferência que lançou oficialmente a visão do projeto
+
+### 5. Novo Marco da 5ª Geração
+
+A arquitetura moderna de IA (*redes neurais profundas, GPUs, transformers*) não é considerada a **"Quinta Geração" original, mas sim uma evolução radical e diferente** que aprendeu com os erros daquela empreitada.
+
+#### 5.1 Definição Original da 5ª Geração (Projeto FGCS)
+
+|Característica|Definição do FGCS|Exemplo/Implementação|
+|--------------|-----------------|---------------------|
+|Foco Principal|Raciocínio Lógico e Conhecimento|Máquinas de Inferência (baseadas em regras "SE-ENTÃO")|
+|Abordagem de IA|GOFAI (Good Old-Fashioned AI)|Sistemas baseados em conhecimento, regras simbólicas|
+|Hardware Central|Máquinas de Inferência Paralela (PIM)|Arquitetura paralela maciça (ex: PIM/p com 512 processadores)|
+|Linguagem de Programação|Programação Lógica (Prolog)|KL1, uma linguagem de programação lógica concorrente|
+|Objetivo de Desempenho|Alta Taxa de Inferências Lógicas (LIPS)|Meta de 100M a 1G LIPS (vs. 100k LIPS de workstations da época)| 
+|Resultado Final|Fracasso Comercial|Superado por hardware de uso geral (Lei de Moore) e desafios de software|
+
+#### 5.2 Por que a IA Moderna é Diferente?
+
+A IA que vemos hoje (*redes neurais, aprendizado profundo, LLMs como o GPT*) **não é uma continuação direta do projeto FGCS**, pois opera sob princípios quase opostos. A tabela abaixo ilustra essa mudança de paradigma:
+
+|Aspecto|Quinta Geração (FGCS)|IA Moderna (Deep Learning)|
+|-------|---------------------|--------------------------|
+|Paradigma Central|Simbólico|Lógico ("SE-ENTÃO")|Sub-simbólico / Conexionista (redes neurais)| 
+|Mecanismo de "Aprendizado"|Regras e fatos são programados explicitamente|A rede aprende padrões a partir de dados massivos|
+|Hardware Impulsionador|PIMs (máquinas especializadas)|GPUs (hardware de uso geral, originalmente para gráficos)|
+|Arquitetura de Processamento|Paralelismo massivo (lógico)|Paralelismo massivo (matricial/ vetorial)|
+|Exemplo de Sucesso|Sistemas Especialistas (ex: MYCIN)|LLMs (ChatGPT), Visão Computacional, Reconhecimento de Fala|
+|Desafio Principal|Engenharia do conhecimento (difícil escalar)|Dados e poder computacional (custo de treinamento)|
+
+> A **principal diferença** é que a **5ª Geração tentou construir a inteligência através de regras e lógica formal**. A **abordagem moderna foca em estatística, probabilidade e reconhecimento de padrões em enormes volumes de dados**, algo que o hardware da época simplesmente não permitia viabilizar.
+
+#### 5.3  E o que a IA de Hoje "Herda" da 5ª Geração?
+
+**Embora as arquiteturas sejam diferentes, a IA moderna deve muito ao espírito e aos fracassos do projeto FGCS**.
+
+* **A Visão Visionária**: O FGCS sonhou com computadores que pudessem conversar, traduzir idiomas e auxiliar em diagnósticos . Este é exatamente o mundo que os LLMs e a IA generativa estão começando a tornar realidade.
+* **Aprendizado com os Erros**: O fracasso do FGCS ensinou à indústria que o caminho de construir hardware extremamente especializado (como as PIMs) era muito arriscado. A solução moderna foi usar hardware paralelo de uso geral (GPUs) e deixar o software (as redes neurais) encontrar os padrões.
+* **Incentivo à Pesquisa**: O anúncio japonês foi um "choque de realidade" para os EUA e Europa, dando início a iniciativas massivas de pesquisa em IA como a Strategic Computing Initiative nos EUA e o Alvey no Reino Unido . Essa reação em cadeia ajudou a formar a base de pesquisa que décadas depois floresceria.
+
+> **O que outras fontes consideram como 5ª Geração?**
+>
+>A definição da 5ª Geração, embora dominada pelo projeto FGCS, teve outras nuances. Há outras fontes confiáveis, como livros e periódicos da época, também discutiam outras possibilidades.
+>
+> * **Duas Vertentes** (Perspectiva da Arquitetura de Computadores): Um artigo seminal de 1983 do pesquisador Philip C. Treleaven já identificava duas grandes correntes :
+>    * **A Revolucionária** (Adotada pelo Japão): A máquina de lógica paralela para processamento de conhecimento.
+>    * **A Evolucionária**: Um sistema de controle de fluxo descentralizado (como uma rede de computadores).
+> * **Foco no Processamento de Conhecimento**: A literatura da época, como o livro de Feigenbaum e McCorduck, definia a 5ª Geração menos pelo hardware e mais pela sua função: uma máquina para a "era da informação", capaz de raciocinar sobre conhecimento, não apenas processar dados . 
+> * **Um Conceito em Evolução**: O próprio termo "geração" foi contestado. Alguns especialistas notaram que a taxonomia tradicional ignorava as máquinas a relé (0ª geração) e que a 5ª seria definida por uma mudança de software (IA e lógica) em vez de hardware.
+
+### 6. Codificação de Instruções de Máquina
+
+Uma instrução de máquina é a **menor ordem que o processador entende e executa**. Ela é codificada em **binário** e **armazenada na memória como um número**. Quando a Unidade de Controle a busca, ela sabe exatamente o que fazer: somar, carregar, comparar ou desviar.
+
+#### 6.1 Estrutura de uma Instrução de Máquina
+
+Toda instrução de máquina contém campos que dizem ao processador o que fazer e com o quê fazer.
+
+##### 6.1.1 Campos Fundamentais
+
+|Campo|Função|Exemplo|
+|-----|------|-------|
+|Opcode (Operation Code)|Define a operação a ser executada (soma, carga, desvio, etc.)|`0001` = ADD, `0010` = SUB, `1000` = LOAD|
+|Operandos|Especificam os dados ou endereços dos dados envolvidos|Registrador R1, Endereço 0x1234|
+|Modo de Endereçamento|Indica **como** interpretar os operandos (é um valor direto? É um endereço?)|Imediato (`#5`), Direto (`[0x1234]`), Indireto (`[[0x1234]]`)|
+
+##### 6.1.2 Visualização de uma instrução de 16 bits (simplificada)
+
+```text
+┌─────────────┬─────────────┬─────────────────────────────┐
+│   Opcode    │   Modo de   │        Operando(s)           │
+│   (4 bits)  │ Endereçamento│        (8 bits)              │
+│             │   (4 bits)   │                             │
+├─────────────┼─────────────┼─────────────────────────────┤
+│    0001     │    0010      │       0000 0101 (5)         │
+└─────────────┴─────────────┴─────────────────────────────┘
+
+Interpretação: ADD imediato do valor 5 ao acumulador
+```
+
+#### 6.2 Modos de Endereçamento
+
+O modo de endereçamento diz **como encontrar o operando**. É um campo que pode estar explícito (parte da instrução) ou implícito (determinado pelo opcode).
+
+|Modo|Como funciona|Exemplo (pseudocódigo)|Uso típico|
+|----|-------------|----------------------|----------|
+|Imediato|O valor está na própria instrução|`ADD #5`|Constantes, pequenos valores|
+|Direto|O endereço está na instrução; o dado está na memória|`LOAD [0x1234]`|Acesso a variáveis globais|
+|Indireto|O endereço do endereço está na instrução|`LOAD [[0x1234]]`|Ponteiros duplos (raro hoje)|
+|Registrador|O dado está em um registrador|`ADD R1, R2`|Operações aritméticas comuns|
+|Indireto por registrador|O registrador contém o endereço do dado na memória|`LOAD (R1)`|Acesso a vetores/arrays|
+|Deslocamento (Base+Offset)|Registrador + constante = endereço final|`LOAD 16(R1)`|Acesso a campos de struct|
+|PC-relativo|Deslocamento somado ao PC|`JUMP +12`|Desvios condicionais em código|
+
+##### 6.2.1 Exemplo codificado (arquitetura hipotética de 8 bits)
+
+```text
+Instrução: ADD o valor do registrador R2 ao acumulador (R1)
+
+Formato: OPCODE (4 bits) | MODO (2 bits) | REG (2 bits)
+
+Opcode ADD = 0001
+Modo REGISTRADOR = 01
+Registrador R2 = 10 (binário)
+
+Instrução completa: 0001 01 10  (em hexa: 0x16)
+```
+
+#### 6.3 Formato das Instruções: Tamanho Fixo vs. Tamanho Variável
+
+Esta é uma das principais diferenças entre as arquiteturas **RISC** e **CISC** e cada abordagem tem implicações diretas no hardware de decodificação.
+
+##### 6.3.1 Tamanho Fixo (RISC - Reduced Instruction Set Computer)
+
+**Todas as instruções têm o mesmo número de bits** (ex: 32 bits).
+
+```text
+RISC-V (32 bits)
+┌──────────────┬─────────┬─────────┬───────────────┬─────────────┐
+│   FUNCT(7)   │  RS2    │  RS1    │   FUNCT(3)    │    RD       │
+│   (7 bits)   │ (5 bits)│ (5 bits)│   (3 bits)    │  (5 bits)   │
+└──────────────┴─────────┴─────────┴───────────────┴─────────────┘
+                    ▲                              ▲
+                    └───────── Operandos ──────────┘
+```
+
+|Característica|RISC (tamanho fixo)|
+|--------------|-------------------|
+|Exemplo|ARM, RISC-V, MIPS, PowerPC|
+|Tamanho|Todas as instruções: 32 bits (ou 64 bits)|
+|Decodificação|Simples e rápida (sabe onde cada campo começa sem calcular)|
+|Hardware|Decodificador linear, mais simples, menor consumo|
+|Pipeline|Mais fácil de implementar (instruções chegam em ritmo constante)|
+|Densidade de código|Menor (programas maiores porque instruções simples ocupam 32 bits)|
+|Exemplo de instrução|ADD x1, x2, x3 (soma x2 e x3, guarda em x1)|
+
+##### 6.3.2 Tamanho Variável (CISC - Complex Instruction Set Computer)
+
+**As instruções podem ter diferentes comprimentos** (ex: 1 a 15 bytes no x86).
+
+```text
+x86-64 (tamanho variável)
+┌─────────────────────────────────────────────────────────────────┐
+│ Opcode │ ModR/M │ SIB │ Deslocamento │ Imediato │
+│ (1-4B) │ (1B)   │(1B) │ (1-8B)      │ (1-8B)   │
+└─────────────────────────────────────────────────────────────────┘
+   ▲         ▲       ▲         ▲            ▲
+   └─────────┴───────┴─────────┴────────────┘
+          Campos que podem estar ausentes dependendo da instrução
+```
+
+|Característica|CISC (tamanho variável)|
+|--------------|-----------------------|
+|Exemplo|x86 (Intel/AMD), z/Architecture (IBM)|
+|Tamanho|1 a 15 bytes (no x86)|
+|Decodificação|Complexa e mais lenta (precisa "descobrir" onde cada campo começa)|
+|Hardware|Decodificador complexo, muitas vezes com microcódigo (ROM interna)|
+|Pipeline|Mais difícil (instruções de diferentes tamanhos chegam em ritmo irregular)|
+|Densidade de código|Maior (programas menores, bom para memória cache)|
+|Exemplo de instrução|ADD EAX, [EBX+ECX*4+16] (soma de valor complexo da memória ao registrador)|
