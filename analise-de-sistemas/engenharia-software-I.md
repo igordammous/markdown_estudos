@@ -568,7 +568,8 @@ Características:
 
 ##### 5.2.4.4 Quanto à Origem ou Fonte
 
-|Tipo|Descrição|Exemplo
+|Tipo|Descrição|Exemplo|
+|----|---------|-------|
 |Requisitos de Negócio|Originados das regras de negócio e objetivos estratégicos da organização.|"Aumentar a concorrência entre mercados para reduzir preços da cesta básica."|
 |Requisitos de Usuário|Originados das necessidades, desejos e limitações dos usuários finais.|"Consumidores idosos precisam de fontes grandes e contraste elevado."|
 |Requisitos Regulatórios|Originados de leis, normas técnicas e órgãos reguladores.|"Cumprir a LGPD para dados pessoais." "Atender ao Código de Defesa do Consumidor."|
@@ -633,7 +634,7 @@ O IEEE 830 na seção de **"Interfaces Externas"**, exige exatamente a especific
 * Interfaces de usuário
 * Interfaces de hardware
 * Interfaces de software
-* Interfaces de comunicação 
+* Interfaces de comunicação
 
 ##### 5.2.4.10 Por Classe: Inversos
 
@@ -647,9 +648,9 @@ Esta classificação está diretamente alinhada com as recomendações do IEEE 8
 
 |Termo|Equivalente na Literatura|Significado|
 |-----|-------------------------|-----------|
-Essencial|Must-have, crítico, obrigatório|Sem ele, o sistema não funciona ou não atende ao objetivo principal|
-Importante|Should-have, condicional|Muito desejável, mas pode ser postergado para uma próxima versão|
-Desejável|Optional, nice-to-have|Seria bom ter, mas não é crítico; pode ser cortado se houver restrição|
+|Essencial|Must-have, crítico, obrigatório|Sem ele, o sistema não funciona ou não atende ao objetivo principal|
+|Importante|Should-have, condicional|Muito desejável, mas pode ser postergado para uma próxima versão|
+|Desejável|Optional, nice-to-have|Seria bom ter, mas não é crítico; pode ser cortado se houver restrição|
 
 A norma IEEE 830 afirma explicitamente que "cada requisito deve identificar seu grau de importância... essencial, condicional, opcional"
 
@@ -972,49 +973,11 @@ Em muitas empresas, principalmente as menores ou com menos maturidade em process
 * Os testes podem ser menos rigorosos (foco apenas no teste manual).
 * O projeto (design) pode ser feito "na cabeça" ou em um guardanapo, sem uma documentação formal de arquitetura.
 
-### 3. Vivemos uma Crise do Hardware?
-
-#### 3.1 O que seria uma "crise do hardware"?
-
-Diferente da crise do software, que foi sobre métodos inadequados para lidar com a complexidade, uma **crise do hardware seria caracterizada por**:
-
-* Estagnação ou desaceleração drástica do avanço tecnológico.
-* Limites físicos intransponíveis.
-* Escassez de componentes ou materiais críticos.
-* Custos crescentes que inviabilizam a evolução.
-
-#### 3.2 Os Argumentos a Favor de uma Crise do Hardware
-
-|Fator|Descrição|
-|-----|---------|
-|Fim da Lei de Moore|Gordon Moore previu que o número de transistores em um chip dobraria a cada 18-24 meses. Essa curva tem se achatado significativamente desde os 7nm, 5nm, 3nm. Os ganhos de desempenho por redução de litografia são cada vez menores e mais caros.|
-|Custo fabril astronômico|Uma fábrica de chips (foundry) de ponta custa hoje mais de US$ 20 bilhões. Apenas três empresas no mundo (TSMC, Samsung, Intel) conseguem competir nesse nível. Isso cria um oligopólio e barreiras de entrada intransponíveis.|
-|Escassez global de semicondutores (2020-2023)|A pandemia expôs a fragilidade da cadeia global de suprimentos. Setores inteiros (automotivo, eletrônicos) pararam por falta de chips. Essa vulnerabilidade é um sinal de crise estrutural.|
-|Aquecimento e consumo energético|Chips de alta performance consomem cada vez mais energia e geram calor extremo. O resfriamento de data centers e supercomputadores já é um dos maiores desafios de infraestrutura.|
-|Geopolítica e soberania tecnológica|A produção de semicondutores está concentrada em Taiwan (TSMC responde por mais de 50% dos chips avançados do mundo). Tensões geopolíticas (China vs. Taiwan) colocam toda a indústria global em risco. Países estão correndo para criar cadeias produtivas locais (EUA com o CHIPS Act, Europa com o European Chips Act).|
-
-#### 3.3 Os Argumentos Contra uma Crise do Hardware
-
-|Fator|Descrição|
-|-----|---------|
-|Inovação em arquitetura, não só em litografia|Embora a miniaturização esteja desacelerando, a inovação continua em outras frentes: arquiteturas heterogêneas (chiplet, 3D stacking), processamento neuromórfico, computação quântica, GPUs massivamente paralelas.|
-|Crescimento explosivo em nichos|Enquanto os CPUs tradicionais desaceleram, GPUs (NVIDIA), TPUs (Google), aceleradores de IA e chips especializados estão em crescimento exponencial, impulsionados pela inteligência artificial.|
-|Demanda e investimento sem precedentes|A indústria de semicondutores está recebendo investimentos bilionários de governos e empresas privadas. Em vez de uma crise de estagnação, vivemos um momento de realinhamento e reindustrialização.|
-|Software compensa hardware|Onde o hardware não avança tão rápido, o software compensa com otimizações, computação distribuída e novas arquiteturas. A nuvem permitiu que empresas escalassem sem depender de hardware próprio.|
-
-#### 3.4 Conclusão Parcial: Crise ou Transição?
-
-A visão mais equilibrada é que não vivemos uma crise do hardware no mesmo sentido da crise do software, mas sim uma transição de paradigma:
-
-* O modelo de crescimento "mais transistores a cada 18 meses com o mesmo custo"(*Lei de Moore*) chegou ao fim. Isso é um fato físico.
-* Estamos entrando em uma era de hardware diversificado e especializado, onde o ganho de desempenho virá mais de arquiteturas inovadoras do que de simples miniaturização.
-* A cadeia de suprimentos de semicondutores é um ponto único de fragilidade global, o que tem causado choques de oferta e movimentos de reindustrialização.
-
-### 4. Principais Causas de Cancelamento de Projetos de Software
+### 3. Principais Causas de Cancelamento de Projetos de Software
 
 Os números são impressionantes: cerca de 31,1% dos projetos de software são cancelados antes da conclusão, e apenas 16,2% são entregues no prazo e dentro do orçamento .
 
-#### 4.1 Principais Causas (segundo pesquisas e especialistas)
+#### 3.1 Principais Causas (segundo pesquisas e especialistas)
 
 |Causa|Descrição|Dados|
 |-----|---------|-----|
@@ -1029,11 +992,12 @@ Os números são impressionantes: cerca de 31,1% dos projetos de software são c
 |Conflitos políticos|Disputas internas entre equipes ou departamentos que paralisam decisões.|—|
 |Negligência de testes e qualidade|Bugs descobertos tardiamente ou após o lançamento, gerando retrabalho e insatisfação.|—|
 
-### 5. Como Orçar o Desenvolvimento de um Software
+### 4. Como Orçar o Desenvolvimento de um Software
+
 Orçar software é uma das atividades mais desafiadora
 s da engenharia de software. As principais abordagens são:
 
-#### 5.1. Principais Métodos de Estimativa
+#### 4.1. Principais Métodos de Estimativa
 
 |Método|Como Funciona|Quando Usar|
 |------|-------------|-----------|
@@ -1043,7 +1007,7 @@ s da engenharia de software. As principais abordagens são:
 |Estimativa Paramétrica (COCOMO, SEER-SEM)|Usa fórmulas matemáticas baseadas em linhas de código estimadas e fatores de ajuste.|Projetos de médio a grande porte.|
 |Estimativa Ágil (Planning Poker)|A equipe atribui pontos de história (story points) a cada tarefa, baseando-se em complexidade relativa.|Metodologias ágeis (Scrum).|
 
-#### 5.2. Fatores que Influenciam o Custo
+#### 4.2. Fatores que Influenciam o Custo
 
 * **Complexidade funcional:** Quantidade e complexidade das funcionalidades.
 * **Qualidade esperada**: Testes rigorosos, segurança, desempenho.
@@ -1052,11 +1016,11 @@ s da engenharia de software. As principais abordagens são:
 * **Integrações**: Conexão com sistemas de pagamento, ERP, APIs externas .
 * **Prazos**: Prazos curtos exigem mais recursos paralelos e aumentam custo.
 
-### 6. Frameworks e Templates Mais Usados no Desenvolvimento de Software
+### 5. Frameworks e Templates Mais Usados no Desenvolvimento de Software
 
 Os frameworks são estruturas pré-construídas que fornecem uma base para o desenvolvimento, evitando que você comece "do zero" .
 
-#### 6.1. Classificação por Tipo
+#### 5.1. Classificação por Tipo
 
 |Tipo|Função|Exemplos Populares|
 |----|------|------------------|
@@ -1065,7 +1029,7 @@ Os frameworks são estruturas pré-construídas que fornecem uma base para o des
 |Fullstack|Frontend + Backend integrados|Next.js (React), Nuxt.js (Vue), Ruby on Rails |
 |CSS/UI|Estilização e componentes visuais|Bootstrap, Tailwind CSS |
 
-#### 6.2. Frameworks Mais Populares (2025/2026)
+#### 5.2. Frameworks Mais Populares (2025/2026)
 
 |Framework|Linguagem|Tipo|Uso Principal|
 |---------|---------|----|-------------|
@@ -1080,7 +1044,7 @@ Os frameworks são estruturas pré-construídas que fornecem uma base para o des
 |Express.js|JavaScript/Node.js|Backend minimalista|APIs e aplicações Node.js|
 |Svelte|JavaScript/TypeScript|Frontend (compilador)|Código mais leve e performático|
 
-#### 6.3. Templates e Ferramentas Complementares
+#### 5.3. Templates e Ferramentas Complementares
 
 Além dos frameworks, os desenvolvedores utilizam templates (projetos iniciais prontos) e ferramentas que aceleram o desenvolvimento:
 

@@ -567,3 +567,246 @@ A **lógica** entre essas duas sentenças **não está apresentada explicitament
 O que está descrito no item “c” confere lógica ao texto inicial e liga as duas sentenças. Essa **relação entre o cachorro e o assalto que faz do exemplo um texto**, e não sentenças postas lado a lado desconexas em termos de sentido. **Essa relação lógica ficou a cargo do leitor**.
 
 *“Todo texto”*, dirá *Umberto Eco*, **“é uma máquina preguiçosa pedindo ao leitor que faça uma parte de seu trabalho.” (Eco, U., p. 9)**. As outras partes, como vimos pela perspectiva interacionista, está nas responsabilidades do autor e do texto.
+
+### 14.5 - Verificação
+
+> **Consiste na análise crítica da informação do texto, comparando-a com as hipóteses e inferências feitas antes e durante a leitura**.
+
+O **objetivo é confirmar ou refutar as previsões**, ajustando a compreensão do texto para uma visão mais completa e precisa, sem manter uma postura rígida durante a leitura, para então confirmar ou não as previsões feitas. A dica é monitorar o processamento do texto, observando se a seleção das informações realizada, as hipóteses que formulamos e as inferências feitas são, realmente, adequadas. Em essência, **a verificação é uma atividade de confirmação ou refutação dos nossos pressupostos**.
+
+#### 14.5.1 Exemplo
+
+Imagine que você está diante de dois textos com títulos idênticos: *“Como perder peso sem parar de comer”*:
+
+* Um deles de autoria de um renomado professor universitário da área da Saúde e publicado por uma consagrada revista acadêmica
+* Outro publicado na página do Facebook de um youtuber, sem formação na área.
+
+Diante dessa situação, é bem provável que você **formularia a hipótese de que o texto do professor universitário aborda a questão do emagrecimento de forma mais técnica e séria**. No entanto, **no decorrer da leitura, você encontre sinalizações que indicam o oposto**: o professor universitário poderá ter abordado o assunto de forma não muito técnica, apelando para achismos e deixando a ciência de lado.
+
+**Isso quer dizer que você precisaria rever ou refutar sua hipótese estabelecida a priori**.
+
+#### 14.5.2 Conclusão
+
+Por isso que não se deve adotar é uma postura imutável e inflexível diante de informações que indicam o contrário do que achamos que encontraríamos no texto. É muito comum encontrarmos *livros/textos* que apresentam títulos contendo palavras-chave chamativas somente para agarrar o leitor/comprador. Quando abrimos o livro, nos damos conta de que caímos numa cilada: o título nos levou a formular hipóteses que caem por terra tão logo lemos as primeiras linhas da introdução.
+
+### 14.6 - Ativação de Conhecimentos Prévios
+
+Por conhecimentos prévios queremos dizer os conhecimentos que você assimilou ao longo da vida e que carrega para o ator de leitura. *Izidoro Blikstein*, em um livro muito útil na área de comunicação e expressão escreve o seguinte: “*A partir dessa variadíssima experiência, cada um de nós vai criando uma porção de conhecimentos e referências históricas, geográficas, afetivas, profissionais, artísticas, científicas, místicas, religiosas, entre outros. Forma-se, dentro de nós, uma complicada e vastíssima rede de referências, valores e conhecimentos*.” *Blikstein* deu a esse conjunto de conhecimentos prévios que levamos conosco por toda a vida o nome de **repertório**.
+
+<img src="https://i.imgur.com/lMkWxnT.png" alt="Repertório" style="width: 60%" />
+
+A ativação dos nossos conhecimentos prévios, durante o ato de leitura, é necessária para pôr em prática todas as outras estratégias de leitura vistas até aqui.
+
+> No capítulo dedicado ao estabelecimento de objetivos ao iniciarmos uma leitura, sugerimos que você se imaginasse na condição de um viajante que teve seu voo reprogramado e que precisava preencher esse espaço de tempo fazendo algo. Ao abrir a página do jornal em que consta a resenha do filme sobre Segunda Guerra Mundial, você, a partir de seus conhecimentos sobre o tema, vai acionar uma miríade de informações do seu repertório.
+>
+> Como se trata de um tema de seu interesse e sobre o qual você tem um amplo repertório de conhecimento prévio, não terá dúvidas sobre se vai ou não assistir ao filme ao terminar de ler a resenha. Caso não dispusesse desses saberes, você poderia ficar na dúvida sobre se o filme vale ou não a pena ser assistido. Lembre-se de que uma pessoa com outra bagagem poderá tomar decisões adversas, uma vez que não tem os mesmos conhecimentos que você sobre a temática e a abordagem dada pelo filme ao tema da guerra.
+
+O **conhecimento prévio** mostra realmente seu valor quando fazemos **inferências**. É justamente esse conjunto de saberes, dos quais muitas vezes não nos damos conta, que nos possibilita inferir com maior assertividade. Os linguistas costumam dividir esses conhecimentos em três grandes sistemas de conhecimento: **conhecimento linguístico**, **conhecimento enciclopédico** e **conhecimento interacional**.
+
+## 15 - Conhecimento
+
+### 15.1 - Conhecimento Linguístico
+
+O **conhecimento linguístico** corresponde a tudo o que o leitor sabe sobre o idioma no qual o texto está escrito. Envolve, entre outras coisas, **conhecer os sentidos das palavras**, a **forma como o material linguístico está organizado** no texto, **as regras da gramática** e **saber reconhecer os meios coesivos para atribuir sentido** ao texto. Quanto mais dominamos as questões propriamente relacionadas à língua, mais destreza teremos no processo interpretativo. A título de exemplificação, veja a importância do conhecimento linguístico para a compreensão do texto:
+
+<img src="https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.2994648:1601475621/tirinha-educalab_P%C3%A1gina_08.webp?f=default&$p$f=56fa7c1" alt="Mas ou Mais" style="width: 35%" />
+
+A compreensão dessa tirinha exige que realizemos, no primeiro balão, a ligação entre a *ideia 1*: “Estudei” e a *ideia 2*: “não consigo entender.” estabelecida pelo elemento coesivo “**mas**”. Trata-se de uma **conjunção que expressa oposição** em relação ao esperado, ao que fora pressuposto. Já no segundo balão, temos a seguinte fala: “Então estude mais”, e o *efeito de humor só se concretizará se soubermos as diferenças entre as palavras* “**mas**”, com sentido de oposição, e “**mais**” que, na tirinha, é um advérbio que indica quantidade, intensidade. Logo, o conhecimento linguístico é imprescindível no ato de leitura.
+
+### 15.2 - Conhecimento Encicloédico (de Mundo)
+
+Conhecimentos de mundo ou enciclopédicos estão relacionados, como já antecipamos na introdução desse capítulo, a tudo que o leitor assimilou durante sua vida. Nesse tipo de conhecimento, que poderíamos, por comodidade, chamar de “cultura geral” entram saberes vindos de áreas como História, Geografia, Ciência, Matemática, Música, Literatura, Línguas Estrangeiras, Cinema etc.
+
+### 15.3 - Conhecimento Interacionais
+
+Devemos **compreender as formas como as pessoas interagem por meio da linguagem**. Não basta conhecer a língua em si, ou acionar nossos conhecimentos enciclopédicos quando lemos, é preciso levar em conta também nossos conhecimentos interacionais. Tais conhecimentos abrangem, principalmente, conhecimentos sobre os gêneros textuais e sobre a intenção do enunciador ao usar cada um deles. Fica mais fácil de compreender o que se entende por conhecimentos interacionais no ato da leitura, se retomamos o que estudamos no capítulo 1 sobre o princípio dialógico da linguagem. Segundo *M. Bakhtin*, a **linguagem é eminentemente dialógica, ou seja, ela se constituiu enquanto troca entre interlocutores**.
+
+> Um exemplo vindo da literatura poderá ilustrar esse princípio. Escreve *Machado de Assis*, logo na introdução de seu romance **Memórias Póstumas de Brás Cubas**, em um franco diálogo com seu leitor: “A obra em si mesma é tudo; se te agradar fino leitor, pago-me da tarefa; se te não agradar, pago-te com um piparote, e adeus.” (*Memórias Póstumas de Brás Cubas, 1990, p. 12. Grifos nossos*). 
+> O que temos aqui é uma forma explícita de interação entre leitor e autor, por meio do texto literário.
+
+*Guimarães* (2012, p. 126) nos lembra também de que “**os conhecimentos interacionais ainda incluem a capacidade de interpretar certas marcas convencionais da comunicação, como itálicos, sublinhados, espaçamentos, parênteses, setas**.”
+
+Os conhecimentos de mundo ou enciclopédico, os conhecimentos linguísticos e os conhecimentos interacionais constituem os principais tipos de saberes que operam no interior da estratégia de leitura que acabamos de estudar: Ativação de conhecimentos prévios.
+
+## 16 - Autoria, data e lugar
+
+O advento das tecnologias e a proliferação de redes sociais deram ao autor uma oportunidade imensa de poder publicar seus textos nesses meios. Ocorre que muito do que é aí publicado carece, muitas vezes, de credibilidade por apresentar sérios problemas de expressão, às vezes, por veicular notícias falsas ou por carecer de uma revisão por parte de pares (*como acontece em artigos acadêmicos em que alguém detentor de um conhecimento técnico sobre determinado assunto chancela o que escrevemos*). Sua bússola nesse imenso vendaval deverá ser o grau de **confiabilidade das informações**. Checar a veracidade das informações que lemos a todo momento se tornou um critério determinante na sociedade contemporânea. Afora toda a problemática envolvendo sobretudo notícias apócrifas, é inegável que esses espaços nas redes sociais representam uma oportunidade para externalizarmos nossas ideias.
+
+### 16.1 - Autoria
+
+A **autoria** tem um papel muito relevante na leitura, pois, muitas vezes, **o que determina se vamos ou não ler um texto é exatamente sua autoria**. Em épocas de textos de autoria duvidosa, o *grau de confiabilidade das informações deve ser um critério buscado constantemente por nós*. Além do grau de confiabilidade das informações, **outros critérios também estão atrelados à autoria**. Entre eles, poderíamos *citar ainda o tema, a abordagem e o ponto de vista*.
+
+**A depender do tema, nossos conhecimentos de mundo acabam selecionando as pessoas que estão “autorizadas” a escrever sobre o assunto**. Tente adivinhar sobre quais assuntos, por exemplo, cada uma destas pessoas escreveria: Ailton Krenak, Fernando Haddad, Neymar Jr., Simone Tebet e Gisele Bündchen. É como se, mentalmente, estabelecêssemos um horizonte de expectativas no âmbito do qual selecionamos temas sobre os quais essas pessoas pudessem falar.
+
+#### 16.1.1 - Abordagem
+
+> Texto: "*Como perder peso sem passar fome* - Autor: *Drauzio Varela*
+>
+> Texto: "*Como perder peso sem passar fome* - Autor: *Xuxa Menegel*
+
+Qual deles você acredita que abordará o tema de maneira mais séria e técnica? Seu **conhecimento de mundo, certamente, indicaria que o texto de autoria do médico seria o mais recomendado. Isso serve também para quando estiver buscando fontes para seus trabalhos acadêmicos**, recomenda-se priorizar os **textos das “autoridades”** no assunto e não simplesmente de autores sem o devido reconhecimento.
+
+#### 16.1.2 - Ponto de vista
+
+É por meio dele que se manifestam mais diretamente a *visão de mundo* do autor, suas *ideologias*, suas *crenças* etc., tudo aquilo que, *direta ou indiretamente*, reverberam no texto. O simples fato de, no momento da escrita, escolhermos uma palavra e não outra qualquer é indício de que estamos sendo “guiados” por algum fator ideológico. **Muitas vezes, não conseguimos identificar esses fatores, pois eles foram sendo gradativamente depositados em nós, sem que tivéssemos muita noção disso**. Logo, quando escrevemos, tudo isso(*repertório do autor*) vem à tona e se instala nos nossos textos. Sendo assim, ao ler um texto, o ponto de vista do autor poderá ser um critério orientador.
+
+> Entre dois textos com o mesmo título: “*Saiba tudo sobre o cultivo de milho híbrido*”, um deles assinado pela *Agroceres*, o outro, pela *Greenpeace*, em qual deles você acredita que encontraria argumentos favoráveis ao grão geneticamente modificado?
+
+### 16.2 - Data
+
+Outros dois elementos importantes a serem observados durante a leitura são a **data** e o **lugar** em que o texto foi publicado. Como nos lembra *Guimarães* (2012, p. 114), **o ser humano é fruto de seu tempo**. Grandes autores do passado, como *Júlio Verne*, *Machado de Assis* ou *Gilberto Freire*, **escreveram linhas que hoje seriam consideradas racistas ou xenófobas**; contudo, **em suas épocas, elas apenas refletiam o pensamento predominante**. Daí a **importância de levar em conta o contexto histórico** ao interpretar textos.
+
+### 16.3 - Lugar
+
+O **lugar** em que um determinado texto foi escrito é também importante durante a leitura, pois as **diferenças culturais já são imensas mesmo dentro do nosso país, imagine quando nos deparamos com culturas de outros povos**. As visões de mundo tendem a mudar de um lugar para outro, isso tem a ver com eventos históricos e formas de desenvolvimento social e econômico. O texto deixa transparecer todas essas marcas “locais” e nós precisamos captar e compreender esses detalhes durante o ato da leitura.
+
+## 17 - Contexto
+
+Antes de falar de **contexto**, é preciso falar de **texto**, pois um depende intrinsicamente do outro.  
+
+A **diversidade de formas de conceber a noção de texto** está estritamente **relacionada a correntes do pensamento que foram alterando a noção de linguagem ao longo dos estudos linguísticos**. Aqui estão três delas:
+
+* A primeira que considera a **linguagem enquanto expressão do pensamento**
+* A segunda que entende a **linguagem como mero instrumento de comunicação**
+* E a terceira que compreende a **linguagem como forma ou um processo de interação**.
+
+Muitos estudiosos compreendem a linguagem como uma expressão do pensamento, o fenômeno linguístico corresponde a um ato racional. Nas palavras de *Travaglia* (1997, p. 21), trata-se de uma abordagem que concebe a linguagem como “**um ato monológico, individual, que não é afetado pelo outro nem pelas circunstâncias que constituem a situação social em que a enunciação acontece**”. A noção de texto que surge dessa corrente é a que o concebe como “*um produto lógico do pensamento (uma representação mental) do autor, nada mais cabendo ao leitor senão ‘captar’ essa representação mental (...)*” (KOCH; ELIAS, 2021, p. 10).
+
+A segunda noção entende a **linguagem como um instrumento**. A **principal característica** dessa tendência, de acordo com *Marcuschi* (2008), é o **desvinculamento da língua do seu contexto social, passando a ser vista como um código, um conjunto de signos, combinados por meio de regras, que possibilitam ao emissor transmitir uma certa mensagem ao receptor**. Nos dizeres de Travaglia (1997, p. 22), “essa é uma visão monológica e imanente da língua, que a estuda segundo uma perspectiva formalista – que limita esse estudo ao funcionamento interno da língua – e que a separa do homem no seu contexto social”. A noção de texto daí derivada é a de um “simples produto da codificação de um emissor a ser decodificado pelo leitor/ouvinte, bastando a este, para tanto, o conhecimento do código utilizado.” (KOCH; ELIAS, 2021, p. 10).
+
+A **terceira e mais abrangente** dessas correntes compreende a **linguagem como um processo de interação**. Para essa concepção, a linguagem é **compreendida como o lugar de interação humana e de constituição de relações sociais**. “Já na concepção interacional (dialógica) da língua, na qual os sujeitos são vistos como atores/construtores sociais, o texto passa a ser considerado o próprio lugar da interação e os interlocutores, como sujeitos ativos que - dialogicamente – nele se constroem e são construídos. Dessa forma há lugar, no texto, para toda uma gama de implícitos, dos mais variados tipos, somente detectáveis quando se tem, como pano de fundo, o contexto sociocognitivo dos participantes da interação.” (KOCH; ELIAS, 2015, p.18).
+
+> Essa última abordagem, dentre as três, é a que procura integrar o maior número possível de aspectos, ela surgiu no âmbito da **Linguística Textual** em meados dos anos de 1930 e é amplamente aceita na contemporaneidade. **O texto, por esse viés, começou a ser pensado como uma unidade de comunicação extremamente complexa e interativa**.
+
+## 18 - Produção de texto
+
+Há um consenso de que um bom texto é mais do que uma sequência de frases bem construídas. Na verdade, para ser realmente texto, é necessário muito mais do que isso. Alguns desses ingredientes são a **coesão**, a **coerência** e a **adequação do que se escreve ou fala ao contexto de interação**, entre outros tantos atributos.
+
+> A **regra de ouro** sobre produção de texto é o **equilibrio**. Não é recomendado usar apenas uma forma de composição, nem apenas frases longas ou curtas. O recomendado é mesclar frases de diferentes construções e extensões. Com isso, quebramos a monotonia do texto e conferimos ênfase em determinadas ideias que queremos destacar na nossa produção escrita.
+
+### 18.1 - Frase
+
+Quando *falada*, **frase é caracterizada por uma entonação particular**; já na *escrita*, **é encerrada por ponto**, quase sempre por ponto final, mas também pode ser encerrada por ponto de exclamação, interrogação e por reticências.
+
+||
+|---------------------------|
+|Ex.: Bom dia, caros alunos.|
+|Ex.: Mãos ao alto!|
+|Ex.: Onde fica a saída?|
+|Ex.: A aula de Comunicação e Expressão foi marcada para as 11 horas.|
+|Ex.: O professor informou que a aula de Comunicação e Expressão foi marcada para as 11 horas.|
+
+O primeiro e o segundo exemplos mostram que a *frase pode ou não apresentar verbo*. Construções desse tipo são chamadas de **frases nominais**. Já as *frases que contêm verbos* são chamadas de **períodos**. Damos o nome de **oração** ao segmento de um período organizado em torno de um **verbo** ou de uma **locução verbal**. Por locução verbal, queremos dizer uma **expressão formada por um verbo auxiliar** (*ser, estar, ter, haver, andar, viver etc.*) mais um **verbo principal**, que é *responsável pelo sentido da locução*.
+
+### 18.2 - Período
+
+||
+|----------------------------------------------------------------------------------------------|
+|Ex.: A aula foi **marcada**. (Nessa construção, “foi” é verbo auxiliar e “marcada” principal.)|
+|Ex.: **Vamos cantar** uma música? (“vamos” é verbo auxiliar e “cantar” principal.)|
+|Ex.: A leitura do material **tinha ocorrido** uma semana antes. (“tinha” é verbo auxiliar e “ocorrido” principal.)|
+
+Um período pode ser formado por uma ou mais orações. Damos o nome de **período simples** aos que contêm uma única oração; já os que apresentam duas ou mais, **período composto**.
+
+||
+|-----------------|
+|Ex.: Onde **fica** a saída? (Nesse caso temos apenas um verbo (fica); logo, trata-se de um período simples.)|
+|Ex.: A aula **foi marcada** para sexta-feira. (Nesse caso temos uma única locução verbal (foi marcada); isso quer dizer que temos uma única oração e o período é simples.)|
+|Ex.: O aluno **disse** que **estudou** tota a matéria do semestre em dois dias. (Nesse caso, temos a primeira oração, construída em torno do verbo disse, e a segunda, construída a partir do verbo estudou. Trata-se, então, de duas orações; logo, estamos diante de um período composto.)|
+
+A forma mais prática de saber o número de orações em um período é contar o número de verbos ou de locuções verbais. Outra dica interessante para você ficar de olho é a quantidade de orações de um período: normalmente, nossos períodos apresentam uma grande quantidade de orações e isso não é problema nenhum.
+<img src="https://img2.doceru.com/image/l/evcv808.png" alt="Frase, oração e período" style="width: 75%" />
+
+Sobre a construção do período composto, ainda temos duas informações importantes: eles podem ser compostos por
+
+* **Coordenação**
+* **Subordinação**
+* **Coordenação e subordinação ao mesmo tempo**.
+
+#### 18.2.1 - Período Composto por Coordenação
+
+A *Nomenclatura Gramatical Brasileira (NGB)* – que é um documento normativo do Ministério da Educação do Brasil, que objetiva unificar e simplificar os termos e conceitos gramaticais usados no ensino da Língua Portuguesa – dá o nome de **período composto por coordenação** àquele em que as **orações** que o integram são independentes entre si, isso quer dizer que elas **podem ser compreendidas separadamente**. Outro aspecto das orações que compõem um período composto por coordenação é que não há hierarquia entre elas, nenhuma é mais importante que a outra.
+
+Às vezes, as orações de um período composto por coordenação não apresentam a intermediação de uma conjunção coordenativa para uni-las, nesse caso, elas são justapostas, o que significa que estão lado a lado sem uma conexão visível entre elas. Dizemos, então, que as orações coordenadas podem ser:
+
+* **Coordenadas assindéticas**: quando não é introduzida por conjunção, ou seja, sem palavra que a ligue a outra.
+* **Coordenada sindética**: quando é introduzida por conjunção.
+
+||
+|----------|
+|Ex.: O sol brilha intensamente, as nuvens afastam-se no horizonte.|
+|Ex.: Olhou o horizonte e sorriu.|
+
+Como se nota, em *“O sol brilha intensamente, as nuvens afastam-se no horizonte.”* não há nenhuma palavra que conecta as duas orações. Elas simplesmente foram separadas por uma vírgula. Observe também que não houve prejuízo de sentido, compreendemos plenamente o que foi dito. Nesse caso, estamos diante de um período composto por coordenação, e as orações que o constituem são **assindéticas**.
+
+Em *“Olhou o horizonte e sorriu.”* Constatamos a presença da conjunção **“e”**, que dá a ideia de adição, unindo as duas orações. Isso indica que estamos diante de um período composto por coordenação, e as orações que o constituem são **sindéticas**.
+
+##### Coordenação sindética
+
+|Exemplo|Ideia expressa pela conjunção|Principais conjunções|
+|-------|-----------------------------|---------------------|
+|Pedro trabalha, **e** Paulo estuda.|adição (aditiva)|e, nem, tanto ... como, tanto ... quanto, não só ... mas também, nem ... nem, não somente ... mas também.|
+|**Ou** você estuda, **ou** você trabalha.|alternância (alternativa)|ou, ou... ou, já ... já, ora ... ora, quer ... quer.|
+|Esta casa é muito antiga, **mas** continua de pé.|oposição (adversativa)|mas, porém, contudo, todavia, entretanto, no entanto.|
+|Não fui à feira, **pois** estava chovendo muito.|Explicação (explicativa)|porque, que, pois, porquanto.|
+|Penso, **logo** existo.|Conclusão(conclusiva)|logo, pois, portanto, por conseguinte.|
+
+#### 18.2.2 - Período Composto por Subordinação
+
+A *Nomenclatura Gramatical Brasileira* dá o nome de período composto por subordinação àquele em que as **orações que o constituem são dependentes entre si**, ou seja, elas não podem ser compreendidas separadamente. Nesse caso, temos uma oração subordinada que completa o sentido de outra, a chamada oração principal. Diferentemente das orações coordenadas, as subordinadas **mantêm uma relação de total dependência uma da outra**.
+
+> Ex.: Os estudantes **solicitaram** que a prova **fosse realizada** em dupla.
+
+Nesse caso, a oração *“Os estudantes solicitaram”* é a principal, e *“que a prova fosse realizada em dupla”* é a subordinada. Observe que a oração “Os alunos solicitaram”, isolada, ficaria incompleta – solicitaram o quê? Então, a oração subordinada “que a prova fosse realizada em dupla.” está aí justamente para completar o sentido da oração principal. Temos, então, uma relação de dependência entre elas.
+
+O período composto por subordinação é formado por três grandes grupos de orações subordinadas, quais sejam:
+
+* Subordinadas substantivas
+* Subordinadas adjetivas
+* Subordinadas adverbiais.
+
+##### 18.2.2.1 - Orações Subordinadas Substantivas
+
+|Exemplo|Função exercida pela subordinada|Classificação|
+|-------|--------------------------------|-------------|
+|É conveniente *que haja mais esperança*.|sujeito|Oração subordinada substantiva subjetiva|
+|O professor viu *que o aluno progredia*.|objeto direto|Oração subordinada substantiva objetiva direta|
+|Nós necessitamos de *que os livros cheguem logo*.|objeto indireto|Oração subordinada substantiva objetiva indireta|
+|O medo de *que houvesse mais assaltos* era imenso.|complemento nominal|Oração subordinada substantiva completiva nominal|
+|O importante seria que todos continuassem empregados.|predicativo do sujeito|Oração subordinada substantiva predicativa|
+|Só tínhamos um desejo: que você fosse feliz.|aposto|Oração subordinada substantiva apositiva|
+
+##### 18.2.2.2 - Orações Subordinadas Adjetivas
+
+|Exemplo|Relação com o antecedente|Classificação|
+|-------|-------------------------|-------------|
+|O aluno **que estuda** progride.|Refere-se apenas a uma parte do antecedente **[aluno]**.|Oração subordinada adjetiva restritiva.|
+|O homem, **que é mortal**, erra.|Refere-se à totalidade do antecedente **[homem]**.|Oração subordinada adjetiva explicativa.|
+
+##### 18.2.2.3 - Orações Subordinadas Adverbiais
+
+|Exemplo|Ideia expressa pela conjunção e classificação|Principais conjunções e locuções conjuntivas|
+|-------|---------------------------------------------|--------------------------------------------|
+|Não fui à escola *porque choveu muito*.|Causa / O.S.A. Causal|porque, pois, como, uma vez que, já que, visto que, por isso que|
+|*Embora leia rápido*, o aluno não terminou o livro no tempo esperado.|Concessão / O.S.A. Concessiva|embora, conquanto, mesmo que, ainda que, por mais que, posto que, apesar de que, se bem que|
+|*Caso sejamos convidados*, iremos à festa.|Condição / O.S.A. Condicional|se, caso, salvo que, contanto que, desde que, a menos que, a não ser que|
+|Fez sinal *para que entrássemos à direita*.|Finalidade / O. S. A. Final|para, porque, para que, a fim de que|
+|*Quando a atriz chegou*, já havíamos saído do teatro.|Tempo / O. S. A. Temporal|quando, assim que, logo que, sempre que, todas as vezes que|
+|Choveu tanto que *não fui à aula*.|Consequência / O. S. A. Consecutiva|que (em geral antecedido dos vocábulos “tão”, “tal”, “tanto”, “tamanho”), de sorte que, sem que|
+|*Voltou à casa paterna*, como o pássaro retorna ao ninho.|Comparação / O. S. A. Comparativa|que, como, qual, tal como, tal qual|
+|Sempre agia conforme *seus princípios recomendavam*.|Conformidade / O. S. A. Conformativa|como, conforme, consoante, segundo
+|*À medida que o trem avança*, a paisagem se torna mais bonita.|Proporcionalidade / O. S. A. Proporcional|Enquanto, à proporção que, à medida que, ao passo que, quanto mais ... mais|
+
+### 18.3 - Parágrafo
+
+E para efeito de entendimento há um tipo de parágrafo que, dada sua recorrência, ficou conhecido como **parágrafo-padrão**. Não se trata de uma fórmula rígida que engessa a expressão de quem escreve, mas uma **diretriz que nos ajuda na hora de escrever**. Depois de muito utilizar essa estrutura em nossos textos, pode haver, por parte de quem escreve, uma espécie de libertação, mas, até que a proficiência na escrita efetivamente ocorra, recomenda-se enfaticamente a utilização do parágrafo-padrão.
+
+|Mais Abstrato|\(\rightarrow \)|Mais Concreto|
+|--------|-------|--------|
+|Vegetal|Árvore|Figueira|
+|Animal|Peixe|Atum|
+|Ferramenta|Chave|Chave de Fenda|
+
+*Garcia (2013)* afirma também que a preferência pelo parágrafo-padrão, não apenas no português como em muitas línguas modernas, deve-se ao fato de essas línguas terem como berço a cultura greco-latina. O autor também defende que o parágrafo-padrão, ao **partir do geral para o específico**, apoia-se no **raciocínio dedutivo**, que se alinha à tradição filosófica ocidental. O raciocínio que se opõe ao dedutivo é o **indutivo**, que **parte do específico para o geral**.
+
+Isso significa dizer que a maioria do que se tem produzido textualmente no mundo ocidental tem se orientado, de alguma forma, por esse princípio. Trata-se de uma estrutura há muito internalizada em nossa cultura
