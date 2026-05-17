@@ -1760,8 +1760,12 @@ Este **cálculo é feito em tempo real** durante a operação aritmética, **por
 
 ### 2. Bit de Paridade: Um Mecanismo Simples de Detecção de Erros
 
+<<<<<<< HEAD
 Conceito Fundamental
 O bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
+=======
+O conceito fundamental do bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
+>>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
 
 #### 2.1. Tipos de Paridade
 
@@ -1842,7 +1846,11 @@ O bit de paridade é apenas o ponto de partida. Sistemas modernos usam mecanismo
 
 > **Conexão entre os conceitos**
 > Ambos são exemplos de como o hardware monitora a integridade das operações:
+<<<<<<< HEAD
 >
+=======
+> 
+>>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
 > * Overflow → monitora a correção dos cálculos
 > * Paridade → monitora a integridade dos dados
 >
@@ -1922,8 +1930,12 @@ Y = (S̅1·S̅0·I0) + (S̅1·S0·I1) + (S1·S̅0·I2) + (S1·S0·I3)
         S0 ──┘
         S1 ───
 ```
+<<<<<<< HEAD
 
 #### 3.4. Principais usos do multiplexador:
+=======
+#### 3.4. Principais usos do multiplexador
+>>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
 
 * **Seleção de fonte de dados** (ex: escolher entre ALU, memória ou barramento de entrada)
 * **Implementação de funções lógicas** (MUX como "tabela verdade programável")
@@ -1966,15 +1978,23 @@ Ainda não existe uma bibliografia, ou cientista específico(*como Von Neumann n
 * **A Motivação**: O Japão, que até então seguia as inovações do Ocidente, queria assumir a liderança tecnológica mundial na próxima era da computação .
 As Armas Escolhidas: Prolog e Paralelismo
 
+<<<<<<< HEAD
 #### 4.3. Para atingir esse ambicioso objetivo, o projeto FGCS definiu alicerces técnicos claros:
+=======
+#### 4.3. Para atingir esse ambicioso objetivo, o projeto FGCS definiu alicerces técnicos claros
+>>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
 
 * **Linguagem Base**: *Prolog*: Diferente das linguagens imperativas (C, Pascal), o **Prolog é uma linguagem de programação lógica**. O programador declara fatos e regras, e o computador usa inferência lógica para chegar a uma conclusão.
 * **Arquitetura**: *Paralelismo em Massa*: Para executar o Prolog em altíssima velocidade, era necessário um hardware especializado, as chamadas **Máquinas de Inferência Paralela**(Parallel Inference Machines - PIMs).
 
 #### 4.4. Os Computadores que Definiriam a Era: As PIMs (Parallel Inference Machines)
 
+<<<<<<< HEAD
 O projeto FGCS produziu não uma, mas várias máquinas protótipos, conhecidas como PIMs. Elas são os principais candidatos a "hardware que define a 5ª geração".
 
+=======
+O projeto FGCS produziu não uma, mas várias máquinas protótipos, conhecidas como PIMs. Elas são os principais candidatos a "hardware que define a 5ª geração" .
+>>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
 * **PSI** (Personal Sequential Inference machine): Antes do grande salto ao paralelismo, foi desenvolvida uma estação de trabalho sequencial para programação e experimentação com a lógica Prolog .
 * **PIM** (Parallel Inference Machine): O ápice do projeto. Foram construídos diversos protótipos com arquiteturas diferentes (PIM/m, PIM/p, PIM/i, etc.) para teste .
    * **PIM/p**: Continha 512 processadores elementares trabalhando em paralelo .
@@ -1988,6 +2008,7 @@ O projeto FGCS produziu não uma, mas várias máquinas protótipos, conhecidas 
 * **Dificuldades com Software**: A promessa de usar lógica pura para resolver problemas do mundo real mostrou-se muito mais complexa do que o imaginado. Criar software que aproveitasse todo aquele poder paralelo era um desafio imenso .
 * **A Revolução da Internet**: O projeto imaginava grandes bancos de dados centralizados. Não previu o impacto revolucionário da Internet e da Web, que mudou completamente a forma como acessamos e distribuímos informação .
 
+<<<<<<< HEAD
 ### 5. Vivemos uma Crise do Hardware?
 
 #### 5.1 O que seria uma "crise do hardware"?
@@ -2025,3 +2046,171 @@ A visão mais equilibrada é que não vivemos uma crise do hardware no mesmo sen
 * O modelo de crescimento "mais transistores a cada 18 meses com o mesmo custo"(*Lei de Moore*) chegou ao fim. Isso é um fato físico.
 * Estamos entrando em uma era de hardware diversificado e especializado, onde o ganho de desempenho virá mais de arquiteturas inovadoras do que de simples miniaturização.
 * A cadeia de suprimentos de semicondutores é um ponto único de fragilidade global, o que tem causado choques de oferta e movimentos de reindustrialização.
+=======
+#### 4.6 Bibliografia e Referências da 5ª Geração
+
+As fontes primárias que definiram esse período, os principais documentos são:
+
+* **Livro Fundador**: "The Fifth Generation: Artificial Intelligence and Japan's Computer Challenge to the World" (1983), por Edward Feigenbaum e Pamela McCorduck . Este livro apresentou o projeto ao mundo Ocidental, causando grande impacto.
+* **Publicações Técnicas do ICOT**: Os relatórios anuais e os papers publicados pelo instituto são a bibliografia técnica oficial do projeto .
+* **Conferência Internacional**: O livro "Fifth Generation Computer Systems" (1982), editado por T. Moto-oka, compila os artigos da conferência que lançou oficialmente a visão do projeto
+
+### 5. Novo Marco da 5ª Geração
+
+A arquitetura moderna de IA (*redes neurais profundas, GPUs, transformers*) não é considerada a **"Quinta Geração" original, mas sim uma evolução radical e diferente** que aprendeu com os erros daquela empreitada.
+
+#### 5.1 Definição Original da 5ª Geração (Projeto FGCS)
+
+|Característica|Definição do FGCS|Exemplo/Implementação|
+|--------------|-----------------|---------------------|
+|Foco Principal|Raciocínio Lógico e Conhecimento|Máquinas de Inferência (baseadas em regras "SE-ENTÃO")|
+|Abordagem de IA|GOFAI (Good Old-Fashioned AI)|Sistemas baseados em conhecimento, regras simbólicas|
+|Hardware Central|Máquinas de Inferência Paralela (PIM)|Arquitetura paralela maciça (ex: PIM/p com 512 processadores)|
+|Linguagem de Programação|Programação Lógica (Prolog)|KL1, uma linguagem de programação lógica concorrente|
+|Objetivo de Desempenho|Alta Taxa de Inferências Lógicas (LIPS)|Meta de 100M a 1G LIPS (vs. 100k LIPS de workstations da época)| 
+|Resultado Final|Fracasso Comercial|Superado por hardware de uso geral (Lei de Moore) e desafios de software|
+
+#### 5.2 Por que a IA Moderna é Diferente?
+
+A IA que vemos hoje (*redes neurais, aprendizado profundo, LLMs como o GPT*) **não é uma continuação direta do projeto FGCS**, pois opera sob princípios quase opostos. A tabela abaixo ilustra essa mudança de paradigma:
+
+|Aspecto|Quinta Geração (FGCS)|IA Moderna (Deep Learning)|
+|-------|---------------------|--------------------------|
+|Paradigma Central|Simbólico|Lógico ("SE-ENTÃO")|Sub-simbólico / Conexionista (redes neurais)| 
+|Mecanismo de "Aprendizado"|Regras e fatos são programados explicitamente|A rede aprende padrões a partir de dados massivos|
+|Hardware Impulsionador|PIMs (máquinas especializadas)|GPUs (hardware de uso geral, originalmente para gráficos)|
+|Arquitetura de Processamento|Paralelismo massivo (lógico)|Paralelismo massivo (matricial/ vetorial)|
+|Exemplo de Sucesso|Sistemas Especialistas (ex: MYCIN)|LLMs (ChatGPT), Visão Computacional, Reconhecimento de Fala|
+|Desafio Principal|Engenharia do conhecimento (difícil escalar)|Dados e poder computacional (custo de treinamento)|
+
+> A **principal diferença** é que a **5ª Geração tentou construir a inteligência através de regras e lógica formal**. A **abordagem moderna foca em estatística, probabilidade e reconhecimento de padrões em enormes volumes de dados**, algo que o hardware da época simplesmente não permitia viabilizar.
+
+#### 5.3  E o que a IA de Hoje "Herda" da 5ª Geração?
+
+**Embora as arquiteturas sejam diferentes, a IA moderna deve muito ao espírito e aos fracassos do projeto FGCS**.
+
+* **A Visão Visionária**: O FGCS sonhou com computadores que pudessem conversar, traduzir idiomas e auxiliar em diagnósticos . Este é exatamente o mundo que os LLMs e a IA generativa estão começando a tornar realidade.
+* **Aprendizado com os Erros**: O fracasso do FGCS ensinou à indústria que o caminho de construir hardware extremamente especializado (como as PIMs) era muito arriscado. A solução moderna foi usar hardware paralelo de uso geral (GPUs) e deixar o software (as redes neurais) encontrar os padrões.
+* **Incentivo à Pesquisa**: O anúncio japonês foi um "choque de realidade" para os EUA e Europa, dando início a iniciativas massivas de pesquisa em IA como a Strategic Computing Initiative nos EUA e o Alvey no Reino Unido . Essa reação em cadeia ajudou a formar a base de pesquisa que décadas depois floresceria.
+
+> **O que outras fontes consideram como 5ª Geração?**
+>
+>A definição da 5ª Geração, embora dominada pelo projeto FGCS, teve outras nuances. Há outras fontes confiáveis, como livros e periódicos da época, também discutiam outras possibilidades.
+>
+> * **Duas Vertentes** (Perspectiva da Arquitetura de Computadores): Um artigo seminal de 1983 do pesquisador Philip C. Treleaven já identificava duas grandes correntes :
+>    * **A Revolucionária** (Adotada pelo Japão): A máquina de lógica paralela para processamento de conhecimento.
+>    * **A Evolucionária**: Um sistema de controle de fluxo descentralizado (como uma rede de computadores).
+> * **Foco no Processamento de Conhecimento**: A literatura da época, como o livro de Feigenbaum e McCorduck, definia a 5ª Geração menos pelo hardware e mais pela sua função: uma máquina para a "era da informação", capaz de raciocinar sobre conhecimento, não apenas processar dados . 
+> * **Um Conceito em Evolução**: O próprio termo "geração" foi contestado. Alguns especialistas notaram que a taxonomia tradicional ignorava as máquinas a relé (0ª geração) e que a 5ª seria definida por uma mudança de software (IA e lógica) em vez de hardware.
+
+### 6. Codificação de Instruções de Máquina
+
+Uma instrução de máquina é a **menor ordem que o processador entende e executa**. Ela é codificada em **binário** e **armazenada na memória como um número**. Quando a Unidade de Controle a busca, ela sabe exatamente o que fazer: somar, carregar, comparar ou desviar.
+
+#### 6.1 Estrutura de uma Instrução de Máquina
+
+Toda instrução de máquina contém campos que dizem ao processador o que fazer e com o quê fazer.
+
+##### 6.1.1 Campos Fundamentais
+
+|Campo|Função|Exemplo|
+|-----|------|-------|
+|Opcode (Operation Code)|Define a operação a ser executada (soma, carga, desvio, etc.)|`0001` = ADD, `0010` = SUB, `1000` = LOAD|
+|Operandos|Especificam os dados ou endereços dos dados envolvidos|Registrador R1, Endereço 0x1234|
+|Modo de Endereçamento|Indica **como** interpretar os operandos (é um valor direto? É um endereço?)|Imediato (`#5`), Direto (`[0x1234]`), Indireto (`[[0x1234]]`)|
+
+##### 6.1.2 Visualização de uma instrução de 16 bits (simplificada)
+
+```text
+┌─────────────┬─────────────┬─────────────────────────────┐
+│   Opcode    │   Modo de   │        Operando(s)           │
+│   (4 bits)  │ Endereçamento│        (8 bits)              │
+│             │   (4 bits)   │                             │
+├─────────────┼─────────────┼─────────────────────────────┤
+│    0001     │    0010      │       0000 0101 (5)         │
+└─────────────┴─────────────┴─────────────────────────────┘
+
+Interpretação: ADD imediato do valor 5 ao acumulador
+```
+
+#### 6.2 Modos de Endereçamento
+
+O modo de endereçamento diz **como encontrar o operando**. É um campo que pode estar explícito (parte da instrução) ou implícito (determinado pelo opcode).
+
+|Modo|Como funciona|Exemplo (pseudocódigo)|Uso típico|
+|----|-------------|----------------------|----------|
+|Imediato|O valor está na própria instrução|`ADD #5`|Constantes, pequenos valores|
+|Direto|O endereço está na instrução; o dado está na memória|`LOAD [0x1234]`|Acesso a variáveis globais|
+|Indireto|O endereço do endereço está na instrução|`LOAD [[0x1234]]`|Ponteiros duplos (raro hoje)|
+|Registrador|O dado está em um registrador|`ADD R1, R2`|Operações aritméticas comuns|
+|Indireto por registrador|O registrador contém o endereço do dado na memória|`LOAD (R1)`|Acesso a vetores/arrays|
+|Deslocamento (Base+Offset)|Registrador + constante = endereço final|`LOAD 16(R1)`|Acesso a campos de struct|
+|PC-relativo|Deslocamento somado ao PC|`JUMP +12`|Desvios condicionais em código|
+
+##### 6.2.1 Exemplo codificado (arquitetura hipotética de 8 bits)
+
+```text
+Instrução: ADD o valor do registrador R2 ao acumulador (R1)
+
+Formato: OPCODE (4 bits) | MODO (2 bits) | REG (2 bits)
+
+Opcode ADD = 0001
+Modo REGISTRADOR = 01
+Registrador R2 = 10 (binário)
+
+Instrução completa: 0001 01 10  (em hexa: 0x16)
+```
+
+#### 6.3 Formato das Instruções: Tamanho Fixo vs. Tamanho Variável
+
+Esta é uma das principais diferenças entre as arquiteturas **RISC** e **CISC** e cada abordagem tem implicações diretas no hardware de decodificação.
+
+##### 6.3.1 Tamanho Fixo (RISC - Reduced Instruction Set Computer)
+
+**Todas as instruções têm o mesmo número de bits** (ex: 32 bits).
+
+```text
+RISC-V (32 bits)
+┌──────────────┬─────────┬─────────┬───────────────┬─────────────┐
+│   FUNCT(7)   │  RS2    │  RS1    │   FUNCT(3)    │    RD       │
+│   (7 bits)   │ (5 bits)│ (5 bits)│   (3 bits)    │  (5 bits)   │
+└──────────────┴─────────┴─────────┴───────────────┴─────────────┘
+                    ▲                              ▲
+                    └───────── Operandos ──────────┘
+```
+
+|Característica|RISC (tamanho fixo)|
+|--------------|-------------------|
+|Exemplo|ARM, RISC-V, MIPS, PowerPC|
+|Tamanho|Todas as instruções: 32 bits (ou 64 bits)|
+|Decodificação|Simples e rápida (sabe onde cada campo começa sem calcular)|
+|Hardware|Decodificador linear, mais simples, menor consumo|
+|Pipeline|Mais fácil de implementar (instruções chegam em ritmo constante)|
+|Densidade de código|Menor (programas maiores porque instruções simples ocupam 32 bits)|
+|Exemplo de instrução|ADD x1, x2, x3 (soma x2 e x3, guarda em x1)|
+
+##### 6.3.2 Tamanho Variável (CISC - Complex Instruction Set Computer)
+
+**As instruções podem ter diferentes comprimentos** (ex: 1 a 15 bytes no x86).
+
+```text
+x86-64 (tamanho variável)
+┌─────────────────────────────────────────────────────────────────┐
+│ Opcode │ ModR/M │ SIB │ Deslocamento │ Imediato │
+│ (1-4B) │ (1B)   │(1B) │ (1-8B)      │ (1-8B)   │
+└─────────────────────────────────────────────────────────────────┘
+   ▲         ▲       ▲         ▲            ▲
+   └─────────┴───────┴─────────┴────────────┘
+          Campos que podem estar ausentes dependendo da instrução
+```
+
+|Característica|CISC (tamanho variável)|
+|--------------|-----------------------|
+|Exemplo|x86 (Intel/AMD), z/Architecture (IBM)|
+|Tamanho|1 a 15 bytes (no x86)|
+|Decodificação|Complexa e mais lenta (precisa "descobrir" onde cada campo começa)|
+|Hardware|Decodificador complexo, muitas vezes com microcódigo (ROM interna)|
+|Pipeline|Mais difícil (instruções de diferentes tamanhos chegam em ritmo irregular)|
+|Densidade de código|Maior (programas menores, bom para memória cache)|
+|Exemplo de instrução|ADD EAX, [EBX+ECX*4+16] (soma de valor complexo da memória ao registrador)|
+>>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
