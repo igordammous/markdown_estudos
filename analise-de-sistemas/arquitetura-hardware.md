@@ -1632,6 +1632,30 @@ Nos sistemas modernos, a arquitetura de barramento único foi substituída por a
 * PCIe oferece conexões ponto a ponto com largura de banda dedicada
 * Dispositivos lentos ficam em barramentos separados, não interferindo no fluxo principal
 
+### 15 - Taxonomia de Flynn
+
+Ela classifica os computadores considerando a quantidade de fluxos de instruções e dados que eles manipulam. 
+
+#### 15.1 - SISD - Single Instruction, Single Data
+
+Como o proprio nome indica, é a forma mais simples que um processador pode trabalhar, onde um unica instrução opera sobre um unico dado por vez. Os processadores antigos e sistemas embarcados hoje funcionam dessa maneira.
+
+#### 15.2 - SIMD - Single Instruction, Multiple Data
+
+Esse método ainda trabalha com apenas uma instrução, porém é aplicada em um vetor de dados simultaneamente. Hoje é a essência das GPUs e extensões AVX (Advanced Vector Extensions). 
+
+#### 15.3 - MISD - Multiple Instruction, Single Data
+
+Trabalha com multiplas instruções operando no mesmo dado. Não é muito utilizada, apenas em sistemas onde não há tolerâncias para falhas, como em hardware aeroespaciais, matriz sistólicas e criptografia. 
+
+#### 15.4 - MIMD - Multiple Instruction, Multiple Data
+
+Multiplos processadores executam suas próprias instruções em seus próprios dados. Os computadores multi-core hoje trabalham dessa forma, servidores NUMA e clusters também.
+
+### Paralelismo ILP
+
+Instruction Level Paralelism foi uma forma criada para fazer com um unico processador execute multiplas instruções ao mesmo tempo.
+
 ## Duvidas
 
 ### 1. Overflow e como o hardware o detecta
