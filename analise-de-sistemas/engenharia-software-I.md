@@ -6,17 +6,17 @@ De acordo com *Roger S. Pressmann*, a engenharia de software classifica os progr
 
 Vale ressaltar que através do tempo algumas definições foram mudadas ou atualizadas. Como ***softwares  utilitários*** passaram a fazer parte dos **softwares de sistema**. Assim como **as ferramentas de programação**. Os ***softwares comerciais*** foram redefinidos para **softwares de aplicação**. E por fim, os ***softwares de tempo real*** foram revertidos para os **embutidos e web/mobile**, de acordo como melhor se aplicam de acordo com as novas definições.
 
-| Tipos de Softwares | Uso principal | Exemplo |
-|--------------------|---------------|---------|
-| Sistema | Feito para atender outros programas. Gerência os recursos de hardware e fornece serviços para as aplicações | S.O. Windows, macOS, Linux; Compiladores (ex: GCC); Drivers de dispositivo |
-|Aplicação | Solucionam uma necessidade específica de negócio ou processo para o usuário final | Sistema de Controle de Estoque, Software de RH, ERP (ex: SAP), CRM (ex: Salesforce) |
-| Ciêntifico ou de engenharia | Caracterizado por algoritmos de processamento numérico intensivo ("cálculo de massa") para aplicações técnicas | MATLAB, AutoCAD, Simuladores de fenômenos físicos, Software de análise de elementos finitos |
-| Embutido (Embedded) | Residente na memória ROM de um produto ou sistema, para controlar suas características e funções para o usuário final | Software do forno micro-ondas, Sistema de injeção eletrônica de automóveis, Firmware de roteadores, placa de arduíno |
-| Linhas de produtos |  Projetado para prover uma capacidade específica para uso por muitos clientes diferentes. Os populares *"softwares de prateleira"* | Microsoft Office (processador de texto, planilha), Adobe Photoshop, Jogos de computador |
-| Aplicações Web / Mobile | Software que reside e é executado em navegadores web ou em dispositivos móveis, centrados na rede e na computação em nuvem | Gmail, Google Maps, Aplicativo do Instagram, Internet Banking |
-| Inteligência Artificial | Utiliza algoritmos não numéricos (como lógica simbólica, redes neurais) para resolver problemas complexos que não são passíveis de computação direta | Sistemas especialistas (para diagnóstico médico), Chatbots (ex: ChatGPT), Sistemas de reconhecimento facial, Algoritmos de robótica | 
+|Tipos de Softwares|Uso principal|Exemplo|
+|------------------|-------------|--------|
+|Sistema|Feito para atender outros programas. Gerência os recursos de hardware e fornece serviços para as aplicações|S.O. Windows, macOS, Linux; Compiladores (ex: GCC); Drivers de dispositivo|
+|Aplicação|Solucionam uma necessidade específica de negócio ou processo para o usuário final|Sistema de Controle de Estoque, Software de RH, ERP (ex: SAP), CRM (ex: Salesforce)|
+|Ciêntifico ou de engenharia|Caracterizado por algoritmos de processamento numérico intensivo ("cálculo de massa") para aplicações técnicas|MATLAB, AutoCAD, Simuladores de fenômenos físicos, Software de análise de elementos finitos|
+|Embutido (Embedded)|Residente na memória ROM de um produto ou sistema, para controlar suas características e funções para o usuário final|Software do forno micro-ondas, Sistema de injeção eletrônica de automóveis, Firmware de roteadores, placa de arduíno|
+|Linhas de produtos|Projetado para prover uma capacidade específica para uso por muitos clientes diferentes. Os populares *"softwares de prateleira"*|Microsoft Office (processador de texto, planilha), Adobe Photoshop, Jogos de computador|
+|Aplicações Web / Mobile|Software que reside e é executado em navegadores web ou em dispositivos móveis, centrados na rede e na computação em nuvem|Gmail, Google Maps, Aplicativo do Instagram, Internet Banking|
+|Inteligência Artificial|Utiliza algoritmos não numéricos (como lógica simbólica, redes neurais) para resolver problemas complexos que não são passíveis de computação direta|Sistemas especialistas (para diagnóstico médico), Chatbots (ex: ChatGPT), Sistemas de reconhecimento facial, Algoritmos de robótica|
 
-#### Por que a classificação mudou?
+### Por que a classificação mudou?
 
 A principal razão para essa evolução é o próprio avanço da tecnologia. O software se tornou muito mais complexo e "híbrido". A engenharia de software é uma ciência viva e **seus conceitos se atualizam para refletir a realidade do mercado**. Por exemplo:
 
@@ -26,7 +26,7 @@ A principal razão para essa evolução é o próprio avanço da tecnologia. O s
 
 * **Convergência**: Um software embutido no seu carro (categoria clássica) hoje pode se conectar à internet, receber atualizações (como um software de sistema) e rodar aplicativos (como o GPS). As fronteiras ficaram muito mais tênues .
 
-## 2. Etapa de Vida de um Software, teoria e na prática.
+## 2. Etapa de Vida de um Software, teoria e na prática
 
 Na **teoria**, a engenharia de software abrange e é responsável por todas as etapas do ciclo de vida de um software. O objetivo da **engenharia de software** é justamente aplicar uma *abordagem sistemática, disciplinada e quantificável ao desenvolvimento, operação e manutenção* do software. Ou seja, ela não se preocupa apenas com a programação (codificação), mas com o processo como um todo.
 
@@ -79,7 +79,7 @@ Vamos explorar os principais aspectos da fase:
 
 A fase de testes é essencial para garantir que o software desenvolvido esteja **livre de erros e funcione conforme esperado**. Essa etapa **envolve a verificação e validação do software** por meio de diversos tipos de testes. E é crucial para assegurar que o software seja robusto e esteja pronto para a implantação. Quando bem planejados e executados ajudam a evitar problemas futuros, economizando tempo e recursos a longo prazo.
 
-#### 2.5.1 Tipos de Testes (Unitário, Integração, Sistema, Aceitação):
+#### 2.5.1 Tipos de Testes (Unitário, Integração, Sistema, Aceitação)
 
 1. **Testes Unitários**: Testam individualmente pequenas partes do código (funções, métodos) para garantir que cada unidade funcione corretamente.
 2. **Testes de Integração**: Verificam a interação entre diferentes módulos ou componentes para garantir que funcionem bem juntos.
@@ -391,7 +391,7 @@ O RAD frequentemente utiliza ferramentas de 4ª geração como parte essencial d
 |------------------|---------|--------|
 |GUI Builders|Construção visual de interfaces gráficas|Visual Basic, Delphi|
 |CASE Tools|Ferramentas de engenharia de software assistida por computador|Rational Rose, PowerDesigner|
-|Geradores de Código|Produção automática de código a partir de modelos|Geradores de ORM, scaffolding
+|Geradores de Código|Produção automática de código a partir de modelos|Geradores de ORM, scaffolding|
 |Componentes Reutilizáveis|Bibliotecas de componentes pré-construídos|APIs, frameworks, componentes COM/.NET|
 |DBMS com 4GL integrada|Sistemas de gerenciamento de banco de dados com linguagem própria|SQL (Oracle, SQL Server, MySQL)|
 
@@ -666,8 +666,8 @@ Mapa de Correspondência Completo
 |└ Decorativo|Não (classificação própria)|Não, mas se aproxima de "requisito de usabilidade"|⚠️ Prática de mercado|
 |Não Funcionais|Sim (ISO 25010, IEEE 830)|Sim (Pressman, Sommerville)|✅ Padrão|
 |Inversos|Parcial (IEEE 830 menciona "o que o software não fará")|Raro; mais comum em segurança de sistemas|✅ Válido, mas especializado|
-|Prioridade (Essencial/Importante/Desejável)|Sim (IEEE 830)|Sim (Sommerville, Paula Filho) |✅ Padrão|
-|Detalhe (Usuário/Hardware/Software/Comunicação)|Sim (IEEE 830 - Interfaces Externas) |Sim|✅ Padrão|
+|Prioridade (Essencial/Importante/Desejável)|Sim (IEEE 830)|Sim (Sommerville, Paula Filho)|✅ Padrão|
+|Detalhe (Usuário/Hardware/Software/Comunicação)|Sim (IEEE 830 - Interfaces Externas)|Sim|✅ Padrão|
 
 ##### 5.2.4.13 Exemplo concreto dentro do ERS(SRS)
 
@@ -869,22 +869,26 @@ Os principais objetivos de estudar o **UoD** são:
 
 Na prática da engenharia de software, especialmente seguindo autores como Pressman, a modelagem do **UoD** se traduz em algumas atividades e artefatos concretos.
 
-1. Identificação dos Objetos ou Entidades
+#### 7.3.1 - Identificação dos Objetos ou Entidades
+
 Listar todos os substantivos relevantes que fazem parte do domínio do problema. Esses serão as futuras classes ou tabelas do seu sistema.
 
 >Exemplo: Produto, Mercado, Endereço, PreçoHistórico, ListaDeCompras.
 
-2. Descoberta dos Relacionamentos
+#### 7.3.2 - Descoberta dos Relacionamentos
+
 Como essas entidades se conectam no mundo real? Isso define a estrutura do banco de dados.
 
 >Exemplo: Um Mercado possui vários Produtos. Um Produto pode estar em vários Mercados.
 
-3. Definição dos Atributos
+#### 7.3.3 - Definição dos Atributos
+
 Quais são as características relevantes de cada objeto?
 
 >Exemplo: Produto tem nome, marca, códigoEAN. Mercado tem CNPJ, nomeFantasia, endereço.
 
-4. Mapeamento dos Comportamentos e Regras (Dinâmica)
+#### 7.3.4 - Mapeamento dos Comportamentos e Regras (Dinâmica)
+
 Como esses objetos se comportam e interagem ao longo do tempo? Aqui entram as regras de negócio e os fluxos.
 
 >Exemplo: Um Preço é alterado por um Mercado. Uma Promoção é aplicada a um Produto por um período.
@@ -892,6 +896,381 @@ Como esses objetos se comportam e interagem ao longo do tempo? Aqui entram as re
 ### 7.4 Resumindo
 
 Quando você está criando os Requisitos Funcionais (o sistema deve fazer X) e as Regras de Negócio (a empresa opera assim), você está, na verdade, descrevendo o Universo de Discurso do seu projeto. A modelagem do **UoD** é a técnica para fazer isso de forma estruturada e completa.
+
+## 8 - Técnicas de Levantamento de Requisitos (Elicitação)
+
+Lembre-se da diferença entre:
+
+* **Elicitação pobre**: "O sistema deve ser rápido."
+* **Elicitação rica** (Técnica de Entrevista): "Qual o tempo máximo aceitável para a tela carregar em horário de pico?" -> Resulta no Requisito Não-Funcional de Performance.
+
+### 8.1 - Métodos Tradicionais
+
+|Técnica|Descrição|Quando usar|Exemplo na Prática|
+|-------|---------|-----------|------------------|
+|Entrevistas|Conversa estruturada (fechada/questionário) ou não estruturada (aberta) com stakeholders.|Quando se precisa de profundidade, entender o "porquê".|Entrevistar o gerente financeiro para entender a lógica de estorno de 10%.|
+|Questionários|Formulários com perguntas abertas ou fechadas, aplicados a um grande grupo.|Quando há muitos usuários geograficamente dispersos.|Enviar um Google Forms para 200 franqueados perguntando sobre dificuldades no fechamento de caixa.|
+|Observação|Analista observa o usuário no ambiente real de trabalho.|Para detectar falhas de usabilidade ou regras implícitas.|Assistir um operador de caixa registrando produtos para ver se ele usa atalhos de teclado não documentados.|
+|Análise de Documentos|Estudar formulários, manuais, leis ou sistemas legados.|Base regulatória forte ou migração de sistemas.|Ler a Portaria 671 do MTE para definir a interface de ponto eletrônico.|
+|Workshops (JAD)|Sessão colaborativa intensiva com vários stakeholders e um facilitador.|Resolver conflitos entre áreas e definir prioridades.|Reunir TI, Vendas e Logística para definir o fluxo de um pedido que tem produtos de estoque e de marketplace.|
+
+### 8.2 Métodos Ágeis (Segundo Semestre)
+
+Ambos são complementares. O ideal é construir um Story Map para definir o MVP e, em seguida, Prototipar as telas do primeiro fatiamento horizontal (Release 1) para garantir que a interação está correta antes de codificar.
+
+#### 8.2.1 Story Mapping (Jeff Patton)
+
+Para visualizar a jornada do usuário e fatiar funcionalidades em releases, baseado no conceito de Design Thinking e User-Centered Design.
+
+Enquanto um Backlog tradicional é uma lista vertical e sem alma ("RF001: Login", "RF002: Busca", "RF003: Pagamento"), o *Story Mapping* é uma ferramenta visual 2D que organiza as funcionalidades em dois eixos fundamentais:
+
+##### 8.2.1.1 - A Anatomia do Mapa (Os Dois Eixos)
+
+* Eixo Horizontal (Esquerda para Direita): Representa o tempo narrativo, o passo a passo cronológico da jornada do usuário. Chamamos isso de "Espinha Dorsal" (Backbone).
+  * São as atividades macro que o usuário executa do início ao fim.
+
+* Eixo Vertical (Cima para Baixo): Representa a prioridade/criticidade.
+  * Quanto mais alto no mapa (topo), mais essencial (indispensável) é a funcionalidade.
+  * Quanto mais baixo, mais opcional ou refinado.
+
+##### 8.2.1.2 - Construção na Prática (Passo a Passo)
+
+>Vamos usar um cenário de App de Mobilidade Urbana como exemplo.
+>
+>**Passo 1**: *Defina a Espinha Dorsal (O Caminho Feliz)*
+>Reúna o time e coloque post-its em sequência lógica respondendo: "Qual é a história da pessoa que pede um carro?"
+>
+>* Solicitar Veículo
+>* Aguardar Motorista
+>* Realizar Viagem
+>* Finalizar e Avaliar
+>
+>**Passo 2**: *Quebre as Atividades em Tarefas (O Walking Skeleton)*
+>Para cada etapa da espinha, pergunte: "O que o sistema faz aqui?" e cole os post-its de tarefas abaixo.
+>
+>* **Solicitar Veículo**: Inserir Destino, Confirmar Local Atual, Escolher Categoria (X, Black, Moto), Ver Estimativa de Preço, Tocar em "Confirmar".
+>* **Aguardar Motorista**: Ver foto do motorista, Ver modelo do carro, Cancelar Corrida, Chamar Motorista.
+>
+>**Passo 3**: *Fatie as Releases (O "Corte" Horizontal)*
+>Este é o segredo do método. Ao invés de entregar o projeto inteiro pronto, você traça linhas horizontais.
+>
+>* Release 1 (MVP - Mínimo Produto Viável): Apenas o topo do mapa. Apenas o suficiente para o carro chegar.
+>   * Features: Selecionar no mapa, Confirmar corrida, Motorista aceita, Pagamento automático com cartão cadastrado.
+>
+>* Release 2: A linha de baixo.
+>   * Features: Escolher categoria de carro (Moto), Inserir cupom de desconto.
+>
+>* Release 3 (Futuro): O diferencial.
+>   * Features: Agendamento de viagem, Compartilhamento de rota em tempo real com amigos.
+
+##### 8.2.1.3 - Por que isso é superior ao Backlog?
+
+* **Visão do Todo**: Evita a "cegueira do backlog", onde o time foca em detalhes técnicos e esquece a experiência completa. Se um cartão cair da parede (post-it), você vê que quebrou a jornada.
+* **Facilita a priorização (MoSCoW viva)**: O debate deixa de ser "O que é importante?" (abstrato) para "Isso fica acima ou abaixo da linha de corte do MVP?" (visual e colaborativo).
+
+#### 8.2.2 - Prototipação
+
+A Prototipação é uma abordagem que resolve a falácia do levantamento por questionário: você pergunta ao usuário como ele faz algo, ele diz X, mas na realidade faz Y. O protótipo faz o usuário reagir a algo concreto. É pore meio de onstrução de telas "de mentira" (baixa/média fidelidade) para descobrir requisitos de interface. “O usuário não sabe o que quer até ver algo funcionando.”
+
+##### 8.2.2.1 - O Espectro de Fidelidade (Não é só "tela de mentira")
+
+Existem níveis muito distintos:
+
+|Nível|Nome|Material|Objetivo (O que testar)|Duração|
+|-----|----|--------|-----------------------|-------|
+|1|Protótipo de Papel (Baixíssima)|Caneta, post-it, papel craft. Uma pessoa "manipula" os post-its enquanto outra "clica" com o dedo.|Fluxo de navegação, lógica de negócio, terminologia. Totalmente longe de estética.|Horas|
+|2|Wireframe Navegável (Média)|Ferramentas como Balsamiq, Figma (modo esboço). Preto e branco, fontes rabiscadas, caixas para imagens.|Arquitetura da informação, posicionamento dos botões. "Está fácil achar o botão 'Finalizar'?"|Dias|
+|3|Mockup Interativo (Alta)|Figma, Adobe XD. Cores reais, fotos reais, animações. Parece um App pronto, mas sem backend.|Design visual, branding, microinterações, acessibilidade de contraste.|Semanas|
+|4|Piloto (Funcional Parcial)|Código real, mas com funcionalidades limitadas (ex: só a tela de login com a API real).|Teste de performance com usuários reais, integração com hardware (ex: câmera).|Meses|
+
+##### 8.2.2.2 - O Ciclo de Vida da Prototipação
+
+É um processo de engenharia em si:
+
+* **Reunião Inicial**: Defina o escopo. *“Vamos prototipar apenas o fluxo de devolução de produto.”*
+* **Desenvolvimento Rápido**: Ignore qualidade de código, segurança e tratamentos de erro. A velocidade é a métrica.
+* **Sessão de Avaliação**: Coloque o usuário para usar.
+* **Técnica do Think Aloud (Pensar em Voz Alta)**: O usuário narra tudo o que está pensando. "Estou procurando o botão de cancelar... Ah, achei... Mas está cinza, por que não clica?" -> Descoberta de Requisito Inverso.
+* **Descarte (Throw-away Prototype)**: A regra de ouro. O protótipo foi feito para gerar a ERS (Especificação de Requisitos). Depois de aprovado o conceito, jogue o protótipo no lixo e codifique do zero, seguindo os padrões de qualidade de software. Resistir à tentação de "dar um jeitinho e colocar em produção" evita débito técnico.
+
+##### 8.2.2.3 - Conexão com a Engenharia de Requisitos
+
+* **Revelando Requisitos de Interface (RI)**: É aqui que nascem os seus RIs. Ao ver o protótipo, o cliente fala: "Se eu clicar em 'Pagar', o sistema está validando o saldo antes de emitir a nota?"
+* **Revelando Regras de Negócio**: O protótipo força a descoberta de detalhes que estavam implícitos. "O que acontece com o frete grátis se eu adicionar um item pesado? O sistema deixa acumular? Ah, não... então precisamos de um aviso."
+
+##### 8.2.2.4 - Exemplo Prático: Estacionamento Inteligente
+
+Para evoluir nosso sistema de estacionamento, imagine que vamos prototipar o fluxo de *Estabelecimentos Conveniados* de um shopping.
+
+> Protótipo de Papel (20min):
+>
+> * **Tela 1**: O lojista tem um leitor. Desenhamos um botão grande "Escanear Ticket".
+> * **Tela 2**: Após escanear, um campo "Valor da Compra". O lojista digita 80,00.
+> * **Tela 3** (Descoberta): O lojista olha e fala: "E se o ticket já tiver sido validado em outra loja?"
+>   * **Ação do Engenheiro**: Você anota imediatamente: Requisito Inverso: O sistema NÃO DEVE aplicar o desconto se o ticket já tiver o flag `CONVENIO_APLICADO = TRUE`.
+
+Sem protótipo, essa regra só seria descoberta em produção, quando o shopping tivesse prejuízo com descontos duplos.
+
+## 9 - Estudo de Viabilidade
+
+Antes de sair codificando, é preciso responder: "Vale a pena construir esse software?" É um mini-projeto de análise de riscos. É o ponto de decisão mais crítico antes de um projeto de software começar, o estudo de viabilidade atua como um filtro de investimento.
+
+```text
+Ideia do Projeto  →  Estudo de Viabilidade  →  Decisão Go/No-Go  →  Elicitação de Requisitos  →  ERS
+                         ↑
+                    Você está aqui
+```
+
+* **Go**: O projeto segue para a fase de análise detalhada.
+* **No-Go**: O projeto é cancelado, adiado ou radicalmente reformulado.
+
+### 9.1 - Modelo TELOS (Hall, 2007)
+
+O acrônimo TELOS é a forma mais técnica e cobrada de estruturar essa análise:
+
+#### 9.1.1 - Técnica (Technical Feasibility)
+
+Pergunta central: **"Conseguimos construir com a tecnologia disponível?"**. Não se trata apenas de hardware/software, mas de maturidade tecnológica e competência da equipe.
+
+|Subdimensão|Pergunta Investigativa|Exemplo (App de Mobilidade)|Exemplo (Estacionamento)|
+|-----------|----------------------|---------------------------|------------------------|
+|Maturidade|A tecnologia é comprovada ou experimental?|Algoritmo de matching entre motorista e passageiro já existe em APIs como Google Maps. Viável.|Câmera OCR para ler placas em dias de chuva forte. Precisamos testar a taxa de acerto.|
+|Competência|O time sabe usar essa stack?|Time só sabe Java, mas o app precisa ser nativo iOS (Swift) e Android (Kotlin). Inviável sem contratação.|O firmware da cancela usa protocolo RS-485. O time de back-end conhece comunicação serial?|
+|Capacidade|A infraestrutura atual aguenta?|O servidor de mapas suporta 10.000 requisições simultâneas de GPS?|O banco de dados consegue armazenar 5 anos de logs de entrada/saída para auditoria fiscal?|
+|Integração|Os sistemas externos têm APIs documentadas?|A API de pagamentos do banco parceiro tem sandbox para testes?|A máquina de cartão do estacionamento (nosso RI da análise anterior) aceita PIX via QR Code dinâmico?|
+
+> **Resultado Técnico**: Um documento de 1-2 páginas listando os riscos técnicos e as *provas de conceito* (PoCs) necessárias. Se uma PoC falhar, o projeto é tecnicamente inviável.
+
+#### 9.1.2 - Econômica (Economic Feasibility)
+
+Pergunta central: **"O retorno justifica o investimento?"**. Aqui entram as técnicas de análise financeira aplicadas a software.
+
+##### 9.1.2.1 - Fluxo de Caixa do Projeto
+
+* **Custos de Desenvolvimento**: Salários da equipe, licenças de ferramentas, infraestrutura cloud, consultorias.
+* **Custos de Operação (Manutenção)**: Hospedagem, suporte, correções. Sommerville alerta que a manutenção consome de 50% a 70% do custo total do ciclo de vida de um software.
+* **Benefícios Tangíveis**: Economia com demissão de mão de obra, aumento de vendas, redução de erros manuais (ex: menos estornos de ticket).
+* **Benefícios Intangíveis**: Melhoria da imagem da marca, satisfação do cliente, conformidade legal (evitar multas).
+
+##### 9.1.2.2 - Métodos de Análise
+
+|Método|Descrição|Exemplo (Sistema de Folha de Pagamento)|
+|------|---------|---------------------------------------|
+|Payback (Tempo de Retorno)|Quanto tempo até os benefícios acumulados igualarem o investimento inicial.|Investi 200 mil reais. O sistema economiza R$ 10 mil/mês em multas trabalhistas e horas de contador. Payback = 20 meses.|
+|ROI (Return on Investment)|Percentual de lucro sobre o investimento.|Se em 3 anos o benefício líquido foi 360 mil reais e o custo foi R$ 200 mil, ROI = (360-200)/200 = 80%.|
+|VPL (Valor Presente Líquido)|Traz os fluxos de caixa futuros para valor presente, descontando a inflação/taxa SELIC.|Um projeto que gera 500 mil reais em 5 anos pode valer menos que R$400 mil hoje. VPL positivo = viável.|
+|TIR (Taxa Interna de Retorno)|A taxa de desconto que faz o VPL ser zero. Se TIR > taxa de mercado (ex: 12% a.a.), o projeto é atrativo.|TIR calculada em 18% a.a. para o App de Estacionamento. Melhor que deixar o dinheiro na renda fixa.|
+
+> **Armadilha comum**: Subestimar a manutenção. O estudo de viabilidade econômica deve incluir os 5 anos seguintes, não apenas a construção.
+
+#### 9.1.3 - Legal (Legal Feasibility)
+
+Pergunta central: **"Podemos fazer isso sem violar leis ou contratos?"**. Com a LGPD (Lei Geral de Proteção de Dados) e regulações setoriais, este pilar se tornou tão importante quanto o técnico.
+
+|Área Legal|Pergunta Investigativa|Exemplo|
+|----------|----------------------|-------|
+|Privacidade de Dados (LGPD/GDPR)|Quais dados pessoais coletamos? Onde armazenamos? Temos consentimento?|O App de Mobilidade coleta localização em tempo real. Isso é dado sensível. Precisamos de um DPO (Encarregado de Dados)? O servidor está no Brasil?|
+|Retenção Fiscal|Por quanto tempo devemos guardar registros?|O Sistema de Vendas (PDV) deve armazenar NFC-e por 5 anos (Lei do SPED). O banco de dados aguenta?|
+|Direitos do Consumidor|O fluxo respeita o CDC?|O sistema de E-commerce permite cancelamento em até 7 dias (Lei do Arrependimento)? Se não, é legalmente inviável.|
+|Regulação Setorial|O órgão regulador permite?|O App de Mobilidade precisa de licença da prefeitura? O sistema de folha de pagamento calcula o eSocial corretamente?|
+|Propriedade Intelectual|Estamos usando código open-source com licença contaminante (ex: GPL)?|Usar uma biblioteca GPL em software proprietário pode forçar a abertura do código fonte. Inviável para uma fintech.|
+
+> **Resultado Legal**: Um checklist assinado pelo jurídico da empresa. Qualquer "não" bloqueia o projeto ou exige uma mudança de escopo imediata.
+
+#### 9.1.4 - Operacional (Operational Feasibility)*
+
+Pergunta central: **"A organização vai absorver essa mudança?"**. Este é o pilar mais humano e, frequentemente, o que mais causa fracasso em projetos.
+
+|Subdimensão|Pergunta Investigativa|Exemplo (Sistema de Vendas)|
+|-----------|----------------------|---------------------------|
+|Usuários Finais|Eles querem esse sistema? Eles participaram da elicitação?|O operador de caixa vai achar que o sistema o vigia (RN0X: cada produto registrado gera log de auditoria). Isso gera resistência sindical?|
+|Processos Atuais|O fluxo novo quebra alguma regra cultural?|A loja sempre fez "vendas fiado" (caderneta). O sistema novo bloqueia vendas sem pagamento imediato. Os vendedores vão boicotar?|
+|Estrutura Organizacional|Quem será o "dono" do sistema?|O PDV gera dados de estoque. Isso é responsabilidade do gerente de vendas ou do almoxarifado? Há disputa política?|
+|Treinamento|Existe orçamento e tempo para capacitar?|Trocar o sistema de folha de pagamento em dezembro (13º salário) é suicídio operacional. A data de implantação é viável?|
+
+> **Ferramenta de Análise**: Matriz de Stakeholders (Poder x Interesse). Mapeie quem ganha e quem perde poder com o novo software. Se os perdedores têm alto poder, o projeto é operacionalmente inviável sem um plano de gestão de mudança (Change Management).
+
+#### 9.1.5 - Cronograma (Schedule Feasibility)
+
+Pergunta central: **"Dá tempo de fazer antes que a necessidade desapareça?"**.
+
+|Subdimensão|Exemplo|
+|-----------|-------|
+|Janela de Mercado|O App de Mobilidade precisa ser lançado antes de um grande evento na cidade. Faltam 2 meses. A equipe estima 6 meses. Inviável.|
+|Restrição Legal|A nova lei trabalhista entra em vigor em julho. O sistema de folha precisa estar homologado até lá. Multa diária por descumprimento. Se não der tempo, é melhor comprar um software pronto (COTS).|
+|Dependências Externas|O sistema de estacionamento depende da instalação de fibra óptica no shopping. A operadora de internet prometeu para daqui a 8 meses. O software fica pronto em 3. Cronograma inviável.|
+
+### 9.2 - O Documento de Viabilidade (Artefato de Saída)
+
+Não é um documento burocrático e sim um argumento de venda para a diretoria. Possui uma estrutura recomendada baseada no IEEE Std 1058 para Plano de Projeto, mas cada empresa pode ter seu módelo:
+
+* **Sumário Executivo (1 página)**: Resumo da recomendação (Go / No-Go / Condicional).
+* **Escopo do Sistema Proposto**: Uma frase clara. "Automatizar a operação de estacionamento dos 5 shoppings da rede."
+* **Análise TELOS Detalhada**:
+  * Tabela de Riscos Técnicos com Plano de Mitigação.
+  * Planilha de Fluxo de Caixa (5 anos) com Payback e VPL.
+  * Checklist Legal com assinatura do jurídico.
+  * Mapa de Stakeholders e Plano de Treinamento (Operacional).
+  * Cronograma Macro (Gráfico de Gantt simplificado).
+* **Alternativas Consideradas**:
+  * Opção A (Construir): R$ 500 mil, 12 meses, alto risco de atraso.
+  * Opção B (Comprar ERP): R$ 200 mil de licença + 50 mil reais de implantação, 3 meses, baixo risco, mas perde diferencial competitivo.
+  * Opção C (Não fazer nada): Custo zero, mas risco de perder market share.
+* **Recomendação Final.**
+
+## 10 - A Norma IEEE 830: Estrutura e Características da ERS
+
+A IEEE 830-1998 foi substituída conceitualmente pela **ISO/IEC/IEEE 29148:2018**, mas ainda a base da literatura clássica.
+
+### 10.1 - O Que é e Qual o Propósito da ERS (SRS)?
+
+A Especificação de Requisitos de Software é o contrato técnico entre todas as partes interessadas. A IEEE 830 define que uma ERS deve declarar o que o software deve fazer, e não como fará. Os 4 Propósitos Fundamentais da ERS (segundo a IEEE 830):
+
+* **Base para Acordo**: Cliente, desenvolvedores e testadores sentam-se à mesa e dizem: "É isso que será construído. Estamos de acordo." Isso evita disputas judiciais futuras.
+* **Base para Estimativas**: A equipe de projeto usa a ERS para estimar custo, prazo e esforço. Se a ERS é ambígua, a estimativa será furada.
+* **Base para Projeto e Implementação**: Arquitetos e programadores transformam os requisitos em módulos de código.
+* **Base para Validação e Verificação**: Testadores escrevem casos de teste para provar que cada requisito foi implementado corretamente.
+
+### 10.2 - Estrutura Recomendada para o Documento (IEEE 830, Seção 4)
+
+A norma sugere um template com três seções principais. Não é obrigatório segui-lo cegamente, mas qualquer bom documento de ERS contempla esses elementos.
+
+* **Introdução**
+  * **Propósito**: Declarar o objetivo do software e o público-alvo do documento.
+  * **Escopo**: Nomear o produto, explicar o que ele fará e, crucialmente, o que não fará (fundamental para alinhar expectativas).
+  * **Definições e Acrônimos**: Glossário (ex: "PDV: Ponto de Venda", "NFC-e: Nota Fiscal ao Consumidor Eletrônica").
+* **Descrição Geral**
+  * **Perspectiva do Produto**: Como o software se relaciona com outros sistemas? É um módulo independente ou parte de um ERP maior?
+  * **Funções do Produto**: Um resumo gráfico (diagrama de contexto) das macro-funcionalidades. Nada detalhado ainda.
+  * **Características do Usuário**: Perfis. "O Operador de Caixa possui ensino médio e opera o sistema em alta pressão. O Gerente Financeiro precisa de dashboards."
+  * **Restrições Gerais**: Leis (LGPD), hardware específico (ex: o sistema só roda em Windows Embedded), deadlines.
+* **Requisitos Específicos (O Coração da ERS)**
+  * **Requisitos Funcionais**: Nossos RFs, organizados por módulo ou caso de uso.
+  * **Requisitos Não-Funcionais**: Nossos RNFs (Desempenho, Segurança, Usabilidade, Confiabilidade).
+  * **Requisitos de Interface**: Nossos RIs (Hardware, Software, Comunicação, Interface com o Usuário).
+
+### 10.3 - As 8 Características de Qualidade
+
+#### 10.3.1 - Correto (Correct)
+
+Um requisito é correto se representa algo que o sistema deve fazer, conforme validado pelo stakeholder.
+
+* **Ruim (Incorreto)**: "O sistema deve enviar um SMS para o cliente." (O cliente não quer SMS, quer notificação push. Isso foi inventado pelo analista).
+* **Bom (Correto)**: "O sistema deve enviar notificação push via aplicativo." (Validado com o cliente durante a prototipação).
+* **Verificação**: Rastreabilidade. Temos um protocolo de entrevista assinado que pede isso?
+
+#### 10.3.2 - Não Ambíguo (Unambiguous)
+
+Toda sentença tem uma e apenas uma interpretação. Esse é o maior desafio da língua natural.
+
+* **Ruim (Ambíguo)**: "O sistema deve calcular o frete adequadamente."
+* **Bom (Não Ambíguo)**: "O sistema deve calcular o frete utilizando a tabela da transportadora 'RápidoLog' vigente na data do pedido, considerando o peso total do carrinho e o CEP de destino."
+* **Ferramenta de Validação**: Revisão por pares (um lê, o outro interpreta). Glossário de termos. Uso de "Deve" (obrigatório) vs. "Pode" (opcional).
+
+#### 10.3.3 - 3. Completo (Complete)
+
+Não há "a definir" (TBDs - To Be Defined) no texto final. Todas as respostas do sistema a entradas inválidas estão descritas.
+
+* **Ruim (Incompleto)**: "Quando o usuário errar a senha, o sistema trata."
+* **Bom (Completo)**: "O sistema deve permitir 3 tentativas de senha. Após a 3ª tentativa incorreta, o usuário deve ser bloqueado por 30 minutos e um e-mail de alerta de segurança deve ser enviado ao titular da conta."
+* **Checklist de Completeza**:
+  * Todas as funções requeridas estão lá?
+  * Todas as entradas (válidas e inválidas) têm resposta definida?
+  * Todas as telas/referências a figuras estão inclusas?
+  * Todas as unidades de medida (segundos, minutos, R$) estão especificadas?
+
+#### 10.3.4 - Consistente (Consistent)
+
+Nenhum requisito no documento contradiz outro. O conflito clássico de terminologia e lógica.
+
+* **Conflito de Terminologia**: `RF0X`: "O sistema deve gerar um boleto para pagamento" vs. `RF0Y`: "O comprovante de pagamento em PDF será enviado por e-mail". (Afinal, é boleto registrado, cópia do boleto, ou um comprovante genérico?).
+* **Conflito de Lógica**: `RN0X` diz que não se aceita cheque. Mas `RFXX` diz que o sistema deve imprimir formulário para depósito de cheque. Isso é uma inconsistência grave.
+* **Prevenção**: Matriz de rastreabilidade cruzada durante a revisão.
+
+#### 10.3.5 - Priorizado para Importância e/ou Estabilidade (Ranked)
+
+Cada requisito deve ter um indicador de importância. É abordado mais profundamento nos tópics *MoSCoW* e a *Matriz Esforço-Impacto*. A ERS precisa materializar isso.
+
+* **Ruim (Plano)**: Lista de 500 requisitos sem distinção.
+* **Bom (Priorizado)**: Uso de etiquetas nos requisitos.
+  * **Essencial**: O sistema morre sem isso (ex: Registrar venda - RN05).
+  * **Condicional**: Necessário, mas pode esperar o incremento 2 (ex: Aceitar Vale-Alimentação).
+  * **Opcional**: Desejável, baixo custo-benefício imediato (ex: Tema escuro no PDV).
+
+#### 10.3.6 - Verificável (Verifiable)
+
+Existe um processo finito e com custo aceitável para provar que o software atende ao requisito. Este é o critério que separa a engenharia da poesia.
+
+* **Não Verificável (Poesia)**: "A interface deve ser amigável e intuitiva."
+* **Verificável (Engenharia)**: "Durante o teste de usabilidade, 8 de 10 usuários novatos devem conseguir completar a compra de um produto sem pedir ajuda." -> Critério de aceite objetivo.
+* **Outro Exemplo (Performance)**: "O sistema deve ser rápido." (Não verificável).
+* **Verificável**: "O tempo de resposta da API de consulta de estoque não deve exceder 300ms para 95% das requisições, medido na AWS us-east-1."
+
+#### 10.3.7 - Modificável (Modifiable)
+
+A estrutura da ERS permite mudanças sem quebrar a consistência. Imagine mudar a regra de frete e ter que revisar o documento inteiro.
+
+* **Ruim (Monolítico)**: Um arquivo único de 300 páginas em Word, sem sumário automático, com requisitos de interface grudados com regras de negócio.
+* **Bom (Modular)**:
+  * Organização por módulos/subsistemas.
+  * Separação física de seções: Regras de Negócio em um anexo, Requisitos Funcionais em outro.
+  * Uso de Tabelas para parâmetros. Ex: Tabela_Frete (UF, Valor_Minimo, Taxa_Peso) ao invés de 27 regras textuais.
+  * Índice remissivo e sumário atualizável automaticamente.
+
+#### 10.3.8 - Rastreável (Traceable)
+
+A origem de cada requisito é conhecida, e seu impacto futuro é projetado.
+
+* **Rastreabilidade para Trás (Origem)**: Por que isso está aqui?
+  * `RF02 - Frete Grátis` -> Origem: `RN01` (Regra de Negócio definida em reunião com Marketing em 02/04).
+* **Rastreabilidade para Frente (Destino)**: O que quebra se eu tirar isso?
+  * `RF02 - Frete Grátis` -> Implementado em `CarrinhoService.calcularFrete()` -> Caso de Teste `CT-045`.
+
+### 10.4 - Os Dois Públicos da ERS: Um Documento, Duas Leituras
+
+A norma alerta que a ERS é lida por dois grupos muito distintos, e deve servir a ambos:
+
+|Público|Quem são|O que buscam na ERS|Linguagem Ideal|
+|-------|--------|-------------------|---------------|
+|Stakeholders de Negócio|Cliente, Gerente de Produto, Domínio (Experts)|Diagramas de fluxo, Regras de Negócio, Critérios de Aceite. "O sistema faz o que eu pedi?"|Linguagem natural, gráficos, protótipos.|
+|Stakeholders Técnicos|Arquiteto, Desenvolvedor, QA|Requisitos Funcionais detalhados, Restrições Técnicas, APIs. "Como vou construir e testar isso?"|UML, tabelas de decisão, especificações formais de entrada/saída.|
+
+> **Estratégia de Engenharia**: A seção 3 da ERS (Requisitos Específicos) pode ser escrita em linguagem natural para o negócio, mas complementada por um Anexo Técnico com os modelos formais (Diagramas de Caso de Uso, DFD, Diagramas de Estados) para os desenvolvedores.
+
+### 10.5 - Exemplo de aplicação da IEEE 830 em um estacionamento
+
+Vamos pegar duas regras de negócios hipotéticas RN05/RN06 (Preço de hora normal e adicional) de um sistema de estacionamento e ver como ela seria transformada/adaptada para um requisito de qualidade IEEE 830.
+
+* **Requisito Bruto (Elicitação)**: "Cobra preço normal até um tempo e depois cobra adicional."
+* **Análise de Qualidade**:
+  * Correto? Validamos com o dono do shopping que moto tem isenção de 2h e carro de 4h? Sim.
+  * Não Ambíguo? "Hora adicional" é fração de hora? Esclarecemos: fração de 15 minutos conta como hora cheia.
+  * Completo? Definimos o teto da diária (estadia de 24h)?
+
+Resultado na ERS (Seção 3.1 - Requisitos Funcionais):
+
+**RF-EST-010**: Cálculo de Tarifa por Tempo (*Requisito Funcional Estrutura*)
+**Descrição**: O sistema deve calcular o valor a pagar com base no tipo de veículo e na duração da estadia (diferença entre horário de saída e horário de entrada, arredondada para cima na fração de hora).
+
+**Entradas**: Tipo do Veículo (Moto ou Carro), Data/Hora de Entrada, Data/Hora de Saída.
+
+**Processamento** (Tabela de Decisão IEEE 830):
+
+|Tipo Veículo|Duração (D)|Cálculo do Valor (V)|
+|------------|-----------|--------------------|
+|Moto|D <= 15 min|V = `R$ 0,00` (Regra de Carência - RN07)|
+|Moto|15 min < D <= 2h|V = `R$ 8,00`|
+|Moto|D > 2h|V = `R$ 8,00 + (ceil(D−2h) ∗ R$ 8,00 + (ceil(D−2h) ∗ R$ 2,00)`|
+|Carro|D <= 15 min|V = `R$ 0,00` (Regra de Carência - RN07)|
+|Carro|15 min < D <= 4h|V = `R$ 12,00`|
+|Carro|D > 4h|V = `R$ 12,00 + (ceil(D−4h) ∗ R$ 12,00 + (ceil(D−4h) ∗ R$ 2,00))`|
+
+**Saída**: Valor monetário em reais (R$).
+
+**Prioridade**: Essencial (Must Have).
+Rastreabilidade: Origem: RN05, RN06, RN07 (Regras de Negócio).
+
+> **Perceba a diferença**: a *Regra de Negócio* é a lei. O *Requisito* na ERS (no padrão IEEE 830) *é a especificação completa, verificável e tabelada dessa lei*, pronta para o programador codificar e o testador escrever o script de teste automatizado.
 
 ## Dúvidas
 
@@ -932,7 +1311,7 @@ A forma como as equipas eram geridas e os profissionais trabalhavam também cont
 
 #### Principais bibliografias
 
-Pressmann, Esmenger ou Brooks Jr. Eles defendem que ao conhecer o passado, será possível usar pensamento sistêmico como solução para problemas modernos. 
+Pressmann, Esmenger ou Brooks Jr. Eles defendem que ao conhecer o passado, será possível usar pensamento sistêmico como solução para problemas modernos.
 
 ### 2. Engenharia de Software, como é aplicada no mercado?
 

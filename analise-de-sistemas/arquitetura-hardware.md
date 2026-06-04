@@ -640,9 +640,7 @@ Fita (arquivo morto)        → 60s    → PB
 |Placa de rede|Telefone, rádio, sistema de comunicação com transportadoras|
 |USB|Porta de descarga (conexão temporária com parceiros)|
 
-## Dúvidas
-
-### 1- Bases númericas e codificação de dados
+## 7 - Bases númericas e codificação de dados
 
 Temos 4 bases númericas, binário(base 2), Decimal(base 10), Octal(base 8) e Hexadecimal(base 16):
 
@@ -665,7 +663,7 @@ Temos 4 bases númericas, binário(base 2), Decimal(base 10), Octal(base 8) e He
 |1110   |14     | -   | E         |
 |1111   |15     | -   | F         |
 
-#### 1.1 - Base Binária
+### 7.1 - Base Binária
 
 Base binária principalmente usada em *lógica digital (portas lógicas), circuitos processadores, endereçamento de memória, armazenamento em disco*. Focando na **linguagem de programação da máquina(hardware)**.
 
@@ -677,7 +675,7 @@ Base binária principalmente usada em *lógica digital (portas lógicas), circui
 
 * **Armazenamento**: Em um disco rígido ou SSD, a informação é gravada como áreas magneticamente carregadas (norte/sul) ou células de memória que retêm carga, representando os bits 0 e 1.
 
-#### 1.2 - Base Decimal
+### 7.2 - Base Decimal
 
 Base decimal principalmente usada na *exibição de dados para o usuário, cálculos financeiros, programação de alto nível*. Focando na **iteração máquina/usuário**.
 
@@ -687,7 +685,7 @@ Base decimal principalmente usada na *exibição de dados para o usuário, cálc
 
 * É utilizado em cálculos financeiros e contábeis, onde a precisão exata das casas decimais é exigida por lei (embora o computador armazene esses números internamente de forma binária ou usando formatos especiais como BCD - Binary-Coded Decimal).
 
-#### 1.3 - Base Octal
+### 7.3 - Base Octal
 
 Base octal era usada antes da invenção da base hexadecimal, então pode-se dizer que uma é evolução da outra.Sistemas PDP-8 e PDP-11 (Digital Equipment Corporation - DEC): Estes foram computadores icônicos que utilizavam a base octal como padrão. Manuais, documentação e até mesmo linguagem assembly para essas máquinas eram escritos em octal. Se você encontrar um livro antigo ou um código legado desses sistemas, verá os números representados em octal. Facilidade de Conversão (Assim como o Hexa): A razão pela qual o octal era usado é a mesma do hexadecimal: a conversão direta com o binário. Como 8 = 2³.
 
@@ -696,7 +694,7 @@ Base octal era usada antes da invenção da base hexadecimal, então pode-se diz
 
 * `5` (em octal) = `101` em binário = permissões `r-x` (leitura e execução ativadas, escrita desativada).
 
-#### 1.4 - Base Hexadecimal
+### 7.4 - Base Hexadecimal
 
 Base hexadecimal principalmente usada em *dumps de memória, endereços de depuração, cores em Web design, endereços MAC, programação Assembly*. Focando em ser **uma Abstração para Humanos Interagirem com o Binário**.
 
@@ -710,7 +708,7 @@ Base hexadecimal principalmente usada em *dumps de memória, endereços de depur
 
 * **Assembly e Programação de Baixo Nível**: Ao programar próximo ao hardware, é muito comum usar hexadecimal para definir valores de registradores, máscaras de bits e endereços específicos.
 
-### 3 - Porque computadores usam base binária e como seria se usassem outra base, a respeito principal de custos e perfomance. (CURIOSIDADE)
+### 7.5 - Porque computadores usam base binária e como seria se usassem outra base, a respeito principal de custos e perfomance. (CURIOSIDADE)
 
 A escolha da base binária não foi acidental, mas sim uma decisão de engenharia baseada em custo, confiabilidade e performance. A resposta curta é: **simplicidade e confiabilidade na implementação física**. Os computadores são construídos com milhões (ou bilhões) de transistores, que funcionam como interruptores. Esses interruptores têm dois estados fundamentaism **1(conduzindo corrente)** e **0(não conduzindo)**.
 
@@ -729,7 +727,7 @@ Para representar um número muito grande, calculamos: base × número de dígito
 
 Quanto menor o resultado, mais eficiente é a base. O ternário ganha 1. Teoricamente, a base mais eficiente de todas seria o número irracional e (aproximadamente 2,718) e o inteiro mais próximo é o 3.
 
-#### 3.1 - SETUN
+#### 7.5.1 - SETUN
 
 Na década de 1950, a União Soviética desenvolveu um computador ternário chamado Setun (Сетунь) . Ele usava um sistema "balanceado" com os valores -1, 0 e +1, representados por tensões negativas, zero e positivas .
 
@@ -747,7 +745,7 @@ Por que ele não vingou? Infelizmente, razões políticas e burocráticas :
 * A produção foi deliberadamente limitada e depois cancelada em 1965
 * Um sucessor (Setun 70) foi desenvolvido, mas sem apoio oficial, o projeto morreu
 
-#### 3.2 - Conclusão
+#### 7.5.2 - Conclusão
 
 |Aspecto|Binário (Base 2)|Ternário (Base 3)|
 |----------|-----------------|------------------|
@@ -767,9 +765,9 @@ Por fim, apesar da vantagem matemática do ternário, o binário se consolidou p
 * **Custo-benefício**: Embora o ternário seja teoricamente mais eficiente, a complexidade adicional de implementação supera os ganhos teóricos . Como um especialista comentou: "se o espaço (potência, etc) necessário para implementar uma operação em um dígito de base b é proporcional a b, então ternário é melhor. Mas na prática, a maioria das operações ocupa espaço que aumenta mais do que proporcionalmente a b" .
 * **Curiosidade moderna**: Hoje, tecnologias como memórias flash multicélula usam múltiplos níveis de carga para armazenar mais de um bit por célula (4 níveis = 2 bits, 8 níveis = 3 bits), mostrando que em contextos específicos, usamos mais de dois estados.
 
-### 4- O que são registradores e porque são limitados para 64 bits?
+## 8 - O que são registradores e porque são limitados para 64 bits?
 
-#### 4.1 - O que são
+### 8.1 - O que são
 
 Se imaginarmos a CPU como uma mesa de trabalho. Você tem:
 
@@ -778,7 +776,7 @@ Se imaginarmos a CPU como uma mesa de trabalho. Você tem:
 
 Em termos técnicos: registradores são memórias de altíssima velocidade localizadas no chip da CPU. Eles armazenam temporariamente os dados que estão sendo usados no momento . Quando a CPU precisa fazer um cálculo, os valores envolvidos são transferidos da memória RAM para os registradores.
 
-#### 4.2 - Caracteristicas principais
+### 8.2 - Caracteristicas principais
 
 |Característica|Descrição|
 |--------------|---------|
@@ -787,7 +785,7 @@ Em termos técnicos: registradores são memórias de altíssima velocidade local
 |Localização|Dentro do próprio processador|
 |Função|Armazenar dados e instruções em uso no momento|
 
-#### 4.3 - Principais tipos
+#### 8.3 - Principais tipos
 
 |Registrador (64 bits)|Nome|Função típica|
 |---------------------|----|-------------|
@@ -803,7 +801,7 @@ Em termos técnicos: registradores são memórias de altíssima velocidade local
 |Curiosidade: Em arquitetura 32 bits, os mesmos registradores são chamados de EAX, EBX, ECX, etc. O "E" significa "Extended" e o "R" significa "Register" . É como se fosse o mesmo espaço, mas com nomes diferentes dependendo do tamanho que você quer acessar.|
 |--|
 
-#### 4.4 - Por que 64 bits é o limite? (E porque não 128?)
+#### 8.4 - Por que 64 bits é o limite? (E porque não 128?)
 
 A razão principal para aumentar os bits é poder endereçar mais memória RAM.
 
@@ -823,7 +821,7 @@ Quanto é 16 exabytes?
 |Registradores|64 bits|128 bits|Todo dado ocuparia o dobro de espaço, mesmo os pequenos|
 |Consumo de energia|Atual|Maior|Mais bits = mais transistores chaveando = mais calor|
 
-#### 4.6 - Conclusão
+#### 8.5 - Conclusão
 
 Os registradores são o "espaço de trabalho imediato" da CPU, essenciais para performance . O limite de 64 bits não é técnico - podemos construir processadores de 128 bits - mas sim uma questão de engenharia e necessidade :
 
@@ -834,9 +832,9 @@ Os registradores são o "espaço de trabalho imediato" da CPU, essenciais para p
 
 A história mostra que só migramos quando batemos no limite: 8 bits → 16 bits → 32 bits → 64 bits. Como 64 bits deve durar décadas, a pergunta "por que não 128?" só fará sentido quando estivermos próximos do limite novamente
 
-### 5- Computador quântico, quais são as suas bases e diferenças com um hardware padrão? (CURIOSIDADE)
+## 9 - Computador quântico, quais são as suas bases e diferenças com um hardware padrão? (CURIOSIDADE)
 
-#### 5.1 - Diferença fundamental
+### 9.1 - Diferença fundamental
 
 |Caracteristicas|Bit(Clássico)|Qubit(Quântico)|
 |--------------------|-------------------|---------------|
@@ -846,9 +844,9 @@ A história mostra que só migramos quando batemos no limite: 8 bits → 16 bits
 |Medição|Não altera o estado|Destrói a superposição(colapso)|
 |Poder computacional|Cresce linearmente com n bits|Cresce exponencialmente com n qubits|
 
-#### 5.2 - Princípios Quânticos Fundamentais
+### 9.2 - Princípios Quânticos Fundamentais
 
-##### 5.2.1 - Superposição (Superposition)
+#### 9.2.1 - Superposição (Superposition)
 
 Um bit clássico é como uma moeda que já caiu: você sabe se é cara ou coroa. Um qubit é como uma moeda girando no ar - enquanto não é observada, ela é simultaneamente *cara **E** coroa*.
 
@@ -859,7 +857,7 @@ Onde α e β são números complexos que representam as amplitudes de probabilid
 * |α|² = probabilidade de encontrar |0⟩
 * |β|² = probabilidade de encontrar |1⟩
 
-##### 5.2.2 - Emaranhamento (Entanglement)
+#### 9.2.2 - Emaranhamento (Entanglement)
 
 Este é um fenômeno que Einstein chamava de *"ação fantasmagórica à distância"* . Quando dois qubits estão emaranhados, o estado de um está instantaneamente correlacionado com o estado do outro, independentemente da distância física entre eles .
 
@@ -869,17 +867,17 @@ O exemplo clássico é o estado de Bell:
 
 Se você medir um qubit e encontrar |0⟩, o outro instantaneamente também será |0⟩ - mesmo que esteja do outro lado do universo .
 
-##### 5.2.3 - Interferência (Interference)
+#### 9.2.3 - Interferência (Interference)
 
 Assim como ondas na água, os estados quânticos podem interferir entre si. A interferência construtiva amplifica os caminhos que levam à resposta correta, enquanto a interferência destrutiva cancela os caminhos que levam a respostas incorretas . É assim que os algoritmos quânticos conseguem "adivinhar" a resposta certa.
 
-#### 5.3 - Qual a base usada?
+### 9.3 - Qual a base usada?
 
 Diferente do bit clássico que opera estritamente em base 2, o **qubit não opera em uma base numérica fixa**. Um **qubit individual pode assumir infinitos estados** (todos os pontos na superfície da esfera de Bloch) . Não são apenas 2, 3 ou 4 estados - é um continuum de possibilidades .
 
 No entanto, quando você mede um qubit, o resultado é sempre binário (0 ou 1) . A medição "força" o qubit a escolher um dos dois estados da base computacional.
 
-#### 5.4 - Performance
+### 9.4 - Performance
 
 |Aspecto|Computador Clássico|Computador Quântico|
 |-----------------|-------------------|-------------------|
@@ -888,7 +886,7 @@ No entanto, quando você mede um qubit, o resultado é sempre binário (0 ou 1) 
 |Aplicações ideais|Cálculos determinísticos, uso geral|Otimização, fatoração, simulação quântica|
 |Limitação|Não resolve problemas exponenciais|Muito sensível a ruído (NISQ - Noisy Intermediate-Scale Quantum)|
 
-#### 5.5 - Como são construídos?
+### 9.5 - Como são construídos?
 
 Os qubits não são feitos de transistores como os bits clássicos. Eles são realizados usando sistemas quânticos reais
 
@@ -899,7 +897,7 @@ Os qubits não são feitos de transistores como os bits clássicos. Eles são re
 |Spin de elétrons|Usa o momento magnético intrínseco de elétrons em semicondutores|Intel (silício)|
 |Fótons|Partículas de luz; ideais para comunicação quântica|Comunicação quântica|
 
-##### 5.5.1 - Custo e Complexidade
+#### 9.5.1 - Custo e Complexidade
 
 Os computadores quânticos atuais são extremamente caros e complexos porque exigem :
 
@@ -910,7 +908,7 @@ Os computadores quânticos atuais são extremamente caros e complexos porque exi
 
 Um computador quântico não vai substituir seu notebook para tarefas cotidianas como planilhas ou navegação na web . Ele é uma ferramenta especializada para problemas que são exponencialmente difíceis para computadores clássicos.
 
-#### 5.6 - Tabela Resumo
+### 9.6 - Tabela Resumo
 
 |Critério|Clássico|Quântico|
 |--------------|--------|--------|
@@ -928,9 +926,9 @@ Quando medido, o resultado é binário (0 ou 1), mas durante o processamento, o 
 
 O grande desafio atual é que os qubits são extremamente sensíveis a perturbações externas (ruído), o que limita a confiabilidade dos computadores quânticos atuais, classificados como NISQ (Noisy Intermediate-Scale Quantum).
 
-### 6 - Em um hardware de 64 bits, o que diferencia dos bits mais significativos para os menos?
+## 10 - Em um hardware de 64 bits, o que diferencia dos bits mais significativos para os menos?
 
-#### 6.1 - Bits mais e menos significativos
+### 10.1 - Bits mais e menos significativos
 
 Em um número binário de 64 bits, cada bit ocupa uma posição com um peso diferente. Quanto mais à esquerda, maior o peso (mais significativo); quanto mais à direita, menor o peso (menos significativo).
 Vamos usar um exemplo com um número de 8 bits para facilitar (o conceito é idêntico para 64 bits):
@@ -947,7 +945,7 @@ Vamos usar um exemplo com um número de 8 bits para facilitar (o conceito é id�
 |MSB|Most Significant Bit|Bit de maior peso (mais à esquerda)|
 |LSB|Least Significant Bit|Bit de menor peso (mais à direita)|
 
-#### 6.2 - Representação de Números com Sinal
+### 10.2 - Representação de Números com Sinal
 
 Em sistemas de 64 bits, o MSB (bit 63) é usado para indicar o sinal quando trabalhamos com inteiros com sinal (signed integers):
 
@@ -961,7 +959,7 @@ Exemplo com 8 bits (para simplificar):
 * 01111111 (MSB = 0) = +127
 * 10000000 (MSB = 1) = -128
 
-#### 6.3 - Detecção de Paridade (Par ou Ímpar)
+### 10.3 - Detecção de Paridade (Par ou Ímpar)
 
 O LSB (bit 0) determina se um número é par ou ímpar:
 
@@ -972,7 +970,7 @@ O LSB (bit 0) determina se um número é par ou ímpar:
 
 Isso acontece porque o LSB representa 2⁰ = 1. Se ele for 1, adiciona 1 ao número, tornando-o ímpar.
 
-#### 6.4 - Operações de Deslocamento (Bit Shifts)
+### 10.4 - Operações de Deslocamento (Bit Shifts)
 
 As operações de deslocamento tratam os bits de forma diferente:
 
@@ -982,7 +980,7 @@ As operações de deslocamento tratam os bits de forma diferente:
 |Deslocamento à direita lógico (SHR)|Move bits para LSB; MSB recebe 0|00001010 (10) → 00000101 (5)|
 |Deslocamento à direita aritmético (SAR)|Move bits para LSB; MSB mantém o sinal|11111010 (-6) → 11111101 (-3)|
 
-#### 6.5 - Endianness: Ordem de Armazenamento na Memória
+### 10.5 - Endianness: Ordem de Armazenamento na Memória
 
 Um conceito crucial: quando um valor de 64 bits é armazenado na memória, os bytes podem ser organizados de duas formas diferentes:
 
@@ -993,9 +991,9 @@ Um conceito crucial: quando um valor de 64 bits é armazenado na memória, os by
 
 > Importante: A arquitetura x86-64 (Intel/AMD) usa little-endian. Isso significa que o bit menos significativo é armazenado primeiro na memória.
 
-#### 6.6 - Impacto no Hardware e na Programação
+### 10.6 - Impacto no Hardware e na Programação
 
-##### 6.6.1 - No Hardware
+#### 10.6.1 - No Hardware
 
 |Componente|Relevância dos Bits|
 |-----------|---------------|
@@ -1003,7 +1001,7 @@ Um conceito crucial: quando um valor de 64 bits é armazenado na memória, os by
 |Registradores de Status (EFLAGS)|Armazena flags como Carry (vai-um) e Overflow (estouro), que dependem dos bits mais significativos|
 |Barramento de dados|Cada linha do barramento transporta um bit específico, com ordem definida|
 
-##### 6.6.2 - Na Programação
+#### 10.6.2 - Na Programação
 
 ```c
 // Exemplo em C: manipulando bits em um número de 64 bits
@@ -1025,7 +1023,7 @@ int e_negativo = (valor_signed < 0);  // verifica o MSB
 
 > Para maiores detalhes sob o código acima [Códigos e Explicações detalhadas](https://github.com/igordammous/markdown_estudos/blob/b13cec5b79a5423202938f1139e00938f1c69d6b/analise-de-sistemas/arquitetura-hardware-codigo.md)
 
-#### 6.7 - Conclusão
+### 10.7 - Conclusão
 
 **Tabela Resumo: Bits Mais vs. Menos Significativos**
 
@@ -1046,11 +1044,11 @@ A diferença entre bits mais e menos significativos em um hardware de 64 bits va
 * O **hardware trata esses bits de forma diferente** - a ULA, os registradores de status e até a ordem de armazenamento na memória (endianness) refletem essa hierarquia .
 * **Para o programador**, entender essa distinção é essencial para operações de baixo nível como máscaras de bits, deslocamentos, detecção de overflow e manipulação eficiente de dados.
 
-### 7- Como uma porta lógica funciona em latches, registradores e memórias cache?
+## 11 - Como uma porta lógica funciona em latches, registradores e memórias cache?
 
 A resposta curta é que a mesma porta lógica forma a base de todos esses componentes, mas eles se diferenciam pela forma como são organizados e, principalmente, pelo mecanismo de controle que utilizam (nível lógico vs. borda de clock) e pela complexidade do agrupamento.
 
-#### 7.1 - Do Transistor à Memória: Uma Hierarquia de Construção
+### 11.1 - Do Transistor à Memória: Uma Hierarquia de Construção
 
 |Componente|Construído a partir de|Função Principal|Característica de Controle|
 |----------------|-------------------|-------------------|-----------------|
@@ -1059,7 +1057,7 @@ A resposta curta é que a mesma porta lógica forma a base de todos esses compon
 |Registrador ↓|Um grupo de flip-flops (ou latches) ligados em paralelo|Armazenar uma palavra de múltiplos bits (ex: 32, 64 bits) dentro da CPU|Controlado por um único sinal de clock e enable|
 |Memória Cache (SRAM)|Uma grande matriz de células de memória, cada uma construída com múltiplos transistores (ex: 6T SRAM) que se comportam como um latch|Armazenar grandes quantidades de dados (MBs a dezenas de MBs) de alta velocidade, próxima à CPU|Endereçável por linhas e colunas, com circuitos de controle complexos|
 
-#### 7.2 - O Alicerce: A Porta Lógica como Memória
+### 11.2 - O Alicerce: A Porta Lógica como Memória
 
 Primeiro, um ponto crucial: **uma porta lógica sozinha não guarda informação**. Se você ligar duas portas de forma isolada, a saída muda assim que a entrada muda. Para criar memória, precisamos de um **circuito com realimentação (feedback)**. O exemplo mais simples é o **Latch SR (Set-Reset)**, feito com duas portas NOR ou NAND . Veja como funciona com duas portas NOR:
 
@@ -1072,7 +1070,7 @@ Este é o princípio fundamental: **portas lógicas + realimentação = memória
 
 <img src="https://cse.iitkgp.ac.in/~wbcm/wbcm/notices/public/cs210022020s/ffDir/norlatch.png" alt="Latch SR" style="width: 100%" />
 
-#### 7.3 - Latches: A Memória Bruta e Transparente
+### 11.3 - Latches: A Memória Bruta e Transparente
 
 O latch básico que descrevemos resolve o problema de "guardar" um bit, mas não é prático para sistemas complexos. Sua principal característica é ser sensível ao nível. Isso significa que, enquanto a entrada de habilitação (Enable) estiver ativa (por exemplo, em nível lógico `1`), o latch é como uma porta aberta: qualquer mudança na entrada `D` reflete-se instantaneamente na saída `Q` . É por isso que o latch `D` é chamado de *"transparente"*.
 
@@ -1083,7 +1081,7 @@ Problemas dos Latches em Sistemas Síncronos:
 * **Sensibilidade a Ruído**: Se o sinal de enable tiver um pequeno "glitch" (ruído), o latch pode capturar um valor errado .
 * **Timing Complexo**: Em um sistema com muitos latches, fica extremamente difícil prever quando os dados vão se estabilizar, tornando a análise de temporização um pesadelo .
 
-#### 7.4 - Flip-Flops: A Evolução Sincronizada
+### 11.4 - Flip-Flops: A Evolução Sincronizada
 
 Para resolver os problemas dos latches, foram criados os **Flip-Flops (FFs)** . Eles são construídos a partir de latches, mas com uma diferença crucial: são **sensíveis à borda (edge-triggered)** .
 
@@ -1092,7 +1090,7 @@ Para resolver os problemas dos latches, foram criados os **Flip-Flops (FFs)** . 
 
 <img src="https://www.estudegratis.com.br/images/questoes/dcf8d49d250980846720.jpg" alt="Flip-Flop JK mestre-escravo" style="width: 70%" />
 
-#### 7.5 - Registradores: Agrupando Flip-Flops na CPU
+### 11.5 - Registradores: Agrupando Flip-Flops na CPU
 
 Um registrador de 64 bits é, em essência, um conjunto de 64 flip-flops que compartilham o mesmo sinal de clock e um sinal de enable de escrita (Write Enable). Podem ser definidos como **pequenas porções de memória de altíssima velocidade** localizadas dentro da CPU (processador), por isso é a memória mais **rápida do computador** e são utilizadas para **armazenar temporariamente dados e instruções** que estão sendo processados naquele exato momento.
 
@@ -1101,7 +1099,7 @@ Um registrador de 64 bits é, em essência, um conjunto de 64 flip-flops que com
 <img src="https://www.newtoncbraga.com.br/images/stories/artigo2019/cur5011_0001.gif" alt="Registradores - Tipo D e J-K" style="width: 90%" />
 * **Funcionamento**: Quando o sinal `Write Enable` está ativo e uma borda de clock chega, todos os 32 flip-flops capturam, simultaneamente, os valores presentes nas 32 linhas de `Data In` . O valor armazenado é então disponibilizado nas linhas de `Data Out`.
 
-##### 7.5.1 - Tipos de Registradores
+#### 11.5.1 - Tipos de Registradores
 
 * **Registradores Gerais**: Armazenam dados genéricos usados por instruções durante a execução de um programa.
 * **Contador de Programa (PC)**: Indica o endereço da próxima instrução a ser buscada.
@@ -1109,7 +1107,7 @@ Um registrador de 64 bits é, em essência, um conjunto de 64 flip-flops que com
 * **Registrador de Endereço de Memória (MAR)**: Armazena o endereço da memória a que o processador quer acessar.
 * **Registrador de Dados de Memória (MDR)**: Armazena o dado lido ou a ser escrito na memória.
 
-#### 7.6 - Memória Cache: A Grande Matriz de Latches
+### 11.6 - Memória Cache: A Grande Matriz de Latches
 
 A memória cache (como L1, L2, L3) é construída com um tipo de memória estática chamada **SRAM (Static RAM**) . A célula de uma SRAM é muito similar a um latch, geralmente implementada com **6 transistores (6T)** que formam um circuito biestável, eliminando a necessidade de refresh. Tem como características:
 
@@ -1132,7 +1130,7 @@ A diferença fundamental de um registrador é a **arquitetura de matriz**:
 |Velocidade|Máxima (1 ciclo de clock)|Muito alta (poucos ciclos de clock)|
 |Capacidade|Muito pequena (KB)|Pequena a moderada (KB a dezenas de MB)|
 
-#### 7.7 - Resumo
+### 11.7 - Resumo
 
 |Nível|Construção Básica|Unidade de Armazenamento|Sensibilidade|Controle|Localização Típica|
 |-----|-----------------|------------------------|-------------|--------|------------------|
@@ -1149,25 +1147,25 @@ A diferença fundamental de um registrador é a **arquitetura de matriz**:
 
 Com essa base, fica mais claro como o hardware gerencia o fluxo de dados, usando portas lógicas para operações (ALU) e suas variações (latches/flip-flops) para armazenar os resultados dessas operações em diferentes níveis da hierarquia de memória.
 
-### 8 - Qual a diferença entra um microprocessador de uso generalizado para os de uso específico, principalmente os que estão sendo usados na I.A.?
+## 12 - Qual a diferença entra um microprocessador de uso generalizado para os de uso específico, principalmente os que estão sendo usados na I.A.?
 
 A diferença fundamental entre um microprocessador de uso generalizado (como o CPU do seu computador) e um de uso específico para IA está na **arquitetura interna**: enquanto o primeiro é um ***"faz-tudo"*** otimizado para executar uma vasta gama de tarefas com eficiência razoável, os segundos são ***"especialistas"*** construídos para realizar um **tipo muito específico de cálculo (operações matriciais e vetoriais)** da maneira mais rápida e econômica possível.
 
-#### 8.1 - CPU (Central Processing Unit) - O Generalista
+### 12.1 - CPU (Central Processing Unit) - O Generalista
 
 O CPU é um "faz-tudo". Ele tem poucos núcleos (ex: 8, 16, 32) mas muito poderosos, capazes de executar qualquer tipo de instrução, desde as mais simples até as mais complexas . Sua força está na **latência baixa** e na **lógica de controle**.
 
 * **Onde é usado em IA**: Para rodar modelos pequenos (como detecção de objetos em uma câmera de segurança simples) ou como o "maestro" que *orquestra o trabalho* de GPUs e NPUs, preparando os dados e executando o código principal .
 * **Limitação**: Para treinar um modelo grande, um CPU levaria anos, enquanto uma GPU faz o mesmo trabalho em semanas . É como tentar cavar um buraco enorme com uma colher de chá.
 
-#### 8.2 - GPU (Graphics Processing Unit) - O Paralelista de Alta Potência
+### 12.2 - GPU (Graphics Processing Unit) - O Paralelista de Alta Potência
 
 Originalmente criada para jogos, a GPU se mostrou perfeita para IA. Ela possui milhares de núcleos pequenos, especializados em fazer o mesmo tipo de conta (multiplicação de matrizes) em paralelo .
 
 * **Onde é usado em IA:** É a peça fundamental para o **treinamento** de modelos. Quase 100% dos modelos de linguagem (como o GPT) e de visão computacional são treinados em clusters massivos de GPUs, como as da série NVIDIA A100 ou H100 .
 * **Limitação**: Consome muita energia e esquenta bastante. Uma GPU de última geração pode consumir mais de 400W, o que inviabiliza seu uso em um smartphone
 
-#### 8.3 - NPU (Neural Processing Unit) - O Especialista em Eficiência Energética
+### 12.3 - NPU (Neural Processing Unit) - O Especialista em Eficiência Energética
 
 É o novo queridinho do mercado, presente em praticamente todos os celulares e nos novos computadores com selo "AI PC". O NPU é um hardware fixo, construído especificamente para executar as operações de uma rede neural (como convoluções) com a máxima eficiência possível .
 
@@ -1176,7 +1174,7 @@ Originalmente criada para jogos, a GPU se mostrou perfeita para IA. Ela possui m
     * **Notebooks**: Reuniões com efeitos de fundo em 4K, respostas inteligentes em e-mails, tudo sem sobrecarregar o processador e drenar a bateria
 * **Limitação**: Não serve para treinar modelos e, por ser um hardware fixo, pode não suportar novos tipos de operações que surjam no futuro. Se o modelo usar um operador que o NPU não entende, ele trava e a tarefa volta para o CPU
 
-#### 8.4 - A Nova Divisão do Trabalho: Especialistas em IA
+### 12.4 - A Nova Divisão do Trabalho: Especialistas em IA
 
 > Para visualizar essa diferença, pense em uma cozinha. O CPU é um chef de cozinha versátil, capaz de preparar qualquer prato, mas um de cada vez. O GPU é uma equipe de 100 cozinheiros que preparam o mesmo prato para 100 pessoas ao mesmo tempo. Já o NPU é uma máquina automática de fazer um único tipo de massa, que funciona 24/7 com o mínimo de eletricidade possível.
 
@@ -1187,7 +1185,7 @@ Originalmente criada para jogos, a GPU se mostrou perfeita para IA. Ela possui m
 |Processador de Uso Específico (**Neural**)|NPU|O "especialista em baixo consumo". É um chip dedicado, geralmente embutido no processador principal (SoC) de celulares e computadores modernos. Projetado para executar modelos de IA de forma **ultraeficiente**, com um **consumo de energia 10x menor que uma GPU** para a mesma tarefa .|Uma máquina de fazer miojo: rápida, eficiente e que só faz uma coisa, mas faz muito bem.|Apple Neural Engine, Qualcomm Hexagon (Snapdragon), Intel AI Boost (Core Ultra).|
 |Processador de Uso Específico (**Tensor**)|TPU|O "engenheiro de obra pronta". É um **ASIC (circuito integrado de aplicação específica)** criado pelo Google exclusivamente para acelerar operações com **tensores** (matrizes multidimensionais) no seu data center. É uma solução de altíssimo desempenho e eficiência, porém proprietária e na nuvem .|Uma refinaria de petróleo construída para transformar petróleo bruto em gasolina da maneira mais eficiente possível.|Google TPU v4/v7 (usados exclusivamente na Google Cloud).|
 
-#### 8.5 - A Solução Moderna: O Sistema Heterogêneo
+### 12.5 - A Solução Moderna: O Sistema Heterogêneo
 
 A grande sacada da indústria hoje não é escolher um chip, mas sim combiná-los em um único sistema, chamado de SoC (System on a Chip) .
 
@@ -1199,7 +1197,7 @@ Um chip moderno, como o Apple M3, o Snapdragon 8 Gen 3 ou o Intel Core Ultra, n�
 
 Essa arquitetura é chamada de computação heterogênea. O sistema operacional e os aplicativos dividem a tarefa de forma inteligente: a lógica condicional vai para a CPU, a parte pesada de treinamento ou renderização vai para a GPU, e as tarefas contínuas de IA (como cancelamento de ruído) ficam na NPU, que as faz sem você nem perceber e sem gastar bateria
 
-### 9- ASCII, Unicode e Outras Codificações
+## 13 - ASCII, Unicode e Outras Codificações
 
 ASCII e Unicode **são padrões de codificação de caracteres**. ASCII usa 7 bits para representar 128 caracteres básicos (inglês, números, símbolos). Unicode é um padrão universal, abrangendo mais de 149.000 caracteres, incluindo múltiplos idiomas, emojis e símbolos técnicos. Unicode é o padrão moderno, enquanto ASCII é limitado a caracteres ingleses.
 
@@ -1215,13 +1213,13 @@ ASCII e Unicode **são padrões de codificação de caracteres**. ASCII usa 7 bi
 |UTF-8|Variável (1 a 4 bytes)|**Todos** os caracteres do padrão Unicode (mais de 1 milhão)|É a codificação **padrão universal da internet**. Compatível com ASCII para os primeiros 128 caracteres, mas pode representar qualquer caractere de qualquer idioma, além de emojis e símbolos especiais .|**Padrão mundial atual**: sites, aplicativos modernos, bancos de dados, APIs e sistemas operacionais .|
 |UTF-16|16 bits (2 ou 4 bytes)|**Todos** os caracteres Unicode|Representa a maioria dos caracteres comuns em 2 bytes. Usado internamente por sistemas como Windows, Java e JavaScript .|Ambientes onde o desempenho com caracteres não-ASCII é priorizado.|
 
-### 10- Decodificadores, como funcionam?
+## 14- Decodificadores, como funcionam?
 
 Um decodificador é um **circuito combinacional** que converte **n entradas** (um número binário) em **2ⁿ saídas**, onde exatamente **uma saída é ativada** (nível lógico 1) e todas as outras permanecem desativadas (nível lógico 0) .
 
 É como um **interruptor seletor**: você tem 3 fios de entrada que podem formar 8 combinações possíveis (000, 001, 010, ..., 111), e o decodificador ativa a saída correspondente à combinação recebida .
 
-#### 10.1 - Tabela Verdade de um Decodificador 2 para 4
+### 14.1 - Tabela Verdade de um Decodificador 2 para 4
 
 |Entrada A₁|Entrada A₀|Saída Y₃|Saída Y₂|Saída Y₁|Saída Y₀|Saída Ativa|
 |----------|----------|--------|--------|--------|--------|-----------|
@@ -1232,7 +1230,7 @@ Um decodificador é um **circuito combinacional** que converte **n entradas** (u
 
 A entrada binária `A₁A₀` (que pode ser 00, 01, 10, 11) determina qual das quatro saídas será ativada.
 
-#### 10.2 - Decodificador n-para-2ⁿ
+### 14.2 - Decodificador n-para-2ⁿ
 
 O princípio se escala para qualquer número de entradas. Os tamanhos mais comuns são:
 
@@ -1244,7 +1242,7 @@ O princípio se escala para qualquer número de entradas. Os tamanhos mais comun
 |5 para 32|5 bits|32|Seleção de linha em memórias moderadas|
 |6 para 64|6 bits|64|Seleção de linha em memórias SRAM|
 
-#### 10.3 - Aplicações Fundamentais na Arquitetura de Hardware
+### 14.3 - Aplicações Fundamentais na Arquitetura de Hardware
 
 * **Memória RAM e Cache**
 Esta é a aplicação mais crítica. Um chip de memória RAM contém milhões de células de memória organizadas em uma matriz. O **decodificador de linha** e o **decodificador de coluna** convertem o endereço binário recebido pela CPU na ativação física da célula específica .
@@ -1271,7 +1269,7 @@ Um decodificador converte um número binário (0 a 9) nos sinais que acendem os 
 * **Unidade de Controle (Control Unit)**
 Dentro da CPU, os decodificadores são usados para decodificar instruções. O opcode da instrução (ex: "ADD", "SUB", "LOAD") é passado por um decodificador que ativa o sinal de controle apropriado para que a ALU execute a operação correta .
 
-#### 10.4 - Decodificador vs. Multiplexador
+### 14.4 - Decodificador vs. Multiplexador
 
 É comum confundir decodificadores com multiplexadores, mas eles têm funções opostas:
 
@@ -1282,7 +1280,7 @@ Dentro da CPU, os decodificadores são usados para decodificar instruções. O o
 
 Um decodificador é como um **carteiro** que entrega uma carta no endereço correto. Um multiplexador é como um **operador de central telefônica** que conecta uma das muitas linhas à única saída .
 
-#### 10.5 - Decodificadores em Escala: Endereçamento de Memória
+### 14.5 - Decodificadores em Escala: Endereçamento de Memória
 
 Em sistemas de 64 bits modernos, não usamos um único decodificador gigante (64-para-2⁶⁴ seria impossível!). Em vez disso, usamos uma **hierarquia de decodificadores**:
 
@@ -1300,7 +1298,7 @@ Célula de memória específica
 
 Essa abordagem hierárquica é mais eficiente e **reduz a complexidade do circuito**.
 
-#### 10.6 - Resumo
+### 14.6 - Resumo
 
 O decodificador é um dos circuitos combinacionais mais importantes em arquitetura de computadores porque:
 
@@ -1310,11 +1308,11 @@ O decodificador é um dos circuitos combinacionais mais importantes em arquitetu
 
 Quando uma instrução do seu programa acessa uma variável na memória, há um decodificador (na verdade, uma cadeia deles) convertendo o endereço binário em um sinal físico que ativa exatamente a célula de memória correta entre bilhões de outras. É um dos exemplos mais elegantes de como a lógica digital simples constrói sistemas complexos.
 
-### 11 - Código GRAY
+## 15 - Código GRAY
 
 O Código Gray, também conhecido como código binário refletido, é uma forma de representação binária onde dois valores consecutivos diferem em apenas um bit. Foi desenvolvido por Frank Gray no Bell Labs em 1947 (patenteado em 1953) e tem **aplicações fundamentais em sistemas digitais onde a confiabilidade na transição entre estados é crítica**.
 
-#### 11.1 - Como Funciona?
+### 15.1 - Como Funciona?
 
 Enquanto na contagem binária tradicional vários bits podem mudar simultaneamente entre números consecutivos, no código Gray apenas um bit muda por vez.
 
@@ -1333,7 +1331,7 @@ Vamos comparar:
 
 Observe como, no código Gray, a transição entre 1 e 2 (001 → 011) muda apenas um bit, enquanto no binário (001 → 010) muda dois bits. O problema fica ainda mais evidente na transição de 3 para 4: binário (011 → 100) muda todos os três bits; Gray (010 → 110) muda apenas um bit.
 
-#### 11.2 - Por que o Código Gray é Importante?
+### 15.2 - Por que o Código Gray é Importante?
 
 * **Codificadores de Posição (Encoders)**: Em sistemas que medem posição angular ou linear (como em *máquinas CNC, robótica, servomotores*), utilizam-se discos codificadores com trilhas concêntricas que geram um código binário de acordo com a posição.
 
@@ -1351,9 +1349,9 @@ Observe como, no código Gray, a transição entre 1 e 2 (001 → 011) muda apen
 
 * **Geradores de Sequência e Contadores**: Em contadores de anel e contadores Johnson, utiliza-se código Gray para criar sequências onde a saída muda de forma suave e previsível, evitando picos de corrente e reduzindo interferência eletromagnética (EMI).
 
-#### 11.3 - Como Gerar o Código Gray?
+### 15.3 - Como Gerar o Código Gray?
 
-##### 11.3.1 - Método 1: Reflexão (Mais Simples de Visualizar)
+#### 15.3.1 - Método 1: Reflexão (Mais Simples de Visualizar)
 
 O código Gray é chamado de "binário refletido" porque pode ser construído recursivamente:
 
@@ -1377,7 +1375,7 @@ O código Gray é chamado de "binário refletido" porque pode ser construído re
 >* Lista refletida do Gray de 2 bits: `10`, `11`, `01`, 00 → com 1 à esquerda: `110`, `111`, `101`, `100`
 >* Resultado: `000`, `001`, `011`, `010`, `110`, `111`, `101`, `100`
 
-##### 10.3.2 - Método 2: Fórmula Matemática
+#### 15.3.2 - Método 2: Fórmula Matemática
 
 Para converter um número binário n em código Gray g:
 
@@ -1409,9 +1407,9 @@ Imagine um braço robótico que precisa saber sua posição angular com precisã
 
 Com código Gray, a transição de 7 (0100) para 8 (1100) muda apenas o bit mais significativo. Mesmo na fronteira, a leitura será 7 ou 8 - um erro mínimo, aceitável e corrigível .
 
-#### 10.4 - Em Síntese
+### 15.4 - Em Síntese
 
-##### 10.4.1 - Gray vs. Binário: Comparação
+#### 15.4.1 - Gray vs. Binário: Comparação
 
 |Aspecto|Binário Padrão|Código Gray|
 |-------|--------------|-----------|
@@ -1430,11 +1428,11 @@ O código Gray é uma codificação binária especializada onde a vizinhança é
 
 Ele resolve um problema fundamental da eletrônica digital: quando múltiplos bits mudam simultaneamente em um sistema físico, os tempos de comutação diferentes podem causar leituras espúrias. O código Gray elimina esse problema ao garantir que, entre estados consecutivos, apenas um sinal físico precise mudar.
 
-### 12- Importância dos transistores para a arquitetura de hardware e computadores em geral
+## 16 - Importância dos transistores para a arquitetura de hardware e computadores em geral
 
 O **transistor** é, sem exagero, o componente mais importante da eletrônica moderna. Sua invenção em 1947 (por John Bardeen, Walter Brattain e William Shockley, Bell Labs) revolucionou a computação.
 
-#### 12.1 - O Que é um Transistor?
+### 16.1 - O Que é um Transistor?
 
 Um transistor é um interruptor controlado eletricamente (também pode funcionar como amplificador). Ele possui três terminais:
 
@@ -1448,7 +1446,7 @@ Ao aplicar uma pequena tensão na base, o transistor "liga", permitindo a passag
 <img src="https://www.pcbasic.com/Uploads/files/20250106/1f23d708257aa2b1adb9b323d0e344b2.webp" alt="Transistor" style="width: 50%" title = "Imagem - Transistor"/>
 </div>
 
-#### 12.2 - Por que o Transistor foi Revolucionário?
+### 16.2 - Por que o Transistor foi Revolucionário?
 
 |Aspecto|Válvula (1ª Geração)|Transistor (2ª Geração)|
 |-------|--------------------|-----------------------|
@@ -1471,7 +1469,7 @@ Miniaturização: Com os transistores, os computadores deixaram de ocupar salas 
 * **Baixo consumo**: Possibilitou o uso de baterias e, eventualmente, computadores portáteis .
 * **Circuitos Integrados**: O transistor é o bloco fundamental que permite a criação de chips com bilhões de componentes .
 
-#### 12.3 - Do Transistor ao Microprocessador**
+### 16.3 - Do Transistor ao Microprocessador**
 
 * **Década de 1950**: Circuitos com transistores discretos (cada transistor em um encapsulamento individual) .
 * **Década de 1960**: **Circuitos Integrados (CI)** - múltiplos transistores fabricados em um único chip de silício .
@@ -1480,11 +1478,11 @@ Miniaturização: Com os transistores, os computadores deixaram de ocupar salas 
 
 > **Sem o transistor, não haveria computadores pessoais, smartphones, internet das coisas ou qualquer tecnologia digital que usamos hoje.**
 
-### 13- Lei de Moore
+## 17 - Lei de Moore
 
 A Lei de Moore é uma observação empírica que se tornou uma "profecia autorrealizável" e guia de planejamento para a indústria de semicondutores.
 
-#### 13.1 - Origem
+### 17.1 - Origem
 
 Em 1965, Gordon Moore (cofundador da Intel) publicou um artigo observando que o número de transistores em um chip dobrava a cada ano. Em 1975, revisou a previsão para o dobro a cada dois anos (aproximadamente 18-24 meses) .
 
@@ -1493,7 +1491,7 @@ Em 1965, Gordon Moore (cofundador da Intel) publicou um artigo observando que o 
 
 Isso **não é uma lei física, mas uma observação de tendência que a indústria adotou como meta de desenvolvimento**.
 
-#### 13.2 - Implicações da Lei de Moore**
+### 17.2 - Implicações da Lei de Moore**
 
 |Consequência|Descrição|
 |------------|---------|
@@ -1503,7 +1501,7 @@ Isso **não é uma lei física, mas uma observação de tendência que a indúst
 |Lei de Bell|A cada 10 anos, surge uma nova classe de computadores (mainframe → minicomputador → PC → notebook → smartphone)|
 |Lei de Kryder|A densidade de armazenamento em discos também dobra (mas não na mesma taxa)|
 
-#### 13.3 - Exemplos da Lei de Moore em Ação
+### 17.3 - Exemplos da Lei de Moore em Ação
 
 |Processador|Ano|Transistores|Tecnologia|
 |-----------|---|------------|----------|
@@ -1514,7 +1512,7 @@ Isso **não é uma lei física, mas uma observação de tendência que a indúst
 |Intel Core i7 (Nehalem)|2008|731 milhões|45 nm|
 |Apple M3 Max|2023|92 bilhões|3 nm|
 
-#### 13.4 - O Fim da Lei de Moore?
+### 17.4 - O Fim da Lei de Moore?
 
 Atualmente, estamos atingindo limites físicos:
 
@@ -1522,7 +1520,7 @@ Atualmente, estamos atingindo limites físicos:
 * Efeitos quânticos começam a atrapalhar o funcionamento confiável
 * Custos de fabricação de novas fábricas (fabs) são astronômicos (US$ 20 bilhões para uma fábrica de 3 nm)
 
-#### 13.5 - Soluções para Continuar o Avanço
+### 17.5 - Soluções para Continuar o Avanço
 
 * **Arquiteturas 3D**: Empilhar transistores verticalmente (FinFET, GAAFET)
 * **Processadores multicore**: Em vez de aumentar velocidade, aumentam número de núcleos
@@ -1530,11 +1528,11 @@ Atualmente, estamos atingindo limites físicos:
 * **Materiais alternativos**: Silício pode ser substituído por grafeno ou outros materiais no futuro
 * **Computação quântica**: Paradigma totalmente diferente
 
-### 14 - Barramento Omnibus
+## 18 - Barramento Omnibus
 
 O ***barramento omnibus*** (ou barramento único) é uma **arquitetura de interconexão onde todos os componentes de um sistema computacional compartilham um conjunto comum de linhas de comunicação**.
 
-#### 14.1 - O Que é um Barramento?
+### 18.1 - O Que é um Barramento?
 
 Um barramento é um conjunto de fios condutores (linhas) que permitem a transferência de dados entre os componentes de um computador. Existem três tipos principais de linhas:
 
@@ -1559,16 +1557,16 @@ Na arquitetura omnibus, todos os componentes (CPU, memória, dispositivos de I/O
     └─────────┘  └─────────┘  └─────────┘  └─────────┘
 ```
 
-#### 14.2 - Vantagens
+### 18.2 - Vantagens
 
-|Vantagem    |Descrição|
+|Vantagem|Descrição|
 |------------|---------|
 |Simplicidade|Menos fios, mais fácil de projetar e fabricar|
-|Baixo custo |Menos componentes e conexões|
+|Baixo custo|Menos componentes e conexões|
 |Modularidade|Fácil adicionar novos dispositivos (basta conectá-los ao barramento)|
 |Padronização|Barramentos padronizados (PCI, USB) permitem interoperabilidade|
 
-#### 14.3 - Desvantagens
+### 18.3 - Desvantagens
 
 |Desvantagem|Descrição|
 |-----------|---------|
@@ -1576,7 +1574,7 @@ Na arquitetura omnibus, todos os componentes (CPU, memória, dispositivos de I/O
 |Contenção|Dispositivos competem pelo acesso ao barramento, exigindo mecanismos de arbitragem|
 |Limite de velocidade|A velocidade do barramento é limitada pelo dispositivo mais lento e pelo comprimento físico dos fios|
 
-#### 14.4 - Exemplos de Barramentos
+### 18.4 - Exemplos de Barramentos
 
 |Barramento|Tipo|Aplicação|
 |----------|----|---------|
@@ -1586,7 +1584,7 @@ Na arquitetura omnibus, todos os componentes (CPU, memória, dispositivos de I/O
 |SATA|Barramento serial|Conexão de discos rígidos e SSDs|
 |Front Side Bus (FSB)|Barramento CPU-memória|Usado em processadores Intel antigos (substituído por HyperTransport e QuickPath)|
 
-#### 14.5 - Evolução: Do Barramento Único aos Barramentos Hierárquicos
+### 18.5 - Evolução: Do Barramento Único aos Barramentos Hierárquicos
 
 Nos sistemas modernos, a arquitetura de barramento único foi substituída por arquiteturas hierárquicas com múltiplos barramentos para evitar gargalos:
 
@@ -1632,29 +1630,101 @@ Nos sistemas modernos, a arquitetura de barramento único foi substituída por a
 * PCIe oferece conexões ponto a ponto com largura de banda dedicada
 * Dispositivos lentos ficam em barramentos separados, não interferindo no fluxo principal
 
-### 15 - Taxonomia de Flynn
+## 19 - Arquiteturas Paralelas
 
-Ela classifica os computadores considerando a quantidade de fluxos de instruções e dados que eles manipulam. 
+### 19.1 - Taxonomia de Flynn
 
-#### 15.1 - SISD - Single Instruction, Single Data
+Ela classifica os computadores considerando a quantidade de fluxos de instruções e dados que eles manipulam.
+
+<div style = "text-align: center;">
+<img src="https://files.tecnoblog.net/wp-content/uploads/2023/07/tbr-taxonomia-de-flynn-1060x596.png" alt="Taxonomia de Flynn" style="width: 75%" title = "Imagem - Taxonomia de Flynn"/>
+</div>
+
+#### 19.1.1 - SISD - Single Instruction, Single Data
 
 Como o proprio nome indica, é a forma mais simples que um processador pode trabalhar, onde um unica instrução opera sobre um unico dado por vez. Os processadores antigos e sistemas embarcados hoje funcionam dessa maneira.
 
-#### 15.2 - SIMD - Single Instruction, Multiple Data
+#### 19.1.2 - SIMD - Single Instruction, Multiple Data
 
-Esse método ainda trabalha com apenas uma instrução, porém é aplicada em um vetor de dados simultaneamente. Hoje é a essência das GPUs e extensões AVX (Advanced Vector Extensions). 
+Esse método ainda trabalha com apenas uma instrução, porém é aplicada em um vetor de dados simultaneamente. Hoje é a essência das GPUs e extensões AVX (Advanced Vector Extensions).
 
-#### 15.3 - MISD - Multiple Instruction, Single Data
+##### 19.1.2.1 - SIMD na Prática: Vetores e GPUs
 
-Trabalha com multiplas instruções operando no mesmo dado. Não é muito utilizada, apenas em sistemas onde não há tolerâncias para falhas, como em hardware aeroespaciais, matriz sistólicas e criptografia. 
+O SIMD é tão importante que ganhou implementações dedicadas dentro dos processadores e fora deles.
 
-#### 15.4 - MIMD - Multiple Instruction, Multiple Data
+* **Extensões SIMD em CPUs**: Desde o final dos anos 90, fabricantes adicionam conjuntos de instruções SIMD para acelerar multimídia, jogos e ciência. São os famosos MMX, SSE, AVX da Intel e AltiVec da PowerPC.
+
+  * **Exemplo Atual**: As extensões AVX-512 e AVX2 permitem que um único core realize 16 ou 32 operações de ponto flutuante por vez em vetores de 256 ou 512 bits . Ótimo para *processamento de imagens, áudio e simulações*.
+
+* **GPUs (SIMT)**: Uma GPU é um SIMD massivo com milhares de pequenos núcleos. A NVIDIA chama sua abordagem de SIMT (Single Instruction, Multiple Threads), ela é considerada uma evolução do SIMD, mesmo com diferentes formas de funcionamento da arquitetura, a SIMT é onde uma instrução controla um grupo de 32 threads (um warp). É a arquitetura que domina o treinamento de IA e o HPC moderno. A principal diferença entre elas são que as threads estejam agrupadas executando a mesma instrução, o hardware permite que cada thread acesse a memória e registre estados diferentes.
+
+#### 19.1.3 - MISD - Multiple Instruction, Single Data
+
+Trabalha com multiplas instruções operando no mesmo dado. Não é muito utilizada, apenas em sistemas onde não há tolerâncias para falhas, como em hardware aeroespaciais, matriz sistólicas e criptografia.
+
+#### 19.1.4 - MIMD - Multiple Instruction, Multiple Data
 
 Multiplos processadores executam suas próprias instruções em seus próprios dados. Os computadores multi-core hoje trabalham dessa forma, servidores NUMA e clusters também.
 
-### Paralelismo ILP
+### 19.2 - Paralelismo (Computação Paralela) ILP
 
-Instruction Level Paralelism foi uma forma criada para fazer com um unico processador execute multiplas instruções ao mesmo tempo.
+Instruction Level Paralelism foi uma forma criada para fazer com um unico processador execute multiplas instruções ao mesmo tempo. Divindindo grandes problemas de computação em problemas menores para serem resolvidos simultaneamente por vários processadores. Os processadores se comunicam usando memória compartilhada , e suas soluções são combinadas usando um algoritmo. A computação paralela é significativamente mais rápida do que a computação serial, sua antecessora, que usa um único processador para resolver problemas em sequência. Os sistemas paralelos evoluíram a ponto de serem usados em vários computadores, tornando tarefas cotidianas, como verificar e-mails ou enviar uma mensagem de texto, centenas de vezes mais rápidas. Além de alimentar dispositivos pessoais como notebooks e smartphones, sistemas paralelos também alimentam os supercomputadores mais avançados e tecnologias de ponta, como inteligência artificial (IA) e a Internet das Coisas (IoT). E ela trouxe benefícios comerciais como:
+
+* **Redução de custos**: A computação serial forçava processadores únicos a resolver problemas complexos, um passo de cada vez, adicionando minutos e horas a tarefas que a computação paralela poderia realizar em poucos segundos
+* **Solução de problemas complexos**: Usando a computação serial, as tarefas de ML levariam muito mais tempo devido aos gargalos causados pela capacidade de realizar apenas um cálculo por vez em um único processador.
+* **Análise de dados mais rápida**: A computação paralela e o processamento paralelo potencializam o processamento de números em grandes conjuntos de dados, mais de um quintilhão de bytes de informações gerados todos os dias, possibilitando consultas interativas por trás da análise de dados.
+* **Maior eficiência**: Munidos de computação paralela, os computadores podem usar os recursos de maneira muito mais eficiente do que seus equivalentes de computação serial.
+
+#### 19.2.1 - (Pipeline Scalar)
+
+Uma instrução é dividida em estágios (*buscar, decodificar, executar*...). A ideia é começar a executar a próxima instrução antes de terminar a anterior.
+
+> **Analogia**: Uma lavanderia onde uma pessoa lava, a outra seca e a terceira passa. Enquanto a primeira máquina lava a segunda carga, a segunda já está secando a primeira. O trabalho flui, aumentando a produtividade geral.
+
+### 19.2.2 - Superescalar
+
+É o pipeline em esteroides. O processador possui múltiplas unidades de execução, permitindo que ele comece várias instruções por ciclo de clock (IPC > 1). No mercado, processadores modernos (Intel Core, AMD Ryzen) são superescalares dinâmicos, executando de 4 a 6 instruções por ciclo.
+
+> **Analogia**: A mesma lavanderia, mas agora com duas máquinas de lavar e duas secadoras. Dá para processar o dobro de roupas no mesmo tempo, desde que o "gerente" (o hardware) seja esperto para organizar tudo sem bagunçar .
+
+### 19.3 - SMP (Multiprocessamento Simétrico)
+
+O multiprocessamento simétrico acontece quando uma carga de trabalho de processamento é distribuída simetricamente entre vários processadores. Em um sistema SMP, cada processador tem acesso igual à memória do sistema e aos dispositivos de entrada/saída (I/O). Esse equilíbrio garante o uso eficiente de recursos e o desempenho ideal em tarefas paralelas de processamento.
+
+#### 19.3.1 Tecnologias que dependem do SMP
+
+Sistemas que frequentemente aproveitam o SMP são aqueles necessários para lidar com grandes quantidades de dados e executar cálculos complexos sem problemas. O SMP é a espinha dorsal de tecnologias como:
+
+* **Servidores de alto desempenho**: Servidores de alto desempenho são componentes essenciais em vários ambientes de computação que dependem do SMP para melhorar os recursos. Além disso, um backbone de ambientes de computação corporativa, os servidores de alto desempenho aproveitam o SMP para simulações científicas, hospedagem na Web, virtualização e muito mais.
+* **Clusters de datacenter**: Os clusters de datacenter, que são a espinha dorsal da computação em nuvem e de muitos serviços online, dependem muito do SMP para lidar com grandes quantidades de dados e atender a vários usuários simultaneamente. Ele permite balanceamento de carga e utilização eficiente de recursos, virtualização e computação em nuvem, processamento de Big Data e em tempo real, entre outros.
+* **Supercomputadores**: Os supercomputadores frequentemente realizam simulações complexas dividindo tarefas em partes menores. Ao usar o SMP, um supercomputador pode processar simultaneamente tarefas em vários processadores, garantindo paralelização eficiente.
+
+#### 19.3.2 Exemplos de Uso
+
+* **Aplicativos corporativos**: SMP permite que os servidores lidem com várias solicitações de usuários para software CRM, ERP e ferramentas business intelligence simultaneamente.
+* **Simulações científicas**: SMP permite que a divisão de tarefas de simulação maiores em partes menores seja processada em paralelo, o que pode reduzir significativamente o tempo de computação.
+* **Pesquisas genômicas**: O SMP acelera a análise e permitindo que os pesquisadores façam descobertas significativas em campos como a medicina personalizada.
+* **Aerodinâmica e dinâmica computacional de fluidos**: O SMP permite que os engenheiros modelem o comportamento dos fluidos em torno de objetos, ajudando no projeto de veículos mais eficientes e aerodinâmicos.
+* **Modelos de AI gerados**: Esses modelos geralmente têm milhões ou até bilhões de parâmetros, e treiná-los requer cálculos complexos. O SMP é usado para processamento eficiente de arquiteturas complexas de rede neural, permitindo o desenvolvimento de sistemas e aplicativos sofisticados de AI geradora.
+
+### 19.4 - Multiprocessadores (Memória Compartilhada)
+
+Vários cores compartilham o mesmo espaço de memória RAM.
+
+UMA/SMP (Uniform Memory Access) - O "Studio Apartment": Todos os cores têm o mesmo tempo de acesso à memória RAM central.
+
+Analogia: É como um pequeno apartamento onde todos os moradores usam a mesma única geladeira. É simples e barato, mas fica bagunçado e lento se muitos tentarem acessar a geladeira ao mesmo tempo. Por isso, é limitado a poucos cores (ex: 4 a 8) .
+
+NUMA (Non-Uniform Memory Access) - O "Condomínio com Dispensa Individual": A memória é fisicamente distribuída, mas logicamente compartilhada. Cada core (ou grupo de cores) tem sua "dispensa" (memória local) de acesso rápido, mas também pode acessar a dispensa do vizinho, o que é mais lento.
+
+Analogia: Um condomínio onde cada apartamento tem sua própria dispensa. Acessar sua própria comida é rápido, mas pedir um ingrediente emprestado ao vizinho demora mais.
+
+Mercado: É o padrão de servidores modernos (AMD EPYC, Intel Xeon) com muitos sockets, onde cada processador tem seus próprios módulos de memória.
+
+Protocolo MESI: O "Fiscal de Coerência"
+Em sistemas com cache (como todos os modernos), como garantir que um dado alterado pelo Core A na sua cache não seja usado de forma desatualizada pelo Core B? O protocolo MESI (Modified, Exclusive, Shared, Invalid) resolve isso.
+
+Analogia: Funciona como um sistema de bilhetes. Se o Core A vai modificar um dado, ele avisa a todos: "Ei, estou mudando isso. Invalidem suas cópias velhas!" É o que garante que todos vejam a versão mais recente de um dado na memória compartilhada .
 
 ## Duvidas
 

@@ -7,7 +7,7 @@
 Em linhas gerais, poderíamos dizer que informação é o **conteúdo da mensagem emitida ou recebida**, que, para ser eficaz, depende de sua originalidade. Em sentido genérico, informação é uma comunicação ou notícia levada ao conhecimento de uma pessoa ou do público.
 
 Como somos bombardeados diariamente com excesso de informação, acabamos retendo pouco do conteúdo do que nos chega. As propagandas, por exemplo, passaram a fazer parte do nosso dia a dia; mesmo que não a desejemos, elas nos chegam. Resultando em um espectador cansado, sem muito interesse pelas informações que interceptam nossa percepção diariamente. Diante desse quadro, se quisermos realmente passar uma informação adiante, é necessário pensar bem em como transmiti-la. **Comunicação mal preparada**, como dito anteriormente, **corre o risco de não transmitir informação**, logo, não cumpre com sua elementar.
-Umberto Eco, um dos mais influentes pensadores do século XX, diz algo importante: *quanto maior a carga de informação que se deseja transmitir, mais elaborada deverá ser a forma. Comunicar não é enfeitar, é transmitir informação de forma eficaz*.
+> Umberto Eco, um dos mais influentes pensadores do século XX, diz algo importante: *quanto maior a carga de informação que se deseja transmitir, mais elaborada deverá ser a forma. Comunicar não é enfeitar, é transmitir informação de forma eficaz*.
 
 ### 2- Modelo comunicativo
 
@@ -83,12 +83,7 @@ No exemplo acima, é possível considerar que o objetivo principal do anúncio �
 É aquela que prevalece em construções em que o **assunto é o aspecto mais importante**. Normalmente, é a função referencial que predomina na maioria das mensagens, nós a **encontramos muito facilmente em notícias de jornais, em artigos científicos, livros didáticos, textos de pesquisas, revistas acadêmicas etc. Sua função principal é informar o leitor**.
 
 > **Ex. tirado da (Pesquisa Fapesp, ed. 350, abr. 2025)**
-   *“As ondas de calor estão se tornando mais frequentes, mais intensas e mais duradouras. É assim em praticamente todo o mundo
-    e a América do Sul e o Brasil não são exceção. Artigo publicado em fevereiro deste ano na revista Frontiers in Climate 
-    produziu uma série de indicadores que dão uma medida da escalada desse tipo de evento extremo no Brasil, Paraguai, nordeste 
-    da Argentina e sul da Bolívia. A partir de dados dos serviços meteorológicos nacionais, os pesquisadores calcularam a 
-    incidência, a potência e a duração das ondas de calor em 10 cidades, cinco delas do Brasil (Manaus, Rio Branco, Brasília, 
-    Cuiabá e São Paulo), no período entre 1979 e 2023.”*
+   *“As ondas de calor estão se tornando mais frequentes, mais intensas e mais duradouras. É assim em praticamente todo o mundo e a América do Sul e o Brasil não são exceção. Artigo publicado em fevereiro deste ano na revista Frontiers in Climate produziu uma série de indicadores que dão uma medida da escalada desse tipo de evento extremo no Brasil, Paraguai, nordeste da Argentina e sul da Bolívia. A partir de dados dos serviços meteorológicos nacionais, os pesquisadores calcularam a incidência, a potência e a duração das ondas de calor em 10 cidades, cinco delas do Brasil (Manaus, Rio Branco, Brasília, Cuiabá e São Paulo), no período entre 1979 e 2023.”*
 
 **A passagem procura informar de forma totalmente impessoal um determinado assunto**. No caso, a intensificação de ondas de calor, decorrentes do aquecimento global.
 
@@ -246,8 +241,9 @@ Como os gêneros textuais estão intrinsicamente ligados às mais diversas situa
 
 Dessa forma, a depender de nossas demandas do dia a dia, da nossa atuação profissional e mesmo de nossas escolhas pessoais, somos levados a escrever um(a):
 
-|Resenha|Resumo acadêmico|Carta comercial|Carta aberta|Carta pessoal|
+||||||
 |-------|----------------|---------------|------------|-------------|
+|Resenha|Resumo acadêmico|Carta comercial|Carta aberta|Carta pessoal|
 |Carta ao leitor|Carta de reclamação|Diário|Prova|Sinopse|
 |Notícia|Reportagem|Entrevista|Artigo de opinião|Artigo científico|
 |Requerimento|Memorando|Biografia|Abaixo-assinado|Contracapa de livro|
@@ -295,7 +291,7 @@ Após estudar tudo que foi contemplado no âmbito desta unidade, estamos conform
 
 ## 9- Tipo Textual
 
-Um *gênero textual* é uma forma textual escrita ou oral bastante estável, histórica e socialmente situada. A noção de **tipo textual** tem outro enfoque e tende a ser mais estática. Em linhas gerais, podemos afirmar que a diferença principal entre tipo e gênero está **na função** e **na estrutura** de cada um deles. Os tipos textuais referem-se a **estruturas e objetivos textuais gerais**, como **narrar**, **descrever**, **expor** ou **argumentar**. Já os gêneros textuais, por outro lado, são formas específicas de comunicação que surgem em contextos sociais e culturais, como um conto, uma receita culinária ou uma resenha. Marcuschi também propõe uma definição bastante precisa da noção de tipo textual.
+Um *gênero textual* é uma forma textual escrita ou oral bastante estável, histórica e socialmente situada. A noção de **tipo textual** tem outro enfoque e tende a ser mais estática. Em linhas gerais, podemos afirmar que a diferença principal entre tipo e gênero está **na função** e **na estrutura** de cada um deles. Os tipos textuais referem-se a **estruturas e objetivos textuais gerais**, como **narrar**, **descrever**, **expor** ou **argumentar**. Já os gêneros textuais, por outro lado, são formas específicas de comunicação que surgem em contextos sociais e culturais, como um conto, uma receita culinária ou uma resenha. *Marcuschi* também propõe uma definição bastante precisa da noção de tipo textual.
 
 >“Tipo textual designa uma espécie de **construção teórica** (em geral uma sequência subjacente aos textos) **definida pela natureza linguística** de sua composição (aspectos lexicais, sintáticos, tempos verbais, relações lógicas, estilo). O tipo caracteriza-se muito mais como sequencias linguísticas (sequências retóricas) do que como textos materializados; a rigor, são modos textuais. Em geral os tipos textuais abrangem cerca de meia dúzia de categorias conhecidas como narração, exposição, injunção, descrição e argumentação. O **conjunto de categorias para designar tipos textuais é limitado e sem tendências a aumentar**. Quando predomina um modo num dado texto concreto, dizem que esse é um texto argumentativo ou narrativo ou expositivo ou descritivo ou injuntivo.” (MARCUSCHI, L. A., 2008, p. 154 e 155).
 
@@ -371,7 +367,7 @@ Observe que **nossa experiência de mundo não nos permite compreender bem que o
 
 Por **situacionalidade** compreendem-se todos aqueles elementos que apontam para o contexto em que um dado texto foi redigido (fatores culturais, históricos, sociais etc.), ou seja, o texto espelha marcas da situação em que ele foi produzido. No exemplo, *“São Paulo, 10 de maio de 2025”*, temos aqui **marcas do contexto** em que essa carta foi redigida, **ela nos localiza no tempo e no espaço**: *“10 de maio de 2025”* e *“São Paulo”*. O grau de formalidade também pode ser uma marca de situacionalidade, dois irmãos conversando iriam usar um tipo de linguagem(informal), enquanto um funcionário falando com seu superior, usaria a linguagem formal.
 
-Fala-se também de uma **situacionalidade** do texto para a situação de produção, ou seja, o texto aponta para algo que está fora dele. E isso deve ser compreendido como certas marcas que o texto traz que podem ser utilizadas para se compreender o contexto. Segundo Ingedore Villaça Koch,
+Fala-se também de uma **situacionalidade** do texto para a situação de produção, ou seja, o texto aponta para algo que está fora dele. E isso deve ser compreendido como certas marcas que o texto traz que podem ser utilizadas para se compreender o contexto. Segundo *Ingedore Villaça Koch*,
 
 >“(...) é preciso lembrar que o texto tem reflexos importantes sobre a situação, visto que o mundo textual não é jamais idêntico ao mundo real. Ao construir um texto, o produtor reconstrói o mundo de acordo com suas experiências, seus objetivos, propósitos, convicções, crenças, isto é, seu modo de ver o mundo. O interlocutor, por sua vez, interpreta o texto de conformidade com seus propósitos, convicções, perspectivas. Há sempre uma mediação entre o mundo real e o mundo construído pelo texto.” *(KOCH, 2015, p. 50)*
 
@@ -390,7 +386,7 @@ A **intertextualidade, quando não explicitada, requer do leitor certo repertór
 
 Um **trabalho acadêmico sem citação aponta para duas direções**, ambas problemáticas: ou o **estudante não consultou fonte alguma** (o que é ruim), ou **consultou, mas não deu o crédito, não citou** (pior ainda)!
 
-### 10.5- Interncionalidade
+### 10.5- Intencionalidade
 
  A **intencionalidade** está **relacionada com aquele que produz o texto, escrito ou falado**. Diz respeito às **diferentes maneiras como as pessoas utilizam textos para perseguir e realizar suas intenções comunicativas**. Isso nos lembra um pouco o conceito de **funções da linguagem** trabalhado na Unidade 1. Ingedore Villaça Koch diz:  
 
