@@ -233,7 +233,7 @@ Os **textos expositivos** possuem a função de expor determinada ideia, por mei
 |Ao serem publicadas as notas das provas finais de seu curso, você se deu conta de que o professor acabou esquecendo de lançar a nota de um trabalho que você e seus colegas de grupo realizaram. Apenas sua nota restou sem lançar. Então, para avisar ao professor do ocorrido, você não poderá esperar até a aula da próxima semana, pois o sistema de lançamento de notas fecha no mesmo dia em que vocês constataram o erro de lançamento. **O que você escreveria?**|A situação social de comunicação na qual você se encontra indica que o gênero textual mais apropriado é um *e-mail*.|Epistolar do meio eletrônico|
 |Você marcou a ida a um show de rock no final da tarde com um amigo que há muito tempo você não encontra. O encontro é muito esperado por ambos, porque não se viram mais depois que terminaram o Ensino Médio. Ocorre que você se lembrou, na mesma tarde do encontro, que se comprometeu a redigir as considerações finais do trabalho de conclusão de curso do seu grupo e não terá mais tempo para realizar essa tarefa em outra data. **O que você escreveria?**|O contexto no qual você se encontra indicará que sua mensagem ao colega poderá ser estruturada no gênero *mensagem de texto*, via WhatsApp, se quiser, dada a informalidade entre vocês e o conteúdo temático que será transmitido.Você também poderia ligar para o colega, avisando do imprevisto, nesse caso, o gênero textual escolhido seria *ligação telefônica*.|Diálogo ou conversa|
 
-No domínio acadêmico, a predominância é de gêneros formais como resenha, resumo, prova, artigo científico, relatório, fichamento entre outros. Outros gêneros também de extração formal que costumam muito figurar em ambientes acadêmicos são: monografia, dissertação, tese, projeto de pesquisa, ensaios, plano de curso etc. 
+No domínio acadêmico, a predominância é de gêneros formais como resenha, resumo, prova, artigo científico, relatório, fichamento entre outros. Outros gêneros também de extração formal que costumam muito figurar em ambientes acadêmicos são: monografia, dissertação, tese, projeto de pesquisa, ensaios, plano de curso etc.
 
 ### 8.3- Situações sociais de usos da língua
 
@@ -617,7 +617,7 @@ Conhecimentos de mundo ou enciclopédicos estão relacionados, como já antecipa
 
 Devemos **compreender as formas como as pessoas interagem por meio da linguagem**. Não basta conhecer a língua em si, ou acionar nossos conhecimentos enciclopédicos quando lemos, é preciso levar em conta também nossos conhecimentos interacionais. Tais conhecimentos abrangem, principalmente, conhecimentos sobre os gêneros textuais e sobre a intenção do enunciador ao usar cada um deles. Fica mais fácil de compreender o que se entende por conhecimentos interacionais no ato da leitura, se retomamos o que estudamos no capítulo 1 sobre o princípio dialógico da linguagem. Segundo *M. Bakhtin*, a **linguagem é eminentemente dialógica, ou seja, ela se constituiu enquanto troca entre interlocutores**.
 
-> Um exemplo vindo da literatura poderá ilustrar esse princípio. Escreve *Machado de Assis*, logo na introdução de seu romance **Memórias Póstumas de Brás Cubas**, em um franco diálogo com seu leitor: “A obra em si mesma é tudo; se te agradar fino leitor, pago-me da tarefa; se te não agradar, pago-te com um piparote, e adeus.” (*Memórias Póstumas de Brás Cubas, 1990, p. 12. Grifos nossos*). 
+> Um exemplo vindo da literatura poderá ilustrar esse princípio. Escreve *Machado de Assis*, logo na introdução de seu romance **Memórias Póstumas de Brás Cubas**, em um franco diálogo com seu leitor: “A obra em si mesma é tudo; se te agradar fino leitor, pago-me da tarefa; se te não agradar, pago-te com um piparote, e adeus.” (*Memórias Póstumas de Brás Cubas, 1990, p. 12. Grifos nossos*).
 > O que temos aqui é uma forma explícita de interação entre leitor e autor, por meio do texto literário.
 
 *Guimarães* (2012, p. 126) nos lembra também de que “**os conhecimentos interacionais ainda incluem a capacidade de interpretar certas marcas convencionais da comunicação, como itálicos, sublinhados, espaçamentos, parênteses, setas**.”
@@ -674,7 +674,7 @@ A **terceira e mais abrangente** dessas correntes compreende a **linguagem como 
 
 > Essa última abordagem, dentre as três, é a que procura integrar o maior número possível de aspectos, ela surgiu no âmbito da **Linguística Textual** em meados dos anos de 1930 e é amplamente aceita na contemporaneidade. **O texto, por esse viés, começou a ser pensado como uma unidade de comunicação extremamente complexa e interativa**.
 
-## 18 - Produção de texto
+## 18 - Produção de texto - Prova 2
 
 Há um consenso de que um bom texto é mais do que uma sequência de frases bem construídas. Na verdade, para ser realmente texto, é necessário muito mais do que isso. Alguns desses ingredientes são a **coesão**, a **coerência** e a **adequação do que se escreve ou fala ao contexto de interação**, entre outros tantos atributos.
 
@@ -790,7 +790,7 @@ O período composto por subordinação é formado por três grandes grupos de or
 |*Quando a atriz chegou*, já havíamos saído do teatro.|Tempo / O. S. A. Temporal|quando, assim que, logo que, sempre que, todas as vezes que|
 |Choveu tanto que *não fui à aula*.|Consequência / O. S. A. Consecutiva|que (em geral antecedido dos vocábulos “tão”, “tal”, “tanto”, “tamanho”), de sorte que, sem que|
 |*Voltou à casa paterna*, como o pássaro retorna ao ninho.|Comparação / O. S. A. Comparativa|que, como, qual, tal como, tal qual|
-|Sempre agia conforme *seus princípios recomendavam*.|Conformidade / O. S. A. Conformativa|como, conforme, consoante, segundo
+|Sempre agia conforme *seus princípios recomendavam*.|Conformidade / O. S. A. Conformativa|como, conforme, consoante, segundo|
 |*À medida que o trem avança*, a paisagem se torna mais bonita.|Proporcionalidade / O. S. A. Proporcional|Enquanto, à proporção que, à medida que, ao passo que, quanto mais ... mais|
 
 ### 18.3 - Parágrafo
@@ -806,3 +806,301 @@ E para efeito de entendimento há um tipo de parágrafo que, dada sua recorrênc
 *Garcia (2013)* afirma também que a preferência pelo parágrafo-padrão, não apenas no português como em muitas línguas modernas, deve-se ao fato de essas línguas terem como berço a cultura greco-latina. O autor também defende que o parágrafo-padrão, ao **partir do geral para o específico**, apoia-se no **raciocínio dedutivo**, que se alinha à tradição filosófica ocidental. O raciocínio que se opõe ao dedutivo é o **indutivo**, que **parte do específico para o geral**.
 
 Isso significa dizer que a maioria do que se tem produzido textualmente no mundo ocidental tem se orientado, de alguma forma, por esse princípio. Trata-se de uma estrutura há muito internalizada em nossa cultura
+
+### 19 - Coesão Textual
+
+> **Definição**: Coesão é a ligação, a conexão que ocorre entre os vários enunciados que compõem um texto. Sem coesão, as frases ficam "soltas", sem que o leitor perceba a relação de sentido entre elas.
+
+A coesão é obtida por meio de palavras que retomam ou substituem informações anteriores (pronomes, sinônimos, advérbios) e por conjunções que ligam orações estabelecendo relações lógicas.
+
+Recursos de coesão — exemplos do livro
+> **Advérbio retomando termo anterior**
+> Perto da faculdade havia uma lanchonete. Costumávamos ir lá depois das aulas.
+> → "lá" retoma "lanchonete"
+>
+> **Sinônimo garantindo conexão**
+> Lula tem evitado os repórteres. O presidente brasileiro prefere não fazer declarações no momento.
+> → "O presidente brasileiro" = Lula
+>
+> **Pronome substituindo segmento**
+> Ricardo diz que está muito feliz no novo emprego. O pai dele não acha que isso seja verdade.
+> → "dele" = Ricardo; "isso" = todo o segmento anterior
+Tabela das Conjunções e suas Relações p. 29 — copiar para a prova!
+
+|Relação|Conjunções|
+|-------|----------|
+|Adição|e, nem (= e não), não só… mas também|
+|Oposição|mas, porém, todavia, contudo, no entanto, entretanto|
+|Conclusão|logo, pois (pós-verbo), portanto, por isso|
+|Explicação|pois (pré-verbo), porque, que, visto que|
+|Causa|como, uma vez que, porque, que|
+|Condição|se, a menos que, desde que, contanto que|
+|Consequência|(tão)…que, (tanto)…que, (tamanho)…que|
+|Conformidade|como, conforme, segundo|
+|Concessão|embora, mesmo que, ainda que, se bem que, conquanto|
+|Proporção|à proporção que, à medida que, ao passo que, quanto mais… tanto mais|
+|Comparação|(mais)…que, (menos)…que, (tão)…quanto, como|
+|Tempo|quando, enquanto, sempre que, assim que, desde que, logo que|
+|Finalidade|a fim de que, para que|
+
+> Atenção! A coesão deixa de existir quando a conjunção empregada não corresponde à relação existente entre as orações. Isso também prejudica a coerência (o sentido lógico). Ex.: "Ele estudou bastante, por isso foi reprovado" → incoerente!
+
+### 20 - Coerência Textual
+
+> **Definição**: A coerência diz respeito à lógica interna do texto — a progressão ordenada das ideias, a não-contradição e a adequação das informações ao sentido geral. Um texto coeso pode ser incoerente se as ideias não se articularem logicamente.
+
+|Texto coeso e coerente|Texto coeso mas incoerente|
+|----------------------|--------------------------|
+|As frases estão conectadas por elementos coesivos e o sentido lógico é mantido. O leitor consegue compreender a progressão das ideias.|As frases estão ligadas por conjunções, mas a relação de sentido é errada. Ex.: "Ele estudou muito, portanto foi reprovado."|
+
+```text
+Fatores que garantem a coerência
+→ Não-contradição: as informações não se contradizem entre si.
+→ Progressão temática: as ideias avançam de forma ordenada, sem repetições desnecessárias.
+→ Relação lógica entre as partes: causa/consequência, condição/resultado etc. devem ser respeitadas.
+→ Uso correto das conjunções: a escolha errada rompe tanto a coesão quanto a coerência.
+```
+
+> Exercício-modelo do livro (Exercício 18, p. 39)
+> Os princípios de coesão e de coerência não foram violados em:
+> a) O Santos foi o time que fez a melhor campanha do campeonato. Teria, no entanto, que ser o campeão este ano.
+> b) Apesar de a Sabesp estar tratando a água da represa de Guarapiranga, portanto o gosto da água nas regiões sul e oeste da cidade melhorou.
+> c) Mesmo que os deputados que deponham na cpi e ajudem a elucidar os episódios obscuros do caso dos precatórios, a confiança na nação não foi abalada.
+> **d) O ministro reafirmou que é preciso manter a todo custo o plano de estabilização econômica, sob pena de termos a volta da inflação.**
+> e) Antes de fazer ilações irresponsáveis acerca das medidas econômicas, deve-se procurar conhecer as razões que, por isso, as motivaram.
+> A alternativa correta é a que não viola coesão nem coerência: **d)**
+
+### 21 - Regência Verbal
+
+> **Definição**: Regência verbal é a relação de dependência entre o verbo e seus complementos, determinando quais preposições devem (ou não) ser usadas antes do objeto.
+Verbos que mudam de sentido conforme a preposição
+
+|Verbo|Uso|Exemplo|
+|-----|---|-------|
+|Assistir|a algo (ver, presenciar)|Assisti ao jogo.|
+|Aspirar|a algo (desejar)|Aspiro ao cargo.|
+|Aspirar|sem preposição (inalar)|Aspirei o perfume.|
+|Visar|a algo (ter em vista, objetivar)|O projeto visa à melhoria.|
+|Preferir|sem "do que" / usa "a"|Prefiro café a chá. Prefiro café do que chá.|
+|Obedecer / Desobedecer|a algo|Obedeceu às regras.|
+|Esquecer / Lembrar|sem prep. (transitivo direto)|Esqueci o documento. ou Esqueci-me do documento.|
+|Chegar / Ir|a (não em)|Chegou ao Brasil. Chegou no Brasil.|
+|Informar|algo a alguém / alguém de algo|Informe ao diretor o resultado.|
+|Implicar|sem preposição (acarretar)|A decisão implica mudanças.|
+
+> Regra prática: Quando houver crase antes do complemento, é sinal de que o verbo pede a preposição a + artigo feminino. Ex.: "Refiro-me às alunas" = verbo + a + as.
+
+#### 21.1 Verbos transitivos diretos (sem preposição)
+
+Namorar, magoar, amar, agradecer (a coisa), pagar (a coisa), perdoar (a coisa).
+
+> Atenção ao uso popular vs. culto
+> "Não vai em nada" → linguagem coloquial.
+> "Não implica nada" → norma culta.
+> "Chegou em São Paulo" → coloquial. / "Chegou a São Paulo" → culto.
+
+### 22 - Crase — Uso do Acento Grave (`à`)
+
+> **O que é**: A crase é a fusão da preposição "a" com o artigo feminino "a(s)", resultando no acento grave: à / às.
+>
+> **Fórmula**: à = ao / às = aos
+> Se a substituição pelo masculino exige "ao" → usa-se crase. Se exige apenas "a" → não usa.
+
+Método do livro (p. 60): substituição pelo masculino
+
+```text
+Ampliou-se o acesso…
+Ampliou-se o acesso ao estudo. → Ampliou-se o acesso à educação. ✓
+
+O professor encontrou…
+O professor encontrou o aluno na biblioteca. → O professor encontrou a aluna na biblioteca. (sem crase) ✗
+```
+
+|Quando usar crase|Quando NÃO usar crase|
+|-----------------|---------------------|
+|✓ Antes de substantivos femininos precedidos de artigo: Fui à escola.|✗ Antes de substantivos masculinos: Fui a pé.|
+|✓ Nas locuções adverbiais e prepositivas femininas: à tarde, à direita, à medida que, às vezes, diante à…|✗ Antes de verbos: Estava prestes a sair.|
+|✓ Antes de pronomes demonstrativos "aquela(s), aquele(s), aquilo": Refiro-me àquele caso.|✗ Antes de pronomes pessoais, demonstrativos "este/esse/isto/isso/aqui", indefinidos: Disse a ela.|
+||✗ Quando não há artigo antes do substantivo feminino: Fui a São Paulo. (nome de cidade sem artigo)|
+
+> Dica rápida: Troque o termo feminino por um masculino equivalente. Se pede "ao" → crase (à). Se pede apenas "a" → sem crase.
+> Ex.: Voltarei à escola → "Voltarei ao colégio" ✓ → usa crase.
+
+### 23 - Acentuação Gráfica
+
+Regras baseadas no Novo Acordo Ortográfico (em vigor desde 2009), conforme o Anexo do livro (p. 195–200).
+
+1 — Palavras Oxítonas (acento na última sílaba)
+Acentuam-se as terminadas em: A(S), E(S), O(S), EM/ENS e nos ditongos abertos -éis, -éu(s), -ói(s).
+
+|Terminação|Exemplos|
+|----------|--------|
+|-A(S)|sofá, está, já, olá, Amapá|
+|-E(S)|café, você, pé, até, dendê|
+|-O(S)|avô, robô, cipó, pó|
+|-EM / ENS|porém, também, armazém, alguém|
+|-éis / -éu(s)|anéis, fiéis, céu, chapéu, véu|
+|-ói(s)|herói, corrói|
+
+2 — Palavras Paroxítonas (acento na penúltima sílaba)
+Acentuam-se quando terminam em: L, N, R, X, PS, Ã(S), ÃO(S), EI(S), I(S), UM/UNS, US.
+
+|Terminação|Exemplos|
+|----------|--------|
+|-L|amável, túnel, fácil, útil|
+|-N|elétron, próton, hífen|
+|-R|açúcar, ímpar, repórter, caráter|
+|-X|ônix, fênix, tórax|
+|-PS|bíceps, fórceps|
+|-Ã(S) / -ÃO(S)|órfã, ímã, órfão, órgão, sótão|
+|-EI(S) / -I(S)|jóquei, pônei, júri, grátis, táxi, lápis|
+|-UM / -US|álbum, fórum, vírus, bônus, ônus|
+
+3 — Palavras Proparoxítonas (acento na antepenúltima)
+Todas as proparoxítonas são acentuadas, inclusive as "aparentes" (terminam em ditongo crescente).
+Exemplos
+árabe, hidráulico, plástico, músico, último, seriíssimo
+Aparentes: náusea, história, série, língua, câmbio, amêndoa
+4 — Hiato I e U tônicos
+Acentuam-se o i e o u tônicos quando formam hiato com a vogal anterior, desde que estejam sozinhos na sílaba (ou com S), não sejam seguidos de NH e não sejam precedidos de ditongo.
+
+Acentua-se
+pa-ís, sa-úde, sa-ída, fa-ísca, ba-ú, vi-úva
+Não se acentua
+ruim (ui = ditongo), juiz, rainha (nh), baiuca (precedido de ditongo), feiura
+5 — Verbos TER, VIR e derivados
+
+|Singular (3ª p.)|Plural (3ª p.)|
+|----------------|--------------|
+|ele tem / ele vem|eles têm / eles vêm|
+|ele mantém|eles mantêm|
+|ele intervém|eles intervêm|
+
+6 — Verbos CRER, VER, LER, DAR (3ª p. plural — sem acento)
+ele crê → eles creem  |  ele vê → eles veem  |  ele lê → eles leem
+7 — Mudanças do Novo Acordo (o que foi abolido)
+
+|O que mudou|Antes|Agora|
+|-----------|-----|-----|
+|Ditongos -ei e -oi em paroxítonas|idéia, assembléia, heróico|ideia, assembleia, heroico|
+|Hiato -oo|vôo, enjoo|voo, enjoo|
+|Hiato -ee (3ª p.pl.)|crêem, vêem, lêem|creem, veem, leem|
+|Homógrafas paroxítonas|pára, péla, pêlo, pêra, pólo|para, pela, pelo, pera, polo|
+|Trema|lingüiça, tranqüilo|linguiça, tranquilo|
+
+Permanecem: pôr (verbo) ≠ por (preposição) · pôde (pretérito) ≠ pode (presente) · ditongos abertos em oxítonas: herói, chapéu, anéis.
+
+### 24 - Pontuação — Uso da Vírgula
+
+O livro trabalha o uso da vírgula principalmente em três situações fundamentais (p. 99–102):
+
+```text
+Situação 1 — Inversão da Ordem Direta
+Ordem direta → sem vírgula
+Menos de 1% dos estudantes frequenta instituições desse tipo nos EUA.
+Invertido (adjunto adverbial deslocado) → com vírgula
+Nos EUA, menos de 1% dos estudantes frequenta instituições desse tipo.
+```
+
+```text
+Situação 2 — Termos Intercalados
+Elementos que "interrompem" a frase principal devem ficar entre vírgulas.
+
+Exemplos
+É preciso que nossas universidades, especialmente as públicas, retomem seu papel formulador.
+Este assunto, a nosso ver, requer ainda longos estudos.
+Ele virá, sem dúvida, mas ainda não sabemos quando.
+```
+
+```text
+Situação 3 — Oração subordinada deslocada ou intercalada
+Oração subordinada antes da principal → vírgula
+Quando o parâmetro é qualidade, não há termo de comparação entre as universidades.
+Intercalada → entre vírgulas
+Não há termo de comparação, quando o parâmetro é qualidade, entre as universidades.
+```
+
+```text
+Situação 4 — Conjunções Coordenativas
+Conjunções coordenativas são normalmente precedidas por vírgula.
+Principais: mas, porém, contudo, todavia, portanto, logo, por isso, pois, porque, entretanto, nem
+Exemplos
+Os funcionários estão preocupados, pois a situação é grave.
+A equipe se esforçou muito, entretanto os resultados não foram satisfatórios.
+A diretoria tem tudo sob controle, portanto não há motivo para preocupação.
+```
+
+```text
+Situação 5 — Quando NÃO usar vírgula
+✗ Entre sujeito e verbo: Os alunos, leram o livro.
+✗ Entre verbo e complemento direto sem interrupção: O professor explicou, a matéria.
+✗ Na ordem direta sem elemento deslocado.
+```
+
+### 25 - Palavras Parônimas — Palavras que se Confundem
+
+Parônimas são palavras de grafia e pronúncia parecidas, mas com significados diferentes. Confundi-las é um erro grave na escrita formal.
+Principais parônimas para a prova
+emergir — vir à tona, aparecer
+imergir — mergulhar, afundar
+eminente — ilustre, notável
+iminente — que está prestes a acontecer
+comprimento — extensão, medida
+cumprimento — saudação; ato de cumprir
+descrição — ato de descrever
+discrição — qualidade de ser discreto
+cavaleiro — que anda a cavalo; nobre
+cavalheiro — homem educado, cortês
+deferir — conceder, atender (pedido)
+diferir — ser diferente; adiar
+flagrante — em plena execução do ato
+fragrante — que tem fragrância, perfumado
+fluir — correr, escorrer (líquido)
+fruir — desfrutar, usufruir
+mandado — ordem judicial; enviado
+mandato — tempo de exercício de um cargo
+apóstrofe — figura de linguagem (interpelação)
+apóstrofo — sinal gráfico (')
+ratificar — confirmar, aprovar
+retificar — corrigir, consertar
+tráfico — comércio ilegal
+tráfego — movimento de veículos
+infligir — impor (pena, castigo)
+infringir — violar, transgredir (lei)
+emigrar — sair do próprio país
+imigrar — entrar em outro país
+pleito — eleição; disputa, demanda
+preito — homenagem, reverência
+seção / sessão seção = repartição, parte / sessão = reunião, período
+cessão — ato de ceder
+
+> **Como não confundir**: Procure a raiz latina ou associe a uma palavra da mesma família. Ex.: eminente → eminência (cargo elevado); iminente → iminent danger (perigo imediato, que está "em cima").
+
+```text
+
+📌 Cola Rápida — Véspera de Prova
+Crase
+
+Teste: troque por masculino.
+Pede "ao" → usa à.
+Pede "a" → não usa crase.
+
+Vírgula
+
+Inversão → vírgula.
+Intercalação → duas vírgulas.
+Conjunção coord. → vírgula antes.
+
+Acentuação
+
+Oxítona: á/é/ó/ém.
+Paroxítona: L/N/R/X/PS/ã/ão…
+Proparoxítona: sempre.
+Hiato i/u: acentua (sem ditongo antes).
+
+Coesão
+
+Conjunção certa = coesão.
+Conjunção errada = sem coesão E sem coerência.
+Tabela p. 29 →
+```

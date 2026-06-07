@@ -13,28 +13,28 @@ E as operações feitas são apenas lógicas, **AND**, **OR** e **NOT**.
 
 |Operação|Nome|Comportamento|
 |--------|----|-------------|
-|AND     | E  |A saída é 1 somente se todas as entradas forem 1|
-|OR      | OU |A saída é 1 se pelo menos uma das entradas for 1|
-|NOT     | NÃO|Inverte o valor da entrada. Se entra 1, sai 0. Se entra 0, sai 1|
+|AND|E|A saída é 1 somente se todas as entradas forem 1|
+|OR|OU|A saída é 1 se pelo menos uma das entradas for 1|
+|NOT|NÃO|Inverte o valor da entrada. Se entra 1, sai 0. Se entra 0, sai 1|
 
 Tabelas Verdades, supondo duas entradas ou no caso da porta NOT, apenas uma:
 
 |Porta|Entrada|Saída|
 |-----|-------|-----|
-|NOT  | 1     |0    |
-|NOT  | 0     |1    |
+|NOT|1|0|
+|NOT|0|1|
 
 |Porta|Entrada A|Entrada B|Saída|
+|---|-------|---------|-----|
+|AND|0|0|0|
+|AND|0|1|0|
+|AND|1|0|0|
+|AND|1|1|1|
 |-----|---------|---------|-----|
-|AND  |0        |  0      |  0  |
-|AND  |0        |  1      |  0  |
-|AND  |1        |  0      |  0  |
-|AND  |1        |  1      |  1  |
-|-----|---------|---------|-----|
-|OR   | 0       |    0    |  0  |
-|OR   | 0       |    1    |  1  |
-|OR   | 1       |    0    |  1  |
-|OR   | 1       |    1    |  1  |
+|OR|0|0|0|
+|OR|0|1|1|
+|OR|1|0|1|
+|OR|1|1|1|
 
 Observação Importante: Existem também portas combinadas muito usadas, como a **NAND (AND + NOT)** e a **NOR (OR + NOT)**, que são chamadas de "portas universais" porque, com elas, dá pra construir qualquer outro circuito.
 
@@ -48,18 +48,18 @@ Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saí
 
 |A|B|Sum|Carry|
 |-|-|---|-----|
-|0|0| 0 |  0  |
-|0|1| 1 |  0  |
-|1|0| 1 |  0  |
-|1|1| 0 |  1  |
+|0|0|0|0|
+|0|1|1|0|
+|1|0|1|0|
+|1|1|0|1|
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017121522/xorkmap.jpg" alt="SUM = A XOR B" style="width: 20%" title="SUM A XOR B" />
 
-**SUM = A XOR B**
+SUM = A XOR B
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20211017125041/Inkedandkmap1-200x155.jpg" alt="CARRY= A AND B" style="width: 20%" title="SUM A XOR B" />
 
-**CARRY = A AND B**
+CARRY = A AND B
 
 <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Half_Adder.jpg" alt="Implementação meio somador" style="width: 50%" title="Implementação meio somador" />
 
@@ -67,26 +67,26 @@ Um circuito que soma (0+0, 0+1, 1+0, 1+1) dois bits (`A`,`B`). Ele tem duas saí
 
 Um circuito mais complexo que soma dois bits(`A`, `B`) considerando também um "vem-um"(`C - IN`) de uma soma anterior. É assim que o computador soma números de vários bits (como 8, 16 ou 32 bits). E também tem duas saídas: a Soma (`S`) e o Vai-um (Carry - `C - OUT`)
 
-|  A  |  B  |C-IN |Sum|C-OUT|
-|-----|-----|-----|---|-----|
-|  0  |  0  |  0  | 0 |  0  |
-|  0  |  0  |  1  | 1 |  0  |
-|  0  |  1  |  0  | 1 |  0  |
-|  0  |  1  |  1  | 0 |  1  |
-|  1  |  0  |  0  | 1 |  0  |
-|  1  |  0  |  1  | 0 |  1  |
-|  1  |  1  |  0  | 0 |  1  |
-|  1  |  1  |  1  | 1 |  1  |
+|A|B|C-IN|Sum|C-OUT|
+|-|-|----|---|-----|
+|0|0|0|0|0|
+|0|0|1|1|0|
+|0|1|0|1|0|
+|0|1|1|0|1|
+|1|0|0|1|0|
+|1|0|1|0|1|
+|1|1|0|0|1|
+|1|1|1|1|1|
 
 * Para Soma `S`:
-    * Se tiver **um** ou **três** entradas com valores iguais, `S` será verdadeiro `1`.
-    * Se tiver **zero** ou **duas** entradas com valores iguais, `S` será falso `0`.
+  * Se tiver **um** ou **três** entradas com valores iguais, `S` será verdadeiro `1`.
+  * Se tiver **zero** ou **duas** entradas com valores iguais, `S` será falso `0`.
 
 > Escala seguindo padrão: par será falso, ímpar será verdadeiro
 
 * Para Carry `C - OUT`:
-    * Se tiver ao menos **duas** entradas com valores verdadeiras(`1`), `C-OUT` será verdadeiro.
-    * Se tiver ao menos **duas** entradas com valores falso(`0`), `C-OUT` será falso.
+  * Se tiver ao menos **duas** entradas com valores verdadeiras(`1`), `C-OUT` será verdadeiro.
+  * Se tiver ao menos **duas** entradas com valores falso(`0`), `C-OUT` será falso.
 
 O carry (`C-OUT`) é implementado usando portas `XOR`, `AND` e `OR`: então segue as duas saídas das portas `AND` são combinadas usando uma porta `OR` para gerar a saída final `C-OUT`.
 
@@ -292,32 +292,25 @@ O ciclo de instrução da IAS machine estabeleceu o modelo que todos os computad
 
 #### 3.9.1 Passo a Passo
 
-1. **Busca (Fetch)**
+* **Busca (Fetch)**
+  * O Program Counter (PC) contém o endereço da próxima palavra (40 bits) a ser buscada
+  * A palavra é transferida da memória para o Memory Buffer Register (MBR)
+  * Simultaneamente, o endereço é transferido para o Memory Address Register (MAR)
+  * O Instruction Buffer Register (IBR) armazena a palavra enquanto ela é processada
+* **Decodificação (Decode)**
+  * A instrução esquerda (primeiros 20 bits) é transferida para o Instruction Register (IR)
+  * O opcode e o endereço são separados e interpretados pela Unidade de Controle
+* **Execução (Execute)**
+  * A Unidade de Controle ativa os circuitos necessários para realizar a operação
+  * Pode envolver:
+    * Buscar operandos na memória
+    * Executar operação na ALU
+    * Armazenar resultado
+    * Atualizar o PC para o próximo endereço
 
-* O Program Counter (PC) contém o endereço da próxima palavra (40 bits) a ser buscada
-* A palavra é transferida da memória para o Memory Buffer Register (MBR)
-* Simultaneamente, o endereço é transferido para o Memory Address Register (MAR)
-* O Instruction Buffer Register (IBR) armazena a palavra enquanto ela é processada
-
-2. **Decodificação (Decode)**
-
-* A instrução esquerda (primeiros 20 bits) é transferida para o Instruction Register (IR)
-* O opcode e o endereço são separados e interpretados pela Unidade de Controle
-
-3. **Execução (Execute)**
-
-* A Unidade de Controle ativa os circuitos necessários para realizar a operação
-* Pode envolver:
-
-  * Buscar operandos na memória
-  * Executar operação na ALU
-  * Armazenar resultado
-  * Atualizar o PC para o próximo endereço
-
-4. **Próxima Instrução**
-
-* Se a palavra atual continha duas instruções, após executar a esquerda, a direita é carregada do IBR
-* Caso contrário, uma nova palavra é buscada da memória
+* **Próxima Instrução**
+  * Se a palavra atual continha duas instruções, após executar a esquerda, a direita é carregada do IBR
+  * Caso contrário, uma nova palavra é buscada da memória
 
 ## 4 - Geração de Computadores
 
@@ -933,12 +926,12 @@ O grande desafio atual é que os qubits são extremamente sensíveis a perturba�
 Em um número binário de 64 bits, cada bit ocupa uma posição com um peso diferente. Quanto mais à esquerda, maior o peso (mais significativo); quanto mais à direita, menor o peso (menos significativo).
 Vamos usar um exemplo com um número de 8 bits para facilitar (o conceito é idêntico para 64 bits):
 
-|Número binário:| 1 | 0 | 1 | 1 | 0 | 1 | 0 | 0 |
+|Número binário:|1|0|1|1|0|1|0|0|
 |---------------|---|---|---|---|---|---|---|---|
-|Posição: | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
-|Notação: |2⁷ |2⁶ |2⁵ |2⁴ |2³ |2² |2¹ | 2⁰|
-|Peso:|128| 64| 32| 16| 8 | 4 | 2 | 1 |
-| | MSB | < |---|  |  |---| > | LSB|
+|Posição:|7|6|5|4|3|2|1|0|
+|Notação:|2⁷|2⁶|2⁵|2⁴|2³|2²|2¹|2⁰|
+|Peso:|128|64|32|16|8|4|2|1|
+||MSB|<|---|||---|>|LSB|
 
 |Termo|Abreviação|Significado|
 |-----|----------|-----------|
@@ -985,9 +978,9 @@ As operações de deslocamento tratam os bits de forma diferente:
 Um conceito crucial: quando um valor de 64 bits é armazenado na memória, os bytes podem ser organizados de duas formas diferentes:
 
 |Tipo|Ordem|Exemplo (valor 0x12345678 em 32 bits)|
-|-------------|---------------------|------------|
+|----|-----|-------------------------------------|
 |Little-endian|LSB no menor endereço|78 56 34 12|
-|Big-endian   |MSB no menor endereço|12 34 56 78|
+|Big-endian|MSB no menor endereço|12 34 56 78|
 
 > Importante: A arquitetura x86-64 (Intel/AMD) usa little-endian. Isso significa que o bit menos significativo é armazenado primeiro na memória.
 
@@ -1025,7 +1018,7 @@ int e_negativo = (valor_signed < 0);  // verifica o MSB
 
 ### 10.7 - Conclusão
 
-**Tabela Resumo: Bits Mais vs. Menos Significativos**
+Tabela Resumo: Bits Mais vs. Menos Significativos
 
 |Aspecto|Bits Mais Significativos (MSB)|Bits Menos Significativos (LSB)|
 |--------|--------------------------------|--------------------------------|
@@ -1114,9 +1107,9 @@ A memória cache (como L1, L2, L3) é construída com um tipo de memória estát
 * **Alta Velocidade**: É mais rápida que a memória RAM, o que reduz o tempo de espera do processador para obter informações.
 * **Armazenamento Temporário**: Como é uma memória volátil, os dados são apagados quando o computador é desligado.
 * **Hierarquia de Níveis** (L1, L2, L3, L4):
-    * L1: Mais próxima da CPU, extremamente rápida e menor capacidade (geralmente dividida em instruções e dados).
-    * L2: Maior que a L1, porém um pouco mais lenta.
-    * L3: Compartilhada entre os núcleos do processador, maior e mais lenta que L1/L2, mas ainda muito mais rápida que a RAM.
+  * L1: Mais próxima da CPU, extremamente rápida e menor capacidade (geralmente dividida em instruções e dados).
+  * L2: Maior que a L1, porém um pouco mais lenta.
+  * L3: Compartilhada entre os núcleos do processador, maior e mais lenta que L1/L2, mas ainda muito mais rápida que a RAM.
 * **Princípio de Localidade**: A cache antecipa dados que o processador provavelmente precisará, baseando-se no que foi usado recentemente.
 * **Custo Elevado**: Devido à sua velocidade, é mais cara de produzir, por isso sua capacidade é **medida em kilobytes (KB) ou megabytes (MB)**, bem menor que a RAM (GB).
 
@@ -1170,8 +1163,8 @@ Originalmente criada para jogos, a GPU se mostrou perfeita para IA. Ela possui m
 É o novo queridinho do mercado, presente em praticamente todos os celulares e nos novos computadores com selo "AI PC". O NPU é um hardware fixo, construído especificamente para executar as operações de uma rede neural (como convoluções) com a máxima eficiência possível .
 
 * **Onde é usado em IA**: Executa modelos de IA localmente no seu dispositivo. É o que permite:
-    * **Smartphones**: Desbloqueio facial, modo noturno das fotos, tradução em tempo real, remoção de objetos de fotos .
-    * **Notebooks**: Reuniões com efeitos de fundo em 4K, respostas inteligentes em e-mails, tudo sem sobrecarregar o processador e drenar a bateria
+  * **Smartphones**: Desbloqueio facial, modo noturno das fotos, tradução em tempo real, remoção de objetos de fotos .
+  * **Notebooks**: Reuniões com efeitos de fundo em 4K, respostas inteligentes em e-mails, tudo sem sobrecarregar o processador e drenar a bateria
 * **Limitação**: Não serve para treinar modelos e, por ser um hardware fixo, pode não suportar novos tipos de operações que surjam no futuro. Se o modelo usar um operador que o NPU não entende, ele trava e a tarefa volta para o CPU
 
 ### 12.4 - A Nova Divisão do Trabalho: Especialistas em IA
@@ -1340,7 +1333,6 @@ Observe como, no código Gray, a transição entre 1 e 2 (001 → 011) muda apen
 </div>
 
 > ***O problema do binário**: Se o disco estiver exatamente na fronteira entre duas posições, pode ocorrer uma leitura ambígua. Por exemplo, na transição de 3 (011) para 4 (100), se o leitor estiver levemente desalinhado, pode ler 111, 000 ou qualquer outra combinação intermediária, causando erros graves de posicionamento.*
-
 >***A solução Gray**: Como apenas um bit muda entre posições consecutivas, mesmo que o leitor esteja na fronteira, o erro máximo é de uma unidade (a posição vizinha), eliminando os erros catastróficos do binário .*
 
 * **Minimização de Erros em Transmissão**: Em sistemas de comunicação digital, transições simultâneas de múltiplos bits podem gerar ruído de comutação (glitches). O código Gray reduz drasticamente esse problema, pois apenas uma linha de sinal muda de estado por vez .
@@ -1760,7 +1752,7 @@ Em uma operação de soma, o hardware analisa dois sinais:
 * **Carry In (Cᵢₙ)**: O "vai-um" que entra no bit mais significativo (MSB)
 * **Carry Out (Cₒᵤₜ)**: O "vai-um" que sai do MSB (indicando que o resultado não cabe)
 
-**Regra de Ouro para Detecção de Overflow**
+##### 1.2.1 - Regra de Ouro para Detecção de Overflow
 
 ```text
 OVERFLOCW OCORRE QUANDO: CARRY IN ≠ CARRY OUT do MSB
@@ -1854,12 +1846,7 @@ Este **cálculo é feito em tempo real** durante a operação aritmética, **por
 
 ### 2. Bit de Paridade: Um Mecanismo Simples de Detecção de Erros
 
-<<<<<<< HEAD
-Conceito Fundamental
-O bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
-=======
 O conceito fundamental do bit de paridade é um mecanismo simples e antigo (mas ainda usado!) para detectar erros na transmissão ou armazenamento de dados. Ele adiciona um bit extra a cada palavra de dados (ex: byte) para garantir que o número total de bits 1 seja par ou ímpar.
->>>>>>> 39289ef9d65df4a8d02903c0f233d408a301cf91
 
 #### 2.1. Tipos de Paridade
 
@@ -1904,7 +1891,7 @@ Se o resultado for 0 → número par de bits 1
 Se o resultado for 1 → número ímpar de bits 1
 ```
 
-**Exemplo com 8 bits (hardware real)**
+##### 2.4.1 - Exemplo com 8 bits (hardware real)
 
 ```verilog
 // Módulo gerador de paridade par para 8 bits

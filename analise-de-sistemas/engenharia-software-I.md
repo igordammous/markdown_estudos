@@ -904,7 +904,227 @@ Lembre-se da diferença entre:
 * **Elicitação pobre**: "O sistema deve ser rápido."
 * **Elicitação rica** (Técnica de Entrevista): "Qual o tempo máximo aceitável para a tela carregar em horário de pico?" -> Resulta no Requisito Não-Funcional de Performance.
 
-### 8.1 - Métodos Tradicionais
+Podemos dividir não oficialmente entre métodos para coleta de dados, que são: **Entrevista, Coleta de Documentos e Observação**. Mesmo aplicando os três métodos, é muito comum que ainda falte informações, ou que elas foram passadas todas da maneira correta.
+
+> Há algumas perguntas que podem ajudar a moldar as etapas de levantamento, como:
+>
+> * Sobre o **Cliente**:
+>   * Quem pediu a solução?
+>   * Quem usará a solução?
+>   * Você é a pessoa certa para responder a essas perguntas?
+>   * Quais os benefícios desta solução?
+> * Sobre o **Problema**:
+>   * Quais informações se espera como resultado dessa solução?
+>   * Quais problemas essa solução enfrentaria?
+>   * Você poderia me mostrar ou descrever o ambiente de negócios em que a solução será usada?
+>   * Existem questões de desempenho ou restrições especiais que afetarão a maneira pela qual a solução é abordada?
+> * Sobre a **Efetividade do Encontro**:
+>   * Você é a pessoa certa para responder a essas perguntas?
+>   * Se não, sei a quem delegar?
+>   * Estou fazendo perguntas relevantes?
+>   * Há mais alguém que possa fornecer informações adicionais?
+>   * Existe algo mais que eu deva lhe perguntar?
+
+Aqui temos mais algumas opções de levantamento Questionário, Brainstorming, FAST, Rastreamento de Processo, Estudos de Casos, Simulações e Protótipos
+
+### 8.1 - Entrevistas
+
+A **Entrevista** temos a estrutura e a não estruturada, ambas dependem da habilidade do entrevistador, considerando que ela é uma "*estrutura viva*" onde a resposta pode guiar ela para locais não planejados anteriormente. A desestruturada ela foca em explorar um problema e é mais informal, enquanto a estruturada foca em informações específicas do problema.
+
+Importante definir com os participantes o método de anotação e tempo de entrevista. E é importante que durante seja fornecido um resumo verbal do problema e sempre relacionar a pergunta feita com o tópico em questão(problema). Após o término da entrevista e da documentação, deve-se envia-lá para o entrevistado para que ele dê sua aprovação final e caso seja necessário marcar outra reunião para esclarescer pontos que não ficaram claros.
+
+Situações que podem surgir durante a entrevista que *interferem nos objetivos da sessão*, **respostas ambíguas**, **comentários irrelevantes**, **respostas genéricas**.
+
+Temos dois *níveis* de perguntas, **primárias** que são aquelas que o entrevistador usa para introduzir áreas ou transições para outras áreas e **secundárias** que são perguntas, na maioria das vezes, exploradoras que visam descobrir mais sobre as informações oferecidas em resposta a alguma pergunta. E podemos ter 2 *tipos* de perguntas:
+
+* **Abertas**:
+  * Costumam serem menos específicas
+  * Não são seguidas por alternativas
+  * Encorajam e permitem uma resposta livre
+  * Apropriadas quando deseja-se observar respostas de alto nível para reconhecer o escopo de entendimento do entrevistado
+  * Possibilitam ao entrevistado o fornecimento de informações que o entrevistador não tem conhecimento para perguntar
+  * (-) As respostas a essas perguntas consomem muito tempo, e podem trazer pouca informação
+* **Fechadas**:
+  * Definem limites no tipo, nível e quantidade de informação fornecida pelo entrevistado
+  * Fornecem escolha de alternativas ou níveis de resposta
+
+#### 8.1.1 - Entrevista Estruturada
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|Você precisa de dados comparáveis entre múltiplos entrevistados (ex: 10 gerentes de loja).|O domínio é novo para você e você não sabe nem o que perguntar.|
+|O stakeholder tem pouco tempo e você precisa ser cirúrgico.|Você suspeita que existe conhecimento tácito (o stakeholder faz coisas que não sabe descrever).|
+|Você está validando hipóteses já levantadas, não explorando.|Há risco de viés de confirmação (você só pergunta o que já acredita que é verdade).|
+|O compliance exige auditoria (perguntas iguais para todos).|O entrevistado fica intimidado com um questionário formal e se fecha.|
+
+#### 8.1.2 - Entrevista Não Estruturada
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|Você está entrando em um domínio desconhecido e precisa descobrir o vocabulário, os problemas e as dores.|Você precisa de dados estatísticos ou comparáveis entre departamentos.|
+|Você quer descobrir regras de negócio implícitas que ninguém documentou.|O stakeholder é prolixo e divaga facilmente; a reunião vai durar 4 horas sem resultado.|
+|A fase é exploratória (início do projeto, antes de qualquer ERS).|O projeto está em fase de validação e você precisa confirmar itens específicos da ERS.|
+|Há apenas 1 ou 2 especialistas no domínio e você quer mergulhar fundo na mente deles.|O patrocinador exige ata formal e rastreabilidade de cada pergunta feita.|
+
+### 8.2 - Questionários
+
+O **Questionário** é feito quando se tem informações a respeito do problema antes, para que então sejam feitas **questões objetivas** sobre. É importante identificar os respondetens e deve ter alguma forma de controle para garantir que todos receberão o questionário e para que seja possível monitar o status do mesmo. E junto com o questionário é ideal que seja distribuído instruções de como responder e o prazo para realiza-lo. E uma vez coletadas as respostas, deve-se analisar e consolidar as informações fornecidas, documentar as descobertas e enviar um relatório para todos os respondentes. Há algumas desvantagens, como:
+
+* Comunicação com os usuários é seriamente restringida, não há uma real troca de informações face a face
+* Preparação exige tempo
+* Questões mal elaboradas ou sem conhecimento apropriado podem impactar negativamente na qualidade das informações
+
+Para preparar um, é necessário seguir uma preparação:
+
+* Identificar o tipo de informação que deseja obter
+* Identificar quem deve receber o questionário
+* Escolher um formato adequado para o questionário (múltipla escolha, escolha simples, etc.)
+* Deixar espaço suficiente para resposta de questões descritivas
+* Montar questões de maneira simples, clara e concisa
+* Enviar um texto acompanhando o questionário para enfatizar a sua importância
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|A população de stakeholders é grande e geograficamente dispersa (ex: 200 franqueados).|Você precisa de profundidade, contexto emocional ou linguagem corporal.|
+|Você precisa de dados quantitativos para justificar uma decisão de priorização.|O índice de resposta esperado é baixo (menos de 10%) e você não tem poder para obrigar o preenchimento.|
+|As perguntas são simples, objetivas e não exigem explicação.|O domínio é complexo e os respondentes podem interpretar as perguntas de maneiras diferentes (ambiguidade).|
+|Você quer anonimato para que os respondentes sejam honestos (ex: criticar o chefe).|Você precisa iterar: "Por quê? Me explique melhor." O questionário é estático.|
+
+### 8.3 - Brainstorming
+
+**O principal objetivo é obter o máximo de ideias em um curto espaço de tempo**. Tem como origem as reuniões com alto número de funcionários, para que sejam relatados problemas internos, sugestões de melhorias e assuntos como esses. Foi adaptada para método de levantamento de informações, justamente porque um grande número de pessoas conversando sobre o mesmo tema, pode gerar muitas ideias que não seriam geradas no caso de entrevistas ou até questionários. **Útil para as sessões iniciais de levantamento de requisitos**, pois encoraja a criatividade do grupo. Pois há regras a serem seguidas:
+
+* **Qualquer um pode apresentar espontaneamente uma ideia**
+* **As ideias devem ser relacionadas ao tópico em discussão**
+* **Críticas e julgamentos devem ser reservados para outra oportunidade**
+* **Pode-se criar mais ideias baseadas em outras previamente apresentadas.**
+* **Definir um *limite de tempo***
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|O projeto está em fase inicial (Zero Draft) e você quer explorar possibilidades.|O problema já está bem definido e você precisa de soluções detalhadas, não de ideias soltas.|
+|Há um impasse criativo ou uma necessidade de inovação (ex: "Como resolver a fila do estacionamento?").|O grupo tem personalidades dominantes que vão calar os introvertidos (precisa de um facilitador forte).|
+|Você quer engajar stakeholders de áreas diferentes e criar senso de propriedade coletiva.|Há conflito político aberto entre os participantes (o brainstorm vira briga).|
+|O escopo ainda está nebuloso e você quer identificar funcionalidades que ninguém havia pensado.|O tempo é crítico e você precisa de respostas concretas para amanhã.|
+
+### 8.4 - FAST (Facilitated Application Specification Technique)
+
+Tem como **principal objetivo, criar uma equipe conjunta de clientes e analistas que trabalhem juntos para identificar o problema e propor soluções**. Seguindo diretrizes como, encontro em lugar neutro para evitar que um grupo se sinta como "convidado", seguir regras pré-determinadas tanto para preparação, quanto participação e manter o equilíbrio entre uma abordagem formal o bastante para cobrir os pontos importantes, mas informal para encorajar o livre fluxo de ideias.
+
+Importante definir durante encontros iniciais, perguntas e respostas básicas para ajudar estabelecer um escopo do problema e para que todos estejam "na mesma página" em relação a ele no final do encontro. E então **elaborar um documento** com aval de ambos os grupos, o **escopo do problema e uma percepção global de uma solução**. Para preparar essa técnica, deve-se:
+
+* Escolher o **lugar**, **data**, **hora** e **moderador** para o encontro FAST
+* Convidar **outros integrantes** das organizações do analista e do cliente
+* Distribuir a **Requisição de Produto** para todos os participantes antes do encontro FAST
+
+Parte do documento a ser elaborado deve conter:
+
+* **Lista de objetos**
+  * Fazem parte do ambiente que circunda o sistema
+  * São produzidos pelo sistema e
+  * São usados pelo sistema para executar suas funções
+* **Lista de operações** que manipulam ou interagem com o(s) objeto(s)
+* **Lista de restrições**: Custo, regras de negócio, etc
+* **Critérios de desempenho**: Velocidade, precisão
+* Listar **necessidades** e **justificativa** do novo sistema
+
+> Depois, tem criação de uma **lista combinada** de cada área de assunto: **Objetos, operações, restrições e desempenho**.
+> E para finalizar essa etapa, **elaboração de uma Lista Consensual de cada área de assunto.**
+
+A próxima etapa consiste em dividir a equipe em **sub-equipes**, para que sejam criadas **mini-especificações** por cada sub-equipe, que nada mais são do que palavras chaves ou pequenas frases que resumam cada item da lista, esses itens são então colocados em um documento chamado de **Lista de Critérios de Validação** e então apresenta-se para a equipe mais uma vez junta, cria então a **Lista de Consenso**, que então fará parte do **Esboço de Especificação Completo**.
+
+```text
+┌─────────────────────────────────────────────────┐   ┌────────┐
+|Lista objetos, operações, restrições e desempenho| ← | Equipe |
+└─────────────────────────────────────────────────┘   └────────┘
+                    ↓
+           ┌─────────────────┐                        ┌────────┐
+           | Lista Combinada |                      ← | Equipe |
+           └─────────────────┘                        └────────┘
+                    ↓
+           ┌──────────────────┐                       ┌────────────┐
+           | Lista Consensual |                     ← | Sub-Equipe |
+           └──────────────────┘                       └────────────┘
+                    ↓
+  ┌─────────────────────────────────┐                 ┌────────────┐
+  | Lista de Critérios de Validação |               ← | Sub-Equipe |
+  └─────────────────────────────────┘                 └────────────┘
+                    ↓
+          ┌───────────────────┐                       ┌────────┐
+          | Lista de Consenso |                     ← | Equipe |
+          └───────────────────┘                       └────────┘
+                    ↓
+  ┌──────────────────────────────────┐                ┌────────┐
+  | Esboço de Especificação Completo |              ← | Equipe |
+  └──────────────────────────────────┘                └────────┘
+```
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|Há conflito entre áreas que precisam chegar a um consenso sobre os requisitos.|O projeto é simples e não há stakeholders conflitantes.|
+|Você precisa produzir uma ERS preliminar em poucos dias (workshop imersivo de 2 a 5 dias).|Você não tem um facilitador experiente disponível (sem facilitador, vira reunião caótica).|
+|Os stakeholders de negócio são de alto nível e têm agenda lotada (você os "tranca" em uma sala por 2 dias e resolve).|Os stakeholders não têm autonomia para decidir (tudo terá que ser "validado com o chefe" depois).|
+|O escopo é amplo e você precisa de uma visão de consenso rápido.|A cultura da empresa é avessa a workshops longos e imersivos.|
+
+### 8.5 - Rastreamento de Processos
+
+Conjunto de técnicas que permite determinar o **modo de pensar ou agir** de um indivíduo durante a realização de uma tarefa. Pode ser realizada de maneira *concorrente*, onde o indivíduo vai **verbalizando** o que ele está **fazendo ou considerando fazer** enquanto realiza a tarefa. Ou de maneira *restrospectiva*, onde o indivíduo **verbaliza** seu processo de raciocínio após terminar determinada tarefa. Pode ser feita através de:
+
+* **Observação direta**
+* **Cenários simulados**
+
+> O engenheiro de requisitos **registra ou grava o procedimento** utilizado para resolver o problema para, mais tarde, **revisar a sessão junto ao especialista** que levantará as informações necessárias.
+
+#### 8.5.1 - Observação Direta
+
+**Observa-se diretamente quem desenvolve o trabalho para se obter informações de como o processo deve ser feito**. Antes de iniciar esse processo, deve saber qual área ou usuário(s) estão sendo observados, como será a forma de registro, explicar a finalidade do estudo que será feito, obter dados das pessoas observadas e principalmente **autorização/aprovação**, tanto da pessoa, quanto da gerência. Pode ser utilizada como:
+
+* Processamento e confirmação dos resultados de uma entrevista
+* Identificação de informações que devem ser coletadas para análise posterior
+* Esclarecimento do que e de como está sendo feito no ambiente atual
+
+Durante o período de observação deve-se:
+
+* Familiarizar-se com o local de trabalho que está sendo observado
+* Observar as máquinas, ferramentas ou processos manuais e automatizadas em uso atualmente
+* Coletar amostras de documentos e procedimentos escritos que serão usados para cada processo específico que está sendo observado
+* Acumular informações estatísticas relativas às tarefas:
+  * frequência que ocorrem, estimativas de volumes, tempo de duração para cada pessoa que está sendo observado, etc
+
+> Assim como outros métodos, após **documentar as descobertas**, é importante rever os resultados obtidos com as pessoas observadas ou responsáveis, para **confirmar os resultados obtidos**.
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|O processo é transversal a vários setores e ninguém tem a visão completa (ex: "Do pedido à entrega").|O processo é totalmente digital e logs do sistema já fornecem os dados (não precisa observar humano).|
+|Você suspeita que o que as pessoas dizem que fazem é diferente do que elas fazem de fato.|O processo é simples, linear e bem documentado.|
+|Você precisa identificar gargalos, retrabalhos, planilhas Excel clandestinas ("shadow IT").|A presença do observador altera o comportamento (efeito Hawthorne) e invalida a observação.|
+|O objetivo é redesenhar o processo (BPM) junto com o software.|O projeto é apenas de migração tecnológica (mesmo processo, nova plataforma).|
+
+#### 8.5.2 - Simulação
+
+Quase similar à *observação direta*, mas é feita em casos específicos, por exemplo, onde um processo não é feito com tanta frequência mas ainda assim precisa ser observado. Em alguns casos podem ser feito por simulações computacionais.
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|O sistema envolve eventos complexos e probabilísticos (ex: fila de estacionamento em horário de pico, Black Friday).|O comportamento do sistema é determinístico e simples (ex: CRUD de cadastro de produtos).|
+|Você precisa validar requisitos não-funcionais de performance antes de construir.|O custo de criar a simulação é maior que o custo de errar e corrigir depois.|
+|É muito caro ou perigoso testar no mundo real (ex: simular pane no sistema de uma usina).|Os parâmetros da simulação são tão incertos que o resultado não será confiável (GIGO: garbage in, garbage out).|
+|Você quer treinar usuários para situações raras (ex: como agir na queda do sistema).|O projeto é um MVP simples e a simulação é overengineering.|
+
+### 8.6 - Estudo de casos
+
+Ele geralmente é adotado como método auxiliar de outros métodos, porque nenhuma empresa ou problema é 100% semelhante à outro(a). Portanto apenas com **estudo de casos**, não seria possível determinar soluções para o problema enfrentado pois podem haver **particularidades** que só serão encontrados ao se aprofundar no problema com os outros métodos de levantamento.
+
+Tem como características:
+
+* Sistemas semelhantes ao que está sendo proposto
+* Obtêm-se o conhecimento do especialista a partir de casos já documentados
+* Solicita-se ao especialista que fale sobre casos reais que tenha solucionado
+* Os casos devem cobrir várias possibilidades dentro do domínio
+* Útil para identificar sutilezas do especialista na tomada de decisões
+* O sucesso depende dos casos escolhidos
+
+### 8.7 - Métodos Tradicionais
 
 |Técnica|Descrição|Quando usar|Exemplo na Prática|
 |-------|---------|-----------|------------------|
@@ -914,17 +1134,28 @@ Lembre-se da diferença entre:
 |Análise de Documentos|Estudar formulários, manuais, leis ou sistemas legados.|Base regulatória forte ou migração de sistemas.|Ler a Portaria 671 do MTE para definir a interface de ponto eletrônico.|
 |Workshops (JAD)|Sessão colaborativa intensiva com vários stakeholders e um facilitador.|Resolver conflitos entre áreas e definir prioridades.|Reunir TI, Vendas e Logística para definir o fluxo de um pedido que tem produtos de estoque e de marketplace.|
 
-### 8.2 Métodos Ágeis (Segundo Semestre)
+* **Etapas Iniciais**
+  * **Entrevista desestruturada**
+  * **Questionário**
+  * **Brainstorming**
+* **Etapas Intermediárias**
+  * **Entrevista estruturada**
+* **Etapas Finais**
+  * **Rastreamento de Processo**
+  * **Estudos de Casos**
+  * **Simulações e Protótipos**
+
+### 8.8 Métodos Ágeis (Segundo Semestre)
 
 Ambos são complementares. O ideal é construir um Story Map para definir o MVP e, em seguida, Prototipar as telas do primeiro fatiamento horizontal (Release 1) para garantir que a interação está correta antes de codificar.
 
-#### 8.2.1 Story Mapping (Jeff Patton)
+#### 8.8.1 Story Mapping (Jeff Patton)
 
 Para visualizar a jornada do usuário e fatiar funcionalidades em releases, baseado no conceito de Design Thinking e User-Centered Design.
 
 Enquanto um Backlog tradicional é uma lista vertical e sem alma ("RF001: Login", "RF002: Busca", "RF003: Pagamento"), o *Story Mapping* é uma ferramenta visual 2D que organiza as funcionalidades em dois eixos fundamentais:
 
-##### 8.2.1.1 - A Anatomia do Mapa (Os Dois Eixos)
+##### 8.8.1.1 - A Anatomia do Mapa (Os Dois Eixos)
 
 * Eixo Horizontal (Esquerda para Direita): Representa o tempo narrativo, o passo a passo cronológico da jornada do usuário. Chamamos isso de "Espinha Dorsal" (Backbone).
   * São as atividades macro que o usuário executa do início ao fim.
@@ -933,7 +1164,7 @@ Enquanto um Backlog tradicional é uma lista vertical e sem alma ("RF001: Login"
   * Quanto mais alto no mapa (topo), mais essencial (indispensável) é a funcionalidade.
   * Quanto mais baixo, mais opcional ou refinado.
 
-##### 8.2.1.2 - Construção na Prática (Passo a Passo)
+##### 8.8.1.2 - Construção na Prática (Passo a Passo)
 
 >Vamos usar um cenário de App de Mobilidade Urbana como exemplo.
 >
@@ -963,16 +1194,16 @@ Enquanto um Backlog tradicional é uma lista vertical e sem alma ("RF001: Login"
 >* Release 3 (Futuro): O diferencial.
 >   * Features: Agendamento de viagem, Compartilhamento de rota em tempo real com amigos.
 
-##### 8.2.1.3 - Por que isso é superior ao Backlog?
+##### 8.8.1.3 - Por que isso é superior ao Backlog?
 
 * **Visão do Todo**: Evita a "cegueira do backlog", onde o time foca em detalhes técnicos e esquece a experiência completa. Se um cartão cair da parede (post-it), você vê que quebrou a jornada.
 * **Facilita a priorização (MoSCoW viva)**: O debate deixa de ser "O que é importante?" (abstrato) para "Isso fica acima ou abaixo da linha de corte do MVP?" (visual e colaborativo).
 
-#### 8.2.2 - Prototipação
+#### 8.8.2 - Prototipação
 
 A Prototipação é uma abordagem que resolve a falácia do levantamento por questionário: você pergunta ao usuário como ele faz algo, ele diz X, mas na realidade faz Y. O protótipo faz o usuário reagir a algo concreto. É pore meio de onstrução de telas "de mentira" (baixa/média fidelidade) para descobrir requisitos de interface. “O usuário não sabe o que quer até ver algo funcionando.”
 
-##### 8.2.2.1 - O Espectro de Fidelidade (Não é só "tela de mentira")
+##### 8.8.2.1 - O Espectro de Fidelidade (Não é só "tela de mentira")
 
 Existem níveis muito distintos:
 
@@ -983,7 +1214,7 @@ Existem níveis muito distintos:
 |3|Mockup Interativo (Alta)|Figma, Adobe XD. Cores reais, fotos reais, animações. Parece um App pronto, mas sem backend.|Design visual, branding, microinterações, acessibilidade de contraste.|Semanas|
 |4|Piloto (Funcional Parcial)|Código real, mas com funcionalidades limitadas (ex: só a tela de login com a API real).|Teste de performance com usuários reais, integração com hardware (ex: câmera).|Meses|
 
-##### 8.2.2.2 - O Ciclo de Vida da Prototipação
+##### 8.8.2.2 - O Ciclo de Vida da Prototipação
 
 É um processo de engenharia em si:
 
@@ -993,12 +1224,12 @@ Existem níveis muito distintos:
 * **Técnica do Think Aloud (Pensar em Voz Alta)**: O usuário narra tudo o que está pensando. "Estou procurando o botão de cancelar... Ah, achei... Mas está cinza, por que não clica?" -> Descoberta de Requisito Inverso.
 * **Descarte (Throw-away Prototype)**: A regra de ouro. O protótipo foi feito para gerar a ERS (Especificação de Requisitos). Depois de aprovado o conceito, jogue o protótipo no lixo e codifique do zero, seguindo os padrões de qualidade de software. Resistir à tentação de "dar um jeitinho e colocar em produção" evita débito técnico.
 
-##### 8.2.2.3 - Conexão com a Engenharia de Requisitos
+##### 8.8.2.3 - Conexão com a Engenharia de Requisitos
 
 * **Revelando Requisitos de Interface (RI)**: É aqui que nascem os seus RIs. Ao ver o protótipo, o cliente fala: "Se eu clicar em 'Pagar', o sistema está validando o saldo antes de emitir a nota?"
 * **Revelando Regras de Negócio**: O protótipo força a descoberta de detalhes que estavam implícitos. "O que acontece com o frete grátis se eu adicionar um item pesado? O sistema deixa acumular? Ah, não... então precisamos de um aviso."
 
-##### 8.2.2.4 - Exemplo Prático: Estacionamento Inteligente
+##### 8.8.2.4 - Exemplo Prático: Estacionamento Inteligente
 
 Para evoluir nosso sistema de estacionamento, imagine que vamos prototipar o fluxo de *Estabelecimentos Conveniados* de um shopping.
 
@@ -1011,9 +1242,18 @@ Para evoluir nosso sistema de estacionamento, imagine que vamos prototipar o flu
 
 Sem protótipo, essa regra só seria descoberta em produção, quando o shopping tivesse prejuízo com descontos duplos.
 
+##### 8.8.2.5 - Quando usar
+
+|Use Quando|Evite Quando|
+|----------|------------|
+|O usuário não sabe expressar o que quer em palavras, mas sabe reagir a algo visual.|O sistema é puramente back-end, sem interface (ex: uma API de cálculo de frete).|
+|Há alto risco de rejeição do sistema final (você quer comprar adesão emocional cedo).|O time técnico não resiste à tentação de "aproveitar o protótipo" e colocar código de baixa qualidade em produção.|
+|Você precisa testar usabilidade e fluxo de navegação antes de codificar a arquitetura completa.|O cliente acha que o protótipo de alta fidelidade é o sistema quase pronto e pressiona por prazos irreais.|
+|O projeto é de inovação (startup, novo produto) e você precisa pivotar rápido.|Os requisitos são regulatórios e não há margem para experimentação (ex: sistema de emissão de nota fiscal, que deve seguir a lei à risca).|
+
 ## 9 - Estudo de Viabilidade
 
-Antes de sair codificando, é preciso responder: "Vale a pena construir esse software?" É um mini-projeto de análise de riscos. É o ponto de decisão mais crítico antes de um projeto de software começar, o estudo de viabilidade atua como um filtro de investimento.
+Antes de sair codificando, é preciso responder: "*Vale a pena construir esse software?*" É um mini-projeto de análise de riscos. É o ponto de decisão mais crítico antes de um projeto de software começar, o estudo de viabilidade atua como um filtro de investimento.
 
 ```text
 Ideia do Projeto  →  Estudo de Viabilidade  →  Decisão Go/No-Go  →  Elicitação de Requisitos  →  ERS
@@ -1024,9 +1264,28 @@ Ideia do Projeto  →  Estudo de Viabilidade  →  Decisão Go/No-Go  →  Elici
 * **Go**: O projeto segue para a fase de análise detalhada.
 * **No-Go**: O projeto é cancelado, adiado ou radicalmente reformulado.
 
+É um estudo breve e direcionado, destinado a responder algumas questões, visando a tomada de decisão e a sugestão de possíveis alternativas de solução:
+
+* O sistema contribui para os objetivos gerais da organização?
+* O sistema pode ser implementado com a utilização de tecnologia atual dentro das restrições de custo e de prazo?
+* O sistema pode ser integrado com outros sistemas já em operação?
+
+Para todos novo sistemam o ideal é que haja um estudo de viabilidade e como todo estudo ele pode usar como base uma estrutura já pré-determinada. Esse estudo entra mais na área de engenharia de sistemas, que é uma engenharia focada em desenvolver sistemas complexos, foi nela que a viabilidade se estruturou e suas funções são:
+
+* Definir, de maneira precoce no ciclo de desenvolvimento de um sistema, as **necessidades** do usuário, bem como as **funcionalidades requeridas**;
+* Abordar a **síntese do projeto** e a **etapa de validação** para considerar o problema completo:
+  * Operação; Custo; Cronograma; Desempenho; Treinamento; Suporte; Teste
+
+E com isso aparecem 4 áreas de interesse, que depois foram expandidas por *Hall (2007)* com o método **TELOS**, eram elas:
+
+* Viabilidade econômica
+* Viabilidade técnica
+* Viablidade legal
+* Alternativas
+
 ### 9.1 - Modelo TELOS (Hall, 2007)
 
-O acrônimo TELOS é a forma mais técnica e cobrada de estruturar essa análise:
+O acrônimo TELOS é a forma mais técnica e cobrada de estruturar essa análise. Vale lembrar que as **alternativas** não entram aqui, mas ainda continuam fazendo parte de um estudo de viabilidade.
 
 #### 9.1.1 - Técnica (Technical Feasibility)
 
@@ -1037,7 +1296,7 @@ Pergunta central: **"Conseguimos construir com a tecnologia disponível?"**. Nã
 |Maturidade|A tecnologia é comprovada ou experimental?|Algoritmo de matching entre motorista e passageiro já existe em APIs como Google Maps. Viável.|Câmera OCR para ler placas em dias de chuva forte. Precisamos testar a taxa de acerto.|
 |Competência|O time sabe usar essa stack?|Time só sabe Java, mas o app precisa ser nativo iOS (Swift) e Android (Kotlin). Inviável sem contratação.|O firmware da cancela usa protocolo RS-485. O time de back-end conhece comunicação serial?|
 |Capacidade|A infraestrutura atual aguenta?|O servidor de mapas suporta 10.000 requisições simultâneas de GPS?|O banco de dados consegue armazenar 5 anos de logs de entrada/saída para auditoria fiscal?|
-|Integração|Os sistemas externos têm APIs documentadas?|A API de pagamentos do banco parceiro tem sandbox para testes?|A máquina de cartão do estacionamento (nosso RI da análise anterior) aceita PIX via QR Code dinâmico?|
+|Integração|Os sistemas externos têm APIs documentadas?|A API de pagamentos do banco parceiro tem sandbox para testes?|A máquina de cartão do estacionamento aceita PIX via QR Code dinâmico?|
 
 > **Resultado Técnico**: Um documento de 1-2 páginas listando os riscos técnicos e as *provas de conceito* (PoCs) necessárias. Se uma PoC falhar, o projeto é tecnicamente inviável.
 
@@ -1118,18 +1377,29 @@ Não é um documento burocrático e sim um argumento de venda para a diretoria. 
   * Opção C (Não fazer nada): Custo zero, mas risco de perder market share.
 * **Recomendação Final.**
 
+Na hora de **identificar as alternativas**, quanto mais detalhes, mais claro será para determinar qual melhor alternativa. Assim como a análise de custos de cada uma, fazer uma tabela com os **itens necessários** (*recursos de hardware, software, pessoal*) para o **desenvolvimento** do software e para o **uso** do software na empresa, suas quantidades, valor unitário e valor total e também um texto descritivo que **justifique a escolha** desta alternativa.
+
 ## 10 - A Norma IEEE 830: Estrutura e Características da ERS
 
-A IEEE 830-1998 foi substituída conceitualmente pela **ISO/IEC/IEEE 29148:2018**, mas ainda a base da literatura clássica.
+A IEEE 830-1998 foi substituída conceitualmente pela **ISO/IEC/IEEE 29148:2018**, mas ainda a base da literatura clássica. Todas as técnicas vistas anteriormente visam **clarificar as informações** e **reduzir os erros de comunicação**. Mas depois temos que **documentar as informações coletadas**. As informações coletadas devem estar organizadas e claras para que não haja erros, ou pelo menos minimizar esses erros, pois eles são custosos para serem resolvidos. Exemplo de erros encontrados em diferentes etapas do ciclo de vida de um software:
+
+* **Fase de Requisitos**
+  * Corrigir um erro de especificação exige apenas a revisão de documentos e alinhamento de expectativas.
+* **Fase de Desenvolvimento/Codificação**
+  * O bug é detectado pelo próprio desenvolvedor logo após escrever o código.
+* **Fase de Testes/QA**
+  * O bug é encontrado pelo QA. O custo aumenta devido ao retrabalho, necessidade de novos testes e possíveis atrasos no cronograma de lançamento.
+* **Produção**
+  * O bug afeta o usuário final, gerando falhas no sistema, perda de dados, necessidade de patches urgentes, suporte ao cliente e danos à reputação da empresa.
 
 ### 10.1 - O Que é e Qual o Propósito da ERS (SRS)?
 
 A Especificação de Requisitos de Software é o contrato técnico entre todas as partes interessadas. A IEEE 830 define que uma ERS deve declarar o que o software deve fazer, e não como fará. Os 4 Propósitos Fundamentais da ERS (segundo a IEEE 830):
 
-* **Base para Acordo**: Cliente, desenvolvedores e testadores sentam-se à mesa e dizem: "É isso que será construído. Estamos de acordo." Isso evita disputas judiciais futuras.
-* **Base para Estimativas**: A equipe de projeto usa a ERS para estimar custo, prazo e esforço. Se a ERS é ambígua, a estimativa será furada.
-* **Base para Projeto e Implementação**: Arquitetos e programadores transformam os requisitos em módulos de código.
-* **Base para Validação e Verificação**: Testadores escrevem casos de teste para provar que cada requisito foi implementado corretamente.
+* **Base para Acordo**: Cliente, desenvolvedores e testadores sentam-se à mesa e dizem: "**É isso que será construído. Estamos de acordo.**" Isso evita disputas judiciais futuras.
+* **Base para Estimativas**: A equipe de projeto usa a ERS para **estimar custo, prazo e esforço**. Se a ERS é ambígua, a estimativa será furada.
+* **Base para Projeto e Implementação**: Arquitetos e programadores **transformam os requisitos** em módulos de **código**.
+* **Base para Validação e Verificação**: Testadores escrevem casos de teste para **provar que cada requisito foi implementado corretamente**.
 
 ### 10.2 - Estrutura Recomendada para o Documento (IEEE 830, Seção 4)
 
@@ -1140,8 +1410,15 @@ A norma sugere um template com três seções principais. Não é obrigatório s
   * **Escopo**: Nomear o produto, explicar o que ele fará e, crucialmente, o que não fará (fundamental para alinhar expectativas).
   * **Definições e Acrônimos**: Glossário (ex: "PDV: Ponto de Venda", "NFC-e: Nota Fiscal ao Consumidor Eletrônica").
 * **Descrição Geral**
-  * **Perspectiva do Produto**: Como o software se relaciona com outros sistemas? É um módulo independente ou parte de um ERP maior?
+  * **Estudo de Viabilidade**: É um mini-projeto de análise de riscos.
+  * **Perspectiva do Produto**: Como o software se relaciona com outros sistemas? É um módulo independente ou parte de um ERP maior? Deve ser descrita de maneira resumida, de forma textual, sem detalhamento.
+    * **Interfaces de Sistema**: com quais outros sistemas o produto de software interage (se houver).
+    * **Interfaces de Usuário**: formatos de telas, relatórios ou consulta, formatos de mensagens, acesso por níveis de usuário.
+    * **Interfaces de Hardware**: como o produto interage com os dispositivos de hardware; características de configuração
   * **Funções do Produto**: Um resumo gráfico (diagrama de contexto) das macro-funcionalidades. Nada detalhado ainda.
+    * Funções Básicas: referem-se às operações CRUD necessárias para a execução das funções fundamentais.
+    * Funções Fundamentais: referem-se às transações de negócio (movimentações);
+    * Funções de Saída: referem-se às funções que geram informações de saída relevantes para atender às necessidades do usuário (consultas/relatórios com cruzamento de informações). Devem ser descritos os itens de entrada (filtros) e os itens de saída (informação) pertinentes.
   * **Características do Usuário**: Perfis. "O Operador de Caixa possui ensino médio e opera o sistema em alta pressão. O Gerente Financeiro precisa de dashboards."
   * **Restrições Gerais**: Leis (LGPD), hardware específico (ex: o sistema só roda em Windows Embedded), deadlines.
 * **Requisitos Específicos (O Coração da ERS)**
@@ -1271,6 +1548,350 @@ Resultado na ERS (Seção 3.1 - Requisitos Funcionais):
 Rastreabilidade: Origem: RN05, RN06, RN07 (Regras de Negócio).
 
 > **Perceba a diferença**: a *Regra de Negócio* é a lei. O *Requisito* na ERS (no padrão IEEE 830) *é a especificação completa, verificável e tabelada dessa lei*, pronta para o programador codificar e o testador escrever o script de teste automatizado.
+
+## 11 - Priorização de Requisitos
+
+Vale lembrar que para Engenharia de Software I, focamos na técnica *MoSCoW*. Se nos falta recursos ou tempo, então precisamos analisar e
+priorizar os requisitos. *O quê é importante?* *O quão importante ele é?* *O quanto custa a implementação e a manutenção?* *Quanto tempo para implementar?*
+
+### 11.1 - Porque priorizar?
+
+Antes das técnicas, é preciso entender a dor que a priorização resolve. *Wiegers & Beatty* (2013) apresentam a **"Pirâmide do Desperdício"** em projetos sem priorização:
+
+* 45% das funcionalidades entregues nunca são usadas pelos usuários (Standish Group, CHAOS Report).
+* 19% são usadas raramente.
+* Apenas 7% são usadas sempre.
+
+**Conclusão**: Sem priorização, desperdiçamos mais da metade do orçamento construindo software que ninguém usa.
+
+Os 4 Fatores que Competem (Triângulo de Prioridades de Davis):
+
+* **Valor para o Negócio**: Quanto dinheiro isso gera ou economiza?
+* **Custo/Esforço Técnico**: Quantas horas de desenvolvimento?
+* **Risco**: Se não fizermos, o que pode dar errado? (Legal, Segurança, Técnico).
+* **Urgência**: Precisa ser agora ou pode esperar?
+
+Cada técnica de priorização tenta equilibrar esses fatores de forma objetiva.
+
+### 11.2 - Técnicas qualitativas (Baseadas em Opinião Estruturada)
+
+Temos uma a matriz de valor x esforço visa tornar a decisão de priorização mais objetiva, com menos “eu acho”.
+
+Imagine um plano cartesiano onde classificamos cada requisito da ERS em dois eixos:
+
+* **Eixo Vertical (Valor)**: Representa o benefício que o requisito traz. Pode ser valor financeiro, satisfação do usuário ou alinhamento estratégico.
+* **Eixo Horizontal (Esforço)**: Representa o custo de implementação. Inclui tempo de desenvolvimento, recursos financeiros, complexidade técnica e riscos.
+
+<img src="https://pt.smartsheet.com/sites/default/files/styles/1300px/public/2025-05/IC-Simple-Impact-Effort-Matrix-Template-58143-EXAMPLE-EXCEL_PT.webp?itok=yKoF6Rvn" style="width: 80%" title = "Imagem 4 - Método de V"/>
+
+Os 4 Quadrantes da Matriz:
+
+* **Ganhos Rápidos (Quick Wins)**
+  * **Perfil**: Alto Valor e Baixo Esforço.
+  * **Ação**: Faça imediatamente.
+  * **Exemplo**: Adicionar um botão de "Esqueci minha senha". É relativamente simples de implementar e resolve um problema crítico para o usuário.
+* **Grandes Projetos (Major Projects)**
+  * **Perfil**: Alto Valor e Alto Esforço.
+  * **Ação**: Planeje com cuidado. São as funcionalidades "core" do sistema.
+  * **Exemplo**: Desenvolver o módulo de processamento de pagamentos criptografados. Agrega muito valor, mas exige meses de engenharia.
+* **Preenchimento de Lacunas (Fill-ins / Low Priority)**
+  * **Perfil**: Baixo Valor e Baixo Esforço.
+  * **Ação**: Faça apenas se sobrar tempo (ou se a equipe estiver ociosa entre grandes tarefas).
+  * **Exemplo**: Alterar a cor de um ícone secundário ou adicionar uma animação sutil no menu lateral.
+* **Tarefas Ingratas (Money Pit / Thankless Tasks)**
+  * **Perfil**: Baixo Valor e Alto Esforço.
+  * **Ação**: Descarte ou reavalie.
+  * **Exemplo**: Integrar o sistema com uma rede social que ninguém mais usa. O esforço de API é alto e o retorno para o negócio é quase nulo.
+
+#### 11.2.1 - MoSCoW (Clegg & Barker, 1994)
+
+**Regra de Ouro do MoSCoW**: O time deve alocar percentuais máximos de esforço por categoria:
+
+* **Must Have (Obrigatório)**: Máximo de 60% do esforço total. *Sem eles o sistema não faz sentido.*
+  * Se o "Must" consumir 90% do esforço, você não tem um MVP, tem um sistema completo disfarçado. É preciso negociar para rebaixar alguns itens a Should.
+* **Should Have (Importante)**: Cerca de 20% do esforço. *Importantes, mas podemos “segurar” o sistema sem eles.*
+  * Diferenciação chave: um "Should" não bloqueia o Go-Live, mas causa dor significativa. Ex: "Relatório de Vendas por Período". Dá para fazer manual no Excel por algumas semanas, mas é doloroso.
+* **Could Have (Desejável)**: Cerca de 20% do esforço. *Queremos, mas serão feitos apenas se sobrar tempo e recursos.*
+  * Se sobrar tempo. Se o time está 100% dentro do cronograma, entra. Se atrasou, é o primeiro a ser cortado sem dó.
+* **Won't Have (Não para agora)**: Fora do escopo. Apenas para deixar claro que foi discutido e conscientemente excluído. *Lembrando que pode ser adicionado em outras versões*.
+
+Exemplo Prático (App de Mobilidade):
+
+|ID|Requisito|MoSCoW|Justificativa (Regra de Ouro)|
+|--|---------|------|-----------------------------|
+|RF01|Solicitar Corrida (Origem/Destino)|M (Must)|Sem isso, o app não existe. Ocupa 15% do esforço.|
+|RF02|Pagamento via Cartão de Crédito|M (Must)|Essencial para monetização. Ocupa 20% do esforço.|
+|RF03|Pagamento via PIX|S (Should)|Importante, mas o cartão cobre 80% dos casos. Pode vir na Release 2 (15% esforço).|
+|RF04|Chat com Motorista|S (Should)|Importante para resolver problemas, mas a ligação telefônica quebra o galho (10% esforço).|
+|RF05|Agendamento de Viagem Futura|C (Could)|Diferencial, mas não essencial para validar o negócio (25% esforço).|
+|RF06|Recompensas Gamificadas (badges)|W (Won't)|Interessante, mas não agora. Foco no básico.|
+
+#### 11.2.2 - Modelo de Kano (Noriaki Kano, 1984)
+
+Kano não prioriza por importância temporal, mas por impacto emocional no cliente. É fundamental para decidir o que realmente encanta vs. o que é obrigação.
+
+As Três Categorias Principais:
+
+|Categoria|Descrição|Comportamento do Cliente|Exemplo (Estacionamento)|
+|---------|---------|------------------------|------------------------|
+|Básico (Must-Be)|Obrigatório. Se faltar, o cliente se irrita. Se tiver, ele não nota (é neutro).|"Óbvio que a cancela abre quando eu pago. Se não abrir, vou reclamar."|RN02 (Entrada de veículos emitindo ticket), RN04 (Validação de ticket).|
+|Desempenho (One-Dimensional)|Quanto mais, melhor. Linear.|"Quanto mais rápido abrir a cancela, mais satisfeito eu fico."|Velocidade de leitura do QR Code no totem de saída (Quanto menor o tempo, maior a satisfação).|
+|Atrativo (Attractive)|Inesperado. Se faltar, o cliente não sente falta. Se tiver, ele se encanta (fica extremamente satisfeito).|"Nossa, o aplicativo lembrou onde estacionei da última vez e já sugeriu a vaga!"|Conectar o App do shopping ao estacionamento e sugerir a vaga mais próxima do elevador baseado no histórico do usuário.|
+
+>**A Armadilha Temporal de Kano**:
+>O que é *"Atrativo"* hoje, vira *"Desempenho"* amanhã e *"Básico"* depois de amanhã.
+>
+>* **2008**: App de banco fazer depósito por cheque fotografado era Atrativo (Nubank nem existia).
+>* **2018**: Virou Desempenho (bancos tradicionais correram atrás).
+>* **2024**: É Básico. Se um banco digital lançar sem isso, é motivo de chacota.
+>
+>**Aplicação na Priorização**: Invista uma parte do esforço da Release 1 em um ou dois requisitos Atrativos. Eles são o seu diferencial competitivo. Mas nunca às custas dos Básicos. Um produto com Básicos faltando é um produto quebrado.
+
+### 11.3 - Técnicas Quantitativas (Baseadas em Fórmulas e Matrizes)
+
+#### 11.3.1 - Matriz de Priorização (Wiegers & Beatty, Cap. 16)
+
+A abordagem mais sistemática para pequenas e médias listas de requisitos. Cada requisito recebe notas de 1 a 5 em quatro dimensões. A prioridade é a média ponderada.
+
+Dimensões Avaliadas:
+
+* **Benefício Relativo (B)**: Quanto valor entrega ao negócio? (5 = Altíssimo, 1 = Baixíssimo).
+* **Penalidade Relativa (P)**: Qual o dano se não for implementado? (5 = Multa legal, perda de clientes; 1 = Ninguém sente falta).
+* **Custo Relativo (C)**: Quanto custa implementar? (5 = Altíssimo custo/esforço; 1 = Custo baixo, muda uma linha de CSS).
+* **Risco Técnico (R)**: Qual a chance de dar errado ou atrasar? (5 = Incerteza total, depende de PoC; 1 = Tecnologia dominada).
+
+**Fórmula de Priorização (Prioridade = Valor / Esforço)**:
+$$
+Prioridade = \frac{(Benefício * Peso_B) + (Penalidade * Peso_P)}{(Custo * Peso_C) +(Risco * Peso_R)}
+$$
+
+**Exemplo Prático (Sistema de Vendas - Caixa/PDV)**:
+Suponha os pesos: Benefício = 2, Penalidade = 1, Custo = 1, Risco = 1 (dando mais peso ao valor que ao esforço, se a empresa é de inovação).
+
+|Requisito|Benefício (1-5)|Penalidade (1-5)|Custo (1-5)|Risco (1-5)|Fórmula|Prioridade|
+|---------|---------------|----------------|-----------|-----------|-------|----------|
+|RF01 - Registrar Venda (RN05)|5|5|2|1|(10+5)/(2+1) = 15/3|5.00|
+|RF02 - Pagamento via PIX|4|3|3|1|(8+3)/(3+1) = 11/4|2.75|
+|RF03 - Vale Alimentação|2|2|3|1|(4+2)/(3+1) = 6/4|1.50|
+|RF04 - Dashboard Gerencial Bonito|3|1|4|3|(6+1)/(4+3) = 7/7|1.00|
+
+> **Análise do Resultado**: A equipe deve atacar `RF01` imediatamente (Quick Win, baixo custo, alto valor). `RF04` (Dashboard bonito) tem baixa prioridade: é caro, arriscado e a penalidade de não ter é mínima (o gerente usa relatório feio por enquanto).
+
+#### 11.3.2 - WSJF (Weighted Shortest Job First — Priorização Ágil SAFe)
+
+Método dominante no framework SAFe (Scaled Agile Framework), mas aplicável em qualquer backlog ágil. A lógica é brutalmente financeira: faça primeiro o que gera mais dinheiro no menor tempo possível.
+
+**Fórmula do WSJF**:
+$$
+WSJF = \frac{Custo-do-Atraso}{Duracao-do-Trabalho}
+$$
+Onde o **Custo do Atraso** (Cost of Delay) é a soma de três fatores:
+
+* **Valor para o Negócio/Usuário**: A funcionalidade gera receita? Fideliza?
+* **Criticidade Temporal (Urgência)**: O valor decai com o tempo? Tem uma data limite (Lei, Black Friday)?
+* **Redução de Risco/Habilitação**: Isso libera outras equipes? Reduz risco regulatório?
+
+Exemplo (App de Mobilidade — 3 Funcionalidades no Backlog):
+
+|Funcionalidade|Valor Neg.|Urgência|Redução Risco|Custo do Atraso (Soma)|Duração (Sprints)|WSJF|
+|--------------|----------|--------|-------------|----------------------|-----------------|----|
+|A: Cadastro de Motorista|8|10|10|28|2|14.0|
+|B: Pagamento via PIX|13|5|5|23|5|4.6|
+|C: Algoritmo de Surge Pricing|13|13|8|34|13|2.6|
+
+> **Decisão WSJF**: Mesmo que o Pagamento via PIX (B) e o Surge Pricing (C) tenham alto valor, o Cadastro de Motorista (A) tem o maior WSJF (14.0). Por quê?
+>
+>* Sem motorista cadastrado, não há oferta de carros. Ele habilita todo o resto (Redução de Risco = 10).
+>* É rápido de fazer (2 sprints).
+>* "**Coma as sobremesas primeiro**": WSJF força o time a entregar valor rápido e constantemente, evitando projetos gigantescos que só entregam no final.
+
+### 11.4 - Dinâmica de Priorização em Grupo (O Processo Humano)
+
+Priorização não é um ato solitário do analista. *Wiegers & Beatty* descrevem dinâmicas para evitar vieses.
+
+* **Planning Poker** (para esforço, mas impacta prioridade)
+  * O time técnico estima esforço (Story Points). Isso alimenta o denominador da fórmula WSJF ou da Matriz.
+* **Buy a Feature** (Compre uma Funcionalidade)
+  * Dinâmica com stakeholders de negócio.
+  * Cada stakeholder recebe um orçamento fictício (ex: R$ 1000 em dinheiro de mentira).
+  * Cada requisito tem um preço (baseado no custo de desenvolvimento).
+  * Eles "compram" os requisitos que querem ver implementados.
+    * **Resultado**: O que ninguém comprou é "Won't Have". O que esgotou rapidamente é "Must Have". Isso elimina o "tudo é prioritário" porque força escolhas reais com recurso limitado.
+* **Votação por Pontos** (Dot Voting)
+  * Cada stakeholder recebe 5 adesivos (dots). Os requisitos são colados na parede. Os stakeholders colam seus dots nos que julgam prioritários. Visual, rápido e democrático. Ideal para pré-priorizar antes de aplicar uma técnica quantitativa.
+
+### 11.5 - O Anti-Padrão: "Tudo é Prioridade Máxima"
+
+Toda equipe de requisitos enfrenta o cliente que diz: "Todos esses 50 requisitos são críticos. Preciso de todos para ontem."
+
+**Resposta da Engenharia de Requisitos (*Wiegers, 2013*)**:
+> **"Se tudo é prioridade, nada é prioridade**. Prioridade implica escolha, e escolha implica abdicar de algo. Vamos ajudá-lo a decidir o que doerá menos abdicar."
+
+**Técnica de Desempate (Desbloqueio)**: Se o cliente insiste que dois itens são igualmente críticos, use o critério "Sequenciamento por Dependência": "Qual desses dois, se ficar pronto, habilita o outro a começar?" Isso quebra o empate, pois um deles será predecessor.
+
+### 11.6 -  Exemplo Integrado: Aplicando no Sistema de Vendas
+
+Imagine que somos a equipe de requisitos do nosso sistema de PDV. Temos 6 requisitos brutos para priorizar.
+
+|ID|Requisito|Kano (O que é?)|MoSCoW|Matriz B/C (Valor)|
+|--|---------|---------------|------|------------------|
+|RF01|Registrar venda de produtos cadastrados (RN05/06)|Básico|M (Must)|Alto benefício, baixo custo.|
+|RF02|Aceitar PIX (RN01)|Básico (hoje)|M (Must)|Alto benefício, médio custo.|
+|RF03|Parcelamento no crédito (RN03)|Básico (Brasil)|M (Must)|Alto benefício, médio custo.|
+|RF04|Pagamento segmentado (RN04)|Desempenho|S (Should)|Médio benefício, alto custo (complexo).|
+|RF05|Emitir relatório de vendas em tempo real|Atrativo (gerente)|C (Could)|Médio benefício, alto custo (dashboard).|
+|RF06|Integração com programa de fidelidade|Atrativo (cliente)|W (Won't) - Release 1|Alto benefício futuro, mas baixa urgência.|
+
+#### 11.6.1 - Plano de Release (Combinando as Técnicas)
+
+>* **Release 1 (MVP - Semana 1 a 6)**: RF01 + RF02 + RF03. São os Básicos de Kano. Sem eles, o sistema é inútil. Classificados como Must Have.
+>* **Release 2 (Semana 7 a 10)**: RF04. É Desempenho. Importante, mas o sistema sobrevive sem ele no primeiro mês (o cliente faz dois pagamentos separados e depois acerta manualmente, doloroso mas possível).
+>* **Backlog (Futuro)**: RF05 e RF06. Atrativos que podem ser prototipados e testados depois que o core estiver estável e gerando receita.
+>
+> **Este é o poder de combinar as técnicas**: Kano explica o porquê (psicologia do usuário), MoSCoW define o quando (Release), e a Matriz B/C justifica o investimento (finanças).
+
+## 12 - ISO 12207 - Uma Constituição, Não um Manual de Instruções
+
+A confusão mais comum é achar que a ISO 12207 diz *"faça assim"*. Na verdade, ela diz "*estes são os processos que você deve definir*". Ela fornece um framework de processos que cada organização deve adaptar (tailoring) ao seu contexto. Define ao todo **25 processos, 95 atividades e 325 tarefas**.
+
+* Uma **tarefa** é uma ação com entradas e saídas. Pode ser um requisito (deve, shall), recomendação (deveria, should) ou permissão (pode, may).
+* Uma **atividade** é um conjunto de tarefas.
+* Um **processo** é um conjunto de atividades relacionadas
+
+>**Os Dois Objetivos Estratégicos**:
+>
+>* **Linguagem Comum**: Um comprador pode exigir do fornecedor: "Seu processo de Garantia de Qualidade (Processo 7.2.3) está em conformidade com a ISO 12207?" Isso cria um entendimento global.
+>* **Completeza**: Ao mapear seu ciclo de vida contra a 12207, você descobre buracos. "Estamos esquecendo o processo de Auditoria (7.2.8)?" "Temos processo formal de Validação (7.2.6) ou só de Verificação (7.2.5)?"
+
+### 12.1 - A estrutura do processo
+
+A edição de 2017 reorganizou os processos em quatro grupos conceituais. Vamos percorrê-los como uma jornada lógica.
+
+#### 12.1.1 - Grupo 1: Processos de Acordo (Agreement Processes)
+
+São os processos de contratação. **Definem a relação cliente-fornecedor**. Antes de qualquer linha de código, existe um acordo.
+
+|Processo|Descrição|Exemplo Concreto|
+|--------|---------|----------------|
+|Aquisição (Acquisition)|Atividades do **cliente** (adquirente): definir necessidade, emitir RFP (Request for Proposal), selecionar fornecedor, aceitar o produto.|O Shopping contrata o desenvolvimento do Sistema de Estacionamento. O gerente de TI do shopping executa este processo: escreve o edital, avalia as propostas de software houses.|
+|Fornecimento (Supply)|Atividades do **fornecedor**: preparar proposta, negociar contrato, entregar o software, dar suporte.|A Software House "ParkTech" responde ao edital, assina o contrato e se compromete a entregar o sistema com as regras RN01 a RN10.|
+
+#### 12.1.2 - Grupo 2: Processos Organizacionais (Organizational Project-Enabling)
+
+São processos de gestão que acontecem fora do projeto individual, no nível da empresa. **Criam a infraestrutura para que os projetos existam**.
+
+|Processo|Descrição|Exemplo na Prática|
+|--------|---------|------------------|
+|Gestão do Modelo de Ciclo de Vida (Life Cycle Model Management)|A empresa define, mantém e melhora seus modelos de processo (ex: "Usamos Scrum com sprints de 2 semanas" ou "Usamos Cascata com marcos formais").|A ParkTech decide que todo projeto seguirá o Scrum. Este processo existe independentemente do projeto do Shopping.|
+|Gestão de Infraestrutura (Infrastructure Management)|Prover hardware, software, ferramentas, licenças, ambientes de desenvolvimento e homologação.|A ParkTech provisiona servidores na AWS para o time de desenvolvimento, compra licenças do Jira e do Figma.|
+|Gestão de Portfólio (Portfolio Management)|Selecionar quais projetos a empresa vai investir, dado seu orçamento e estratégia.|A diretoria da ParkTech decide se aceita o projeto do Shopping (que paga pouco, mas é vitrine) ou prioriza o projeto da Fintech (que paga mais).|
+|Gestão de Recursos Humanos (Human Resource Management)|Contratar, treinar, alocar e avaliar a equipe.|Contratar um Especialista em OCR para o módulo de leitura de placas do estacionamento.|
+|Gestão da Qualidade (Quality Management)|Definir a política de qualidade da empresa. Estabelecer métricas, auditorias internas.|A ParkTech define que todo código deve ter 80% de cobertura de testes unitários. Isso é uma política organizacional, não de um projeto específico.|
+|Gestão do Conhecimento (Knowledge Management)|Capturar lições aprendidas, documentar, fazer wiki corporativa.|Após o projeto do Estacionamento, a equipe documenta os problemas com a integração da cancela (protocolo RS-485) para que o próximo projeto de IoT não sofra as mesmas dores.|
+
+#### 12.1.3 - Grupo 3: Processos de Projeto Técnico (Technical Management)
+
+Estes sim são os **processos dentro do projeto**. É aqui que a engenharia de software acontece no dia a dia.
+
+|Processo|Descrição|Exemplo no App de Mobilidade|
+|--------|---------|----------------------------|
+|Planejamento do Projeto (Project Planning)|Definir escopo, cronograma, recursos, orçamento. Produz o Plano de Projeto.|Definir que o App de Mobilidade terá 6 sprints de 2 semanas. Sprint 1: Cadastro; Sprint 2: Solicitar Corrida.|
+|Avaliação e Controle (Project Assessment and Control)|Monitorar progresso, comparar planejado vs. realizado, agir nos desvios. Reuniões de status.|Daily Scrum: O time reporta que o algoritmo de matching está atrasado. O Scrum Master decide alocar mais um desenvolvedor.|
+|Tomada de Decisão (Decision Management)|Estruturar decisões complexas (ex: análise de trade-off). Formalizar quem decide o quê.|O arquiteto decide se usa Firebase ou WebSocket para a comunicação em tempo real motorista-passageiro. Documenta os critérios da decisão.|
+|Gestão de Riscos (Risk Management)|Identificar, analisar, mitigar e monitorar riscos.|Risco Técnico: "A API de geolocalização do Google pode ter latência alta em áreas rurais." Mitigação: Implementar cache de coordenadas e fallback para GPS nativo.|
+|Gestão da Configuração (Configuration Management)|Controlar versões de código, documentos, ambientes. Baseline de requisitos.|Uso de Git. A versão 1.0 da ERS do App é "baselineada" (congelada) no SharePoint. Qualquer mudança passa por um Change Request.|
+|Gestão da Informação (Information Management)|Como os dados do projeto (documentos, e-mails, decisões) são armazenados, versionados e recuperados.|Todos os documentos do projeto ficam no Confluence, organizados por sprint.|
+|Medição (Measurement)|Coletar métricas para avaliar qualidade, progresso e desempenho.|Métricas: Velocidade do time (Story Points por Sprint), Densidade de defeitos (bugs por módulo), Cobertura de testes.|
+|Garantia da Qualidade (QA - Quality Assurance)|Auditoria independente para garantir que os processos estão sendo seguidos. Foco no processo.|O QA Manager audita se o time está realmente fazendo code review antes do merge, como manda o processo organizacional.|
+|Verificação (Verification)|O produto foi construído corretamente? (Conformidade com a especificação).|O testador executa o caso de teste CT-045 e confirma que o cálculo do frete grátis (RF02) bate com a tabela da ERS.|
+|Validação (Validation)|O produto certo foi construído? (Atende à necessidade real do usuário?).|Teste de aceite com o cliente real. O dono do shopping usa o sistema de estacionamento em um ambiente de homologação e diz: "É isso mesmo que eu queria."|
+|Revisão Técnica (Technical Review)|Inspeções por pares para encontrar defeitos cedo.|Revisão de Código (Pull Request), Revisão de Arquitetura, Walkthrough de requisitos.|
+
+#### 12.1.4 - Grupo 4: Processos de Software (Technical Software)
+
+São os processos **específicos da engenharia de software**, do nascimento à aposentadoria do código.
+
+|Processo|Descrição|Conexão com Nossos Estudos|
+|--------|---------|--------------------------|
+|Análise de Requisitos do Software (Software Requirements Analysis)|Elicitar, analisar, especificar e validar os requisitos. Produz a ERS (IEEE 830).|É aqui que aplicamos Story Mapping, Prototipação, MoSCoW, e geramos o documento ERS.|
+|Projeto de Arquitetura do Software (Software Architectural Design)|Definir componentes, módulos, interfaces, banco de dados. Decisões de alto nível.|Definir que o App de Mobilidade terá um back-end em microsserviços (Serviço de Pagamento, Serviço de Matching, Serviço de Notificação) comunicando via REST.|
+|Projeto Detalhado do Software (Software Detailed Design)|Projetar cada módulo em detalhes: algoritmos, estruturas de dados internas.|Desenhar o algoritmo exato da `CalcularTarifa()` (tabela de decisão do Estacionamento) no diagrama de classes.|
+|Construção do Software (Software Construction)|Codificação e testes unitários.|O desenvolvedor escreve a classe `TicketService.java` e os testes unitários `TicketServiceTest.java` com JUnit.|
+|Integração do Software (Software Integration)|Juntar os módulos e testar a comunicação entre eles.|Integrar o módulo de pagamento com o módulo de emissão de nota fiscal. Testar se ao pagar com PIX a nota é emitida automaticamente.|
+|Teste do Software (Software Testing)|Testes de sistema, aceite, performance, segurança. Executar a verificação e validação.|Testar o sistema de estacionamento completo: emitir ticket, validar com desconto de lojista (`RN0X`), pagar, sair.|
+|Implantação do Software (Software Installation)|Colocar o software no ambiente de produção. Migrar dados. Treinar usuários.|Instalar os totens no shopping, configurar a rede, migrar a base de clientes do sistema antigo.|
+|Operação do Software (Software Operation)|Manter o sistema rodando no dia a dia. Monitorar, fazer backup.|O time de operações monitora se as cancelas estão online. Se uma cancela para de responder, um alerta é disparado.|
+|Manutenção do Software (Software Maintenance)|Corrigir defeitos, adaptar a novas leis, melhorar performance.|O governo muda a lei de nota fiscal. O time de manutenção altera o layout da NFC-e. Surge a Release 1.1.|
+|Descontinuação do Software (Software Disposal)|Aposentar o sistema com segurança. Migrar/arquivar dados.|O sistema legado de estacionamento é desligado. Os dados de 5 anos são migrados para um data lake de arquivo morto, em conformidade com a retenção fiscal.|
+
+### 12.2 - Mapa visual
+
+```text
+┌──────────────────────────────────────────────────────────────┐
+│              PROCESSOS ORGANIZACIONAIS (Grupo 2)             │
+│  Gestão de Portfólio, Infraestrutura, RH, Qualidade,         │
+│  Conhecimento, Ciclo de Vida                                 │
+│  (Acontecem FORA do projeto, no nível da empresa)            │
+└──────────────────────────┬───────────────────────────────────┘
+                           │ (Habilitam)
+┌──────────────────────────▼───────────────────────────────────┐
+│               PROCESSOS DE ACORDO (Grupo 1)                  │
+│  Aquisição (Cliente) ←──────────→ Fornecimento (Fornecedor)  │
+│  (Contratam o projeto)                                       │
+└──────────────────────────┬───────────────────────────────────┘
+                           │ (Disparam)
+┌──────────────────────────▼───────────────────────────────────┐
+│         PROCESSOS DE PROJETO TÉCNICO (Grupo 3)               │
+│  Planejamento, Avaliação, Decisão, Riscos, Configuração,     │
+│  Medição, QA, Verificação, Validação, Revisão                │
+│  (Gerenciam o projeto do início ao fim)                      │
+└──────────────────────────┬───────────────────────────────────┘
+                           │ (Executam)
+┌──────────────────────────▼───────────────────────────────────┐
+│            PROCESSOS DE SOFTWARE (Grupo 4)                   │
+│  Requisitos → Arquitetura → Projeto Detalhado → Construção   │
+│  → Integração → Teste → Implantação → Operação → Manutenção  │
+│  → Descontinuação                                            │
+│  (Constroem e sustentam o produto de software)               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### 12.3 - Tailoring (Adaptação): A Chave para Usar a ISO 12207 sem Burocracia
+
+A norma inteira tem mais de 200 páginas. Ninguém aplica tudo. A Seção 5 da ISO 12207:2017 trata do Tailoring — a adaptação para o contexto. A beleza da 12207 é que ela serve tanto para uma startup de 3 pessoas quanto para a NASA.
+
+#### 12.3.1 - Exemplo de Tailoring para um Projeto Ágil (Startup)
+
+|Processo da ISO 12207|Ação de Tailoring|
+|---------------------|-----------------|
+|Planejamento do Projeto|**Simplificado**. Fazemos um Product Backlog priorizado e um Sprint Plan. Sem documento de 50 páginas.|
+|Revisão Técnica|**Informal**. Code Review no GitHub, pair programming. Sem ata formal.|
+|Gestão de Riscos|**Leve**. Quadro de riscos visível no Kanban, revisitado a cada Sprint Planning.|
+|Verificação vs. Validação|**Unificados**. Testes automatizados + Sprint Review com o cliente. Sem separação formal de equipes.|
+
+#### 12.3.2 - Exemplo de Tailoring para Software Embarcado Crítico (Medicina/Aviação)
+
+|Processo da ISO 12207|Ação de Tailoring|
+|---------------------|-----------------|
+|Verificação e Validação|**Rigor Máximo**. Equipes independentes. Cada requisito rastreado a um caso de teste. Evidência documental obrigatória.|
+|Gestão de Riscos|**Formal**. FMEA (Failure Mode and Effects Analysis). Cada risco com probabilidade e severidade calculadas.|
+|Gestão da Configuração|**Estrita**. Baseline de código congelada. Toda mudança passa por um Change Control Board (CCB).|
+
+### 12.4 - Conexão com Nossos Exemplos: O Ciclo de Vida do Estacionamento
+
+Vamos mapear o sistema de estacionamento contra os Processos de Software (Grupo 4):
+
+|Fase do Processo (ISO 12207)|Atividade Real no Projeto|
+|----------------------------|-------------------------|
+|Análise de Requisitos|Elicita as 10 Regras de Negócio (RN01-RN10), priorização com MoSCoW, escreve a ERS no padrão IEEE 830, prototipação do totem.|
+|Projeto de Arquitetura|Decisão: Back-end em Java Spring Boot, Front-end do totem em React, Banco PostgreSQL, Comunicação com a cancela via protocolo serial RS-485.|
+|Projeto Detalhado|Desenha a classe `Ticket`, a interface `IPagamento`, o algoritmo `CalcularTarifa()` com a tabela de decisão.|
+|Construção|Codifica `TicketService.java`, `PagamentoPIXService.java`, `CancelaController.java`. Escreve testes unitários.|
+|Integração|Conecta o totem de saída com o servidor de pagamentos. Testa: "Ao pagar com PIX, a cancela abre em menos de 2 segundos?"|
+|Teste|Testa o sistema completo no laboratório, simulando 100 tickets simultâneos. Valida com o gerente do shopping a usabilidade do totem.|
+|Implantação|Instala 5 totens no shopping, configuramos a rede, treina os operadores do caixa manual (para o caso de extravio).|
+|Operação|O sistema está no ar. Monitora o dashboard: 200 carros/dia, tempo médio de saída 15 segundos. Backup noturno automático.|
+|Manutenção|O shopping inaugura uma nova ala. Adiciona mais 2 totens. Corrigi um bug onde a carência (`RN0X`) não funcionava entre 23:45 e 00:15 (virada do dia).|
 
 ## Dúvidas
 
