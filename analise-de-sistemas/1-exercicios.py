@@ -237,3 +237,20 @@ print(f"Mulheres: {fem_total}")
 print(f"Média de altura: {media_alt_curso}")
 print(f"Olhos Azuis: {total_olhos_azul}")
 print()
+
+# Faça um programa que leia uma matriz 4 x 2. Encontre e apresente o maior número, também apresente a linha e coluna que ele foi armazenado. Use função pronta.
+
+matriz = []
+for linha in range(4):
+    vet_linhas = []
+    for coluna in range(2):
+        vet_linhas.append(int(input(f"Digite o [{linha}][{coluna}]: ")))
+    matriz.append(vet_linhas)
+
+maior_valor = max(matriz[0])
+
+for linha in matriz:
+    maior_da_linha = max(linha)
+    
+    if maior_da_linha > maior_valor:
+        maior_valor = maior_da_linha

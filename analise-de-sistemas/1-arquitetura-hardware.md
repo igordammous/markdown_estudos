@@ -1520,6 +1520,36 @@ Atualmente, estamos atingindo limites físicos:
 * **Materiais alternativos**: Silício pode ser substituído por grafeno ou outros materiais no futuro
 * **Computação quântica**: Paradigma totalmente diferente
 
+## 18 - Gerenciamento de Memória Virtual
+
+### 18.1
+
+### 18.2 - Memorias Virtuais
+
+#### 18.2.1 - Memoria virtual por Partição
+
+#### 18.2.2 - Memória virtual por Segmentação
+
+#### 18.2.3 - Memória virtual por Paginação
+
+#### 18.2.4 - Tabela comparativa: Partições, Segmentação e Paginação
+
+Tabela comparativa dos três modelos de gerenciamento de memória virtual, seguida de explicações detalhadas e analogias para cada conceito.
+
+|Característica|Partições (Fixas/Variáveis)|Segmentação|Paginação|
+|--------------|---------------------------|-----------|---------|
+|Fragmentação Interna|Alta (partições fixas) / Baixa (partições variáveis)|Baixa|Baixa (menos de 50% por página, tipicamente < 4KB por processo)|
+|Fragmentação Externa|Baixa (fixas) / Alta (variáveis)|Alta (problema clássico)|Nenhuma|
+|Overhead (Memória)|Baixo (tabela de partições pequena)|Médio (tabela de segmentos por processo)|Médio a Alto (tabela de páginas por processo, pode ser multi-nível)|
+|Overhead (Tempo)|Baixo (alocação contígua simples)|Médio (busca por bloco de tamanho adequado)|Mais alto (TLB miss + tradução multi-nível)|
+|Endereço Lógico|`<base, limite>` (número do bloco + offset)|`<segmento, offset>`|`<número da página, offset>`|
+|Visão do Programador|Memória linear única|Múltiplos segmentos lógicos (código, dados, pilha separados)|Memória linear única (abstração ilusória)|
+|Tamanho da Unidade|Variável (todo o processo)|Variável (tamanho do segmento)|Fixo (tamanho da página: 4KB, 2MB, 1GB)|
+|Permissões por Unidade|Não (tudo ou nada)|Sim (leitura, escrita, execução por segmento)|Sim (via bits na entrada da página)|
+|Compartilhamento entre Processos|Difícil|Fácil (segmentos compartilhados por nome)|Fácil (páginas compartilhadas por número)|
+|Swapping|Processo inteiro|Segmento inteiro|Páginas individuais (demanda paginação)|
+|Uso em Sistemas Reais|Sistemas batch antigos (IBM OS/360)|Multics, Intel 80286 (protegido), OS/2|Todos os modernos: Linux, Windows, macOS, BSD, Solaris|
+
 ## 18 - Barramento Omnibus
 
 O ***barramento omnibus*** (ou barramento único) é uma **arquitetura de interconexão onde todos os componentes de um sistema computacional compartilham um conjunto comum de linhas de comunicação**.
@@ -1576,6 +1606,30 @@ Na arquitetura omnibus, todos os componentes (CPU, memória, dispositivos de I/O
 |SATA|Barramento serial|Conexão de discos rígidos e SSDs|
 |Front Side Bus (FSB)|Barramento CPU-memória|Usado em processadores Intel antigos (substituído por HyperTransport e QuickPath)|
 
+#### 18.4.1 - Barramento de Controle e Seus Sinais
+
+* **MEMORY READ**: Sinal ativado pela CPU quando ela quer **ler um dado** de um endereço da **memória RAM**.
+* **MEMORY WRITE**: Sinal ativado pela CPU quando ela quer **escrever um dado** em um endereço da **memória RAM**.
+* **I/O READ**: Sinal ativado pela CPU quando ela quer **ler um dado** de uma **porta de E/S** (dispositivo), não da memória.
+* **I/O WRITE**: Sinal ativado pela CPU quando ela quer **escrever um dado** em uma **porta de E/S** (dispositivo).
+* **BUS REQUEST (BRQ/HOLD/BREQ)**: Sinal ativado por um dispositivo mestre (ex: controlador DMA, outra CPU) para **solicitar o controle do barramento** (endereço + dados + controle).
+* **BUS GRANT (BG/HLDA)**: Sinal ativado pela CPU em resposta a um BUS REQUEST, indicando que o **dispositivo pode assumir o controle do barramento**.
+* **INTERRUPT REQUEST (INTR / IRQ)**: Sinal ativado por um dispositivo para **interromper a CPU e solicitar serviço imediato**. Diferente do BUS REQUEST, o dispositivo não quer controlar o barramento — quer que a CPU execute uma rotina (ISR).
+
+|Sinal|Mnemônico|Direção|Função Resumida|
+|-----|---------|-------|---------------|
+|MEMORY READ|MRDC#|CPU → Memória|Lê dado da RAM|
+|MEMORY WRITE|MWTC#|CPU → Memória|Escreve dado na RAM|
+|I/O READ|IORC#|CPU → Dispositivo|Lê dado de porta de E/S|
+|I/O WRITE|IOWC#|CPU → Dispositivo|Escreve dado em porta de E/S|
+|BUS REQUEST|BRQ / HOLD|Dispositivo → CPU|Dispositivo pede controle do barramento|
+|BUS GRANT|BGR / HLDA|CPU → Dispositivo|CPU concede o barramento ao dispositivo|
+|INTERRUPT REQUEST|INTR / IRQ|Dispositivo → CPU|Dispositivo pede atenção da CPU|
+|INTERRUPT ACK|INTA#|CPU → Dispositivo|CPU confirma que atenderá a IRQ|
+|CLOCK|CLK|Gerador → Todos|Sincroniza todas as operações|
+
+> **Nota**: O # significa ativo baixo (ativo em nível lógico 0).
+
 ### 18.5 - Evolução: Do Barramento Único aos Barramentos Hierárquicos
 
 Nos sistemas modernos, a arquitetura de barramento único foi substituída por arquiteturas hierárquicas com múltiplos barramentos para evitar gargalos:
@@ -1622,6 +1676,263 @@ Nos sistemas modernos, a arquitetura de barramento único foi substituída por a
 * PCIe oferece conexões ponto a ponto com largura de banda dedicada
 * Dispositivos lentos ficam em barramentos separados, não interferindo no fluxo principal
 
+### 18.6 - Capacidade máxima de memória endereçável dado o número de bits do barramento de endereço
+
+**A Fórmula Fundamental**
+$$Capacidade Máxima (bytes) = 2^n$$
+>Onde **n** = número de bits do barramento de endereço
+
+#### 18.6.1 - Exemplo 1: O Clássico 8086 (20 bits de endereço)
+
+Dados:
+
+* Barramento de endereço: 20 bits
+* Cada posição de memória: 1 byte (arquitetura x86 padrão)
+
+Cálculo:
+
+```text
+Capacidade = 2^20 = 1.048.576 bytes = 1 MB
+Resultado: O processador Intel 8086 (primeiro PC IBM) conseguia endereçar 1 megabyte de RAM.
+```
+
+#### 18.6.2 - Exemplo 2: O Moderno x86-64 (48 bits efetivos)
+
+Embora o x86-64 teoricamente suporte 64 bits de endereço, a maioria dos processadores atuais usa 48 bits (AMD/Intel).
+
+Dados:
+
+* Barramento efetivo: 48 bits
+* Endereçamento por byte
+
+Cálculo:
+
+```text
+Capacidade = 2^48 bytes
+
+Vamos simplificar:
+2^40 = 1 Terabyte (TB)
+2^48 = 2^8 × 2^40 = 256 × 1 TB = 256 TB
+```
+
+> **Resultado**: Um processador moderno (Intel Core, AMD Ryzen) endereça 256 terabytes de RAM.
+
+#### 18.6.3 - Cálculo "Fácil"
+
+|Se você quer endereçar|Precisa de bits|Fórmula|
+|----------------------|---------------|-------|
+|1 KB|10 bits|2^10 = 1024|
+|1 MB|20 bits|2^20 = 1.048.576|
+|1 GB|30 bits|2^30 = 1.073.741.824|
+|1 TB|40 bits|2^40 = 1.099.511.627.776|
+|1 PB|50 bits|2^50 ≈ 1.125.899.906.842.624|
+|16 EB|64 bits|2^64 ≈ 1,84 × 10^19|
+
+### 18.7 - Largura de Banda
+
+**A Fórmula Mágica (simplificada)**
+$Largura de Banda (GB/s) = Frequência (MHz) × Largura do Barramento (bytes) × Fator de Transferência$
+
+Mas para **memória RAM (DDR)**, usamos uma versão ainda mais simples:
+$$
+Largura-de-Banda (GB/s) = \frac{(Frequência-do-clock-real) × 2 × Largura-do-barramento (bytes)}{1000}
+$$
+
+#### 18.7.1 - Exemplo 1: Memória DDR4-3200 (o mais comum hoje)
+
+Dados:
+
+* Frequência nominal: 3200 MHz (mas atenção: isso já é o transfer rate)
+* Largura do barramento: 64 bits = 8 bytes (porque 64 ÷ 8 = 8)
+* Fator DDR: 2 (transfere dados nas duas bordas do clock)
+
+Cálculo passo a passo:
+
+```text
+Largura de banda = 3200 × 8 ÷ 1000
+Largura de banda = 25.600 ÷ 1000
+Largura de banda = 25,6 GB/s por canal
+Resultado: Um pente de memória DDR4-3200 em single channel transfere 25,6 GB por segundo.
+
+Se for dual channel (dois pentes idênticos), dobra:
+
+25,6 × 2 = 51,2 GB/s
+```
+
+#### 18.7.2 - Exemplo 2: GPU NVIDIA RTX 4090 (memória GDDR6X)
+
+Dados:
+
+* Frequência efetiva: 21.000 MHz (21 GHz)
+* Largura do barramento: 384 bits = 48 bytes (384 ÷ 8)
+* Fator GDDR: já incluso
+
+Cálculo:
+
+```text
+21.000 × 48 ÷ 1000 = 1.008.000 ÷ 1000 = 1.008 GB/s
+
+Resultado: 1.008 GB/s, ou ≈ 1 TB/s. 
+Por isso GPU é tão rápida em jogos e IA.
+```
+
+#### 18.7.3 - Analogia Fácil: A "Estrada e os Carros"
+
+Imagine que você quer medir quantos livros (dados) passam por uma estrada por segundo.
+
+|Conceito|Analogia|Exemplo numérico|
+|--------|--------|----------------|
+|Frequência (MHz)|Velocidade dos carros (km/h)|3200 carros/hora|
+|Largura do barramento (bytes)|Quantas pistas a estrada tem|8 pistas (64 bits)|
+|Fator DDR|Carros que andam nos dois sentidos ao mesmo tempo|Dobra a capacidade|
+|Largura de banda (GB/s)|Total de livros transportados por segundo|25,6 bilhões de livros/segundo|
+
+## 19 - E/S Mapping e DMA
+
+Periféricos não se conectam diretamente ao barramento do sistema por três razões:
+
+* existe uma variedade enorme de tipos de dispositivo com lógicas completamente diferentes;
+* periféricos são muito mais lentos que a CPU — usar o barramento rápido para falar com uma impressora desperdiçaria capacidade;
+* dispositivos usam codificações, tensões e protocolos distintos
+
+> **A solução é o Módulo de E/S, que atua como tradutor universal: faz controle e sincronização, gerencia um buffer de dados (para compensar diferenças de velocidade), detecta erros e gera interrupções quando o periférico termina.** 
+
+Há três formas de realizar transferências de E/S, com trade-offs distintos:
+
+### 19.1 - E/S Programada (Polling) - O "Policial de Trânsito"
+
+A CPU envia o dado ao dispositivo e entra em um **loop de busy-wait** — *fica verificando constantemente se o dispositivo terminou ('você terminou? você terminou?')*. Durante todo esse tempo, a **CPU não faz nada útil**. Para uma impressora que leva 5 segundos, centenas de milhões de ciclos são desperdiçados. Ainda é usado em microcontroladores simples (Arduino, PIC) onde não há outra tarefa durante a espera e onde a simplicidade é mais importante que a eficiência.
+
+```c
+// Pseudocódigo para ler um sensor
+while (TRUE) {
+    while (!pronto);  // espera ocupada (busy-wait)
+    dado = porta_dados;
+    processa(dado);
+}
+```
+
+### 19.2 - E/S por Interrupção — A CPU é Avisada Quando o Dispositivo Termina
+
+Em vez de esperar em loop, a CPU continua executando outros programas enquanto o dispositivo opera. Quando o periférico termina, ele levanta o sinal IRQ (Interrupt ReQuest) no pino de interrupção da CPU. O ciclo completo tem 8 etapas:
+
+* CPU executa o programa normalmente.
+* Periférico ativa o pino IRQ (*teclado pressiona tecla, impressora termina página etc.*).
+* Ao final do ciclo de instrução atual, a CPU verifica o sinal IRQ.
+* CPU salva o contexto na pilha (*PUSH do PC e registradores*).
+* CPU consulta a tabela de vetores de interrupção para encontrar o endereço da ISR.
+* ISR (*Interrupt Service Routine*) é executada — lê o dado do teclado, confirma a impressão etc.
+* CPU restaura o contexto (POP dos registradores).
+* Programa original retoma exatamente de onde parou — como se nada tivesse acontecido.
+
+#### 19.2.1 - IRQ, ISR, Vetor de Interrupção e Contexto Salvo
+
+Imagine uma redação de jornal (a CPU) que pode ser interrompida por eventos urgentes:
+
+|Conceito|Analogia Jornalística|Definição Resumida|
+|--------|---------------------|------------------|
+|IRQ|O toque do telefone|O sinal físico que pede atenção|
+|ISR|O manual "o que fazer quando tocar"|A função que atende a interrupção|
+|Vetor de Interrupção|A lista de contatos: "se for o fulano, ligar para o setor X"|A tabela que mapeia IRQ → ISR|
+|Contexto Salvo|Anotar em qual parágrafo você estava antes de atender|O estado da CPU antes da interrupção|
+
+##### 19.2.1.1 - IRQ (Interrupt Request) - O "Sinal de Alerta"
+
+**Definição Técnica e Características**
+Um sinal elétrico enviado por um dispositivo (ou pelo controlador de interrupções) para a CPU, indicando que ele precisa de atenção imediata.
+
+* **Físico**: Linha dedicada no barramento (IRQ0, IRQ1... IRQ15 no PC clássico) ou mensagem via bus (MSI - Message Signaled Interrupts)
+* **Níveis**: Dois tipos principais:
+  * **Edge-triggered**: Detecta a borda de subida/descida do sinal
+  * **Level-triggered**: Detecta o nível lógico (alto/baixo) enquanto mantido
+
+##### 19.2.1.2 - ISR (Interrupt Service Routine) - O "Atendente de Emergência"
+
+**Definição Técnica**
+Uma função especial do kernel (ou driver) que é executada quando uma IRQ específica ocorre. Deve ser rápida e não bloqueante. Sua **Regras de Ouro** da ISR.
+
+|Regra|Por que?|O que acontece se violar?|
+|-----|--------|-------------------------|
+|Nunca dormir/bloquear|Outras IRQs podem ficar esperando|Sistema trava ("interrupt context deadlock")|
+|Ser extremamente rápida|IRQs de maior prioridade são adiadas|Perda de dados, sistema "lagado"|
+|Não chamar `printk()`/`printf()`|Essas funções podem dormir|Kernel panic|
+|Desabilitar IRQs localmente se necessário|Evitar reentrância (mesma IRQ ocorrer de novo)|Stack overflow|
+
+##### 19.2.1.3 - Vetor de Interrupção - O "Índice da Emergência"
+
+**Definição Técnica e Estrutura**
+Uma tabela (array) na memória que contém os endereços de todas as ISRs. Cada IRQ (ou exceção) tem uma entrada (vetor) na tabela.
+
+```text
+Memória (início da RAM)
+┌──────────────────────────────────────────────┐
+│ Vetor 0 (Divide by Zero)  → ISR_divide0()    │
+│ Vetor 1 (Single Step)     → ISR_debug()      │
+│ Vetor 2 (NMI)             → ISR_panic()      │
+│ Vetor 3 (Breakpoint)      → ISR_bp()         │
+│ ...                                          │
+│ Vetor 32 (IRQ0 - Timer)   → ISR_timer()      │
+│ Vetor 33 (IRQ1 - Teclado) → ISR_teclado()    │
+│ Vetor 34 (IRQ2 - Cascade) → ISR_cascade()    │
+│ ...                                          │
+│ Vetor 128 (Syscall)       → syscall_handler()│
+└──────────────────────────────────────────────┘
+```
+
+##### 19.2.1.4 - Contexto Salvo - O "Checkpoint da CPU"
+
+**Definição Técnica e Porque Salvar o Contexto?**
+O conjunto completo de registradores da CPU no momento exato em que a interrupção ocorreu. É salvo antes de executar a ISR e restaurado depois.
+
+```assembly
+; Programa original
+mov rax, 100    ; RAX = 100
+add rax, 50     ; RAX = 150
+
+; --- IRQ ocorre aqui, RAX = 150 ---
+; ISR usa RAX para seus próprios cálculos
+mov rax, 999    ; RAX = 999
+; ... faz coisas ...
+
+; --- Volta para o programa ---
+; Programa espera RAX = 150, mas agora RAX = 999
+; PRÓXIMA INSTRUÇÃO USA RAX CORROMPIDO!
+```
+
+>**Com salvamento**: RAX é restaurado para 150 antes de voltar.
+
+#### 19.2.1 - Tipos de interrupção
+
+* Mascarável (pino INTR): gerada por periféricos normais (teclado, mouse, disco, rede). Pode ser desabilitada por software (instrução CLI). Mais comum.
+* Não-mascarável (pino NMI): não pode ser ignorada. Usada para falhas críticas de hardware (erro de paridade na RAM, watchdog timer).
+* De software (instrução INT n): gerada por software para chamar o SO (syscall no Linux, INT 21h no MS-DOS).
+* Exceções (geradas internamente pela CPU): divisão por zero (#DE), page fault (#PF), instrução inválida (#UD).
+
+#### 19.2.2 - Controlador de interrupções (PIC/APIC)
+
+a CPU x86 tem apenas um pino INTR. O PIC 8259A multiplexava até 8 linhas (IRQ0–IRQ7), com IRQ0 (timer) tendo maior prioridade. Sistemas modernos usam o APIC integrado ao processador, suportando dezenas de linhas de IRQ e múltiplos processadores.
+
+
+|Método|Analogia|Papel da CPU|
+|------|--------|------------|
+|E/S Programada|Você vai pessoalmente até a biblioteca e espera cada livro ser encontrado, folha por folha|Totalmente ocupada, não faz mais nada|
+|E/S por Interrupção|Você pede para te avisarem quando um livro estiver pronto. A cada livro, tocam a campainha|Livre entre os livros, mas interrompida a cada unidade|
+|DMA|Você contrata um estagiário (DMA) que traz 100 livros de uma vez e só te acorda quando termina|Livre o tempo todo, só é acordada no final|
+
+### 19.X - Tabela Comparativa Completa
+
+|Característica|E/S Programada (Polling)|E/S por Interrupção|DMA (Direct Memory Access)|
+|--------------|------------------------|-------------------|--------------------------|
+|CPU participa da transferência?|Sim, totalmente|Sim, mas só no início e fim de cada dado|Não (só no início e fim do bloco)|
+|Estado da CPU durante E/S|Bloqueada (busy-wait / polling)|Livre (executa outros processos)|Livre (executa outros processos)|
+|Número de interrupções|Zero (nenhuma)|1 por byte/palavra|1 por bloco inteiro|
+|Hardware extra necessário|Nenhum|Controlador de interrupções (PIC, APIC)|Controlador DMA (DMAC)|
+|Overhead da CPU por byte|Alto (milhares de ciclos)|Médio (centenas de ciclos para salvar contexto)|Baixo (apenas configuração e finalização)|
+|Latência até o dado estar pronto|Baixa (CPU verifica constantemente)|Depende da prioridade da IRQ|Depende do DMA + IRQ final|
+|Transferência para memória|Via registrador da CPU|Via registrador da CPU|Direta (device → RAM, sem CPU)|
+|Complexidade de programação|Baixa (loop simples)|Média (vetor de interrupção, ISR)|Alta (configurar DMAC, descritores)|
+|Uso típico|Sensores simples, GPIO, sistemas embarcados muito pequenos|Teclado, mouse, porta serial, rede (parte do controle)|SSD, HDD, GPU, USB, áudio, Ethernet (dados massivos)|
+
 ## 19 - Arquiteturas Paralelas
 
 ### 19.1 - Taxonomia de Flynn
@@ -1657,6 +1968,19 @@ Trabalha com multiplas instruções operando no mesmo dado. Não é muito utiliz
 #### 19.1.4 - MIMD - Multiple Instruction, Multiple Data
 
 Multiplos processadores executam suas próprias instruções em seus próprios dados. Os computadores multi-core hoje trabalham dessa forma, servidores NUMA e clusters também.
+
+#### 19.1.5 - Tabela Resumo: Classificando os Sistemas
+
+|Sistema|Fluxo Instrução|Fluxo Dado|Classificação|Justificativa|
+|-------|---------------|----------|-------------|-------------|
+|GPU (NVIDIA/AMD)|Único (dentro do warp)|Múltiplo|SIMD (ou SIMT)|32 threads executam a mesma instrução em dados diferentes|
+|SMP (Symmetric Multiprocessing)|Múltiplo|Múltiplo|MIMD|Cada core executa programa independente|
+|Cluster|Múltiplo|Múltiplo|MIMD|Cada nó executa processo independente|
+|Processador Vetorial|Único|Múltiplo|SIMD|Uma instrução opera em um vetor inteiro|
+|CPU Multi-core (Ryzen, Core)|Múltiplo|Múltiplo|MIMD|Cores independentes|
+|CPU Single-core (8086)|Único|Único|SISD|Uma instrução, um dado por vez|
+|Máquina Pipeline|Único|Único|SISD|Apenas sobreposição temporal|
+|Processador Superescalar|Único|Único|SISD|Ainda é instrução única por core|
 
 ### 19.2 - Paralelismo (Computação Paralela) ILP
 
