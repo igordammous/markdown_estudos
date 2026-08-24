@@ -402,3 +402,287 @@ Conforme previsto no plano de aula, a elaboração de um inventário básico de 
 |Rede Wi-Fi|Ataque de interceptação|WEP ou senha fraca|Alto|WPA3; senha complexa; guest network|
 |Funcionários|Phishing; engenharia social|Falta de treinamento|Médio|Treinamento periódico; simulações de phishing|
 |Documentos físicos|Incêndio; extravio|Sem digitalização; sem cópia|Médio|Digitalização; cofre; seguro|
+
+### 1.20 - Confidencialidade
+
+|Conceito|Explicação|
+|--------|----------|
+|Conceito|A confidencialidade busca garantir que determinada informação seja acessada somente por pessoas, sistemas ou processos autorizados. É o princípio que assegura que os dados estejam disponíveis apenas para aqueles que têm o direito legítimo de conhecê-los|
+|Objetivo|Impedir que informações sejam vistas, lidas ou copiadas por indivíduos ou sistemas não autorizados|
+|Analogia|A confidencialidade é como um diário com cadeado. Apenas a pessoa que tem a chave pode ler o que está escrito. Da mesma forma, apenas pessoas autorizadas devem ter acesso a informações confidenciais. Se o diário cair em mãos erradas (vazamento), a confidencialidade foi quebrada|
+|Exemplo|Como aluno só você e o professor podem ver as notas e faltas, se outro colega ver a confidencialidade falhou|
+
+Controles relacionados:
+
+* Autenticação (quem é você?)
+* Controle de acesso (o que você pode ver?)
+* Criptografia (tornar a informação ilegível para não autorizados)
+* Classificação das informações (público, interno, confidencial, secreto)
+* Restrição de permissões (princípio do menor privilégio)
+
+Exemplo de comprometimento:
+
+* Um vazamento de cadastro de clientes para um concorrente
+* Um funcionário que acessa informações de RH sem autorização
+* Dados de cartão de crédito expostos em um sistema público
+
+### 1.21 - Integridade
+
+|Conceito|Explicação|
+|--------|----------|
+|Conceito|A integridade busca garantir que uma informação permaneça correta, completa e sem alterações indevidas, seja por ação acidental, maliciosa ou por falhas técnicas. A informação deve ser exatamente aquilo que se espera que seja|
+|Objetivo|Proteger a informação contra modificações não autorizadas ou acidentais, assegurando sua precisão e confiabilidade|
+|Analogia|A integridade é como um contrato assinado. Se alguém rasura ou altera uma cláusula sem autorização, o contrato perde sua integridade. O conteúdo não é mais confiável. Um carimbo ou lacração (como uma assinatura digital) pode garantir que o documento não foi alterado depois de assinado|
+|Exemplo|O professor lança a nota 7,5. Depois, por erro ou fraude, alguém altera para 9,5 no banco de dados. A integridade foi violada, porque a informação foi modificada sem autorização ou de forma incorreta|
+
+Controles relacionados:
+
+* Controle de permissões (quem pode alterar o quê)
+* Validação de dados (entrada de dados correta)
+* Registros de alterações (logs de auditoria)
+* Assinaturas digitais (garantia de autoria e integridade)
+* Mecanismos de verificação (checksums, hashes)
+
+Exemplo de comprometimento:
+
+* Alguém modifica o valor de uma transferência bancária de R$100,00 para R$10.000,00
+* Um funcionário altera as notas de um aluno no sistema acadêmico
+* Dados de um prontuário médico são alterados sem registro
+
+### 1.22 - Disponibilidade
+
+|Conceito|Explicação|
+|--------|----------|
+|Conceito|A disponibilidade garante que informações, sistemas e serviços estejam acessíveis aos usuários autorizados quando e onde for necessário. A informação deve estar disponível no momento em que for requerida|
+|Objetivo|Garantir que as informações e os sistemas estejam operacionais e acessíveis para uso legítimo|
+|Analogia|A disponibilidade é como uma loja 24 horas. Os clientes esperam que a loja esteja aberta sempre que precisarem comprar algo. Se a loja fecha inesperadamente (indisponibilidade), os clientes ficam frustrados e vão à concorrência. Da mesma forma, se um sistema ou serviço não estiver disponível, os usuários ficam impedidos de realizar seu trabalho|
+|Exemplo|rematrícula realizada pelos alunos no sistema online(SIGA), imagine que no período que foi definido para que seja realizada a rematrícula o sistema deve estar disponível. Caso não funcione por ataques hackers, ou por problemas técnicos, podemos dizer que a disponibilidade foi comprometida|
+
+Controles relacionados:
+
+* Backups (cópias de segurança)
+* Redundância (duplicação de componentes críticos)
+* Monitoramento (detecção de problemas antes que afetem os usuários)
+* Planos de recuperação (procedimentos para restaurar serviços)
+* Continuidade de negócios (estratégias para manter operações)
+* Proteção contra ataques (DDoS, ransomware)
+
+Exemplo de comprometimento:
+
+* Ataque de ransomware que criptografa arquivos
+* Falha em servidor que deixa sistema fora do ar por horas
+* Ataque de negação de serviço (DDoS) que torna site inacessível
+
+### 1.23 - Autenticidade
+
+|Conceito|Explicação|
+|--------|----------|
+|Conceito|A autenticidade permite verificar que uma pessoa, sistema, documento ou mensagem realmente possui a identidade que declara possuir. É a garantia de que a origem de uma informação ou ação é genuína e não falsificada|
+|Objetivo|Assegurar que o emissor ou autor de uma informação ou ação é realmente quem afirma ser|
+|Analogia|A autenticidade é como o RG ou carteira de identidade de uma pessoa. Quando você apresenta seu RG, a pessoa que o verifica pode ter certeza de que você é realmente quem diz ser. Da mesma forma, a autenticidade em sistemas digitais permite comprovar que um usuário é realmente a pessoa que afirma ser|
+|Exemplo prático|Quando você faz um Pix, o sistema bancário verifica sua identidade por meio de senha, biometria ou token. Se um fraudador usar suas credenciais, a autenticidade é violada|
+
+Controles relacionados:
+
+* Autenticação forte (senhas, biometria, tokens, 2FA)
+* Certificados digitais
+* Assinaturas eletrônicas
+* Protocolos de verificação de identidade
+
+Exemplo de comprometimento:
+
+* Um invasor usa credenciais roubadas para acessar um sistema como se fosse um funcionário legítimo
+* Um e-mail falso enviado se passando pelo diretor da empresa (phishing)
+* Uma pessoa se passa por outra em uma chamada de suporte técnico (engenharia social)
+
+### 1.24 - Irretratabilidade / Não-Repúdio
+
+|Conceito|Explicação|
+|--------|----------|
+|Conceito|O não repúdio (ou irretratabilidade) busca impedir que alguém negue posteriormente a autoria ou realização de determinada ação, quando existem evidências confiáveis que comprovem essa ação. É a garantia de que uma pessoa não pode negar que executou uma operação|
+|Objetivo|Fornecer provas irrefutáveis de que uma ação foi realizada por determinada pessoa, em determinado momento|
+|Analogia|O não repúdio é como assinar um cheque. Quando você assina um cheque, não pode depois negar que o emitiu, porque sua assinatura está lá como prova. Em sistemas digitais, a assinatura digital e os logs de auditoria funcionam como essa "assinatura" que comprova a autoria de uma ação|
+|Exemplo prático|Quando você assina um contrato digitalmente com um certificado digital (como o e-CPF ou e-CNPJ), não pode depois dizer que não foi você quem assinou. O sistema tem evidências criptográficas que comprovam sua autoria|
+
+Controles relacionados:
+
+* Logs de auditoria (registros detalhados de ações)
+* Assinaturas digitais (comprovação de autoria)
+* Certificados digitais (identificação única e verificável)
+* Carimbo de data e hora (timestamping)
+* Trilhas de auditoria (cadeia de custódia das evidências)
+
+Exemplo de comprometimento:
+
+* Um funcionário realiza uma transferência bancária indevida e depois afirma que não foi ele
+* Um desenvolvedor altera código em produção e nega ter feito a alteração
+* Um gerente aprova um pagamento e depois diz que não autorizou
+
+### 1.25 - Legalidade
+
+|Conceito|Explicação|
+|--------|----------|
+|Conceito|A legalidade estabelece que o tratamento e a utilização das informações devem respeitar a legislação e as normas aplicáveis ao contexto da organização. É o princípio que vincula a segurança da informação ao cumprimento das leis|
+|Objetivo|Assegurar que as atividades relacionadas à informação estejam em conformidade com leis, regulamentos e normas setoriais|
+|Analogia|A legalidade é como as leis de trânsito. Mesmo que você tenha um carro muito seguro e seja um ótimo motorista, se você não respeitar as leis de trânsito, estará cometendo uma infração. Da mesma forma, uma empresa pode ter a melhor segurança tecnológica, mas se não cumprir a legislação aplicável, estará em situação de não conformidade|
+
+Controles relacionados:
+
+* Políticas internas alinhadas à legislação
+* Auditorias de conformidade
+* Mapeamento de leis aplicáveis (LGPD, GDPR, etc.)
+* Procedimentos de tratamento de dados pessoais
+* Documentação de processos
+* Treinamento de colaboradores sobre obrigações legais
+
+Exemplos de legalidade:
+
+* Cumprir a Lei Geral de Proteção de Dados Pessoais (LGPD) no tratamento de dados de clientes
+* Respeitar normas setoriais (ex: Banco Central para instituições financeiras, ANVISA para saúde)
+* Manter registros de operações conforme exigido por lei
+* Obter consentimento para coleta e uso de dados pessoais
+* Cumprir prazos legais para retenção e descarte de documentos
+
+Exemplo de comprometimento:
+
+* Uma empresa armazena dados pessoais sem consentimento dos titulares
+* Uma instituição financeira não mantém registros conforme exigido pelo Banco Central
+* Um hospital compartilha prontuários de pacientes sem autorização (quebra de sigilo médico)
+
+### 1.26 - Relação Entre os Princípios
+
+Quando a empresa fala em segurança e em proteção de dados, ela está tentando assegurar que a informação não caia em mãos erradas, não seja alterada indevidamente e esteja acessível quando for necessária *(PECK et al., 2021)*. Esses princípios não funcionam de forma isolada. Eles se complementam e se inter-relacionam:
+
+```text
+Confidencialidade   →   Quem pode ver?
+Integridade         →   Está correto e íntegro?
+Disponibilidade     →   Está acessível quando necessário?
+Autenticidade       →   Quem realmente é o autor/emissor?
+Não Repúdio         →   A pessoa pode negar que fez?
+Legalidade          →   Está de acordo com a lei?
+```
+
+Exemplo integrado em uma transação bancária online:
+
+|Princípio|Aplicação na transação|O que acontece se falhar?|
+|---------|----------------------|-------------------------|
+|Confidencialidade|Os dados da transação (valor, conta) são visíveis apenas para o cliente e o banco|Hackers veem seus dados financeiros|
+|Integridade|O valor transferido é exatamente o que você digitou|Alguém altera R$100,00 para R$10.000|
+|Disponibilidade|O sistema está funcionando quando você precisa transferir|O sistema está fora do ar e você não consegue pagar|
+|Autenticidade|O banco tem certeza de que é você quem está transferindo|Um fraudador usa sua conta para transferir dinheiro|
+|Não Repúdio|Você não pode negar que fez a transferência|Você transfere e depois alega que foi hackeado|
+|Legalidade|A transferência respeita as regras do Banco Central|A transferência é feita em desacordo com a legislação|
+
+### Exemplos Práticos de Comprometimento
+
+#### Situação 1: Empresa que usa sistema ERP e Pasta Corporativa
+
+Para compreendermos melhor estes conceitos vamos pensar em uma empresa que usa um sistema ERP (Enterprise Resource Planning) para compras e faturamento e uma pasta corporativa, na nuvem ou servidor, para guardar contratos, notas, planilhas e relatórios. Esse conjunto é um ativo crítico: se vazar, se é alterado, ou se ficar fora do ar, a organização sofrerá os impactos no mesmo instante. Agora pense como uma mesma situação, bem vida real, pode ir quebrando a CIA e também os novos amigos, tudo de forma encadeada (PECK et al., 2021):
+
+```markdown
+1. O começo vinculado a ameaça + vulnerabilidade.
+
+* Chega um e-mail normal: NF atualizada com boleto com vencimento hoje.
+* O funcionário abre o e-mail porque está na correria e não se preocupa com a segurança.
+
+> Vulnerabilidades: falta de treinamento, permissões amplas demais, sem MFA, máquina liberada para instalar qualquer coisa, e logs pouco acompanhados. Até aqui não quebrou nada ainda, mas a porta ficou aberta.
+
+2. Confidencialidade é a primeira a cair.
+
+* O atacante pega a credencial ou acesso remoto e entra na pasta corporativa do ERP.
+* Ele copia a lista de fornecedores, contratos, dados de clientes colaboradores além dos relatórios.
+
+> Violação de Confidencialidade: informação foi acessada por quem não devia (PECK et al., 2021).
+
+3. Autenticidade, alguém vira você.
+
+* Com a sua conta, ele manda mensagem como se fosse você ou um gestor e aprova esse pagamento urgente.
+* Para quem recebe, parece legítimo, é o e-mail certo, a assinatura certa, o jeito de escrever parecido.
+
+> Violação de Autenticidade: não dá mais para ter certeza de que quem está falando e quem diz ser.
+
+4. Integridade, o dado continua lá, mas agora não é mais confiável.
+
+* O atacante altera o cadastro bancário do fornecedor no ERP ou troca o PDF da nota ou contrato por outro quase igual.
+* Resultado: o pagamento sai, mas vai para a conta errada.
+
+> Violação de Integridade: o dado foi modificado indevidamente e passa a gerar decisão errada e prejuízo.
+
+5. Não-repúdio: agora ninguém consegue provar quem fez. Se a empresa usa conta compartilhada, por exemplo sac@ ou não tem trilha de auditoria bem configurada, vira um caos, imagine:
+
+* Foi você que aprovou?
+* Não, foi o sistema!
+* O usuário que foi registrado para a operação é o seu!
+
+> Quebra de Não-Repúdio: falta evidência confiável para atribuir ações com segurança (PECK et al., 2021).
+
+6. Disponibilidade, o golpe fecha o ciclo.
+
+* Para ganhar tempo ou pressionar, o atacante dispara ransomware, apaga versões, derruba servidor, bloqueia acesso ao ERP.
+* A empresa para: não emite nota, não consulta cadastro, não aprova compra, não trabalha.
+
+> Violação de Disponibilidade: o ativo até existe, mas está indisponível quando o negócio precisa.
+
+7. Legalidade, quando vira incidente de dados
+
+* Se no vazamento havia dados pessoais, a situação sai do problema de TI e vira também problema de conformidade, resposta a incidente, comunicação interna, possível notificação e impacto reputacional.
+
+> Legalidade entra porque proteção de dados é obrigação, e o dano pode ir além do financeiro.
+```
+
+Nesse exemplo, é possível captar a criticidade do que aconteceu. Um **começo** que parece uma situação bem simples, *somente um e-mail convincente + um acesso sem MFA + permissões soltas*, pode virar uma **sequência completa**: **vazou, confidencialidade, fingiram ser você, autenticidade, mexeram nos dados, integridade, ninguém prova nada, não-repúdio, e a operação parou, disponibilidade**, com reflexo direto em legalidade e reputação.
+
+Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente nasce grande, ele começa com um detalhe, como no exemplo um e-mail convincente, uma senha reutilizada, uma permissão aberta demais, e, quando a empresa vê, o problema já atravessou vários ativos e quebrou mais de um pilar da segurança. É por isso que a gente insiste em olhar para ativo + ameaça + vulnerabilidade, essa combinação explica como o risco se forma e mostra que o impacto não é só técnico. Ele vira atraso, prejuízo, retrabalho, perda de confiança e, muitas vezes, dor de cabeça com conformidade e proteção de dados.
+
+#### Situação 2: Vazamento de dados de clientes
+
+|Princípio|Comprometido?|Motivo|
+|---------|-------------|------|
+|Confidencialidade|✓|Dados foram acessados por pessoa não autorizada|
+|Integridade|✗|Os dados permanecem corretos|
+|Disponibilidade|✗|Os dados continuam disponíveis|
+|Autenticidade|✗|A identidade dos dados não foi afetada|
+|Não Repúdio|✗|Não há negação envolvida|
+|Legalidade|✓|Viola LGPD (compartilhamento não autorizado)|
+
+#### Situação 3: Hackers alteram preços em um sistema de vendas
+
+|Princípio|Comprometido?|Motivo|
+|---------|-------------|------|
+|Confidencialidade|✗|Os dados não foram expostos|
+|Integridade|✓|Os preços não estão mais corretos|
+|Disponibilidade|✗|O sistema continua acessível|
+|Autenticidade|✗|A identidade dos dados não foi afetada|
+|Não Repúdio|✗|Não há negação envolvida|
+|Legalidade|✗|Não há lei específica sendo descumprida|
+
+#### Situação 4: Ataque DDoS que derruba o site de uma loja
+
+|Princípio|Comprometido?|Motivo|
+|---------|-------------|------|
+|Confidencialidade|✗|Os dados não foram expostos|
+|Integridade|✗|Os dados permanecem corretos|
+|Disponibilidade|✓|O site está indisponível para os usuários|
+|Autenticidade|✗|A identidade do sistema não foi afetada|
+|Não Repúdio|✗|Não há negação envolvida|
+|Legalidade|✗|Não há lei específica sendo descumprida|
+
+#### Situação 5: Funcionário transfere dinheiro e depois nega ter feito
+
+|Princípio|Comprometido?|Motivo|
+|---------|-------------|------|
+|Confidencialidade|✗|A transação é válida|
+|Integridade|✗|A transação está correta|
+|Disponibilidade|✗|O sistema funcionou|
+|Autenticidade|✗|A identidade do funcionário foi usada|
+|Não Repúdio|✓|O funcionário pode negar a autoria sem provas contrárias|
+|Legalidade|✗|Não há lei específica sendo descumprida|
+
+### Aplicação dos Pilares em Diferentes Componentes
+
+|Componente|Confidencialidade|Integridade|Disponibilidade|Autenticidade|Não Repúdio|Legalidade|
+|----------|-----------------|-----------|---------------|-------------|-----------|----------|
+|Sistemas|Controle de acesso|Validação de dados|Monitoramento|Login/2FA|Logs de ações|Políticas conformes|
+|Bancos de dados|Criptografia|Registros de alteração|Backup|Auditoria de acesso|Trilhas de auditoria|LGPD|
+|Infraestrutura|Segmentação de rede|Atualizações|Redundância|Certificados|Logs de acesso|Normas setoriais|
+|Processos|Classificação|Revisão|Contingência|Assinaturas|Documentação|Regulamentos|
