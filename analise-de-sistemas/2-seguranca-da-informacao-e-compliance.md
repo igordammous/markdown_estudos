@@ -90,6 +90,83 @@ Por exemplo, uma empresa que implementa:
 
 No fim, a lógica é essa, você protege mais e melhor aquilo que, se falhar, realmente mexe com a operação, com a reputação e com o bolso, ou seja, você deve gastar energia no lugar certo. É fundamental reconhecer que os ativos sustentam o funcionamento e a credibilidade da empresa, por isso, as pessoas precisam ser sensibilizadas de forma contínua para cuidar desses ativos no dia a dia, com responsabilidade, atenção e boas práticas de segurança.
 
+#### 1.5.1 - Segurança Física e Lógica
+
+O conceito das camadas lógicas e físicas, baseia-se no pensamento do porque confiar em um único cadeado, a organização monta barreiras em pontos diferentes, tanto na parte física, quanto na parte lógica. A ideia é simples, se uma camada falhar, a outra reduz o estrago e segura o avanço do problema, limitando o alcance do incidente e protegendo o que é mais crítico.
+
+#### 1.5.2 - Segurança por camadas
+
+A segurança não é um produto, mas um processo em camadas. O objetivo é criar barreiras sucessivas que desencorajem, dificultem, discriminem e detenham ameaças antes que elas atinjam os dados corporativos.
+
+* **Camada de Governança e Políticas de Segurança**
+Seguem alguns exemplos que podem ser adotados:
+A. Políticas de Segurança da Informação (PSI): Documento que dita o comportamento esperado dos funcionários.
+B. Contratos e Acordo de Confidencialidade: Cláusulas de confidencialidade com colaboradores e terceiros.
+C. Termos de Uso: Regras para utilização de ativos tecnológicos da empresa.
+D. Adequação à LGPD: Processos de governança de dados pessoais.
+
+Esta é a camada de documentação estabelece as regras do jogo, a conformidade legal, como a LGPD e as sanções. Sem ela, a tecnologia não tem respaldo legal. Observamos que a **Camada de Governança e Políticas de Segurança** é quem é responsável por cada ativo, quais regras valem, acesso, uso aceitável, senhas, backups, resposta a incidentes, como a conformidade será acompanhada e quais consequências existem quando algo ou alguém foge do que foi padronizado. Só que política no papel não controla o risco sozinha, ela precisa virar prática no ambiente real. Por isso, o próximo passo é a Camada Física, onde essas regras se materializam em controles do dia a dia, proteção de salas e equipamentos, controle de entrada e circulação, segurança de infraestrutura, energia e ambientes críticos.
+
+* **Camada Física**
+Vamos ver alguns exemplos de camada física:
+A. Controle de Acesso: Catracas, crachás, leitores biométricos nas portas.
+B. Monitoramento: Câmeras de segurança (CFTV), sensores de movimento.
+C. Segurança Ambiental: Sistemas anti-incêndio, controle de temperatura em Datacenters, nobreaks.
+D. Perímetro Físico: Muros, cercas elétricas, guardas de segurança.
+
+A camada física tem como objetivo a proteção do que é tangível, como por exemplo o servidor. Pense que se alguém consegue chegar perto do equipamento, muita coisa digital acaba perdendo a força. Imagina alguém roubando um servidor! Desligando um nobreak! Abrindo uma porta restrita ou até entrando na sala e mexendo onde não deve!
+
+Não importa se você tem senha forte e sistemas bem configurados, o equipamento some ou para de funcionar, o impacto vem do mesmo jeito. Por isso existem controles como catracas, crachás e biometria, câmeras e sensores, nobreak e controle de temperatura, sistemas anti-incêndio e até muros e vigilância, eles evitam que o problema comece pelo caminho mais fácil, que é o acesso físico.
+
+Só que proteger a porta e o ambiente é só uma parte. Mesmo com tudo trancado e monitorado, ainda existe um risco enorme, alguém entrar com o login de outro da organização. E é aí que a nós passamos para a próxima etapa, a Camada Lógica, que controla quem acessa, quais permissões a pessoa tem e como a empresa identifica os comportamentos suspeitos nos sistemas e na rede.
+
+* Camada Lógica
+Alguns exemplos de Camada Lógica:
+A. **Perímetro ou Rede**: Firewalls, que filtram o tráfego de dados, IPS/IDS (Intrusion Prevention System -Sistema de Prevenção de Intrusões), analisa o tráfego procurando padrões de ataque, como varreduras, exploração de falhas, tentativas de invasão, comandos maliciosos, etc. A diferença entre IDS (detection) que ele avisa e alerta, já o IPS (prevention) avisa e bloqueia. Exemplo: se alguém tenta explorar uma vulnerabilidade conhecida em um servidor web, o IPS pode interromper a conexão e impedir que o ataque avance.
+B. **Endpoint-Host** é qualquer dispositivo final que trabalha conectado ao PC, notebook, servidor, celular corporativo, até máquina virtual. É onde o usuário clica, baixa arquivo, abre e-mail, e por isso costuma ser o primeiro lugar onde problemas começam. Antivírus-Antimalware: é a proteção básica que detecta e bloqueia arquivos maliciosos como vírus, trojans, ransomware. Exemplo: se alguém baixar um PDF que na verdade é malware, o antivírus tenta barrar ou colocar em quarentena.
+C. **EDR - Endpoint Detection and Response** - pense no EDR como um antivírus turbinado + investigação. Ele monitora comportamento do endpoint, processos, conexões, comandos e ajuda a detectar ataque em andamento e responder rápido, como isolar a máquina, matar processo, coletar evidências. Exemplo: um programa começa a criptografar muitos arquivos rapidamente, que é padrão de ransomware. O EDR pode isolar o computador da rede antes de contaminar o restante.
+D. **Aplicação de patches** - atualizações de correção: Patch é atualização que corrige falhas e vulnerabilidades. Sem patch, a empresa fica exposta a ataques. Exemplo: um Windows Chrome desatualizado permite exploração automática, com patch aplicado, aquela porta fecha.
+
+É a camada técnica ou tecnológica, composta por software e hardware que protegem o tráfego e o armazenamento de dados. Que é subdividida em Perímetro de Rede, Rede Interna, Host ou Dispositivo e Aplicação. Para finalizarmos a camada lógica funciona como o controle do ambiente digital, define quem pode entrar, com quais permissões, como os sistemas se defendem e como a organização detecta e responde a comportamentos suspeitos.
+
+* **Camada de Dados**
+
+Alguns exemplos de camada de dados:
+A. Criptografia, torna o dado ilegível sem a chave de descriptografia não terá acesso ao dado.
+B. DLP (Data Loss Prevention), são sistemas que bloqueiam o envio de dados sensíveis, como por exemplo impedir envio de uma planilha de clientes por e-mail.
+C. Backup, são as cópias de segurança.
+
+A **camada de dados é o núcleo e a última linha de defesa**. Se todas as outras falharem e o criminoso tiver acesso ao arquivo, o dado em si deve estar protegido. Pense na camada de dados como o *ponto mais sensível* de toda a segurança da informação, aquilo que realmente tem valor para a organização, como dados pessoais, registros financeiros, contratos, informações estratégicas e tudo o que sustenta decisões e operações.
+
+As práticas como classificação e sensibilidade, mínimo necessário, controle de acesso ao conteúdo, criptografia quando aplicável, backup e versionamento, retenção e prevenção de vazamentos, porque um dado exposto, alterado ou perdido gera impacto direto no negócio e pode trazer consequências legais e reputacionais. Em resumo, proteger dados é proteger o ativo mais valioso.
+
+* **Camada Humana**
+Algumas boas práticas:
+A. Conscientização: é necessário que sejam realizados treinamentos periódicos sobre phishing e Engenharia Social.
+B. Cultura de Segurança: deve ser incentivado o reporte de incidentes sem medo de punição.
+C. Simulações: realizar testes falsos de ataque para treinar a reação dos colaboradores.
+
+Mesmo com camadas bem desenhadas, quem opera tudo são pessoas. É por isso que na camada humana, entram cultura, comportamento, treinamento e consciência de segurança. É a c*amada considerada muitas vezes o elo mais fraco, e uma das mais importantes*, sendo também a primeira linha de defesa. Envolve as pessoas que operam as camadas anteriores.
+
+#### 1.5.3 - Gestão de acesso
+
+Geralmente tudo começa em um ponto central, o acesso. Porque, no fim, quase todo incidente grande tem um ponto em comum, alguém conseguiu entrar onde não devia, fisicamente ou digitalmente, e a partir daí o estrago foi se encadeando. A **gestão de acesso** é um dos pilares mais importantes para a proteção de dados e sistemas em qualquer organização, pois define de forma objetiva *quem pode acessar, o que pode fazer e como essa ação será registrada*.
+
+O modelo AAA, que representa: Autenticação, Autorização e Auditoria, que oferece uma estrutura clara para controlar identidades, permissões e responsabilidades, reduzindo riscos como uso indevido de credenciais, acessos não autorizados e alterações indevidas em informações sensíveis. Para ficar mais claro, vamos usar o exemplo quando você acessa ao sistema de gestão acadêmica.
+
+> **Quem é você? - Autenticação**
+> Você acessa ao portal e faz login com RA + senha. O sistema verifica se o usuário aluno é realmente cadastrado.
+>**O que você pode fazer? - Autorização**
+>Depois de ter autenticado, você consegue consultar notas, frequência, e histórico, mas não consegue alterar nenhuma dessas informações. Já um professor autenticado tem permissão para lançar notas, e a secretaria pode corrigir o cadastro ou registrar matrícula. Ou seja, cada perfil tem permissões diferentes.
+> **O que foi feito e quando? - Auditoria**
+> No sistema de gestão acadêmica tudo fica registrado, em um log de transação indicando que você acessou o histórico às 20h14min, que o Professora Cristina lançou nota na disciplina de Segurança da Informação e Compliance às 10h32min, que a Secretaria alterou dados cadastrais às 15h20min. Esses logs ajudam a detectar fraudes, investigar incidentes e comprovar ações realizadas.
+
+Depois de entender o modelo AAA e o monitoramento, fica mais fácil compreender como a segurança começa pelo básico, primeiro quer saber quem está acessando, o que cada pessoa pode fazer e ter um histórico do que aconteceu caso algo dê errado.
+
+Só que, no mundo real, nem sempre tudo sai como o planejado, alguém pode cair em um phishing, uma senha pode vazar, um sistema pode ter uma falha ou até um serviço pode ficar indisponível.
+
+Na visão de *Peck et al. (2021)*, **não podemos colocar toda a proteção em um único cadeado**. A segurança por camadas, surge, com a ideia de montar várias barreiras trabalhando em conjunto com pessoas, processos e tecnologia, **no caso de uma falha, as outras continuem segurando o problema e diminuindo o impacto**.
+
 ### 1.6 - Compliance
 
 |Recurso|Explicação|
@@ -282,6 +359,19 @@ A classificação e priorização permitem que a organização concentre recurso
 |Alto|Tratamento no curto prazo; atenção da alta gestão|
 |Médio|Tratamento programado; monitoramento contínuo|
 |Baixo|Aceitar ou monitorar; ação se houver recursos disponíveis|
+
+#### 1.14.5 - Phishing
+
+Para compreender melhor o conceito de phishing que é um tipo de golpe em que alguém se passa por uma pessoa ou empresa confiável, para te enganar e fazer você entregar informações, como senha, código do MFA, dados bancários ou clicar em um link com arquivo malicioso.
+
+Como identificar o phishing no dia a dia, sempre observe e fique atento a:
+
+* mensagem com urgência, como último aviso e sua conta será bloqueada
+* link que parece normal, mas o endereço é estranho
+* pedido de senha, código, ou confirmar cadastro
+* anexos inesperados como boleto, NF, currículo, entre outros.
+
+Em resumo, phishing é a engenharia social para roubar acesso ou instalar malware e geralmente apresenta rapidez para a resolução de um problema e contextualiza confiança, ainda falaremos com mais detalhes outra unidade.
 
 ### 1.15 - Relação Entre Ameaça, Vulnerabilidade e Risco
 
