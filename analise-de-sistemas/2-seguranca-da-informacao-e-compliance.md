@@ -98,6 +98,14 @@ O conceito das camadas lógicas e físicas, baseia-se no pensamento do porque co
 
 A segurança não é um produto, mas um processo em camadas. O objetivo é criar barreiras sucessivas que desencorajem, dificultem, discriminem e detenham ameaças antes que elas atinjam os dados corporativos.
 
+##### 1.5.2.1 - Governança
+
+|Recurso|Explicação|
+|-------|----------|
+|Conceito|Governança define como a organização estabelece responsabilidades, prioridades, processos de decisão e mecanismos de acompanhamento. No contexto da tecnologia, a governança ajuda a garantir que os recursos tecnológicos sejam utilizados de maneira alinhada aos objetivos e aos riscos da organização|
+|Exemplo|A governança estabelece quem tem autoridade para aprovar a compra de um novo sistema, quem é responsável pela segurança dos dados, como as decisões sobre investimentos em TI são tomadas e como os resultados são monitorados|
+|Analogia|A governança é como a constituição de um país. Ela define quem toma as decisões, quais são os direitos e deveres, como as leis são criadas e como o poder é distribuído. Sem governança, as decisões são tomadas de forma caótica e sem alinhamento com os objetivos maiores da organização|
+
 * **Camada de Governança e Políticas de Segurança**
 Seguem alguns exemplos que podem ser adotados:
 A. Políticas de Segurança da Informação (PSI): Documento que dita o comportamento esperado dos funcionários.
@@ -107,8 +115,24 @@ D. Adequação à LGPD: Processos de governança de dados pessoais.
 
 Esta é a camada de documentação estabelece as regras do jogo, a conformidade legal, como a LGPD e as sanções. Sem ela, a tecnologia não tem respaldo legal. Observamos que a **Camada de Governança e Políticas de Segurança** é quem é responsável por cada ativo, quais regras valem, acesso, uso aceitável, senhas, backups, resposta a incidentes, como a conformidade será acompanhada e quais consequências existem quando algo ou alguém foge do que foi padronizado. Só que política no papel não controla o risco sozinha, ela precisa virar prática no ambiente real. Por isso, o próximo passo é a Camada Física, onde essas regras se materializam em controles do dia a dia, proteção de salas e equipamentos, controle de entrada e circulação, segurança de infraestrutura, energia e ambientes críticos.
 
-* **Camada Física**
-Vamos ver alguns exemplos de camada física:
+###### 1.5.2.1.1 - Compliance
+
+|Recurso|Explicação|
+|-------|----------|
+|Conceito|Compliance significa o compromisso de uma organização em atuar de acordo com leis, normas, regulamentos, contratos, políticas internas e princípios éticos aplicáveis às suas atividades. Na área de tecnologia, envolve a conformidade com legislações como a LGPD, controle de acesso adequado, utilização correta de softwares e licenças, entre outros|
+|Analogia|O compliance é como as regras de trânsito. Elas existem para organizar o fluxo, prevenir acidentes e garantir que todos se comportem de maneira previsível e segura. Dirigir um carro potente (ter tecnologia avançada) não adianta se você não respeitar as leis de trânsito (não cumprir as regras). Da mesma forma, uma empresa pode ter a melhor tecnologia de segurança, mas se não cumprir a legislação, estará em situação de não conformidade|
+
+Exemplos na área de tecnologia:
+
+* Cumprir a Lei Geral de Proteção de Dados Pessoais (LGPD)
+* Manter registros de auditoria adequados
+* Garantir que softwares utilizados estejam com licenças válidas
+* Implementar controles de acesso conforme políticas internas
+* Realizar auditorias periódicas
+
+##### 1.5.2.2 - Camada Física
+
+* Vamos ver alguns exemplos de camada física:
 A. Controle de Acesso: Catracas, crachás, leitores biométricos nas portas.
 B. Monitoramento: Câmeras de segurança (CFTV), sensores de movimento.
 C. Segurança Ambiental: Sistemas anti-incêndio, controle de temperatura em Datacenters, nobreaks.
@@ -120,8 +144,9 @@ Não importa se você tem senha forte e sistemas bem configurados, o equipamento
 
 Só que proteger a porta e o ambiente é só uma parte. Mesmo com tudo trancado e monitorado, ainda existe um risco enorme, alguém entrar com o login de outro da organização. E é aí que a nós passamos para a próxima etapa, a Camada Lógica, que controla quem acessa, quais permissões a pessoa tem e como a empresa identifica os comportamentos suspeitos nos sistemas e na rede.
 
-* Camada Lógica
-Alguns exemplos de Camada Lógica:
+##### 1.5.2.3 - Camada Lógica
+
+* Alguns exemplos de Camada Lógica:
 A. **Perímetro ou Rede**: Firewalls, que filtram o tráfego de dados, IPS/IDS (Intrusion Prevention System -Sistema de Prevenção de Intrusões), analisa o tráfego procurando padrões de ataque, como varreduras, exploração de falhas, tentativas de invasão, comandos maliciosos, etc. A diferença entre IDS (detection) que ele avisa e alerta, já o IPS (prevention) avisa e bloqueia. Exemplo: se alguém tenta explorar uma vulnerabilidade conhecida em um servidor web, o IPS pode interromper a conexão e impedir que o ataque avance.
 B. **Endpoint-Host** é qualquer dispositivo final que trabalha conectado ao PC, notebook, servidor, celular corporativo, até máquina virtual. É onde o usuário clica, baixa arquivo, abre e-mail, e por isso costuma ser o primeiro lugar onde problemas começam. Antivírus-Antimalware: é a proteção básica que detecta e bloqueia arquivos maliciosos como vírus, trojans, ransomware. Exemplo: se alguém baixar um PDF que na verdade é malware, o antivírus tenta barrar ou colocar em quarentena.
 C. **EDR - Endpoint Detection and Response** - pense no EDR como um antivírus turbinado + investigação. Ele monitora comportamento do endpoint, processos, conexões, comandos e ajuda a detectar ataque em andamento e responder rápido, como isolar a máquina, matar processo, coletar evidências. Exemplo: um programa começa a criptografar muitos arquivos rapidamente, que é padrão de ransomware. O EDR pode isolar o computador da rede antes de contaminar o restante.
@@ -129,9 +154,9 @@ D. **Aplicação de patches** - atualizações de correção: Patch é atualiza�
 
 É a camada técnica ou tecnológica, composta por software e hardware que protegem o tráfego e o armazenamento de dados. Que é subdividida em Perímetro de Rede, Rede Interna, Host ou Dispositivo e Aplicação. Para finalizarmos a camada lógica funciona como o controle do ambiente digital, define quem pode entrar, com quais permissões, como os sistemas se defendem e como a organização detecta e responde a comportamentos suspeitos.
 
-* **Camada de Dados**
+##### 1.5.2.4 - Camada de Dados
 
-Alguns exemplos de camada de dados:
+* Alguns exemplos de camada de dados:
 A. Criptografia, torna o dado ilegível sem a chave de descriptografia não terá acesso ao dado.
 B. DLP (Data Loss Prevention), são sistemas que bloqueiam o envio de dados sensíveis, como por exemplo impedir envio de uma planilha de clientes por e-mail.
 C. Backup, são as cópias de segurança.
@@ -140,7 +165,8 @@ A **camada de dados é o núcleo e a última linha de defesa**. Se todas as outr
 
 As práticas como classificação e sensibilidade, mínimo necessário, controle de acesso ao conteúdo, criptografia quando aplicável, backup e versionamento, retenção e prevenção de vazamentos, porque um dado exposto, alterado ou perdido gera impacto direto no negócio e pode trazer consequências legais e reputacionais. Em resumo, proteger dados é proteger o ativo mais valioso.
 
-* **Camada Humana**
+##### 1.5.2.5 - Camada Humana
+
 Algumas boas práticas:
 A. Conscientização: é necessário que sejam realizados treinamentos periódicos sobre phishing e Engenharia Social.
 B. Cultura de Segurança: deve ser incentivado o reporte de incidentes sem medo de punição.
@@ -148,7 +174,7 @@ C. Simulações: realizar testes falsos de ataque para treinar a reação dos co
 
 Mesmo com camadas bem desenhadas, quem opera tudo são pessoas. É por isso que na camada humana, entram cultura, comportamento, treinamento e consciência de segurança. É a c*amada considerada muitas vezes o elo mais fraco, e uma das mais importantes*, sendo também a primeira linha de defesa. Envolve as pessoas que operam as camadas anteriores.
 
-#### 1.5.3 - Gestão de acesso
+###### 1.5.2.5.1 - Gestão de acesso
 
 Geralmente tudo começa em um ponto central, o acesso. Porque, no fim, quase todo incidente grande tem um ponto em comum, alguém conseguiu entrar onde não devia, fisicamente ou digitalmente, e a partir daí o estrago foi se encadeando. A **gestão de acesso** é um dos pilares mais importantes para a proteção de dados e sistemas em qualquer organização, pois define de forma objetiva *quem pode acessar, o que pode fazer e como essa ação será registrada*.
 
@@ -167,38 +193,7 @@ Só que, no mundo real, nem sempre tudo sai como o planejado, alguém pode cair 
 
 Na visão de *Peck et al. (2021)*, **não podemos colocar toda a proteção em um único cadeado**. A segurança por camadas, surge, com a ideia de montar várias barreiras trabalhando em conjunto com pessoas, processos e tecnologia, **no caso de uma falha, as outras continuem segurando o problema e diminuindo o impacto**.
 
-### 1.6 - Compliance
-
-|Recurso|Explicação|
-|-------|----------|
-|Conceito|Compliance significa o compromisso de uma organização em atuar de acordo com leis, normas, regulamentos, contratos, políticas internas e princípios éticos aplicáveis às suas atividades. Na área de tecnologia, envolve a conformidade com legislações como a LGPD, controle de acesso adequado, utilização correta de softwares e licenças, entre outros|
-|Analogia|O compliance é como as regras de trânsito. Elas existem para organizar o fluxo, prevenir acidentes e garantir que todos se comportem de maneira previsível e segura. Dirigir um carro potente (ter tecnologia avançada) não adianta se você não respeitar as leis de trânsito (não cumprir as regras). Da mesma forma, uma empresa pode ter a melhor tecnologia de segurança, mas se não cumprir a legislação, estará em situação de não conformidade|
-
-Exemplos na área de tecnologia:
-
-* Cumprir a Lei Geral de Proteção de Dados Pessoais (LGPD)
-* Manter registros de auditoria adequados
-* Garantir que softwares utilizados estejam com licenças válidas
-* Implementar controles de acesso conforme políticas internas
-* Realizar auditorias periódicas
-
-### 1.7 - Governança
-
-|Recurso|Explicação|
-|-------|----------|
-|Conceito|Governança define como a organização estabelece responsabilidades, prioridades, processos de decisão e mecanismos de acompanhamento. No contexto da tecnologia, a governança ajuda a garantir que os recursos tecnológicos sejam utilizados de maneira alinhada aos objetivos e aos riscos da organização|
-|Exemplo|A governança estabelece quem tem autoridade para aprovar a compra de um novo sistema, quem é responsável pela segurança dos dados, como as decisões sobre investimentos em TI são tomadas e como os resultados são monitorados|
-|Analogia|A governança é como a constituição de um país. Ela define quem toma as decisões, quais são os direitos e deveres, como as leis são criadas e como o poder é distribuído. Sem governança, as decisões são tomadas de forma caótica e sem alinhamento com os objetivos maiores da organização|
-
-### 1.8 - Ética
-
-|Recurso|Explicação|
-|-------|----------|
-|Conceito|A ética orienta a conduta das pessoas mesmo em situações em que não exista uma regra específica dizendo exatamente o que fazer. É o conjunto de princípios morais que guiam o comportamento, baseado em valores como honestidade, integridade, respeito e justiça|
-|Exemplo|Um profissional de TI descobre uma vulnerabilidade no sistema. Não há uma política específica sobre como reportá-la, mas a ética exige que ele comunique o fato à equipe de segurança, mesmo que isso possa gerar trabalho extra ou críticas ao sistema que ele mesmo desenvolveu|
-|Analogia|A ética é como a bússola moral que guia o navegador em alto-mar. Mesmo quando não há placas de trânsito ou regras escritas, a bússola aponta a direção correta. Na vida profissional, a ética aponta o caminho certo mesmo quando as regras não são claras|
-
-### 1.9 - Responsabilidade Profissional
+###### 1.5.2.5.2 - Responsabilidade Profissional
 
 |Recurso|Explicação|
 |-------|----------|
@@ -224,7 +219,15 @@ Responsabilidades esperadas:
 * Evitar utilizar informações organizacionais para benefício próprio
 * Manter postura ética diante dos privilégios tecnológicos recebidos
 
-### 1.10 - Relação Entre os Conceitos
+###### 1.5.2.5.3 - Ética
+
+|Recurso|Explicação|
+|-------|----------|
+|Conceito|A ética orienta a conduta das pessoas mesmo em situações em que não exista uma regra específica dizendo exatamente o que fazer. É o conjunto de princípios morais que guiam o comportamento, baseado em valores como honestidade, integridade, respeito e justiça|
+|Exemplo|Um profissional de TI descobre uma vulnerabilidade no sistema. Não há uma política específica sobre como reportá-la, mas a ética exige que ele comunique o fato à equipe de segurança, mesmo que isso possa gerar trabalho extra ou críticas ao sistema que ele mesmo desenvolveu|
+|Analogia|A ética é como a bússola moral que guia o navegador em alto-mar. Mesmo quando não há placas de trânsito ou regras escritas, a bússola aponta a direção correta. Na vida profissional, a ética aponta o caminho certo mesmo quando as regras não são claras|
+
+### 1.6 - Relação Entre os Conceitos
 
 Esses termos não funcionam de forma isolada. Eles se inter-relacionam da seguinte forma:
 
@@ -238,7 +241,7 @@ Esses termos não funcionam de forma isolada. Eles se inter-relacionam da seguin
 
 >**Exemplo integrado**: Um profissional de TI descobre que o sistema da empresa armazena senhas em texto puro (vulnerabilidade). A **segurança** exige que isso seja corrigido. O **compliance** exige que a empresa atenda à LGPD, que determina a adoção de medidas de segurança. A **governança** define que ele deve reportar ao gestor de segurança. A **ética** orienta que ele não pode ignorar o problema ou se beneficiar dele. E a **responsabilidade profissional** significa que ele deve agir para proteger a organização e os clientes, mesmo que isso gere trabalho adicional.
 
-### 1.11 - Consequências de Falhas de Segurança
+### 1.7 - Consequências de Falhas de Segurança
 
 As falhas de segurança podem gerar consequências em quatro dimensões:
 
@@ -251,20 +254,20 @@ As falhas de segurança podem gerar consequências em quatro dimensões:
 
 > **Analogia**: Uma falha de segurança é como um incêndio. As consequências técnicas são os danos materiais (móveis queimados). As administrativas são a interrupção das atividades (loja fechada para reforma). As financeiras são os custos de reconstrução e o faturamento perdido. As jurídicas são os processos dos vizinhos afetados pela fumaça. Um único incidente pode provocar todas essas consequências simultaneamente.
 
-### 1.12 - Ameaça
+### 1.8 - Ameaça
 
 |Recurso|Explicação|
 |-------|----------|
 |Conceito|Ameaça é qualquer ação, evento, agente ou circunstância com potencial para causar dano a um ativo de informação, explorando uma vulnerabilidade e resultando em um incidente de segurança. A ameaça é o "perigo" que pode se materializar|
 |Analogia|A ameaça é como o lobo na história dos Três Porquinhos. O lobo representa o perigo que quer entrar, derrubar e destruir. Ele tem intenção (ou potencial) de causar dano. Assim como o lobo quer derrubar as casas dos porquinhos, uma ameaça quer comprometer os ativos da organização|
 
-#### 1.12.1 - Características importantes
+#### 1.8.1 - Características importantes
 
 * Pode ser intencional (causada por agentes maliciosos)
 * Pode ser acidental (causada por erro humano ou falha natural)
 * Pode ser natural (fenômenos da natureza)
 
-#### 1.12.2 - Tipos de ameaças
+#### 1.8.2 - Tipos de ameaças
 
 |Tipo|Descrição|Exemplos|
 |----|---------|--------|
@@ -281,21 +284,21 @@ Exemplos práticos
 * Um ransomware que criptografa os arquivos da empresa (*ameaça externa intencional*)
 * Um administrador que exclui acidentalmente um banco de dados (*ameaça interna acidental*)
 
-### 1.13 - Vulnerabilidade
+### 1.9 - Vulnerabilidade
 
 |Recurso|Explicação|
 |-------|----------|
 |Conceito|Vulnerabilidade é uma fragilidade, brecha, falha ou fraqueza em um ativo, sistema, processo ou pessoa que pode ser explorada por uma ameaça para causar dano. É a "porta aberta" que permite que a ameaça se concretize|
 |Analogia|A vulnerabilidade é a casinha de palha no conto dos Três Porquinhos. Ela é frágil, tem falhas estruturais e pode ser facilmente derrubada. Assim como a casinha de palha não resiste ao sopro do lobo, uma vulnerabilidade não resiste à ação de uma ameaça. A casinha de tijolos, por sua vez, seria um sistema seguro, sem vulnerabilidades relevantes|
 
-#### 1.13.1 - Características importantes
+#### 1.9.1 - Características importantes
 
 * Pode ser técnica, humana, física ou organizacional
 * Pode existir mesmo sem que haja uma ameaça presente
 * É inerente a qualquer sistema ou processo
 * Quanto mais vulnerabilidades, maior a exposição ao risco
 
-#### 1.13.2 - Tipos de vulnerabilidades
+#### 1.9.2 - Tipos de vulnerabilidades
 
 |Tipo|Descrição|Exemplos|
 |----|---------|--------|
@@ -311,7 +314,7 @@ Exemplos práticos:
 * A sala do servidor fica aberta e qualquer um pode entrar (*vulnerabilidade física*)
 * A empresa não tem um processo formal de desligamento de funcionários (*vulnerabilidade organizacional*)
 
-### 1.14 - Risco
+### 1.10 - Risco
 
 |Recurso|Explicação|
 |-------|----------|
@@ -324,13 +327,13 @@ Exemplos práticos:
 > Ou, de forma mais completa:
 > **RISCO = AMEAÇA × VULNERABILIDADE × IMPACTO**
 
-#### 1.14.1 - Características importantes
+#### 1.10.1 - Características importantes
 
 * O risco considera tanto a chance de algo acontecer quanto as consequências caso aconteça
 * O risco pode ser gerenciado, reduzido ou transferido, mas nunca eliminado completamente
 * O risco é específico para cada organização e contexto
 
-#### 1.14.2 - Componentes do risco
+#### 1.10.2 - Componentes do risco
 
 |Componente|Descrição|Pergunta que responde|
 |----------|---------|---------------------|
@@ -338,7 +341,7 @@ Exemplos práticos:
 |Impacto|Consequências caso o incidente ocorra|O que acontecerá se ocorrer?|
 |Nível de risco|Classificação combinando probabilidade e impacto|Isso é algo que precisa ser tratado com urgência?|
 
-#### 1.14.3 - Exemplo prático de cálculo de risco
+#### 1.10.3 - Exemplo prático de cálculo de risco
 
 |Elemento|Descrição|
 |--------|---------|
@@ -349,7 +352,7 @@ Exemplos práticos:
 |Impacto|Alto (perda total dos dados, multas LGPD, perda de clientes)|
 |Nível de risco|CRÍTICO (alto impacto × alta probabilidade)|
 
-#### 1.14.4 - Classificação e Priorização de Riscos
+#### 1.10.4 - Classificação e Priorização de Riscos
 
 A classificação e priorização permitem que a organização concentre recursos onde são mais necessários:
 
@@ -360,7 +363,7 @@ A classificação e priorização permitem que a organização concentre recurso
 |Médio|Tratamento programado; monitoramento contínuo|
 |Baixo|Aceitar ou monitorar; ação se houver recursos disponíveis|
 
-#### 1.14.5 - Phishing
+#### 1.10.5 - Phishing
 
 Para compreender melhor o conceito de phishing que é um tipo de golpe em que alguém se passa por uma pessoa ou empresa confiável, para te enganar e fazer você entregar informações, como senha, código do MFA, dados bancários ou clicar em um link com arquivo malicioso.
 
@@ -373,7 +376,64 @@ Como identificar o phishing no dia a dia, sempre observe e fique atento a:
 
 Em resumo, phishing é a engenharia social para roubar acesso ou instalar malware e geralmente apresenta rapidez para a resolução de um problema e contextualiza confiança, ainda falaremos com mais detalhes outra unidade.
 
-### 1.15 - Relação Entre Ameaça, Vulnerabilidade e Risco
+#### 1.10.6 - Probabilidade e Nível de Risco
+
+##### 1.10.6.1 - Classificação da probabilidade
+
+|Nível|Descrição|Exemplo|
+|-----|---------|-------|
+|Muito alta|Mais de 80% de chance de ocorrer|Ataque de phishing contra funcionários sem treinamento|
+|Alta|Entre 50% e 80%|Falha de hardware com equipamento com mais de 5 anos|
+|Média|Entre 20% e 50%|Invasão via vulnerabilidade conhecida e não corrigida|
+|Baixa|Entre 5% e 20%|Desastre natural em região sem histórico|
+|Muito baixa|Menos de 5%|Ataque direcionado por agência governamental|
+
+##### 1.10.6.2 - Classificação do impacto
+
+|Nível|Descrição|Exemplo|
+|-----|---------|-------|
+|Catastrófico|Ameaça a sobrevivência da organização|Perda total do banco de dados principal|
+|Alto|Danos financeiros e reputacionais graves|Vazamento de dados de clientes (LGPD)|
+|Médio|Prejuízo significativo, mas recuperável|Indisponibilidade do sistema por um dia|
+|Baixo|Dano limitado e facilmente corrigível|Exclusão acidental de um arquivo não crítico|
+
+##### 1.10.6.3 - Matriz de risco (exemplo)
+
+```text
+              PROBABILIDADE
+              Baixa    Média    Alta
+Impacto    ┌─────────────────────────────┐
+Baixo      │   Baixo   │ Médio  │ Médio  │
+Médio      │   Médio   │ Alto   │ Alto   │
+Alto       │   Alto    │ Alto   │ Crítico│
+Catastróf. │   Alto    │ Crítico│ Crítico│
+           └─────────────────────────────┘
+```
+
+#### Exemplo Completo: Situação-Problema
+
+|Situação|Ameaça|Vulnerabilidade|Risco|
+|--------|------|---------------|-----|
+|Funcionários usam mesma senha|Ação maliciosa de um funcionário; erro não identificável|Ausência de identificação individual|Não se sabe quem fez o quê; ações não podem ser atribuídas (Alto)|
+|Ausência de backup|Falha de servidor; ransomware; erro humano|Falta de cópia de segurança|Perda permanente de dados; interrupção do negócio (Crítico)|
+|Ex-funcionário com acesso|Ex-funcionário mal-intencionado; vazamento|Falta de revogação de acesso|Ex-funcionário pode acessar, copiar ou deletar dados (Alto)|
+|Envio de planilha a fornecedor|Vazamento; uso indevido de dados|Falta de controle sobre e-mails; ausência de criptografia|Violação LGPD; multas; danos reputacionais (Alto)|
+|Logs sem identificação de usuário|Dificuldade de auditoria; ações não rastreáveis|Sistema mal configurado|Não é possível investigar incidentes adequadamente (Médio)|
+|Autenticação a cada 5 min|Nenhuma ameaça real|Controle excessivo|Usuários frustrados; perda de produtividade (Baixo)|
+
+### 1.10.7 - Inventário Básico de Ativos e Riscos
+
+Conforme previsto no plano de aula, a elaboração de um inventário básico de ativos e riscos é fundamental:
+
+|Ativo|Ameaças|Vulnerabilidades|Risco|Controle sugerido|
+|-----|-------|----------------|-----|-----------------|
+|Servidor de aplicação|Hackers; ransomware; falha|Sistema desatualizado|Alto|Atualizações automáticas; firewall; antivírus|
+|Banco de dados|Vazamento; exclusão; corrupção|Senha fraca; sem backup|Crítico|Criptografia; backup diário; MFA|
+|Rede Wi-Fi|Ataque de interceptação|WEP ou senha fraca|Alto|WPA3; senha complexa; guest network|
+|Funcionários|Phishing; engenharia social|Falta de treinamento|Médio|Treinamento periódico; simulações de phishing|
+|Documentos físicos|Incêndio; extravio|Sem digitalização; sem cópia|Médio|Digitalização; cofre; seguro|
+
+### 1.11 - Relação Entre Ameaça, Vulnerabilidade e Risco
 
 Esses três conceitos estão intrinsecamente relacionados e se influenciam mutuamente, para o exemplo, considere o ativo como sendo um banco de dados com informações sensíveis:
 
@@ -406,7 +466,7 @@ Quando você pensa que ativo + ameaça + vulnerabilidade +riscos, a conversa mud
 
 > É aí que entram medidas simples e reais, restringir acesso, usar armazenamento corporativo, revisar permissões, aplicar políticas de senha e MFA, manter backup, registrar evidências e treinar a equipe para reconhecer situações suspeitas e seguir procedimentos claros *(PECK et al., 2021).*
 
-### 1.16 - Impacto e Incidente
+### 1.12 - Impacto e Incidente
 
 |Conceito|Explicação|
 |--------|----------|
@@ -419,7 +479,7 @@ Exemplo:
 * **Incidente**: O hacker realmente invadiu o sistema e roubou dados
 * **Impacto realizado**: Perda de R$ 500.000, multas, danos reputacionais
 
-### 1.17 - Superfície e Vetores de Ataque
+### 1.13 - Superfície e Vetores de Ataque
 
 |Conceito|Explicação|
 |--------|----------|
@@ -436,64 +496,9 @@ Exemplos de vetores de ataque:
 * Wi-Fi público não seguro
 * Senha fraca
 
-### 1.18 - Probabilidade e Nível de Risco
+### 1.14 - Os 6 Pilares da Segurança
 
-#### 1.18.1 - Classificação da probabilidade
-
-|Nível|Descrição|Exemplo|
-|-----|---------|-------|
-|Muito alta|Mais de 80% de chance de ocorrer|Ataque de phishing contra funcionários sem treinamento|
-|Alta|Entre 50% e 80%|Falha de hardware com equipamento com mais de 5 anos|
-|Média|Entre 20% e 50%|Invasão via vulnerabilidade conhecida e não corrigida|
-|Baixa|Entre 5% e 20%|Desastre natural em região sem histórico|
-|Muito baixa|Menos de 5%|Ataque direcionado por agência governamental|
-
-#### 1.18.2 - Classificação do impacto
-
-|Nível|Descrição|Exemplo|
-|-----|---------|-------|
-|Catastrófico|Ameaça a sobrevivência da organização|Perda total do banco de dados principal|
-|Alto|Danos financeiros e reputacionais graves|Vazamento de dados de clientes (LGPD)|
-|Médio|Prejuízo significativo, mas recuperável|Indisponibilidade do sistema por um dia|
-|Baixo|Dano limitado e facilmente corrigível|Exclusão acidental de um arquivo não crítico|
-
-#### 1.18.3 - Matriz de risco (exemplo)
-
-```text
-              PROBABILIDADE
-              Baixa    Média    Alta
-Impacto    ┌─────────────────────────────┐
-Baixo      │   Baixo   │ Médio  │ Médio  │
-Médio      │   Médio   │ Alto   │ Alto   │
-Alto       │   Alto    │ Alto   │ Crítico│
-Catastróf. │   Alto    │ Crítico│ Crítico│
-           └─────────────────────────────┘
-```
-
-### Exemplo Completo: Situação-Problema
-
-|Situação|Ameaça|Vulnerabilidade|Risco|
-|--------|------|---------------|-----|
-|Funcionários usam mesma senha|Ação maliciosa de um funcionário; erro não identificável|Ausência de identificação individual|Não se sabe quem fez o quê; ações não podem ser atribuídas (Alto)|
-|Ausência de backup|Falha de servidor; ransomware; erro humano|Falta de cópia de segurança|Perda permanente de dados; interrupção do negócio (Crítico)|
-|Ex-funcionário com acesso|Ex-funcionário mal-intencionado; vazamento|Falta de revogação de acesso|Ex-funcionário pode acessar, copiar ou deletar dados (Alto)|
-|Envio de planilha a fornecedor|Vazamento; uso indevido de dados|Falta de controle sobre e-mails; ausência de criptografia|Violação LGPD; multas; danos reputacionais (Alto)|
-|Logs sem identificação de usuário|Dificuldade de auditoria; ações não rastreáveis|Sistema mal configurado|Não é possível investigar incidentes adequadamente (Médio)|
-|Autenticação a cada 5 min|Nenhuma ameaça real|Controle excessivo|Usuários frustrados; perda de produtividade (Baixo)|
-
-### 1.19 - Inventário Básico de Ativos e Riscos
-
-Conforme previsto no plano de aula, a elaboração de um inventário básico de ativos e riscos é fundamental:
-
-|Ativo|Ameaças|Vulnerabilidades|Risco|Controle sugerido|
-|-----|-------|----------------|-----|-----------------|
-|Servidor de aplicação|Hackers; ransomware; falha|Sistema desatualizado|Alto|Atualizações automáticas; firewall; antivírus|
-|Banco de dados|Vazamento; exclusão; corrupção|Senha fraca; sem backup|Crítico|Criptografia; backup diário; MFA|
-|Rede Wi-Fi|Ataque de interceptação|WEP ou senha fraca|Alto|WPA3; senha complexa; guest network|
-|Funcionários|Phishing; engenharia social|Falta de treinamento|Médio|Treinamento periódico; simulações de phishing|
-|Documentos físicos|Incêndio; extravio|Sem digitalização; sem cópia|Médio|Digitalização; cofre; seguro|
-
-### 1.20 - Confidencialidade
+#### 1.14.1 - Confidencialidade (Parte da Triade da Segurança)
 
 |Conceito|Explicação|
 |--------|----------|
@@ -516,7 +521,7 @@ Exemplo de comprometimento:
 * Um funcionário que acessa informações de RH sem autorização
 * Dados de cartão de crédito expostos em um sistema público
 
-### 1.21 - Integridade
+#### 1.14.2 - Integridade (Parte da Triade da Segurança)
 
 |Conceito|Explicação|
 |--------|----------|
@@ -539,7 +544,7 @@ Exemplo de comprometimento:
 * Um funcionário altera as notas de um aluno no sistema acadêmico
 * Dados de um prontuário médico são alterados sem registro
 
-### 1.22 - Disponibilidade
+#### 1.14.3 - Disponibilidade (Parte da Triade da Segurança)
 
 |Conceito|Explicação|
 |--------|----------|
@@ -563,7 +568,7 @@ Exemplo de comprometimento:
 * Falha em servidor que deixa sistema fora do ar por horas
 * Ataque de negação de serviço (DDoS) que torna site inacessível
 
-### 1.23 - Autenticidade
+#### 1.14.4 - Autenticidade
 
 |Conceito|Explicação|
 |--------|----------|
@@ -585,7 +590,7 @@ Exemplo de comprometimento:
 * Um e-mail falso enviado se passando pelo diretor da empresa (phishing)
 * Uma pessoa se passa por outra em uma chamada de suporte técnico (engenharia social)
 
-### 1.24 - Irretratabilidade / Não-Repúdio
+#### 1.14.5 - Irretratabilidade / Não-Repúdio
 
 |Conceito|Explicação|
 |--------|----------|
@@ -608,7 +613,7 @@ Exemplo de comprometimento:
 * Um desenvolvedor altera código em produção e nega ter feito a alteração
 * Um gerente aprova um pagamento e depois diz que não autorizou
 
-### 1.25 - Legalidade
+#### 1.14.6 - Legalidade
 
 |Conceito|Explicação|
 |--------|----------|
@@ -639,7 +644,7 @@ Exemplo de comprometimento:
 * Uma instituição financeira não mantém registros conforme exigido pelo Banco Central
 * Um hospital compartilha prontuários de pacientes sem autorização (quebra de sigilo médico)
 
-### 1.26 - Relação Entre os Princípios
+#### 1.14.7 - Relação Entre os Princípios
 
 Quando a empresa fala em segurança e em proteção de dados, ela está tentando assegurar que a informação não caia em mãos erradas, não seja alterada indevidamente e esteja acessível quando for necessária *(PECK et al., 2021)*. Esses princípios não funcionam de forma isolada. Eles se complementam e se inter-relacionam:
 
@@ -663,9 +668,9 @@ Exemplo integrado em uma transação bancária online:
 |Não Repúdio|Você não pode negar que fez a transferência|Você transfere e depois alega que foi hackeado|
 |Legalidade|A transferência respeita as regras do Banco Central|A transferência é feita em desacordo com a legislação|
 
-### Exemplos Práticos de Comprometimento
+#### Exemplos Práticos de Comprometimento
 
-#### Situação 1: Empresa que usa sistema ERP e Pasta Corporativa
+##### Situação 1: Empresa que usa sistema ERP e Pasta Corporativa
 
 Para compreendermos melhor estes conceitos vamos pensar em uma empresa que usa um sistema ERP (Enterprise Resource Planning) para compras e faturamento e uma pasta corporativa, na nuvem ou servidor, para guardar contratos, notas, planilhas e relatórios. Esse conjunto é um ativo crítico: se vazar, se é alterado, ou se ficar fora do ar, a organização sofrerá os impactos no mesmo instante. Agora pense como uma mesma situação, bem vida real, pode ir quebrando a CIA e também os novos amigos, tudo de forma encadeada (PECK et al., 2021):
 
@@ -724,7 +729,7 @@ Nesse exemplo, é possível captar a criticidade do que aconteceu. Um **começo*
 
 Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente nasce grande, ele começa com um detalhe, como no exemplo um e-mail convincente, uma senha reutilizada, uma permissão aberta demais, e, quando a empresa vê, o problema já atravessou vários ativos e quebrou mais de um pilar da segurança. É por isso que a gente insiste em olhar para ativo + ameaça + vulnerabilidade, essa combinação explica como o risco se forma e mostra que o impacto não é só técnico. Ele vira atraso, prejuízo, retrabalho, perda de confiança e, muitas vezes, dor de cabeça com conformidade e proteção de dados.
 
-#### Situação 2: Vazamento de dados de clientes
+##### Situação 2: Vazamento de dados de clientes
 
 |Princípio|Comprometido?|Motivo|
 |---------|-------------|------|
@@ -735,7 +740,7 @@ Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente n
 |Não Repúdio|✗|Não há negação envolvida|
 |Legalidade|✓|Viola LGPD (compartilhamento não autorizado)|
 
-#### Situação 3: Hackers alteram preços em um sistema de vendas
+##### Situação 3: Hackers alteram preços em um sistema de vendas
 
 |Princípio|Comprometido?|Motivo|
 |---------|-------------|------|
@@ -746,7 +751,7 @@ Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente n
 |Não Repúdio|✗|Não há negação envolvida|
 |Legalidade|✗|Não há lei específica sendo descumprida|
 
-#### Situação 4: Ataque DDoS que derruba o site de uma loja
+##### Situação 4: Ataque DDoS que derruba o site de uma loja
 
 |Princípio|Comprometido?|Motivo|
 |---------|-------------|------|
@@ -757,7 +762,7 @@ Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente n
 |Não Repúdio|✗|Não há negação envolvida|
 |Legalidade|✗|Não há lei específica sendo descumprida|
 
-#### Situação 5: Funcionário transfere dinheiro e depois nega ter feito
+##### Situação 5: Funcionário transfere dinheiro e depois nega ter feito
 
 |Princípio|Comprometido?|Motivo|
 |---------|-------------|------|
@@ -768,7 +773,7 @@ Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente n
 |Não Repúdio|✓|O funcionário pode negar a autoria sem provas contrárias|
 |Legalidade|✗|Não há lei específica sendo descumprida|
 
-### Aplicação dos Pilares em Diferentes Componentes
+#### Aplicação dos Pilares em Diferentes Componentes
 
 |Componente|Confidencialidade|Integridade|Disponibilidade|Autenticidade|Não Repúdio|Legalidade|
 |----------|-----------------|-----------|---------------|-------------|-----------|----------|
@@ -776,3 +781,15 @@ Depois do exemplo do sistema ERP, dá para perceber que um incidente raramente n
 |Bancos de dados|Criptografia|Registros de alteração|Backup|Auditoria de acesso|Trilhas de auditoria|LGPD|
 |Infraestrutura|Segmentação de rede|Atualizações|Redundância|Certificados|Logs de acesso|Normas setoriais|
 |Processos|Classificação|Revisão|Contingência|Assinaturas|Documentação|Regulamentos|
+
+## 2. LGDP
+
+Anteriormente, foi visto a Segurança da Informação como um conjunto de práticas que ajudam a proteger ativos e reduzir riscos dentro das organizações. Mais do que decorar conceitos, a ideia foi perceber que segurança não fica restrita ao setor de TI. Ela aparece no uso de senhas, no cuidado com acessos, na forma como arquivos são compartilhados, no registro de atendimentos, no armazenamento de relatórios e em várias outras escolhas que fazem parte da rotina de uma empresa.
+
+Isso é importante porque, no mundo real, **segurança nunca depende só de tecnologia. Um sistema pode ter antivírus, firewall, backup e controle de acesso, mas ainda assim existir risco se as pessoas usam ferramentas sem critério, compartilham dados em excesso ou deixam processos soltos**. Por isso, quando falamos em segurança da informação, estamos falando também de comportamento, organização e responsabilidade.
+
+Olhando para a Segurança da Informação de um jeito bem prático, é necessário ligar ao que a lei exige no dia a dia das empresas. Não basta só proteger dados com ferramentas e controles técnicos. Também é preciso entender se esse uso está correto, se faz sentido dentro da lei e se a empresa consegue demonstrar isso, caso seja necessário. Essa mudança de olhar faz bastante diferença. Em vez de pensar apenas “*como proteger?*”, também passamos a pensar “faz sentido tratar esse dado?”, “*isso é necessário?*”, “*há fundamento para esse uso?*” e “*como isso fica registrado?*”. Em outras palavras, a proteção deixa de ser só técnica e passa a incluir limites, justificativas e responsabilidades.
+
+Como destacam *Peck et. al (2021)*, a **transformação digital aumentou muito o valor dos dados dentro das organizações, mas também ampliou a exposição e os impactos de falhas**. Isso faz com que a proteção de dados precise ser vista de forma mais integrada, unindo segurança, governança e conformidade. Essa observação é importante porque, muitas vezes, o problema não está na falta de ferramentas, e sim na falta de processos.
+
+É comum encontrar empresas com vários controles técnicos instalados, mas com permissões mal definidas, planilhas circulando sem controle, cadastros duplicados, armazenamento indefinido e pouca clareza sobre quem deve decidir e quando o assunto é uma informação pessoal. Nessas situações, existe tecnologia, mas falta organização. E é justamente aí que os riscos crescem.
