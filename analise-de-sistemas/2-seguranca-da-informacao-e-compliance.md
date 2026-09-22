@@ -866,3 +866,332 @@ Proteger dados não depende só de tecnologia, mas também é preciso saber se a
 * A segunda é que conformidade depende de evidência. Não basta dizer que faz certo. É preciso conseguir mostrar processo, registro, responsabilidade e controle.
 
 * A terceira é que tecnologia ajuda muito, mas não resolve tudo sozinha. Quanto mais sistemas, automações e integrações existem, maior é a necessidade de governança sobre os dados que circulam nesses ambientes.
+
+## 3. Governança nas organizações
+
+Quando a palavra governança aparece, muita gente pensa logo em algo distante da rotina da empresa, quase sempre ligado à alta administração ou a estruturas muito formais. Mas a governança está muito mais presente no cotidiano organizacional do que parece, porque ela tem relação direta com a forma como as decisões são tomadas, como as responsabilidades são distribuídas e como a organização acompanha aquilo que faz.
+
+Pense em situações simples do dia a dia, como por exemplo a empresa decide contratar um novo sistema, compartilhar dados com um fornecedor ou alterar um procedimento interno. Em casos assim, algumas perguntas precisam aparecer:
+
+* Quem autorizou essa decisão?
+* Quem avaliou os possíveis impactos?
+* Quem vai acompanhar se tudo está funcionando como deveria?
+
+Quando essas respostas não estão claras, começam a surgir problemas que, muitas vezes, poderiam ter sido evitados. É justamente nesse ponto que a governança faz diferença. Ela ajuda a organização a atuar com mais clareza, mais coerência e mais responsabilidade.
+
+Na segurança da informação, essa discussão se torna ainda mais importante. As organizações lidam o tempo todo com dados, documentos, contratos, acessos a sistemas, registros financeiros e informações de naturezas diversas. Tudo isso precisa ser protegido.
+
+> E aqui vale destacar um ponto importante, muitas vezes, a fragilidade não está apenas na tecnologia. Ela aparece também quando não está bem definido **quem decide**, **quem executa**, **quem acompanha** e como cada procedimento deve ser conduzido.
+
+Outro aspecto que merece atenção é a relação entre governança e confiança. Quando uma empresa organiza melhor seus processos, define responsabilidades com mais clareza e acompanha suas próprias decisões, ela transmite mais segurança para colaboradores, clientes, parceiros e fornecedores. Essa confiança não surge por acaso. Ela é construída quando a organização demonstra que sabe como agir, como prevenir falhas e como responder a situações inesperadas.
+
+### 3.1 - Gestão de Risco
+
+Toda empresa convive com riscos, mesmo quando eles não estão visíveis o tempo todo. Alguns aparecem de forma mais evidente. Outros ficam escondidos na rotina e só chamam atenção quando já causaram algum impacto. **Gerir riscos significa desenvolver a capacidade de olhar antes**. Ou seja, observar situações que podem comprometer objetivos, processos, informações ou atividades da empresa antes que elas se transformem em problemas concretos. Não se trata de adivinhar o futuro, mas de atuar com mais atenção, critério e preparo.
+
+No cotidiano organizacional, isso aparece de várias maneiras. Pode estar na:
+
+* possibilidade de um sistema falhar;
+* no acesso indevido a um dado;
+* na indisponibilidade de um serviço;
+* no compartilhamento inadequado de uma informação;
+* pode estar em procedimentos mal definidos;
+* na concentração de tarefas em uma única pessoa;
+* na falta de revisão de acessos
+* em falhas de comunicação entre setores
+
+Em muitos casos, o **risco não surge apenas da tecnologia, mas da forma como a organização funciona**. Nessa perspectiva, *Peck et al. (2021)* defendem que a proteção de dados e a segurança digital não devem ser tratadas como questões exclusivamente técnicas, mas como parte da própria estrutura de gestão e organização da empresa.
+
+O problema é quando esses pontos não são observados com antecedência, a empresa costuma agir apenas de forma reativa. Espera-se que algo dê errado para, só depois, pensar em uma solução. E quase sempre esse caminho sai mais caro, mais demorado e mais desgastante. É exatamente por isso que a gestão de riscos tem um papel tão importante, ela ajuda a organização a construir uma postura mais preventiva.
+
+> Gerir riscos não significa imaginar o pior o tempo inteiro, nem tentar eliminar toda e qualquer possibilidade de falha. Isso, além de inviável, não faz sentido na prática.
+> O importante é conhecer melhor a realidade da organização, identificar pontos sensíveis, avaliar o que merece mais atenção e adotar medidas proporcionais ao contexto.
+
+Esse olhar faz diferença porque nem todo risco tem o mesmo peso. Algumas situações podem ter baixa probabilidade de acontecer, mas gerar impacto alto caso ocorram. Outras parecem pequenas à primeira vista, mas acabam se repetindo e afetando diferentes áreas da empresa. É por isso que a análise de riscos precisa considerar contexto, probabilidade, impacto e prioridade. Sem isso, a organização corre o risco de tratar como secundário aquilo que, na verdade, exige acompanhamento próximo. No dia a dia, esse processo pode começar com perguntas bastante objetivas:
+
+* Quais atividades não podem parar?
+* Quais informações precisam de maior proteção?
+* O que aconteceria se um sistema essencial ficasse indisponível?
+* Quem seria afetado?
+* Existem controles suficientes?
+* Há preparo para responder a incidentes?
+
+Essas perguntas ajudam a trazer a discussão para um contexto mais concreto, mais próximo da realidade organizacional.
+
+### 3.2 - ISO 31000
+
+É uma **norma internacional voltada para a gestão de riscos**, não é exclusiva de Tecnologia da Informação, mas serve como base conceitual para segurança da informação, continuidade, compliance, governança e tomada de decisão. E vale destacar um ponto importante, que essa norma *não oferece uma fórmula pronta* que possa ser aplicada da mesma maneira em qualquer organização.
+
+A norma ISSO 31000 é construída em torno de três grandes eixos, princípios, estrutura e processo. O que ela propõe é uma base de orientação, um modo de pensar o risco de forma mais organizada e coerente.
+
+* Os princípios mostram como a gestão de riscos deve funcionar para ser útil;
+* A estrutura indica como essa gestão deve ser incorporada à organização;
+* O processo descreve as etapas práticas para lidar com os riscos.
+
+> Isso é importante porque **cada organização tem sua própria realidade**. Algumas trabalham com grande volume de dados, outras dependem mais de fornecedores, outras lidam com processos internos mais sensíveis ou com operações que não podem sofrer interrupções. Diante dessa diversidade, **não faria sentido imaginar uma solução única para todos os casos**.
+> A lógica da ISO 31000 é justamente ajudar a construir uma gestão de riscos compatível com o contexto de cada instituição.
+
+Um dos aspectos mais relevantes da norma é mostrar que o risco deve ser observado em relação aos objetivos da organização. O risco deixa de ser visto como uma ameaça genérica e passa a ser entendido como algo que pode interferir naquilo que a empresa pretende alcançar, ou seja, ele só faz sentido quando analisado dentro de um contexto.
+
+* Se a continuidade do serviço é essencial, por exemplo, a indisponibilidade se torna um risco importante;
+* Se a empresa depende de dados confiáveis para operar, alterações indevidas nessas informações merecem atenção especial.
+
+Ela reforça a necessidade de **integrar a gestão de riscos à tomada de decisão**. Isso significa que, sempre que a organização decide *implantar um processo*, *contratar um serviço*, *alterar uma rotina* ou *conceder um novo acesso*, os riscos envolvidos precisam ser considerados. Essa integração ajuda a evitar decisões apressadas e amplia a capacidade de prevenção.
+
+O risco não é algo que se avalia uma única vez, pois o ambiente organizacional muda, os sistemas mudam, os contratos mudam, os fornecedores mudam e os próprios objetivos da empresa podem mudar ao longo do tempo. Por isso, a análise precisa ser revisada periodicamente.
+
+> Na prática, a lógica da ISO 31000 incentiva a organização a observar seu contexto, identificar situações de risco, analisar possíveis consequências, avaliar prioridades e definir formas de tratamento. Em alguns casos, o risco pode ser reduzido. Em outros, pode ser monitorado com mais atenção. O ponto central é que a decisão não seja tomada no improviso, mas com base em critérios.
+
+Outro aspecto importante é a comunicação. A norma deixa claro que a gestão de riscos não deve ficar restrita a uma única área ou a um grupo pequeno de pessoas. Quem conhece os processos, quem executa as atividades e quem toma decisões precisa participar desse olhar. E isso faz sentido, porque muitas fragilidades só se tornam visíveis quando diferentes perspectivas são consideradas.
+
+### 3.3 - Família ISO/IEC 2700x
+
+Se a ISO 31000 ajuda a organização a estruturar a forma de pensar e tratar esses riscos, a família **ISO/IEC 2700x aprofundam isso no contexto específico da segurança da informação**. A proteção da informação depende também de políticas, processos, critérios de acesso, definição de responsabilidades, orientação das equipes e revisão contínua dos controles adotados. Essas normas ajudam a organização a estruturar a segurança da informação de maneira mais consistente.
+
+* A ISO/IEC 27001: trata do sistema de gestão de segurança da informação,
+* A ISO/IEC 27002: apresenta diretrizes relacionadas aos controles que podem ser adotados.
+
+> Imagine uma faculdade em que cada professor salva provas e trabalhos em seu próprio computador, alguns usam pen drive, outros usam e-mail pessoal, e não existe padrão de armazenamento. Em caso de perda do equipamento, troca de funcionário ou infecção por malware, a instituição pode perder informações importantes ou expor dados sensíveis.
+>
+> A ISO/IEC 27001 não resolveria isso por mágica, mas orientaria a faculdade a organizar o processo, definir onde os arquivos devem ser guardados, quem pode acessá-los, como realizar cópias de segurança, como responder a incidentes e como revisar essas práticas ao longo do tempo.
+
+O ambiente muda, os sistemas mudam, as ameaças mudam e a própria organização também muda. Por isso, a 27001 propõe que o sistema de gestão seja mantido, acompanhado e aperfeiçoado continuamente.
+
+#### 3.3.1 - Controles organizacionais
+
+Esse grupo reúne práticas ligadas à governança da segurança, definição de responsabilidades, políticas, tratamento de riscos, uso aceitável de ativos, classificação da informação, gestão de fornecedores, resposta a incidentes, continuidade e conformidade. A ideia é garantir que a segurança não dependa apenas da área técnica, mas esteja incorporada à forma como a organização se estrutura e toma decisões.
+Boas práticas:
+
+* estabelecer política de segurança da informação;
+* definir papéis e responsabilidades;
+* manter inventário de ativos;
+* classificar informações conforme sensibilidade;
+* controlar o relacionamento com fornecedores;
+* estruturar gestão de incidentes;
+* planejar continuidade do negócio;
+* assegurar conformidade legal e regulatória.
+
+#### 3.3.2 - Controles de pessoas
+
+Esse grupo concentra práticas ligadas ao fator humano. O comitê da ISO destaca que esses controles buscam reduzir riscos ligados ao comportamento das pessoas e ao ciclo de vida do vínculo profissional. Entre os exemplos oficiais, estão a conscientização e responsabilidades relacionadas à segurança.
+Boas práticas:
+
+* realizar verificação prévia de pessoas para funções sensíveis;
+* incluir cláusulas de segurança em contratos de trabalho;
+* promover conscientização e treinamento;
+* definir deveres de segurança durante e após o vínculo;
+* tratar violações de políticas de forma formal;
+* reforçar comportamento seguro no uso de sistemas e dados.
+
+#### 3.3.3 - Controles físicos
+
+Esse grupo trata da proteção do ambiente físico em que a informação é processada ou armazenada. A segurança da informação também depende do espaço físico, dos equipamentos e da prevenção de acesso indevido, danos, perdas ou interrupções. A própria estrutura da 27002 separa esses controles como um tema específico.
+Boas práticas típicas:
+
+* controle de acesso a áreas seguras;
+* proteção de salas, equipamentos e infraestrutura;
+* prevenção contra incêndio, falhas elétricas e danos ambientais;
+* descarte seguro de mídias e equipamentos;
+* proteção de estações de trabalho e dispositivos fora do ambiente controlado;
+* política de mesa limpa e tela limpa, quando aplicável.
+
+#### 3.3.4 - Controles tecnológicos
+
+Esse grupo reúne medidas de natureza mais técnica, aplicadas a sistemas, redes, aplicações e dados. A ISO destaca temas como access control, cryptography e incident response como áreas cobertas pela 27002. Esses controles ajudam a prevenir acesso não autorizado, perda, alteração indevida e indisponibilidade da informação.
+
+Boas práticas típicas:
+
+* controle de acesso lógico;
+* autenticação e gestão de credenciais;
+* uso de criptografia;
+* proteção contra malware;
+* cópias de segurança e recuperação;
+* registro e monitoramento de eventos;
+* segurança de redes e comunicações;
+* gestão de vulnerabilidades;
+* configuração segura de sistemas e aplicações
+
+A decisão sobre quais controles adotar depende do contexto e da avaliação de riscos da organização, ou seja, a norma não impõe que todos os 93 controles sejam usados da mesma forma por todas as instituições. A própria ISO ressalta que a determinação dos controles depende das decisões tomadas após a avaliação de riscos e do escopo definido.
+
+##### Exemplo ISO/IEC 2700x
+
+Imagine uma clínica médica que usa um sistema para agendamento, prontuário e faturamento. Ela percebe alguns riscos:
+
+* funcionários acessando dados além do necessário;
+* perda de informações por falha no sistema;
+* vazamento de dados por uso indevido de senha;
+* computadores da recepção sem proteção adequada;
+* terceiros de TI com acesso excessivo.
+
+> A **ISO/IEC 27001** exige que a organização estabeleça, implemente, mantenha e melhore continuamente um SGSI/ISMS, usando uma abordagem de gestão adaptada ao seu contexto e necessidades.
+>
+> Já a **ISO/IEC 27002**:2022 fornece orientação para os controles de segurança, e a edição 2022 organiza 93 controles em quatro grupos: organizacionais, pessoas, físicos e tecnológicos. Ela delimita o que precisa proteger e quais partes interessadas estão envolvidas, como pacientes, médicos, convênios e fornecedor de TI. A 27001 estrutura esse tipo de definição dentro do SGSI.
+
+Para a Avaliação de riscos, a clínica avalia, por exemplo:
+
+* Risco 1: recepcionista visualizar prontuários que não precisa acessar.
+* Risco 2: perda de agenda e prontuários por falha no servidor.
+* Risco 3: vazamento de dados por senha compartilhada.
+* Risco 4: entrada de pessoa não autorizada na sala do servidor.
+* Risco 5: fornecedor terceirizado acessar dados sem controle.
+
+A ISO/IEC 27001 pede justamente esse processo estruturado de gestão de riscos para selecionar tratamentos adequados.
+
+Aplicando controles da ISO/IEC 27002:
+
+###### Controle organizacional
+
+* **Boa prática**: inventário de ativos e definição de responsabilidades.
+* **Exemplo**: A clínica cria uma lista dos ativos mais importantes, como o servidor, sistema de prontuário, notebooks, banco de dados, contratos com fornecedores e backups. Depois define quem é responsável por cada item.
+
+> Problema que ajuda a reduzir que ninguém “cuida” formalmente dos ativos, o que gera descuido, acessos soltos e falhas de responsabilidade.
+
+###### Controle de pessoas
+
+* **Boa prática**: conscientização e responsabilidades em segurança.
+* **Exemplo**: Todos os funcionários recebem orientação formal para:
+   * não compartilhar senhas;
+   * bloquear a tela ao sair do posto;
+   * não comentar dados de pacientes em locais públicos;
+   * reconhecer e-mails suspeitos.
+
+> Problema que ajuda a reduzir o vazamento causado por comportamento inseguro.
+
+A ISO destaca controles de pessoas como triagem, condições de trabalho e conscientização para reduzir riscos decorrentes do comportamento humano.
+
+###### Controle físico
+
+* **Boa prática**: proteção de áreas e equipamentos sensíveis.
+* **Exemplo**: A sala onde fica o servidor passa a permanecer trancada, com acesso restrito apenas ao suporte autorizado e à gestão. Os computadores da recepção são posicionados de forma que o público não visualize as telas.
+
+> Problema que ajuda a reduzir o acesso físico indevido a equipamentos e exposição de informações.
+
+A 27002 separa os controles físicos como um grupo próprio justamente porque a proteção da informação também depende do ambiente.
+
+###### Controle tecnológico
+
+* **Boa prática**: controle de acesso, autenticação e backup.
+* **Exemplo**: A clínica configura o sistema para que:
+   * recepcionistas vejam apenas agenda e cadastro;
+   * médicos acessem apenas seus pacientes;
+   * administradores tenham acesso ampliado mediante justificativa;
+   * o sistema exija senha individual;
+   * backups sejam feitos regularmente.
+
+> Problema que ajuda a reduzir: acesso indevido, perda de informação e indisponibilidade do serviço.
+
+A ISO apresenta a 27002 como guia de controles, incluindo temas como access control e cryptography, dentro de uma abordagem prática de proteção.
+
+### 3.4 - PDCA
+
+PDCA é um método de melhoria contínua, que conecta as duas normas, usado para organizar processos, corrigir falhas e acompanhar resultados. Ele é muito usado em gestão, qualidade, riscos e também em segurança da informação, porque ajuda a organização a não trabalhar de forma improvisada. A sigla vem do inglês:
+
+* **P** – Plan = Planejar
+* **D** – Do = Executar
+* **C** – Check = Verificar
+* **A** – Act = Agir corretivamente ou ajustar
+
+Qual a ideia central do PDCA?
+
+O PDCA mostra que a melhoria não acontece de uma vez só. Ela ocorre em ciclos. A organização planeja, executa, verifica os resultados e corrige o que for necessário. Depois, começa novamente, sempre buscando aperfeiçoamento.
+
+#### 3.4.1 - Plan (Planejar)
+
+Nesta etapa, a organização **identifica o problema, define objetivos, analisa riscos, levanta causas e decide o que precisa ser feito**. É o momento de responder perguntas como:
+
+* O que precisa ser melhorado?
+* Qual é o risco?
+* Qual meta se deseja atingir?
+* Quais recursos serão necessários?
+* Quem será responsável?
+
+> **Exemplo**: Imagine uma empresa que percebe risco de vazamento de dados por senhas fracas.
+> No *Plan*, ela analisa a situação e decide criar uma política de senhas mais seguras, definir critérios mínimos e orientar os usuários.
+
+#### 3.4.2 - Do (Executar)
+
+Depois do planejamento, vem a execução. Aqui a organização deve **colocar em prática aquilo que foi definido**. Essa fase não é apenas “fazer”, mas fazer de forma controlada.
+
+> Exemplo: A empresa deve:
+>
+> * atualizar a política de senhas;
+> * configurar os sistemas para exigir senhas mais fortes;
+> * orientar os funcionários;
+> * registrar o que foi feito.
+
+#### 3.4.3 - Check (Verificar)
+
+Nesta etapa, a organização verifica se o que foi implantado realmente funcionou. É o momento de **medir resultados, comparar com a meta e identificar desvios**. Ou seja, não basta implementar, é preciso acompanhar.
+
+> Exemplo: A empresa avalia:
+>
+> * se os usuários passaram a usar senhas mais fortes;
+> * se houve redução de incidentes;
+> * se ainda existem falhas de acesso;
+> * se a equipe está cumprindo a política.
+
+#### 3.4.4 - Act (Agir)
+
+Depois da verificação, a organização age sobre os resultados. Se deu certo, ela padroniza e mantém a melhoria. Se não deu certo, corrige falhas, ajusta o plano e reinicia o ciclo.
+
+>Exemplo: Se a empresa percebe que alguns funcionários continuam anotando senhas em papéis, ela pode:
+>
+> * reforçar treinamento;
+> * revisar procedimentos;
+> * adotar autenticação em dois fatores;
+> * corrigir pontos que o plano inicial não resolveu.
+
+O PDCA é importante porque evita decisões soltas e ajuda a organização a trabalhar com método. Em vez de agir apenas quando um problema aparece, ela passa a acompanhar continuamente seus processos e a buscar melhoria constante.
+
+### 3.5 - Controles, responsabilidades
+
+Mas o que significa, afinal, falar em cultura organizacional nesse contexto? Significa olhar para a forma como as pessoas compreendem seu papel, tomam decisões e reagem às situações do cotidiano. Construir cultura exige continuidade. Exige que a liderança dê exemplo, que as orientações sejam claras e que os processos sejam levados a sério no dia a dia. Quando a organização só fala de segurança em momentos de crise, a tendência é que o tema seja visto como algo passageiro. Quando ele faz parte da rotina, passa a ser entendido como elemento natural da atuação profissional. Quando a empresa valoriza a segurança e o tratamento adequado dos riscos, esse entendimento começa a aparecer nas práticas mais simples:
+
+* no cuidado com acessos;
+* no respeito aos procedimentos;
+* na comunicação de falhas;
+* na revisão de rotinas;
+* na postura adotada diante das responsabilidades assumidas.
+
+O que realmente fortalece a adesão é a compreensão de sentido. Quando o colaborador entende por que determinados cuidados são necessários e percebe os impactos de suas ações, o envolvimento tende a ser maior. A segurança deixa de ser vista como imposição e passa a ser percebida como responsabilidade compartilhada. Nesse processo, a comunicação tem papel central. Regras confusas, orientações genéricas ou excesso de formalismo dificultam a compreensão e reduzem a participação.
+
+Também é importante reconhecer que maturidade organizacional não significa ausência total de falhas. Mesmo empresas bem estruturadas podem enfrentar incidentes. A diferença está na forma como se preparam, respondem e aprendem com essas situações.
+
+Para entender **Governança** e **gestão de riscos**, vale olhar além das normas. A ISO 31000 e a família ISO/IEC 2700x oferecem referenciais importantes, mas seu impacto depende da forma como são incorporados ao cotidiano organizacional.
+
+## 4 - Formas de Segurança
+
+Segurança da informação envolve proteger pessoas, ambientes, equipamentos, redes, sistemas, documentos e processos. Em outras palavras, não adianta a organização investir em tecnologia de ponta se deixa portas abertas, documentos expostos ou usuários sem orientação.
+
+> **Exemplo**: Uma instituição tem firewall, antivírus e autenticação em dois fatores, mas o servidor principal fica em uma sala sem controle de acesso, com qualquer pessoa podendo entrar, e inclusive no mesmo andar que tem um café, ou seja, todas passam na frente desta sala todos os dias. Isso mostra que a segurança lógica pode estar relativamente bem estruturada, mas a segurança física é vulnerável. 
+>
+> **O problema é que, em segurança, uma falha costuma comprometer o conjunto**.
+
+Segurança precisa ser compreendida como parte da rotina da organização. Ela não pode aparecer apenas como reação a incidentes. Deve **estar presente na forma como os ambientes são organizados, como os acessos são definidos, como os dados são classificados e como as equipes são orientadas a agir**.
+
+> **Segundo *Pinheiro et al. (2021)*, proteger dados e ativos depende da combinação entre tecnologia, governança, regras e comportamento humano. A segurança não é apenas impedir invasão, mas também é evitar perda, exposição, indisponibilidade e uso inadequado da informação.**
+
+### 4.1 - Segurança física
+
+**A segurança física envolve medidas voltadas à proteção de instalações, equipamentos, servidores, documentos impressos e pessoas que circulam no ambiente organizacional.**
+
+> **Exemplo**: Imagine os laboratórios de informática em que os computadores ficam ligados o dia todo, sem supervisão, e que qualquer pessoa pode conectar um pen drive ou retirar um equipamento da sala. Mesmo sem um grande ataque cibernético, esse ambiente já apresenta riscos concretos. Pode haver furto, cópia indevida de arquivos, instalação de programas maliciosos ou alteração de configurações importantes.
+
+A segurança física inclui:
+
+* uso de crachás;
+* fechaduras eletrônicas;
+* câmeras;
+* controle de entrada e saída;
+* barreiras de acesso;
+* identificação de visitantes e proteção de áreas restritas.
+
+Um data center, por exemplo, não deve funcionar como uma sala comum. Ele exige controle rigoroso, registro de acesso e condições adequadas para manter a operação segura. **A segurança começa no ambiente, proteger o espaço significa reduzir oportunidades de acesso indevido, dano, roubo ou exposição de informações**.
+
+### 4.2 - Segurança Ambiental
+
+A organização também precisa se preocupar com fatores ambientais, como a localização de um data center. Muitas perdas de dados e interrupções de serviço ocorrem por causas como queda de energia, superaquecimento, incêndio, infiltração, umidade, poeira excessiva e falhas na climatização.
+
+> **Exemplo**: Imagine agora um servidor instalado em uma sala improvisada, sem ventilação adequada, somente com um ventilador ligado em direção do servidor.  No começo, tudo parece funcionar bem, mas com o tempo, o equipamento aquece, o desempenho cai e as falhas começam a aparecer.
+
+A segurança ambiental envolve cuidados como climatização adequada, extintores compatíveis com equipamentos elétricos, sensores de fumaça, nobreaks, geradores, proteção contra surtos elétricos e planejamento da disposição física dos recursos tecnológicos. *Ferreira (2024)* reforça que a continuidade das operações depende também da resiliência da infraestrutura. Isso significa que a segurança não está apenas em bloquear ameaças externas, mas em preparar o ambiente para resistir a eventos físicos e ambientais que comprometam a disponibilidade dos serviços.
