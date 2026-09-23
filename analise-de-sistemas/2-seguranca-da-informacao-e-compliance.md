@@ -1195,3 +1195,135 @@ A organização também precisa se preocupar com fatores ambientais, como a loca
 > **Exemplo**: Imagine agora um servidor instalado em uma sala improvisada, sem ventilação adequada, somente com um ventilador ligado em direção do servidor.  No começo, tudo parece funcionar bem, mas com o tempo, o equipamento aquece, o desempenho cai e as falhas começam a aparecer.
 
 A segurança ambiental envolve cuidados como climatização adequada, extintores compatíveis com equipamentos elétricos, sensores de fumaça, nobreaks, geradores, proteção contra surtos elétricos e planejamento da disposição física dos recursos tecnológicos. *Ferreira (2024)* reforça que a continuidade das operações depende também da resiliência da infraestrutura. Isso significa que a segurança não está apenas em bloquear ameaças externas, mas em preparar o ambiente para resistir a eventos físicos e ambientais que comprometam a disponibilidade dos serviços.
+
+### 4.3 - Segurança lógica
+
+Se a segurança física protege o ambiente e os equipamentos, a **segurança lógica protege o acesso aos sistemas**, redes, aplicações e dados digitais. É aqui que entram mecanismos como:
+
+* login e senha;
+* autenticação multifator;
+* perfis de acesso;
+* criptografia;
+* antivírus;
+* firewall;
+* monitoramento de rede;
+* bloqueio de atividades suspeitas.
+
+> Todas as pessoas de uma organização precisam acessar tudo? A resposta, na maioria das vezes é não. Um princípio básico da segurança lógica é que cada usuário deve acessar apenas aquilo que realmente precisa para executar sua função.
+>
+> **Exemplo**: Em uma escola, que tem um setor financeiro e precisa acessar informações de pagamento, a coordenação pedagógica precisa acessar registros acadêmicos, o suporte técnico precisa administrar sistemas. Não faz sentido todos terem o mesmo tipo de acesso, se for acesso irrestrito para todos, o risco aumenta muito. Pode haver alteração indevida, exclusão acidental, vazamento ou uso impróprio de dados.
+
+A qualidade da autenticação, ou seja, as senhas fracas, como datas de nascimento ou sequências simples, são designados a problemas. A autenticação em dois fatores reduz esse risco, pois exige uma segunda confirmação além da senha. Mesmo que uma credencial seja descoberta, ainda há uma barreira adicional.
+
+A segurança lógica não é só instalar programas de proteção, mas é organizar acessos, revisar permissões, acompanhar registros de uso e corrigir vulnerabilidades. Como destacam *Pinheiro et al. (2021)*, a proteção digital depende tanto da tecnologia quanto de políticas claras e do comportamento responsável dos usuários.
+
+#### 4.3.1 - Usuários, senhas e autenticação
+
+O fator humano não é um detalhe em segurança da informação, muitas falhas acontecem não por ausência de ferramenta, mas por comportamento inadequado. Um colaborador pode, sem perceber, abrir um arquivo malicioso, informar credenciais em uma página falsa ou enviar um documento sigiloso para a pessoa errada.
+
+> **Exemplo**: um funcionário recebe um e-mail aparentemente enviado pelo setor de TI, pedindo atualização urgente de senha. O texto parece coerente e há um link para “regularização do acesso”. Sem verificar a origem, ele preenche seus dados, neste caso a invasão não aconteceu por quebra tecnológica sofisticada, mas por engenharia social.
+
+De acordo com *Vijayarangam, Manoranjitham e Raghuraman (2025)*  a defesa cibernética atual depende cada vez mais da capacidade de detectar comportamentos anômalos e responder rapidamente a sinais de ameaça. Mas isso não elimina a necessidade de conscientização humana, ao contrário, a tecnologia e formação precisam caminhar juntas.
+
+### 4.4 - Políticas de segurança
+
+Uma política de segurança da informação é, em essência, **um conjunto de diretrizes que orienta o comportamento esperado dentro da organização**. Em termos simples, a política responde a perguntas relacionadas ao que pode, o que não pode, quem responde o porquê e como deve agir em caso de problema. Define:
+
+* princípios;
+* responsabilidades;
+* limites de uso;
+* condutas diante de riscos ou incidentes.
+
+Sem política, cada setor passa a agir do seu jeito, criando lacunas e inconsistências. Um departamento pode armazenar arquivos em nuvem sem critério, outro pode compartilhar pastas sem restrição, e outro pode manter dados pessoais por tempo indefinido. O resultado é um ambiente desorganizado e vulnerável.
+
+> Um exemplo bem próximo da nossa realidade é o uso dos computadores institucionais.
+>
+> * A organização permite instalação de qualquer software?
+> * O uso de dispositivos pessoais é autorizado?
+> * É permitido levar informações para casa em pen drives?
+> * Como deve ocorrer o descarte de documentos?
+>
+> Tudo isso precisa estar previsto em política.
+
+As políticas também ajudam a formalizar responsabilidades. O usuário deve saber seu papel, o gestor deve saber o que supervisionar e a equipe de TI deve saber o que manter, registrar e revisar. *Donda (2020)*, ao tratar da implementação da LGPD, mostra que o cuidado com dados pessoais depende de procedimentos documentados e de responsabilidades claramente estabelecidas. Ensinar política de segurança significa mostrar que a política organiza a prática. Ela transforma o cuidado com a informação em rotina institucional, e não em atitude isolada.
+
+### 4.5 - Classificação da informação
+
+Um dos erros mais comuns nas organizações é tratar todas as informações como se tivessem o mesmo valor e a mesma sensibilidade. Quando a organização não classifica seus dados, ela perde a capacidade de definir cuidados proporcionais.
+
+> Imagine três tipos de informação:
+>
+> * um folder institucional;
+> * um relatório interno de desempenho;
+> * a folha de pagamento dos funcionários.
+>
+> Faz sentido armazenar, compartilhar e proteger tudo isso da mesma forma? Claro que não. O folder pode ser divulgado ao público. O relatório interno já exige mais cuidado. A folha de pagamento envolve dados sensíveis e precisa de proteção ainda maior.
+
+A classificação da informação significa identificar seu nível de criticidade e definir regras adequadas de acesso, armazenamento, compartilhamento e descarte. Isso evita tanto o excesso quanto a negligência. Sem classificação, a organização corre o risco de expor o que deveria proteger ou restringir sem necessidade o que poderia circular.
+
+### 4.6 - Backup e continuidade
+
+Uma organização pode investir em proteção, controlar acessos e treinar usuários. Ainda assim, falhas podem acontecer.
+
+* Um equipamento pode parar;
+* um arquivo pode ser apagado;
+* um sistema pode ser comprometido por ransomware (é um tipo de malware que bloqueia o acesso a arquivos, sistemas ou equipamentos e depois exige um resgate para liberar o acesso);
+* uma queda de energia pode interromper operações.
+
+É **nesse momento que entram os planos de backup e continuidade**. O Backup é a cópia de segurança dos dados, feita para permitir recuperação em caso de perda, falha ou incidente. Mas não basta “ter backup”. É preciso saber onde ele está, com que frequência é realizado, quem tem acesso, se está íntegro e se já foi testado. Backup que nunca foi testado pode falhar exatamente quando mais se precisa dele.
+
+Para a continuidade de negócios vai além da recuperação de arquivos. Ela envolve a capacidade de manter ou restaurar atividades essenciais após interrupções. Isso inclui definir prioridades, responsáveis, procedimentos alternativos e tempos aceitáveis de recuperação.
+
+> **Exemplo**: uma clínica que agenda consultas, mantém prontuários e registra pagamentos em sistema. Se todos esses dados se perderem de um dia para o outro, a operação para. O atendimento é afetado, os pacientes ficam sem suporte e a confiança na instituição diminui. Um bom processo de backup reduz esse impacto.
+
+### 4.7 - Incidentes de segurança
+
+Os incidentes de segurança podem acontecer mesmo em ambientes relativamente bem preparados, mas a diferença está em como a organização reage. Como ja foi dito, quando não há plano, o susto vira desorganização, ninguém sabe quem comunicar, o que registrar, o que isolar ou como conter o problema.
+
+Resposta a incidentes é o conjunto de ações tomadas para identificar, conter, analisar, corrigir e aprender com um evento que afeta a segurança. Esse evento pode ser um malware, uma tentativa de acesso indevido, vazamento de informação, indisponibilidade de sistema ou uso incorreto de dados.
+
+> **Exemplo**: Imagine que um colaborador perceba que vários arquivos ficaram inacessíveis e receberam com uma extensão desconhecida. Pode ser um caso de ransomware. Se a organização não tiver procedimento definido, alguém pode desligar equipamentos sem critério, outro pode tentar restaurar arquivos por conta própria e outro pode demorar para comunicar o fato. Isso piora a situação.
+
+Com um plano de resposta, o caminho fica mais claro, identificar o incidente, registrar evidências, isolar o ambiente afetado, acionar responsáveis, avaliar extensão do problema, comunicar áreas envolvidas e iniciar recuperação. Depois disso, ainda é necessário revisar causas e corrigir vulnerabilidades para evitar repetição. *Donda (2020)* ajuda a lembrar que incidentes envolvendo dados pessoais podem gerar não apenas prejuízos operacionais, mas também repercussões legais e reputacionais.
+
+### 4.8 - Segurança como prática de gestão
+
+Os controles organizacionais são mecanismos administrativos e operacionais que ajudam a transformar a segurança em prática contínua. Eles incluem definição de responsabilidades, segregação de funções, treinamentos, revisões periódicas, auditorias internas, inventário de ativos, registro de acessos e acompanhamento de conformidade.
+
+A segurança não depende apenas do setor de TI, mas de um controle organizacional simples, como:
+
+* Revisar periodicamente quem tem acesso a determinada pasta ou sistema, pode evitar muitos problemas;
+* Separar as funções críticas que reduz risco de fraude ou erro;
+* Definir quem aprova um pagamento, por exemplo, não deveria ser a mesma pessoa que cadastra e executa toda a operação sem supervisão.
+* Desligar funcionários, por exemplo, quando uma pessoa sai da organização, seus acessos precisam ser revogados rapidamente.
+
+> *Pinheiro et al. (2021)* mostram que proteger dados exige governança, isso significa criar rotinas de controle, acompanhar cumprimento de regras e incorporar segurança ao funcionamento da organização.
+
+### 4.9 - Tecnologias emergentes e novos desafios de proteção
+
+Com a ampliação do *uso de nuvem*, *dispositivos móveis*, *automação*, *blockchain* e *inteligência artificial*, os desafios de segurança também se tornaram mais complexos, a organização deixou de proteger apenas computadores locais e passou a lidar com ecossistemas digitais muito mais distribuídos.
+
+Quando um sistema utiliza **serviços em nuvem**, por exemplo, os dados podem circular por diferentes ambientes e depender de terceiros, isso exige atenção à:
+
+* configuração de acessos;
+* criptografia;
+* contratos;
+* monitoramento;
+* controle de permissões.
+
+No caso do blockchain, *Heck et al. (2025)* mostram que a tecnologia pode oferecer características importantes, como integridade, rastreabilidade e descentralização. Ainda assim, ela não elimina todos os riscos. Se a entrada de dados for equivocada, se as credenciais forem comprometidas ou se houver má gestão dos pontos de acesso, a segurança continua afetada. Ou seja, a tecnologia ajuda, mas não substitui controle e governança.
+
+Já na defesa cibernética, *Vijayarangam, Manoranjitham e Raghuraman (2025)* destacam o uso de técnicas inteligentes para detectar padrões anômalos, tráfego suspeito e comportamentos fora do esperado. Isso é especialmente relevante em ambientes com grande volume de dados e eventos, o valor dessas tecnologias aumenta quando elas estão integradas a políticas, processos e análise humana.
+
+### 4.10 - Cultura de segurança da informação
+
+Uma organização com cultura de segurança não é aquela em que ninguém erra, mas aquela em que o cuidado faz parte do cotidiano. As pessoas sabem que informação tem valor, compreendem que regras existem por um motivo e percebem que pequenas atitudes fazem diferença. Fechar a sessão ao sair do computador, não deixar documentos expostos, confirmar destinatários antes de enviar um e-mail e comunicar comportamentos estranhos são ações simples, mas poderosas. **A cultura de segurança da informação aparece na maneira como as pessoas**:
+
+* lidam com documentos;
+* escolhem senhas;
+* compartilham arquivos;
+* acessam sistemas;
+* circulam em áreas restritas;
+* reagem diante de situações suspeitas.
+
+> A **proteção organizacional depende da integração entre segurança física, ambiental, lógica e controles administrativos**. Também vimos que políticas, classificação da informação, backup, continuidade e resposta a incidentes não são assuntos isolados. Eles se conectam para reduzir riscos, proteger ativos e dar sustentação ao funcionamento da organização.
