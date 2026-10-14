@@ -1327,3 +1327,332 @@ Uma organização com cultura de segurança não é aquela em que ninguém erra,
 * reagem diante de situações suspeitas.
 
 > A **proteção organizacional depende da integração entre segurança física, ambiental, lógica e controles administrativos**. Também vimos que políticas, classificação da informação, backup, continuidade e resposta a incidentes não são assuntos isolados. Eles se conectam para reduzir riscos, proteger ativos e dar sustentação ao funcionamento da organização.
+
+## 5 - Controle de acesso a informação
+
+### 5.1 - Identidade Digital
+
+No mundo físico, usamos documentos, crachás, assinaturas, biometria e reconhecimento pessoal para confirmar identidades. No mundo digital, essa identificação acontece por meio de contas, usuários, senhas, tokens, certificados digitais, biometria, códigos temporários e outros mecanismos, que parecem simples, mas é aí que começam os riscos. Vamos imaginar uma empresa em que todos os funcionários usam o mesmo login para acessar o sistema de estoque, pense:
+
+* Se uma informação for alterada de forma incorreta, como descobrir quem fez?
+* Se alguém apagar um registro importante, quem será responsabilizado?
+* Se um acesso indevido ocorrer, como identificar a origem do problema?
+
+> Veja que, quando a identidade não é individual, a segurança fica frágil e é necessário identificar de quem é a responsabilidade.
+
+A identidade digital não é apenas “ter um usuário e uma senha”, representa a forma como uma organização reconhece as pessoas, os sistemas, e os dispositivos e serviços, saber quem acessa é o primeiro passo para definir o que essa pessoa pode fazer, o que deve ser registrado e como a empresa pode demonstrar controle.
+Peck et al. (2021) destacam que a proteção de dados nas empresas depende de políticas, processos e responsabilidades bem definidos, esta ideia se conecta diretamente à identidade digital, porque não adianta proteger dados se qualquer pessoa consegue acessá-los sem critério, o controle começa no reconhecimento correto de quem está do outro lado.
+
+### 5.2 - IAM (Identity and Access Management) - Gestão de Identidade e Acesso
+
+A sigla vem de **Identity and Access Management**, ou **Gestão de Identidade e Acesso**. A IAM é o conjunto de políticas, processos e tecnologias usados para controlar quem pode acessar quais recursos dentro de uma organização.
+A IAM é como se fosse uma portaria digital, em uma portaria física, a pessoa se identifica, informa para onde vai, recebe autorização e pode ter o seu acesso registrado. No ambiente digital, acontece algo parecido, o sistema precisa reconhecer o usuário, verificar se ele tem permissão e registrar o que foi feito.
+A IAM contribuirá para organização e controle dos acessos e ajuda a responder as questões:
+
+* Quem é o usuário?
+* Ele realmente é quem diz ser?
+* Quais sistemas pode acessar?
+* Que ações pode executar?
+* Esse acesso ainda faz sentido?
+* O que foi feito durante a sessão?
+
+**Essas perguntas são essenciais para evitar acessos indevidos, fraudes internas, vazamentos de dados e uso incorreto de informações.**
+
+> Esses acessos precisam ser controlados continuadamente, imagine um exemplo, uma colaboradora que começou no atendimento ao cliente e depois foi transferida para o setor financeiro, se ela mantiver acesso às informações completas dos clientes, aos chamados antigos e ainda receber acesso aos pagamentos, terá mais permissões do que realmente precisa, isso aumenta o risco, mesmo que ela seja uma pessoa confiável. Segurança da informação não deve depender apenas de confiança pessoal, mas é necessário o controle.
+
+Segundo *Ferreira (2024)*, ao tratar de segurança de rede e defesa cibernética, reforça a importância de controles bem estruturados para reduzir superfícies de ataque. Cada permissão desnecessária aumenta o risco, quanto mais portas abertas, maior a chance de uma falha ser explorada.
+O IAM também ajuda a organização par cumprir requisitos de conformidade em auditorias, por exemplo, é comum perguntar:
+
+* Quem tem acesso ao quê?
+* Quem aprovou esse acesso?
+* Quando foi concedido?
+* Houve revisão?
+
+A gestão de identidade e o acesso deve acompanhar todo o ciclo de vida do usuário, a entrada, movimentação interna e saída, este ciclo é conhecido, em muitas organizações, como admissão, alteração e desligamento, em cada etapa, os acessos precisam ser criados, ajustados ou removidos. A IAM também é um processo de responsabilidade e acompanhamento contínuo.
+
+### 5.3 - AAA - autenticação, autorização e auditoria
+
+Quando falamos em controle de acesso, uma das bases mais importantes é o modelo AAA, esta sigla representa três ideias que são a autenticação, autorização e auditoria.
+
+* A autenticação responde à pergunta:
+   * “*Você é mesmo quem diz ser?*”
+
+Agora temos como resposta o usuário e senha, através de biometria, ou código enviado por aplicativo, ou token, ou certificado digital ou outro mecanismo de validação. Quando você entra em um sistema e informa sua senha, o sistema está confirmando a sua identidade. A autenticação não significa liberar todas as funcionalidades de um sistema, após confirmar quem é a pessoa, o sistema precisa verificar o que ela pode fazer.
+
+* A autorização responde à pergunta:
+   * “*O que essa pessoa tem permissão para acessar ou executar?*”
+
+Um usuário pode conseguir entrar no sistema, mas só visualizar determinadas informações, outro pode editar registros, outro pode aprovar pagamentos e outro pode apenas consultar relatórios.
+
+* A auditoria responde à pergunta:
+   * “*O que foi feito, por quem e quando?*”
+
+Esse registro é essencial, sem trilhas de auditoria, a empresa não consegue investigar incidentes, identificar erros, comprovar conformidade ou responsabilizar ações.
+Vamos pensar em um exemplo de um sistema de compras, a autenticação confirma que Maria entrou com sua conta, a autorização define que Maria pode cadastrar fornecedores, mas não pode aprovar pagamentos. A auditoria registra que Maria cadastrou um fornecedor às 10h15, alterou um telefone às 10h20 e tentou acessar uma função de pagamento às 10h25, mas o sistema bloqueou.
+Veja como as três partes se completam, sem autenticação, qualquer pessoa poderia fingir ser Maria, sem autorização a Maria poderia fazer mais do que deveria e sem auditoria, ninguém saberia o que aconteceu. Podemos dizer que a AAA é uma base fundamental para a segurança, conformidade e governança.
+Peck et al. (2021) tratam a proteção de dados como uma responsabilidade que envolve controle, registro e rastreabilidade.
+
+#### 5.3.1 - Autenticação
+
+Durante muito tempo, a senha foi tratada como o principal mecanismo de autenticação. Até hoje ela continua sendo muito usada, mas a senha sozinha pode ser frágil, as pessoas esquecem, repetem, anotam em locais inadequados, compartilham com colegas ou escolhem combinações fáceis demais.
+Você já deve ter visto senhas como “123456” ou “senha123”, data de nascimento, nome do filho ou nome do animal de estimação, o problema é que essas combinações são previsíveis, em ataques automatizados, criminosos testam milhares de senhas em pouco tempo, quanto mais simples ou reutilizada for a senha, maior o risco.
+
+> Muitas organizações adotam políticas de senha, essas políticas definem regras mínimas, como tamanho, complexidade, troca em situações específicas, bloqueio após tentativas incorretas e proibição de senhas muito comuns, é importante ter sempre um equilíbrio.
+
+Uma boa política de senha deve ser **compreensível e aplicável**, em vez de apenas exigir combinações impossíveis de memorizar, muitas boas práticas atuais valorizam senhas mais longas, uso de frases-senha e autenticação multifator. Uma frase-senha, por exemplo, pode ser mais fácil de lembrar e mais difícil de adivinhar, como uma sequência de palavras sem relação óbvia. A MFA (Multi-Factor Authentication) aumenta a segurança ao exigir mais de um elemento para confirmar a identidade, esses fatores geralmente são organizados em três grupos:
+
+* Algo que você sabe, como uma senha;
+* Algo que você tem, como um celular ou token;
+* Algo que você é, como biometria. Quando dois ou mais fatores são combinados, o acesso fica mais protegido.
+
+Vamos pensar em um aplicativo bancário, mesmo que alguém descubra sua senha, talvez ainda precise do seu celular, da biometria ou de um código temporário, isso reduz o risco de invasão. No **ambiente corporativo, o MFA é importante para e-mails, sistemas administrativos, acesso remoto, VPNs, painéis de gestão, sistemas financeiros e ambientes em nuvem**.
+
+De acordo com *Vijayarangam, Manoranjitham e Raghuraman (2025)*, a defesa cibernética com apoio de inteligência artificial, mostram que ataques digitais vêm se tornando mais sofisticados, isto reforça a necessidade de camadas de proteção e a autenticação multifator é justamente uma dessas camadas.
+Não podemos pensar que a autenticação forte resolve tudo, se o usuário aprova notificações sem ler, compartilha códigos, cai em phishing ou acessa sistemas por dispositivos inseguros, o risco continua existindo. A autenticação precisa caminhar junto com orientação, cultura de segurança e monitoramento. A autenticação é a confirmação da identidade, mas as senhas continuam importantes e não devem ser a única barreira em ambientes sensíveis, quanto mais crítico o sistema, maior deve ser o cuidado com os mecanismos de autenticação.
+
+##### 5.3.1.1 – Políticas de senha e comportamento do usuário
+
+A **senha é uma chave digital, se for fraca, compartilhada ou mal guardada, qualquer controle posterior pode ficar comprometido**. Uma política de senha existe para orientar o uso seguro, ela pode definir, por exemplo:
+* tamanho mínimo;
+* uso de caracteres variados;
+* bloqueio por tentativas inválidas;
+* não reutilização de senhas antigas;
+* troca obrigatória quando houver suspeita de comprometimento
+
+Mas não podemos esquecer que a política só funciona bem quando as pessoas entendem o motivo por trás das regras. Imagine que uma empresa obriga a troca de senha a cada 30 dias, exige caracteres especiais, letras maiúsculas, minúsculas, números e impede repetições, isso parece seguro, mas na teoria, porque na prática, muitos usuários podem criar senhas como “Empresa@01”, “Empresa@02”, “Empresa@03”, ou seja, cumprem a regra, mas mantêm um padrão previsível, veja que a segurança não é apenas a regra, mas envolve também compreensão e cultura criada pela organização.
+Vamos pensar em um laboratório de informática, se o professor empresta seu login administrativo para um aluno instalar um programa, o sistema entenderá que foi o professor quem executou todas as ações, se houver dano, alteração indevida ou acesso a informações restritas, a rastreabilidade fica comprometida.
+Os sistemas podem exigir padrões e bloquear tentativas suspeitas, mas as pessoas precisam compreender sua responsabilidade, quando essa combinação funciona, a senha deixa de ser apenas uma obrigação e passa a ser parte real da proteção da informação.
+
+#### 5.3.2 -  Autorização
+
+##### 5.3.2.1 – Privilégio mínimo de acesso
+
+Um dos **princípios mais importantes em gestão de acesso é o privilégio mínimo**, cada pessoa deve ter apenas os acessos necessários para realizar seu trabalho, nada além disso, você deve pensar que isto é óbvio, mas na prática muitas empresas erram justamente nesse ponto.
+
+>Vamos imaginar um exemplo em uma clínica, a recepcionista precisa consultar agenda, confirmar presença e atualizar dados cadastrais básicos, mas não precisa acessar prontuários completos, laudos, informações financeiras detalhadas ou configurações do sistema, se ela tiver acesso a tudo, qualquer erro, curiosidade indevida ou invasão da conta pode expor informações sensíveis.
+
+O privilégio mínimo protege a organização e também o colaborador, quando uma pessoa tem apenas os acessos adequados à função, reduz-se a chance de erro, exposição indevida e responsabilização por algo que ela nem deveria conseguir fazer. *Peck et al. (2021)* relacionam **segurança digital à proteção de dados, governança e responsabilidade**. O **privilégio mínimo é uma prática que materializa essa responsabilidade, porque impede que o acesso seja tratado como algo genérico**.
+As permissões temporárias devem ter prazo, se alguém precisa de acesso especial para cobrir férias, participar de um projeto ou resolver um incidente, esse acesso deve ser removido depois. O erro está em conceder acesso temporário e deixá-lo permanente.
+O privilégio mínimo, aplicado em organizações que buscam por padrões de controle, possuem a revisão periódica de acessos, aprovação formal e trilhas de auditoria, a empresa consegue responder claramente por que uma pessoa teve um determinado acesso, porque foi necessário e quando foi revisado.
+
+##### 5.3.2.2 – RBAC (Role-Based Access Control)
+
+Um dos modelos mais usados para organizar permissões é o RBAC, sigla para Role-Based Access Control, ou **controle de acesso baseado em papéis**. O acesso não é definido pessoa por pessoa sem nenhum padrão, mas é **definido a partir dos papéis que existem dentro da organização**.
+
+> Vamos imaginar um exemplo, em uma instituição de ensino, podem existir papéis como aluno, professor, coordenador, secretaria, financeiro e direção. Cada papel possui permissões específicas, o aluno acessa notas e materiais, o professor lança frequência e avaliações, a secretaria altera matrícula, financeiro consulta pagamentos e a coordenação visualiza relatórios acadêmicos, já a direção acompanha indicadores mais amplos. Veja que o acesso é associado à função exercida e não à pessoa de forma isolada.
+
+O RBAC ajuda a padronizar, quando um novo professor entra, ele recebe o papel “professor” e herda as permissões necessárias, quando deixa de ser professor ou muda de função, esse papel é removido ou alterado, o que reduz improviso e torna o controle mais previsível. O equilíbrio está em criar papéis que representem responsabilidades reais dentro dos processos.
+Imagine uma empresa que cria apenas dois papéis, o usuário comum e o administrador, isso não é uma atribuição de papéis, alguns podem até receber o perfil de administrador só porque precisa de uma função específica, nesse caso, ninguém entende mais quem tem o quê.
+*Ferreira (2024)* destaca que a defesa cibernética depende de controles estruturados e consistentes. O RBAC contribui para isso ao reduzir permissões avulsas e organizar o acesso de forma alinhada às funções.
+Uma função pode mudar ao longo do tempo, por isto é necessário ter uma avaliação periódica, pois um setor pode receber novas responsabilidades, um sistema pode ganhar funcionalidades.
+O **RBAC é muito útil porque simplifica a gestão, facilita auditorias e reduz erros de configuração**, mas não é automático, é necessário compreender muito os papéis da organização, saber defini-los e associá-los corretamente, quando bem aplicado, o **RBAC ajuda a transformar o controle de acesso em uma prática mais clara e gerenciável**.
+
+##### 5.3.2.3 – ABAC - Attribute-Based Access Control
+
+O ABAC, sigla para Attribute-Based Access Control, ou **controle de acesso baseado em atributos**. Enquanto o **RBAC usa papéis, o ABAC considera atributos para decidir se o acesso será permitido ou negado**.
+Os atributos podem ser as características:
+
+* do usuário;
+* do recurso;
+* da ação;
+* do ambiente;
+* do contexto
+
+Por exemplo:
+
+* o setor do usuário;
+* cargo;
+* localização;
+* horário;
+* tipo de dado;
+* nível de sensibilidade da informação;
+* dispositivo usado;
+* rede de acesso;
+* status do contrato.
+
+O ABAC é útil quando a organização precisa de regras mais flexíveis e detalhadas, em ambientes com dados sensíveis, trabalho remoto, sistemas em nuvem e muitas integrações, o contexto faz diferença. Uma mesma pessoa pode ter permissão em uma situação e não ter em outra.
+Vamos imaginar, uma plataforma de saúde, um médico pode acessar os dados de pacientes sob seus cuidados, mas não deve acessar os prontuários de pacientes com os quais não tem relação, o atributo “vínculo assistencial” pode ser usado como regra, assim, o acesso não depende apenas do papel “médico”, mas também da relação com aquele paciente específico.
+*Heck et al. (2025)*, ao discutirem tecnologias digitais e confiança em ambientes conectados, reforçam a importância de mecanismos que aumentem rastreabilidade e segurança nas relações digitais. O ABAC se relaciona a essa ideia porque permite decisões de acesso mais precisas e baseadas em contexto.
+As regras que são muito complexas podem ficar difíceis de entender, testar e auditar, se ninguém souber explicar porque um acesso foi permitido ou negado, o modelo perde a transparência, por isso, as regras precisam ser documentadas e revisadas.
+Na prática, muitas organizações combinam RBAC e ABAC. Primeiro, definem papéis gerais e depois, aplicam regras adicionais de contexto, isso ajuda a equilibrar simplicidade e segurança.
+O acesso não precisa ser igual em todas as situações, dependendo do dado, do ambiente e do risco, a organização pode exigir condições extras, esse cuidado torna a gestão de acesso mais inteligente e alinhada à realidade digital atual.
+
+|Forma de controle|Pergunta a se fazer|
+|-----------------|-------------------|
+|RBAC|“qual é o papel dessa pessoa?”|
+|ABAC|“quais condições precisam ser atendidas para este acesso acontecer?”|
+
+##### 5.3.2.4 – Segregação de funções
+
+Outro conceito essencial em gestão de acesso é a **segregação de funções**, ou seja, e**vitar que uma única pessoa tenha controle completo sobre etapas críticas de um processo. Isso reduz risco de fraude, erro e abuso de privilégio**.
+A segregação de funções é muito usada em áreas financeiras, compras, recursos humanos, tecnologia, gestão de contratos e administração de sistemas. Ela ajuda a criar uma espécie de “dupla checagem” entre etapas sensíveis, isso não significa desconfiar das pessoas, mas reconhecer que processos críticos precisam de controle.
+
+> Vamos imaginar um sistema acadêmico, o professor lança nota, a secretaria valida ajustes formais, a coordenação acompanha casos especiais, se uma única pessoa pudesse criar aluno, matricular, lançar nota, alterar histórico e emitir diploma sem revisão, o risco seria grande. Separar funções ajuda a proteger a instituição e os próprios envolvidos.
+
+No *contexto de IAM*, a segregação de funções aparece na configuração de permissões, é preciso **evitar combinações perigosas de acesso**, por exemplo, quem cadastra fornecedor não deveria aprovar pagamento para esse mesmo fornecedor sem existir mais uma etapa de validação, quem desenvolve um sistema não deveria ter acesso irrestrito ao ambiente de produção sem controle, quem administra usuários não deveria aprovar sozinho seus próprios privilégios.
+*Peck et al. (2021)* reforçam que a proteção de dados exige responsabilidades bem definidas e controles proporcionais ao risco, a segregação de funções é um desses controles, porque distribui as responsabilidades e reduz a concentração de poder.
+Separar funções é uma forma de proteger processos, pois a organização cria barreiras saudáveis, isso melhora a segurança, fortalece a conformidade e torna as decisões mais confiáveis.
+
+##### 5.3.2.5 – Revisão de acessos
+
+A permissão de acesso é só um começo, a gestão de acesso precisa de acompanhamento, por isso que a **revisão periódica de acessos é tão importante**.
+
+> A revisão de acessos consiste em verificar, de tempos em tempos, se as permissões concedidas ainda são necessárias, adequadas e coerentes com a função de cada usuário. Essa prática ajuda a identificar acessos antigos, excessivos, duplicados, temporários que nunca foram removidos e permissões incompatíveis com a função atual.
+
+A revisão de acessos pode envolver gestores, responsáveis pelos sistemas, equipe de segurança da informação e área de conformidade. O gestor ajuda a responder se determinado acesso ainda é necessário para a função, a área técnica verifica permissões configuradas e a segurança observa riscos e incompatibilidades. Uma boa revisão deve responder algumas perguntas:
+
+* Quem tem acesso ao sistema?
+* Qual perfil está associado a cada pessoa?
+* Existe usuário desligado com conta ativa?
+* Há acessos temporários vencidos?
+
+*Donda (2020)* destaca que a **conformidade com a LGPD exige organização, documentação e práticas demonstráveis**. A revisão de acessos contribui para isso porque gera evidências de controle, a empresa não apenas afirma que controla acessos, mas ela consegue mostrar que revisa e corrige permissões. A frequência da revisão depende do risco, sistemas críticos, como financeiros, dados pessoais sensíveis, prontuários, folha de pagamento e ambientes administrativos, devem ser revisados com mais frequência, já os sistemas de menor risco podem ter ciclos mais espaçados, mas ainda precisam de acompanhamento.
+
+Agora, imagine o desligamento de colaboradores, quando alguém sai da empresa, os acessos devem ser removidos rapidamente, as contas ativas de pessoas desligadas representam risco significativo, em alguns incidentes, invasores exploram justamente contas esquecidas.
+
+#### 5.3.3 – Trilhas de auditoria e responsabilidade
+
+As trilhas de auditoria são registros que mostram o que aconteceu dentro de um sistema, indicam quem acessou, quando acessou, o que consultou, o que alterou, o que excluiu, qual operação executou e, em alguns casos, de onde veio o acesso, que são registros fundamentais para segurança e conformidade.
+
+> Vamos pensar em um exemplo prático, um cadastro de cliente foi alterado indevidamente, sem trilha de auditoria, a empresa talvez saiba que o dado mudou, mas não consiga descobrir quem alterou, quando isso ocorreu e qual era o valor anterior.
+
+A **auditoria também ajuda a diferenciar erro, falha de processo e ação maliciosa**, às vezes, o problema não foi intenção de causar dano, mas falta de treinamento ou tela confusa, mas sem o registro, tudo vira dúvida.
+*Peck et al. (2021)* tratam a rastreabilidade como elemento importante para proteção de dados e responsabilização. Isso faz sentido porque, em ambientes digitais, ações deixam marcas. A questão é garantir que essas marcas sejam registradas de forma adequada, protegidas contra alteração e analisadas quando necessário.
+É preciso proteger os próprios logs, se um usuário com má intenção consegue apagar ou alterar a trilha de auditoria, o controle perde valor, por isso, em sistemas críticos, os registros devem ter proteção especial, retenção adequada e acesso restrito.
+*Vijayarangam, Manoranjitham e Raghuraman (2025)* discutem o uso de aprendizado de máquina para detecção de ameaças, esse tipo de tecnologia depende bastante de logs e eventos, sem registros confiáveis, fica difícil detectar comportamentos anormais, como tentativas repetidas de acesso, movimentação fora do padrão ou uso incomum de permissões.
+As trilhas de auditoria também **ajudam em auditorias formais, investigações internas e resposta a incidentes**. Quando ocorre uma falha, a empresa precisa reconstruir a sequência dos fatos, como quem acessou, o que foi feito, se houve tentativa de bloqueio, se o acesso era autorizado, as respostas para estas situações ajudam a identificar as ocorrências.
+**A auditoria ajuda a melhorar os processos, corrigir as falhas e prevenir os novos incidentes, uma organização que registra e analisa suas ações aprende mais sobre seus próprios riscos.**
+
+### 5.4 – Integração dos controles de identidade, acesso e cultura de segurança
+
+Sabendo sobre *IAM, AAA, autenticação, senhas, privilégio mínimo, RBAC, ABAC, segregação de funções, revisão de acessos e trilhas de auditoria*, precisamos juntar as peças, porque esses **temas não funcionam isoladamente, eles formam uma estrutura de proteção**. **Não adianta ter RBAC se ninguém revisa os papéis, não adianta ter logs se eles não são analisados, não adianta falar em LGPD se a empresa não sabe quem acessa dados pessoais.**
+*Ferreira (2024)* destaca que a defesa cibernética precisa considerar processos, tecnologia e operação, essa visão é importante porque a gestão de acesso não é apenas uma configuração técnica, ela depende de decisões organizacionais, políticas claras e comportamento dos usuários.
+
+> Imagine o exemplo de uma empresa que usa um sistema de atendimento ao cliente, o atendente precisa consultar chamados e atualizar status, o supervisor precisa acompanhar indicadores da equipe, o administrador precisa configurar filas e permissões, o fornecedor externo precisa acessar apenas a parte técnica durante o contrato. A empresa deve definir papéis, aplicar privilégio mínimo, exigir autenticação forte para perfis sensíveis, registrar ações importantes e revisar acessos periodicamente.
+>
+> Se essa empresa também usa inteligência artificial para analisar chamados e detectar padrões de fraude, novos cuidados surgem, é preciso saber quais dados alimentam a ferramenta, quem acessa os resultados, como os logs são protegidos e se há risco de exposição indevida. De acordo com *Vijayarangam, Manoranjitham e Raghuraman (2025)*, as tecnologias inteligentes podem apoiar a segurança, mas precisam de governança para serem usadas com responsabilidade.
+
+Pense que cada permissão concedida deve ter motivo, limite, aprovação e revisão e quando a organização entende isso, ela deixa de trabalhar no improviso e passa a proteger melhor suas informações
+
+## 6 - Ameaças, Invasores e Tipos de Ataques
+
+A transformação digital acontece em empresas de todos os tamanhos que passaram a depender de servidores na nuvem, dispositivos móveis, sistemas industriais conectados e aplicações web, gerando um valor enorme, mas também criou uma superfície de ataque sem precedentes, cada novo sistema conectado é uma porta potencial de entrada para atacantes.
+
+Em 2024, o Brasil foi identificado entre os países com maior volume de tentativas de intrusão na América Latina, o que reforça a urgência de capacitar profissionais capazes de identificar, categorizar e responder a ameaças cibernéticas de forma estruturada.
+
+Um erro comum é achar que proteger dados significa instalar um software e pronto, mas sabemos que na prática, segurança da informação é uma questão estratégica. Ela envolve políticas, processos, treinamento de pessoas, cultura organizacional e alinhamento com a legislação, como falamos anteriormente.
+
+### 6.1 - Perfis de atacantes
+
+#### 6.1.1 - Script Kiddies
+
+Na base da pirâmide estão os chamados *script kiddies*, que são pessoas com **conhecimento técnico limitado que usam ferramentas prontas**, criadas por outros, sem necessariamente entender como funcionam por dentro. A motivação costuma ser reconhecimento em fóruns underground, curiosidade ou puro vandalismo digital.
+
+Não se engane pela falta de sofisticação, pois eles **representam um volume expressivo de ataques automatizados contra sistemas desprotegido**.
+
+#### 6.1.2 - Hacktivistas
+
+Os *hacktivistas* **combinam habilidades técnicas com motivações ideológicas, políticas ou sociais**. O grupo *Anonymous* é o exemplo mais conhecido, que promoveu ataques de negação de serviço (*DDoS*) e desfiguração de sites em protesto contra governos e corporações. O DDoS (Distributed Denial of Service, ou Ataque Distribuído de Negação de Serviço) é um tipo de ataque cibernético cujo objetivo é tornar um servidor, serviço ou rede indisponível ao sobrecarregá-lo com uma quantidade massiva de tráfego falso.
+
+Para empresas, esse risco é mais relevante quando a organização assume posicionamentos públicos controversos ou atua em setores sensíveis, como mineração, finanças e saúde. O fator determinante não é apenas o setor, mas a exposição reputacional da organização.
+
+#### 6.1.3 - Criminosos cibernéticos
+
+O *grupo mais comum no ambiente empresarial*, são **movidos por lucro financeiro**, operam em ecossistemas organizados nos mercados da dark web, onde compram e vendem credenciais roubadas, exploits zero-day é um ataque cibernético que aproveita uma vulnerabilidade desconhecida no software, ou seja, uma falha que o fabricante ainda não descobriu ou não teve tempo de corrigir.
+
+#### 6.1.4 - Insiders maliciosos
+
+O atacante interno é um dos mais perigosos e dos mais subestimados. Por muitas vezes são os **funcionários descontentes, ex-colaboradores com acesso não revogado ou terceiros com privilégios excessivos podem causar danos enormes sem precisar quebrar nenhuma barreira de perímetro**.
+
+A motivação pode variar entre vingança, ganho financeiro, espionagem corporativa. As principais contramedidas são o princípio do privilégio mínimo, cada pessoa acessa apenas o que precisa para sua função e a monitoração comportamental.
+
+#### 6.1.5 - Atores patrocinados por estados
+
+No topo da sofisticação estão os APTs (*Advanced Persistent Threats*) que** grupos financiados por governos para conduzir espionagem, sabotagem industrial ou campanhas de desinformação**. Operam com recursos quase ilimitados, paciência estratégica e acesso a vulnerabilidades ainda desconhecidas pelo mercado.
+
+Com o avanço da inteligência artificial generativa, esses grupos passaram a criar campanhas de spear phishing ultrapersonalizadas em escala industrial algo que antes exigia equipes inteiras e muito tempo. O Spear Phishing é uma versão altamente direcionada do phishing tradicional, em vez de disparar mensagens genéricas para milhões de pessoas, o atacante pesquisa a vítima e cria uma mensagem personalizada e convincente.
+
+Você deve pensar que um ataque real pode envolver mais de um tipo de ator ou combinar motivações diferentes. Por isto, você deve considerar a análise de risco em múltiplos cenários.
+
+### 6.2 - Phishing e engenharia social
+
+A resposta está no fato de que phishing não explora vulnerabilidades em software. Ele explora vulnerabilidades humanas, a confiança, o medo, a urgência e respeito à autoridade, isso é o que chamamos de engenharia social a arte de manipular pessoas para que revelem informações ou realizem ações prejudiciais.
+
+O phishing clássico usa e-mails que imitam comunicações de bancos, operadoras ou colegas, induzindo a vítima a clicar em links maliciosos ou fornecer credenciais em páginas falsas. Mas existem variantes mais sofisticadas como:
+
+* **Spear phishing**: este é direcionado a pessoas específicas, com conteúdo personalizado baseado em informações reais da vítima.
+* **Whaling**: este é voltado a executivos de alto escalão, como o "peixe grande" da organização.
+* **Vishing**: este é phishing por voz, geralmente por telefone.
+* **Smishing**: é o phishing via SMS.
+
+*Donda (2020)*, ressalta que a responsabilidade das organizações com a LGPD impõe o dever de adotar medidas técnicas e administrativas para proteger dados pessoais. Isso inclui **treinamento contínuo dos colaboradores contra engenharia social**.
+
+Não existe ferramenta tecnológica capaz de compensar completamente um colaborador que clica em links suspeitos. A conscientização humana não é um complemento à segurança técnica, mas é parte indispensável de qualquer programa de proteção. Podemos pensar que a simulação de phishing é uma das formas mais eficazes de treinar equipes. Quando as pessoas 'caem' num teste controlado, o aprendizado é muito mais duradouro do que uma apresentação teórica.
+
+### 6.3 - Malware e Ransomware
+
+O **Malware** é a abreviação de malicious software, qualquer software projetado para causar dano, obter acesso não autorizado ou extorquir suas vítimas. É o transmissor técnico mais produtivo do crime cibernético moderno, com variantes em constante evolução para escapar das defesas. Os principais tipos de malwares são:
+
+* **Vírus**: programas que se replicam inserindo cópias de si mesmos em outros arquivos executáveis.
+* **Worms**: propagam-se autonomamente por redes, sem precisar de um arquivo hospedeiro.
+* **Trojans**: disfarçam-se de software legítimo para abrir backdoors no sistema.
+* **Spyware**: coleta informações silenciosamente sem o conhecimento do usuário.
+* **Adware**: exibe publicidade invasiva e, muitas vezes, serve como veículo para cargas maliciosas mais perigosas.
+* **Rootkit**: oculta sua presença no sistema operacional, comprometendo a integridade do ambiente de detecção.
+
+O **Ransomware** é um tipo de malware que sequestra os dados da vítima — criptografando arquivos ou bloqueando o sistema e exige um resgate (ransom) para devolver o acesso. O ransomware é, sem dúvida, a evolução mais lucrativa do malware na última década. O funcionamento básico segue três estágios:
+
+* **Infiltração**: geralmente via phishing ou exploração de vulnerabilidade.
+* **Criptografia**: os arquivos da vítima são cifrados com algoritmos assimétricos robustos como RSA-2048 ou superiores.
+* **Extorsão**: é exigido pagamento em criptomoeda para fornecer a chave de descriptografia.
+
+Desde 2019, um novo padrão se consolidou entre os principais grupos de ransomware. Além de criptografar os dados, os atacantes exfiltram cópias para seus próprios servidores e ameaçam publicá-los caso o resgate não seja pago. Isso transforma o incidente de um problema operacional, como recuperar os arquivos em uma crise de privacidade com implicações regulatórias sérias, incluindo possíveis sanções da LGPD pelo vazamento de dados pessoais.
+
+*Peck et al. (2021)* enfatizam que a resiliência cibernética demanda planos de continuidade de negócios (BCP) e de recuperação de desastres (DRP) regularmente testados, além de backups offline e segmentação de rede que limitem o raio de explosão de um ataque bem-sucedido. **Devemos fazer Backups offline regulares, segmentação de rede, BCP e DRP são as contramedidas mais eficazes contra ransomware.**
+
+### 6.4 - Ataques de negação de serviço (DDoS)
+
+> Imagine que a loja online da sua empresa fica fora do ar por horas em plena Black Friday, **os clientes não conseguem acessar, pedidos se perdem, a reputação da marca sofre, esse é o impacto prático de um ataque de negação de serviço**.
+> O objetivo desses ataques é simples, **tornar um sistema, serviço ou rede indisponível para seus usuários legítimos**. Isso é feito consumindo recursos computacionais, esgotando a largura de banda ou explorando falhas de protocolo.
+
+|DoS|DDoS|
+|---|----|
+|Ataque parte de uma única origem|Milhares de dispositivos comprometidos as chamadas botnets disparam requisições simultâneas contra o alvo, amplificando enormemente a força do ataque|
+
+*Ferreira (2024)* classifica os ataques DDoS em três categorias principais, cada uma com estratégias de mitigação distintas:
+
+* **Ataques volumétricos**: esgotam a largura de banda disponível com tráfego massivo. São os mais visíveis e os que mais exigem capacidade de absorção em CDNs e scrubbing centers.
+* **Ataques de protocolo**: exploram falhas em protocolos como TCP/IP para consumir recursos de roteadores e firewalls, independentemente do volume de tráfego.
+* **Ataques de camada de aplicação**: sobrecarregam servidores HTTP, DNS ou APIs com requisições aparentemente legítimas. São os mais difíceis de detectar por soluções baseadas apenas em volume de tráfego.
+
+As **motivações** destas ilegalidades, podem variar bastante:
+
+* **Hacktivismo**: protestar contra uma organização.
+* **Extorsão**: ameaçar um ataque em troca de pagamento.
+* **Sabotagem** competitiva.
+* **Distração**: encobrir outra intrusão em andamento enquanto a equipe de segurança está ocupada com o DDoS.
+
+A mitigação eficaz exige soluções especializadas, como scrubbing centers, CDNs com capacidade de absorção de tráfego e regras dinâmicas de firewall. O monitoramento contínuo e a definição de baselines comportamentais permitem detectar anomalias antes que o ataque atinja proporções críticas.
+
+Você deve pensar que o **monitoramento de tráfego em tempo real é essencial**, quanto mais cedo uma anomalia for detectada, menor será o impacto e mais fácil será identificar o tipo de ataque e escolher a contramedida correta.
+
+### 6.5 - Ataques Man-in-the-Middle: interceptação silenciosa
+
+Man-in-the-Middle (MITM) é um **ataque onde o criminoso se posiciona secretamente entre duas partes que acreditam estar se comunicando diretamente, interceptando, lendo e podendo modificar tudo que passa**. Nesses ataques, o adversário se posiciona de forma silenciosa, ele pode *interceptar, ler, modificar ou injetar dados no fluxo de comunicação*, comprometendo, ao mesmo tempo, a *confidencialidade, a integridade e a autenticidade* da informação.
+
+* **ARP Spoofing**: o protocolo ARP (*Address Resolution Protocol*) não tem mecanismo de autenticação. Um atacante pode enviar respostas ARP forjadas, associando seu endereço MAC ao IP de outro dispositivo como o gateway da rede e redirecionando todo o tráfego pelo seu equipamento. **Esse é ataque favorito em redes locais**.
+* **DNS Spoofing**: o DNS Spoofing complementa o arsenal MITM ao falsificar respostas de resolução de nomes. Quando você digita o endereço correto de um site no navegador, o sistema consulta um servidor DNS para descobrir o IP correspondente. Um atacante que intercepte ou corrompa essa resposta pode redirecionar o usuário para um servidor controlado por ele, mesmo com o endereço digitado corretamente. Combinado com certificados SSL falsos ou exploração de configurações incorretas de HSTS, o DNS Spoofing permite capturar credenciais mesmo em sessões aparentemente seguras. Por isso, a confiança no cadeado do navegador não é, por si só, garantia de que o destino é legítimo.
+* **Evil Twin**: a rede Wi-Fi falsa, você já se conectou automaticamente a um Wi-Fi conhecido num aeroporto ou café? É exatamente isso que o Evil Twin Attack explora, o atacante cria um ponto de acesso com nome idêntico ao de uma rede legítima. Os Dispositivos configurados para reconectar automaticamente se associam ao AP malicioso, expondo todo o tráfego. **Colaboradores em trabalho remoto, sem VPN corporativa, são alvos especialmente vulneráveis a essa técnica**.
+* **SSL Stripping**: o HTTPS que virou HTTP, o **SSL Stripping degrada conexões HTTPS para HTTP**, eliminando a camada de criptografia sem que o usuário perceba claramente, o atacante age como proxy transparente, mantém conexão segura com o servidor, mas se comunica com a vítima em texto puro, capturando tudo. A implementação de HTTP Strict Transport Security (HSTS) e o uso de HSTS Preloading mitigam significativamente esse vetor, forçando o navegador a sempre usar HTTPS mesmo que o usuário ou o atacante tente degradar a conexão.
+
+**Como se proteger, neste caso, use TLS 1.2 ou superior com certificados válidos.**
+
+Implemente HSTS com Preloading para impedir downgrade de protocolo, adote autenticação mútua com certificados de cliente em sistemas críticos, use VPNs corporativas para todo acesso remoto, monitore tabelas ARP em switches gerenciáveis, adote autenticação 802.1X em redes Wi-Fi corporativas.
+
+*Heck et al. (2025)* destacam que tecnologias baseadas em blockchain oferecem perspectivas promissoras para autenticação descentralizada, reduzindo a dependência de autoridades certificadoras centralizadas que, quando comprometidas, podem validar certificados para sites maliciosos.
+
+Você deve ter muito cuidado em redes Wi-Fi públicas, nunca acesse sistemas corporativos sem VPN ativa, a conveniência não compensa o risco. O DNS Spoofing e Evil Twin podem estar ativos sem qualquer sinal visível para o usuário.
+
+## 7 - Defesa Cibernética e Guerra Cibernética. Segurança em Redes, Aplicações e Dispositivos Móveis
+
+## 8 - Criptografia (Clássica, Moderna, Pós-Quântica) e Blockchain
