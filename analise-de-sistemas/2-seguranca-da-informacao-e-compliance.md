@@ -1163,7 +1163,7 @@ Para entender **Governança** e **gestão de riscos**, vale olhar além das norm
 
 Segurança da informação envolve proteger pessoas, ambientes, equipamentos, redes, sistemas, documentos e processos. Em outras palavras, não adianta a organização investir em tecnologia de ponta se deixa portas abertas, documentos expostos ou usuários sem orientação.
 
-> **Exemplo**: Uma instituição tem firewall, antivírus e autenticação em dois fatores, mas o servidor principal fica em uma sala sem controle de acesso, com qualquer pessoa podendo entrar, e inclusive no mesmo andar que tem um café, ou seja, todas passam na frente desta sala todos os dias. Isso mostra que a segurança lógica pode estar relativamente bem estruturada, mas a segurança física é vulnerável. 
+> **Exemplo**: Uma instituição tem firewall, antivírus e autenticação em dois fatores, mas o servidor principal fica em uma sala sem controle de acesso, com qualquer pessoa podendo entrar, e inclusive no mesmo andar que tem um café, ou seja, todas passam na frente desta sala todos os dias. Isso mostra que a segurança lógica pode estar relativamente bem estruturada, mas a segurança física é vulnerável.
 >
 > **O problema é que, em segurança, uma falha costuma comprometer o conjunto**.
 
@@ -1413,6 +1413,7 @@ Não podemos pensar que a autenticação forte resolve tudo, se o usuário aprov
 ##### 5.3.1.1 – Políticas de senha e comportamento do usuário
 
 A **senha é uma chave digital, se for fraca, compartilhada ou mal guardada, qualquer controle posterior pode ficar comprometido**. Uma política de senha existe para orientar o uso seguro, ela pode definir, por exemplo:
+
 * tamanho mínimo;
 * uso de caracteres variados;
 * bloqueio por tentativas inválidas;
@@ -1568,7 +1569,7 @@ A motivação pode variar entre vingança, ganho financeiro, espionagem corporat
 
 #### 6.1.5 - Atores patrocinados por estados
 
-No topo da sofisticação estão os APTs (*Advanced Persistent Threats*) que** grupos financiados por governos para conduzir espionagem, sabotagem industrial ou campanhas de desinformação**. Operam com recursos quase ilimitados, paciência estratégica e acesso a vulnerabilidades ainda desconhecidas pelo mercado.
+No topo da sofisticação estão os APTs (*Advanced Persistent Threats*) que são **grupos financiados por governos para conduzir espionagem, sabotagem industrial ou campanhas de desinformação**. Operam com recursos quase ilimitados, paciência estratégica e acesso a vulnerabilidades ainda desconhecidas pelo mercado.
 
 Com o avanço da inteligência artificial generativa, esses grupos passaram a criar campanhas de spear phishing ultrapersonalizadas em escala industrial algo que antes exigia equipes inteiras e muito tempo. O Spear Phishing é uma versão altamente direcionada do phishing tradicional, em vez de disparar mensagens genéricas para milhões de pessoas, o atacante pesquisa a vítima e cria uma mensagem personalizada e convincente.
 
@@ -1851,5 +1852,273 @@ Esse plano precisa ser documentado e testado regularmente por meio de exercício
 > Segurança não é responsabilidade exclusiva de TI, mas é responsabilidade de cada pessoa que acessa um sistema, abre um e-mail ou usa a rede da organização.
 
 ## 7 - Defesa Cibernética e Guerra Cibernética. Segurança em Redes, Aplicações e Dispositivos Móveis
+
+### 7.1 - O que é Defesa Cibernética?
+
+A **defesa cibernética é o conjunto de práticas, tecnologias e estratégias usadas para proteger sistemas de informação contra acesso não autorizado, exploração, dano ou destruição**. Diferente de simplesmente instalar um antivírus, a defesa cibernética moderna é proativa, parte do princípio de que o ataque vai acontecer, a questão é quando e como a organização vai detectá-lo e reagir. Por isso, o conceito central aqui é a resiliência, a capacidade de resistir, absorver, recuperar e adaptar-se a eventos adversos.
+
+Vamos pensar em três pilares para compreender esta unidade:
+
+1. Prevenção - barreiras técnicas e procedimentos para dificultar ao máximo o sucesso de um ataque.
+2. Detecção - monitoramento contínuo para identificar atividades suspeitas o mais cedo possível.
+3. Resposta- planos e equipes prontos para conter, erradicar e recuperar após um incidente.
+
+Imagine que a defesa cibernética é como a segurança de um banco. Nenhum dos três funciona bem sem os outros dois.
+
+|Analogia|Pilar|
+|--------|-----|
+|Existe a câmera|Detecção|
+|Porta blindada|Prevenção|
+|Botão de alarme com a polícia na linha|Resposta|
+
+#### 7.1.1 - Detecção e Resposta a Incidentes
+
+Imagine se há um invasor dentro da sua rede há seis meses, coletando dados silenciosamente, o tempo médio global de detecção de uma invasão ainda supera 200 dias, segundo estudos da IBM. **Detectar rápido salva dados, dinheiro e reputação**. As principais ferramentas e abordagens de detecção são:
+
+* **-SIEM** (*Security Information and Event Management*): agrega e correlaciona logs de toda a infraestrutura, identificando padrões anômalos em tempo real.
+* **-EDR** (*Endpoint Detection and Response*): monitora comportamentos em endpoints — não apenas assinaturas de malware, mas atividades suspeitas como execução incomum de processos.
+* **-NDR** (*Network Detection and Response*): analisa o tráfego de rede em busca de comportamentos anômalos, incluindo movimentos laterais internos.
+
+Quando o incidente é confirmado, entra em cena o processo de resposta, seguindo o ciclo:
+
+1. Identificação;
+2. Contenção;
+3. Erradicação;
+4. Recuperação;
+5. Lições aprendidas.
+
+Pense que cada etapa precisa estar documentada em um **Plano de Resposta a Incidentes** (IRP), treinado e testado regularmente por meio de exercícios como simulações de mesa (tabletop exercises). É importante sempre lembrar que um plano de resposta que nunca foi testado é apenas um documento. A equipe precisa praticar sob pressão simulada para que a resposta real seja eficaz
+
+### 7.2 - Segurança em Camadas e Inteligência de Ameaças
+
+Se você tentasse proteger um castelo medieval com apenas um portão, qualquer invasor que o superasse teria acesso total ao interior. É por isso que castelos tinham fossos, muralhas externas, muralhas internas, guaritas e guardas em cada andar. A segurança cibernética moderna funciona exatamente da mesma forma, esse conceito se chama Defense in Depth, ou Defesa em Profundidade.
+
+A ideia central é simples, nunca dependa de um único mecanismo de proteção, se uma camada falha, a próxima precisa estar ali para conter o avanço.
+
+As camadas típicas em um ambiente corporativo são:
+
+1. Camada física: controle de acesso a servidores, salas de datacenter, câmeras e travas.
+2. Camada de rede: firewalls, IDS/IPS, segmentação de VLANs e VPNs.
+3. Camada de host: antimalware, hardening de sistemas operacionais, controle de patches.
+4. Camada de aplicação: autenticação multifator (MFA), WAF, controle de sessão e criptografia.
+5. Camada de dados: criptografia em repouso e em trânsito, DLP (Data Loss Prevention).
+6. Camada humana: treinamentos, políticas de uso aceitável e simulações de phishing.
+
+Mas como saber contra o quê se defender? É neste caso que entra a *Threat Intelligence* (**Inteligência de Ameaças**).
+
+A Threat Intelligence é o processo de coletar, processar e analisar informações sobre ameaças cibernéticas para tomar decisões melhores de defesa. Em vez de reagir no escuro, as organizações passam a antecipar movimentos dos adversários. Existem três tipos principais de inteligência:
+
+1. Estratégica: voltada para executivos e CISO. Traz tendências do cenário de ameaças, atores relevantes para o setor e riscos de longo prazo.
+2. Tática: descreve técnicas, táticas e procedimentos (TTPs) usados por grupos de ameaça. Alinha-se ao framework MITRE ATT&CK, que cataloga mais de 400 técnicas de ataque documentadas em campanhas reais.
+3. Operacional: dados acionáveis em tempo real, como indicadores de comprometimento (IoCs): endereços IP maliciosos, hashes de arquivos suspeitos, domínios de C2 (command-and-control).
+
+> *Exemplo prático*: quando um grupo de ransomware ataca uma rede hospitalar em outro país usando uma técnica específica de movimento lateral, a inteligência de ameaças permite que outras instituições do mesmo setor já atualizem suas defesas antes de serem alvos, isso é a defesa proativa baseada em evidências.
+
+**O compartilhamento de inteligência entre organizações e setores é hoje considerado uma das defesas coletivas mais eficazes, as plataformas como MISP (*Malware Information Sharing Platform*) e estruturas como o ISACs (*Information Sharing and Analysis Centers*) setoriais facilitam essa colaboração em escala.**
+
+#### 7.2.1 - Segurança em Redes: Segmentação e Firewall
+
+Vamos imaginar o que aconteceria se todos os departamentos de uma empresa, o RH, financeiro, produção e TI, estivessem na mesma rede plana, sem nenhuma barreira? Um único dispositivo comprometido teria acesso a tudo, é para isso que existe a segmentação de redes.
+
+A segmentação divide a rede em zonas isoladas, as chamadas VLANs (Virtual LANs), de forma que o tráfego entre elas seja controlado e filtrado. Um servidor de produção não precisa se comunicar com a impressora da recepção, se um ransomware infectar um endpoint do atendimento, a segmentação impede que ele alcance o banco de dados crítico. O Firewall é o porteiro dessa separação. Ele inspeciona pacotes de rede com base em regras e decide o que passa e o que é bloqueado. Os tipos principais são:
+
+1. **Packet Filtering**: regras simples baseadas em IP de origem/destino e porta.
+2. **Stateful Inspection**: acompanha o estado das conexões, muito mais eficaz.
+3. **NGFW (Next-Generation Firewall)**: combina inspeção profunda de pacotes (DPI), controle de aplicações e integração com Threat Intelligence.
+
+> **Pensando em uma dica bem prática o princípio de menor privilégio também se aplica à rede, cada segmento só deve ter acesso ao que precisa para funcionar. Menos caminhos disponíveis é igual a menor superfície de ataque.**
+
+#### 7.2.2 - VPN, DNS Seguro e TLS/HTTPS
+
+Vamos pensar que com o crescimento do trabalho remoto, proteger a comunicação entre o colaborador e a infraestrutura corporativa tornou-se crítico e fundamental.
+
+Três tecnologias são essenciais para isso: VPN, DNS seguro e TLS/HTTPS.
+
+* VPN (Virtual Private Network):
+A VPN cria um túnel criptografado entre o dispositivo do usuário e a rede corporativa. Todo o tráfego passa por esse túnel, protegido de interceptação mesmo em redes públicas ou não confiáveis. Os principais protocolos são:
+
+|Protocolo|Característica Técnica|Requisito de Compliance / Segurança|
+|---------|----------------------|-----------------------------------|
+|IPSec|Padrão para VPNs corporativas, opera na camada de rede. Muito robusto, mas mais complexo de configurar|**Interoperabilidade e Customização**: Atende requisitos de órgãos reguladores que exigem algoritmos específicos (ex: ICP-Brasil) e conexões site-to-site entre fabricantes diferentes|
+|OpenVPN|De código aberto, flexível e amplamente suportado|**Controle Granular e Auditoria**: Permite logs detalhados e integração fácil com MFA e diretórios, facilitando a comprovação de conformidade (ex: LGPD/ISO 27001)|
+|WireGuard|Protocolo moderno com código menor (menos vulnerável) e desempenho superior|**Redução de Superfície de Ataque**: Código auditável e criptografia moderna reduzem o risco de vulnerabilidades exploráveis, embora exija cuidado extra com logging para auditoria|
+
+> Um ponto importante: VPN não é sinônimo de anonimato. No contexto corporativo, ela é ferramenta de acesso seguro, o tráfego ainda é visível para o provedor da VPN.
+
+* DNS Seguro:
+O DNS (Domain Name System) é a "lista telefônica" da internet, traduz nomes de domínio em endereços IP. O problema é que o DNS tradicional não foi projetado com segurança em mente: as consultas trafegam em texto puro, abertas para interceptação e manipulação. As soluções modernas incluem:
+
+|Protocolo|Característica Técnica|Requisito de Compliance / Segurança|
+|---------|----------------------|-----------------------------------|
+|DNSSEC|Adiciona assinatura criptográfica às respostas DNS, garantindo autenticidade|**Integridade e Autenticidade (Anti-Spoofing)**: Mitiga envenenamento de cache e respostas forjadas . Para auditoria (ISO 27001), é um controle de integridade crítico. Atenção: Não cifra o tráfego; as consultas ainda são visíveis na rede. Exige gestão rigorosa de chaves (rollover) e âncoras de confiança|
+|DNS over HTTPS (DoH)|Encapsula as consultas DNS em conexões HTTPS, impedindo monitoramento e manipulação|**Confidencialidade e Privacidade (LGPD)**: Oculta consultas de olhares externos, alinhado à minimização de dados . Risco de Compliance: Pode burlar controles corporativos de segurança (ex: filtros de conteúdo, DLP) e logs de auditoria de rede, pois o tráfego se mistura ao HTTPS comum. Exige política clara de uso|
+|DNS over TLS (DoT)|Idem ao DoH, mas usa o protocolo TLS diretamente na porta 853|**Confidencialidade com Controle de Rede**: Também cifra a consulta (privacidade). **Vantagem operacional**: Por usar porta dedicada (853), é mais fácil para firewalls corporativos identificarem e permitirem (ou bloquearem) o tráfego, facilitando a aplicação de políticas de segurança e auditoria em comparação ao DoH|
+
+> No ambiente corporativo, soluções como o DNS Filtering (ex.: Cisco Umbrella, Cloudflare Gateway) bloqueiam domínios maliciosos antes mesmo que a conexão seja estabelecida — uma camada de defesa precoce muito eficaz.
+
+* TLS/HTTPS — a criptografia que você vê todos os dias:
+O cadeado no navegador representa o TLS (Transport Layer Security), o protocolo que criptografa a comunicação entre o navegador e o servidor web. O HTTPS é simplesmente HTTP sobre TLS. O que você precisa saber:
+
+|Protocolo|Característica Técnica|Requisito de Compliance / Segurança|
+|---------|----------------------|-----------------------------------|
+|TLS|TLS 1.2 ainda é amplamente usado, mas TLS 1.3 é o padrão atual — mais rápido e com handshake simplificado que elimina vulnerabilidades presentes nas versões anteriores|Baseline obrigatório e desativação de legados: Normas como PCI DSS e ISO 27001 (A.8.24) exigem criptografia forte em trânsito . O requisito prático é **desabilitar TLS 1.0/1.1 e SSL**, manter TLS 1.2 como mínimo e preferir TLS 1.3 . Para auditoria, a evidência é a configuração do servidor (`ssl_protocols TLSv1.2 TLSv1.3;`) e o resultado de varreduras que comprovem a ausência de protocolos obsoletos|
+|Certificado SSL|Certificados SSL/TLS precisam ser renovados periodicamente. Certificados expirados são vetor de erro humano — e de desconfiança do usuário|Gestão do ciclo de vida e automação: O controle de compliance exige inventário, monitoramento e **renovação automatizada** para evitar expiração . Normas como NIST SP 800-53 (SC-12, SC-17) e PCI DSS (3.6.1) mapeiam esse controle . A evidência de auditoria inclui: política de gestão de certificados, uso de CAs aprovadas (evitar self-signed em serviços críticos) e comprovação de que a rotação é automatizada ou monitorada|
+|HTTPS|O HSTS (HTTP Strict Transport Security) instrui o navegador a sempre usar HTTPS, prevenindo ataques de downgrade como o SSL Stripping|Proteção contra downgrade e primeira requisição: O OWASP recomenda `max-age` de pelo menos 1 ano (31536000) e `includeSubDomains`; para fechar a lacuna da primeira visita, é necessário preload na lista dos navegadores . A evidência de compliance é o header `Strict-Transport-Security` presente em todas as respostas HTTPS e a verificação de que o domínio está efetivamente na lista de preload (o directive sozinho não basta)|
+
+> TLS não garante que o site é confiável, apenas que a comunicação com ele está criptografada. Um site de phishing pode perfeitamente ter certificado TLS válido. O cadeado protege o canal, não o destino.
+
+#### 7.2.3 - Segurança em Redes Wi-Fi
+
+Você já pensou quantas vezes você já se conectou ao Wi-Fi de um aeroporto, hotel ou café sem pensar duas vezes? Redes Wi-Fi são um dos vetores de ataque mais explorados em ambientes corporativos e pessoais e também um dos mais negligenciados. Os principais protocolos de segurança Wi-Fi evoluíram ao longo do tempo:
+
+* **WEP (Wired Equivalent Privacy)**: obsoleto e quebrado em minutos com ferramentas gratuitas. Nunca utilize.
+* **WPA2 (Wi-Fi Protected Access 2)**: padrão amplamente usado, seguro quando configurado com AES e senhas fortes. Vulnerável ao ataque KRACK (Key Reinstallation Attack).
+* **WPA3**: versão atual, com proteção contra ataques de dicionário off-line e suporte a criptografia de 192 bits para ambientes corporativos.
+
+Em ambientes corporativos, a autenticação 802.1X (que usa um servidor RADIUS para verificar credenciais individuais antes de permitir acesso à rede) é o padrão ouro. Cada dispositivo tem suas credenciais únicas, sem a senha compartilhada que, se vazar, comprometeria toda a rede.
+
+Redes de convidados devem sempre ser isoladas da rede corporativa, sem acesso a recursos internos. E dispositivos IoT, câmeras, impressoras, smart TVs, devem estar em segmento próprio, monitorado separadamente.
+
+### 7.3 - Guerra Cibernética e Operações no Ciberespaço
+
+> Em 2007, a Estônia sofreu uma série de ataques DDoS coordenados que derrubaram portais governamentais, bancos e meios de comunicação durante semanas. Em 2010, o vírus Stuxnet destruiu fisicamente centrífugas de enriquecimento de urânio no Irã, sem que nenhum soldado cruzasse uma fronteira. Agora você realmente entenderá a era da guerra cibernética.
+
+A guerra cibernética é o uso de ataques digitais por atores estatais ou patrocinados por estados para danificar, destruir ou obter vantagem estratégica sobre adversários. O ciberespaço tornou-se, oficialmente, o quinto domínio de conflito, ao lado da terra, mar, ar e espaço. O que diferencia a guerra cibernética de um crime cibernético comum? Principalmente três fatores:
+
+1. Atribuição estatal: o ataque é conduzido por grupos ligados a governos, mesmo que de forma negável (plausible deniability).
+2. Objetivos estratégicos: não é apenas dinheiro, é espionagem, sabotagem de infraestrutura crítica, influência política e psicológica.
+3. Escala e sofisticação: recursos quase ilimitados, acesso a zero-days exclusivos e operações de longo prazo que podem durar anos.
+
+As principais formas de operação no ciberespaço incluem:
+
+* **Espionagem cibernética**: coleta silenciosa de segredos de estado, propriedade intelectual ou inteligência estratégica. O grupo APT10 (vinculado à China), por exemplo, comprometeu dezenas de empresas de tecnologia para roubar dados de clientes governamentais.
+* **Sabotagem de infraestrutura crítica**: ataques a redes elétricas, sistemas de água, transporte e comunicação. Em 2015, o grupo Sandworm (Russia) desligou a rede elétrica da Ucrânia, deixando 230.000 pessoas sem energia no inverno.
+* **Operações de influência**: campanhas de desinformação em redes sociais, manipulação de eleições e polarização da opinião pública usando perfis falsos e conteúdo gerado por IA.
+* **Cyber Kill Chain no contexto militar**: o modelo da Lockheed Martin descreve as sete etapas de um ataque avançado, reconhecimento, armamento, entrega, exploração, instalação, comando e controle, e ação sobre os objetivos. Entender esse ciclo é essencial para identificar onde interromper uma operação adversária.
+
+O Brasil possui o Comando de Defesa Cibernética (CDCiber), criado em 2012, responsável por proteger infraestruturas críticas nacionais e desenvolver capacidades ofensivas e defensivas no ciberespaço. Esse campo é hoje parte central da doutrina militar e de defesa nacional.
+
+> Do ponto de vista das organizações privadas, a guerra cibernética importa porque infraestruturas críticas incluem empresas de energia, telecomunicações, financeiras e saúde. Um ataque a uma usina elétrica afeta hospitais, bancos e sistemas de transporte. Por isso, o conceito de resiliência de infraestrutura crítica é cada vez mais relevante para profissionais de segurança em qualquer setor.
+
+### 7.4 - OWASP Top 10: As Falhas Mais Exploradas em Aplicações Web
+
+Toda vez que você usa um sistema web, seja um e-commerce, um portal bancário ou um ERP corporativo, existe código rodando no servidor que processa suas requisições. E esse código, quando mal escrito ou mal configurado, abre portas para ataques. A **OWASP** (*Open Web Application Security Project*) mantém uma lista atualizada das dez vulnerabilidades mais críticas em aplicações web: o OWASP Top 10. Essas são as principais:
+
+* **A01 - Controle de Acesso Quebrado (Broken Access Control)**: ocorre quando usuários conseguem acessar funcionalidades ou dados além dos seus privilégios. Exemplo clássico: ao mudar o ID na URL de /pedido/1234 para /pedido/1235, o sistema exibe o pedido de outro cliente. A correção enige validação server-side em cada requisição — nunca confiar apenas no que o cliente envia.
+* **A02 - Falhas Criptográficas**: uso de algoritmos fracos (MD5, SHA-1), senhas armazenadas em texto puro, chaves hardcoded no código ou transmissão de dados sensíveis sem criptografia. A regra é: dados sensíveis em repouso e em trânsito devem sempre ser criptografados com algoritmos modernos (AES-256, bcrypt para senhas, TLS 1.3 para transmissão).
+* **A03 - Injeção (Injection)**: inclui SQL Injection, LDAP Injection e Command Injection. O atacante insere comandos maliciosos em campos de entrada que são executados pelo sistema. Um formulário de login mal protegido pode, com uma única linha de SQL, retornar todos os registros do banco — ou deletá-los. A defesa: use queries parametrizadas (prepared statements) e nunca construa queries concatenando strings de usuário.
+* **A04 - Design Inseguro**: falhas na concepção da arquitetura, não apenas na implementação. Exemplo: um sistema que permite resetar senha apenas com data de nascimento — o design é fundamentalmente frágil. Threat Modeling desde a fase de design é a resposta.
+* **A05 -Configuração Incorreta de Segurança**: servidores com configurações padrão, portas abertas desnecessariamente, mensagens de erro verbosas que revelam informações internas, backups expostos publicamente. Um scanner de vulnerabilidades rodando regularmente na infraestrutura detecta boa parte desses problemas.
+* **A06 - Componentes Vulneráveis e Desatualizados**: bibliotecas, frameworks e dependências com vulnerabilidades conhecidas. O ataque à SolarWinds e o caso Log4Shell (CVE-2021-44228) mostraram o impacto devastador de uma única dependência comprometida. Use ferramentas como Dependabot, Snyk ou OWASP Dependency-Check para monitoramento contínuo.
+* **A07 - Falhas de Identificação e Autenticação**: senhas fracas, ausência de MFA, sessões que não expiram, tokens previsíveis. A implementação de MFA é, isoladamente, uma das medidas com maior retorno em segurança.
+* **A08 - Falhas na Integridade de Software e Dados**: código ou dados que não são verificados quanto à integridade antes de serem executados. Inclui ataques à cadeia de suprimentos (supply chain attacks).
+* **A09 - Falhas de Logging e Monitoramento**: sem logs adequados, um ataque pode passar despercebido por meses. O log precisa registrar acessos, falhas de autenticação e alterações críticas, e esses logs precisam ser protegidos contra adulteração.
+* **A10 -SSRF (Server-Side Request Forgery)**: o servidor é enganado para fazer requisições a recursos internos que normalmente não seriam acessíveis externamente. Pode expor metadados de cloud (como as credenciais da instância AWS) ou serviços internos.
+
+O OWASP Top 10 é um excelente ponto de partida, mas não é exaustivo. Combine-o com testes de penetração regulares (pentests) e análise estática de código (SAST) para uma cobertura mais ampla.
+
+#### 7.4.1 - XSS, CSRF e Falhas Típicas de Aplicação
+
+Além das categorias do OWASP Top 10, duas vulnerabilidades merecem atenção especial por sua frequência e impacto em aplicações web do dia a dia: XSS e CSRF.
+
+* **XSS- Cross-Site Scripting**: permite que um atacante injete scripts maliciosos em páginas web visualizadas por outros usuários. O script executa no navegador da vítima com as permissões do site legítimo — podendo roubar cookies de sessão, redirecionar para páginas falsas ou capturar tudo que o usuário digita.
+
+Existem três variantes principais: **Reflected** (o script é refletido na resposta imediata do servidor), **Stored** (o script é armazenado no banco e servido a múltiplos usuários) e **DOM-Based** (manipulação do Document Object Model no lado do cliente).
+
+* **CSRF - Cross-Site Request Forgery**: engana o navegador da vítima para que execute ações não intencionais em um site onde ela está autenticada. Por exemplo: uma imagem em um fórum malicioso pode disparar uma requisição ao seu banco, realizando uma transferência — sem que você perceba.
+
+As defesas incluem o uso de tokens CSRF únicos por sessão, validação da origem (Origin/Referer headers) e o atributo SameSite nos cookies.
+
+> Uma boa dica é validar entrada do usuário no lado do servidor (nunca apenas no cliente) e codificar corretamente as saídas são as principais defesas contra XSS. O navegador executa qualquer script que o servidor envie, sua aplicação não deve enviar o que não planejou
+
+### 7.5 - Segurança em Dispositivos Móveis
+
+Você sabe que o seu **smartphone é o dispositivo mais poderoso que você carrega, mas também é um dos mais vulneráveis**, ele contém credenciais bancárias, e-mails corporativos, contatos, fotos, tokens de autenticação e acesso direto a sistemas empresariais, pense que protegê-lo não é opcional.
+
+Quando um aplicativo de lanterna solicita acesso à sua agenda de contatos, localização GPS e microfone, algo está errado. O modelo de permissões do Android e iOS permite controle granular, mas poucos usuários revisam o que cada app realmente acessa.
+
+> Devemos seguir algumas boas práticas:
+>
+> 1. Conceda apenas permissões estritamente necessárias para a função do app.
+> 2. Revogue as permissões de apps que não usa regularmente.
+> 3. Prefira a opção 'Apenas durante o uso' para localização e câmera.
+> 4. Desinstale aplicativos desnecessários, cada app é uma superfície de ataque adicional.
+
+Agora precisamos compreender outros fatores como:
+
+1. Armazenamento seguro em dispositivos móveis:
+
+Aplicativos que armazenam dados sensíveis (tokens, senhas, dados pessoais) precisam usar mecanismos seguros. No Android, o Keystore System gerencia chaves criptográficas de forma isolada do processo do app. No iOS, o Keychain cumpre papel equivalente. Erros comuns que desenvolvedores cometem:
+
+* Armazenar tokens de autenticação em SharedPreferences (Android) ou UserDefaults (iOS) sem criptografia, ficam acessíveis a outros apps em dispositivos com root/jailbreak.
+* Gravar dados sensíveis em logs de debug que ficam acessíveis após o lançamento.
+* Usar SQLite sem criptografia para bancos de dados locais.
+
+2. Comunicação segura em apps móveis:
+
+* Todo tráfego de rede de uma aplicação móvel deve usar TLS, e esse TLS precisa ser validado corretamente. O certificate pinning é uma técnica que faz o app aceitar apenas certificados específicos (ou de autoridades certificadoras específicas), impedindo ataques de interceptação mesmo com um certificado válido em um proxy malicioso.
+* Contudo, o pinning precisa ser gerenciado com cuidado: quando o certificado expira ou é trocado, o app pode parar de funcionar se não houver mecanismo de atualização do pin.
+
+3. Riscos de apps e endpoints:
+
+O risco não vem apenas de apps maliciosos, apps legítimos mal configurados também são vetores. O conceito de Mobile Threat Defense (MTD) cobre:
+
+* **Jailbreak/Root Detection**: dispositivos com sistema comprometido perdem as proteções do sandbox de aplicações.
+* **Detecção de rede suspeita**: identificar redes Wi-Fi abertas ou com comportamentos de Evil Twin.
+* **Gerenciamento de dispositivos (MDM/UEM)**: em ambientes corporativos, soluções de Mobile Device Management permitem aplicar políticas, forçar criptografia de disco e realizar wipe remoto em caso de perda ou roubo.
+
+> Vamos lembrar de um caso real em 2019, que os pesquisadores descobriram que dezenas de aplicativos populares na Google Play Store vazavam dados de usuários para servidores de terceiros, dados como localização, e-mails e contatos, sem qualquer menção na política de privacidade. Isso reforça o pensamento de revisões e permissões que sempre é necessário ler as políticas dos apps quando você os instala.
+
+### 7.6 - Endpoints e Zero Trust
+
+Você sabia que por muito tempo, a segurança corporativa assumia que tudo dentro do perímetro de rede era confiável. O firewall era o escudo e, se você estava dentro da rede, podia acessar os recursos, essa premissa foi destruída pelo trabalho remoto, pela nuvem e pelos dispositivos móveis corporativos.
+
+O **modelo Zero Trust parte de um princípio diferente, nunca confie e sempre verifique**. Nenhum usuário, dispositivo ou conexão é automaticamente confiável, mesmo dentro da rede corporativa. Cada acesso é autenticado, autorizado e continuamente verificado.
+
+Os pilares práticos do Zero Trust são:
+
+1. Identidade forte: MFA obrigatório para todos os usuários, sem exceções para executivos.
+2. Dispositivos gerenciados: apenas endpoints com conformidade verificada (patch atualizado, antimalware ativo, criptografia habilitada) têm acesso a recursos críticos.
+3. Micro-segmentação: cada carga de trabalho (workload) tem acesso apenas ao que precisa, nem mais.
+4. Monitoramento contínuo: análise comportamental para detectar anomalias mesmo após a autenticação.
+
+> Você deve compreender resumidamente que em um modelo Zero Trust, uma credencial não é suficiente para o atacante, ele ainda precisa passar por verificações de dispositivo, localização, horário e comportamento, isso acarreta drasticamente o custo de um ataque bem-sucedido.
+
+### 7.7 - Integrando Tudo: Construindo uma Postura de Segurança Sólida
+
+Estamos chegando ao fim, e este é o momento de integrar os conceitos que percorremos ao longo desta unidade. Segurança cibernética não é um produto que se compra, é uma postura que se constrói continuamente. Vamos ver como os elementos que estudamos se conectam em uma estratégia coerente.
+
+1. Pessoas, Processos e Tecnologia: o triângulo indissolúvel:
+
+A tecnologia mais avançada falha se os processos não forem seguidos e as pessoas não forem treinadas. Um NGFW de última geração não ajuda se as regras estiverem mal configuradas. Um SIEM não detecta o que não é alimentado com os logs certos, nenhuma ferramenta compensa um colaborador que fornece sua senha ao primeiro e-mail de phishing convincente.
+
+A construção de uma cultura de segurança passa por treinamentos contínuos, comunicação clara das políticas e liderança pelo exemplo, especialmente da alta gestão.
+
+2. O Ciclo de Melhoria Contínua em Segurança:
+
+Frameworks como o NIST Cybersecurity Framework (CSF) organizam a segurança em cinco funções:
+
+* **Identificar (Identify)**: mapear ativos, riscos e dependências críticas.
+* **Proteger (Protect)**: implementar as salvaguardas discutidas — segmentação, MFA, criptografia, patches.
+* **Detectar (Detect)**: SIEM, EDR, monitoramento contínuo e threat intelligence.
+* **Responder (Respond)**: IRP testado e equipe de resposta treinada.
+* **Recuperar (Recover)**: backups validados, BCP e DRP atualizados, comunicação de crise preparada.
+
+3. Gestão de Vulnerabilidades como processo, não evento:
+
+Pentests anuais são valiosos, mas insuficientes. O cenário de ameaças muda diariamente. Programas de Vulnerability Management eficazes combinam:
+
+* Varreduras automatizadas contínuas (scanners como Nessus, Qualys ou OpenVAS).
+* Monitoramento de CVEs relevantes para o seu stack tecnológico.
+* Priorização baseada em risco real, CVSS é um ponto de partida, mas o contexto do negócio determina a urgência de correção.
+* Gestão de patches com SLAs definidos por severidade.
+
+4. Conformidade não é segurança, mas ajuda:
+
+**LGPD**, **ISO 27001**, **PCI-DSS**, **NIST**, cada framework de conformidade estabelece um conjunto de controles mínimos. Atender a esses requisitos não garante segurança plena (um ambiente pode estar 100% em conformidade e ainda ser comprometido), mas cria uma linha de base de maturidade e reduz significativamente a superfície de ataque. **O ideal é tratar a conformidade como o piso, não o teto, e ir além onde o risco do negócio exige**.
+
+O mercado de segurança cibernética no Brasil cresce acima de 15% ao ano, com déficit de profissionais qualificados, o que significa que as habilidades que você está desenvolvendo têm enorme valor prático e profissional.
+
+> Para concluir pense que a segurança não é um estado final, mas é uma jornada. Ameaças evoluem, tecnologias mudam, regulações se atualizam. O profissional de segurança eficaz é aquele que aprende continuamente, pensa como o adversário e colabora com toda a organização para construir resiliência.
 
 ## 8 - Criptografia (Clássica, Moderna, Pós-Quântica) e Blockchain
