@@ -2122,3 +2122,78 @@ O mercado de segurança cibernética no Brasil cresce acima de 15% ao ano, com d
 > Para concluir pense que a segurança não é um estado final, mas é uma jornada. Ameaças evoluem, tecnologias mudam, regulações se atualizam. O profissional de segurança eficaz é aquele que aprende continuamente, pensa como o adversário e colabora com toda a organização para construir resiliência.
 
 ## 8 - Criptografia (Clássica, Moderna, Pós-Quântica) e Blockchain
+
+**Por que esconder uma mensagem?**
+
+Imagine que você precise mandar a senha do Wi-Fi de casa para um amigo, mas o único papel disponível vai passar pela mão de três pessoas até chegar a ele. Você escreveria a senha do jeito que ela é? Provavelmente não. Esse incômodo simples está na **origem da criptografia, a arte e a ciência de transformar uma informação legível em algo que só o destinatário certo consegue entender**. Termos para o capítulo:
+
+|Processo|Termo|
+|--------|-----|
+|Texto que você quer proteger|Texto Claro|
+|Depois de embaralhado|Texto cifrado|
+|Processo de embaralhar|Cifrar|
+|Processo de desembaralhar/desfazer|Decifrar|
+|Segredo|Chave|
+|Quebrar a proteção sem a chave|Criptoanálise|
+
+Repare que esconder informação não é capricho de espião. Quando você acessa o site do banco, faz uma compra ou envia uma mensagem, há criptografia garantindo três coisas, que ninguém leia o que não deveria (confidencialidade), que a mensagem não seja alterada no caminho (integridade) e que você esteja mesmo falando com quem pensa estar (autenticidade).
+
+### 8.1 - Cifras monoalfabéticas- trocando uma letra por outra
+
+Vamos começar pela cifra mais famosa da história, conta-se que Júlio César, para proteger ordens militares, trocava cada letra da mensagem pela letra que ficava três posições à frente no alfabeto. O A virava D, o B virava E, e assim por diante. Por isso essa técnica ficou conhecida como Cifra de César. A chave, nesse caso, é o número de casas que você desloca, três, no exemplo dele.
+
+Faça o teste mentalmente, a palavra CASA, deslocando três letras, vira FDVD, quem recebe a mensagem e sabe que a chave é três só precisa voltar três casas para recuperar o texto original. Simples, rápido e, para a época, bastante eficaz, afinal poucos inimigos sabiam ler, quanto mais decifrar.
+
+A Cifra de César é um caso particular de uma família maior, as cifras de substituição monoalfabética. O nome assusta, mas a ideia é direta, onde cada letra do alfabeto é sempre substituída pela mesma letra cifrada, do começo ao fim da mensagem. Em vez de apenas deslocar o alfabeto, podemos embaralhá-lo por completo, fazendo A virar Q, B virar T, C virar Z, e por aí vai. Com 26 letras, o número de embaralhamentos possíveis passa de 400 quatrilhões. Parece impossível de quebrar, não é mesmo? Pois é justamente aqui que mora a armadilha.
+
+O ponto fraco não está na quantidade de chaves, e sim no idioma, em português, a letra A aparece muito mais que a letra Z, vogais como A, E e O são campeãs de frequência, enquanto W e K quase não aparecem. Se uma letra cifrada surge o tempo todo no texto, é bem provável que ela represente uma vogal comum, essa estratégia se chama análise de frequência, e foi descrita por estudiosos árabes ainda no século IX, com destaque para o trabalho do sábio Al-Kindi.
+
+> Agora vamos pensar isso na prática, imagine um texto cifrado longo em que o símbolo X aparece em quase 14% das vezes. Como em português o E ronda essa faixa de frequência, o criptoanalista chuta que X representa E e segue testando. As letras que aparecem juntas com frequência, como QU, também entregam pistas. Aos poucos, ele remonta o alfabeto secreto como quem resolve palavras cruzadas, ou seja, por mais que existam quatrilhões de chaves possíveis, ninguém precisa testar uma por uma. Basta observar quais símbolos repetem mais, comparar com a frequência típica do idioma e ir preenchendo as lacunas. Por isso dizemos que toda cifra monoalfabética é vulnerável, ela preserva a estrutura estatística da língua, e essa estrutura entrega o segredo, esse tipo de quebra inspirou até a literatura, como no conto O Escaravelho de Ouro, de Edgar Allan Poe. No próximo capítulo nasce exatamente da tentativa de resolver esse problema.
+
+### 8.2 - Cifras polialfabéticas - confundindo as frequências
+
+Evoluindo da substituição simples, e se a gente trocasse de alfabeto a cada letra? Essa foi a sacada das cifras polialfabéticas, sendo a mais conhecida a Cifra de Vigenère, popularizada no século XVI.
+
+O funcionamento é engenhoso, você escolhe uma palavra-chave, digamos SOL, e a repete por baixo da mensagem, letra a letra. Cada letra da chave indica de quantas casas aquela letra do texto deve ser deslocada, como a chave fica se repetindo, a mesma letra do texto claro pode virar símbolos diferentes em pontos diferentes da mensagem.
+
+Percebe o quanto é interessante isso? A letra A pode aparecer cifrada como S em um lugar e como L em outro. Com isso, a análise de frequência perde a força, porque a estatística do idioma deixa de transparecer no texto cifrado. Por mais de três séculos a cifra de Vigenère foi considerada indecifrável, ganhando até o apelido de cifra indecifrável.
+
+Mas nenhuma cifra resiste para sempre, no século XIX, trabalhos de Charles Babbage e do oficial Friedrich Kasiski mostraram um caminho, como a chave se repete, trechos iguais do texto às vezes caem na mesma posição da chave e geram repetições no texto cifrado. Medindo a distância entre essas repetições, dá para descobrir o tamanho da chave e, a partir daí, quebrar a mensagem por partes. A lição que fica é importante, aumentar a complexidade ajuda, mas a segurança real depende do tamanho e do sigilo da chave.
+
+### 8.3 - Permutação e transposição
+
+Existe, porém, um caminho bem diferente da troca de letras, em vez de substituir os símbolos, podemos simplesmente embaralhar a ordem deles. As letras continuam as mesmas, só que reorganizadas. Essa família é chamada de cifras de transposição ou de permutação.
+
+Um exemplo antigo é a escítala espartana. Os soldados enrolavam uma tira de couro em um bastão de diâmetro específico e escreviam a mensagem ao longo dele. Desenrolada, a tira mostrava só um amontoado de letras sem sentido. Para ler, o destinatário precisava de um bastão do mesmo diâmetro, que funcionava como a chave, sem ele, a ordem correta das letras se perdia.
+
+Vamos a um exemplo que você pode reproduzir no papel, a transposição colunar. Imagine a frase ATAQUEAOAMANHECER. Escreva-a em uma grade com um número fixo de colunas, digamos quatro, preenchendo linha por linha. Na primeira linha fica ATAQ, na segunda UEAO, na terceira AMAN, na quarta HECE e sobra o R na quinta. Depois, leia o conteúdo coluna por coluna, de cima para baixo, em vez de linha por linha. O resultado é uma sequência reorganizada das mesmas letras, irreconhecível à primeira vista. A chave aqui é a quantidade de colunas e a ordem em que você decide lê-las.
+
+Há variações engenhosas, na cifra de cerca de trilho, você escreve a mensagem em ziguezague sobre duas ou mais linhas imaginárias e depois lê linha por linha. E quem quer mais segurança aplica a transposição duas vezes seguidas, a chamada dupla transposição, que por muito tempo foi usada em campo militar por ser forte e dispensar máquinas.
+
+Observe na diferença essencial em relação aos capítulos anteriores, na substituição, se eu contar as letras do texto cifrado, a frequência de cada símbolo muda. Na transposição, não, como nenhuma letra foi trocada, a frequência de cada uma permanece idêntica à do texto original. Isso dá uma pista valiosa ao criptoanalista, se ele percebe que as frequências batem com as do idioma, mas as palavras não fazem sentido, desconfia na hora de que está diante de uma transposição, e não de uma substituição.
+
+E por que estudar técnicas tão antigas se hoje usamos computadores? Porque a criptografia moderna combina as duas ideias, os algoritmos atuais, que veremos adiante, aplicam camadas sucessivas de substituição e de transposição sobre blocos de dados, repetidas muitas vezes. Aquela divisão que parecia coisa de papel e lápis virou o alicerce das cifras digitais. Quando você entende o básico, o avançado deixa de ser um mistério e passa a ser uma combinação inteligente de peças que você já conhece.
+
+### 8.4 - Esteganografia
+
+Pare um instante e pense na diferença entre trancar uma carta num cofre e esconder a carta dentro da capa de um livro. No primeiro caso, todos veem que há algo guardado, só não conseguem abrir, já no segundo, ninguém sequer suspeita que exista uma mensagem. Essa segunda ideia é o coração da esteganografia, ocultar a própria existência da informação.
+
+A criptografia embaralha o conteúdo, a esteganografia o disfarça, são coisas diferentes e que costumam andar juntas. Na Antiguidade, há relatos de mensagens escritas no couro cabeludo de mensageiros, que depois deixavam o cabelo crescer para cobrir o texto. Houve quem usasse tinta invisível, feita com suco de limão, que só aparecia quando o papel era aquecido.
+
+No mundo digital, a técnica ganhou novas roupagens, uma imagem comum é formada por milhões de pontos, e cada ponto guarda números que definem sua cor. Alterar o último dígito desses números muda a cor de um jeito tão sutil que o olho humano não percebe, escondendo bits de uma mensagem nesses últimos dígitos, dá para guardar um texto inteiro dentro de uma foto de paisagem, sem que ela pareça modificada. Essa abordagem é conhecida pela sigla LSB, do inglês para bit menos significativo.
+
+Observe que a esteganografia sozinha não é segura, se alguém descobre onde a mensagem está escondida, ela é lida sem dificuldade, por isso, na prática, costuma-se cifrar a mensagem antes de escondê-la. Assim, mesmo que o disfarçe seja descoberto, o conteúdo continua protegido.
+
+### 8.5 - Criptografia simétrica
+
+Já na era dos computadores veio uma divisão fundamental. A primeira grande família é a criptografia simétrica, em que a mesma chave serve tanto para cifrar quanto para decifrar, é como uma fechadura comum, a chave que tranca a porta é a mesma que destranca. Emissor e receptor precisam compartilhar esse segredo antes de trocar mensagens.
+
+Por décadas, o padrão mais usado foi o DES, criado nos anos 1970. Ele trabalhava sobre blocos de dados aplicando, repetidas vezes, as operações de substituição e transposição que você estudou nos capítulos anteriores. Funcionou bem por um tempo, mas sua chave era curta demais para os computadores que vieram depois, com o poder de processamento suficiente, tornou-se possível testar todas as chaves possíveis até achar a certa, um ataque chamado de força bruta. Como remendo, chegou-se a aplicar o DES três vezes seguidas, o chamado Triplo DES, até que uma solução melhor amadurecesse.
+
+Para resolver isso de vez, surgiu em 2001 o AES, sigla para Padrão Avançado de Criptografia, que é o algoritmo simétrico mais usado no mundo hoje, está no seu celular, no aplicativo de mensagens, na conexão com o banco, na rede Wi-Fi de casa e até no disco do computador, quando você ativa a criptografia de armazenamento. O AES também opera por blocos e oferece chaves de 128, 192 ou 256 bits, para você ter uma ideia do tamanho, testar todas as chaves de 256 bits por força bruta levaria mais tempo do que a idade do universo, mesmo somando todos os computadores do planeta.
+
+Existe ainda uma diferença que vale conhecer, as cifras de bloco, como o AES, processam pedaços de tamanho fixo por vez, já as cifras de fluxo embaralham os dados bit a bit, de forma contínua, e são úteis quando a informação chega em um jato sem fim, como em uma ligação de voz pela internet.
+
+Mas atenção a um detalhe que confunde muita gente, uma cifra de bloco, sozinha, cifra blocos isolados, se cada bloco for tratado de forma independente, blocos iguais de texto claro geram blocos iguais de texto cifrado, e isso vaza padrões visíveis, para evitar esse problema, é usado os modos de operação, que encadeiam os blocos de modo que cada um dependa do anterior. Assim, mesmo trechos repetidos ficam diferentes no resultado final.
+
+A criptografia simétrica é veloz e econômica, ideal para proteger grandes volumes de dados, ela carrega, porém, um problema antigo e incômodo, como combinar a chave secreta com alguém que está do outro lado do mundo sem que um intruso a intercepte no caminho? Por séculos esse foi o calcanhar de aquiles de toda a área. A resposta para esse impasse veio de uma ideia que parecia impossível, e é exatamente sobre ela que vamos conversar no próximo capítulo.
