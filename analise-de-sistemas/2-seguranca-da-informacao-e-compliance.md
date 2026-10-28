@@ -2197,3 +2197,89 @@ Existe ainda uma diferença que vale conhecer, as cifras de bloco, como o AES, p
 Mas atenção a um detalhe que confunde muita gente, uma cifra de bloco, sozinha, cifra blocos isolados, se cada bloco for tratado de forma independente, blocos iguais de texto claro geram blocos iguais de texto cifrado, e isso vaza padrões visíveis, para evitar esse problema, é usado os modos de operação, que encadeiam os blocos de modo que cada um dependa do anterior. Assim, mesmo trechos repetidos ficam diferentes no resultado final.
 
 A criptografia simétrica é veloz e econômica, ideal para proteger grandes volumes de dados, ela carrega, porém, um problema antigo e incômodo, como combinar a chave secreta com alguém que está do outro lado do mundo sem que um intruso a intercepte no caminho? Por séculos esse foi o calcanhar de aquiles de toda a área. A resposta para esse impasse veio de uma ideia que parecia impossível, e é exatamente sobre ela que vamos conversar no próximo capítulo.
+
+### 8.6 - Criptografia assimétrica - o segredo de duas chaves
+
+No capítulo anterior deixamos uma pergunta no ar, como combinar uma chave secreta com alguém distante sem que ninguém a intercepte? Durante muito tempo isso pareceu um beco sem saída, a solução, apresentada nos anos 1970, foi tão revolucionária que mudou a história da computação, ela se chama criptografia assimétrica, ou de chave pública.
+
+A ideia parece mágica, mas tem lógica, em vez de uma única chave, cada pessoa passa a ter um par, uma chave pública, que pode ser distribuída livremente para qualquer um, e uma chave privada, que jamais sai das suas mãos. O truque é que as duas são matematicamente ligadas, o que uma fecha, somente a outra abre, pense em um cadeado aberto que você espalha pelo mundo. Qualquer um pode fechar esse cadeado numa caixa e te enviar, mas só você guarda a chave que o abre.
+
+Vamos ver como isso resolve o problema, se eu quero te enviar uma mensagem secreta, eu a cifro com a sua chave pública, que está disponível para todo mundo, a partir daí, só a sua chave privada consegue decifrá-la, mesmo que um espião tenha a sua chave pública e o texto cifrado, não há como ele voltar atrás. Repare na elegância, nunca precisamos combinar um segredo previamente, a chave que tranca é diferente da chave que destranca.
+
+O **algoritmo mais conhecido dessa família é o RSA**, cujo nome vem das iniciais dos três pesquisadores que o publicaram, sua segurança se apoia em um fato curioso da matemática, multiplicar dois números primos enormes é fácil, mas, dado apenas o resultado, descobrir quais foram os primos originais é extremamente difícil, hoje se usam chaves RSA de pelo menos 2048 bits, mas existe também uma alternativa mais moderna e econômica, a criptografia de curvas elípticas, que oferece a mesma segurança com chaves bem menores, o que a torna ideal para celulares e cartões, outra peça importante é o protocolo de Diffie-Hellman, que permite a duas pessoas combinarem uma chave secreta em comum mesmo conversando por um canal que está sendo espionado.
+
+> Pensando em uma questão prática, a criptografia assimétrica é lenta para grandes volumes de dados, por isso, no dia a dia, ela costuma ser combinada com a simétrica, é usada a chave pública apenas para transportar com segurança uma chave simétrica nova, e depois toda a conversa pesada roda com a rápida AES. É essa dança entre os dois tipos que acontece, em milésimos de segundo, toda vez que você abre um site com cadeado na barra de endereço, no chamado aperto de mão do protocolo seguro. O que parecia impossível virou rotina invisível.
+
+### 8.7 - Funções Hash
+
+Nem tudo em segurança tem a ver com esconder conteúdo, às vezes o que importa é garantir que uma informação não foi alterada, para isso usamos as funções *hash*, que talvez sejam a ferramenta mais elegante de toda a criptografia.
+
+Pense numa função *hash* como se fosse uma máquina que recebe qualquer entrada, seja uma palavra, um documento ou um filme inteiro, e devolve um código de tamanho fixo, chamado resumo ou digest, por mais diferente que seja o tamanho da entrada, a saída tem sempre o mesmo comprimento, é como a impressão digital de um dado, única e curta.
+
+Existem três propriedades tornam essa ferramenta poderosa, a primeira é o caminho de mão única, a partir do resumo, é inviável reconstruir a informação original, a segunda é o efeito avalanche, mudar um único caractere da entrada transforma completamente o resumo de saída. A terceira é a resistência a colisões, ou seja, é praticamente impossível encontrar duas entradas diferentes que gerem o mesmo resumo, atualmente, o algoritmo mais usado é o SHA-256.
+
+> Onde isso aparece na sua vida?
+>
+> Quando você baixa um arquivo, pode comparar o *hash* dele com o publicado pelo site para confirmar que nada foi corrompido ou adulterado e quando você cria uma conta em um sistema, sua senha não deve ser guardada como você digitou, mas sim o seu *hash*. Assim, mesmo que o banco de dados vaze, ninguém descobre a senha original.
+
+### 8.8 - Assinatura digital, certificados e gestão de chaves
+
+Você já reparou que, ao assinar um contrato em papel, sua assinatura serve para duas coisas? Ela prova que foi você quem concordou e impede que você negue depois, no mundo digital, conseguimos o mesmo efeito, e com uma garantia extra, por meio da assinatura digital. Para entendê-la, vamos juntar duas peças que você já conhece, as chaves dos capítulos *8.5* e *8.6* e o hash do capítulo *8.7*
+
+O processo é o seguinte:
+
+* em vez de cifrar o documento inteiro, eu primeiro calculo o hash dele, aquela impressão digital curta;
+* em seguida, cifro esse hash com a minha chave privada, e o resultado é a assinatura, que viaja junto com o documento;
+* qualquer pessoa pode então usar a minha chave pública para conferir a assinatura e recalcular o hash do documento que recebeu, se os dois baterem, fica provado que o documento veio mesmo de mim e que não foi alterado depois de assinado;
+* como só eu tenho a chave privada, também não posso negar depois que fui eu quem assinou, essa garantia tem nome, irretratabilidade, ou não repúdio.
+
+Mas surge, uma dúvida natural, como eu tenho certeza de que uma chave pública pertence mesmo a quem diz ser dono dela? Um golpista poderia se passar pelo seu banco e oferecer a chave dele, é aqui que entra a Infraestrutura de Chaves Públicas, conhecida pela sigla PKI, a ideia é apoiar a confiança em uma terceira parte respeitada, chamada **Autoridade Certificadora**, ela emite um certificado digital, normalmente no formato `X.509`, que funciona como um documento de identidade vinculando uma chave pública a uma pessoa ou empresa, esses certificados formam uma cadeia, uma autoridade raiz, em quem todos confiam, garante outras autoridades abaixo dela, quando um certificado é roubado ou perde a validade, ele entra em uma lista de revogação, para que ninguém mais o aceite.
+
+> No Brasil, esse sistema é organizado pela **ICP-Brasil**, que dá validade jurídica a documentos assinados digitalmente, é o que está por trás do *e-CPF* e do *e-CNPJ*, usados para assinar declarações e notas fiscais, muitas vezes a assinatura ainda recebe um carimbo de tempo, que registra o momento exato em que foi feita.
+
+Por fim, há um trabalho que costuma passar despercebido, mas que é decisivo, o gerenciamento de chaves:
+
+* uma chave precisa ser gerada de forma realmente aleatória;
+* guardada em local protegido;
+* trocada periodicamente;
+* e quando comprometida, revogada o quanto antes
+
+Não adianta ter o algoritmo mais forte do mundo se a chave fica anotada em um bilhete colado no monitor, toda essa cadeia de cuidados, do nascimento ao descarte da chave, é o que chamamos de ciclo de vida da chave. **A segurança, no fim das contas, é tão forte quanto o seu elo mais fraco e esse elo quase sempre tem a ver com pessoas e processos, não com matemática**.
+
+### 8.9 - O desafio da era quântica
+
+Tudo o que estudamos até aqui sobre chave pública se apoia em problemas matemáticos que os computadores atuais não conseguem resolver em tempo hábil, como fatorar números primos gigantes, mas e se surgisse um tipo de computador que tornasse esses problemas fáceis? Essa não é ficção científica, é o que prometem os computadores quânticos.
+
+Em 1994, o matemático Peter Shor mostrou um algoritmo capaz de fatorar números enormes com rapidez, desde que executado em um computador quântico suficientemente potente, na prática, isso significaria a quebra do RSA e de boa parte da criptografia de chave pública que usamos hoje. Os computadores quânticos ainda são experimentais e pequenos, mas o aviso já está dado.
+
+Há um detalhe que preocupa os especialistas, resumido na frase coletar agora, decifrar depois. Um adversário pode interceptar e guardar hoje dados cifrados que ainda não consegue ler, na aposta de decifrá-los daqui a alguns anos, quando a tecnologia amadurecer, para dados que precisam de sigilo por décadas, a ameaça já é real no presente.
+
+A resposta a tudo isso é a **criptografia pós-quântica**, um conjunto de algoritmos construídos sobre problemas matemáticos que resistem mesmo a computadores quânticos, eles rodam em máquinas comuns, sem precisar de tecnologia especial. Desde 2024, o instituto americano NIST vem padronizando os primeiros desses algoritmos, como o `ML-KEM`, voltado à troca de chaves, e o `ML-DSA`, voltado a assinaturas.
+
+### 8.10 - Blockchain
+
+Você certamente já ouviu falar em **blockchain, geralmente ligado às moedas digitais**, mas o que há por trás dessa palavra? Blockchain, em português corrente de blocos, é justamente **uma corrente formada por blocos de informação amarrados entre si por funções hash**.
+
+Imagine que cada bloco seja uma página de um caderno, e que nela estejam anotadas várias transações, como quem pagou quanto a quem, além das transações, cada página guarda também o hash da página anterior, repare na consequência, a página dois carrega a impressão digital da página um, a página três carrega a da página dois, e assim a corrente vai crescendo, com cada elo preso ao anterior. O primeiro bloco de todos, que não tem antecessor, recebe o nome de bloco gênese.
+
+Agora pense no que acontece se um fraudador tentar alterar uma transação antiga, lá na página um, pelo efeito avalanche, mudar qualquer detalhe muda completamente o hash daquela página, só que esse hash está copiado dentro da página dois, que por sua vez influencia a página três, e por aí vai, em outras palavras, mexer em um único bloco antigo quebraria toda a corrente a partir dali, deixando a adulteração visível para todos, é daí que vem a famosa imutabilidade do blockchain, não é que seja impossível alterar, é que qualquer alteração fica escancarada.
+
+Existe ainda um truque para organizar as transações dentro de cada bloco de forma eficiente, chamado árvore de Merkle, em vez de calcular o hash de tudo de uma vez, as transações são combinadas duas a duas, e seus hashes vão se somando até chegar a um único resumo que representa o bloco inteiro, isso permite verificar rapidamente se uma transação específica está no bloco sem precisar reprocessar todas as outras, o que é precioso em redes com milhões de registros.
+
+Há outro ponto que reforça a proteção, a corrente não fica guardada em um único lugar, são milhares de computadores espalhados pelo mundo mantêm, cada um, uma cópia completa do caderno. Para reescrever o passado, o fraudador teria de alterar a maioria dessas cópias ao mesmo tempo, o que é inviável na prática.
+
+Observe, que até aqui, não falamos em moeda nenhuma, a corrente de blocos é, antes de tudo, uma forma de registrar informações de modo que ninguém consiga reescrever o passado sem ser percebido, essa propriedade, sozinha, já é valiosa, mas o que ainda falta responder é uma pergunta espinhosa:
+
+> Se não há um banco central guardando esse caderno, quem decide qual é a versão verdadeira da corrente?
+>
+> A resposta está nos mecanismos de consenso, as regras que fazem todos concordarem sem precisar confiar uns nos outros.
+
+#### 8.10.1 - Consenso e aplicações do blockchain
+
+O primeiro mecanismo famoso é a prova de trabalho, usada pelo Bitcoin, para adicionar um novo bloco, os participantes, chamados mineradores, precisam resolver um problema matemático que exige muito processamento e energia, quem resolve primeiro anuncia o bloco, e os demais conferem a resposta com facilidade, fraudar a rede exigiria mais poder de cálculo que o restante do mundo somado, algo caríssimo e pouco vantajoso.
+
+Como gastar tanta energia incomoda, surgiu a prova de participação, adotada por outras redes, nela, quem valida os blocos não é quem tem mais máquinas, e sim quem deposita mais moedas como garantia, se agir de má-fé, perde o depósito. O resultado é parecido, com consumo de energia muito menor.
+
+E para que tudo isso serve, além das moedas digitais? As aplicações vão bem além, há os contratos inteligentes, programas que executam acordos automaticamente quando certas condições são cumpridas, há projetos de rastreabilidade de alimentos e remédios, em que cada etapa da cadeia fica registrada de forma inviolável e há também usos em registros de imóveis e na emissão de diplomas verificáveis.
+
+> Vale, por fim, um olhar crítico. Blockchain não é solução para tudo. Ela é lenta e cara perto de um banco de dados comum, e só faz sentido quando o problema central é a falta de confiança entre as partes. Saber quando usar, e quando não usar, é o que separa o entusiasmo da boa engenharia. Chegamos ao fim de uma longa jornada, do bastão dos espartanos até a corrente de blocos, espero que você perceba que, no fundo, sempre estivemos falando da mesma coisa, de proteger a informação.
