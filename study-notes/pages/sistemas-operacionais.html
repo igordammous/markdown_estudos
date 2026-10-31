@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas Operacionais</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+    <div class="sidebar-overlay"></div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><a href="../index.html">📚 Caderno de Estudos</a></h1>
+                <p>Análise e Desenvolvimento de Sistemas</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="../index.html"><span class="icon">🏠</span> Início</a></li>
+                <li><a href="seguranca-informacao.html"><span class="icon">🔐</span> Segurança da Informação</a></li>
+                <li><a href="arquitetura-hardware.html"><span class="icon">💻</span> Arquitetura de Hardware</a></li>
+                <li><a href="arquitetura-hardware-codigo.html"><span class="icon">🔧</span> Arquitetura — Códigos</a></li>
+                <li><a href="comunicacao.html"><span class="icon">💬</span> Comunicação</a></li>
+                <li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software I</a></li>
+                <li><a href="sistemas-operacionais.html"><span class="icon">🖥️</span> Sistemas Operacionais</a></li>
+                <li><a href="banco-de-dados.html"><span class="icon">🗄️</span> Banco de Dados I</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1>🖥️ Sistemas Operacionais</h1>
+                    <div class="page-meta">
+                        <span class="badge badge-blue">Kernel</span>
+                        <span class="badge badge-green">Processos</span>
+                        <span class="badge badge-purple">Escalonamento</span>
+                    </div>
+                </div>
+
+                <div class="toc">
+                    <h3>Índice</h3>
+                    <ul>
+                        <li class="toc-h2"><a href="#historia">1. História dos SO e tipos existentes</a></li>
+                        <li class="toc-h2"><a href="#estrutura">2. Estrutura principal de um SO</a></li>
+                        <li class="toc-h2"><a href="#usermod">3. UserMod e KernelMod</a></li>
+                        <li class="toc-h2"><a href="#tipos-so">4. Tipos de SO</a></li>
+                        <li class="toc-h2"><a href="#escalonamento">5. Escalonamento</a></li>
+                        <li class="toc-h2"><a href="#processo-thread">6. Diferença entre processo e thread</a></li>
+                        <li class="toc-h2"><a href="#duvidas">Dúvidas</a></li>
+                        <li class="toc-h3"><a href="#ram-swap">1. RAM e SWAP</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="historia">1. História dos SO e tipos existentes</h2>
+
+                <p>A evolução dos SOs é diretamente impulsionada pela evolução do hardware. Cada salto tecnológico no hardware criou uma nova classe de problemas que os SOs precisaram resolver.</p>
+
+                <h3>1940s - 1950s: Ausência de SO (Processamento em Lote Simples)</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> válvulas, sem transistores. Máquinas enormes, lentas, extremamente caras.</li>
+                    <li><strong>Como funcionava:</strong> não havia SO. O programador se inscrevia para um horário, ia até a sala da máquina, conectava cabos em painéis de controle (programação "plug-board"), operava os painéis de fita perfurada e aguardava o resultado. Entre um programa e outro, o operador humano reconectava fisicamente o sistema.</li>
+                    <li><strong>Problema:</strong> o tempo do computador (o recurso mais caro) era desperdiçado nos intervalos entre programas e na configuração manual.</li>
+                </ul>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <img src="https://www.thenmusa.org/wp-content/uploads/2019/08/eniac-1.jpg" alt="ENIAC" style="max-width: 60%;">
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">Marlyn Wescoff (standing) and Ruth Lichterman were two of the ENIAC's first programmers.</p>
+                </div>
+
+                <h3>1950s - 1960s: Sistemas em Lote (Batch Systems)</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> transistores, fitas magnéticas, primeiros discos magnéticos (bem caros).</li>
+                    <li><strong>Inovação:</strong> surge o <em>resident monitor</em> (primeiro rudimento de SO). Um programa residente na memória que automatizava a transição entre programas. Os operadores agrupavam ("batelada") vários jobs em uma fita.</li>
+                    <li><strong>Funcionamento:</strong> o monitor residente carregava um job, executava até o fim (sem interrupção), descarregava a saída, carregava o próximo. A CPU ficava ociosa durante operações lentas de E/S.</li>
+                    <li><strong>Problema:</strong> subutilização severa da CPU. A CPU, componente mais caro, passava a maior parte do tempo esperando E/S.</li>
+                </ul>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*H9nKpY7rq902o72JUCBxTg.jpeg" alt="Batch Processing Systems" style="max-width: 70%;">
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">The batch systems enhanced the use of CPUs however, their biggest blemish was that when a job was waiting to be served or act on I/O, the CPU remained idle.</p>
+                </div>
+
+                <h3>1960s: Multiprogramação e Sistemas de Tempo Compartilhado (Time-Sharing)</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> discos magnéticos mais rápidos e baratos, proteção de memória (base e limite), interrupções de hardware maduras, início dos mainframes como IBM System/360.</li>
+                    <li><strong>Inovação Crucial:</strong> percebeu-se que, enquanto um job esperava E/S, a CPU poderia executar outro job. Nasce a multiprogramação.</li>
+                    <li><strong>Funcionamento:</strong> vários programas são mantidos na memória RAM simultaneamente. Quando um programa faz uma operação de E/S (lenta), o SO salva seu contexto e escalona outro programa para usar a CPU.</li>
+                    <li><strong>Time-Sharing:</strong> evolução da multiprogramação para sistemas interativos. Cada usuário tem um terminal (teletype) conectado ao computador central. O SO alterna a CPU entre os usuários tão rapidamente que cada um tem a ilusão de ter a máquina só para si.</li>
+                    <li><strong>Exemplo histórico:</strong> CTSS (MIT), Multics (projeto que inspirou tudo o que veio depois, incluindo Unix).</li>
+                </ul>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <img src="https://www.storiainformatica.it/images/stories/history/os/origin/ibm_7094_ctss.jpeg" alt="IBM 7094 at MIT with CTSS" style="max-width: 100%;">
+                </div>
+
+                <h3>1970s: Unix e o Surgimento dos Sistemas Modernos</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> mini-computadores (DEC PDP-11) com memória virtual, barramentos padronizados, linguagem C.</li>
+                    <li><strong>Inovação:</strong> Ken Thompson e Dennis Ritchie (Bell Labs) criam o Unix. Escrito em C (não assembly), o que o tornou portável. Introduziu conceitos que são padrão até hoje: hierarquia de arquivos, pipes (comunicação entre processos), shell como um programa separado, filosofia de ferramentas pequenas que fazem uma coisa bem.</li>
+                    <li><strong>Simultaneamente:</strong> a IBM desenvolve sistemas robustos para seus mainframes (OS/360, MVS), focados em processamento transacional e confiabilidade extrema.</li>
+                </ul>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/IBM_System_360_model_30_profile.agr.jpg/1280px-IBM_System_360_model_30_profile.agr.jpg" alt="IBM System 360/30" style="max-width: 100%;">
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">IBM System 360/30 at the Computer History Museum.</p>
+                </div>
+
+                <h3>1980s: A Era do PC e Sistemas de Rede</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> microprocessadores (Intel 8086, 80286, 80386), PCs baratos, redes locais (Ethernet).</li>
+                    <li><strong>Eventos:</strong>
+                        <ul>
+                            <li><strong>MS-DOS:</strong> para IBM PC. Inicialmente rudimentar, sem proteção de memória (qualquer programa podia escrever em qualquer lugar), sem multitarefa real (preemptiva).</li>
+                            <li><strong>Macintosh System (Mac OS):</strong> interface gráfica (GUI) para o público, mas ainda com multitarefa cooperativa.</li>
+                            <li><strong>Unix comercial e BSD:</strong> avanços em redes (TCP/IP). O BSD (Berkeley Software Distribution) trouxe a pilha TCP/IP que tornou a internet possível.</li>
+                            <li><strong>NFS (Network File System):</strong> sistemas de arquivos distribuídos.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Nasce o Linux:</strong> Linus Torvalds (1991) cria um kernel Unix-like para a plataforma 386, aproveitando os recursos de memória virtual e proteção que o hardware Intel finalmente oferecia (modo protegido).</li>
+                </ul>
+
+                <h3>1990s - 2000s: SOs Modernos, Distribuídos e Móveis</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> sistemas multiprocessados (SMP), clusters, virtualização (VMware), chips para celulares (ARM).</li>
+                    <li><strong>Eventos:</strong>
+                        <ul>
+                            <li><strong>Windows NT/2000/XP:</strong> Microsoft cria um SO com kernel moderno (microkernel híbrido), suporte a SMP, memória virtual robusta, segurança de usuários. Substitui a linhagem DOS/Windows 9x.</li>
+                            <li><strong>Linux amadurece:</strong> torna-se dominante em servidores, supercomputadores e sistemas embarcados (roteadores, depois Android).</li>
+                            <li><strong>SOs de tempo real (RTOS):</strong> para sistemas embarcados, controle industrial, automotivo (QNX, VxWorks).</li>
+                            <li><strong>Virtualização:</strong> Xen, KVM – permitem rodar múltiplos SOs em uma única máquina física.</li>
+                            <li><strong>Android e iOS:</strong> SOs móveis baseados em Linux (Android) e Darwin/mach (iOS). Introduzem novas preocupações: gerenciamento agressivo de energia, sandboxing de aplicativos, segurança.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>2010s - Presente: Nuvem, Contêineres e Computação Ubíqua</h3>
+                <ul>
+                    <li><strong>Hardware:</strong> computação heterogênea (CPU + GPU + NPU), SSDs NVMe, muitos núcleos (64+ cores), hardware de segurança (TPM, TrustZone).</li>
+                    <li><strong>Tendências:</strong>
+                        <ul>
+                            <li><strong>Contêineres (Docker, Kubernetes):</strong> compartilham o mesmo kernel do SO, mas isolam processos em namespaces, oferecendo eficiência superior à virtualização completa.</li>
+                            <li><strong>Sistemas operacionais para nuvem:</strong> kernel otimizado para máquinas virtuais (Firecracker) e workloads massivamente paralelos.</li>
+                            <li><strong>SOs orientados a segurança:</strong> SeLinux, securOS, foco em mitigação de vulnerabilidades de hardware (Spectre, Meltdown).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Tipos de Sistemas Operacionais (Classificação)</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Características</th><th>Exemplos</th><th>Hardware Relacionado</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Mainframe OS</td><td>Ênfase em E/S massiva, confiabilidade, processamento transacional</td><td>IBM z/OS</td><td>Hardware redundante, hot-swap, canais de E/S dedicados</td></tr>
+                            <tr><td>Servidor</td><td>Ênfase em rede, estabilidade, segurança, suporte a muitos usuários simultâneos</td><td>Linux (distros server), Windows Server, FreeBSD</td><td>Múltiplos CPUs/sockets, grandes quantidades de RAM, redes de alta velocidade</td></tr>
+                            <tr><td>Desktop/PC</td><td>Ênfase em interface gráfica, interatividade, suporte a uma vasta gama de periféricos</td><td>Windows 10/11, macOS, Linux (Ubuntu/Fedora)</td><td>GPUs, USB, áudio, multicore (4-16 núcleos típicos)</td></tr>
+                            <tr><td>Tempo Real (RTOS)</td><td>Ênfase em determinismo e latência previsível (garantias de tempo)</td><td>FreeRTOS, QNX, VxWorks</td><td>Microcontroladores (ARM Cortex-M), sistemas embarcados críticos (freios ABS, marca-passo)</td></tr>
+                            <tr><td>Móvel/Embarcado</td><td>Ênfase em eficiência energética, gerenciamento de sensores, sandboxing</td><td>Android (Linux), iOS (Darwin)</td><td>SoC (System-on-Chip) com cores big.LITTLE, modem celular, sensores, bateria</td></tr>
+                            <tr><td>Distribuído/Cluster</td><td>Ênfase em coordenação de múltiplas máquinas, tolerância a falhas</td><td>Plan9, sistemas que usam middleware (não um SO único)</td><td>Múltiplos nós interconectados por rede de alta velocidade</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="estrutura">2. Estrutura principal de um SO</h2>
+
+                <p>Visão Geral da Arquitetura. Um sistema operacional moderno é estruturado em camadas, com o núcleo (kernel) no centro, protegido do resto.</p>
+
+<pre data-lang="text"><code>+--------------------------------------------------+
+|                     Usuários                      |
++--------------------------------------------------+
+|   Aplicativos (Editores, Navegadores, Jogos)     |
++--------------------------------------------------+
+|                   Shell (CLI/GUI)                 |
++--------------------------------------------------+
+|                  Chamadas de Sistema              |
+|  (System Calls - interface entre usuário/kernel) |
++--------------------------------------------------+
+|                                                  |
+|                    KERNEL                        |
+|  (Gerenciador de Processos, Memória, Arquivos,   |
+|   Drivers de Dispositivo, Escalonador, IPC)      |
+|                                                  |
++--------------------------------------------------+
+|                 Camada de Abstração               |
+|                 de Hardware (HAL)                 |
++--------------------------------------------------+
+|                     HARDWARE                      |
+|     (CPU, RAM, Discos, Placas de Rede, etc)      |
++--------------------------------------------------+</code></pre>
+
+                <h3>Kernel</h3>
+
+                <p>O kernel é o <strong>núcleo do SO</strong>. Ele roda em um modo especial do processador chamado <strong>modo kernel</strong> (ou modo supervisor, modo privilegiado), que lhe dá acesso total ao hardware e permite executar instruções privilegiadas.</p>
+
+                <h4>Modos de Execução (Conexão com Hardware)</h4>
+
+                <p>A CPU, através do registrador de status (ex: <code>CS</code> em x86, ou <code>CPSR</code> em ARM), mantém um bit que indica o modo atual:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Modo</th><th>Privilégio</th><th>O que pode fazer</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Modo Usuário</td><td>Restrito</td><td>Não pode acessar dispositivos de E/S diretamente, não pode alterar tabelas de páginas, não pode desabilitar interrupções. Se tentar, ocorre uma exceção (trap).</td></tr>
+                            <tr><td>Modo Kernel</td><td>Total</td><td>Pode executar qualquer instrução (HALT, acesso a portas de E/S, manipulação de registradores de controle, desabilitação de interrupções).</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Mecanismo de transição:</strong> um programa em modo usuário só entra em modo kernel através de:</p>
+                <ul>
+                    <li>Chamadas de Sistema (intencionais)</li>
+                    <li>Interrupções (externas, como timer ou teclado)</li>
+                    <li>Exceções (erros como page fault, divisão por zero)</li>
+                </ul>
+
+                <h4>Tipos de Kernel</h4>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Características</th><th>Vantagens</th><th>Desvantagens</th><th>Exemplos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Monolítico</td><td>Todo o SO (gerenciamento de processos, memória, sistemas de arquivos, drivers) roda em um único espaço de endereço, em modo kernel.</td><td>Performance alta (pouca troca de contexto), chamadas de sistema rápidas.</td><td>Grande complexidade, um bug em um driver pode derrubar todo o sistema.</td><td>Linux (na prática), FreeBSD, Windows (NT é híbrido, mas predominantemente monolítico)</td></tr>
+                            <tr><td>Microkernel</td><td>Apenas o essencial roda em kernel: comunicação entre processos (IPC), escalonamento básico, gerenciamento de memória mínima. Drivers, sistemas de arquivos são processos em modo usuário.</td><td>Estabilidade, modularidade, segurança.</td><td>Performance reduzida devido ao IPC constante entre componentes.</td><td>QNX, L4, Mach (base do macOS/XNU)</td></tr>
+                            <tr><td>Híbrido</td><td>Combina abordagens. Geralmente um núcleo monolítico com partes em modo usuário, ou um microkernel com mais serviços no kernel por performance.</td><td>Equilíbrio entre performance e modularidade.</td><td>Complexidade de design.</td><td>Windows NT/10/11, macOS (XNU)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Principais Responsabilidades do Kernel</h4>
+                <ul>
+                    <li><strong>Gerenciamento de Processos e Threads:</strong> escalonamento, criação, término, comunicação entre processos (IPC), sincronização.</li>
+                    <li><strong>Gerenciamento de Memória:</strong> manutenção das tabelas de páginas, tratamento de page faults, alocação de memória para processos, memória virtual.</li>
+                    <li><strong>Gerenciamento de Dispositivos:</strong> drivers, tratamento de interrupções, abstração do hardware para o usuário (arquivos de dispositivo em <code>/dev</code> no Unix).</li>
+                    <li><strong>Gerenciamento de Sistemas de Arquivos:</strong> abstração de armazenamento persistente, controle de permissões, cache de disco.</li>
+                    <li><strong>Chamadas de Sistema:</strong> interface de entrada para o modo usuário solicitar serviços.</li>
+                </ul>
+
+                <h3>Shell</h3>
+
+                <p>O shell não é o kernel. O shell é um programa comum de usuário (embora especial) que fornece uma interface para interagir com o SO.</p>
+
+                <h4>Tipos de Shell</h4>
+
+                <p><strong>Shell de Linha de Comando (CLI)</strong></p>
+                <ul>
+                    <li><strong>O que é:</strong> um programa que lê comandos digitados pelo usuário, interpreta-os e faz as chamadas de sistema correspondentes.</li>
+                    <li><strong>Funcionamento:</strong> o shell executa um loop: exibe um prompt (<code>$</code> ou <code>&gt;</code>), aguarda entrada, analisa (parseia) o comando, e tipicamente:
+                        <ul>
+                            <li>Para comandos internos (<code>cd</code>, <code>exit</code>), executa internamente.</li>
+                            <li>Para comandos externos, faz uma chamada de sistema <code>fork()</code> (cria um novo processo) e <code>exec()</code> (substitui o processo pelo programa solicitado), e aguarda ou coloca em segundo plano.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Exemplos:</strong> Bash, Zsh, PowerShell, cmd.exe.</li>
+                </ul>
+
+                <p><strong>Shell Gráfico (GUI)</strong></p>
+                <ul>
+                    <li><strong>O que é:</strong> geralmente parte de um sistema de janelas (como X11 no Linux, ou o compositor do Windows/macOS).</li>
+                    <li><strong>Funcionamento:</strong> o servidor gráfico (ex: Xorg, Wayland compositor) gerencia a tela, mouse, teclado. O shell gráfico (ex: GNOME Shell, explorer.exe, Dock do macOS) é um cliente que desenha janelas, barras de tarefas, e responde a eventos de clique e tecla.</li>
+                </ul>
+
+                <h3>Chamadas de Sistema</h3>
+
+                <p>As chamadas de sistema são a interface oficial entre os programas em modo usuário e o kernel. Elas são o único caminho para um programa solicitar um serviço privilegiado.</p>
+
+                <h4>Mecanismo (Como funciona em baixo nível)</h4>
+                <ol>
+                    <li><strong>Preparação:</strong> o programa em modo usuário coloca os argumentos em locais conhecidos (geralmente registradores da CPU). Exemplo em x86-64:
+                        <ul>
+                            <li><code>rax</code> = número da chamada de sistema (ex: 1 para <code>write</code>, 60 para <code>exit</code>)</li>
+                            <li><code>rdi</code> = primeiro argumento</li>
+                            <li><code>rsi</code> = segundo argumento</li>
+                            <li><code>rdx</code> = terceiro argumento</li>
+                        </ul>
+                    </li>
+                    <li><strong>Trap (Armadilha):</strong> o programa executa uma instrução especial que gera uma exceção síncrona:
+                        <ul>
+                            <li>x86-64: <code>syscall</code> (instrução moderna)</li>
+                            <li>x86: <code>int 0x80</code> (interrupção software)</li>
+                            <li>ARM: <code>svc</code> (supervisor call)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Modo de Troca:</strong> a CPU salva o contexto atual, alterna o modo de usuário para modo kernel, e desvia a execução para uma função específica do kernel (a tabela de syscalls) com base no número em rax.</li>
+                    <li><strong>Execução do Kernel:</strong> o kernel executa a função solicitada (ex: <code>sys_write</code>), verificando permissões, validando argumentos, acessando o hardware se necessário.</li>
+                    <li><strong>Retorno:</strong> o kernel coloca o resultado em rax (modo usuário), restaura o contexto, executa a instrução <code>sysret</code> (ou <code>iret</code>), que retorna ao modo usuário e retoma a execução do programa logo após a instrução <code>syscall</code>.</li>
+                </ol>
+
+                <h4>Categorias de Chamadas de Sistema</h4>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Categoria</th><th>Exemplos (Linux)</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Controle de Processos</td><td><code>fork()</code>, <code>exec()</code>, <code>wait()</code>, <code>exit()</code>, <code>getpid()</code></td><td>Criar, destruir, gerenciar processos.</td></tr>
+                            <tr><td>Gerenciamento de Memória</td><td><code>mmap()</code>, <code>brk()</code>, <code>mprotect()</code></td><td>Alocar memória virtual, mapear arquivos, alterar permissões de página.</td></tr>
+                            <tr><td>E/S de Arquivos</td><td><code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code>, <code>lseek()</code></td><td>Operações em arquivos e diretórios.</td></tr>
+                            <tr><td>E/S de Dispositivos</td><td><code>ioctl()</code>, <code>read()</code>, <code>write()</code> (para dispositivos especiais)</td><td>Comunicação com drivers de dispositivo.</td></tr>
+                            <tr><td>Gerenciamento de Arquivos</td><td><code>mkdir()</code>, <code>rmdir()</code>, <code>unlink()</code>, <code>chmod()</code></td><td>Manipular diretórios e permissões.</td></tr>
+                            <tr><td>Informação do Sistema</td><td><code>time()</code>, <code>uname()</code>, <code>sysinfo()</code></td><td>Obter informações de sistema, data, hora.</td></tr>
+                            <tr><td>Comunicação entre Processos</td><td><code>pipe()</code>, <code>socket()</code>, <code>shmget()</code>, <code>msgget()</code></td><td>Trocas de dados entre processos (IPC).</td></tr>
+                            <tr><td>Segurança/Usuário</td><td><code>setuid()</code>, <code>getuid()</code>, <code>chroot()</code></td><td>Controle de identidade e permissões.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo Concreto (C para assembly conceitual)</strong></p>
+
+<pre data-lang="c"><code>// Programa C que escreve "Hello" no terminal
+#include &lt;unistd.h&gt;
+
+int main() {
+    write(1, "Hello\n", 6);  // 1 = stdout
+    return 0;
+}</code></pre>
+
+                <p>O que o compilador gera (conceitualmente, para x86-64):</p>
+
+<pre data-lang="asm"><code>mov rax, 1          ; número da syscall write
+mov rdi, 1          ; primeiro arg: file descriptor (stdout)
+mov rsi, endereço_da_string
+mov rdx, 6          ; terceiro arg: tamanho
+syscall             ; faz a chamada de sistema</code></pre>
+
+                <h2 id="usermod">3. UserMod e KernelMod</h2>
+
+                <h3>Fundamentos de Proteção de Hardware</h3>
+
+                <p>A separação entre User Mode e Kernel Mode não é uma decisão de software — é uma <strong>característica do processador</strong> projetada para garantir segurança e estabilidade. Todo processador moderno (x86, x86-64, ARM, RISC-V) implementa pelo menos dois níveis de privilégio.</p>
+
+                <p><strong>Arquitetura x86/x86-64: Anéis de Proteção (Protection Rings)</strong> — o x86 implementa 4 níveis de privilégio (Ring 0 a Ring 3), embora a maioria dos SOs use apenas dois:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Anel</th><th>Privilégio</th><th>Uso Típico</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Ring 0</td><td>Mais alto</td><td>Kernel do SO</td></tr>
+                            <tr><td>Ring 1</td><td>Médio</td><td>Raramente usado (drivers em alguns sistemas)</td></tr>
+                            <tr><td>Ring 2</td><td>Médio</td><td>Raramente usado</td></tr>
+                            <tr><td>Ring 3</td><td>Mais baixo</td><td>Aplicações de usuário</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+<pre data-lang="text"><code>                    +------------------+
+                    |   Ring 0 (Kernel) |
+                    |   Privilégio Total|
+                    +------------------+
+                           |
+                    +------------------+
+                    |   Ring 1 (Driver) |  (opcional)
+                    +------------------+
+                           |
+                    +------------------+
+                    |   Ring 2 (Driver) |  (opcional)
+                    +------------------+
+                           |
+                    +------------------+
+                    |   Ring 3 (User)   |
+                    |   Privilégio Restrito|
+                    +------------------+</code></pre>
+
+                <p><strong>Arquitetura ARM: Exception Levels (EL)</strong> — ARM utiliza um sistema de níveis de exceção (EL0 a EL3):</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Nível</th><th>Privilégio</th><th>Uso</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>EL0</td><td>Menos privilegiado</td><td>Aplicações de usuário</td></tr>
+                            <tr><td>EL1</td><td>Privilegiado</td><td>Kernel do SO</td></tr>
+                            <tr><td>EL2</td><td>Hipervisor</td><td>Virtualização</td></tr>
+                            <tr><td>EL3</td><td>Mais privilegiado</td><td>Monitor de segurança (TrustZone)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Mecanismos de Proteção (Como o Hardware Garante a Separação)</h4>
+
+                <p><strong>1. Registrador de Status (EFLAGS/RFLAGS no x86, CPSR no ARM)</strong><br>
+                A CPU mantém um bit que indica o nível de privilégio atual. Este bit não pode ser alterado por código em modo usuário — a única forma de mudar é via instruções específicas que geram traps (como <code>syscall</code>, <code>int</code>, <code>svc</code>).</p>
+
+                <p><strong>2. Conjunto de Instruções Restrito</strong><br>
+                No modo usuário, certas instruções causam exceções (trap) se tentadas:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Instrução</th><th>Efeito se executada em User Mode</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>LGDT</code> (carregar tabela de descritores global)</td><td>General Protection Fault</td></tr>
+                            <tr><td><code>HLT</code> (parar CPU)</td><td>General Protection Fault</td></tr>
+                            <tr><td><code>IN</code>/<code>OUT</code> (acesso direto a portas de E/S)</td><td>General Protection Fault</td></tr>
+                                                        <tr><td><code>CLI</code>/<code>STI</code> (desabilitar/habilitar interrupções)</td><td>General Protection Fault</td></tr>
+                            <tr><td><code>WRMSR</code> (escrever em Model Specific Registers)</td><td>General Protection Fault</td></tr>
+                            <tr><td>Instruções que modificam tabelas de páginas</td><td>General Protection Fault</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo concreto:</strong> um programa em modo usuário que tenta acessar diretamente a porta do teclado (<code>0x60</code>):</p>
+
+<pre data-lang="asm"><code>; Em modo usuário, esta instrução causa exceção
+in al, 0x60    ; tenta ler do controlador do teclado</code></pre>
+
+                <p>A CPU gera uma exceção (#GP - General Protection Fault), e o kernel decide como responder (geralmente terminando o processo).</p>
+
+                <p><strong>3. Proteção de Memória (MMU/TLB)</strong><br>
+                A separação User/Kernel também se reflete nas tabelas de páginas:</p>
+
+                <ul>
+                    <li>Cada entrada de página tem um bit User/Supervisor (U/S bit no x86)</li>
+                    <li>Se o bit U/S = 0, apenas código em modo kernel pode acessar essa página</li>
+                    <li>Se o bit U/S = 1, tanto user quanto kernel podem acessar (depende também do bit R/W)</li>
+                </ul>
+
+<pre data-lang="text"><code>Tabela de Páginas (x86-64):
++------------------------------------------+
+| Endereço Físico | U/S | R/W | Presente |
++------------------------------------------+
+| 0x00001000      | 0   | 1   | 1        | &lt;- Página do kernel (apenas kernel)
+| 0x00002000      | 1   | 1   | 1        | &lt;- Página de usuário (leitura/escrita)
+| 0x00003000      | 1   | 0   | 1        | &lt;- Página de código (apenas leitura)
++------------------------------------------+</code></pre>
+
+                <p>Quando a CPU está em modo usuário, qualquer acesso a uma página com U/S=0 causa um page fault. O kernel trata essa falha e geralmente envia um sinal <code>SIGSEGV</code> (segmentation fault) para o processo.</p>
+
+                <h3>Usermod</h3>
+
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>Privilégio restrito (Ring 3 no x86, EL0 no ARM)</li>
+                    <li>Código não pode acessar hardware diretamente</li>
+                    <li>Código não pode modificar estruturas críticas do SO</li>
+                    <li>Cada processo tem seu próprio espaço de endereço virtual</li>
+                    <li>Acesso à memória é limitado pelas tabelas de páginas configuradas pelo kernel</li>
+                    <li>Para solicitar serviços privilegiados, deve fazer uma chamada de sistema</li>
+                </ul>
+
+                <p><strong>O que roda em User Mode:</strong></p>
+                <ul>
+                    <li>Aplicações (navegadores, editores, jogos)</li>
+                    <li>Serviços e daemons (em alguns SOs, parte deles)</li>
+                    <li>Shells (bash, zsh, PowerShell)</li>
+                    <li>Bibliotecas de usuário (libc, GLib, etc.)</li>
+                </ul>
+
+                <h3>Kernelmod</h3>
+
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>Privilégio total (Ring 0 no x86, EL1 no ARM)</li>
+                    <li>Acesso irrestrito a todo o hardware</li>
+                    <li>Pode executar qualquer instrução</li>
+                    <li>Pode acessar todo o espaço de memória (kernel + todos os processos)</li>
+                    <li>Executa com uma pilha separada (kernel stack)</li>
+                    <li>Opera em um único espaço de endereço compartilhado (espaço do kernel)</li>
+                </ul>
+
+                <p><strong>O que roda em Kernel Mode:</strong></p>
+                <ul>
+                    <li>Núcleo do kernel (escalonador, gerente de memória)</li>
+                    <li>Manipuladores de interrupção (ISR - Interrupt Service Routines)</li>
+                    <li>Drivers de dispositivo (em kernels monolíticos)</li>
+                    <li>Código de chamadas de sistema</li>
+                </ul>
+
+                <h3>A Transição User → Kernel</h3>
+
+                <p>As transições entre modos são caras em termos de desempenho. Vamos ver os custos envolvidos:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Operação</th><th>Ações da CPU/SO</th><th>Custo Aproximado (ciclos)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Syscall simples</td><td>Salvar contexto, trocar modo, validar argumentos, executar</td><td>100-500 ciclos</td></tr>
+                            <tr><td>Page fault</td><td>Salvar contexto, traduzir endereço, carregar página do disco (domina)</td><td>milhares a milhões de ciclos</td></tr>
+                            <tr><td>Interrupção de hardware</td><td>Salvar contexto, identificar dispositivo, executar ISR</td><td>100-1000 ciclos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Processo detalhado de uma syscall:</strong></p>
+
+<pre data-lang="text"><code>Modo Usuário                     Modo Kernel
+      |                               |
+      |---&gt; executa instrução ------&gt;|
+      |     syscall                   |
+      |                               |
+      |                         CPU salva contexto:
+      |                         - RIP (próxima instrução)
+      |                         - CS (modo usuário)
+      |                         - RFLAGS
+      |                         - SS, RSP
+      |                               |
+      |                         CPU alterna para Ring 0
+      |                         Carrega CS/RIP da tabela IST
+      |                         Carrega pilha do kernel (RSP)
+      |                               |
+      |                         Executa manipulador de syscall
+      |                         (ex: entry_SYSCALL_64 no Linux)
+      |                               |
+      |                         Valida argumentos
+      |                         Executa syscall específica
+      |                         Coloca resultado em RAX
+      |                               |
+      |&lt;--- executa sysret -----------|
+      |     restaura contexto         |
+      |                               |</code></pre>
+
+                <h3>Mapeamento de Memória entre User e Kernel</h3>
+
+                <p>Um aspecto crucial: o kernel <strong>mapeia parte de seu espaço de endereço em cada processo</strong>. No Linux x86-64 típico:</p>
+
+<pre data-lang="text"><code>Espaço de Endereço Virtual (64 bits, configuração comum):
++-------------------+ 0xFFFFFFFFFFFFFFFF
+|                   |
+|   Espaço Kernel   |  (1 TB ou mais)
+|   (marcado U/S=0) |
+|                   |
++-------------------+ 0xFFFF800000000000
+|                   |
+|   Gap (não usado) |
+|                   |
++-------------------+ 0x0000800000000000
+|                   |
+|   Espaço Usuário  |  (128 TB)
+|   (marcado U/S=1) |
+|                   |
++-------------------+ 0x0000000000000000</code></pre>
+
+                <p><strong>Implicações:</strong></p>
+                <ul>
+                    <li>Quando ocorre uma syscall, <strong>não há necessidade de trocar tabelas de páginas</strong> — as páginas do kernel já estão visíveis</li>
+                    <li>Apenas o ponteiro de pilha (RSP) muda para a pilha do kernel</li>
+                    <li>Isso torna as syscalls mais rápidas (não há TLB flush)</li>
+                </ul>
+
+                <h2 id="tipos-so">4. Tipos de SO</h2>
+
+                <p>Agora que entendemos a base de proteção (User/Kernel), podemos classificar os SOs pelo modo como gerenciam a execução e os recursos.</p>
+
+                <h3>4.1 Monotarefa</h3>
+
+                <p><strong>Definição:</strong> o SO executa apenas um programa por vez. Quando um programa está rodando, ele tem controle exclusivo da CPU, memória e dispositivos.</p>
+
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>Não há conceito de troca de contexto (não há outro processo para trocar)</li>
+                    <li>Geralmente não há proteção de memória entre programas</li>
+                    <li>Programas podem acessar hardware diretamente</li>
+                    <li>Simples, pequeno, previsível</li>
+                </ul>
+
+                <p><strong>Exemplos históricos e atuais:</strong></p>
+                <ul>
+                    <li>MS-DOS (até versão 3.x)</li>
+                    <li>CP/M</li>
+                    <li>Sistemas embarcados muito simples (FreeRTOS em configuração mínima pode atuar como monotarefa)</li>
+                    <li>Bootloaders (U-Boot, GRUB durante o processo de boot)</li>
+                </ul>
+
+                <p><strong>Funcionamento no MS-DOS:</strong></p>
+
+<pre data-lang="text"><code>Inicialização:
+[BIOS] → [Bootloader] → [DOS Kernel] → [COMMAND.COM]
+
+Execução de um programa:
+1. COMMAND.COM (shell) usa função 0x4B da INT 21h para carregar programa
+2. DOS carrega o programa no endereço 0x100 (comando .COM) ou gerencia segmentos (.EXE)
+3. Programa executa até o fim
+4. Controle retorna ao COMMAND.COM</code></pre>
+
+                <p><strong>Limitações</strong> (que motivaram a evolução):</p>
+                <ul>
+                    <li>Se um programa trava, o sistema inteiro trava</li>
+                    <li>Não é possível rodar um programa em segundo plano enquanto se trabalha em outro</li>
+                    <li>Desperdício de recursos (CPU fica ociosa durante operações de E/S)</li>
+                </ul>
+
+                <h3>4.2 Multitarefas</h3>
+
+                <p><strong>Definição:</strong> capacidade do SO de executar múltiplos programas (processos/threads) aparentemente em paralelo, alternando a CPU entre eles.</p>
+
+                <h4>4.2.1 Processos Preemptivos e Não-Preemptivos</h4>
+
+                <p>Esta é uma distinção fundamental sobre quem decide quando um processo perde a CPU.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Característica</th><th>Não-Preemptivo (Cooperativo)</th><th>Preemptivo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Controle</td><td>Processo decide quando liberar a CPU</td><td>SO decide quando interromper o processo</td></tr>
+                            <tr><td>Troca de contexto</td><td>Ocorre apenas quando processo faz syscall ou termina</td><td>Pode ocorrer a qualquer momento (via timer interrupt)</td></tr>
+                            <tr><td>Confiabilidade</td><td>Um processo que não libera trava o sistema</td><td>SO mantém controle mesmo com processos mal-comportados</td></tr>
+                            <tr><td>Complexidade</td><td>Baixa</td><td>Alta (requer sincronização, atomicidade)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Processos preemptivos</h4>
+
+                <p><strong>Mecanismo:</strong> o SO utiliza o timer interrupt (gerado pelo hardware de temporização) para periodicamente retomar o controle da CPU, independentemente do que o processo está fazendo.</p>
+
+<pre data-lang="text"><code>Timer Interrupt (a cada quantum, ex: 10ms):
++--------------------------------------------------+
+|                                                  |
+|    Processo A      Processo A      Processo B    |
+|    rodando         rodando         rodando       |
+|        |               |               |         |
+|        |               |               |         |
+|   [---|-------]   [---|-------]   [---|-------]  |
+|        |               |               |         |
+|   Timer IRQ      Timer IRQ      Timer IRQ        |
+|   SO escolhe     SO escolhe     SO escolhe       |
+|   próximo        próximo        próximo          |
+|                                                  |
++--------------------------------------------------+</code></pre>
+
+                <p><strong>Componentes críticos para preempção:</strong></p>
+                <ol>
+                    <li><strong>Timer Programável:</strong> hardware (PIT - Programmable Interval Timer, ou APIC Timer) gera interrupções em intervalos regulares</li>
+                    <li><strong>Manipulador de Interrupção:</strong> o kernel captura cada timer interrupt e chama o escalonador</li>
+                    <li><strong>Salvamento de Contexto:</strong> a CPU salva automaticamente parte do contexto; o kernel salva o restante</li>
+                    <li><strong>Escalonador:</strong> decide qual processo executar a seguir</li>
+                    <li><strong>Restauração de Contexto:</strong> o kernel carrega o contexto do próximo processo e retorna</li>
+                </ol>
+
+                <p><strong>Exemplo de fluxo preemptivo</strong> (Linux simplificado):</p>
+
+<pre data-lang="asm"><code>; Pseudo-código do manipulador de timer interrupt
+
+timer_interrupt_handler:
+    ; Salva contexto do processo atual
+    push rax
+    push rbx
+    push rcx
+    push rdx
+    push rsi
+    push rdi
+    push rbp
+    push r8, r9, r10, r11, r12, r13, r14, r15
+    
+    ; Salva ponteiro de pilha atual
+    mov [current_process-&gt;kernel_stack], rsp
+    
+    ; Chama escalonador
+    call scheduler
+    
+    ; Restaura ponteiro de pilha do próximo processo
+    mov rsp, [next_process-&gt;kernel_stack]
+    
+    ; Restaura contexto do próximo processo
+    pop r15, r14, r13, r12, r11, r10, r9, r8
+    pop rbp
+    pop rdi
+    pop rsi
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+    
+    ; Retorna para o próximo processo
+    iretq  ; Interrupt Return</code></pre>
+
+                <p><strong>Vantagens:</strong></p>
+                <ul>
+                    <li>Sistema responsivo mesmo com processos mal-comportados</li>
+                    <li>Melhor utilização de recursos</li>
+                    <li>Essencial para sistemas de tempo compartilhado</li>
+                </ul>
+
+                <p><strong>Desvantagens:</strong></p>
+                <ul>
+                    <li>Mais complexo (precisa proteger seções críticas com locks)</li>
+                    <li>Overhead do timer interrupt e trocas de contexto frequentes</li>
+                </ul>
+
+                <h4>Processos Não-preemptivos</h4>
+
+                <p><strong>Mecanismo:</strong> o SO aguarda que o processo ativo faça uma chamada de sistema (<code>yield()</code>, <code>sleep()</code>, <code>wait()</code>, ou operações de E/S) para então trocar para outro processo.</p>
+
+<pre data-lang="text"><code>Processo A          Processo B          Processo C
+    |                   |                   |
+    |---executa--------&gt;|                   |
+    |                   |---executa--------&gt;|
+    |                   |                   |
+    |&lt;---yield()--------|                   |
+    |                   |                   |
+    |---executa---------------------------&gt;|
+    |                   |                   |
+    |                   |&lt;---espera E/S-----|
+    |                   |                   |
+    |---executa--------&gt;|                   |
+    |                   |                   |</code></pre>
+
+                <p><strong>Vantagens:</strong></p>
+                <ul>
+                    <li>Simples de implementar</li>
+                    <li>Menos overhead de sincronização (não há interrupções inesperadas)</li>
+                    <li>Previsível para o desenvolvedor (sabe quando pode ser interrompido)</li>
+                </ul>
+
+                <p><strong>Desvantagens:</strong></p>
+                <ul>
+                    <li>Um processo com loop infinito trava todo o sistema</li>
+                    <li>Programador precisa explicitamente ceder a CPU em pontos estratégicos</li>
+                    <li>Má utilização de CPUs multicore (pouco usado nesse contexto)</li>
+                </ul>
+
+                <p><strong>Exemplos:</strong></p>
+                <ul>
+                    <li>Mac OS Classic (System 1-9)</li>
+                    <li>Windows 3.1/9x (cooperativo para aplicações 16-bit)</li>
+                    <li>Threads em modo usuário (green threads) em algumas linguagens (Go inicialmente, Erlang)</li>
+                </ul>
+
+                <h3>4.3 RTOS</h3>
+
+                <p><strong>Definição:</strong> SO projetado para processar dados à medida que chegam, com garantias de tempo (determinismo). O correto funcionamento depende não apenas do resultado lógico, mas também do tempo em que ele é entregue.</p>
+
+                <p><strong>Classificação de RTOS:</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Característica</th><th>Exemplo de Aplicação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Hard Real-Time</td><td>Perder um prazo é uma falha catastrófica</td><td>Airbag de carro, controle de voo, marca-passo</td></tr>
+                            <tr><td>Soft Real-Time</td><td>Perder prazos degrada performance, mas não causa falha catastrófica</td><td>Streaming de vídeo, áudio, jogos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Características Fundamentais:</strong></p>
+                <ol>
+                    <li><strong>Determinismo:</strong> o tempo de resposta deve ser previsível e constante</li>
+                    <li><strong>Preempção por prioridade:</strong> tarefas de maior prioridade interrompem tarefas de menor prioridade imediatamente</li>
+                    <li><strong>Latência de Interrupção mínima:</strong> tempo entre a interrupção de hardware e o início do tratamento deve ser pequeno e constante</li>
+                    <li><strong>Inversão de Prioridade tratada:</strong> mecanismos como Priority Inheritance Protocol (PIP) evitam que tarefas de alta prioridade fiquem bloqueadas por tarefas de baixa</li>
+                </ol>
+
+                <p><strong>Exemplo de problema de inversão de prioridade:</strong></p>
+
+<pre data-lang="text"><code>Situação sem PIP:
+Tarefa L (baixa prioridade) adquire mutex M
+Tarefa H (alta prioridade) tenta adquirir M → bloqueia
+Tarefa M (média prioridade) executa e atrasa H indefinidamente
+
+Com Priority Inheritance:
+Quando H bloqueia em M, L herda a prioridade de H temporariamente
+L termina, libera M, H executa</code></pre>
+
+                <p><strong>Exemplos de RTOS:</strong></p>
+                <ul>
+                    <li><strong>FreeRTOS:</strong> open source, leve, muito usado em microcontroladores (STM32, ESP32)</li>
+                    <li><strong>VxWorks:</strong> comercial, usado em sistemas críticos (NASA, equipamentos médicos)</li>
+                    <li><strong>QNX:</strong> microkernel, usado em automotivo (sistemas de infoentretenimento e ADAS)</li>
+                    <li><strong>Zephyr:</strong> Linux Foundation, foco em IoT</li>
+                </ul>
+
+                <p><strong>Exemplo FreeRTOS</strong> (criação de tarefa com prioridade):</p>
+
+<pre data-lang="c"><code>// Cria uma tarefa de alta prioridade que deve responder em tempo real
+void vHighPriorityTask(void *pvParameters) {
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = pdMS_TO_TICKS(10);  // 10ms período
+    
+    for(;;) {
+        // Executa ação crítica
+        read_sensor();
+        calculate_control_signal();
+        actuate();
+        
+        // Espera pelo próximo ciclo com latência controlada
+        vTaskDelayUntil(&amp;xLastWakeTime, xFrequency);
+    }
+}
+
+// Criação: prioridade 5 (maior que a do idle, que é 0)
+xTaskCreate(vHighPriorityTask, "Sensor", 1024, NULL, 5, NULL);</code></pre>
+
+                <h3>4.4 Distribuídos</h3>
+
+                <p><strong>Definição:</strong> um conjunto de computadores independentes que se apresentam ao usuário como um único sistema coerente. O SO gerencia recursos que estão fisicamente separados.</p>
+
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li><strong>Transparência:</strong> o usuário não sabe (nem precisa saber) onde os recursos estão fisicamente</li>
+                    <li><strong>Escalabilidade:</strong> adicionar mais nós aumenta a capacidade de processamento</li>
+                    <li><strong>Tolerância a falhas:</strong> se um nó falha, o sistema continua operando</li>
+                    <li><strong>Middleware:</strong> camada de software que abstrai a distribuição</li>
+                </ul>
+
+                <p><strong>Arquiteturas Comuns:</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Arquitetura</th><th>Descrição</th><th>Exemplos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Cliente-Servidor</td><td>Clientes solicitam serviços, servidores fornecem</td><td>NFS, servidores web</td></tr>
+                            <tr><td>Peer-to-Peer</td><td>Todos os nós são iguais, compartilham recursos</td><td>BitTorrent, blockchain</td></tr>
+                            <tr><td>Cluster</td><td>Múltiplas máquinas trabalhando como uma única</td><td>Kubernetes, Hadoop</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplos de SO Distribuídos:</strong></p>
+                <ul>
+                    <li><strong>Plan 9:</strong> Bell Labs, tudo é representado como sistema de arquivos, rede transparente</li>
+                    <li><strong>Amoeba:</strong> Tanenbaum, microkernel para ambientes distribuídos</li>
+                    <li><strong>Inferno:</strong> sucessor do Plan 9, com máquina virtual Dis</li>
+                    <li><strong>Linux + Middleware:</strong> a maioria dos sistemas distribuídos atuais usa Linux como base com camadas como Kubernetes, Hadoop, Spark</li>
+                </ul>
+
+                <h3>4.5 Embarcados</h3>
+
+                <p><strong>Definição:</strong> SO projetado para operar em dispositivos com recursos limitados (CPU, memória, energia) e propósito específico.</p>
+
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li><strong>Resource-constrained:</strong> memória RAM e flash limitadas (KB a MB)</li>
+                    <li><strong>Eficiência energética:</strong> crítico para dispositivos com bateria</li>
+                    <li><strong>Confiabilidade:</strong> muitas vezes operam sem supervisão por anos</li>
+                    <li><strong>Propósito específico:</strong> diferente de um PC que roda aplicações variadas</li>
+                    <li><strong>Boot rápido:</strong> segundos ou milissegundos</li>
+                </ul>
+
+                <p><strong>Classificação de Sistemas Embarcados:</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Recursos</th><th>Exemplos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Bare-metal</td><td>Sem SO, apenas loop principal</td><td>Microcontroladores simples (ATmega)</td></tr>
+                            <tr><td>RTOS embarcado</td><td>SO mínimo com escalonamento</td><td>FreeRTOS, Zephyr, ThreadX</td></tr>
+                            <tr><td>Linux embarcado</td><td>Linux reduzido (Yocto, Buildroot)</td><td>Raspberry Pi, roteadores, sistemas automotivos</td></tr>
+                            <tr><td>Android Embedded</td><td>Android adaptado para dispositivos específicos</td><td>TVs, quiosques, sistemas automotivos (Android Automotive)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo de aplicação: ESP32 com FreeRTOS</strong></p>
+                <p>O ESP32 é um SoC (System-on-Chip) que integra CPU dual-core, Wi-Fi, Bluetooth, e periféricos. O ESP-IDF (framework oficial) é baseado no FreeRTOS.</p>
+
+<pre data-lang="c"><code>// Exemplo de tarefa para leitura de sensor em um sistema embarcado
+void sensor_task(void *pvParameters) {
+    // Configuração do ADC (conversor analógico-digital)
+    adc1_config_width(ADC_WIDTH_BIT_12);
+    adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_11);
+    
+    int sensor_value;
+    
+    for(;;) {
+        sensor_value = adc1_get_raw(ADC1_CHANNEL_0);
+        ESP_LOGI("SENSOR", "Valor: %d", sensor_value);
+        
+        // Consome pouca energia entre leituras
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}</code></pre>
+
+                <h3>Resumo Comparativo</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo de SO</th><th>User/Kernel</th><th>Preempção</th><th>Garantia Temporal</th><th>Aplicação Típica</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Monotarefa</td><td>Geralmente sem separação</td><td>Não aplicável</td><td>Não</td><td>Bootloaders, sistemas muito simples</td></tr>
+                            <tr><td>Multitarefa não-preemptivo</td><td>Presente</td><td>Não (cooperativo)</td><td>Não</td><td>Windows 3.1, Mac OS Classic</td></tr>
+                            <tr><td>Multitarefa preemptivo</td><td>Presente</td><td>Sim (timer interrupt)</td><td>Não (geralmente)</td><td>Linux, Windows, macOS</td></tr>
+                            <tr><td>RTOS</td><td>Presente</td><td>Sim, por prioridade</td><td>Sim (determinístico)</td><td>Controle industrial, automotivo, médico</td></tr>
+                            <tr><td>Distribuído</td><td>Presente em cada nó</td><td>Depende do nó</td><td>Não (consistência eventual)</td><td>Data centers, nuvem</td></tr>
+                            <tr><td>Embarcado</td><td>Varia (bare-metal a Linux)</td><td>Depende</td><td>Depende da classe</td><td>IoT, eletrodomésticos, wearables</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Conexão com Hardware: Síntese</h4>
+                <p>O que você estudou em arquitetura de hardware se conecta diretamente a estes tópicos:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Conceito de Hardware</th><th>Aplicação no SO</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Rings de proteção / Exception Levels</td><td>Base para User Mode vs Kernel Mode</td></tr>
+                            <tr><td>Timer Interrupt (PIT/APIC Timer)</td><td>Base para preempção em multitarefa</td></tr>
+                            <tr><td>MMU com bit U/S</td><td>Protege memória do kernel contra acesso de usuário</td></tr>
+                            <tr><td>TLB</td><td>Acelera tradução de endereços durante syscalls</td></tr>
+                            <tr><td>Interrupt Controller (PIC/APIC)</td><td>Gerencia interrupções de dispositivos e timer</td></tr>
+                            <tr><td>Contexto da CPU (registradores)</td><td>Salvos/restaurados em cada troca de contexto</td></tr>
+                            <tr><td>SoC (System-on-Chip)</td><td>Base para sistemas embarcados (CPU + periféricos no mesmo chip)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="escalonamento">5. Escalonamento</h2>
+
+                <p><strong>Definição:</strong> escalonamento é o mecanismo pelo qual o sistema operacional decide qual processo/thread será executado pela CPU e por quanto tempo. O escalonador é ativado em quatro momentos principais:</p>
+                <ul>
+                    <li>Timer interrupt (preempção por tempo)</li>
+                    <li>Processo faz chamada de sistema que pode bloqueá-lo (ex: <code>wait()</code>, <code>read()</code>)</li>
+                    <li>Processo termina (<code>exit()</code>)</li>
+                    <li>Recurso fica disponível (ex: E/S concluída, semáforo liberado)</li>
+                </ul>
+
+                <p><strong>Objetivos do Escalonamento:</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Objetivo</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Justiça</td><td>Todos os processos recebem tempo de CPU proporcional à sua importância</td></tr>
+                            <tr><td>Eficiência</td><td>Manter a CPU ocupada o máximo possível (evitar idle)</td></tr>
+                            <tr><td>Tempo de resposta</td><td>Baixa latência para sistemas interativos</td></tr>
+                            <tr><td>Turnaround</td><td>Minimizar tempo total desde a criação até a conclusão do processo</td></tr>
+                            <tr><td>Throughput</td><td>Maximizar número de processos concluídos por unidade de tempo</td></tr>
+                            <tr><td>Prioridade</td><td>Processos críticos devem ser atendidos primeiro</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Métricas de Avaliação:</strong></p>
+                <ul>
+                    <li><strong>Turnaround Time</strong> = Tempo de conclusão - Tempo de chegada</li>
+                    <li><strong>Waiting Time</strong> = Tempo total que o processo esperou na fila de prontos</li>
+                    <li><strong>Response Time</strong> = Tempo desde a chegada até o primeiro atendimento (importante para interatividade)</li>
+                </ul>
+
+                <h3>5.1 Algoritmos clássicos</h3>
+
+                <p>Vamos analisar cada algoritmo com exemplos práticos, considerando a seguinte lista de processos:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Processo</th><th>Tempo de Chegada</th><th>Tempo de Execução (Burst Time)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>P1</td><td>0</td><td>8</td></tr>
+                            <tr><td>P2</td><td>1</td><td>4</td></tr>
+                            <tr><td>P3</td><td>2</td><td>2</td></tr>
+                            <tr><td>P4</td><td>3</td><td>6</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>5.1.1 First Come First Serve (FCFS)</h4>
+
+                <p><strong>Mecanismo:</strong> o primeiro processo que chega é o primeiro a ser executado. É <strong>não-preemptivo</strong>.</p>
+
+<pre data-lang="text"><code>Tempo: 0    2    4    6    8    10   12   14   16   18   20
+       |----|----|----|----|----|----|----|----|----|----|
+P1:    [#########]                                        
+P2:              [####]                                        
+P3:                   [##]                                      
+P4:                      [##########]                        
+
+Escala:
+P1: 0-8
+P2: 8-12
+P3: 12-14
+P4: 14-20</code></pre>
+
+                                <p><strong>Cálculos:</strong></p>
+                <ul>
+                    <li>Turnaround P1 = 8 - 0 = 8</li>
+                    <li>Turnaround P2 = 12 - 1 = 11</li>
+                    <li>Turnaround P3 = 14 - 2 = 12</li>
+                    <li>Turnaround P4 = 20 - 3 = 17</li>
+                </ul>
+
+                <blockquote>
+                    <p>Turnaround médio = 12</p>
+                </blockquote>
+
+                <ul>
+                    <li><strong>Vantagens:</strong> simples, fácil implementar com uma fila.</li>
+                    <li><strong>Desvantagens:</strong> efeito "convoy" (processos curtos esperam por processos longos), turnarounds ruins para processos curtos.</li>
+                </ul>
+
+                <p><strong>Conexão com hardware:</strong> utiliza uma fila simples em memória; não requer timer interrupt para preempção.</p>
+
+                <h4>5.1.2 Shortest Job First (SJF)</h4>
+
+                <p><strong>Mecanismo:</strong> executa o processo com o menor tempo de execução total. Pode ser não-preemptivo ou preemptivo (SRTF - Shortest Remaining Time First).</p>
+
+                <p><strong>1. Versão Não-Preemptiva</strong><br>
+                Apenas quando um processo termina, escolhe-se o próximo com menor burst time entre os disponíveis.</p>
+
+<pre data-lang="text"><code>Tempo: 0    2    4    6    8    10   12   14   16   18   20
+       |----|----|----|----|----|----|----|----|----|----|
+P1:    [#########]                                        
+P3:         [##]                                          
+P2:              [####]                                    
+P4:                   [##########]                        
+
+Escala:
+P1: 0-8 (é o único disponível no tempo 0)
+P3: 8-10 (chegou em 2, burst 2)
+P2: 10-14 (chegou em 1, burst 4)
+P4: 14-20 (chegou em 3, burst 6)</code></pre>
+
+                <blockquote>
+                    <p>Turnaround médio = (8 + 13 + 8 + 17) / 4 = 11.5 (melhor que FCFS)</p>
+                </blockquote>
+
+                <p><strong>2. Versão Preemptiva (SRTF)</strong><br>
+                A cada novo processo que chega, o escalonador verifica se ele tem tempo restante menor que o processo atual. Se sim, preempta.</p>
+
+<pre data-lang="text"><code>Tempo: 0    2    4    6    8    10   12   14   16   18   20
+       |----|----|----|----|----|----|----|----|----|----|
+P1:    [##]                                                
+P2:       [####]                                           
+P3:           [##]                                         
+P1:              [######]                                   
+P4:                   [##########]                          
+
+Escala detalhada:
+t=0: P1 inicia (restante 8)
+t=1: P2 chega (restante 4). P1 restante 7. P2 é menor? SIM → preempta P1
+t=1-5: P2 executa (completa em t=5)
+t=5: P3 chega em t=2 (restante 2), P1 restante 7 → escolhe P3
+t=5-7: P3 executa (completa em t=7)
+t=7: P4 chega em t=3 (restante 6), P1 restante 7 → P4 é menor? Sim (6 &lt; 7) → escolhe P4
+t=7-13: P4 executa (completa em t=13)
+t=13: apenas P1 restante
+t=13-20: P1 completa</code></pre>
+
+                <blockquote>
+                    <p>Turnaround médio = (20 + 4 + 5 + 10) / 4 = 9.75 (melhor ainda)</p>
+                </blockquote>
+
+                <ul>
+                    <li><strong>Vantagens:</strong> otimiza turnaround médio.</li>
+                    <li><strong>Desvantagens:</strong> requer conhecimento do futuro (tempo de execução), pode causar starvation de processos longos.</li>
+                </ul>
+
+                <p><strong>Conexão com hardware:</strong> a versão preemptiva exige timer interrupt para permitir preempção a cada nova chegada.</p>
+
+                <h4>5.1.3 Round Robin (RR)</h4>
+
+                <p><strong>Mecanismo:</strong> cada processo recebe um quantum (fatia de tempo). Se não termina dentro do quantum, é preemptado e vai para o final da fila.</p>
+
+                <p><strong>Quantum = 4 unidades de tempo</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Intervalo</th><th>Processo</th><th>Observação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0-4</td><td>P1</td><td>Executa 4, restam 4</td></tr>
+                            <tr><td>4-8</td><td>P2</td><td>Completa (4 unidades)</td></tr>
+                            <tr><td>8-10</td><td>P3</td><td>Completa (2 unidades)</td></tr>
+                            <tr><td>10-14</td><td>P1</td><td>Executa mais 4, restante 0 (completa)</td></tr>
+                            <tr><td>14-20</td><td>P4</td><td>Executa os 6 restantes</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <p>Turnaround médio = (14 + 7 + 8 + 17) / 4 = 11.5</p>
+                </blockquote>
+
+                <p><strong>Escolha do Quantum:</strong></p>
+                <ul>
+                    <li>Quantum muito grande → RR vira FCFS</li>
+                    <li>Quantum muito pequeno → overhead alto (muitas trocas de contexto)</li>
+                </ul>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Quantum</th><th>Efeito</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1-5 ms</td><td>Alta sobrecarga, boa responsividade</td></tr>
+                            <tr><td>10-100 ms</td><td>Equilíbrio típico (Linux usa ~100ms padrão)</td></tr>
+                            <tr><td>100 ms</td><td>Menos trocas, pior responsividade interativa</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Conexão com hardware:</strong> o quantum é implementado através do timer interrupt. O kernel configura o timer (PIT ou APIC) para gerar interrupção após o quantum. Quando a interrupção ocorre, o escalonador é invocado.</p>
+
+                <h4>5.1.4 Por Prioridade</h4>
+
+                <p><strong>Mecanismo:</strong> cada processo tem uma prioridade (numérica). O escalonador sempre escolhe o processo com maior prioridade (ou menor número, dependendo da convenção).</p>
+
+                <p><strong>Exemplo com prioridade</strong> (menor número = maior prioridade):</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Processo</th><th>Chegada</th><th>Burst</th><th>Prioridade</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>P1</td><td>0</td><td>8</td><td>3</td></tr>
+                            <tr><td>P2</td><td>1</td><td>4</td><td>1</td></tr>
+                            <tr><td>P3</td><td>2</td><td>2</td><td>2</td></tr>
+                            <tr><td>P4</td><td>3</td><td>6</td><td>4</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Execução (não-preemptivo):</strong></p>
+
+<pre data-lang="text"><code>t=0: apenas P1 → executa
+t=0-8: P1 completa
+t=8: disponíveis P2, P3, P4 → P2 (prioridade 1) executa
+t=8-12: P2 completa
+t=12: P3 e P4 → P3 (prio 2) executa
+t=12-14: P3 completa
+t=14-20: P4 executa</code></pre>
+
+                <p><strong>Problema: Starvation (Fome)</strong><br>
+                Processos de baixa prioridade podem nunca executar se sempre houver processos de alta prioridade.</p>
+
+                <p><strong>Soluções:</strong></p>
+                <ul>
+                    <li><strong>Aging (Envelhecimento):</strong> aumentar gradualmente a prioridade de processos que esperam muito tempo</li>
+                    <li><strong>Feedback (MLFQ):</strong> mover processos entre filas de prioridade baseado no comportamento</li>
+                </ul>
+
+                <h4>Multilevel Feedback Queue (MLFQ) — usado no Linux, Windows, macOS</h4>
+
+                <p>É o algoritmo mais sofisticado e amplamente utilizado. Combina múltiplas filas com prioridades diferentes e promove/demove processos baseado no comportamento.</p>
+
+<pre data-lang="text"><code>Filas de Prioridade:
+┌─────────────────────────────────────┐
+│ Prioridade Alta (RR, quantum curto) │ ← Processos interativos (I/O-bound)
+├─────────────────────────────────────┤
+│ Prioridade Média (RR, quantum médio)│
+├─────────────────────────────────────┤
+│ Prioridade Baixa (RR, quantum longo)│ ← Processos computacionais (CPU-bound)
+└─────────────────────────────────────┘
+
+Regras típicas:
+1. Se processo usa pouco CPU → sobe de prioridade (interativo)
+2. Se processo usa muito CPU → desce de prioridade (computacional)
+3. Após quantum, vai para fila inferior
+4. Aging: após certo tempo, sobe para evitar starvation</code></pre>
+
+                <h2 id="processo-thread">6. Diferença entre processo e thread</h2>
+
+                <h3>Processo</h3>
+
+                <p><strong>Definição:</strong> um processo é uma instância de um programa em execução. É a unidade de alocação de recursos.</p>
+
+                <p><strong>Estrutura de um Processo</strong> (PCB - Process Control Block):</p>
+
+<pre data-lang="text"><code>┌─────────────────────────────────────────┐
+│         Process Control Block (PCB)      │
+├─────────────────────────────────────────┤
+│ PID (Process ID)                         │
+│ Estado (Running, Ready, Blocked, etc)    │
+│ Contexto de Hardware (registradores)     │
+│ Contador de Programa (PC)                │
+│ Ponteiro de Pilha (SP)                   │
+├─────────────────────────────────────────┤
+│ Gerenciamento de Memória:                │
+│   - Tabelas de Páginas (PTBR)            │
+│   - Segmentos (text, data, heap, stack)  │
+│   - Mapeamento de memória virtual        │
+├─────────────────────────────────────────┤
+│ Gerenciamento de Arquivos:               │
+│   - Tabela de arquivos abertos (FDs)     │
+│   - Diretório de trabalho                │
+├─────────────────────────────────────────┤
+│ Informação de Controle:                  │
+│   - Prioridade                           │
+│   - Contador de tempo de CPU             │
+│   - Processo pai (PPID)                  │
+│   - Sinais pendentes                     │
+└─────────────────────────────────────────┘</code></pre>
+
+                <p><strong>Características do Processo:</strong></p>
+                <ul>
+                    <li><strong>Espaço de endereço isolado:</strong> cada processo tem sua própria tabela de páginas, com mapeamentos independentes</li>
+                    <li><strong>Recursos exclusivos:</strong> arquivos abertos, dispositivos, etc.</li>
+                    <li><strong>Criação custosa:</strong> <code>fork()</code> duplica tabelas de páginas (COW - Copy on Write)</li>
+                    <li><strong>Troca de contexto entre processos:</strong> cara (troca tabelas de páginas → TLB flush)</li>
+                </ul>
+
+                <p><strong>Representação na Memória:</strong></p>
+
+<pre data-lang="text"><code>Espaço de Endereço de um Processo (Linux x86-64 típico):
+0x7FFFFFFFFFFFFF  ┌─────────────────────┐
+                   │      Stack          │ ← CRESCE PARA BAIXO
+                   │      (variáveis     │
+                   │       locais)       │
+                   ├─────────────────────┤
+                   │        ↓            │
+                   │        ↑            │
+                   ├─────────────────────┤
+                   │        Heap         │ ← CRESCE PARA CIMA
+                   │ (alocação dinâmica) │
+                   ├─────────────────────┤
+                   │   Dados Inicializados│
+                   │   ( .data )         │
+                   ├─────────────────────┤
+                   │   Dados Não-Inicializados│
+                   │   ( .bss )          │
+                   ├─────────────────────┤
+                   │   Código ( .text )  │ ← Geralmente somente leitura
+0x0000000000400000 └─────────────────────┘</code></pre>
+
+                <h3>Thread</h3>
+
+                <p><strong>Definição:</strong> uma thread é uma unidade de execução dentro de um processo. Várias threads compartilham os recursos do mesmo processo.</p>
+
+                <p><strong>Estrutura de uma Thread</strong> (TCB - Thread Control Block):</p>
+
+<pre data-lang="text"><code>┌────────────────────────────────────────────────────┐
+│         Thread Control Block (TCB)                 │
+├────────────────────────────────────────────────────┤
+│ TID (Thread ID)                                    │
+│ Estado                                             │
+│ Contexto de Hardware (registradores)               │
+│ Contador de Programa (PC)                          │
+│ Ponteiro de Pilha (SP) - pilha própria             │
+├────────────────────────────────────────────────────┤
+│ Compartilhado com outras threads do mesmo processo:│
+│   - Espaço de endereço (tabelas de páginas)        │
+│   - Arquivos abertos                               │
+│   - Sinais e manipuladores                         │
+│   - Diretório de trabalho                          │
+└────────────────────────────────────────────────────┘</code></pre>
+
+                <p><strong>O que é compartilhado vs. privado em threads:</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Compartilhado entre threads do mesmo processo</th><th>Privado por thread</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Espaço de endereço (código, heap, dados globais)</td><td>Pilha (stack)</td></tr>
+                            <tr><td>Arquivos abertos (file descriptors)</td><td>Registradores da CPU</td></tr>
+                            <tr><td>Sinais e manipuladores</td><td>Contador de programa (PC)</td></tr>
+                            <tr><td>Diretório de trabalho</td><td>Thread-local storage (TLS)</td></tr>
+                            <tr><td>Identidade do processo (PID)</td><td>TID (Thread ID)</td></tr>
+                            <tr><td>Privilégios e credenciais</td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Representação na Memória</strong> (Processo com 3 threads):</p>
+
+<pre data-lang="text"><code>Espaço de Endereço do Processo:
+┌─────────────────────────────────────────┐
+│  Stack Thread 1  │  (privada)           │
+├─────────────────────────────────────────┤
+│  Stack Thread 2  │  (privada)           │
+├─────────────────────────────────────────┤
+│  Stack Thread 3  │  (privada)           │
+├─────────────────────────────────────────┤
+│                                         │
+│              Heap                       │ ← COMPARTILHADO
+│              (malloc)                   │
+│                                         │
+├─────────────────────────────────────────┤
+│         Dados Globais (.data/.bss)      │ ← COMPARTILHADO
+├─────────────────────────────────────────┤
+│         Código (.text)                  │ ← COMPARTILHADO
+└─────────────────────────────────────────┘</code></pre>
+
+                <h3>Comparação Detalhada</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Aspecto</th><th>Processo</th><th>Thread</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Recursos</td><td>Cada processo tem seus próprios recursos (memória, arquivos)</td><td>Threads compartilham recursos do processo</td></tr>
+                            <tr><td>Espaço de endereço</td><td>Isolado (tabela de páginas própria)</td><td>Compartilhado (mesma tabela de páginas)</td></tr>
+                            <tr><td>Troca de contexto</td><td>Cara (troca PCB + tabelas de páginas → TLB flush)</td><td>Barata (apenas registradores, pilha)</td></tr>
+                            <tr><td>Criação</td><td>Lenta (fork duplica estruturas)</td><td>Rápida (apenas alocar TCB e pilha)</td></tr>
+                            <tr><td>Comunicação</td><td>IPC (pipes, sockets, filas) - mais lenta</td><td>Memória compartilhada - muito rápida</td></tr>
+                            <tr><td>Sincronização</td><td>Menos necessária (espaços isolados)</td><td>Essencial (mutex, semáforos)</td></tr>
+                            <tr><td>Segurança/Isolamento</td><td>Alto (falha em um processo não afeta outros)</td><td>Baixo (falha em uma thread derruba todo o processo)</td></tr>
+                            <tr><td>Escalonamento</td><td>O escalonador escolhe qual processo executar</td><td>O escalonador escolhe qual thread executar</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Modelos de Threads</strong> (User vs Kernel Threads)</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Modelo</th><th>Descrição</th><th>Vantagens</th><th>Desvantagens</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>User-Level Threads</td><td>Threads gerenciadas por biblioteca em modo usuário, kernel enxerga apenas um processo</td><td>Criação/context switch extremamente rápidos (sem syscall)</td><td>Se uma thread bloqueia (E/S), todas bloqueiam; não aproveita múltiplos cores</td></tr>
+                            <tr><td>Kernel-Level Threads</td><td>Threads gerenciadas pelo kernel, cada thread é unidade de escalonamento</td><td>Aproveita multicore, bloqueio de uma não bloqueia as outras</td><td>Criação/context switch mais caros (syscall)</td></tr>
+                            <tr><td>Modelo Híbrido (M:N)</td><td>Combina ambos (ex: inicial do Go, Scheduler Activations)</td><td>Equilíbrio entre eficiência e escalabilidade</td><td>Complexidade alta</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo de criação de thread</strong> (pthreads no Linux):</p>
+
+<pre data-lang="c"><code>#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+void* thread_function(void* arg) {
+    int* num = (int*)arg;
+    printf("Thread %d executando\n", *num);
+    return NULL;
+}
+
+int main() {
+    pthread_t threads[4];
+    int ids[4] = {1, 2, 3, 4};
+    
+    for (int i = 0; i &lt; 4; i++) {
+        // Cria uma nova thread (kernel-level no Linux)
+        pthread_create(&amp;threads[i], NULL, thread_function, &amp;ids[i]);
+    }
+    
+    for (int i = 0; i &lt; 4; i++) {
+        pthread_join(threads[i], NULL);  // Aguarda término
+    }
+    
+    return 0;
+}</code></pre>
+
+                <h2 id="duvidas">Dúvidas</h2>
+
+                <h3 id="ram-swap">1. RAM e SWAP, como funcionam e qual é a razão da mudança de velocidade do HD para o SSD</h3>
+
+                <h4>Funcionamento e Evolução HD → SSD</h4>
+
+                <h5>Hierarquia de Memória</h5>
+
+<pre data-lang="text"><code>┌─────────────────────────────────────────────────────────────┐
+│                        CPU                                  │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ Registradores (1 ciclo) - KB                        │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ Cache L1 (2-4 ciclos) - 32-64 KB por core           │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ Cache L2 (10-20 ciclos) - 256 KB - 1 MB por core    │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ Cache L3 (30-50 ciclos) - 4-64 MB compartilhado     │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│ RAM (100-300 ciclos) - GB                                   │
+│ Latência: ~80-120 ns                                        │
+│ Largura de banda: ~20-50 GB/s (DDR4/DDR5)                   │
+└─────────────────────────────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│ SWAP (Dispositivo de Armazenamento)                         │
+│                                                             │
+│ HD (Hard Disk):                                             │
+│   - Latência: ~5-10 ms (50.000x mais lento que RAM)        │
+│   - Transferência: ~100-200 MB/s                           │
+│                                                             │
+│ SSD (Solid State Drive):                                    │
+│   - Latência: ~0.1-0.2 ms (500x mais lento que RAM)        │
+│   - Transferência: ~500-7000 MB/s (NVMe)                   │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+
+                <h5>O que é SWAP?</h5>
+
+                <p>SWAP (ou espaço de troca) é uma área no disco (ou partição) usada como extensão da memória RAM. Quando a RAM física está cheia, o SO move páginas de memória menos utilizadas para o SWAP, liberando espaço para páginas mais ativas.</p>
+
+                <p><strong>Mecanismo de Paginação com SWAP:</strong></p>
+
+<pre data-lang="text"><code>Memória Virtual (cada processo vê um espaço enorme)
+                    ↓
+            ┌───────────────┐
+            │  Tabela de    │ ← MMU traduz endereço virtual
+            │  Páginas      │   para endereço físico
+            └───────────────┘
+                    ↓
+    ┌───────────────────────────────┐
+    │           RAM (Física)         │
+    │  ┌─────────────────────────┐  │
+    │  │ Páginas ativas          │  │
+    │  │ (sendo usadas agora)    │  │
+    │  └─────────────────────────┘  │
+    │  ┌─────────────────────────┐  │
+    │  │ Páginas menos ativas    │  │ ← Page daemon (kswapd) move
+    │  │ (candidatas a swap)     │  │   páginas para SWAP quando RAM está cheia
+    │  └─────────────────────────┘  │
+    └───────────────────────────────┘
+                    ↓ (quando necessário)
+    ┌───────────────────────────────┐
+    │           SWAP (Disco)         │
+    │  ┌─────────────────────────┐  │
+    │  │ Páginas swapped out     │  │
+    │  │ (inativas, não usadas)  │  │
+    │  └─────────────────────────┘  │
+    └───────────────────────────────┘</code></pre>
+
+                <h5>Page Fault e Swapping</h5>
+
+                <p>Quando um processo tenta acessar uma página que não está na RAM:</p>
+
+<pre data-lang="text"><code>1. Processo tenta acessar endereço virtual
+                ↓
+2. MMU verifica a tabela de páginas
+   Bit Present = 0 (página não está em RAM)
+                ↓
+3. CPU gera exceção PAGE FAULT (#PF)
+                ↓
+4. Kernel entra em ação (modo kernel):
+   - Identifica o endereço virtual que causou o fault
+   - Localiza a página no SWAP (ou no arquivo mapeado)
+   - Encontra um quadro de página livre na RAM
+   - Se não há página livre, seleciona uma página para "sacrificar"
+     (algoritmo de substituição de páginas - LRU, Clock, etc.)
+   - Se a página sacrificada foi modificada (dirty), escreve no SWAP
+                ↓
+5. Kernel carrega a página solicitada do SWAP para a RAM
+                ↓
+6. Atualiza a tabela de páginas (bit Present = 1)
+                ↓
+7. Retorna ao processo, que reexecuta a instrução que causou o fault</code></pre>
+
+                <h5>Algoritmos de Substituição de Páginas</h5>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Algoritmo</th><th>Descrição</th><th>Exemplo de Uso</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>FIFO</td><td>Remove a página mais antiga</td><td>Simples, mas ineficaz (Belady's anomaly)</td></tr>
+                            <tr><td>LRU (Least Recently Used)</td><td>Remove a página menos usada recentemente</td><td>Bom, mas caro de implementar</td></tr>
+                            <tr><td>Clock (Second Chance)</td><td>Aproximação de LRU com bits de referência</td><td>Linux usa variante (NRU)</td></tr>
+                            <tr><td>NRU (Not Recently Used)</td><td>Combina bits Referenciado e Modificado</td><td>Linux, Windows</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Razão da Mudança de Velocidade HD → SSD</h4>
+
+                <p>A diferença de desempenho entre HD e SSD é drástica e impacta diretamente a experiência de uso do SWAP e do sistema como um todo.</p>
+
+                <h5>Diferenças Físicas</h5>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Característica</th><th>HD (Hard Disk)</th><th>SSD (Solid State Drive)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Tecnologia</td><td>Discos magnéticos giratórios, cabeçote móvel</td><td>Memória flash NAND (sem partes móveis)</td></tr>
+                            <tr><td>Latência</td><td>5-10 ms (tempo de seek + rotação)</td><td>0.05-0.2 ms (acesso eletrônico)</td></tr>
+                            <tr><td>Tempo de seek</td><td>2-10 ms (movimento do braço)</td><td>Não aplicável</td></tr>
+                            <tr><td>Latência rotacional</td><td>2-6 ms (aguardar setor passar)</td><td>Não aplicável</td></tr>
+                            <tr><td>IOPS (operações aleatórias)</td><td>~100-200 IOPS</td><td>10.000 - 1.000.000+ IOPS</td></tr>
+                            <tr><td>Acesso aleatório</td><td>Extremamente lento (busca física)</td><td>Essencialmente igual ao acesso sequencial</td></tr>
+                            <tr><td>Acesso sequencial</td><td>Razoável (100-200 MB/s)</td><td>Excelente (500-7000 MB/s)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5>Impacto no SWAP e na Experiência</h5>
+
+                <p><strong>Com HD:</strong></p>
+                <ul>
+                    <li>Page fault = busca no disco = 5-10 ms de latência</li>
+                    <li>Se o sistema começa a usar SWAP, fica extremamente lento (thrashing)</li>
+                    <li>Mover uma página para SWAP (swap out) também é lento</li>
+                    <li>Usuário sente o sistema "travando" quando a RAM está cheia</li>
+                </ul>
+
+                <p><strong>Com SSD:</strong></p>
+                <ul>
+                    <li>Page fault = busca no SSD = 0.05-0.2 ms de latência</li>
+                    <li>SWAP ainda é mais lento que RAM, mas a diferença é muito menor</li>
+                    <li>Thrashing ainda existe, mas é menos perceptível</li>
+                    <li>Sistemas podem operar com menos RAM, usando SWAP mais agressivamente</li>
+                </ul>
+
+                <p><strong>Dados Comparativos</strong> (Aproximados)</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Operação</th><th>RAM (DDR4)</th><th>SSD NVMe</th><th>HD (7200rpm)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Leitura aleatória (4KB)</td><td>80 ns</td><td>100 µs</td><td>10 ms</td></tr>
+                            <tr><td>Fator de diferença</td><td>1x</td><td>1.250x</td><td>125.000x</td></tr>
+                            <tr><td>Largura de banda</td><td>25 GB/s</td><td>3.5 GB/s</td><td>150 MB/s</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Tradução prática:</strong></p>
+                <ul>
+                    <li>Acessar dados na RAM é <strong>1.250 vezes</strong> mais rápido que no SSD</li>
+                    <li>Acessar dados no SSD é <strong>100 vezes</strong> mais rápido que no HD</li>
+                    <li>Acessar dados na RAM é <strong>125.000 vezes</strong> mais rápido que no HD</li>
+                </ul>
+
+                <h4>Thrashing (Condição de "Travamento")</h4>
+
+                <p><strong>Definição:</strong> thrashing ocorre quando o sistema gasta mais tempo movendo páginas entre RAM e SWAP do que executando processos.</p>
+
+                <p><strong>Ciclo do Thrashing:</strong></p>
+
+<pre data-lang="text"><code>RAM cheia
+    ↓
+SO começa a usar SWAP
+    ↓
+Page faults aumentam
+    ↓
+Mais tempo gasto em I/O (SWAP)
+    ↓
+Processos produzem menos trabalho
+    ↓
+Escalonador vê CPU ociosa e tenta trazer mais processos
+    ↓
+Mais processos competem por RAM
+    ↓
+RAM fica ainda mais cheia (piora!)
+    ↓
+Loop se retroalimenta</code></pre>
+
+                <p><strong>Soluções:</strong></p>
+                <ul>
+                    <li>Aumentar RAM física</li>
+                    <li>Reduzir o número de processos ativos</li>
+                    <li>Usar SSD em vez de HD (mitiga, mas não elimina)</li>
+                    <li>Ajustar parâmetros do kernel (swappiness no Linux)</li>
+                </ul>
+
+                <p><strong>Swappiness (Linux):</strong> parâmetro que controla a agressividade do uso de SWAP (0-200). Valor baixo = menos SWAP, valor alto = mais SWAP.</p>
+
+<pre data-lang="bash"><code># Ver swappiness atual
+cat /proc/sys/vm/swappiness
+
+# Ajustar para usar SWAP apenas quando necessário (valor típico: 10-60)
+echo 10 &gt; /proc/sys/vm/swappiness</code></pre>
+
+                <h4>Resumo Visual</h4>
+
+<pre data-lang="text"><code>                    PROCESSO vs THREAD
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│    PROCESSO A                    PROCESSO B                     │
+│  ┌───────────────────┐         ┌───────────────────┐            │
+│  │ PCB (PID, etc)    │         │ PCB (PID, etc)    │            │
+│  ├───────────────────┤         ├───────────────────┤            │
+│  │ Tabela de Páginas │         │ Tabela de Páginas │            │
+│  │ (espaço isolado)  │         │ (espaço isolado)  │            │
+│  ├───────────────────┤         ├───────────────────┤            │
+│  │ ┌──────┐ ┌──────┐ │         │ ┌──────┐ ┌──────┐ │            │
+│  │ │Thread│ │Thread│ │         │ │Thread│ │Thread│ │            │
+│  │ │  T1  │ │  T2  │ │         │ │  T1  │ │  T2  │ │            │
+│  │ └──────┘ └──────┘ │         │ └──────┘ └──────┘ │            │
+│  │ Compartilham:     │         │ Compartilham:     │            │
+│  │ - Código          │         │ - Código          │            │
+│  │ - Heap            │         │ - Heap            │            │
+│  │ - Arquivos        │         │ - Arquivos        │            │
+│  └───────────────────┘         └───────────────────┘            │
+│         ↑                              ↑                        │
+│         └──────────────┬───────────────┘                        │
+│                        │                                        │
+│                   NÃO COMPARTILHAM                              │
+│              (cada processo é isolado)                          │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+
+                <p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
+                    <em>Fim do conteúdo de Sistemas Operacionais.</em>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <button class="back-to-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../js/script.js"></script>
+</body>
+</html>

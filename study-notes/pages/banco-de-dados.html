@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Banco de Dados I</title>
+<link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<button aria-label="Abrir menu" class="mobile-toggle">☰</button>
+<div class="sidebar-overlay"></div>
+<div class="container">
+<aside class="sidebar">
+<div class="sidebar-header">
+<h1><a href="../index.html">📚 Caderno de Estudos</a></h1>
+<p>Análise e Desenvolvimento de Sistemas</p>
+</div>
+<ul class="sidebar-nav">
+<li><a href="../index.html"><span class="icon">🏠</span> Início</a></li>
+<li><a href="seguranca-informacao.html"><span class="icon">🔐</span> Segurança da Informação</a></li>
+<li><a href="arquitetura-hardware.html"><span class="icon">💻</span> Arquitetura de Hardware</a></li>
+<li><a href="arquitetura-hardware-codigo.html"><span class="icon">🔧</span> Arquitetura — Códigos</a></li>
+<li><a href="comunicacao.html"><span class="icon">💬</span> Comunicação</a></li>
+<li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software I</a></li>
+<li><a href="sistemas-operacionais.html"><span class="icon">🖥️</span> Sistemas Operacionais</a></li>
+<li><a href="banco-de-dados.html"><span class="icon">🗄️</span> Banco de Dados I</a></li>
+</ul>
+</aside>
+<main class="main-content">
+<div class="content-wrapper">
+<div class="page-header">
+<h1>🗄️ Banco de Dados I</h1>
+<div class="page-meta">
+<span class="badge badge-blue">Modelagem</span>
+<span class="badge badge-green">SQL</span>
+<span class="badge badge-purple">ALCOA++</span>
+</div>
+</div>
+<div class="toc">
+<h3>Índice</h3>
+<ul><li class="toc-h2"><a href="#o-que-sao">1. O que são Banco de Dados</a></li><li class="toc-h3"><a href="#analogia-biblioteca">1.1 Analogia: Biblioteca organizada</a></li><li class="toc-h3"><a href="#alcoa">1.2 ALCOA++</a></li><li class="toc-h3"><a href="#componentes">1.3 Componentes Essenciais</a></li><li class="toc-h3"><a href="#importancia">1.4 Importância dos Bancos de Dados</a></li><li class="toc-h3"><a href="#evolucao">1.5 Evolução</a></li><li class="toc-h3"><a href="#sgbd">1.6 SGBD (Sistema Gerenciador de Banco de Dados)</a></li><li class="toc-h2"><a href="#modelos">2. Modelos de Banco de Dados</a></li><li class="toc-h3"><a href="#modelo-relacional">2.1 Modelo Relacional</a></li><li class="toc-h3"><a href="#modelo-chave-valor">2.2 Modelo Chave-Valor (Key-Value)</a></li><li class="toc-h3"><a href="#modelo-documento">2.3 Modelo Documento</a></li><li class="toc-h3"><a href="#modelo-colunar">2.4 Modelo Colunar (Column-Family)</a></li><li class="toc-h3"><a href="#modelo-grafo">2.5 Modelo Grafo</a></li><li class="toc-h3"><a href="#quando-usar">2.6 Quando usar cada modelo?</a></li><li class="toc-h2"><a href="#introducao-sgbd">3. Introdução: evolução, arquitetura e propriedades dos SGBDs</a></li><li class="toc-h3"><a href="#sga-sgbd">3.1 Do sistema de arquivos ao SGBD</a></li><li class="toc-h3"><a href="#arquitetura-sgbd">3.2 Arquitetura em camadas</a></li><li class="toc-h3"><a href="#tipos-arquitetura">3.3 Tipos de arquitetura de SGBD</a></li><li class="toc-h3"><a href="#acid">3.4 Propriedades ACID</a></li><li class="toc-h3"><a href="#modelagem-er">3.5 Modelo Entidade-Relacionamento (E-R)</a></li><li class="toc-h3"><a href="#modelo-relacional-detalhado">3.6 Modelo relacional: tabelas, chaves e integridade</a></li><li class="toc-h2"><a href="#sql-completo">4. SQL: linguagem e grupos de comandos</a></li><li class="toc-h3"><a href="#grupos-sql">4.1 Divisões da SQL</a></li><li class="toc-h3"><a href="#ddl">4.2 DDL — definição de estruturas</a></li><li class="toc-h3"><a href="#dml">4.3 DML — manipulação de registros</a></li><li class="toc-h3"><a href="#dcl">4.4 DCL — controle de acesso</a></li><li class="toc-h3"><a href="#dtl">4.5 DTL/TCL — controle de transações</a></li><li class="toc-h3"><a href="#concorrencia-recuperacao">4.6 Concorrência e recuperação de falhas</a></li><li class="toc-h2"><a href="#consultas-sql">5. DQL: consultas com SELECT</a></li><li class="toc-h3"><a href="#estrutura-select">5.1 Estrutura geral</a></li><li class="toc-h3"><a href="#operadores-filtros">5.2 Filtros e operadores</a></li><li class="toc-h3"><a href="#joins">5.3 Junções (JOIN)</a></li><li class="toc-h3"><a href="#agregacao">5.4 Funções de agregação, GROUP BY e HAVING</a></li><li class="toc-h2"><a href="#algebra-relacional">6. Álgebra relacional e plano de execução</a></li><li class="toc-h3"><a href="#exemplo-algebra">6.1 Exemplo de tradução para álgebra relacional</a></li><li class="toc-h3"><a href="#ordem-operacoes">6.2 Plano de execução</a></li><li class="toc-h2"><a href="#normalizacao">7. Normalização de dados</a></li><li class="toc-h3"><a href="#anomalias">7.1 Anomalias que a normalização procura evitar</a></li><li class="toc-h3"><a href="#primeira-forma-normal">7.2 Primeira Forma Normal (1FN)</a></li><li class="toc-h3"><a href="#segunda-forma-normal">7.3 Segunda Forma Normal (2FN)</a></li><li class="toc-h3"><a href="#terceira-forma-normal">7.4 Terceira Forma Normal (3FN)</a></li><li class="toc-h3"><a href="#quarta-forma-normal">7.5 Quarta Forma Normal (4FN)</a></li><li class="toc-h2"><a href="#ferramentas-bd">8. Ferramentas utilizadas nas aulas</a></li><li class="toc-h2"><a href="#bibliografia">9. Bibliografia e referências</a></li><li class="toc-h3"><a href="#bibliografia-basica">9.1 Bibliografia básica</a></li><li class="toc-h3"><a href="#bibliografia-complementar">9.2 Bibliografia complementar</a></li><li class="toc-h2"><a href="#exercicios">10. Lista de exercícios</a></li><li class="toc-h3"><a href="#ex-introducao">10.1 Introdução</a></li><li class="toc-h3"><a href="#ex-modelagem">10.2 Modelagem de dados</a></li><li class="toc-h3"><a href="#ex-ddl-dml">10.3 SQL — DDL e DML</a></li><li class="toc-h3"><a href="#ex-dcl-dtl">10.4 SQL — DCL e DTL</a></li><li class="toc-h3"><a href="#ex-dql">10.5 SQL — DQL</a></li><li class="toc-h3"><a href="#ex-algebra">10.6 Álgebra relacional</a></li><li class="toc-h3"><a href="#ex-normalizacao">10.7 Normalização</a></li></ul>
+</div>
+<h2 id="o-que-sao">1. O que são <em>Banco de Dados</em></h2>
+<p>Um <em>banco de dados</em> (BD) é uma coleção organizada e estruturada de dados persistentes, relacionados entre si, que representa aspectos do mundo real (o chamado mini-mundo ou universo de discurso). Ele é projetado, construído e povoado com dados para atender a um propósito específico (Elmasri &amp; Navathe).</p>
+<p>Além dos dados em si, um <em>banco de dados</em> inclui:</p>
+<ul>
+<li><strong>Metadados:</strong> informações sobre a estrutura dos dados (dicionário de dados ou catálogo).</li>
+<li><strong>Restrições de integridade:</strong> regras que garantem a validade e consistência dos dados.</li>
+<li><strong>Operações:</strong> formas de consultar e modificar os dados (geralmente via SGBD).</li>
+</ul>
+<h3 id="analogia-biblioteca">1.1 Analogia: Biblioteca organizada</h3>
+<p>Imagine uma <strong>biblioteca antiga</strong>, onde os livros eram armazenados sem nenhum critério. Encontrar um livro era uma tarefa de horas, e perder um exemplar era comum.</p>
+<p>Agora imagine uma <strong>biblioteca moderna</strong>:</p>
+<ul>
+<li>Cada livro tem uma catalogação (título, autor, assunto, ISBN).</li>
+<li>Há prateleiras organizadas por categorias e ordem alfabética.</li>
+<li>Existe um catálogo (fichário ou sistema digital) que referencia cada livro.</li>
+<li>Há regras de empréstimo, devolução e reserva.</li>
+</ul>
+<p>O <em>banco de dados</em> é exatamente essa biblioteca: dados organizados, com catálogo (metadados), regras (integridade) e operações definidas (consultar, inserir, remover).</p>
+<h3 id="alcoa">1.2 ALCOA++</h3>
+<p>Embora a <strong>ALCOA++</strong> não seja um tópico central nas bibliografias clássicas de banco de dados (<em>Elmasri, Silberschatz, Date</em>), ela é <strong>fundamental na gestão de dados regulados</strong>, especialmente nas indústrias <em>farmacêutica, química e alimentícia</em>, dentro do contexto de qualidade, integridade e governança de dados. <strong>ALCOA++</strong> é um conjunto de princípios que garante a integridade dos dados em ambientes regulados. Ele surgiu a partir de diretrizes de boas práticas de fabricação (GMP), boas práticas de laboratório (GLP) e boas práticas clínicas (GCP), sendo amplamente adotado por agências reguladoras como <strong>FDA (EUA), EMA (Europa) e ANVISA (Brasil)</strong>.</p>
+<blockquote>
+<p>O objetivo é assegurar que os dados sejam <strong>confiáveis, rastreáveis e defensáveis</strong> ao longo de todo o ciclo de vida — desde a geração até o arquivamento.</p>
+</blockquote>
+<h4>1.2.1 Por que isso importa para bancos de dados?</h4>
+<p>Quando falamos de banco de dados, normalmente pensamos em eficiência, consistência e segurança. A <strong>ALCOA++</strong> acrescenta uma camada de conformidade regulatória, exigindo que os sistemas de banco de dados em indústrias reguladas sejam capazes de auditar cada alteração, rastrear cada acesso e preservar cada registro.</p>
+<div style="text-align: center; margin: 24px 0;">
+<img alt="ALCOA++" src="https://a3analitica.com.br/wp-content/uploads/2024/04/26.02.2023-1-Captura-de-tela-2024-01-16-163652.png"/>
+</div>
+<h4>1.2.2 Atributos</h4>
+<h5>1.2.2.1 Atribuível (Attributable) [A]</h5>
+<p>Cada dado deve estar associado à pessoa ou sistema que o gerou, modificou ou excluiu. Exemplo em banco de dados:</p>
+<ul>
+<li>Registro de <code>created_by</code>, <code>updated_by</code>, <code>deleted_by</code> em tabelas de auditoria.</li>
+<li>Login único por usuário (sem contas compartilhadas).</li>
+</ul>
+<h5>1.2.2.2 Legível (Legible) [L]</h5>
+<p>Os dados devem ser legíveis e permanentes, sem possibilidade de rasuras ou alterações que comprometam a leitura. Exemplo:</p>
+<ul>
+<li>Uso de <code>INSERT</code> e <code>UPDATE</code> com auditoria imutável (tabela de histórico).</li>
+<li>Não usar <code>DELETE</code> em dados críticos; usar flag de "inativado" ou <em>soft delete</em>.</li>
+</ul>
+<h5>1.2.2.3 Contemporâneo (Contemporaneous) [C]</h5>
+<p>Os dados devem ser registrados no momento em que a atividade ocorre, não depois. Exemplo:</p>
+<ul>
+<li>Captura automática de data e hora (<code>timestamp</code>) no momento da gravação.</li>
+<li>Triggers ou eventos de banco que gravam automaticamente o horário real do evento.</li>
+</ul>
+<h5>1.2.2.4 Original (Original) [O]</h5>
+<p>O dado deve ser a primeira versão registrada, não uma cópia ou recriação. Exemplo:</p>
+<ul>
+<li>Armazenar o dado bruto original antes de qualquer transformação.</li>
+<li>Versionamento de registros (ex.: tabelas <code>historico_*</code> ou colunas <code>versao</code>).</li>
+</ul>
+<h5>1.2.2.5 Preciso (Accurate) [A]</h5>
+<p>Os dados devem estar corretos e refletir fielmente a realidade. Exemplo:</p>
+<ul>
+<li>Validação de dados na entrada (constraints, triggers).</li>
+<li>Uso de tipos de dados adequados (não armazenar data como string, por exemplo).</li>
+</ul>
+<h5>1.2.2.6 Completo (Complete) [++]</h5>
+<p>Todos os dados relevantes devem ser registrados, incluindo falhas, erros e correções. Exemplo:</p>
+<ul>
+<li>Auditoria de tentativas de login, alterações de configuração, exclusões lógicas.</li>
+<li>Logs completos de transações, mesmo as que falharam.</li>
+</ul>
+<h5>1.2.2.7 Consistente (Consistent) [++]</h5>
+<p>Os dados devem seguir uma ordem lógica e coerente ao longo do tempo. Exemplo:</p>
+<ul>
+<li>Sequência de <code>timestamps</code> coerente (sem datas no futuro, sem horários impossíveis).</li>
+<li>Regras de normalização e integridade referencial para evitar contradições.</li>
+</ul>
+<h5>1.2.2.8 Duradouro (Enduring) [++]</h5>
+<p>Os dados devem ser armazenados em mídia durável e legível por todo o período de retenção exigido. Exemplo:</p>
+<ul>
+<li>Políticas de backup e retenção.</li>
+<li>Migração de mídia legada sem perda de legibilidade.</li>
+</ul>
+<h5>1.2.2.9 Disponível (Available) [++]</h5>
+<p>Os dados devem estar disponíveis para revisão, auditoria ou inspeção quando necessário. Exemplo:</p>
+<ul>
+<li>Índices e estruturas que permitam consulta rápida de históricos.</li>
+<li>Replicação e alta disponibilidade do banco de dados.</li>
+</ul>
+<h3 id="componentes">1.3 Componentes Essenciais</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Componente</th><th>Descrição</th><th>Analogia com biblioteca</th></tr>
+</thead>
+<tbody>
+<tr><td>Dados</td><td>Informações armazenadas</td><td>Livros</td></tr>
+<tr><td>Metadados</td><td>Descrição da estrutura</td><td>Fichas catalográficas</td></tr>
+<tr><td>Regras de integridade</td><td>Consistência e validade</td><td>Regras de empréstimo</td></tr>
+<tr><td>Operações</td><td>Consulta, inserção, atualização, remoção</td><td>Emprestar, devolver, catalogar</td></tr>
+<tr><td>Usuários</td><td>Pessoas ou sistemas que acessam</td><td>Leitores, bibliotecários</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="importancia">1.4 Importância dos Bancos de Dados</h3>
+<p>Os bancos de dados são a espinha dorsal de praticamente todas as aplicações modernas. Sem eles, a gestão da informação seria caótica, redundante e insegura.</p>
+<h4>1.4.1 Vantagens principais (segundo Elmasri &amp; Navathe e Silberschatz)</h4>
+<ul>
+<li><strong>Controle de redundância:</strong> cada dado é armazenado uma única vez, evitando inconsistências.</li>
+<li><strong>Compartilhamento de dados:</strong> múltiplos usuários e aplicações acessam os mesmos dados simultaneamente.</li>
+<li><strong>Restrições de integridade:</strong> regras garantem que os dados sejam válidos e coerentes.</li>
+<li><strong>Segurança:</strong> controle de acesso, autorização e auditoria.</li>
+<li><strong>Independência de dados:</strong> mudanças na estrutura física não afetam as aplicações.</li>
+<li><strong>Acesso eficiente:</strong> consultas otimizadas por meio de índices e heurísticas.</li>
+<li><strong>Recuperação de falhas:</strong> transações e backups protegem contra perda de dados.</li>
+<li><strong>Concorrência:</strong> múltiplos usuários acessam sem conflitos (controle de transações).</li>
+</ul>
+<h4>1.4.2 Analogia: Conta bancária</h4>
+<p>Imagine um banco sem banco de dados:</p>
+<ul>
+<li>Cada agência teria seu próprio cadastro de clientes.</li>
+<li>Um cliente poderia sacar mais do que tem em outra agência.</li>
+<li>As transações não seriam registradas de forma segura.</li>
+<li>Não haveria como garantir que o saldo está correto.</li>
+</ul>
+<p>Com um banco de dados:</p>
+<ul>
+<li>O saldo é único e consistente.</li>
+<li>As transações são registradas e protegidas (ACID).</li>
+<li>Há controle de acesso para funcionários e clientes.</li>
+<li>Há recuperação de falhas em caso de queda de energia.</li>
+</ul>
+<h3 id="evolucao">1.5 Evolução</h3>
+<div style="text-align: center; margin: 24px 0;">
+<img alt="Evolução dos bancos de dados" src="https://i.imgur.com/2oQCntd.png"/>
+</div>
+<h3 id="sgbd">1.6 SGBD (Sistema Gerenciador de Banco de Dados)</h3>
+<p>O <strong>SGBD</strong> é o software que gerencia o banco de dados. Ele atua como intermediário entre os usuários e os dados, garantindo consistência, segurança e eficiência.</p>
+<h4>1.6.1 Funções principais</h4>
+<ul>
+<li>Definição de estrutura (DDL – Data Definition Language).</li>
+<li>Manipulação de dados (DML – Data Manipulation Language).</li>
+<li>Controle de acesso e concorrência.</li>
+<li>Otimização de consultas.</li>
+<li>Recuperação de falhas.</li>
+</ul>
+<h4>1.6.2 Analogia: Maquinário do banco</h4>
+<p>Se o banco de dados é o cofre com dinheiro, o <strong>SGBD</strong> é o caixa eletrônico:</p>
+<ul>
+<li>Ele autentica o usuário.</li>
+<li>Valida a operação.</li>
+<li>Atualiza o saldo.</li>
+<li>Registra a transação.</li>
+<li>Recupera o sistema em caso de falha.</li>
+</ul>
+<h2 id="modelos">2. Modelos de Banco de Dados</h2>
+<p>Um modelo de banco de dados é um conjunto de conceitos e regras usados para descrever a estrutura, as operações e as restrições de um banco de dados. Ele define como os dados são organizados, armazenados e manipulados.</p>
+<ul>
+<li><strong>Modelo hierárquico</strong> (década de 1960)</li>
+<li><strong>Modelo em rede</strong> (CODASYL)</li>
+<li><strong>Modelo relacional</strong> (1970 – E. F. Codd)</li>
+<li><strong>Modelo orientado a objetos</strong></li>
+<li><strong>Modelo NoSQL</strong> (documento, chave-valor, colunar, grafo)</li>
+</ul>
+<h3 id="modelo-relacional">2.1 Modelo Relacional</h3>
+<p>O modelo relacional organiza os dados em <strong>tabelas</strong> (relações), onde cada <strong>linha</strong> representa uma <strong>entidade</strong> ou <strong>fato</strong>, e cada <strong>coluna</strong> representa um <strong>atributo</strong>. <strong>As relações entre tabelas são feitas por meio de chaves primárias e chaves estrangeiras</strong>.</p>
+<h4>2.1.1 Exemplo: Planilhas interligadas</h4>
+<p>Imagine uma planilha de Excel para "Clientes" e outra para "Pedidos". Na planilha de Pedidos, há uma coluna "ID_Cliente" que referencia a linha correspondente na planilha de Clientes. Essa é a ideia de chave estrangeira.</p>
+<p><strong>Exemplo prático</strong></p>
+<p>Tabela <code>clientes</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>id_cliente</th><th>nome</th><th>email</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Ana Souza</td><td>ana@email.com</td></tr>
+<tr><td>2</td><td>Bruno Lima</td><td>bruno@email.com</td></tr>
+</tbody>
+</table>
+</div>
+<p>Tabela <code>pedidos</code></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>id_pedido</th><th>id_cliente</th><th>data</th><th>valor</th></tr>
+</thead>
+<tbody>
+<tr><td>101</td><td>1</td><td>2026-08-01</td><td>150.00</td></tr>
+<tr><td>102</td><td>2</td><td>2026-08-02</td><td>89.90</td></tr>
+</tbody>
+</table>
+</div>
+<p>A relação entre <code>pedidos.id_cliente</code> e <code>clientes.id_cliente</code> garante que todo pedido pertence a um cliente válido.</p>
+<h4>2.1.2 Características técnicas</h4>
+<ul>
+<li><strong>Álgebra relacional:</strong> operações como seleção (σ), projeção (π), junção (⋈).</li>
+<li><strong>Restrições de integridade:</strong> entidade, referencial e de domínio.</li>
+<li><strong>Normalização:</strong> evita redundância e anomalias de atualização (1FN, 2FN, 3FN, FNBC).</li>
+<li><strong>ACID:</strong> Atomicidade, Consistência, Isolamento, Durabilidade.</li>
+</ul>
+<h4>2.1.3 ALCOA++ e o Banco de Dados Relacional</h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Princípio ALCOA++</th><th>Recurso em SGBD relacional</th></tr>
+</thead>
+<tbody>
+<tr><td>Attributable</td><td>Colunas de auditoria, autenticação de usuários, roles</td></tr>
+<tr><td>Legible</td><td>Dados tipados, formatação consistente, logs legíveis</td></tr>
+<tr><td>Contemporaneous</td><td>Timestamps automáticos (<code>DEFAULT CURRENT_TIMESTAMP</code>)</td></tr>
+<tr><td>Original</td><td>Versionamento, tabelas <code>historico_*</code>, triggers de auditoria</td></tr>
+<tr><td>Accurate</td><td>Restrições (<code>CHECK</code>, <code>NOT NULL</code>, <code>FOREIGN KEY</code>)</td></tr>
+<tr><td>Complete</td><td>Logs de transações, auditoria de eventos</td></tr>
+<tr><td>Consistent</td><td>Integridade referencial, transações ACID</td></tr>
+<tr><td>Enduring</td><td>Backups, replicação, storage imutável (WORM)</td></tr>
+<tr><td>Available</td><td>Índices, views, replicação, alta disponibilidade</td></tr>
+</tbody>
+</table>
+</div>
+<p>Imagine uma tabela de resultados de testes laboratoriais em um banco <em>PostgreSQL</em>:</p>
+<pre data-lang="sql"><code>CREATE TABLE resultados_teste (
+    id              SERIAL PRIMARY KEY,
+    lote            VARCHAR(20)  NOT NULL,
+    parametro       VARCHAR(50)  NOT NULL,
+    valor           DECIMAL(10,2) NOT NULL,
+    observacao      TEXT,
+    criado_por      VARCHAR(50)  NOT NULL,  -- Attributable
+    criado_em       TIMESTAMP    DEFAULT CURRENT_TIMESTAMP, -- Contemporaneous
+    atualizado_por  VARCHAR(50),
+    atualizado_em   TIMESTAMP,
+    versao          INTEGER      DEFAULT 1, -- Original
+    ativo           BOOLEAN      DEFAULT TRUE -- Legible / Complete (soft delete)
+);
+
+-- Tabela de auditoria para todas as alterações
+CREATE TABLE resultados_teste_audit (
+    id_audit        SERIAL PRIMARY KEY,
+    id_registro     INTEGER      NOT NULL,
+    operacao        CHAR(1)      NOT NULL, -- 'I', 'U', 'D'
+    usuario         VARCHAR(50)  NOT NULL,
+    data_operacao   TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    valor_anterior  TEXT,
+    valor_novo      TEXT
+);</code></pre>
+<p>Nesse exemplo, cada princípio ALCOA++ é atendido:</p>
+<ul>
+<li><strong>Attributable:</strong> <code>criado_por</code>, <code>atualizado_por</code>, usuario na auditoria.</li>
+<li><strong>Legible:</strong> os dados são tipados e a auditoria armazena valores legíveis.</li>
+<li><strong>Contemporaneous:</strong> timestamps automáticos.</li>
+<li><strong>Original:</strong> versão e auditoria preservam o histórico.</li>
+<li><strong>Accurate:</strong> restrições <code>NOT NULL</code>, tipos adequados.</li>
+<li><strong>Complete:</strong> a auditoria registra todas as operações, inclusive <code>DELETE</code>.</li>
+<li><strong>Consistent:</strong> <code>FOREIGN KEY</code> e transações ACID.</li>
+<li><strong>Enduring:</strong> backups e retenção adequados.</li>
+<li><strong>Available:</strong> tabela de auditoria pode ser consultada por auditores.</li>
+</ul>
+<h3 id="modelo-chave-valor">2.2 Modelo Chave-Valor (Key-Value)</h3>
+<p>É o modelo mais simples. Cada item é armazenado como um par chave → valor, onde a chave é única e o valor pode ser qualquer dado (string, JSON, número, binário).</p>
+<h4>2.2.1 Analogia: Armário de vestiário</h4>
+<p>Pense em um armário com gavetas numeradas. A chave é o número da gaveta e o valor é o conteúdo. Para acessar, você precisa saber a chave.</p>
+<pre data-lang="text"><code>SET usuario:1 "Ana Souza"
+GET usuario:1</code></pre>
+<p>Ou com JSON:</p>
+<pre data-lang="text"><code>SET sessao:abc123 '{"id":1,"carrinho":[101,102]}'</code></pre>
+<h4>2.2.2 Casos de uso</h4>
+<ul>
+<li>Cache de sessão.</li>
+<li>Carrinhos de compras.</li>
+<li>Fila de mensagens.</li>
+</ul>
+<h4>2.2.3 Limitações</h4>
+<ul>
+<li>Consultas apenas pela chave.</li>
+<li>Sem relacionamentos nativos.</li>
+<li>Dificuldade para consultas complexas.</li>
+</ul>
+<h3 id="modelo-documento">2.3 Modelo Documento</h3>
+<p>Armazena documentos estruturados (geralmente JSON ou BSON). Cada documento é uma unidade autônoma e pode conter estruturas aninhadas.</p>
+<h4>2.3.1 Analogia: Fichas de cadastro</h4>
+<p>Imagine fichas de papel de clientes, onde cada ficha pode conter campos diferentes, com subfichas para endereços ou telefones. Você guarda tudo junto, sem precisar de tabelas separadas. Como nesse exemplo prático com MongoDB.</p>
+<pre data-lang="json"><code>{
+  "_id": 1,
+  "nome": "Ana Souza",
+  "email": "ana@email.com",
+  "enderecos": [
+    {"tipo": "casa", "cidade": "SP", "cep": "01000-000"},
+    {"tipo": "trabalho", "cidade": "SP", "cep": "02000-000"}
+  ],
+  "pedidos": [
+    {"id": 101, "valor": 150.00},
+    {"id": 105, "valor": 230.00}
+  ]
+}</code></pre>
+<h4>2.3.2 Casos de uso</h4>
+<ul>
+<li>Catálogos de produtos.</li>
+<li>Blogs e sistemas de conteúdo.</li>
+<li>Aplicações que exigem evolução rápida do esquema.</li>
+</ul>
+<h4>2.3.3 Vantagens e desvantagens</h4>
+<ul>
+<li><strong>Vantagem:</strong> flexibilidade de esquema, leitura rápida de dados agregados.</li>
+<li><strong>Desvantagem:</strong> redundância e risco de inconsistência.</li>
+</ul>
+<h3 id="modelo-colunar">2.4 Modelo Colunar (Column-Family)</h3>
+<p>Os dados são organizados por famílias de colunas, e não por linhas. É otimizado para leitura de muitas colunas de poucas linhas ao mesmo tempo.</p>
+<h4>2.4.1 Analogia: Planilha invertida</h4>
+<p>Imagine uma planilha onde cada coluna é armazenada separadamente. Para somar todos os valores de uma coluna, você lê apenas essa coluna, não a planilha inteira. Como nesse exemplo usando Cassandra.</p>
+<pre data-lang="sql"><code>CREATE TABLE vendas (
+  produto_id UUID,
+  data timestamp,
+  quantidade int,
+  valor decimal,
+  PRIMARY KEY (produto_id, data)
+);</code></pre>
+<p>Os dados de <code>quantidade</code> e <code>valor</code> são armazenados em estruturas separadas por coluna, otimizando agregações.</p>
+<h4>2.4.2 Casos de uso</h4>
+<ul>
+<li>Séries temporais (sensores, logs).</li>
+<li>Análise de grandes volumes de dados (OLAP).</li>
+<li>Sistemas de recomendação.</li>
+</ul>
+<h4>2.4.3 Vantagens e desvantagens</h4>
+<ul>
+<li><strong>Vantagem:</strong> compressão e leitura rápida de colunas específicas.</li>
+<li><strong>Desvantagem:</strong> complexidade de modelagem e consultas limitadas.</li>
+</ul>
+<h3 id="modelo-grafo">2.5 Modelo Grafo</h3>
+<p>Os dados são representados como nós (entidades) e arestas (relacionamentos). Cada nó e aresta pode ter propriedades.</p>
+<h4>2.5.1 Analogia: Mapa de amizades</h4>
+<p>Imagine um mapa de amigos em uma rede social. Cada pessoa é um nó, e a amizade é uma aresta. Você pode navegar de pessoa para pessoa seguindo as arestas. Como nesse exemplo usando Neo4j.</p>
+<pre data-lang="cypher"><code>CREATE (ana:Cliente {nome: "Ana"})
+CREATE (bruno:Cliente {nome: "Bruno"})
+CREATE (ana)-[:COMPROU]-&gt;(produto:Produto {nome: "Notebook"})
+CREATE (bruno)-[:COMPROU]-&gt;(produto)</code></pre>
+<p>Consulta de recomendação:</p>
+<pre data-lang="cypher"><code>MATCH (a:Cliente)-[:COMPROU]-&gt;(p:Produto)&lt;-[:COMPROU]-(b:Cliente)
+WHERE a.nome = "Ana"
+RETURN b.nome, p.nome</code></pre>
+<h4>2.5.2 Casos de uso</h4>
+<ul>
+<li>Redes sociais.</li>
+<li>Detecção de fraudes.</li>
+<li>Sistemas de recomendação.</li>
+<li>Rotas e logística.</li>
+</ul>
+<h4>2.5.3 Vantagens e desvantagens</h4>
+<ul>
+<li><strong>Vantagem:</strong> consultas de relacionamentos complexos de forma eficiente e intuitiva.</li>
+<li><strong>Desvantagem:</strong> menos maduro para transações financeiras; escala vertical limitada.</li>
+</ul>
+<h3 id="quando-usar">2.6 Quando usar cada modelo?</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Situação</th><th>Modelo recomendado</th></tr>
+</thead>
+<tbody>
+<tr><td>Transações financeiras, ERP, CRM</td><td>Relacional (PostgreSQL, Oracle)</td></tr>
+<tr><td>Sessões de usuário, cache</td><td>Chave-Valor (Redis)</td></tr>
+<tr><td>Conteúdo flexível, e-commerce</td><td>Documento (MongoDB)</td></tr>
+<tr><td>Análise de dados massivos, IoT</td><td>Colunar (Cassandra, BigTable)</td></tr>
+<tr><td>Recomendação, redes sociais</td><td>Grafo (Neo4j)</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
+<em>Fim do conteúdo de Banco de Dados I.</em>
+</p>
+<h2 id="introducao-sgbd">3. Introdução: evolução, arquitetura e propriedades dos SGBDs</h2><h3 id="sga-sgbd">3.1 Do sistema de arquivos ao SGBD</h3><p>Antes da adoção ampla dos Sistemas Gerenciadores de Banco de Dados, muitas aplicações armazenavam informações em arquivos próprios. Esse modelo, conhecido como Sistema Gerenciador de Arquivos (SGA), fazia com que cada programa controlasse diretamente seus arquivos e formatos. Com o crescimento dos sistemas, essa organização passou a gerar problemas de redundância, inconsistência, dificuldade de consulta, dependência entre programas e dados, segurança e recuperação de falhas.</p><div class="table-wrapper"><table><thead><tr><th>Aspecto</th><th>SGA (arquivos tradicionais)</th><th>SGBD</th></tr></thead><tbody>
+<tr><td>Armazenamento</td><td>Arquivos separados, controlados pelas aplicações</td><td>Base centralizada ou distribuída, gerenciada por um software específico</td></tr>
+<tr><td>Redundância</td><td>É comum manter cópias do mesmo dado em arquivos diferentes</td><td>Permite controlar a redundância e compartilhar os dados</td></tr>
+<tr><td>Independência</td><td>Alterações no formato podem exigir mudanças nos programas</td><td>Oferece independência física e lógica, dentro dos limites do esquema</td></tr>
+<tr><td>Integridade</td><td>Regras ficam espalhadas pelo código das aplicações</td><td>Restrições podem ser centralizadas no banco</td></tr>
+<tr><td>Concorrência</td><td>Difícil coordenar acessos simultâneos</td><td>Possui mecanismos de transação e controle de concorrência</td></tr>
+<tr><td>Segurança</td><td>Frequentemente depende de controles implementados em cada aplicação</td><td>Permissões, autenticação, papéis e auditoria centralizados</td></tr>
+<tr><td>Recuperação</td><td>Depende de rotinas específicas de cada programa</td><td>Oferece logs, backup e mecanismos de recuperação</td></tr>
+</tbody></table></div><p><strong>Independência física:</strong> permite alterar a organização física dos dados — por exemplo, índices, arquivos, discos ou localização do armazenamento — sem exigir alterações nas aplicações que utilizam o esquema lógico.</p><p><strong>Independência lógica:</strong> permite modificar aspectos do esquema lógico, como acrescentar atributos ou criar novas relações, preservando as aplicações que não dependem dessas mudanças. Na prática, a independência depende de como as aplicações acessam os dados e das alterações realizadas.</p><h3 id="arquitetura-sgbd">3.2 Arquitetura em camadas</h3><p>O SGBD atua como intermediário entre as aplicações e o armazenamento. A aplicação envia comandos por meio de uma linguagem ou API; o SGBD interpreta e otimiza as solicitações, verifica permissões e integridade, coordena transações e solicita ao sistema operacional as operações de leitura e gravação.</p><div class="table-wrapper"><table><thead><tr><th>Camada</th><th>Exemplos</th><th>Responsabilidade</th></tr></thead><tbody>
+<tr><td>Aplicação</td><td>PHP, JavaScript, C#</td><td>Implementa as regras e a interface do sistema; solicita operações sobre os dados.</td></tr>
+<tr><td>SGBD</td><td>MySQL, Oracle, SQL Server, MongoDB</td><td>Gerencia estruturas, consultas, transações, segurança e integridade.</td></tr>
+<tr><td>Sistema operacional</td><td>Windows, Linux, macOS, Android</td><td>Gerencia processos, memória, arquivos e dispositivos.</td></tr>
+<tr><td>Armazenamento</td><td>HD, SSD e outros meios</td><td>Persiste fisicamente os dados.</td></tr>
+</tbody></table></div><p>Essa separação reduz o acoplamento: a aplicação não precisa conhecer setores do disco nem a forma interna como o SGBD organiza os registros.</p><h3 id="tipos-arquitetura">3.3 Tipos de arquitetura de SGBD</h3><div class="table-wrapper"><table><thead><tr><th>Tipo</th><th>Organização</th><th>Característica principal</th></tr></thead><tbody>
+<tr><td>Centralizada</td><td>Banco e processamento concentrados em uma máquina</td><td>Administração mais simples, mas maior dependência do servidor central.</td></tr>
+<tr><td>Paralela</td><td>Uma base processada por vários processadores e/ou discos em paralelo</td><td>Busca acelerar consultas e aumentar a capacidade de processamento.</td></tr>
+<tr><td>Distribuída</td><td>Partes ou réplicas dos dados ficam em diferentes nós conectados por rede</td><td>Permite distribuição geográfica, escalabilidade e disponibilidade, exigindo coordenação entre nós.</td></tr>
+</tbody></table></div><p>Arquitetura paralela e distribuída não são sinônimos: a paralela enfatiza a execução simultânea em recursos de processamento; a distribuída envolve nós autônomos que se comunicam por uma rede.</p><h3 id="acid">3.4 Propriedades ACID</h3><p>Uma transação é uma unidade lógica de trabalho formada por operações que devem ser tratadas em conjunto. As propriedades ACID ajudam a garantir confiabilidade em operações como transferências bancárias, pagamentos e matrículas.</p><div class="table-wrapper"><table><thead><tr><th>Propriedade</th><th>Significado</th><th>Exemplo</th></tr></thead><tbody>
+<tr><td><strong>Atomicidade</strong></td><td>Todas as operações da transação são confirmadas ou nenhuma delas permanece aplicada.</td><td>Uma transferência não pode debitar uma conta e deixar de creditar a outra.</td></tr>
+<tr><td><strong>Consistência</strong></td><td>A transação deve preservar as regras e restrições de integridade do banco.</td><td>Uma conta não pode violar uma regra de saldo mínimo definida pelo sistema.</td></tr>
+<tr><td><strong>Isolamento</strong></td><td>Transações concorrentes não devem produzir interferências indevidas; o nível de isolamento define o que uma transação pode observar.</td><td>Uma operação não deve utilizar um valor intermediário que outra transação ainda pode desfazer.</td></tr>
+<tr><td><strong>Durabilidade</strong></td><td>Após o COMMIT, as alterações confirmadas devem sobreviver a falhas previstas pelo mecanismo de recuperação.</td><td>Uma transferência confirmada não deve desaparecer após uma queda de energia.</td></tr>
+</tbody></table></div><h3 id="modelagem-er">3.5 Modelo Entidade-Relacionamento (E-R)</h3><p>O modelo Entidade-Relacionamento representa conceitualmente um recorte do mundo real. É utilizado para compreender os requisitos antes de decidir como as informações serão implementadas em tabelas.</p><ul>
+<li><strong>Entidade:</strong> objeto ou conceito sobre o qual se deseja armazenar informações, como Cliente, Produto, Médico ou Consulta.</li>
+<li><strong>Atributo:</strong> característica de uma entidade ou relacionamento, como nome, data de nascimento ou preço.</li>
+<li><strong>Relacionamento:</strong> associação entre entidades, como Cliente realiza Venda ou Médico atende Paciente.</li>
+<li><strong>Cardinalidade:</strong> indica quantas ocorrências de uma entidade podem se associar às ocorrências de outra.</li>
+</ul><h4>3.5.1 Cardinalidades</h4><div class="table-wrapper"><table><thead><tr><th>Cardinalidade</th><th>Exemplo</th><th>Interpretação</th></tr></thead><tbody>
+<tr><td>1:1</td><td>Pessoa — Estudante</td><td>Uma pessoa pode corresponder a, no máximo, um registro de estudante, e vice-versa, conforme a regra do domínio.</td></tr>
+<tr><td>1:N</td><td>Cliente — Venda</td><td>Um cliente pode realizar várias vendas; cada venda pertence a um cliente.</td></tr>
+<tr><td>N:N</td><td>Venda — Produto</td><td>Uma venda pode conter vários produtos e um produto pode aparecer em várias vendas.</td></tr>
+</tbody></table></div><p>Para descobrir a cardinalidade, faça a pergunta nos dois sentidos: “uma ocorrência de A pode estar relacionada a quantas ocorrências de B?” e “uma ocorrência de B pode estar relacionada a quantas ocorrências de A?”. Considere também a participação mínima: zero (opcional) ou um (obrigatória).</p><h4>3.5.2 Tipos de atributos</h4><ul>
+<li><strong>Monovalorado:</strong> possui um único valor por ocorrência, como data de nascimento.</li>
+<li><strong>Multivalorado:</strong> pode possuir vários valores, como telefones de uma pessoa.</li>
+<li><strong>Composto:</strong> pode ser decomposto em partes, como endereço (rua, número, cidade e CEP).</li>
+</ul><p>Na transformação para o modelo relacional, atributos multivalorados normalmente são representados em uma tabela própria; atributos compostos podem ser decompostos em colunas atômicas; relacionamentos N:N são implementados por uma tabela associativa.</p><h3 id="modelo-relacional-detalhado">3.6 Modelo relacional: tabelas, chaves e integridade</h3><p>No modelo relacional, os dados são organizados em relações, normalmente implementadas como tabelas. As colunas representam atributos e as linhas representam tuplas (registros).</p><ul>
+<li><strong>Chave primária (PK):</strong> atributo ou conjunto de atributos que identifica unicamente cada linha. Não deve aceitar valores duplicados nem nulos.</li>
+<li><strong>Chave estrangeira (FK):</strong> atributo ou conjunto de atributos que referencia uma chave candidata/primária de outra tabela (ou da própria tabela).</li>
+<li><strong>Chave composta:</strong> chave formada por mais de um atributo, comum em tabelas associativas.</li>
+<li><strong>Entidade forte:</strong> possui identificação própria e pode existir independentemente de outra entidade.</li>
+<li><strong>Entidade fraca:</strong> depende de outra entidade para sua identificação ou existência, conforme as regras do modelo.</li>
+</ul><p><strong>Integridade de entidade:</strong> a chave primária identifica unicamente cada registro. <strong>Integridade referencial:</strong> uma FK deve apontar para um registro existente na tabela referenciada, ou aceitar NULL quando a regra e a definição permitirem. <strong>Integridade de domínio:</strong> os valores devem respeitar o tipo, formato e restrições estabelecidos para o atributo.</p><p>Ao excluir ou atualizar um registro referenciado, o SGBD pode restringir a operação ou aplicar ações em cascata, conforme as regras configuradas (por exemplo, RESTRICT/NO ACTION, CASCADE ou SET NULL). A escolha deve refletir as regras do negócio.</p><h2 id="sql-completo">4. SQL: linguagem e grupos de comandos</h2><p>SQL significa <em>Structured Query Language</em> (Linguagem de Consulta Estruturada). É a linguagem mais utilizada para definir estruturas, manipular registros, controlar permissões e consultar bancos relacionais. O padrão SQL foi publicado pela ANSI em 1986 e evoluiu ao longo de diferentes versões.</p><h3 id="grupos-sql">4.1 Divisões da SQL</h3><div class="table-wrapper"><table><thead><tr><th>Grupo</th><th>Finalidade</th><th>Comandos comuns</th></tr></thead><tbody>
+<tr><td>DDL — Data Definition Language</td><td>Definir ou alterar estruturas do banco.</td><td>CREATE, ALTER, DROP</td></tr>
+<tr><td>DML — Data Manipulation Language</td><td>Inserir, modificar e excluir registros.</td><td>INSERT, UPDATE, DELETE</td></tr>
+<tr><td>DCL — Data Control Language</td><td>Conceder e revogar permissões.</td><td>GRANT, REVOKE</td></tr>
+<tr><td>DTL/TCL — Data Transaction/Transaction Control Language</td><td>Controlar transações.</td><td>START TRANSACTION, COMMIT, ROLLBACK</td></tr>
+<tr><td>DQL — Data Query Language</td><td>Consultar dados.</td><td>SELECT</td></tr>
+</tbody></table></div><h3 id="ddl">4.2 DDL — definição de estruturas</h3><p>DDL cria, modifica e elimina objetos como bancos de dados e tabelas. Exemplo de criação de tabelas com chave primária e estrangeira:</p><pre data-lang="sql"><code>CREATE DATABASE escola;
+USE escola;
+
+CREATE TABLE aluno (
+    codigo INT PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    idade INT
+);
+
+CREATE TABLE curso (
+    codigo INT PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    sala INT,
+    horario TIME
+);
+
+CREATE TABLE matricula (
+    codigo_alu INT,
+    codigo_cur INT,
+    PRIMARY KEY (codigo_alu, codigo_cur),
+    FOREIGN KEY (codigo_alu) REFERENCES aluno(codigo),
+    FOREIGN KEY (codigo_cur) REFERENCES curso(codigo)
+);</code></pre><p>Alterações estruturais usuais:</p><pre data-lang="sql"><code>-- Adicionar uma coluna
+ALTER TABLE aluno ADD cidade VARCHAR(60);
+
+-- Alterar tipo/nome (sintaxe MySQL)
+ALTER TABLE aluno MODIFY nome VARCHAR(120) NOT NULL;
+
+-- Renomear uma coluna (sintaxe MySQL)
+ALTER TABLE aluno RENAME COLUMN cidade TO municipio;
+
+-- Remover uma coluna
+ALTER TABLE aluno DROP COLUMN municipio;
+
+-- Excluir uma tabela
+DROP TABLE matricula;</code></pre><p>A sintaxe de ALTER TABLE pode variar entre SGBDs. Antes de executar DROP ou alterações destrutivas, confirme dependências e faça backup quando necessário.</p><h3 id="dml">4.3 DML — manipulação de registros</h3><pre data-lang="sql"><code>-- Inserir registros
+INSERT INTO aluno (codigo, nome, idade)
+VALUES (1, 'João da Silva', 18);
+
+-- Atualizar registros: use WHERE para limitar as linhas afetadas
+UPDATE aluno
+SET idade = 19
+WHERE codigo = 1;
+
+-- Excluir registros: sem WHERE, todas as linhas podem ser removidas
+DELETE FROM aluno
+WHERE codigo = 1;</code></pre><p><strong>Atenção:</strong> UPDATE e DELETE sem WHERE podem alterar ou excluir todos os registros da tabela. Em atividades práticas, confira a condição e, quando possível, execute antes um SELECT com o mesmo filtro.</p><h3 id="dcl">4.4 DCL — controle de acesso</h3><pre data-lang="sql"><code>-- Criar usuário (exemplo MySQL)
+CREATE USER 'jose'@'localhost' IDENTIFIED BY 'senha_forte';
+
+-- Conceder permissões
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON escola.* TO 'jose'@'localhost';
+
+-- Revogar uma permissão específica
+REVOKE DELETE
+ON escola.aluno FROM 'jose'@'localhost';</code></pre><p>O princípio do menor privilégio recomenda conceder apenas as permissões necessárias para cada usuário. CREATE USER e a forma de identificar host/usuário podem variar conforme o SGBD.</p><h3 id="dtl">4.5 DTL/TCL — controle de transações</h3><pre data-lang="sql"><code>START TRANSACTION;
+
+UPDATE conta
+SET saldo = saldo - 100
+WHERE codigo = 1;
+
+UPDATE conta
+SET saldo = saldo + 100
+WHERE codigo = 2;
+
+-- Confirma todas as operações da transação
+COMMIT;
+
+-- Em caso de erro, desfaz as operações ainda não confirmadas:
+-- ROLLBACK;</code></pre><p><strong>COMMIT</strong> confirma as alterações da transação. <strong>ROLLBACK</strong> desfaz as alterações ainda não confirmadas. O comportamento de autocommit e as operações que podem participar de transações dependem do SGBD e do mecanismo de armazenamento utilizado.</p><h3 id="concorrencia-recuperacao">4.6 Concorrência e recuperação de falhas</h3><p>Concorrência ocorre quando duas ou mais transações são executadas em períodos sobrepostos. Sem controle adequado, podem surgir anomalias:</p><ul>
+<li><strong>Atualização perdida:</strong> duas transações leem o mesmo valor; uma grava sua alteração e, depois, a outra grava um valor calculado a partir do estado antigo, sobrescrevendo a primeira atualização.</li>
+<li><strong>Atualização temporária (leitura suja):</strong> uma transação lê uma alteração ainda não confirmada por outra; se a primeira transação sofrer ROLLBACK, a segunda terá utilizado um dado que não deveria ser considerado definitivo.</li>
+<li><strong>Deadlock:</strong> transações ficam aguardando recursos bloqueados umas pelas outras, formando um ciclo de espera. O SGBD normalmente detecta a situação e aborta uma das transações.</li>
+</ul><p>Os SGBDs utilizam mecanismos como bloqueios, controle de versões (MVCC), níveis de isolamento e logs para coordenar acessos. A recuperação também considera falhas de hardware, software, rede, energia e erros de execução. Backups e logs de transação ajudam a restaurar o banco a um estado consistente.</p><h2 id="consultas-sql">5. DQL: consultas com SELECT</h2><h3 id="estrutura-select">5.1 Estrutura geral</h3><pre data-lang="sql"><code>SELECT coluna1, coluna2
+FROM tabela1
+INNER JOIN tabela2 ON tabela1.chave = tabela2.chave
+WHERE condicao
+GROUP BY coluna1, coluna2
+HAVING condicao_de_grupo
+ORDER BY coluna1 ASC;</code></pre><p>Em termos conceituais, a consulta pode envolver junção de tabelas, filtragem de linhas, agrupamento, filtragem dos grupos, projeção das colunas e ordenação do resultado. A ordem escrita das cláusulas não é necessariamente a ordem física escolhida pelo otimizador.</p><h3 id="operadores-filtros">5.2 Filtros e operadores</h3><div class="table-wrapper"><table><thead><tr><th>Operador</th><th>Uso</th><th>Exemplo</th></tr></thead><tbody>
+<tr><td>=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=</td><td>Comparações</td><td><code>idade &gt;= 18</code></td></tr>
+<tr><td>AND, OR, NOT</td><td>Combinação lógica</td><td><code>idade &gt;= 18 AND cidade = 'Presidente Prudente'</code></td></tr>
+<tr><td>LIKE</td><td>Busca por padrão textual</td><td><code>nome LIKE 'Mar%'</code></td></tr>
+<tr><td>IN</td><td>Comparação com uma lista</td><td><code>codigo IN (2, 3)</code></td></tr>
+<tr><td>BETWEEN</td><td>Faixa de valores inclusiva</td><td><code>idade BETWEEN 18 AND 25</code></td></tr>
+<tr><td>IS NULL</td><td>Verifica ausência de valor</td><td><code>telefone IS NULL</code></td></tr>
+</tbody></table></div><p>NULL representa ausência ou desconhecimento de um valor. Não deve ser comparado com <code>= NULL</code>; utilize <code>IS NULL</code> ou <code>IS NOT NULL</code>.</p><h3 id="joins">5.3 Junções (JOIN)</h3><pre data-lang="sql"><code>-- INNER JOIN: retorna apenas correspondências entre as tabelas
+SELECT a.nome, c.nome AS curso
+FROM aluno a
+INNER JOIN matricula m ON m.codigo_alu = a.codigo
+INNER JOIN curso c ON c.codigo = m.codigo_cur;
+
+-- LEFT JOIN: mantém todas as linhas da tabela à esquerda
+SELECT a.nome, m.codigo_cur
+FROM aluno a
+LEFT JOIN matricula m ON m.codigo_alu = a.codigo;</code></pre><p>Use aliases para abreviar nomes de tabelas. A condição ON explicita como as linhas se relacionam. Um JOIN sem condição adequada pode produzir produto cartesiano e multiplicar linhas inesperadamente.</p><h3 id="agregacao">5.4 Funções de agregação, GROUP BY e HAVING</h3><div class="table-wrapper"><table><thead><tr><th>Função</th><th>Resultado</th></tr></thead><tbody>
+<tr><td>COUNT(*)</td><td>Conta linhas.</td></tr><tr><td>SUM(coluna)</td><td>Soma valores.</td></tr><tr><td>AVG(coluna)</td><td>Calcula média.</td></tr><tr><td>MAX(coluna)</td><td>Retorna o maior valor.</td></tr><tr><td>MIN(coluna)</td><td>Retorna o menor valor.</td></tr>
+</tbody></table></div><pre data-lang="sql"><code>SELECT codigo_ven, COUNT(*) AS total_pedidos,
+       AVG(quantidade) AS media_quantidade,
+       SUM(quantidade) AS total_vendido
+FROM pedido
+GROUP BY codigo_ven
+HAVING COUNT(*) &gt;= 2
+ORDER BY total_vendido DESC;</code></pre><p><strong>WHERE</strong> filtra linhas antes do agrupamento. <strong>HAVING</strong> filtra grupos depois do GROUP BY. Em geral, toda coluna do SELECT que não estiver agregada deve aparecer no GROUP BY, conforme as regras do SGBD.</p><h2 id="algebra-relacional">6. Álgebra relacional e plano de execução</h2><p>A álgebra relacional é uma linguagem formal de operações sobre relações. Ela fornece uma base teórica para compreender consultas e como um SGBD pode transformá-las em planos de execução. As operações recebem relações como entrada e produzem relações como resultado.</p><div class="table-wrapper"><table><thead><tr><th>Operação</th><th>Símbolo</th><th>Descrição</th><th>Correspondência SQL aproximada</th></tr></thead><tbody>
+<tr><td>Seleção</td><td>σ</td><td>Escolhe linhas que satisfazem uma condição.</td><td>WHERE</td></tr>
+<tr><td>Projeção</td><td>π</td><td>Escolhe atributos/colunas.</td><td>SELECT colunas</td></tr>
+<tr><td>Junção</td><td>⋈</td><td>Combina tuplas relacionadas por uma condição.</td><td>JOIN ... ON</td></tr>
+<tr><td>Produto cartesiano</td><td>×</td><td>Combina cada linha de uma relação com cada linha da outra.</td><td>FROM R, S sem condição de junção</td></tr>
+<tr><td>União</td><td>∪</td><td>Linhas que pertencem a R ou S.</td><td>UNION</td></tr>
+<tr><td>Intersecção</td><td>∩</td><td>Linhas comuns a R e S.</td><td>INTERSECT (quando suportado)</td></tr>
+<tr><td>Diferença</td><td>−</td><td>Linhas de R que não pertencem a S.</td><td>EXCEPT/MINUS (conforme o SGBD)</td></tr>
+<tr><td>Renomeação</td><td>ρ</td><td>Renomeia relação ou atributo na expressão.</td><td>Alias com AS</td></tr>
+<tr><td>Agrupamento</td><td>γ</td><td>Forma grupos e calcula agregações.</td><td>GROUP BY</td></tr>
+<tr><td>Ordenação</td><td>τ</td><td>Ordena o resultado.</td><td>ORDER BY</td></tr>
+</tbody></table></div><p>União, intersecção e diferença exigem relações compatíveis: mesma quantidade de atributos e domínios correspondentes na mesma ordem (compatibilidade de união).</p><h3 id="exemplo-algebra">6.1 Exemplo de tradução para álgebra relacional</h3><p>Consulta: listar os nomes dos alunos matriculados no curso de código 1.</p><pre data-lang="text"><code>π nome ( σ codigo_cur = 1 ( ALUNO ⋈ MATRICULA ) )</code></pre><p>Leitura: primeiro relaciona ALUNO e MATRICULA pela chave do aluno; depois seleciona as matrículas do curso 1; por fim, projeta apenas o nome do aluno.</p><h3 id="ordem-operacoes">6.2 Plano de execução</h3><p>Como roteiro didático para construir a árvore de operações, os slides adotam: junção, seleção, agrupamento, seleção de grupos, projeção e ordenação. Essa sequência é uma convenção de representação para os exercícios; o otimizador real pode reordenar operações equivalentes para reduzir custo, desde que preserve o resultado.</p><ul><li><strong>Junção:</strong> conecta as relações necessárias.</li><li><strong>Seleção:</strong> reduz as linhas por condição.</li><li><strong>Agrupamento:</strong> reúne linhas por atributos e calcula funções.</li><li><strong>Seleção de grupo:</strong> aplica HAVING.</li><li><strong>Projeção:</strong> mantém as colunas solicitadas.</li><li><strong>Ordenação:</strong> aplica a ordem final.</li></ul><h2 id="normalizacao">7. Normalização de dados</h2><p>Normalização é um processo sistemático de organização das tabelas para reduzir redundância e evitar anomalias de inserção, atualização e exclusão. O processo analisa dependências entre atributos e separa informações que representam fatos diferentes.</p><h3 id="anomalias">7.1 Anomalias que a normalização procura evitar</h3><ul><li><strong>Anomalia de inserção:</strong> não é possível cadastrar um fato sem cadastrar outro fato não relacionado.</li><li><strong>Anomalia de atualização:</strong> o mesmo dado aparece repetido em várias linhas e precisa ser alterado em todos os lugares.</li><li><strong>Anomalia de exclusão:</strong> ao apagar uma linha, perde-se também uma informação que deveria continuar armazenada.</li></ul><h3 id="primeira-forma-normal">7.2 Primeira Forma Normal (1FN)</h3><p>Uma relação está na 1FN quando cada atributo contém valores atômicos no contexto do domínio e não existem grupos repetidos ou listas de valores em uma única célula. Telefones, produtos ou itens de uma nota fiscal não devem ser armazenados como uma lista em uma coluna da tabela principal.</p><p>Exemplo: separar o cabeçalho da nota fiscal dos itens que ela contém.</p><pre data-lang="text"><code>NOTA_FISCAL(
+  nr_nf PK, data_emissao, codigo_cliente FK, valor_total
+)
+
+ITEM_NOTA(
+  nr_nf PK/FK, codigo_produto PK/FK,
+  quantidade, valor_unitario
+)</code></pre><h3 id="segunda-forma-normal">7.3 Segunda Forma Normal (2FN)</h3><p>Uma relação está na 2FN quando está na 1FN e cada atributo não-chave depende da chave primária inteira, não apenas de parte dela. A dependência parcial é relevante quando a chave primária é composta por dois ou mais atributos.</p><p>Se <code>(nr_nf, codigo_produto)</code> identifica um item da nota, atributos como descrição do produto e unidade dependem apenas de <code>codigo_produto</code>, não da chave composta inteira. Esses atributos devem ficar na tabela PRODUTO.</p><pre data-lang="text"><code>ITEM_NOTA(nr_nf PK/FK, codigo_produto PK/FK,
+          quantidade, valor_unitario)
+
+PRODUTO(codigo_produto PK, nome_produto,
+        unidade, tributacao)</code></pre><h3 id="terceira-forma-normal">7.4 Terceira Forma Normal (3FN)</h3><p>Uma relação está na 3FN quando está na 2FN e não possui dependências transitivas de atributos não-chave em relação à chave. Em termos práticos, um atributo não-chave não deve depender de outro atributo não-chave.</p><p>Se a tabela NOTA_FISCAL contém <code>codigo_cliente</code> e <code>nome_cliente</code>, endereço e cidade do cliente, esses dados dependem do código do cliente, e não diretamente do número da nota. Devem ser armazenados na tabela CLIENTE.</p><pre data-lang="text"><code>NOTA_FISCAL(nr_nf PK, data_emissao, codigo_cliente FK, valor_total)
+
+CLIENTE(codigo_cliente PK, nome, rua, cidade, uf)</code></pre><h3 id="quarta-forma-normal">7.5 Quarta Forma Normal (4FN)</h3><p>A 4FN trata dependências multivaloradas independentes. Quando uma entidade possui vários valores de um atributo que não dependem uns dos outros — por exemplo, vários telefones —, esses valores devem ser representados em uma relação separada.</p><pre data-lang="text"><code>CLIENTE(codigo_cliente PK, nome, endereco)
+
+TELEFONE_CLIENTE(
+  codigo_cliente PK/FK,
+  telefone PK
+)</code></pre><p>O objetivo não é criar tabelas em excesso, mas representar cada fato no lugar adequado, com chaves e relacionamentos coerentes. A normalização deve considerar as regras reais do negócio.</p><h2 id="ferramentas-bd">8. Ferramentas utilizadas nas aulas</h2><ul>
+<li><strong>MySQL:</strong> SGBD relacional utilizado para criar bancos, tabelas, relacionamentos e executar comandos SQL. <a href="https://dev.mysql.com/downloads/mysql/" rel="noopener" target="_blank">Página oficial de download do MySQL</a>.</li>
+<li><strong>MySQL Workbench:</strong> interface gráfica para administrar o MySQL, executar scripts SQL e elaborar diagramas E-R. <a href="https://dev.mysql.com/downloads/workbench/" rel="noopener" target="_blank">Página oficial do MySQL Workbench</a>.</li>
+</ul><h2 id="bibliografia">9. Bibliografia e referências</h2><h3 id="bibliografia-basica">9.1 Bibliografia básica</h3><ul>
+<li>ELMASRI, R.; NAVATHE, S. B. <em>Sistemas de Banco de Dados: Fundamentos e Aplicações</em>. 7. ed. São Paulo: Pearson, 2019.</li>
+<li>MARTELLI, R.; FILHO, O. V. S.; CABRAL, A. L. <em>Modelagem e banco de dados</em>. 2. ed. São Paulo: Senac, 2018.</li>
+<li>DATE, C. J. <em>Projeto de Banco de Dados e Teoria Relacional: Formas Normais e Tudo o Mais</em>. Brasil: Novatec Editora, 2015.</li>
+</ul><h3 id="bibliografia-complementar">9.2 Bibliografia complementar</h3><ul>
+<li>NIELD, T. <em>Introdução à Linguagem SQL: Abordagem Prática Para Iniciantes</em>. 1. ed. Novatec Editora, 2016.</li>
+<li>SILBERSCHATZ, A.; KORTH, H. F.; SUDARSHAN, S. <em>Sistema de Banco de Dados</em>. GEN LTC, 2020.</li>
+</ul><h2 id="exercicios">10. Lista de exercícios</h2><p class="exercise-intro">Atividades transcritas do arquivo de exercícios fornecido. Os enunciados foram mantidos para estudo e resolução; os exercícios que dependem de arquivos externos (como escola.txt, venda.txt e eleicoes.mwb) exigem também esses modelos de dados.</p><h3 id="ex-introducao">10.1 Introdução</h3><h4>1) Uma organização de grande porte decidiu atualizar sua infraestrutura de TI, migrando o armazenamento de seus dados de arquivos planos em discos rígidos locais (HDDs) para uma estrutura distribuída em nuvem com novos métodos de indexação e compressão.  No paradigma antigo do Sistema Gerenciador de Arquivos (SGA), essa alteração na camada física exigiria a reescrita e a recompilação dos códigos-fonte de todas as aplicações que acessavam os dados. Com a adoção de um Sistema Gerenciador de Banco de Dados (SGBD), essa mudança pôde ser realizada na camada de armazenamento sem causar qualquer impacto ou necessidade de alteração nas aplicações existentes.</h4><p class="exercise-text">Qual recurso técnico do SGBD assegura a neutralidade das aplicações diante de mudanças na estrutura de armazenamento no disco?</p><p class="exercise-item">A) Independência de dados</p><p class="exercise-item">B) Dependência de dados</p><p class="exercise-item">C) Gerenciamento de transações</p><p class="exercise-item">D) Integridade nos dados</p><p class="exercise-item">E) Facilidade no acesso aos dados</p><h4>2) No desenvolvimento de sistemas corporativos, a arquitetura de software e banco de dados é organizada em camadas com responsabilidades bem definidas. Em um sistema web construído em linguagens como C#, JavaScript ou PHP, a aplicação não manipula diretamente os blocos e setores de um disco rígido (HD ou SSD). Em vez disso, a camada de aplicação comunica-se com o Sistema Gerenciador de Banco de Dados (SGBD) — como MySQL, Oracle ou MongoDB —, que por sua vez se apoia no Sistema Operacional para realizar a persistência física.</h4><p class="exercise-text">Considerando a arquitetura representada pela cadeia Aplicação -&gt; SGBD -&gt; Armazenamento, qual é o papel fundamental desempenhado pela camada intermediária (SGBD) nessa organização?</p><p class="exercise-item">A) Executar diretamente o código das linguagens de programação de aplicação (como PHP ou C#), substituindo a necessidade de servidores web e interpretadores.</p><p class="exercise-item">B) Atuar como camada de abstração e gerenciamento, isolando o código de aplicação dos detalhes de baixo nível do sistema operacional e dos dispositivos físicos de armazenamento.</p><p class="exercise-item">C) Traduzir instruções de software em sinais elétricos diretos para o firmware do SSD/HD, eliminando a dependência do Sistema Operacional.</p><p class="exercise-item">D) Unificar a aplicação e o armazenamento físico em um único bloco monolítico, tornando obrigatória a reescrita do sistema caso o banco de dados seja trocado.</p><p class="exercise-item">E) Limitar as conexões de software apenas a modelos relacionais tradicionais (como MySQL e Oracle), inviabilizando a integração com tecnologias não relacionais (como MongoDB).</p><h4>3) Ao planejar a infraestrutura de TI de um banco de dados, a equipe de arquitetura deve definir o tipo de SGBD a ser adotado quanto ao arranjo de processamento e armazenamento físico. As três abordagens clássicas de arquitetura são:</h4><p class="exercise-item">a) Centralizada: O SGBD e os dados residem em uma única máquina.</p><p class="exercise-item">b) Paralela: Múltiplos processadores/discos trabalham de forma simultânea e fortemente acoplada para aumentar a velocidade de processamento de consultas.</p><p class="exercise-item">c) Distribuída: O banco de dados é dividido em múltiplos nós autônomos e geograficamente/fisicamente separados, conectados via rede de comunicação.</p><p class="exercise-text">Considerando a diferenciação técnica entre essas três arquiteturas de SGBD, assinale a alternativa correta:</p><p class="exercise-item">A) O SGBD distribuído caracteriza-se pelo acoplamento forte de hardware, onde múltiplos processadores obrigatoriamente compartilham o mesmo barramento e a mesma memória RAM física no mesmo gabinete.</p><p class="exercise-item">B) O SGBD centralizado oferece alta disponibilidade nativa contra falhas de hardware, pois replica automaticamente as transações em múltiplos servidores distribuídos na rede.</p><p class="exercise-item">C) O SGBD paralelo tem como objetivo principal utilizar a concorrência de múltiplos processadores/discos (em um ambiente de computação de alto desempenho) para acelerar a execução de consultas e o volume de transações por segundo.</p><p class="exercise-item">D) O SGBD distribuído elimina a necessidade de transparência de localização, exigindo que o usuário final conheça o endereço IP exato do nó onde o dado solicitado está fisicamente armazenado.</p><p class="exercise-item">E) O SGBD paralelo diferencia-se do distribuído por depender de uma rede de longa distância (WAN) para conectar nós de processamento autônomos localizados em diferentes cidades.</p><h4>4) Após a definição dos tipos de SGBD em relação à infraestrutura física e de processamento, a arquitetura de um sistema exige a escolha do modelo de dados. O modelo de dados é a abstração que fornece o conjunto de ferramentas conceituais, estruturais e notações para descrever como as informações são organizadas, como os elementos se relacionam entre si, qual é a semântica dos dados e quais restrições de integridade devem ser impostas. Ao longo da evolução da tecnologia de bancos de dados, diversos modelos foram propostos e adotados (tais como os modelos Hierárquico, em Rede, Relacional, Entidade-Relacionamento, Orientado a Objetos e NoSQL).</h4><p class="exercise-text">Considerando a definição e a finalidade dos modelos de dados, assinale a alternativa correta:</p><p class="exercise-item">A) O modelo de dados restringe-se à especificação dos componentes físicos de hardware (como arranjos de discos SSD e controladores de memória), não interferindo na forma lógica como os desenvolvedores visualizam os dados.</p><p class="exercise-item">B) A adoção de um modelo de dados é um procedimento exclusivo de bancos de dados relacionais executados em arquitetura centralizada, sendo dispensável em SGBDs modernos.</p><p class="exercise-item">C) O modelo de dados define unicamente os comandos de consulta em linguagem SQL, não abrangendo os níveis de modelagem conceitual ou lógica do sistema.</p><p class="exercise-item">D) O modelo de dados atua como uma linguagem/framework de abstração que define as regras estruturais, os padrões de organização e as restrições lógicas aplicadas aos dados mantidos pelo SGBD.</p><p class="exercise-item">E) Os modelos de dados eliminam a necessidade de definir tipos de dados para os atributos, permitindo que a aplicação grave informações no SGBD sem qualquer esquema conceitual.</p><h4>5) Em um Sistema Gerenciador de Banco de Dados (SGBD) transacional, a execução de um conjunto de operações de leitura e escrita deve ser tratada como uma unidade lógica de trabalho. Para garantir a confiabilidade e o processamento correto dos dados, o SGBD implementa as quatro propriedades conhecidas pelo acrônimo ACID.</h4><p class="exercise-text">Considere dois cenários operacionais em um sistema bancário:</p><p class="exercise-text">Cenário 1: Uma transação de transferência bancária completa com sucesso e recebe a confirmação (commit). Segundos depois, ocorre uma queda abrupta de energia elétrica no datacenter. Ao religar o servidor, o SGBD garante que os saldos atualizados continuam gravados no banco de dados e não foram perdidos.</p><p class="exercise-text">Cenário 2: Durante a execução de uma transferência de fundos, o valor é debitado da Conta A, mas o sistema falha antes de creditar a Conta B. O SGBD interfere e desfaz o débito parcial, assegurando que o sistema retorne ao estado original e a operação não fique gravada pela metade.</p><p class="exercise-text">Os comportamentos descritos no Cenário 1 e no Cenário 2 exemplificam, respectivamente, quais propriedades ACID?</p><p class="exercise-item">A) Atomicidade e Isolamento.</p><p class="exercise-item">B) Consistência e Durabilidade.</p><p class="exercise-item">C) Isolamento e Consistência.</p><p class="exercise-item">D) Atomicidade e Durabilidade.</p><p class="exercise-item">E) Durabilidade e Atomicidade.</p><h3 id="ex-modelagem">10.2 Modelagem de dados</h3><h4>6) Para cada situação a seguir, construa um diagrama de dados.</h4><p class="exercise-text">Situação 1 - Transportadora</p><p class="exercise-text">Uma transportadora aérea pretende modelar uma base de dados com as seguintes informações:</p><p class="exercise-text">• A transportadora tem vários aviões. Cada avião tem a matrícula, um nome, a marca do avião, o número de lugares e indicação da sua autonomia.</p><p class="exercise-text">• Na transportadora trabalham vários pilotos. Para os pilotos deseja-se armazenar nome e horas de voo.</p><p class="exercise-text">• Cada avião faz vários voos. Cada voo deve ter, pelo menos, a indicação da data e hora de partida e chegada, do local de partida e chegada.</p><p class="exercise-text">• Cada voo de um dado avião tem um piloto e um copiloto.</p><p class="exercise-text">Situação 2 - Biblioteca</p><p class="exercise-text">Pretende-se modelar uma base de dados para armazenar informações de uma biblioteca. Tal base de dados deverá conter pelo menos informações referentes:</p><p class="exercise-text">• aos livros existentes na biblioteca incluindo cada um deles, um código, o nome, o(s) autor(es), a editora, a classificação e localização na prateleira;</p><p class="exercise-text">• as editoras (como nome, telefone e e-mail);</p><p class="exercise-text">• aos leitores da biblioteca, cada um com um código, nome e endereço;</p><p class="exercise-text">A biblioteca pretende controlar os empréstimos dos livros, efetuados pelo leitor. Os empréstimos devem conter a data do empréstimo e os livros emprestados devem conter data da devolução.</p><p class="exercise-text">Situação 3 - Estoque</p><p class="exercise-text">Uma empresa pretende modelar uma base de dados para controlar o estoque. É preciso observar que:</p><p class="exercise-text">• A empresa comercializa vários produtos, cada um com código, nome, preço e a quantidade.</p><p class="exercise-text">• Uma encomenda, que deve ter um número de encomenda e a data em que foi feita, pode ter vários produtos. Cada encomenda é feita de apenas um fornecedor. Os produtos da encomenda devem ter a quantidade encomendada.</p><p class="exercise-text">• De cada fornecedor a empresa deseja guardar a informação do seu nome, cnpj, endereço e forma de pagamento.</p><p class="exercise-text">Situação 4 – Clínica</p><p class="exercise-text">Uma clínica médica pretende informatizar os seus serviços. Para já, querem começar por informatizar os dados referentes a médicos, pacientes e a consultas.</p><p class="exercise-text">Na clínica trabalham vários médicos, cada um com uma especialidade. De cada médico, identificado internamente pelo número do CRM, a clínica pretende armazenar o nome, especialidade, endereço e telefone.</p><p class="exercise-text">Como usual, os médicos dão consultas a pacientes. A clínica pretende ter sempre disponível a informação do nome, endereço e telefone dos seus pacientes.</p><p class="exercise-text">A cada consulta está associado um só médico e um só paciente. Da consulta pretende-se armazenar a data e hora em que ocorreu, bem como os vários remédios que foram receitados pelo médico.</p><p class="exercise-text">Situação 5 - Imobiliária</p><p class="exercise-text">Uma empresa de compra e venda de imóveis pretende informatizar os seus serviços. A empresa tem várias casas para venda, cada uma pertencente a um cliente da empresa. Da casa a empresa quer ter disponível a zona de localização, o preço, a quantidade de andares e o ano de construção. Dos clientes deve ser armazenado o seu nome, endereço e número de telefone. Um cliente pode ter várias casas para venda na empresa.</p><p class="exercise-text">Há ainda os clientes da empresa que, em vez de quererem vender casas, querem comprar. Desses deve ser armazenado, para além da informação que se guarda dos outros clientes, a informação acerca dos interesses do cliente. Dos interesses faz parte a quantidade de andares e a zona de localização da casa que pretende comprar. Um cliente pode ter vários interesses e o interesse pode ser de outros clientes.</p><p class="exercise-text">De cada casa que esteja para venda na empresa, deve ainda ser armazenada a informação de quais clientes já a visitaram, e quando (data e hora).</p><p class="exercise-text">Situação 6 - Seguradora de Veículos</p><p class="exercise-text">A seguradora de veículos Anjo da Guarda deseja um sistema de informação para agilizar os serviços prestados pelas oficinas credenciadas nos veículos segurados pela empresa.</p><p class="exercise-text">Quando um novo cliente procura a seguradora, ele é encaminhado a um corretor, que cadastrará seus dados no sistema (nome, endereço, telefones, cpf ou cnpj). Para cada veículo a ser segurado, serão cadastrados: placa, marca, modelo, ano de fabricação, cor e número do chassi.</p><p class="exercise-text">Cada contrato de seguro é firmado para um único veículo; além de um número, o contrato terá datas de início e fim de vigência, além de uma descrição de características diversas registradas no sistema; estas características serão utilizadas pelo corretor para o cálculo do valor do contrato e dos futuros reembolsos (não gerenciados pelo sistema) que venham a ser realizados.</p><p class="exercise-text">Um corretor, além de receber comissão sobre os contratos realizados, deverá atender o cliente, em qualquer dúvida ou necessidade referente ao contrato. Por isso, em geral, um cliente faz todos os seus contratos de seguro com um mesmo corretor. No entanto, caso este não esteja disponível, outro corretor poderá atendê-lo.</p><p class="exercise-text">Cada contrato poderá ser parcelado em até dez vezes; para cada parcela deverão ser especificados a data de vencimento e o valor a receber; a cada recebimento que ocorrer, a data e o valor recebido, também serão registrados no sistema.</p><p class="exercise-text">Caso o veículo esteja sendo segurado pela primeira vez na empresa, ele deverá passar por uma vistoria, cuja data será registrada no sistema, juntamente com as observações relevantes. Uma nova vistoria será solicitada, a cada vez que o contrato vier a ser renovado.</p><p class="exercise-text">Ao vencer um contrato, mesmo sendo uma renovação, ele receberá um novo número, novas datas de vigência, novos valores e novos registros de pagamento. No entanto, para fins de agilização do sistema, cada renovação deverá fazer referência à anterior, inclusive para decidir sobre os descontos (bônus) a serem oferecidos. Uma renovação poderá ser feita por um corretor diferente do contrato anterior.</p><p class="exercise-text">Quando necessitar, o cliente poderá acionar o seguro e poderá levar seu veículo a uma oficina para reparos. A oficina, que deverá ser credenciada pela empresa e, portanto cadastrada no sistema (cnpj, nome, endereço, telefones, gerente ou responsável), fará um orçamento para o serviço pedido (número do serviço e descrição) e o encaminhará a seguradora, que o registrará, com data e valor total. Em geral, são pedidos orçamentos para o serviço em, pelo menos, três oficinas, para fins comparativos. De posse dos orçamentos pedidos, um fiscal é escalado e encaminhado às oficinas para verificar os valores orçados. A autorização do orçamento para realização do serviço, em uma das oficinas, deverá ser registrada no sistema, vinculada ao fiscal responsável, com a data da autorização.</p><p class="exercise-text">Tanto os corretores, como os fiscais da seguradora, são funcionários, devendo ser cadastrados com número de matrícula, nome e demais dados pessoais como salário e data de admissão. Para os fiscais o cadastro deve conter o nível de instrução, e para os corretores o tempo de serviço.</p><h3 id="ex-ddl-dml">10.3 SQL — DDL e DML</h3><h4>7) Utilizando os comandos SQL:</h4><p class="exercise-text">crie as seguintes tabelas:</p><p class="exercise-text">ALUNO (codigo (pk), nome, idade)</p><p class="exercise-text">CURSO (codigo (pk), nome, sala, horario)</p><p class="exercise-text">MATRICULA (codigo_alu (pk)(fk), codigo_cur (pk)(fk))</p><p class="exercise-text">TEMP (cod, idade)</p><p class="exercise-text">Altere a tabela TEMP (adicione o atributo nome, altere o atributo cod para codigo e remova o atributo idade)</p><p class="exercise-text">Elimine a tabela TEMP</p><p class="exercise-text">Insira na tabela ALUNO (1, “João da Silva”, 18), (2, “Pedro Costa”, 20), (3, “Ana Rita”, 21), (4, “Fabiano Oliveira”, 19)</p><p class="exercise-text">Insira na tabela CURSO (1, “Web Designer”, 10, “13:00”), (2, “Pacote Office”, 11, “15:00”), (3, “Internet”, 12, “17:00”)</p><p class="exercise-text">Insira na tabela MATRICULA (1, 1), (2, 1), (3, 1), (1, 2), (2, 3), (3, 3), (4, 2)</p><p class="exercise-text">Altere o nome do curso Web Designer para Programação para Internet</p><p class="exercise-text">Exclua da tabela MATRICULA, o aluno de código 1 do curso 1</p><h4>8) Considere o esquema de banco de dados relacional apresentado a seguir, formado por 4 relações (tabelas), que representa o conjunto de estudantes de uma universidade que podem, ou não, morar em repúblicas (moradias compartilhadas por estudantes). A relação Estudante foi modelada como um subconjunto da relação Pessoa. Considere que os atributos grifados correspondam à chave primária da respectiva relação e os atributos que são seguidos da palavra “referencia” sejam chaves estrangeiras.</h4><p class="exercise-text">Pessoa (Id: int, Nome: varchar(40), Endereco: varchar(40))</p><p class="exercise-text">FonePessoa (Pessoa_Id: int referencia Pessoa, DDD: char(3), Prefixo: char(4), Nro: char(4))</p><p class="exercise-text">Republica (Id: int, Nome: varchar(30), Endereco: varchar(40))</p><p class="exercise-text">Estudante (RA: int, Email: varchar(30), Pessoa_Id: int referencia Pessoa, Republica_Id: int referencia Republica)</p><p class="exercise-text">Suponha que existam as seguintes tuplas no banco de dados:</p><p class="exercise-text">Pessoa(1, “José Silva”, “Rua 1, 20”)</p><p class="exercise-text">Republica(20, “Movimentada”, “Rua Chaves, 2001”)</p><p class="exercise-text">Qual opção apresenta apenas tuplas válidas para esse esquema de banco de dados relacional?</p><p class="exercise-item">A) Estudante(10, “jsilva@ig.com.br”, null, 20); FonePessoa(10, “019”, “3761”, “1370”)</p><p class="exercise-item">B) Estudante(10, “jsilva@ig.com.br”, 1, null); FonePessoa(10, “019”, “3761”, “1370”)</p><p class="exercise-item">C) Estudante(10, “jsilva@ig.com.br”, 1, 20); FonePessoa(1, null, “3761”, “1370”)</p><p class="exercise-item">D) Estudante(10, “jsilva@ig.com.br”, 1, 50); FonePessoa(1, “019”, “3761”, “1370”)</p><p class="exercise-item">E) Estudante(10, “jsilva@ig.com.br”, 1, 20); FonePessoa(1, “019”, “3761”, “1370”)</p><p class="exercise-text">Ainda em relação a esse exercício, escreva os comandos SQL para:</p><p class="exercise-text">Criar a tabela Estudante</p><p class="exercise-text">Alterar a tabela Pessoa (adicione o atributo cidade)</p><p class="exercise-text">Atualizar o nome da república “Movimentada” para “Calmaria”</p><p class="exercise-text">Inserir a pessoa de id 2, chamada “Joice da Costa” que mora na “Av. Brasil, 1290”</p><p class="exercise-text">Excluir os telefones da pessoa de id igual a 1</p><p class="exercise-text">Eliminar a tabela Republica</p><h3 id="ex-dcl-dtl">10.4 SQL — DCL e DTL</h3><h4>9) Utilizando a modelagem escola (arquivo escola.txt), execute os comandos a seguir:</h4><p class="exercise-item">a) Atribua a permissão de consulta, inserção, alteração e exclusão de registros, em todas as tabelas, para o usuário jose.</p><p class="exercise-item">b) Revogue a permissão de exclusão de registros na tabela aluno do usuário jose.</p><p class="exercise-item">c) Atribua a permissão de alteração e eliminação de estrutura, nas tabelas aluno e curso, para o usuário maria.</p><p class="exercise-item">d) Revogue a permissão de eliminação de estrutura, na tabela curso, do usuário maria.</p><h4>10) Ainda sobre a modelagem escola (arquivo escola.txt), execute o script a seguir e analise o resultado obtido:</h4><pre data-lang="sql"><code>set autocommit = 0;</code></pre><pre data-lang="sql"><code>start transaction;</code></pre><pre data-lang="sql"><code>insert into aluno values (6, “Victor”, 20);</code></pre><pre data-lang="sql"><code>insert into aluno values (7, “Thiago”, 40);</code></pre><pre data-lang="sql"><code>commit;</code></pre><pre data-lang="sql"><code>start transaction;</code></pre><pre data-lang="sql"><code>insert into aluno values (8, “Amanda”, 23);</code></pre><pre data-lang="sql"><code>update aluno set nome = “Hugo” where codigo = 1;</code></pre><pre data-lang="sql"><code>delete from aluno where codigo = 6;</code></pre><pre data-lang="sql"><code>rollback;</code></pre><pre data-lang="sql"><code>start transaction;</code></pre><pre data-lang="sql"><code>update aluno set nome = “André” where codigo = 7;</code></pre><pre data-lang="sql"><code>commit;</code></pre><h4>11)</h4><div class="table-wrapper"><table><tr><th>T1</th></tr><tr><td>1 Leitura(X)</td></tr><tr><td>2 X = X – 100</td></tr><tr><td>3 Escrita(X)</td></tr><tr><td>4 Leitura(Y)</td></tr><tr><td>5 Y = Y + 100</td></tr><tr><td>6 Escrita(Y)</td></tr></table></div><p class="exercise-text">Considere um sistema bancário simplificado e uma transação T1, que transfira R$ 100,00 da conta X para a conta Y e é definida pelas operações listadas acima. Considere ainda que uma transação T2 esteja sendo executada simultaneamente com T1. Caso a transação T2 realize a operação Escrita(Y) depois da execução da operação 4 e antes da execução da operação 6 por T1, qual propriedade de transações será violada no banco de dados do referido sistema bancário?</p><p class="exercise-item">A) Atomicidade.</p><p class="exercise-item">B) Isolamento.</p><p class="exercise-item">C) Distributividade.</p><p class="exercise-item">D) Consistência.</p><p class="exercise-item">E) Durabilidade.</p><h4>12) A concorrência ocorre quando múltiplas transações são executadas simultaneamente em um SGBD. Quando duas ou mais transações tentam acessar ou modificar o mesmo dado ao mesmo tempo, a falta de controle de concorrência pode levar a inconsistências na base de dados.  Considere as duas situações de execução entrelaçada entre duas transações bancárias, T1 (Transferência) e T2 (Depósito):</h4><p class="exercise-text">Situação I: T1 lê o valor da ContaX. Logo em seguida, antes que T1 termine, T2 também lê o valor inicial da ContaX. T1 realiza o débito e atualiza o saldo no banco. Na sequência, T2 efetua o crédito e grava o novo saldo na ContaX, sobrescrevendo a alteração que tinha sido realizada por T1 e fazendo com que o débito efetuado por T1 seja ignorado.</p><p class="exercise-text">Situação II: T1 altera o valor da ContaX. Em seguida, T2 lê esse novo saldo atualizado por T1 e o utiliza em seus cálculos. Contudo, antes de finalizar, T1 sofre uma falha e sua atualização na ContaX é desfeita (rollback). Como resultado, T2 realizou suas operações baseando-se em um valor que nunca foi confirmado definitivamente no banco de dados.</p><p class="exercise-text">As anomalias descritas na Situação I e na Situação II correspondem, respectivamente, a quais problemas clássicos de concorrência?</p><p class="exercise-item">A) Problema da Atualização Temporária e Problema da Atualização Perdida.</p><p class="exercise-item">B) Problema do Deadlock e Problema da Atualização Perdida.</p><p class="exercise-item">C) Problema da Atualização Perdida e Problema da Atualização Temporária.</p><p class="exercise-item">D) Problema da Inconsistência de Dados e Problema da Falha de Hardware.</p><p class="exercise-item">E) Problema da Atualização Perdida e Problema de Integridade Física.</p><h3 id="ex-dql">10.5 SQL — DQL</h3><h4>13) Utilizando a modelagem escola (arquivo escola.txt), responda as perguntas abaixo:</h4><p class="exercise-text">ALUNO (codigo (pk), nome, idade)</p><p class="exercise-text">CURSO (codigo (pk), nome, sala, horario)</p><p class="exercise-text">MATRICULA (codigo_alu (pk)(fk), codigo_cur (pk)(fk))</p><p class="exercise-item">a) Qual o nome e a idade de todos os alunos?</p><p class="exercise-item">b) Qual o código, nome e idade dos alunos com idade superior a 18?</p><p class="exercise-item">c) Qual o nome dos alunos e código dos cursos, com matriculas no curso 1?</p><p class="exercise-item">d) Qual o nome e horário dos cursos do aluno Pedro Costa?</p><p class="exercise-item">e) Qual o nome dos alunos matriculados no curso 2 ou 3?</p><h4>14) Utilizando a modelagem venda (arquivo venda.txt), responda as perguntas abaixo:</h4><p class="exercise-text">VENDEDOR (codigo (pk), nome, idade, salario)</p><p class="exercise-text">PEDIDO (numero (pk), codigo_ven (fk), codigo_cli (fk), quantidade)</p><p class="exercise-text">CLIENTE (codigo (pk), cidade, tipo)</p><p class="exercise-item">a) Qual o nome e a idade de todos os vendedores?</p><p class="exercise-item">b) Qual o código e salário dos vendedores que realizaram algum pedido?</p><p class="exercise-item">c) Qual o número do pedido e o nome do vendedor dos pedidos para clientes do tipo Indústria?</p><p class="exercise-item">d) Qual a quantidade pedida, a idade do vendedor e o tipo do cliente dos pedidos do vendedor João?</p><p class="exercise-item">e) Quais as cidades dos clientes? E sem repetições?</p><p class="exercise-item">f) Qual é a maior idade entre os vendedores?</p><p class="exercise-item">g) Qual é a média de salário dos vendedores?</p><p class="exercise-item">h) Quantos pedidos cada vendedor realizou?</p><h4>15) Observando os dados a seguir (arquivo venda.txt), apresente o resultado dos seguintes comandos:</h4><div class="table-wrapper"><table><tr><th>VENDEDOR</th><th>VENDEDOR</th><th>VENDEDOR</th><th>VENDEDOR</th></tr><tr><td>codigo (pk)</td><td>nome</td><td>idade</td><td>salario</td></tr><tr><td>1</td><td>João</td><td>25</td><td>3000</td></tr><tr><td>2</td><td>Maria</td><td>29</td><td>3500</td></tr><tr><td>3</td><td>Kelly</td><td>19</td><td>4000</td></tr><tr><td>4</td><td>Juliano</td><td>22</td><td>2900</td></tr><tr><td>5</td><td>Julia</td><td>20</td><td>2000</td></tr></table></div><div class="table-wrapper"><table><tr><th>PEDIDO</th><th>PEDIDO</th><th>PEDIDO</th><th>PEDIDO</th></tr><tr><td>numero (pk)</td><td>codigo_ven (fk)</td><td>codigo_cli (fk)</td><td>quantidade</td></tr><tr><td>100</td><td>1</td><td>11</td><td>20</td></tr><tr><td>200</td><td>1</td><td>12</td><td>35</td></tr><tr><td>300</td><td>3</td><td>13</td><td>25</td></tr><tr><td>400</td><td>4</td><td>13</td><td>65</td></tr><tr><td>500</td><td>1</td><td>13</td><td>23</td></tr><tr><td>600</td><td>3</td><td>15</td><td>40</td></tr><tr><td>700</td><td>5</td><td>15</td><td>20</td></tr></table></div><div class="table-wrapper"><table><tr><th>CLIENTE</th><th>CLIENTE</th><th>CLIENTE</th></tr><tr><td>codigo (pk)</td><td>cidade</td><td>tipo</td></tr><tr><td>11</td><td>São Paulo</td><td>Indústria</td></tr><tr><td>12</td><td>Pres. Prudente</td><td>Comércio</td></tr><tr><td>13</td><td>Pres. Prudente</td><td>Agronegócio</td></tr><tr><td>14</td><td>São Paulo</td><td>Comércio</td></tr><tr><td>15</td><td>São Paulo</td><td>Agronegócio</td></tr></table></div><pre data-lang="sql"><code>select p.numero, v.nome, c.cidade</code></pre><pre data-lang="sql"><code>from pedido p inner join vendedor v on p.codigo_ven = v.codigo</code></pre><p class="exercise-text">inner join cliente c on p.codigo_cli = c.codigo</p><pre data-lang="sql"><code>where p.quantidade &gt;= 25</code></pre><pre data-lang="sql"><code>select *</code></pre><pre data-lang="sql"><code>from cliente</code></pre><pre data-lang="sql"><code>order by tipo</code></pre><pre data-lang="sql"><code>select cidade</code></pre><pre data-lang="sql"><code>from cliente</code></pre><pre data-lang="sql"><code>group by cidade</code></pre><pre data-lang="sql"><code>select v.nome, sum(p.quantidade)</code></pre><pre data-lang="sql"><code>from pedido p inner join vendedor v on p.codigo_ven = v.codigo</code></pre><pre data-lang="sql"><code>group by v.nome</code></pre><pre data-lang="sql"><code>select cidade, count(*)</code></pre><pre data-lang="sql"><code>from cliente</code></pre><pre data-lang="sql"><code>group by cidade</code></pre><pre data-lang="sql"><code>having count(*) &gt; 2</code></pre><h4>16) Os resultados a seguir foram obtidos dos dados da modelagem venda (arquivo venda.txt). Observando-os, apresente o comando respectivo comando select de cada letra:</h4><p class="exercise-text">nome		salario</p><p class="exercise-text">Kelly		4000</p><p class="exercise-text">Maria		3500</p><p class="exercise-text">Joao		3000</p><p class="exercise-text">numero		cidade		quantidade</p><p class="exercise-text">100		São Paulo		20</p><p class="exercise-text">200		Pres. Prudente	35</p><p class="exercise-text">300		Pres. Prudente	25</p><p class="exercise-text">codigo_ven	media qtd ped</p><p class="exercise-text">1			26.0000</p><p class="exercise-text">3			32.5000</p><h4>17) Para o texto a seguir:</h4><p class="exercise-text">Controle de eleição municipal</p><p class="exercise-text">Sabe-se que cada município é dividido em várias zonas eleitorais que, por sua vez, são divididas em várias seções nas quais os eleitores estão vinculados.</p><p class="exercise-text">O candidato a um cargo público (prefeito ou vereadores) deve estar vinculado a um único partido político. Vale ressaltar que, segundo a legislação vigente, o voto é secreto.</p><p class="exercise-text">A modelagem está disponível no arquivo eleicoes.mwb. Escreva o comando select e o plano de execução para:</p><p class="exercise-text">Nome do município, número da zona e número da seção eleitoral, ordenar por nome do município e número da zona</p><p class="exercise-text">Nome do município e quantidade de zonas eleitorais possui cada município</p><p class="exercise-text">Número da zona e quantidade de seções possui cada zona eleitoral do município de “Presidente Prudente”</p><p class="exercise-text">Nome do município que inicie com “Pres”</p><p class="exercise-text">Nome dos municípios e nome dos candidatos a prefeito, ordenar por nome do município</p><p class="exercise-text">Nome dos candidatos a vereador e o nome do partido que eles estão vinculados</p><p class="exercise-text">Nome dos candidatos a prefeito e a quantidade de votos deles</p><p class="exercise-text">Sigla dos partidos políticos e a quantidade de votos deles</p><p class="exercise-text">Quantidade total de votos da eleição</p><p class="exercise-text">Nome dos candidatos e a quantidade de votos deles, ordenar por quantidade de votos decrescente</p><p class="exercise-text">Nome do eleitor, nome do município, número da zona e número da seção, ordenar pelo código do município</p><h3 id="ex-algebra">10.6 Álgebra relacional</h3><h4>18) Usando a notação das operações da álgebra relacional, elabore o plano de execução (árvore) dos exercícios 13 a 16.</h4><h3 id="ex-normalizacao">10.7 Normalização</h3><h4>24) Para cada uma das modelagens a seguir, aplique as formas normais necessárias.</h4><p class="exercise-text">Vários alunos podem inscrever-se em um curso e este curso pode conter várias disciplinas. Tanto o aluno quanto a disciplina podem fazer parte de vários cursos. O aluno pode ter vários telefones para contato.</p><p class="exercise-text">Curso (codigo_curso (pk), nome_curso, codigo_aluno, nome_aluno, telefone_aluno, codigo_disciplina, nome_disciplina).</p><p class="exercise-text">Somente um paciente deve ser alocado a um ou mais quartos e este quarto pode ser atendido por vários médicos. O mesmo médico pode atender a vários quartos. O médico pode conter vários telefones.</p><p class="exercise-text">Quarto (num_quarto (pk), descricao_quarto, num_paciente, nome_paciente, cod_medico, nome_medico, fones_medico).</p><p class="exercise-text">Cada ordem de compra deve conter um fornecedor e pode conter vários materiais. O mesmo material pode fazer parte de várias ordens de compra.</p><p class="exercise-text">OrdemCompra (nr_OrdCompra (pk), dt_EmissaoOC, cd_Fornecedor, nm_Fornecedor, end_Fornecedor, cd_Material, nm_Material, qt_AComprarMatOC, vl_UnitárioMatOC, vl_TotalMatOC, vl_TotalOC)</p><p class="exercise-text">Uma venda pode conter vários produtos que estão sendo vendidos. O mesmo produto pode estar em várias vendas. Um cliente e um vendedor devem estar associados a uma ou mais vendas. O cliente pode ter mais de um telefone.</p><p class="exercise-text">Vendas (num_venda (pk), data_venda, cod_cliente, nome_cliente, num_fones_cliente, cod_vendedor, nome_vendedor, cod_produto, nome_produto, qtd_vendida_prod, vlr_unitario_prod, vlr_total_prod, vlr_total_venda)</p><p class="exercise-text">Cada funcionário deve estar associado à somente um departamento. O funcionário pode ter vários dependentes e também várias habilidades. A mesma habilidade pode ser de vários funcionários, entretanto, o dependente só pode ser de um funcionário.</p><p class="exercise-text">A modelagem deve atender ao controle do histórico do cargo e do salário de cada funcionário.</p><p class="exercise-text">Funcionario (cd_Funcionario (pk), nm_Funcionario, dt_Admissao, dt_NascFunc, cd_Cargo, nm_Cargo, vl_Salario, cd_Dependente, nm_Dependente, dt_NascDepend, nr_TotalDepend, cd_Departamento, nm_Departamento, cd_Habilidade, nm_Habilidade, dt_AdmissaoHab)</p><p class="source-note">Material organizado a partir dos slides da disciplina Banco de Dados I e da lista de exercícios disponibilizada para estudo.</p><p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;"><em>Fim do conteúdo de Banco de Dados I.</em></p></div>
+</main>
+</div>
+<button aria-label="Voltar ao topo" class="back-to-top">↑</button>
+<script src="../js/script.js"></script>
+</body>
+</html>

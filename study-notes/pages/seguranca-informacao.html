@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segurança da Informação e Compliance</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+    <div class="sidebar-overlay"></div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><a href="../index.html">📚 Caderno de Estudos</a></h1>
+                <p>Análise e Desenvolvimento de Sistemas</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="../index.html"><span class="icon">🏠</span> Início</a></li>
+                <li><a href="seguranca-informacao.html"><span class="icon">🔐</span> Segurança da Informação</a></li>
+                <li><a href="arquitetura-hardware.html"><span class="icon">💻</span> Arquitetura de Hardware</a></li>
+                <li><a href="arquitetura-hardware-codigo.html"><span class="icon">🔧</span> Arquitetura — Códigos</a></li>
+                <li><a href="comunicacao.html"><span class="icon">💬</span> Comunicação</a></li>
+                <li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software I</a></li>
+                <li><a href="sistemas-operacionais.html"><span class="icon">🖥️</span> Sistemas Operacionais</a></li>
+                <li><a href="banco-de-dados.html"><span class="icon">🗄️</span> Banco de Dados I</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1>🔐 Segurança da Informação e Compliance</h1>
+                    <div class="page-meta">
+                        <span class="badge badge-red">Segurança</span>
+                        <span class="badge badge-blue">LGPD</span>
+                        <span class="badge badge-purple">Governança</span>
+                    </div>
+                </div>
+
+                <div class="toc">
+                    <h3>Índice</h3>
+                    <ul>
+                        <li class="toc-h2"><a href="#fundamentos">1. Fundamentos de Segurança da Informação e Compliance</a></li>
+                        <li class="toc-h2"><a href="#lgpd">2. LGPD</a></li>
+                        <li class="toc-h2"><a href="#governanca">3. Governança nas organizações</a></li>
+                        <li class="toc-h2"><a href="#formas-seguranca">4. Formas de Segurança</a></li>
+                        <li class="toc-h2"><a href="#controle-acesso">5. Controle de acesso à informação</a></li>
+                        <li class="toc-h2"><a href="#ameacas">6. Ameaças, Invasores e Tipos de Ataques</a></li>
+                        <li class="toc-h2"><a href="#defesa">7. Defesa Cibernética e Guerra Cibernética</a></li>
+                        <li class="toc-h2"><a href="#criptografia">8. Criptografia e Blockchain</a></li>
+                    </ul>
+                </div>
+
+                <p>A <strong>Segurança da Informação</strong> é um dos pilares essenciais para o funcionamento de qualquer organização, pois garante que dados e sistemas permaneçam protegidos contra falhas, acessos indevidos e interrupções. Em um cenário onde informações circulam continuamente por redes, aplicações e dispositivos, é necessário entender os fundamentos da área para tomar decisões corretas e aplicar controles adequados ao dia a dia.</p>
+
+                <h2 id="fundamentos">1. Fundamentos de Segurança da Informação e Compliance</h2>
+
+                <p>Muitas pessoas costumam usar as palavras <em>dado</em> e <em>informação</em> como se fossem a mesma coisa, mas elas têm significados diferentes. Vamos entender isso com um exemplo bem prático! Um exemplo prático é o RA do aluno da FATEC, que é constituído por um número: <strong>309078202522023</strong>. Para quem vê este número, parece um <strong>dado bruto</strong>. Mas se este número for <strong>inserido em uma carteirinha escolar</strong>, possui uma outra interpretação:</p>
+
+                <ul>
+                    <li><strong>309</strong> indica uma das unidades da FATEC;</li>
+                    <li><strong>078</strong> refere-se ao curso de Gestão da Tecnologia da Informação;</li>
+                    <li><strong>2025</strong> representa o ano de ingresso;</li>
+                    <li><strong>2</strong> representa o semestre de ingresso;</li>
+                    <li><strong>023</strong> representa a ordem de ocorrência da matrícula.</li>
+                </ul>
+
+                <p>Veja que dentro de um contexto faz toda a diferença, e é uma informação valiosa para o processo da secretaria acadêmica, que relaciona a base de conhecimento da vida acadêmica do aluno de FATEC.</p>
+
+                <blockquote>
+                    <p>Você já pensou que o maior patrimônio das empresas não são os prédios ou as máquinas, mas sim as informações guardadas nos computadores? Como a autora <em>Patrícia Peck</em> (2021) nos lembra, estamos vivendo na Era dos Dados. Em contabilidade, ativo é tudo aquilo que gera valor para a organização. Portanto, <strong>se a informação gera valor, ela precisa ser protegida</strong>.</p>
+                </blockquote>
+
+                <h3>1.1 Dado</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Recurso</th><th>Explicação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>O dado é um registro isolado, bruto, sem contexto ou interpretação significativa. É a matéria-prima da informação, mas por si só não sustenta decisões ou comunica significado completo.</td></tr>
+                            <tr><td>Exemplo</td><td>O número "150" é um dado. Sozinho, ele não diz nada sobre o que representa.</td></tr>
+                            <tr><td>Analogia</td><td>Pense no dado como uma letra solta do alfabeto. <strong>Sozinha, a letra "M" tem pouco significado</strong>, mas quando combinada com outras letras, forma palavras e frases com sentido completo.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.2 Informação</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Recurso</th><th>Explicação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>A informação é o dado organizado, contextualizado e interpretado, que passa a ter significado e utilidade para quem o recebe.</td></tr>
+                            <tr><td>Exemplo</td><td>"150 clientes realizaram compras no sistema hoje" — agora o número 150 ganhou contexto, tornando-se informação útil para a gestão.</td></tr>
+                            <tr><td>Analogia</td><td>A informação seria a palavra formada: <strong>"M-A-R" não são mais letras soltas, mas uma palavra com significado</strong>.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                                <h3>1.3 Conhecimento</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Recurso</th><th>Explicação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>O conhecimento surge quando uma pessoa interpreta informações, relaciona-as com sua experiência prévia e consegue utilizá-las para compreender situações, tomar decisões ou resolver problemas.</td></tr>
+                            <tr><td>Exemplo</td><td>Se uma empresa percebe que as vendas aumentam sempre após determinadas campanhas de marketing e utiliza essa percepção para planejar novas ações promocionais, está aplicando conhecimento.</td></tr>
+                            <tr><td>Analogia</td><td>Se a <strong>palavra "MAR" é a informação</strong>, o <strong>conhecimento seria saber que o mar pode ser calmo ou tempestuoso</strong>, que tem ondas, que é salgado, que nele vivem peixes, e usar esse entendimento para navegar com segurança.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.4 Ativo de Informação</h3>
+
+                <p>Uma maneira bem didática é tratar <strong>ativo como qualquer coisa que tenha valor para a organização e que, se for perdida, danificada, vazada ou ficar indisponível, gera impacto no negócio</strong>. Esse valor pode estar em itens <em>tangíveis</em> (computadores, servidores, redes, data center) e também em itens <em>intangíveis</em> (dados, informações, sistemas, imagem, reputação, propriedade intelectual, contratos, processos e conhecimento acumulado).</p>
+
+                <p><strong>Exemplos:</strong></p>
+                <ul>
+                    <li>Bancos de dados de clientes</li>
+                    <li>Documentos físicos e digitais</li>
+                    <li>Códigos-fonte de sistemas</li>
+                    <li>Servidores e equipamentos de rede</li>
+                    <li>Contratos e acordos comerciais</li>
+                    <li>Credenciais e senhas de acesso</li>
+                    <li>Propriedade intelectual (patentes, marcas)</li>
+                    <li>Conhecimento dos colaboradores</li>
+                    <li>Processos organizacionais</li>
+                </ul>
+
+                <h3>1.5 Segurança da Informação</h3>
+
+                <p>A <strong>Segurança da Informação começa com a identificação dos ativos de informação</strong>, ou seja, tudo aquilo que tem valor e precisa ser protegido, como informações pessoais, financeiras, acadêmicas, sistemas, serviços de e-mail, ERP, portais, infraestrutura, servidores, rede, nuvem, credenciais e chaves de senhas, tokens, certificados e até ativos intangíveis como reputação e continuidade operacional.</p>
+
+                <blockquote>
+                    <p>E aí vem a parte prática, com esse mapa na mão, dá para colocar prioridade onde realmente faz diferença. A lógica é simples: o que é mais crítico, se parar, faz interromper o trabalho do departamento, da organização, ou de um processo; o que é mais sensível, se vazar, dará problemas sérios, inclusive com LGPD?</p>
+                </blockquote>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Recurso</th><th>Explicação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Conjunto de práticas, processos, tecnologias e controles utilizados para proteger informações contra acessos, alterações, destruições, divulgações ou indisponibilidades não autorizadas. Não se resume a ferramentas tecnológicas; envolve também pessoas, processos, políticas, treinamentos e decisões de gestão.</td></tr>
+                            <tr><td>Analogia</td><td>A Segurança da Informação é como o sistema de segurança de uma casa. Não basta ter apenas uma fechadura na porta (antivírus). É preciso também ter muros (firewall), alarme (monitoramento), seguro (backup), e ensinar os moradores a não abrir a porta para estranhos (treinamento).</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.5.1 Segurança Física e Lógica</h4>
+                <p>O conceito das camadas lógicas e físicas baseia-se no pensamento de que, em vez de confiar em um único cadeado, a organização monta barreiras em pontos diferentes. Se uma camada falhar, a outra reduz o estrago e segura o avanço do problema.</p>
+
+                <h4>1.5.2 Segurança por camadas</h4>
+                <p>A segurança não é um produto, mas um processo em camadas. O objetivo é criar barreiras sucessivas que desencorajem, dificultem, discriminem e detenham ameaças antes que elas atinjam os dados corporativos.</p>
+
+                <h5>1.5.2.1 Governança</h5>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Governança define como a organização estabelece responsabilidades, prioridades, processos de decisão e mecanismos de acompanhamento.</td></tr>
+                            <tr><td>Exemplo</td><td>A governança estabelece quem tem autoridade para aprovar a compra de um novo sistema, quem é responsável pela segurança dos dados, como as decisões sobre investimentos em TI são tomadas e como os resultados são monitorados.</td></tr>
+                            <tr><td>Analogia</td><td>A governança é como a constituição de um país. Ela define quem toma as decisões, quais são os direitos e deveres, como as leis são criadas e como o poder é distribuído.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Camada de Governança e Políticas de Segurança</strong> — exemplos que podem ser adotados:</p>
+                <ul>
+                    <li><strong>Políticas de Segurança da Informação (PSI):</strong> documento que dita o comportamento esperado dos funcionários.</li>
+                    <li><strong>Contratos e Acordo de Confidencialidade:</strong> cláusulas de confidencialidade com colaboradores e terceiros.</li>
+                    <li><strong>Termos de Uso:</strong> regras para utilização de ativos tecnológicos da empresa.</li>
+                    <li><strong>Adequação à LGPD:</strong> processos de governança de dados pessoais.</li>
+                </ul>
+
+                <h6>1.5.2.1.1 Compliance</h6>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Compliance significa o compromisso de uma organização em atuar de acordo com leis, normas, regulamentos, contratos, políticas internas e princípios éticos aplicáveis às suas atividades.</td></tr>
+                            <tr><td>Analogia</td><td>O compliance é como as regras de trânsito. Elas existem para organizar o fluxo, prevenir acidentes e garantir que todos se comportem de maneira previsível e segura.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Exemplos na área de tecnologia:</strong></p>
+                <ul>
+                    <li>Cumprir a Lei Geral de Proteção de Dados Pessoais (LGPD)</li>
+                    <li>Manter registros de auditoria adequados</li>
+                    <li>Garantir que softwares utilizados estejam com licenças válidas</li>
+                    <li>Implementar controles de acesso conforme políticas internas</li>
+                    <li>Realizar auditorias periódicas</li>
+                </ul>
+
+                <h5>1.5.2.2 Camada Física</h5>
+                <ul>
+                    <li><strong>Controle de Acesso:</strong> catracas, crachás, leitores biométricos nas portas.</li>
+                    <li><strong>Monitoramento:</strong> câmeras de segurança (CFTV), sensores de movimento.</li>
+                    <li><strong>Segurança Ambiental:</strong> sistemas anti-incêndio, controle de temperatura em Datacenters, nobreaks.</li>
+                    <li><strong>Perímetro Físico:</strong> muros, cercas elétricas, guardas de segurança.</li>
+                </ul>
+
+                <h5>1.5.2.3 Camada Lógica</h5>
+                <ul>
+                    <li><strong>Perímetro ou Rede:</strong> Firewalls, IPS/IDS. A diferença entre IDS (detection) é que ele avisa e alerta; o IPS (prevention) avisa e bloqueia.</li>
+                    <li><strong>Endpoint-Host:</strong> qualquer dispositivo final conectado — PC, notebook, servidor, celular corporativo, máquina virtual. Antivírus-Antimalware é a proteção básica.</li>
+                    <li><strong>EDR (Endpoint Detection and Response):</strong> antivírus turbinado + investigação. Monitora comportamento do endpoint, processos, conexões, comandos e ajuda a detectar ataque em andamento.</li>
+                    <li><strong>Aplicação de patches:</strong> atualizações de correção. Patch é atualização que corrige falhas e vulnerabilidades.</li>
+                </ul>
+
+                <h5>1.5.2.4 Camada de Dados</h5>
+                <ul>
+                    <li><strong>Criptografia:</strong> torna o dado ilegível sem a chave de descriptografia.</li>
+                    <li><strong>DLP (Data Loss Prevention):</strong> sistemas que bloqueiam o envio de dados sensíveis.</li>
+                    <li><strong>Backup:</strong> cópias de segurança.</li>
+                </ul>
+
+                <h5>1.5.2.5 Camada Humana</h5>
+                <ul>
+                    <li><strong>Conscientização:</strong> treinamentos periódicos sobre phishing e Engenharia Social.</li>
+                    <li><strong>Cultura de Segurança:</strong> incentivo ao reporte de incidentes sem medo de punição.</li>
+                    <li><strong>Simulações:</strong> testes falsos de ataque para treinar a reação dos colaboradores.</li>
+                </ul>
+
+                <h6>1.5.2.5.1 Gestão de acesso</h6>
+                <p>A <strong>gestão de acesso</strong> define de forma objetiva <em>quem pode acessar, o que pode fazer e como essa ação será registrada</em>. O modelo <strong>AAA</strong> representa: <strong>Autenticação, Autorização e Auditoria</strong>.</p>
+
+                <blockquote>
+                    <p><strong>Quem é você? — Autenticação</strong><br>
+                    Você acessa o portal e faz login com RA + senha. O sistema verifica se o usuário aluno é realmente cadastrado.</p>
+                    <p><strong>O que você pode fazer? — Autorização</strong><br>
+                    Depois de autenticado, você consegue consultar notas, frequência e histórico, mas não consegue alterar. Já um professor autenticado tem permissão para lançar notas.</p>
+                    <p><strong>O que foi feito e quando? — Auditoria</strong><br>
+                    Tudo fica registrado em um log de transação indicando que você acessou o histórico às 20h14min, que a professora lançou nota às 10h32min, que a Secretaria alterou dados cadastrais às 15h20min.</p>
+                </blockquote>
+
+                <h6>1.5.2.5.2 Responsabilidade Profissional</h6>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Responsabilidade profissional significa compreender que decisões e ações realizadas por profissionais podem gerar consequências para outras pessoas, para a organização e para a sociedade.</td></tr>
+                            <tr><td>Analogia</td><td>A responsabilidade profissional é como a do capitão de um navio. Ele tem acesso ao leme, aos mapas, aos controles da embarcação e à comunicação com a costa. Esse acesso privilegiado traz a responsabilidade de conduzir o navio em segurança.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Responsabilidades esperadas:</strong></p>
+                <ul>
+                    <li>Utilizar apenas os acessos necessários para suas funções</li>
+                    <li>Proteger credenciais e não compartilhar senhas</li>
+                    <li>Respeitar políticas de segurança</li>
+                    <li>Proteger dados pessoais e confidenciais</li>
+                    <li>Comunicar incidentes ou vulnerabilidades identificadas</li>
+                    <li>Desenvolver sistemas considerando requisitos de segurança</li>
+                    <li>Registrar adequadamente alterações e operações relevantes</li>
+                    <li>Evitar utilizar informações organizacionais para benefício próprio</li>
+                    <li>Manter postura ética diante dos privilégios tecnológicos recebidos</li>
+                </ul>
+
+                <h6>1.5.2.5.3 Ética</h6>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>A ética orienta a conduta das pessoas mesmo em situações em que não exista uma regra específica dizendo exatamente o que fazer. É o conjunto de princípios morais que guiam o comportamento.</td></tr>
+                            <tr><td>Exemplo</td><td>Um profissional de TI descobre uma vulnerabilidade no sistema. Não há uma política específica sobre como reportá-la, mas a ética exige que ele comunique o fato à equipe de segurança.</td></tr>
+                            <tr><td>Analogia</td><td>A ética é como a bússola moral que guia o navegador em alto-mar. Mesmo quando não há placas de trânsito ou regras escritas, a bússola aponta a direção correta.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.6 Relação Entre os Conceitos</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Conceito</th><th>Relação com os demais</th></tr></thead>
+                        <tbody>
+                            <tr><td>Segurança</td><td>Busca proteger os ativos de informação contra ameaças</td></tr>
+                            <tr><td>Compliance</td><td>Garante que as regras, leis e políticas sejam respeitadas</td></tr>
+                            <tr><td>Governança</td><td>Determina responsabilidades e mecanismos de decisão e controle</td></tr>
+                            <tr><td>Ética</td><td>Orienta a conduta mesmo quando não há regra específica</td></tr>
+                            <tr><td>Responsabilidade</td><td>Implica assumir as consequências das ações profissionais</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <p><strong>Exemplo integrado:</strong> Um profissional de TI descobre que o sistema da empresa armazena senhas em texto puro (vulnerabilidade). A <strong>segurança</strong> exige que isso seja corrigido. O <strong>compliance</strong> exige que a empresa atenda à LGPD, que determina a adoção de medidas de segurança. A <strong>governança</strong> define que ele deve reportar ao gestor de segurança. A <strong>ética</strong> orienta que ele não pode ignorar o problema. E a <strong>responsabilidade profissional</strong> significa que ele deve agir para proteger a organização e os clientes.</p>
+                </blockquote>
+
+                <h3>1.7 Consequências de Falhas de Segurança</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Tipo</th><th>Exemplo</th></tr></thead>
+                        <tbody>
+                            <tr><td>Técnicas</td><td>Indisponibilidade de sistemas, perda de dados, corrupção de arquivos, comprometimento de servidores</td></tr>
+                            <tr><td>Administrativas</td><td>Interrupção de processos, investigação interna, afastamento de colaboradores, revisão de procedimentos</td></tr>
+                            <tr><td>Financeiras</td><td>Perda de vendas, custos de recuperação, pagamento de indenizações, multas, perda de contratos</td></tr>
+                            <tr><td>Jurídicas</td><td>Processos judiciais, responsabilização civil ou administrativa, sanções de órgãos reguladores</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.8 Ameaça</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Ameaça é qualquer ação, evento, agente ou circunstância com potencial para causar dano a um ativo de informação, explorando uma vulnerabilidade e resultando em um incidente de segurança.</td></tr>
+                            <tr><td>Analogia</td><td>A ameaça é como o lobo na história dos Três Porquinhos. O lobo representa o perigo que quer entrar, derrubar e destruir.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.8.1 Tipos de ameaças</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Tipo</th><th>Descrição</th><th>Exemplos</th></tr></thead>
+                        <tbody>
+                            <tr><td>Ameaças internas</td><td>Originam-se dentro da organização</td><td>Funcionário insatisfeito que vende dados; colaborador que acessa informações sem autorização; erro humano</td></tr>
+                            <tr><td>Ameaças externas</td><td>Originam-se fora da organização</td><td>Hackers, concorrentes, governos estrangeiros, grupos de cibercriminosos, ataques de ransomware</td></tr>
+                            <tr><td>Ameaças naturais</td><td>Causadas por fenômenos naturais</td><td>Inundações, terremotos, incêndios, tempestades, raios</td></tr>
+                            <tr><td>Ameaças acidentais</td><td>Resultam de falhas não intencionais</td><td>Queda de energia, falha de hardware, erro de configuração, exclusão acidental de arquivos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.9 Vulnerabilidade</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Vulnerabilidade é uma fragilidade, brecha, falha ou fraqueza em um ativo, sistema, processo ou pessoa que pode ser explorada por uma ameaça para causar dano.</td></tr>
+                            <tr><td>Analogia</td><td>A vulnerabilidade é a casinha de palha no conto dos Três Porquinhos. Ela é frágil, tem falhas estruturais e pode ser facilmente derrubada.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.9.1 Tipos de vulnerabilidades</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Tipo</th><th>Descrição</th><th>Exemplos</th></tr></thead>
+                        <tbody>
+                            <tr><td>Vulnerabilidades técnicas</td><td>Falhas em hardware, software ou infraestrutura</td><td>Sistema operacional desatualizado; senha fraca; ausência de firewall; código com falhas de segurança</td></tr>
+                            <tr><td>Vulnerabilidades humanas</td><td>Falhas relacionadas ao comportamento das pessoas</td><td>Funcionários que compartilham senhas; falta de treinamento; descuido ao abrir e-mails suspeitos</td></tr>
+                            <tr><td>Vulnerabilidades físicas</td><td>Falhas na proteção física dos ativos</td><td>Servidor em sala sem tranca; falta de controle de acesso físico; cabos de rede expostos</td></tr>
+                            <tr><td>Vulnerabilidades organizacionais</td><td>Falhas em processos, políticas ou gestão</td><td>Ausência de política de backup; falta de plano de contingência; ausência de auditoria</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.10 Risco</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Risco é a possibilidade de que uma ameaça explore uma vulnerabilidade e cause dano a um ativo, resultando em impacto negativo para a organização.</td></tr>
+                            <tr><td>Analogia</td><td>O risco é o resultado do encontro entre o lobo (ameaça) e a casinha de palha (vulnerabilidade). Se o lobo está na floresta e a casa é de palha, o risco de a casa ser derrubada é alto.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <p><strong>Fórmula básica do risco:</strong><br>
+                    <strong>RISCO = PROBABILIDADE × IMPACTO</strong><br>
+                    Ou, de forma mais completa:<br>
+                    <strong>RISCO = AMEAÇA × VULNERABILIDADE × IMPACTO</strong></p>
+                </blockquote>
+
+                <h4>1.10.1 Classificação e Priorização de Riscos</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Nível de risco</th><th>Ação recomendada</th></tr></thead>
+                        <tbody>
+                            <tr><td>Crítico</td><td>Intervenção imediata; tratamento prioritário</td></tr>
+                            <tr><td>Alto</td><td>Tratamento no curto prazo; atenção da alta gestão</td></tr>
+                            <tr><td>Médio</td><td>Tratamento programado; monitoramento contínuo</td></tr>
+                            <tr><td>Baixo</td><td>Aceitar ou monitorar; ação se houver recursos disponíveis</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.10.2 Phishing</h4>
+                <p>Phishing é um tipo de golpe em que alguém se passa por uma pessoa ou empresa confiável para enganar e fazer você entregar informações, como senha, código do MFA, dados bancários, ou clicar em um link com arquivo malicioso.</p>
+                <p><strong>Como identificar phishing no dia a dia:</strong></p>
+                <ul>
+                    <li>Mensagem com urgência, como "último aviso" e "sua conta será bloqueada"</li>
+                    <li>Link que parece normal, mas o endereço é estranho</li>
+                    <li>Pedido de senha, código ou confirmação de cadastro</li>
+                    <li>Anexos inesperados como boleto, NF, currículo</li>
+                </ul>
+
+                <h4>1.10.3 Matriz de risco (exemplo)</h4>
+<pre data-lang="text"><code>              PROBABILIDADE
+              Baixa    Média    Alta
+Impacto    ┌─────────────────────────────┐
+Baixo      │   Baixo   │ Médio  │ Médio  │
+Médio      │   Médio   │ Alto   │ Alto   │
+Alto       │   Alto    │ Alto   │ Crítico│
+Catastróf. │   Alto    │ Crítico│ Crítico│
+           └─────────────────────────────┘</code></pre>
+
+                <h4>1.10.4 Inventário Básico de Ativos e Riscos</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Ativo</th><th>Ameaças</th><th>Vulnerabilidades</th><th>Risco</th><th>Controle sugerido</th></tr></thead>
+                        <tbody>
+                            <tr><td>Servidor de aplicação</td><td>Hackers; ransomware; falha</td><td>Sistema desatualizado</td><td>Alto</td><td>Atualizações automáticas; firewall; antivírus</td></tr>
+                            <tr><td>Banco de dados</td><td>Vazamento; exclusão; corrupção</td><td>Senha fraca; sem backup</td><td>Crítico</td><td>Criptografia; backup diário; MFA</td></tr>
+                            <tr><td>Rede Wi-Fi</td><td>Ataque de interceptação</td><td>WEP ou senha fraca</td><td>Alto</td><td>WPA3; senha complexa; guest network</td></tr>
+                            <tr><td>Funcionários</td><td>Phishing; engenharia social</td><td>Falta de treinamento</td><td>Médio</td><td>Treinamento periódico; simulações de phishing</td></tr>
+                            <tr><td>Documentos físicos</td><td>Incêndio; extravio</td><td>Sem digitalização; sem cópia</td><td>Médio</td><td>Digitalização; cofre; seguro</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.11 Relação Entre Ameaça, Vulnerabilidade e Risco</h3>
+<pre data-lang="text"><code>AMEAÇA → (explora) → VULNERABILIDADE → (causa) → INCIDENTE → (gera) → IMPACTO
+                                                              ↓
+                                                           RISCO</code></pre>
+
+                <h3>1.12 Impacto e Incidente</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Conceito</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Impacto</td><td>É a consequência, o dano ou o prejuízo causado pela materialização do risco. Pode ser técnico, administrativo, financeiro ou jurídico.</td></tr>
+                            <tr><td>Incidente</td><td>É a ocorrência efetiva de um evento que compromete a segurança da informação. É o risco que se concretizou.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>1.13 Superfície e Vetores de Ataque</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Conceito</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Superfície de ataque</td><td>É o conjunto total de pontos vulneráveis por onde uma ameaça pode tentar acessar um sistema. Quanto maior a superfície de ataque, mais vulnerabilidades potenciais existem.</td></tr>
+                            <tr><td>Vetor de ataque</td><td>É o caminho específico utilizado por uma ameaça para explorar uma vulnerabilidade. É o "como" o ataque acontece.</td></tr>
+                            <tr><td>Analogia</td><td>A superfície de ataque é como todas as portas, janelas, portões e entradas de uma casa. O vetor de ataque é a ferramenta específica usada para abrir uma dessas entradas, como um pé-de-cabra.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Exemplos de vetores de ataque:</strong> e-mail de phishing, vulnerabilidade em aplicação web, engenharia social, dispositivo USB infectado, Wi-Fi público não seguro, senha fraca.</p>
+
+                <h3>1.14 Os 6 Pilares da Segurança</h3>
+
+                <h4>1.14.1 Confidencialidade (Tríade da Segurança)</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Garante que determinada informação seja acessada somente por pessoas, sistemas ou processos autorizados.</td></tr>
+                            <tr><td>Analogia</td><td>É como um diário com cadeado. Apenas a pessoa que tem a chave pode ler o que está escrito.</td></tr>
+                            <tr><td>Exemplo</td><td>Como aluno, só você e o professor podem ver as notas e faltas. Se outro colega ver, a confidencialidade falhou.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Controles relacionados:</strong> autenticação, controle de acesso, criptografia, classificação das informações, princípio do menor privilégio.</p>
+
+                <h4>1.14.2 Integridade (Tríade da Segurança)</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Garante que uma informação permaneça correta, completa e sem alterações indevidas.</td></tr>
+                            <tr><td>Analogia</td><td>É como um contrato assinado. Se alguém rasura ou altera uma cláusula sem autorização, o contrato perde sua integridade.</td></tr>
+                            <tr><td>Exemplo</td><td>O professor lança a nota 7,5. Depois, por erro ou fraude, alguém altera para 9,5. A integridade foi violada.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.14.3 Disponibilidade (Tríade da Segurança)</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Garante que informações, sistemas e serviços estejam acessíveis aos usuários autorizados quando e onde for necessário.</td></tr>
+                            <tr><td>Analogia</td><td>É como uma loja 24 horas. Os clientes esperam que a loja esteja aberta sempre que precisarem.</td></tr>
+                            <tr><td>Exemplo</td><td>No período de rematrícula, o sistema online (SIGA) deve estar disponível. Se não funcionar por ataques hackers ou problemas técnicos, a disponibilidade foi comprometida.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.14.4 Autenticidade</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Permite verificar que uma pessoa, sistema, documento ou mensagem realmente possui a identidade que declara possuir.</td></tr>
+                            <tr><td>Analogia</td><td>É como o RG ou carteira de identidade de uma pessoa.</td></tr>
+                            <tr><td>Exemplo</td><td>Quando você faz um Pix, o sistema bancário verifica sua identidade por meio de senha, biometria ou token.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>1.14.5 Irretratabilidade / Não-Repúdio</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Busca impedir que alguém negue posteriormente a autoria ou realização de determinada ação, quando existem evidências confiáveis.</td></tr>
+                            <tr><td>Analogia</td><td>É como assinar um cheque. Quando você assina, não pode depois negar que o emitiu, porque sua assinatura está lá como prova.</td></tr>
+                            <tr><td>Exemplo</td><td>Quando você assina um contrato digitalmente com certificado digital (e-CPF/e-CNPJ), não pode depois dizer que não foi você.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                                <h4>1.14.6 Legalidade</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Recurso</th><th>Explicação</th></tr></thead>
+                        <tbody>
+                            <tr><td>Conceito</td><td>Estabelece que o tratamento e a utilização das informações devem respeitar a legislação e as normas aplicáveis ao contexto da organização.</td></tr>
+                            <tr><td>Analogia</td><td>É como as leis de trânsito. Mesmo que você tenha um carro muito seguro e seja um ótimo motorista, se não respeitar as leis, estará cometendo uma infração.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Exemplos de legalidade:</strong></p>
+                <ul>
+                    <li>Cumprir a LGPD no tratamento de dados de clientes</li>
+                    <li>Respeitar normas setoriais (Banco Central, ANVISA)</li>
+                    <li>Manter registros de operações conforme exigido por lei</li>
+                    <li>Obter consentimento para coleta e uso de dados pessoais</li>
+                    <li>Cumprir prazos legais para retenção e descarte de documentos</li>
+                </ul>
+
+                <h4>1.14.7 Relação Entre os Princípios</h4>
+<pre data-lang="text"><code>Confidencialidade   →   Quem pode ver?
+Integridade         →   Está correto e íntegro?
+Disponibilidade     →   Está acessível quando necessário?
+Autenticidade       →   Quem realmente é o autor/emissor?
+Não Repúdio         →   A pessoa pode negar que fez?
+Legalidade          →   Está de acordo com a lei?</code></pre>
+
+                <h5>Exemplo integrado em uma transação bancária online</h5>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Princípio</th><th>Aplicação na transação</th><th>O que acontece se falhar?</th></tr></thead>
+                        <tbody>
+                            <tr><td>Confidencialidade</td><td>Os dados da transação (valor, conta) são visíveis apenas para o cliente e o banco</td><td>Hackers veem seus dados financeiros</td></tr>
+                            <tr><td>Integridade</td><td>O valor transferido é exatamente o que você digitou</td><td>Alguém altera R$100,00 para R$10.000</td></tr>
+                            <tr><td>Disponibilidade</td><td>O sistema está funcionando quando você precisa transferir</td><td>O sistema está fora do ar e você não consegue pagar</td></tr>
+                            <tr><td>Autenticidade</td><td>O banco tem certeza de que é você quem está transferindo</td><td>Um fraudador usa sua conta para transferir dinheiro</td></tr>
+                            <tr><td>Não Repúdio</td><td>Você não pode negar que fez a transferência</td><td>Você transfere e depois alega que foi hackeado</td></tr>
+                            <tr><td>Legalidade</td><td>A transferência respeita as regras do Banco Central</td><td>A transferência é feita em desacordo com a legislação</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="lgpd">2. LGPD</h2>
+
+                <p>Anteriormente, foi visto a Segurança da Informação como um conjunto de práticas que ajudam a proteger ativos e reduzir riscos dentro das organizações. Mais do que decorar conceitos, a ideia foi perceber que segurança não fica restrita ao setor de TI. Ela aparece no uso de senhas, no cuidado com acessos, na forma como arquivos são compartilhados, no registro de atendimentos, no armazenamento de relatórios e em várias outras escolhas que fazem parte da rotina de uma empresa.</p>
+
+                <blockquote>
+                    <p>Isso é importante porque, no mundo real, <strong>segurança nunca depende só de tecnologia</strong>. Um sistema pode ter antivírus, firewall, backup e controle de acesso, mas ainda assim existir risco se as pessoas usam ferramentas sem critério, compartilham dados em excesso ou deixam processos soltos.</p>
+                </blockquote>
+
+                <h3>2.1 O que ela muda na prática dentro das empresas?</h3>
+
+                <p>Quando a <strong>LGPD</strong> entra na conversa, a <strong>primeira mudança importante é de postura</strong>. Durante muito tempo, muitas empresas trataram dados de forma quase automática. Coletavam porque o formulário já pedia, guardavam porque "vai que um dia precisa" e compartilhavam porque parecia útil para alguma área. A Lei Geral de Proteção de Dados Pessoais (LGPD) organiza esse cenário ao deixar mais claro que o <strong>tratamento de dados não pode acontecer sem critério</strong>.</p>
+
+                <blockquote>
+                    <p>Não basta a empresa dizer que precisa da informação. Ela precisa ter <strong>finalidade, base legal, limite e responsabilidade</strong>. Isso vale para coleta, uso, compartilhamento, armazenamento e eliminação de dados.</p>
+                </blockquote>
+
+                <p>Em vez de olhar apenas para a possibilidade técnica, passa a ser necessário analisar a legitimidade do tratamento das informações. Não se trata só de <strong>saber se o sistema consegue armazenar um dado, mas de entender se essa informação realmente precisa estar ali, para qual finalidade ele será usado, quem terá acesso e por quanto tempo isso faz sentido</strong>.</p>
+
+                <p>Segundo <em>Bioni (2020)</em>, é importante perceber que <strong>a lei não se resume a consentimento</strong>. Muita gente, quando começa a estudar o tema, imagina que tudo gira em torno de pedir autorização da pessoa. Só que a lógica da LGPD é mais ampla. O tratamento de dados precisa estar apoiado em critérios consistentes, e o consentimento é apenas uma das possibilidades dentro desse conjunto. O <strong>ponto central não é apenas "autorizar", mas justificar, limitar e registrar</strong>.</p>
+
+                <p>A LGPD funciona como um organizador da rotina. Ela obriga a empresa a parar e observar melhor seus próprios processos:</p>
+                <ul>
+                    <li>Que dados entram em cada fluxo?</li>
+                    <li>Qual a finalidade de cada informação?</li>
+                    <li>Quem acessa?</li>
+                    <li>Quais sistemas estão envolvidos?</li>
+                    <li>Existe compartilhamento com terceiros?</li>
+                    <li>Há prazo de retenção?</li>
+                </ul>
+
+                <h3>2.2 Legalidade, privacidade e conformidade e como se conectam</h3>
+
+                <p>A <strong>legalidade</strong> diz respeito ao fato de que o tratamento de dados precisa acontecer dentro de regras. A empresa não pode usar informações pessoais de qualquer jeito. É necessário ter <strong>fundamento para o tratamento, respeitar limites e considerar os direitos do titular</strong>.</p>
+
+                <p>A <strong>privacidade</strong> aparece como um <strong>cuidado mais direto com a pessoa e com a exposição de suas informações</strong>. Ela nos lembra que não basta cumprir formalidades. É preciso <em>reduzir excessos, evitar coletas desnecessárias, limitar acessos e pensar no impacto que o uso da informação pode ter</em>.</p>
+
+                <p>Já a <strong>conformidade</strong> tem a ver com coerência entre discurso e prática. <strong>Conformidade é conseguir demonstrar que a empresa faz o que afirma fazer</strong>. Não é algo que se resolve com boa intenção. Exige rotina, documentação, revisão e capacidade de provar o caminho adotado.</p>
+
+                <h4>2.2.1 Impacto em automação e inteligência artificial</h4>
+                <p>Essas tecnologias podem melhorar a eficiência, apoiar análise de padrões e ajudar até mesmo na defesa cibernética. Mas, quanto mais dados são utilizados nesses sistemas, maior precisa ser o cuidado com governança. <em>Vijayarangam, Manoranjitham e Raghuraman (2025)</em> mostram que o uso de aprendizado de máquina na defesa cibernética aumenta a capacidade de detecção de ameaças, mas também traz novas exigências de controle e governança sobre dados e logs utilizados em larga escala.</p>
+
+                <h3>2.3 Governança, evidências e resposta a incidentes</h3>
+
+                <p>No fim das contas, a conformidade só faz sentido quando deixa de ser discurso e aparece na prática. É aqui que entram governança, evidências e resposta a incidentes.</p>
+
+                <ul>
+                    <li><strong>Governança</strong> ajuda a organizar esse cenário. Na prática, significa definir responsabilidades, estabelecer fluxos, revisar processos, orientar equipes e acompanhar se os controles estão sendo aplicados.</li>
+                    <li>A ideia de <strong>evidência</strong> também ganha força aqui. Não basta dizer que a empresa age corretamente. É preciso demonstrar com registros, políticas aplicadas, revisões de acesso, contratos com terceiros, trilhas de auditoria, decisões documentadas e critérios claros para retenção e descarte de dados.</li>
+                </ul>
+
+                <blockquote>
+                    <p>Um incidente pode acontecer quando uma planilha é enviada para a pessoa errada, quando um arquivo fica exposto sem necessidade, quando um colaborador usa um canal inadequado para compartilhar dados ou quando um acesso indevido acontece dentro da própria empresa.</p>
+                    <p>Nesses casos, a empresa precisa ter condições mínimas de resposta. Primeiro, entender o que ocorreu. Depois, avaliar quais dados foram envolvidos, quantas pessoas podem ter sido afetadas e qual o impacto da situação. Em seguida, agir para conter o problema, registrar o ocorrido e definir os próximos passos.</p>
+                </blockquote>
+
+                <h3>2.4 Resumo</h3>
+                <p>Proteger dados não depende só de tecnologia, mas também é preciso saber se a empresa está usando essas informações do jeito certo, com finalidade clara, cuidado e responsabilidade. A LGPD entra justamente nesse ponto, ajudando a definir limites para a coleta, o uso, o compartilhamento e o armazenamento de dados pessoais. Seguindo três ideias simples:</p>
+                <ul>
+                    <li>A primeira é que a LGPD não deve ser tratada apenas como "lei", mas como critério para decidir melhor. Antes de coletar ou usar uma informação, faz diferença perguntar: isso é necessário? Qual é a finalidade? Consigo justificar esse uso?</li>
+                    <li>A segunda é que conformidade depende de evidência. Não basta dizer que faz certo. É preciso conseguir mostrar processo, registro, responsabilidade e controle.</li>
+                    <li>A terceira é que tecnologia ajuda muito, mas não resolve tudo sozinha. Quanto mais sistemas, automações e integrações existem, maior é a necessidade de governança sobre os dados que circulam nesses ambientes.</li>
+                </ul>
+
+                <h2 id="governanca">3. Governança nas organizações</h2>
+
+                <p>Quando a palavra governança aparece, muita gente pensa logo em algo distante da rotina da empresa, quase sempre ligado à alta administração ou a estruturas muito formais. Mas a governança está muito mais presente no cotidiano organizacional do que parece, porque ela tem relação direta com a forma como as decisões são tomadas, como as responsabilidades são distribuídas e como a organização acompanha aquilo que faz.</p>
+
+                <p>Pense em situações simples do dia a dia, como por exemplo a empresa decide contratar um novo sistema, compartilhar dados com um fornecedor ou alterar um procedimento interno. Em casos assim, algumas perguntas precisam aparecer:</p>
+                <ul>
+                    <li>Quem autorizou essa decisão?</li>
+                    <li>Quem avaliou os possíveis impactos?</li>
+                    <li>Quem vai acompanhar se tudo está funcionando como deveria?</li>
+                </ul>
+
+                <h3>3.1 Gestão de Risco</h3>
+                <p>Toda empresa convive com riscos, mesmo quando eles não estão visíveis o tempo todo. <strong>Gerir riscos significa desenvolver a capacidade de olhar antes</strong>. Observar situações que podem comprometer objetivos, processos, informações ou atividades da empresa antes que elas se transformem em problemas concretos.</p>
+
+                <p>No cotidiano organizacional, isso aparece de várias maneiras:</p>
+                <ul>
+                    <li>Possibilidade de um sistema falhar</li>
+                    <li>Acesso indevido a um dado</li>
+                    <li>Indisponibilidade de um serviço</li>
+                    <li>Compartilhamento inadequado de uma informação</li>
+                    <li>Procedimentos mal definidos</li>
+                    <li>Concentração de tarefas em uma única pessoa</li>
+                    <li>Falta de revisão de acessos</li>
+                    <li>Falhas de comunicação entre setores</li>
+                </ul>
+
+                <p><em>Peck et al. (2021)</em> defendem que a proteção de dados e a segurança digital não devem ser tratadas como questões exclusivamente técnicas, mas como parte da própria estrutura de gestão e organização da empresa.</p>
+
+                <p>Esse processo pode começar com perguntas bastante objetivas:</p>
+                <ul>
+                    <li>Quais atividades não podem parar?</li>
+                    <li>Quais informações precisam de maior proteção?</li>
+                    <li>O que aconteceria se um sistema essencial ficasse indisponível?</li>
+                    <li>Quem seria afetado?</li>
+                    <li>Existem controles suficientes?</li>
+                    <li>Há preparo para responder a incidentes?</li>
+                </ul>
+
+                <h3>3.2 ISO 31000</h3>
+                <p>É uma <strong>norma internacional voltada para a gestão de riscos</strong>, não é exclusiva de Tecnologia da Informação, mas serve como base conceitual para segurança da informação, continuidade, compliance, governança e tomada de decisão. Ela é construída em torno de três grandes eixos: <strong>princípios, estrutura e processo</strong>.</p>
+
+                <ul>
+                    <li>Os princípios mostram como a gestão de riscos deve funcionar para ser útil;</li>
+                    <li>A estrutura indica como essa gestão deve ser incorporada à organização;</li>
+                    <li>O processo descreve as etapas práticas para lidar com os riscos.</li>
+                </ul>
+
+                <p>Ela reforça a necessidade de <strong>integrar a gestão de riscos à tomada de decisão</strong>. O risco não é algo que se avalia uma única vez, pois o ambiente organizacional muda, os sistemas mudam, os contratos mudam, os fornecedores mudam e os próprios objetivos da empresa podem mudar ao longo do tempo.</p>
+
+                <h3>3.3 Família ISO/IEC 2700x</h3>
+                <p>Se a ISO 31000 ajuda a organização a estruturar a forma de pensar e tratar riscos, a família <strong>ISO/IEC 2700x</strong> aprofunda isso no contexto específico da segurança da informação.</p>
+
+                <ul>
+                    <li><strong>ISO/IEC 27001:</strong> trata do sistema de gestão de segurança da informação;</li>
+                    <li><strong>ISO/IEC 27002:</strong> apresenta diretrizes relacionadas aos controles que podem ser adotados.</li>
+                </ul>
+
+                <h4>3.3.1 Controles organizacionais</h4>
+                <p>Reúne práticas ligadas à governança da segurança, definição de responsabilidades, políticas, tratamento de riscos, uso aceitável de ativos, classificação da informação, gestão de fornecedores, resposta a incidentes, continuidade e conformidade.</p>
+                <p><strong>Boas práticas:</strong></p>
+                <ul>
+                    <li>Estabelecer política de segurança da informação;</li>
+                    <li>Definir papéis e responsabilidades;</li>
+                    <li>Manter inventário de ativos;</li>
+                    <li>Classificar informações conforme sensibilidade;</li>
+                    <li>Controlar o relacionamento com fornecedores;</li>
+                    <li>Estruturar gestão de incidentes;</li>
+                    <li>Planejar continuidade do negócio;</li>
+                    <li>Assegurar conformidade legal e regulatória.</li>
+                </ul>
+
+                <h4>3.3.2 Controles de pessoas</h4>
+                <p>Concentra práticas ligadas ao fator humano. Busca reduzir riscos ligados ao comportamento das pessoas e ao ciclo de vida do vínculo profissional.</p>
+                <p><strong>Boas práticas:</strong></p>
+                <ul>
+                    <li>Realizar verificação prévia de pessoas para funções sensíveis;</li>
+                    <li>Incluir cláusulas de segurança em contratos de trabalho;</li>
+                    <li>Promover conscientização e treinamento;</li>
+                    <li>Definir deveres de segurança durante e após o vínculo;</li>
+                    <li>Tratar violações de políticas de forma formal;</li>
+                    <li>Reforçar comportamento seguro no uso de sistemas e dados.</li>
+                </ul>
+
+                <h4>3.3.3 Controles físicos</h4>
+                <p>Trata da proteção do ambiente físico em que a informação é processada ou armazenada.</p>
+                <p><strong>Boas práticas típicas:</strong></p>
+                <ul>
+                    <li>Controle de acesso a áreas seguras;</li>
+                    <li>Proteção de salas, equipamentos e infraestrutura;</li>
+                    <li>Prevenção contra incêndio, falhas elétricas e danos ambientais;</li>
+                    <li>Descarte seguro de mídias e equipamentos;</li>
+                    <li>Proteção de estações de trabalho e dispositivos fora do ambiente controlado;</li>
+                    <li>Política de mesa limpa e tela limpa.</li>
+                </ul>
+
+                <h4>3.3.4 Controles tecnológicos</h4>
+                <p>Reúne medidas de natureza mais técnica, aplicadas a sistemas, redes, aplicações e dados.</p>
+                <p><strong>Boas práticas típicas:</strong></p>
+                <ul>
+                    <li>Controle de acesso lógico;</li>
+                    <li>Autenticação e gestão de credenciais;</li>
+                    <li>Uso de criptografia;</li>
+                    <li>Proteção contra malware;</li>
+                    <li>Cópias de segurança e recuperação;</li>
+                    <li>Registro e monitoramento de eventos;</li>
+                    <li>Segurança de redes e comunicações;</li>
+                    <li>Gestão de vulnerabilidades;</li>
+                    <li>Configuração segura de sistemas e aplicações.</li>
+                </ul>
+
+                <h3>3.4 PDCA</h3>
+                <p>PDCA é um método de melhoria contínua que conecta as duas normas, usado para organizar processos, corrigir falhas e acompanhar resultados.</p>
+                <ul>
+                    <li><strong>P – Plan (Planejar)</strong></li>
+                    <li><strong>D – Do (Executar)</strong></li>
+                    <li><strong>C – Check (Verificar)</strong></li>
+                    <li><strong>A – Act (Agir corretivamente ou ajustar)</strong></li>
+                </ul>
+
+                <h4>3.4.1 Plan (Planejar)</h4>
+                <p>A organização <strong>identifica o problema, define objetivos, analisa riscos, levanta causas e decide o que precisa ser feito</strong>. É o momento de responder perguntas como:</p>
+                <ul>
+                    <li>O que precisa ser melhorado?</li>
+                    <li>Qual é o risco?</li>
+                    <li>Qual meta se deseja atingir?</li>
+                    <li>Quais recursos serão necessários?</li>
+                    <li>Quem será responsável?</li>
+                </ul>
+
+                <h4>3.4.2 Do (Executar)</h4>
+                <p>A organização deve <strong>colocar em prática aquilo que foi definido</strong>. Essa fase não é apenas "fazer", mas fazer de forma controlada.</p>
+
+                <h4>3.4.3 Check (Verificar)</h4>
+                <p>A organização verifica se o que foi implantado realmente funcionou. É o momento de <strong>medir resultados, comparar com a meta e identificar desvios</strong>.</p>
+
+                <h4>3.4.4 Act (Agir)</h4>
+                <p>Depois da verificação, a organização age sobre os resultados. Se deu certo, ela padroniza e mantém a melhoria. Se não deu certo, corrige falhas, ajusta o plano e reinicia o ciclo.</p>
+
+                <h3>3.5 Controles, responsabilidades</h3>
+                <p>Falar em cultura organizacional nesse contexto significa olhar para a forma como as pessoas compreendem seu papel, tomam decisões e reagem às situações do cotidiano. Construir cultura exige continuidade. Exige que a liderança dê exemplo, que as orientações sejam claras e que os processos sejam levados a sério no dia a dia.</p>
+
+                <p>Quando a empresa valoriza a segurança e o tratamento adequado dos riscos, esse entendimento começa a aparecer nas práticas mais simples:</p>
+                <ul>
+                    <li>No cuidado com acessos;</li>
+                    <li>No respeito aos procedimentos;</li>
+                    <li>Na comunicação de falhas;</li>
+                    <li>Na revisão de rotinas;</li>
+                    <li>Na postura adotada diante das responsabilidades assumidas.</li>
+                </ul>
+
+                <h2 id="formas-seguranca">4. Formas de Segurança</h2>
+
+                <p>Segurança da informação envolve proteger pessoas, ambientes, equipamentos, redes, sistemas, documentos e processos. Em outras palavras, não adianta a organização investir em tecnologia de ponta se deixa portas abertas, documentos expostos ou usuários sem orientação.</p>
+
+                <blockquote>
+                    <p><strong>Exemplo:</strong> Uma instituição tem firewall, antivírus e autenticação em dois fatores, mas o servidor principal fica em uma sala sem controle de acesso, com qualquer pessoa podendo entrar. Isso mostra que a segurança lógica pode estar relativamente bem estruturada, mas a segurança física é vulnerável.</p>
+                </blockquote>
+
+                <p>Segundo <em>Pinheiro et al. (2021)</em>, proteger dados e ativos depende da combinação entre tecnologia, governança, regras e comportamento humano. A segurança não é apenas impedir invasão, mas também evitar perda, exposição, indisponibilidade e uso inadequado da informação.</p>
+
+                <h3>4.1 Segurança física</h3>
+                <p>A segurança física envolve medidas voltadas à proteção de instalações, equipamentos, servidores, documentos impressos e pessoas que circulam no ambiente organizacional.</p>
+                <p>A segurança física inclui:</p>
+                <ul>
+                    <li>Uso de crachás;</li>
+                    <li>Fechaduras eletrônicas;</li>
+                    <li>Câmeras;</li>
+                    <li>Controle de entrada e saída;</li>
+                    <li>Barreiras de acesso;</li>
+                    <li>Identificação de visitantes e proteção de áreas restritas.</li>
+                </ul>
+
+                <h3>4.2 Segurança Ambiental</h3>
+                <p>A organização também precisa se preocupar com fatores ambientais, como a localização de um data center. Muitas perdas de dados e interrupções de serviço ocorrem por causas como queda de energia, superaquecimento, incêndio, infiltração, umidade, poeira excessiva e falhas na climatização.</p>
+                <p>A segurança ambiental envolve cuidados como climatização adequada, extintores compatíveis com equipamentos elétricos, sensores de fumaça, nobreaks, geradores, proteção contra surtos elétricos e planejamento da disposição física dos recursos tecnológicos.</p>
+
+                <h3>4.3 Segurança lógica</h3>
+                <p>Se a segurança física protege o ambiente e os equipamentos, a <strong>segurança lógica protege o acesso aos sistemas</strong>, redes, aplicações e dados digitais. É aqui que entram mecanismos como:</p>
+                <ul>
+                    <li>Login e senha;</li>
+                    <li>Autenticação multifator;</li>
+                    <li>Perfis de acesso;</li>
+                    <li>Criptografia;</li>
+                    <li>Antivírus;</li>
+                    <li>Firewall;</li>
+                    <li>Monitoramento de rede;</li>
+                    <li>Bloqueio de atividades suspeitas.</li>
+                </ul>
+
+                <h4>4.3.1 Usuários, senhas e autenticação</h4>
+                <p>O fator humano não é um detalhe em segurança da informação. Muitas falhas acontecem não por ausência de ferramenta, mas por comportamento inadequado. Um colaborador pode, sem perceber, abrir um arquivo malicioso, informar credenciais em uma página falsa ou enviar um documento sigiloso para a pessoa errada.</p>
+
+                <h3>4.4 Políticas de segurança</h3>
+                <p>Uma política de segurança da informação é, em essência, <strong>um conjunto de diretrizes que orienta o comportamento esperado dentro da organização</strong>. Em termos simples, a política responde a perguntas relacionadas ao que pode, o que não pode, quem responde, o porquê e como deve agir em caso de problema. Define:</p>
+                <ul>
+                    <li>Princípios;</li>
+                    <li>Responsabilidades;</li>
+                    <li>Limites de uso;</li>
+                    <li>Condutas diante de riscos ou incidentes.</li>
+                </ul>
+
+                <h3>4.5 Classificação da informação</h3>
+                <p>Um dos erros mais comuns nas organizações é tratar todas as informações como se tivessem o mesmo valor e a mesma sensibilidade. Quando a organização não classifica seus dados, ela perde a capacidade de definir cuidados proporcionais.</p>
+                <blockquote>
+                    <p>Imagine três tipos de informação: um folder institucional, um relatório interno de desempenho e a folha de pagamento dos funcionários. Faz sentido armazenar, compartilhar e proteger tudo isso da mesma forma? Claro que não.</p>
+                </blockquote>
+
+                <h3>4.6 Backup e continuidade</h3>
+                <p>Uma organização pode investir em proteção, controlar acessos e treinar usuários. Ainda assim, falhas podem acontecer: um equipamento pode parar, um arquivo pode ser apagado, um sistema pode ser comprometido por ransomware, uma queda de energia pode interromper operações. É <strong>nesse momento que entram os planos de backup e continuidade</strong>.</p>
+
+                <h3>4.7 Incidentes de segurança</h3>
+                <p>Os incidentes de segurança podem acontecer mesmo em ambientes relativamente bem preparados, mas a diferença está em como a organização reage. Quando não há plano, o susto vira desorganização: ninguém sabe quem comunicar, o que registrar, o que isolar ou como conter o problema.</p>
+                <p>Resposta a incidentes é o conjunto de ações tomadas para identificar, conter, analisar, corrigir e aprender com um evento que afeta a segurança.</p>
+
+                <h3>4.8 Segurança como prática de gestão</h3>
+                <p>Os controles organizacionais são mecanismos administrativos e operacionais que ajudam a transformar a segurança em prática contínua. Incluem definição de responsabilidades, segregação de funções, treinamentos, revisões periódicas, auditorias internas, inventário de ativos, registro de acessos e acompanhamento de conformidade.</p>
+
+                <h3>4.9 Tecnologias emergentes e novos desafios de proteção</h3>
+                <p>Com a ampliação do <em>uso de nuvem</em>, <em>dispositivos móveis</em>, <em>automação</em>, <em>blockchain</em> e <em>inteligência artificial</em>, os desafios de segurança também se tornaram mais complexos. A organização deixou de proteger apenas computadores locais e passou a lidar com ecossistemas digitais muito mais distribuídos.</p>
+
+                <h3>4.10 Cultura de segurança da informação</h3>
+                <p>Uma organização com cultura de segurança não é aquela em que ninguém erra, mas aquela em que o cuidado faz parte do cotidiano. As pessoas sabem que informação tem valor, compreendem que regras existem por um motivo e percebem que pequenas atitudes fazem diferença.</p>
+
+                <h2 id="controle-acesso">5. Controle de acesso à informação</h2>
+
+                <h3>5.1 Identidade Digital</h3>
+                <p>No mundo físico, usamos documentos, crachás, assinaturas, biometria e reconhecimento pessoal para confirmar identidades. No mundo digital, essa identificação acontece por meio de contas, usuários, senhas, tokens, certificados digitais, biometria, códigos temporários e outros mecanismos.</p>
+
+                <h3>5.2 IAM (Identity and Access Management)</h3>
+                <p>A sigla vem de <strong>Identity and Access Management</strong>, ou <strong>Gestão de Identidade e Acesso</strong>. A IAM é o conjunto de políticas, processos e tecnologias usados para controlar quem pode acessar quais recursos dentro de uma organização.</p>
+
+                <h3>5.3 AAA — autenticação, autorização e auditoria</h3>
+                <p>Uma das bases mais importantes do controle de acesso é o modelo AAA:</p>
+                <ul>
+                    <li><strong>Autenticação:</strong> "Você é mesmo quem diz ser?"</li>
+                    <li><strong>Autorização:</strong> "O que essa pessoa tem permissão para acessar ou executar?"</li>
+                    <li><strong>Auditoria:</strong> "O que foi feito, por quem e quando?"</li>
+                </ul>
+
+                <h4>5.3.1 Autenticação</h4>
+                <p>Durante muito tempo, a senha foi tratada como o principal mecanismo de autenticação. Até hoje ela continua sendo muito usada, mas a senha sozinha pode ser frágil.</p>
+                <p>A <strong>MFA (Multi-Factor Authentication)</strong> aumenta a segurança ao exigir mais de um elemento para confirmar a identidade:</p>
+                <ul>
+                    <li>Algo que você sabe, como uma senha;</li>
+                    <li>Algo que você tem, como um celular ou token;</li>
+                    <li>Algo que você é, como biometria.</li>
+                </ul>
+
+                <h5>5.3.1.1 Políticas de senha e comportamento do usuário</h5>
+                <p>A política de senha existe para orientar o uso seguro. Pode definir:</p>
+                <ul>
+                    <li>Tamanho mínimo;</li>
+                    <li>Uso de caracteres variados;</li>
+                    <li>Bloqueio por tentativas inválidas;</li>
+                    <li>Não reutilização de senhas antigas;</li>
+                    <li>Troca obrigatória quando houver suspeita de comprometimento.</li>
+                </ul>
+
+                <h4>5.3.2 Autorização</h4>
+
+                <h5>5.3.2.1 Privilégio mínimo de acesso</h5>
+                <p>Um dos <strong>princípios mais importantes em gestão de acesso é o privilégio mínimo</strong>: cada pessoa deve ter apenas os acessos necessários para realizar seu trabalho, nada além disso.</p>
+
+                <h5>5.3.2.2 RBAC (Role-Based Access Control)</h5>
+                <p>O acesso não é definido pessoa por pessoa sem nenhum padrão, mas é <strong>definido a partir dos papéis que existem dentro da organização</strong>. Exemplo: aluno, professor, coordenador, secretaria, financeiro e direção.</p>
+
+                <h5>5.3.2.3 ABAC (Attribute-Based Access Control)</h5>
+                <p>Enquanto o <strong>RBAC usa papéis, o ABAC considera atributos</strong> para decidir se o acesso será permitido ou negado. Os atributos podem ser as características do usuário, do recurso, da ação, do ambiente e do contexto.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Forma de controle</th><th>Pergunta a se fazer</th></tr></thead>
+                        <tbody>
+                            <tr><td>RBAC</td><td>"Qual é o papel dessa pessoa?"</td></tr>
+                            <tr><td>ABAC</td><td>"Quais condições precisam ser atendidas para este acesso acontecer?"</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5>5.3.2.4 Segregação de funções</h5>
+                <p>Evitar que uma única pessoa tenha controle completo sobre etapas críticas de um processo. Isso reduz risco de fraude, erro e abuso de privilégio.</p>
+
+                <h5>5.3.2.5 Revisão de acessos</h5>
+                <p>A revisão de acessos consiste em verificar, de tempos em tempos, se as permissões concedidas ainda são necessárias, adequadas e coerentes com a função de cada usuário.</p>
+
+                                <h4>5.3.3 Trilhas de auditoria e responsabilidade</h4>
+                <p>As trilhas de auditoria são registros que mostram o que aconteceu dentro de um sistema: indicam quem acessou, quando acessou, o que consultou, o que alterou, o que excluiu, qual operação executou e, em alguns casos, de onde veio o acesso. São registros fundamentais para segurança e conformidade.</p>
+
+                <blockquote>
+                    <p>Vamos pensar em um exemplo prático: um cadastro de cliente foi alterado indevidamente. Sem trilha de auditoria, a empresa talvez saiba que o dado mudou, mas não consiga descobrir quem alterou, quando isso ocorreu e qual era o valor anterior.</p>
+                </blockquote>
+
+                <p>A auditoria também ajuda a diferenciar erro, falha de processo e ação maliciosa. Às vezes, o problema não foi intenção de causar dano, mas falta de treinamento ou tela confusa. Mas, sem o registro, tudo vira dúvida.</p>
+
+                <p>É preciso proteger os próprios logs. Se um usuário com má intenção consegue apagar ou alterar a trilha de auditoria, o controle perde valor. Por isso, em sistemas críticos, os registros devem ter proteção especial, retenção adequada e acesso restrito.</p>
+
+                <h3>5.4 Integração dos controles de identidade, acesso e cultura de segurança</h3>
+                <p>IAM, AAA, autenticação, senhas, privilégio mínimo, RBAC, ABAC, segregação de funções, revisão de acessos e trilhas de auditoria não funcionam isoladamente. Eles formam uma estrutura de proteção.</p>
+
+                <blockquote>
+                    <p>Não adianta ter RBAC se ninguém revisa os papéis; não adianta ter logs se eles não são analisados; não adianta falar em LGPD se a empresa não sabe quem acessa dados pessoais.</p>
+                </blockquote>
+
+                <h2 id="ameacas">6. Ameaças, Invasores e Tipos de Ataques</h2>
+
+                <p>A transformação digital acontece em empresas de todos os tamanhos, que passaram a depender de servidores na nuvem, dispositivos móveis, sistemas industriais conectados e aplicações web. Isso gerou um valor enorme, mas também criou uma superfície de ataque sem precedentes: cada novo sistema conectado é uma porta potencial de entrada para atacantes.</p>
+
+                <p>Em 2024, o Brasil foi identificado entre os países com maior volume de tentativas de intrusão na América Latina, o que reforça a urgência de capacitar profissionais capazes de identificar, categorizar e responder a ameaças cibernéticas de forma estruturada.</p>
+
+                <h3>6.1 Perfis de atacantes</h3>
+
+                <h4>6.1.1 Script Kiddies</h4>
+                <p>Na base da pirâmide estão os chamados <em>script kiddies</em>: pessoas com <strong>conhecimento técnico limitado que usam ferramentas prontas</strong>, criadas por outros, sem necessariamente entender como funcionam por dentro. A motivação costuma ser reconhecimento em fóruns underground, curiosidade ou puro vandalismo digital.</p>
+                <p>Não se engane pela falta de sofisticação: eles <strong>representam um volume expressivo de ataques automatizados contra sistemas desprotegidos</strong>.</p>
+
+                <h4>6.1.2 Hacktivistas</h4>
+                <p>Os <em>hacktivistas</em> <strong>combinam habilidades técnicas com motivações ideológicas, políticas ou sociais</strong>. O grupo <em>Anonymous</em> é o exemplo mais conhecido, que promoveu ataques de negação de serviço (DDoS) e desfiguração de sites em protesto contra governos e corporações.</p>
+
+                <h4>6.1.3 Criminosos cibernéticos</h4>
+                <p>O <em>grupo mais comum no ambiente empresarial</em>, são <strong>movidos por lucro financeiro</strong>. Operam em ecossistemas organizados nos mercados da dark web, onde compram e vendem credenciais roubadas, exploits zero-day (vulnerabilidade desconhecida pelo fabricante).</p>
+
+                <h4>6.1.4 Insiders maliciosos</h4>
+                <p>O atacante interno é um dos mais perigosos e dos mais subestimados. Muitas vezes são <strong>funcionários descontentes, ex-colaboradores com acesso não revogado ou terceiros com privilégios excessivos</strong> que podem causar danos enormes sem precisar quebrar nenhuma barreira de perímetro.</p>
+
+                <h4>6.1.5 Atores patrocinados por estados</h4>
+                <p>No topo da sofisticação estão os APTs (<em>Advanced Persistent Threats</em>): <strong>grupos financiados por governos para conduzir espionagem, sabotagem industrial ou campanhas de desinformação</strong>. Operam com recursos quase ilimitados, paciência estratégica e acesso a vulnerabilidades ainda desconhecidas pelo mercado.</p>
+
+                <h3>6.2 Phishing e engenharia social</h3>
+                <p>Phishing não explora vulnerabilidades em software. Ele explora vulnerabilidades humanas: a confiança, o medo, a urgência e o respeito à autoridade. Isso é o que chamamos de <strong>engenharia social</strong> — a arte de manipular pessoas para que revelem informações ou realizem ações prejudiciais.</p>
+
+                <p>Variantes mais sofisticadas:</p>
+                <ul>
+                    <li><strong>Spear phishing:</strong> direcionado a pessoas específicas, com conteúdo personalizado baseado em informações reais da vítima.</li>
+                    <li><strong>Whaling:</strong> voltado a executivos de alto escalão, como o "peixe grande" da organização.</li>
+                    <li><strong>Vishing:</strong> phishing por voz, geralmente por telefone.</li>
+                    <li><strong>Smishing:</strong> phishing via SMS.</li>
+                </ul>
+
+                <h3>6.3 Malware e Ransomware</h3>
+                <p><strong>Malware</strong> é a abreviação de <em>malicious software</em>: qualquer software projetado para causar dano, obter acesso não autorizado ou extorquir suas vítimas. Principais tipos:</p>
+                <ul>
+                    <li><strong>Vírus:</strong> programas que se replicam inserindo cópias de si mesmos em outros arquivos executáveis.</li>
+                    <li><strong>Worms:</strong> propagam-se autonomamente por redes, sem precisar de um arquivo hospedeiro.</li>
+                    <li><strong>Trojans:</strong> disfarçam-se de software legítimo para abrir backdoors no sistema.</li>
+                    <li><strong>Spyware:</strong> coleta informações silenciosamente sem o conhecimento do usuário.</li>
+                    <li><strong>Adware:</strong> exibe publicidade invasiva e, muitas vezes, serve como veículo para cargas maliciosas.</li>
+                    <li><strong>Rootkit:</strong> oculta sua presença no sistema operacional, comprometendo a integridade do ambiente de detecção.</li>
+                </ul>
+
+                <p>O <strong>Ransomware</strong> é um tipo de malware que sequestra os dados da vítima — criptografando arquivos ou bloqueando o sistema — e exige um resgate (ransom) para devolver o acesso. O funcionamento básico segue três estágios:</p>
+                <ul>
+                    <li><strong>Infiltração:</strong> geralmente via phishing ou exploração de vulnerabilidade.</li>
+                    <li><strong>Criptografia:</strong> os arquivos da vítima são cifrados com algoritmos assimétricos robustos como RSA-2048 ou superiores.</li>
+                    <li><strong>Extorsão:</strong> é exigido pagamento em criptomoeda para fornecer a chave de descriptografia.</li>
+                </ul>
+
+                <h3>6.4 Ataques de negação de serviço (DDoS)</h3>
+                <p>O objetivo desses ataques é simples: <strong>tornar um sistema, serviço ou rede indisponível para seus usuários legítimos</strong>. Isso é feito consumindo recursos computacionais, esgotando a largura de banda ou explorando falhas de protocolo.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>DoS</th><th>DDoS</th></tr></thead>
+                        <tbody>
+                            <tr><td>Ataque parte de uma única origem</td><td>Milhares de dispositivos comprometidos (botnets) disparam requisições simultâneas contra o alvo, amplificando enormemente a força do ataque</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><em>Ferreira (2024)</em> classifica os ataques DDoS em três categorias principais:</p>
+                <ul>
+                    <li><strong>Ataques volumétricos:</strong> esgotam a largura de banda disponível com tráfego massivo.</li>
+                    <li><strong>Ataques de protocolo:</strong> exploram falhas em protocolos como TCP/IP para consumir recursos de roteadores e firewalls.</li>
+                    <li><strong>Ataques de camada de aplicação:</strong> sobrecarregam servidores HTTP, DNS ou APIs com requisições aparentemente legítimas.</li>
+                </ul>
+
+                <h3>6.5 Ataques Man-in-the-Middle: interceptação silenciosa</h3>
+                <p>Man-in-the-Middle (MITM) é um <strong>ataque onde o criminoso se posiciona secretamente entre duas partes que acreditam estar se comunicando diretamente</strong>, interceptando, lendo e podendo modificar tudo que passa.</p>
+
+                <ul>
+                    <li><strong>ARP Spoofing:</strong> o protocolo ARP não tem mecanismo de autenticação. Um atacante pode enviar respostas ARP forjadas, associando seu endereço MAC ao IP de outro dispositivo.</li>
+                    <li><strong>DNS Spoofing:</strong> falsifica respostas de resolução de nomes. Quando você digita o endereço de um site, o sistema consulta um servidor DNS para descobrir o IP correspondente. Um atacante que intercepte essa resposta pode redirecionar o usuário.</li>
+                    <li><strong>Evil Twin:</strong> o atacante cria um ponto de acesso com nome idêntico ao de uma rede legítima. Dispositivos configurados para reconectar automaticamente se associam ao AP malicioso.</li>
+                    <li><strong>SSL Stripping:</strong> degrada conexões HTTPS para HTTP, eliminando a camada de criptografia sem que o usuário perceba claramente.</li>
+                </ul>
+
+                <h3>6.6 Vulnerabilidades</h3>
+                <p>Uma vulnerabilidade é qualquer fraqueza em um sistema, procedimento ou implementação que possa ser explorada por uma ameaça. O mercado classifica as vulnerabilidades em dois sistemas:</p>
+                <ul>
+                    <li><strong>CVE (Common Vulnerabilities and Exposures):</strong> mantido pelo MITRE, atribui identificadores únicos a vulnerabilidades conhecidas.</li>
+                    <li><strong>CVSS (Common Vulnerability Scoring System):</strong> quantifica a severidade de 0 a 10, considerando vetores de exploração, complexidade, requisitos de autenticação e impacto sobre a tríade CIA.</li>
+                </ul>
+
+                <h4>6.6.1 Escala de Pontuação CVSS</h4>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Pontuação</th><th>Severidade</th><th>O que significa</th></tr></thead>
+                        <tbody>
+                            <tr><td>0.0</td><td>Nenhuma</td><td>Sem risco</td></tr>
+                            <tr><td>0.1 – 3.9</td><td>Baixa</td><td>Impacto mínimo</td></tr>
+                            <tr><td>4.0 – 6.9</td><td>Média</td><td>Requer atenção</td></tr>
+                            <tr><td>7.0 – 8.9</td><td>Alta</td><td>Prioridade de correção</td></tr>
+                            <tr><td>9.0 – 10.0</td><td>Crítica</td><td>Ação imediata</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>6.7 Exploração de vulnerabilidades na prática</h3>
+                <ul>
+                    <li><strong>Injeção de SQL (SQLi):</strong> o atacante insere código SQL malicioso em campos de entrada para manipular o banco de dados de uma aplicação.</li>
+                    <li><strong>Cross-Site Scripting (XSS):</strong> permite que atacantes injetem scripts maliciosos em páginas web visualizadas por outros usuários. Variantes: persistente (stored) e reflexivo.</li>
+                    <li><strong>Buffer Overflow:</strong> ocorre quando um programa escreve dados além dos limites de um buffer alocado na memória, corrompendo regiões adjacentes.</li>
+                    <li><strong>Escalada de privilégios:</strong> após obter acesso inicial com permissões limitadas, o atacante busca elevar seus direitos para administrador ou root.</li>
+                </ul>
+
+                <h3>6.8 A cadeia de ataque (Cyber Kill Chain)</h3>
+                <p>A Lockheed Martin desenvolveu em 2011 o modelo Cyber Kill Chain, inspirado em conceitos militares de análise de operações adversariais. O modelo descreve sete estágios sequenciais de um ataque:</p>
+                <ol>
+                    <li>Reconhecimento;</li>
+                    <li>Armamento;</li>
+                    <li>Entrega;</li>
+                    <li>Exploração;</li>
+                    <li>Instalação;</li>
+                    <li>Comando e Controle (C2);</li>
+                    <li>Ações sobre Objetivos.</li>
+                </ol>
+
+                <h3>6.9 Inteligência artificial</h3>
+                <p>A inteligência artificial transformou o campo da segurança cibernética de forma profunda e irreversível. Ela é, ao mesmo tempo, uma das ferramentas mais poderosas para defesa e um dos maiores facilitadores de ataques que já existiu.</p>
+                <p>No lado ofensivo, os modelos de linguagem de grande escala (LLMs) permitem gerar campanhas de phishing hiperrealistas em múltiplos idiomas. No lado defensivo, algoritmos de aprendizado de máquina são empregados em sistemas XDR para identificar comportamentos anômalos.</p>
+
+                <h3>6.10 Governança, conformidade e cultura de segurança</h3>
+
+                <h4>6.10.1 Frameworks de governança</h4>
+                <ul>
+                    <li><strong>NIST Cybersecurity Framework (CSF):</strong> guia voluntário de boas práticas, amplamente adotado globalmente. Organiza a segurança em cinco funções: Identificar, Proteger, Detectar, Responder e Recuperar.</li>
+                    <li><strong>ISO/IEC 27001:</strong> norma internacional certificável para sistemas de gestão de segurança da informação.</li>
+                    <li><strong>CIS Controls:</strong> conjunto de controles prioritários baseados nas ameaças reais mais frequentes.</li>
+                </ul>
+
+                <h4>6.10.2 LGPD e obrigações de segurança</h4>
+                <p>A Lei Geral de Proteção de Dados (Lei nº 13.709/2018) impõe às organizações o dever de adotar medidas de segurança técnicas e administrativas para proteger dados pessoais. O descumprimento pode resultar em advertência, multa de até 2% do faturamento (limitada a R$ 50 milhões por infração) e publicidade da infração.</p>
+
+                <h4>6.10.3 Resposta a incidentes</h4>
+                <p>O modelo <strong>PICERL do SANS Institute</strong> define seis fases: <strong>Preparação, Identificação, Contenção, Erradicação, Recuperação e Lições Aprendidas</strong>.</p>
+                <p>Construir uma cultura de segurança é um trabalho de longo prazo que envolve:</p>
+                <ul>
+                    <li>Campanhas de conscientização contínuas.</li>
+                    <li>Simulações de phishing para treinamento prático.</li>
+                    <li>Autenticação multifator obrigatória para todos.</li>
+                    <li>Políticas de mesa limpa e tela bloqueada.</li>
+                    <li>Programas de reporte de incidentes sem penalização ao relator.</li>
+                </ul>
+
+                <h2 id="defesa">7. Defesa Cibernética e Guerra Cibernética</h2>
+
+                <h3>7.1 O que é Defesa Cibernética?</h3>
+                <p>A <strong>defesa cibernética é o conjunto de práticas, tecnologias e estratégias usadas para proteger sistemas de informação contra acesso não autorizado, exploração, dano ou destruição</strong>. Diferente de simplesmente instalar um antivírus, a defesa cibernética moderna é proativa: parte do princípio de que o ataque vai acontecer, a questão é quando e como a organização vai detectá-lo e reagir.</p>
+
+                <p>Três pilares para compreender esta unidade:</p>
+                <ol>
+                    <li><strong>Prevenção:</strong> barreiras técnicas e procedimentos para dificultar ao máximo o sucesso de um ataque.</li>
+                    <li><strong>Detecção:</strong> monitoramento contínuo para identificar atividades suspeitas o mais cedo possível.</li>
+                    <li><strong>Resposta:</strong> planos e equipes prontos para conter, erradicar e recuperar após um incidente.</li>
+                </ol>
+
+                <h3>7.2 Segurança em Camadas e Inteligência de Ameaças</h3>
+                <p>A segurança cibernética moderna funciona como um castelo medieval: nunca dependa de um único mecanismo de proteção. Se uma camada falha, a próxima precisa estar ali para conter o avanço. Esse conceito se chama <strong>Defense in Depth</strong> (Defesa em Profundidade).</p>
+
+                <p>As camadas típicas em um ambiente corporativo são:</p>
+                <ol>
+                    <li><strong>Camada física:</strong> controle de acesso a servidores, salas de datacenter, câmeras e travas.</li>
+                    <li><strong>Camada de rede:</strong> firewalls, IDS/IPS, segmentação de VLANs e VPNs.</li>
+                    <li><strong>Camada de host:</strong> antimalware, hardening de sistemas operacionais, controle de patches.</li>
+                    <li><strong>Camada de aplicação:</strong> autenticação multifator (MFA), WAF, controle de sessão e criptografia.</li>
+                    <li><strong>Camada de dados:</strong> criptografia em repouso e em trânsito, DLP (Data Loss Prevention).</li>
+                    <li><strong>Camada humana:</strong> treinamentos, políticas de uso aceitável e simulações de phishing.</li>
+                </ol>
+
+                <p>A <strong>Threat Intelligence (Inteligência de Ameaças)</strong> é o processo de coletar, processar e analisar informações sobre ameaças cibernéticas para tomar decisões melhores de defesa. Existem três tipos principais:</p>
+                <ol>
+                    <li><strong>Estratégica:</strong> voltada para executivos e CISO. Traz tendências do cenário de ameaças, atores relevantes para o setor e riscos de longo prazo.</li>
+                    <li><strong>Tática:</strong> descreve técnicas, táticas e procedimentos (TTPs) usados por grupos de ameaça. Alinha-se ao framework MITRE ATT&CK.</li>
+                    <li><strong>Operacional:</strong> dados acionáveis em tempo real, como indicadores de comprometimento (IoCs).</li>
+                </ol>
+
+                <h3>7.3 Guerra Cibernética e Operações no Ciberespaço</h3>
+                <p>A guerra cibernética é o uso de ataques digitais por atores estatais ou patrocinados por estados para danificar, destruir ou obter vantagem estratégica sobre adversários. O ciberespaço tornou-se, oficialmente, o quinto domínio de conflito, ao lado da terra, mar, ar e espaço.</p>
+
+                <p>O que diferencia a guerra cibernética de um crime cibernético comum:</p>
+                <ol>
+                    <li><strong>Atribuição estatal:</strong> o ataque é conduzido por grupos ligados a governos, mesmo que de forma negável (plausible deniability).</li>
+                    <li><strong>Objetivos estratégicos:</strong> não é apenas dinheiro, é espionagem, sabotagem de infraestrutura crítica, influência política e psicológica.</li>
+                    <li><strong>Escala e sofisticação:</strong> recursos quase ilimitados, acesso a zero-days exclusivos e operações de longo prazo.</li>
+                </ol>
+
+                <h3>7.4 OWASP Top 10</h3>
+                <p>A <strong>OWASP</strong> (<em>Open Web Application Security Project</em>) mantém uma lista atualizada das dez vulnerabilidades mais críticas em aplicações web:</p>
+                <ul>
+                    <li><strong>A01 - Controle de Acesso Quebrado:</strong> usuários conseguem acessar funcionalidades ou dados além dos seus privilégios.</li>
+                    <li><strong>A02 - Falhas Criptográficas:</strong> uso de algoritmos fracos, senhas em texto puro, chaves hardcoded.</li>
+                    <li><strong>A03 - Injeção:</strong> SQL Injection, LDAP Injection e Command Injection.</li>
+                    <li><strong>A04 - Design Inseguro:</strong> falhas na concepção da arquitetura.</li>
+                    <li><strong>A05 - Configuração Incorreta de Segurança:</strong> servidores com configurações padrão, portas abertas, mensagens de erro verbosas.</li>
+                    <li><strong>A06 - Componentes Vulneráveis e Desatualizados:</strong> bibliotecas, frameworks e dependências com vulnerabilidades conhecidas.</li>
+                    <li><strong>A07 - Falhas de Identificação e Autenticação:</strong> senhas fracas, ausência de MFA, sessões que não expiram.</li>
+                    <li><strong>A08 - Falhas na Integridade de Software e Dados:</strong> código ou dados não verificados quanto à integridade.</li>
+                    <li><strong>A09 - Falhas de Logging e Monitoramento:</strong> sem logs adequados, um ataque pode passar despercebido por meses.</li>
+                    <li><strong>A10 - SSRF (Server-Side Request Forgery):</strong> o servidor é enganado para fazer requisições a recursos internos.</li>
+                </ul>
+
+                <h3>7.5 Segurança em Dispositivos Móveis</h3>
+                <p>O smartphone é o dispositivo mais poderoso que você carrega, mas também é um dos mais vulneráveis. Ele contém credenciais bancárias, e-mails corporativos, contatos, fotos, tokens de autenticação e acesso direto a sistemas empresariais.</p>
+                <p>Boas práticas:</p>
+                <ol>
+                    <li>Conceda apenas permissões estritamente necessárias para a função do app.</li>
+                    <li>Revogue as permissões de apps que não usa regularmente.</li>
+                    <li>Prefira a opção 'Apenas durante o uso' para localização e câmera.</li>
+                    <li>Desinstale aplicativos desnecessários.</li>
+                </ol>
+
+                <h3>7.6 Endpoints e Zero Trust</h3>
+                <p>O <strong>modelo Zero Trust</strong> parte de um princípio diferente: <strong>nunca confie e sempre verifique</strong>. Nenhum usuário, dispositivo ou conexão é automaticamente confiável, mesmo dentro da rede corporativa. Cada acesso é autenticado, autorizado e continuamente verificado.</p>
+                <p>Os pilares práticos do Zero Trust são:</p>
+                <ol>
+                    <li><strong>Identidade forte:</strong> MFA obrigatório para todos os usuários, sem exceções.</li>
+                    <li><strong>Dispositivos gerenciados:</strong> apenas endpoints com conformidade verificada têm acesso a recursos críticos.</li>
+                    <li><strong>Micro-segmentação:</strong> cada carga de trabalho tem acesso apenas ao que precisa.</li>
+                    <li><strong>Monitoramento contínuo:</strong> análise comportamental para detectar anomalias mesmo após a autenticação.</li>
+                </ol>
+
+                <h2 id="criptografia">8. Criptografia e Blockchain</h2>
+
+                <p>A criptografia é a arte e a ciência de transformar uma informação legível em algo que só o destinatário certo consegue entender.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Processo</th><th>Termo</th></tr></thead>
+                        <tbody>
+                            <tr><td>Texto que você quer proteger</td><td>Texto Claro</td></tr>
+                            <tr><td>Depois de embaralhado</td><td>Texto cifrado</td></tr>
+                            <tr><td>Processo de embaralhar</td><td>Cifrar</td></tr>
+                            <tr><td>Processo de desembaralhar</td><td>Decifrar</td></tr>
+                            <tr><td>Segredo</td><td>Chave</td></tr>
+                            <tr><td>Quebrar a proteção sem a chave</td><td>Criptoanálise</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>8.1 Cifras monoalfabéticas</h3>
+                <p>A cifra mais famosa da história é a <strong>Cifra de César</strong>: cada letra da mensagem é trocada pela letra que fica três posições à frente no alfabeto. O A vira D, o B vira E, e assim por diante. A chave, nesse caso, é o número de casas que você desloca.</p>
+
+                <h3>8.2 Cifras polialfabéticas</h3>
+                <p>A <strong>Cifra de Vigenère</strong> troca de alfabeto a cada letra, usando uma palavra-chave repetida. Com isso, a análise de frequência perde a força.</p>
+
+                <h3>8.3 Permutação e transposição</h3>
+                <p>Em vez de substituir os símbolos, podemos simplesmente embaralhar a ordem deles. Um exemplo antigo é a <strong>escítala espartana</strong>.</p>
+
+                <h3>8.4 Esteganografia</h3>
+                <p>A criptografia embaralha o conteúdo; a esteganografia o disfarça. São coisas diferentes que costumam andar juntas. No mundo digital, uma técnica é esconder bits de uma mensagem nos últimos dígitos dos pixels de uma imagem (LSB — Least Significant Bit).</p>
+
+                <h3>8.5 Criptografia simétrica</h3>
+                <p>A mesma chave serve tanto para cifrar quanto para decifrar. O padrão mais usado no mundo hoje é o <strong>AES</strong>, com chaves de 128, 192 ou 256 bits.</p>
+
+                <h3>8.6 Criptografia assimétrica</h3>
+                <p>Cada pessoa passa a ter um par: uma <strong>chave pública</strong>, que pode ser distribuída livremente, e uma <strong>chave privada</strong>, que jamais sai das suas mãos. O algoritmo mais conhecido dessa família é o <strong>RSA</strong>.</p>
+
+                <h3>8.7 Funções Hash</h3>
+                <p>As funções hash recebem qualquer entrada e devolvem um código de tamanho fixo, chamado resumo ou digest. Três propriedades tornam essa ferramenta poderosa:</p>
+                <ol>
+                    <li><strong>Caminho de mão única:</strong> a partir do resumo, é inviável reconstruir a informação original.</li>
+                    <li><strong>Efeito avalanche:</strong> mudar um único caractere da entrada transforma completamente o resumo de saída.</li>
+                    <li><strong>Resistência a colisões:</strong> é praticamente impossível encontrar duas entradas diferentes que gerem o mesmo resumo.</li>
+                </ol>
+
+                <h3>8.8 Assinatura digital, certificados e gestão de chaves</h3>
+                <p>A assinatura digital junta duas peças: as chaves assimétricas e o hash. O processo:</p>
+                <ul>
+                    <li>Calcula-se o hash do documento;</li>
+                    <li>Cifra-se esse hash com a chave privada do autor → resultado é a assinatura;</li>
+                    <li>Qualquer pessoa pode usar a chave pública do autor para conferir a assinatura e recalcular o hash do documento recebido;</li>
+                    <li>Se os dois baterem, fica provado que o documento veio do autor e que não foi alterado depois de assinado.</li>
+                </ul>
+                <p>No Brasil, o sistema é organizado pela <strong>ICP-Brasil</strong>, que dá validade jurídica a documentos assinados digitalmente (e-CPF, e-CNPJ).</p>
+
+                <h3>8.9 O desafio da era quântica</h3>
+                <p>Em 1994, o matemático Peter Shor mostrou um algoritmo capaz de fatorar números enormes com rapidez, desde que executado em um computador quântico suficientemente potente. Na prática, isso significaria a quebra do RSA e de boa parte da criptografia de chave pública que usamos hoje. A resposta é a <strong>criptografia pós-quântica</strong>.</p>
+
+                <h3>8.10 Blockchain</h3>
+                <p>Blockchain, em português corrente, é uma corrente formada por blocos de informação amarrados entre si por funções hash. Imagine que cada bloco seja uma página de um caderno, e que nela estejam anotadas várias transações. Além das transações, cada página guarda também o hash da página anterior. Se um fraudador tentar alterar uma transação antiga, pelo efeito avalanche, mudar qualquer detalhe muda completamente o hash daquela página — e isso quebra toda a corrente a partir dali.</p>
+
+                <h4>8.10.1 Consenso e aplicações do blockchain</h4>
+                <p>O primeiro mecanismo famoso é a <strong>prova de trabalho</strong> (usada pelo Bitcoin). Para adicionar um novo bloco, os mineradores precisam resolver um problema matemático que exige muito processamento e energia. Como gastar tanta energia incomoda, surgiu a <strong>prova de participação</strong>, adotada por outras redes: nela, quem valida os blocos não é quem tem mais máquinas, e sim quem deposita mais moedas como garantia.</p>
+                <p>Aplicações vão além das moedas digitais: contratos inteligentes, rastreabilidade de alimentos e remédios, registros de imóveis e emissão de diplomas verificáveis.</p>
+
+                <p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
+                    <em>Fim do conteúdo de Segurança da Informação e Compliance.</em>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <button class="back-to-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../js/script.js"></script>
+</body>
+</html>
