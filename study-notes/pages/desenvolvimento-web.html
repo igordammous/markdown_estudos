@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvimento Web — HTML e CSS</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+    <div class="sidebar-overlay"></div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><a href="index.html">📚 Caderno de Estudos</a></h1>
+                <p>Análise e Desenvolvimento de Sistemas</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="../index.html"><span class="icon">🏠</span> Início</a></li>
+                <li><a href="seguranca-informacao.html"><span class="icon">🔐</span> Segurança da Informação</a></li>
+                <li><a href="banco-de-dados.html"><span class="icon">🗄️</span> Banco de Dados I</a></li>
+                <li><a href="desenvolvimento-web.html"><span class="icon">🌐</span> Desenvolvimento Web</a></li>
+                <li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software I</a></li>
+                <li><a href="sistemas-operacionais.html"><span class="icon">🖥️</span> Sistemas Operacionais</a></li>
+                <li><a href="arquitetura-hardware.html"><span class="icon">💻</span> Arquitetura de Hardware</a></li>
+                <li><a href="arquitetura-hardware-codigo.html"><span class="icon">🔧</span> Arquitetura — Códigos</a></li>
+                <li><a href="comunicacao.html"><span class="icon">💬</span> Comunicação</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1>🌐 Desenvolvimento Web</h1>
+                    <div class="page-meta">
+                        <span class="badge badge-blue">HTML5</span>
+                        <span class="badge badge-green">CSS3</span>
+                        <span class="badge badge-purple">Layouts responsivos</span>
+                    </div>
+                </div>
+
+                <div class="toc">
+                    <h3>Índice</h3>
+                    <ul>
+                        <li class="toc-h2"><a href="#web-html">1. Internet, Web e HTML</a></li>
+                        <li class="toc-h3"><a href="#internet-web">1.1 Internet e World Wide Web</a></li>
+                        <li class="toc-h3"><a href="#html">1.2 O que é HTML?</a></li>
+                        <li class="toc-h3"><a href="#estrutura">1.3 Estrutura básica de um documento</a></li>
+                        <li class="toc-h2"><a href="#elementos">2. Elementos, tags e atributos</a></li>
+                        <li class="toc-h3"><a href="#tags-texto">2.1 Elementos de texto</a></li>
+                        <li class="toc-h2"><a href="#listas">3. Listas</a></li>
+                        <li class="toc-h3"><a href="#listas-ordenadas">3.1 Listas ordenadas e não ordenadas</a></li>
+                        <li class="toc-h3"><a href="#listas-definicao">3.2 Listas de definição</a></li>
+                        <li class="toc-h2"><a href="#imagens">4. Imagens</a></li>
+                        <li class="toc-h2"><a href="#links">5. Links e navegação</a></li>
+                        <li class="toc-h2"><a href="#tabelas">6. Tabelas</a></li>
+                        <li class="toc-h3"><a href="#mesclar-celulas">6.1 Colspan e rowspan</a></li>
+                        <li class="toc-h2"><a href="#formularios">7. Formulários</a></li>
+                        <li class="toc-h3"><a href="#form-estrutura">7.1 Form, action e method</a></li>
+                        <li class="toc-h3"><a href="#campos">7.2 Campos de entrada</a></li>
+                        <li class="toc-h3"><a href="#controles">7.3 Seleção, agrupamento e botões</a></li>
+                        <li class="toc-h3"><a href="#atributos-form">7.4 Atributos de formulários</a></li>
+                        <li class="toc-h2"><a href="#semantica">8. Elementos semânticos</a></li>
+                        <li class="toc-h2"><a href="#boas-praticas">9. Boas práticas e revisão</a></li>
+                        <li class="toc-h2"><a href="#especificidade">10. CSS: especificidade</a></li>
+                        <li class="toc-h3"><a href="#hierarquia-especificidade">10.1 Hierarquia e cálculo</a></li>
+                        <li class="toc-h3"><a href="#important">10.2 Regra !important</a></li>
+                        <li class="toc-h2"><a href="#box-model">11. Box Model e Flexbox</a></li>
+                        <li class="toc-h3"><a href="#box-model-partes">11.1 As quatro partes do Box Model</a></li>
+                        <li class="toc-h3"><a href="#flexbox">11.2 Flexbox e seus eixos</a></li>
+                        <li class="toc-h3"><a href="#propriedades-flex">11.3 Propriedades do Flexbox</a></li>
+                        <li class="toc-h2"><a href="#pseudoclasses">12. Pseudoclasses em CSS</a></li>
+                        <li class="toc-h3"><a href="#pseudo-interacao">12.1 Estados de interação</a></li>
+                        <li class="toc-h3"><a href="#pseudo-posicao">12.2 Pseudoclasses posicionais</a></li>
+                        <li class="toc-h3"><a href="#pseudo-formularios">12.3 Pseudoclasses de formulários</a></li>
+                        <li class="toc-h2"><a href="#media-queries">13. Media Queries e responsividade</a></li>
+                        <li class="toc-h3"><a href="#media-sintaxe">13.1 Sintaxe e condições</a></li>
+                        <li class="toc-h3"><a href="#media-exemplos">13.2 Exemplos práticos</a></li>
+                        <li class="toc-h2"><a href="#referencias">14. Referências</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="web-html">1. Internet, Web e HTML</h2>
+                <h3 id="internet-web">1.1 Internet e World Wide Web</h3>
+                <p>A <strong>Internet</strong> é a infraestrutura de redes que permite a comunicação entre dispositivos. A <strong>World Wide Web (WWW ou Web)</strong> é um dos serviços que utiliza essa infraestrutura para disponibilizar e consultar documentos e recursos interligados.</p>
+                <p>Internet e Web não são sinônimos: a Internet pode existir sem a Web, mas a Web depende da infraestrutura da Internet para funcionar.</p>
+                <p>A Web é uma iniciativa de recuperação de informações hipermídia que busca oferecer acesso universal a um grande conjunto de documentos. Esses documentos podem conter textos, hipertextos, imagens, sons e vídeos. O acesso normalmente é feito por meio de um <strong>navegador web</strong>, como Google Chrome, Mozilla Firefox ou outros.</p>
+
+                <h3 id="html">1.2 O que é HTML?</h3>
+                <p><strong>HTML</strong> significa <em>HyperText Markup Language</em> (Linguagem de Marcação de Hipertexto). É a linguagem de marcação utilizada para publicar conteúdo na Web e definir o significado e a estrutura desse conteúdo.</p>
+                <ul>
+                    <li><strong>HTML:</strong> organiza e estrutura o conteúdo.</li>
+                    <li><strong>CSS:</strong> descreve a apresentação visual, como cores, fontes, espaçamentos e posicionamento.</li>
+                    <li><strong>JavaScript:</strong> acrescenta comportamento e interatividade à página.</li>
+                </ul>
+                <p>O termo <em>hipertexto</em> está relacionado aos links que conectam páginas dentro de um mesmo site ou entre sites diferentes. Os links são uma parte fundamental da Web.</p>
+
+                <h3 id="estrutura">1.3 Estrutura básica de um documento</h3>
+                <p>Um documento HTML é composto por elementos identificados por tags. A estrutura mínima de uma página pode ser representada assim:</p>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Minha primeira página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Olá, mundo!&lt;/h1&gt;
+    &lt;p&gt;Minha primeira página HTML.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <ul>
+                    <li><code>&lt;!DOCTYPE html&gt;</code> informa ao navegador que o documento utiliza HTML5.</li>
+                    <li><code>&lt;html&gt;</code> é o elemento raiz da página; o atributo <code>lang</code> informa o idioma.</li>
+                    <li><code>&lt;head&gt;</code> contém metadados e informações que não são o conteúdo principal exibido.</li>
+                    <li><code>&lt;meta charset="UTF-8"&gt;</code> define a codificação de caracteres.</li>
+                    <li><code>&lt;title&gt;</code> define o título mostrado na aba do navegador.</li>
+                    <li><code>&lt;body&gt;</code> contém o conteúdo apresentado ao usuário.</li>
+                </ul>
+
+                <h2 id="elementos">2. Elementos, tags e atributos</h2>
+                <p>HTML utiliza <strong>marcação</strong> para indicar ao navegador como interpretar textos, imagens e outros conteúdos. Um elemento geralmente é formado por uma tag de abertura, conteúdo e tag de fechamento.</p>
+                <pre><code>&lt;p&gt;Este é o conteúdo de um parágrafo.&lt;/p&gt;</code></pre>
+                <p>Em geral, tags são escritas entre os sinais <code>&lt;</code> e <code>&gt;</code>. Os nomes dos elementos não diferenciam letras maiúsculas de minúsculas, mas recomenda-se utilizar letras minúsculas.</p>
+                <p>Alguns elementos, como <code>&lt;img&gt;</code> e <code>&lt;br&gt;</code>, não possuem tag de fechamento. São elementos vazios.</p>
+                <p><strong>Atributos</strong> fornecem informações adicionais ao elemento e são escritos na tag de abertura, normalmente no formato <code>nome="valor"</code>.</p>
+                <pre><code>&lt;p class="destaque" id="aviso"&gt;Texto destacado&lt;/p&gt;</code></pre>
+
+                <h3 id="tags-texto">2.1 Elementos de texto</h3>
+                <table>
+                    <thead><tr><th>Elemento</th><th>Finalidade</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>&lt;h1&gt;</code> até <code>&lt;h6&gt;</code></td><td>Títulos e subtítulos, do nível mais importante ao menos importante.</td></tr>
+                        <tr><td><code>&lt;p&gt;</code></td><td>Parágrafo.</td></tr>
+                        <tr><td><code>&lt;strong&gt;</code></td><td>Indica importância forte.</td></tr>
+                        <tr><td><code>&lt;em&gt;</code></td><td>Indica ênfase.</td></tr>
+                        <tr><td><code>&lt;br&gt;</code></td><td>Quebra de linha.</td></tr>
+                        <tr><td><code>&lt;div&gt;</code></td><td>Contêiner genérico em bloco, sem significado semântico próprio.</td></tr>
+                        <tr><td><code>&lt;span&gt;</code></td><td>Contêiner genérico em linha, sem significado semântico próprio.</td></tr>
+                    </tbody>
+                </table>
+
+                <h2 id="listas">3. Listas</h2>
+                <p>As listas organizam informações relacionadas. Os materiais apresentam três tipos principais: listas ordenadas (<code>&lt;ol&gt;</code>), não ordenadas (<code>&lt;ul&gt;</code>) e de definição (<code>&lt;dl&gt;</code>).</p>
+                <h3 id="listas-ordenadas">3.1 Listas ordenadas e não ordenadas</h3>
+                <p><strong>Lista ordenada:</strong> utiliza <code>&lt;ol&gt;</code> e apresenta itens em uma sequência numerada ou ordenada.</p>
+                <pre><code>&lt;ol&gt;
+    &lt;li&gt;Planejar a página&lt;/li&gt;
+    &lt;li&gt;Criar o HTML&lt;/li&gt;
+    &lt;li&gt;Testar no navegador&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                <p><strong>Lista não ordenada:</strong> utiliza <code>&lt;ul&gt;</code> e apresenta itens sem estabelecer uma ordem numérica.</p>
+                <pre><code>&lt;ul&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                <p>Em ambos os casos, cada item é definido pelo elemento <code>&lt;li&gt;</code>. Listas também podem ser aninhadas dentro de outros itens.</p>
+
+                <h3 id="listas-definicao">3.2 Listas de definição</h3>
+                <p>O elemento <code>&lt;dl&gt;</code> representa uma lista de descrições. Cada termo é indicado por <code>&lt;dt&gt;</code> e sua descrição por <code>&lt;dd&gt;</code>.</p>
+                <pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Linguagem de marcação para estruturar conteúdo.&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Linguagem utilizada para definir a apresentação visual.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+                <h2 id="imagens">4. Imagens</h2>
+                <p>O elemento <code>&lt;img&gt;</code> incorpora uma imagem à página. Ele utiliza atributos para indicar o arquivo e fornecer uma descrição textual.</p>
+                <pre><code>&lt;img src="imagens/paisagem.jpg"
+     alt="Paisagem de montanhas ao entardecer"
+     width="600"&gt;</code></pre>
+                <ul>
+                    <li><strong>src:</strong> caminho ou endereço do arquivo de imagem.</li>
+                    <li><strong>alt:</strong> texto alternativo que descreve a imagem; é importante para acessibilidade e também pode ser exibido quando a imagem não carrega.</li>
+                    <li><strong>width:</strong> largura da imagem.</li>
+                    <li><strong>height:</strong> altura da imagem, quando definida.</li>
+                </ul>
+                <p>O caminho de <code>src</code> pode ser relativo ao arquivo HTML ou um endereço absoluto. Ao organizar o projeto, mantenha os arquivos de imagem em uma pasta, por exemplo, <code>imagens/</code>.</p>
+                <pre><code>&lt;!-- Imagem em uma subpasta do projeto --&gt;
+&lt;img src="imagens/logo.png" alt="Logotipo da empresa" width="180"&gt;</code></pre>
+
+                <h2 id="links">5. Links e navegação</h2>
+                <p>O elemento <code>&lt;a&gt;</code> cria um hiperlink. O atributo <code>href</code> informa o destino do link.</p>
+                <pre><code>&lt;a href="https://www.google.com"&gt;Acessar o Google&lt;/a&gt;</code></pre>
+                <p>Os links podem apontar para páginas externas, arquivos do próprio projeto, endereços de e-mail ou partes específicas da mesma página.</p>
+                <pre><code>&lt;!-- Página externa --&gt;
+&lt;a href="https://www.w3.org/"&gt;W3C&lt;/a&gt;
+
+&lt;!-- Outra página do projeto --&gt;
+&lt;a href="contato.html"&gt;Contato&lt;/a&gt;
+
+&lt;!-- Seção da própria página --&gt;
+&lt;a href="#referencias"&gt;Ir para referências&lt;/a&gt;
+
+&lt;!-- E-mail --&gt;
+&lt;a href="mailto:contato@exemplo.com"&gt;Enviar e-mail&lt;/a&gt;</code></pre>
+                <p>Para abrir um destino em outra aba, pode-se utilizar <code>target="_blank"</code>. Recomenda-se combiná-lo com <code>rel="noopener noreferrer"</code>.</p>
+                <pre><code>&lt;a href="https://www.google.com"
+   target="_blank"
+   rel="noopener noreferrer"&gt;
+   Abrir em nova aba
+&lt;/a&gt;</code></pre>
+                <p>Uma imagem também pode funcionar como link, colocando o elemento <code>&lt;img&gt;</code> dentro de <code>&lt;a&gt;</code>, como no exemplo apresentado na aula:</p>
+                <pre><code>&lt;a href="https://www.google.com"&gt;
+    &lt;img src="imagens/google.png"
+         alt="Acessar o Google"
+         width="200"&gt;
+&lt;/a&gt;</code></pre>
+
+                <h2 id="tabelas">6. Tabelas</h2>
+                <p>Tabelas são utilizadas para apresentar dados organizados em linhas e colunas. O elemento <code>&lt;table&gt;</code> cria a tabela; <code>&lt;tr&gt;</code> define uma linha; <code>&lt;th&gt;</code> define uma célula de cabeçalho; e <code>&lt;td&gt;</code> define uma célula de dados.</p>
+                <pre><code>&lt;table&gt;
+    &lt;caption&gt;Alunos cadastrados&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Matrícula&lt;/th&gt;
+            &lt;th&gt;Nome&lt;/th&gt;
+            &lt;th&gt;Curso&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;001&lt;/td&gt;
+            &lt;td&gt;Ana&lt;/td&gt;
+            &lt;td&gt;ADS&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;002&lt;/td&gt;
+            &lt;td&gt;Bruno&lt;/td&gt;
+            &lt;td&gt;ADS&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                <ul>
+                    <li><code>&lt;caption&gt;</code>: título ou legenda da tabela.</li>
+                    <li><code>&lt;thead&gt;</code>: agrupa as linhas de cabeçalho.</li>
+                    <li><code>&lt;tbody&gt;</code>: agrupa o conteúdo principal.</li>
+                    <li><code>&lt;tfoot&gt;</code>: pode agrupar linhas de resumo ou rodapé.</li>
+                </ul>
+
+                <h3 id="mesclar-celulas">6.1 Colspan e rowspan</h3>
+                <p>Os atributos <code>colspan</code> e <code>rowspan</code> permitem que uma célula ocupe mais de uma coluna ou linha, respectivamente.</p>
+                <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th colspan="2"&gt;Cadastro&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Aluno&lt;/td&gt;
+        &lt;td&gt;Nome: Ana&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Curso: ADS&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                <p><code>colspan="2"</code> faz a célula ocupar duas colunas. <code>rowspan="2"</code> faz a célula ocupar duas linhas. Em páginas atuais, a aparência das bordas e demais estilos deve ser definida preferencialmente com CSS.</p>
+
+                <h2 id="formularios">7. Formulários</h2>
+                <p>Formulários permitem coletar informações fornecidas pelo usuário. O elemento <code>&lt;form&gt;</code> envolve campos de texto, caixas de seleção, botões de opção, listas, botões de envio e outros controles.</p>
+                <h3 id="form-estrutura">7.1 Form, action e method</h3>
+                <pre><code>&lt;form action="/processar-cadastro" method="post"&gt;
+    &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+    &lt;input type="text" id="nome" name="nome"&gt;
+
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                <ul>
+                    <li><strong>action:</strong> define o destino que processará os dados quando o formulário for enviado.</li>
+                    <li><strong>method:</strong> define o método HTTP utilizado para enviar os dados, normalmente <code>GET</code> ou <code>POST</code>.</li>
+                    <li><strong>name:</strong> identifica o campo no conjunto de dados enviado. Um campo sem <code>name</code> normalmente não é enviado.</li>
+                </ul>
+                <table>
+                    <thead><tr><th>Método</th><th>Comportamento</th><th>Uso indicado</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>GET</code></td><td>Os dados são enviados na URL e ficam visíveis no endereço.</td><td>Consultas e dados não sensíveis, geralmente em pequenas quantidades.</td></tr>
+                        <tr><td><code>POST</code></td><td>Os dados são enviados no corpo da requisição, não na URL.</td><td>Envio de dados pessoais, formulários de cadastro e maiores quantidades de dados.</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>Importante:</strong> POST não criptografa os dados por si só. Para proteger informações durante a transmissão, é necessário utilizar HTTPS e implementar os controles de segurança adequados no servidor.</p>
+                <p>O atributo <code>for</code> do elemento <code>&lt;label&gt;</code> deve ter o mesmo valor do atributo <code>id</code> do campo correspondente. Isso associa a legenda ao controle e facilita sua utilização.</p>
+
+                <h3 id="campos">7.2 Campos de entrada</h3>
+                <p>O elemento <code>&lt;input&gt;</code> possui diferentes tipos, definidos pelo atributo <code>type</code>.</p>
+                <table>
+                    <thead><tr><th>Tipo</th><th>Finalidade</th><th>Exemplo</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>text</code></td><td>Entrada de texto simples.</td><td><code>&lt;input type="text"&gt;</code></td></tr>
+                        <tr><td><code>password</code></td><td>Entrada de senha, ocultando visualmente os caracteres.</td><td><code>&lt;input type="password"&gt;</code></td></tr>
+                        <tr><td><code>email</code></td><td>Entrada de endereço de e-mail com validação básica do formato.</td><td><code>&lt;input type="email"&gt;</code></td></tr>
+                        <tr><td><code>number</code></td><td>Entrada numérica.</td><td><code>&lt;input type="number"&gt;</code></td></tr>
+                        <tr><td><code>date</code></td><td>Seleção de data.</td><td><code>&lt;input type="date"&gt;</code></td></tr>
+                        <tr><td><code>datetime-local</code></td><td>Data e hora locais.</td><td><code>&lt;input type="datetime-local"&gt;</code></td></tr>
+                        <tr><td><code>time</code></td><td>Seleção de horário.</td><td><code>&lt;input type="time"&gt;</code></td></tr>
+                        <tr><td><code>month</code></td><td>Seleção de mês e ano.</td><td><code>&lt;input type="month"&gt;</code></td></tr>
+                        <tr><td><code>color</code></td><td>Seleção de cor.</td><td><code>&lt;input type="color"&gt;</code></td></tr>
+                        <tr><td><code>file</code></td><td>Seleção de arquivo.</td><td><code>&lt;input type="file"&gt;</code></td></tr>
+                        <tr><td><code>radio</code></td><td>Seleção de uma opção em um grupo.</td><td><code>&lt;input type="radio"&gt;</code></td></tr>
+                        <tr><td><code>checkbox</code></td><td>Seleção de uma ou mais opções.</td><td><code>&lt;input type="checkbox"&gt;</code></td></tr>
+                    </tbody>
+                </table>
+                <p>Para textos com várias linhas, utiliza-se <code>&lt;textarea&gt;</code>:</p>
+                <pre><code>&lt;label for="mensagem"&gt;Mensagem:&lt;/label&gt;
+&lt;textarea id="mensagem" name="mensagem" rows="4" cols="40"&gt;&lt;/textarea&gt;</code></pre>
+
+                <h3 id="controles">7.3 Seleção, agrupamento e botões</h3>
+                <p><strong>Radio button:</strong> permite escolher uma opção dentro de um grupo. Para que as opções sejam mutuamente exclusivas, elas devem compartilhar o mesmo atributo <code>name</code>.</p>
+                <pre><code>&lt;input type="radio" id="manha" name="periodo" value="manha"&gt;
+&lt;label for="manha"&gt;Manhã&lt;/label&gt;
+
+&lt;input type="radio" id="noite" name="periodo" value="noite"&gt;
+&lt;label for="noite"&gt;Noite&lt;/label&gt;</code></pre>
+                <p><strong>Checkbox:</strong> permite marcar nenhuma, uma ou várias opções.</p>
+                <pre><code>&lt;input type="checkbox" id="html" name="tecnologias" value="HTML"&gt;
+&lt;label for="html"&gt;HTML&lt;/label&gt;
+
+&lt;input type="checkbox" id="css" name="tecnologias" value="CSS"&gt;
+&lt;label for="css"&gt;CSS&lt;/label&gt;</code></pre>
+                <p><strong>Select, option e optgroup:</strong> criam uma lista suspensa de opções, que podem ser agrupadas por categorias.</p>
+                <pre><code>&lt;label for="curso"&gt;Curso:&lt;/label&gt;
+&lt;select id="curso" name="curso"&gt;
+    &lt;option value=""&gt;Selecione&lt;/option&gt;
+    &lt;optgroup label="Tecnologia"&gt;
+        &lt;option value="ads" selected&gt;Análise e Desenvolvimento de Sistemas&lt;/option&gt;
+        &lt;option value="si"&gt;Sistemas de Informação&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+                <p>O atributo <code>selected</code> indica a opção inicialmente selecionada. O atributo <code>value</code> define o valor enviado.</p>
+                <p><strong>Datalist:</strong> oferece sugestões predefinidas para um campo de entrada. O atributo <code>list</code> do input referencia o <code>id</code> do datalist.</p>
+                <pre><code>&lt;label for="cidade"&gt;Cidade:&lt;/label&gt;
+&lt;input list="cidades" id="cidade" name="cidade"&gt;
+&lt;datalist id="cidades"&gt;
+    &lt;option value="Presidente Prudente"&gt;
+    &lt;option value="São Paulo"&gt;
+    &lt;option value="Campinas"&gt;
+&lt;/datalist&gt;</code></pre>
+                <p><strong>Fieldset e legend:</strong> agrupam campos relacionados dentro de um formulário e fornecem um título para o grupo.</p>
+                <pre><code>&lt;fieldset&gt;
+    &lt;legend&gt;Dados pessoais&lt;/legend&gt;
+    &lt;label for="nome2"&gt;Nome:&lt;/label&gt;
+    &lt;input type="text" id="nome2" name="nome"&gt;
+&lt;/fieldset&gt;</code></pre>
+                <p><strong>Botões:</strong></p>
+                <ul>
+                    <li><code>submit</code>: envia o formulário para o destino definido em <code>action</code>.</li>
+                    <li><code>reset</code>: restaura os campos aos valores iniciais.</li>
+                    <li><code>button</code>: botão genérico, normalmente utilizado com JavaScript.</li>
+                </ul>
+                <pre><code>&lt;input type="submit" value="Enviar"&gt;
+&lt;input type="reset" value="Limpar"&gt;
+&lt;input type="button" value="Ação personalizada"&gt;</code></pre>
+
+                <h3 id="atributos-form">7.4 Atributos de formulários</h3>
+                <table>
+                    <thead><tr><th>Atributo</th><th>Função</th><th>Exemplo</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>value</code></td><td>Define o valor inicial ou o valor associado ao campo.</td><td><code>value="Ana"</code></td></tr>
+                        <tr><td><code>disabled</code></td><td>Desabilita o campo; ele não pode ser utilizado e seu valor não é enviado.</td><td><code>disabled</code></td></tr>
+                        <tr><td><code>readonly</code></td><td>Deixa o campo somente para leitura, sem permitir edição.</td><td><code>readonly</code></td></tr>
+                        <tr><td><code>size</code></td><td>Especifica a largura visível do campo em caracteres.</td><td><code>size="30"</code></td></tr>
+                        <tr><td><code>maxlength</code></td><td>Define o número máximo de caracteres permitido.</td><td><code>maxlength="50"</code></td></tr>
+                        <tr><td><code>autocomplete</code></td><td>Ativa ou desativa sugestões de preenchimento automático do navegador.</td><td><code>autocomplete="off"</code></td></tr>
+                        <tr><td><code>novalidate</code></td><td>No form, desativa a validação automática do navegador ao enviar.</td><td><code>&lt;form novalidate&gt;</code></td></tr>
+                        <tr><td><code>autofocus</code></td><td>Solicita foco automático no campo quando a página é carregada.</td><td><code>autofocus</code></td></tr>
+                        <tr><td><code>min</code> e <code>max</code></td><td>Definem valores mínimo e máximo para tipos compatíveis.</td><td><code>min="1" max="100"</code></td></tr>
+                        <tr><td><code>required</code></td><td>Indica que o campo precisa ser preenchido antes do envio.</td><td><code>required</code></td></tr>
+                        <tr><td><code>placeholder</code></td><td>Exibe uma dica sobre o valor esperado no campo.</td><td><code>placeholder="Digite seu nome"</code></td></tr>
+                    </tbody>
+                </table>
+                <p>Exemplo reunindo vários atributos:</p>
+                <pre><code>&lt;label for="idade"&gt;Idade:&lt;/label&gt;
+&lt;input type="number" id="idade" name="idade"
+       min="16" max="100" required
+       placeholder="Informe sua idade"&gt;
+
+&lt;label for="usuario"&gt;Usuário:&lt;/label&gt;
+&lt;input type="text" id="usuario" name="usuario"
+       value="aluno" maxlength="20" size="25"
+       autocomplete="on"&gt;</code></pre>
+                <p><strong>Observações:</strong> <code>readonly</code> e <code>disabled</code> não são equivalentes: campos somente para leitura podem ser enviados, enquanto campos desabilitados não são enviados. <code>placeholder</code> é uma dica e não substitui o elemento <code>&lt;label&gt;</code>.</p>
+
+                <h2 id="semantica">8. Elementos semânticos</h2>
+                <p>Elementos semânticos descrevem o papel das regiões da página. Um documento pode ser compreendido como uma árvore de regiões, facilitando a leitura do código, a manutenção e a navegação por tecnologias assistivas.</p>
+                <pre><code>&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Nome do site&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        &lt;a href="index.html"&gt;Início&lt;/a&gt;
+        &lt;a href="projetos.html"&gt;Projetos&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Conteúdo principal&lt;/h2&gt;
+            &lt;article&gt;
+                &lt;h3&gt;Notícia ou publicação&lt;/h3&gt;
+                &lt;p&gt;Texto do conteúdo.&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+        &lt;aside&gt;Conteúdo complementar&lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;Informações de rodapé&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                <table>
+                    <thead><tr><th>Elemento</th><th>Significado / utilização</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>&lt;header&gt;</code></td><td>Cabeçalho de uma página ou de uma região.</td></tr>
+                        <tr><td><code>&lt;nav&gt;</code></td><td>Região de navegação e menus de links.</td></tr>
+                        <tr><td><code>&lt;main&gt;</code></td><td>Conteúdo principal da página.</td></tr>
+                        <tr><td><code>&lt;section&gt;</code></td><td>Agrupa conteúdo relacionado, normalmente com um título.</td></tr>
+                        <tr><td><code>&lt;article&gt;</code></td><td>Conteúdo independente, como notícia, artigo ou publicação.</td></tr>
+                        <tr><td><code>&lt;aside&gt;</code></td><td>Conteúdo complementar ou relacionado ao conteúdo principal.</td></tr>
+                        <tr><td><code>&lt;footer&gt;</code></td><td>Rodapé de uma página ou região.</td></tr>
+                    </tbody>
+                </table>
+                <p>Os elementos semânticos indicam a função do conteúdo, mas não determinam automaticamente sua aparência visual. Sem CSS, eles não se transformam necessariamente em colunas, menus horizontais ou caixas coloridas.</p>
+
+                <h2 id="boas-praticas">9. Boas práticas e revisão</h2>
+                <ul>
+                    <li>Utilize <code>lang="pt-BR"</code> quando o conteúdo estiver em português do Brasil.</li>
+                    <li>Prefira tags em letras minúsculas e mantenha a indentação consistente.</li>
+                    <li>Organize os títulos hierarquicamente, sem escolher níveis apenas pelo tamanho visual.</li>
+                    <li>Associe cada campo de formulário a um <code>label</code>.</li>
+                    <li>Forneça texto alternativo adequado em imagens informativas.</li>
+                    <li>Utilize tabelas para dados tabulares, não para organizar o layout da página.</li>
+                    <li>Use elementos semânticos quando eles representarem corretamente a função da região.</li>
+                    <li>Verifique os caminhos de imagens, páginas e demais arquivos do projeto.</li>
+                </ul>
+                <h3>Exemplo integrador: página de inscrição</h3>
+                <p>O exemplo abaixo reúne estrutura semântica, títulos, parágrafos, links, listas, tabela e formulário.</p>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Inscrição em oficina&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;&lt;h1&gt;Oficinas de Tecnologia&lt;/h1&gt;&lt;/header&gt;
+    &lt;nav&gt;&lt;a href="#inscricao"&gt;Inscreva-se&lt;/a&gt;&lt;/nav&gt;
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Oficinas disponíveis&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Introdução ao HTML&lt;/li&gt;
+                &lt;li&gt;Criação de páginas Web&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/section&gt;
+        &lt;section id="inscricao"&gt;
+            &lt;h2&gt;Formulário de inscrição&lt;/h2&gt;
+            &lt;form action="/inscricao" method="post"&gt;
+                &lt;label for="nome-inscrito"&gt;Nome:&lt;/label&gt;
+                &lt;input id="nome-inscrito" name="nome"
+                       type="text" required&gt;
+                &lt;label for="email-inscrito"&gt;E-mail:&lt;/label&gt;
+                &lt;input id="email-inscrito" name="email"
+                       type="email" required&gt;
+                &lt;button type="submit"&gt;Enviar inscrição&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;Mostra de Tecnologia&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <p>O atributo <code>action</code> do exemplo é ilustrativo: para que o cadastro seja efetivamente processado, é necessário existir uma aplicação no servidor preparada para receber e tratar os dados.</p>
+
+                <h2 id="especificidade">10. CSS: especificidade</h2>
+                <p>A <strong>especificidade</strong> é o critério utilizado pelo navegador para decidir qual declaração CSS será aplicada quando duas ou mais regras atingem o mesmo elemento e definem a mesma propriedade. Em geral, o seletor com maior especificidade prevalece.</p>
+                <p>Por exemplo, se uma regra define todos os parágrafos como vermelhos e outra define uma classe como verde, um parágrafo que possua essa classe ficará verde, pois o seletor de classe tem maior especificidade que o seletor de elemento.</p>
+                <pre><code>/* Seletor de elemento */
+p {
+    color: red;
+}
+
+/* Seletor de classe: prevalece sobre p */
+.destaque {
+    color: green;
+}
+
+/* Seletor de ID: prevalece sobre os anteriores */
+#aviso {
+    color: blue;
+}</code></pre>
+                <h3 id="hierarquia-especificidade">10.1 Hierarquia e cálculo</h3>
+                <p>Para compreender a especificidade, podemos organizar os seletores em uma hierarquia. A pontuação didática apresentada nos materiais ajuda a comparar regras:</p>
+                <table>
+                    <thead><tr><th>Tipo de seletor</th><th>Exemplo</th><th>Pontuação didática</th></tr></thead>
+                    <tbody>
+                        <tr><td>Estilo inline</td><td><code>style="color: pink"</code></td><td>1000</td></tr>
+                        <tr><td>ID</td><td><code>#navbar</code></td><td>100 por ID</td></tr>
+                        <tr><td>Classe, pseudoclasse e atributo</td><td><code>.menu</code>, <code>:hover</code>, <code>[href]</code></td><td>10 por ocorrência</td></tr>
+                        <tr><td>Elemento e pseudoelemento</td><td><code>p</code>, <code>h1</code>, <code>::before</code></td><td>1 por ocorrência</td></tr>
+                        <tr><td>Seletor universal</td><td><code>*</code></td><td>0</td></tr>
+                    </tbody>
+                </table>
+                <p>Some os valores de cada categoria para comparar seletores. Exemplos:</p>
+                <table>
+                    <thead><tr><th>Seletor</th><th>Cálculo</th><th>Resultado</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>p</code></td><td>1 elemento</td><td>1</td></tr>
+                        <tr><td><code>.intro</code></td><td>1 classe</td><td>10</td></tr>
+                        <tr><td><code>p.intro</code></td><td>1 elemento + 1 classe</td><td>11</td></tr>
+                        <tr><td><code>#menu</code></td><td>1 ID</td><td>100</td></tr>
+                        <tr><td><code>#menu p</code></td><td>1 ID + 1 elemento</td><td>101</td></tr>
+                        <tr><td><code>div p.destaque</code></td><td>2 elementos + 1 classe</td><td>12</td></tr>
+                    </tbody>
+                </table>
+                <p>O cálculo é uma simplificação para fins de aprendizagem: na comparação real, o navegador considera separadamente as categorias de especificidade, em vez de tratar os números como uma pontuação decimal comum. Um seletor com mais IDs, por exemplo, prevalece sobre qualquer quantidade de classes ou elementos.</p>
+                <p>Quando duas regras têm a mesma especificidade e importância, a declaração que aparece por último na folha de estilos prevalece. A herança e o seletor universal não aumentam a especificidade.</p>
+                <h3 id="important">10.2 Regra !important</h3>
+                <p>A declaração <code>!important</code> atribui prioridade especial a uma declaração CSS e pode fazer com que ela prevaleça sobre declarações normais, mesmo que estas venham de seletores mais específicos.</p>
+                <pre><code>p {
+    color: red !important;
+}
+
+#aviso {
+    color: blue;
+}</code></pre>
+                <p>No exemplo, o parágrafo com ID <code>aviso</code> continua vermelho, pois a declaração vermelha foi marcada como importante. Evite utilizar <code>!important</code> sem necessidade: seu uso excessivo dificulta a manutenção e a sobrescrita dos estilos. A cascata também considera origem, camada, importância e contexto; portanto, não é correto afirmar que <code>!important</code> sempre vence absolutamente qualquer regra em todos os cenários.</p>
+
+                <h2 id="box-model">11. Box Model e Flexbox</h2>
+                <p>O <strong>layout</strong> é a organização visual dos elementos em uma página. O HTML define a estrutura do conteúdo e o CSS controla sua aparência, dimensões, espaçamentos e posicionamento. Para construir layouts, é importante entender o Box Model e o Flexbox.</p>
+                <h3 id="box-model-partes">11.1 As quatro partes do Box Model</h3>
+                <p>No modelo de caixas do CSS, cada elemento é representado por uma caixa composta por quatro partes:</p>
+                <ul>
+                    <li><strong>Content (conteúdo):</strong> área em que ficam o texto, a imagem ou outros elementos.</li>
+                    <li><strong>Padding (preenchimento):</strong> espaço interno entre o conteúdo e a borda.</li>
+                    <li><strong>Border (borda):</strong> contorno ao redor do conteúdo e do padding.</li>
+                    <li><strong>Margin (margem):</strong> espaço externo que separa a caixa dos demais elementos.</li>
+                </ul>
+                <pre><code>.caixa {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}</code></pre>
+                <p>No modelo padrão (<code>content-box</code>), a largura total da caixa acima, sem considerar as margens, será: 300 px de conteúdo + 40 px de padding horizontal + 10 px de bordas = <strong>350 px</strong>. As margens acrescentam mais 20 px ao espaço ocupado horizontalmente.</p>
+                <p>Para tornar o cálculo das dimensões mais previsível, é comum utilizar <code>box-sizing: border-box</code>. Nesse modelo, a largura declarada já inclui conteúdo, padding e bordas.</p>
+                <pre><code>* {
+    box-sizing: border-box;
+}
+
+.caixa {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+}</code></pre>
+                <p>Com <code>border-box</code>, a caixa permanece com 300 px de largura total, incluindo padding e bordas. A margem continua sendo espaço externo e não está incluída nessa largura.</p>
+                <p>As propriedades <code>margin</code> e <code>padding</code> aceitam atalhos:</p>
+                <table>
+                    <thead><tr><th>Declaração</th><th>Interpretação</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>padding: 10px;</code></td><td>10 px em todos os lados.</td></tr>
+                        <tr><td><code>padding: 10px 20px;</code></td><td>10 px em cima e embaixo; 20 px nas laterais.</td></tr>
+                        <tr><td><code>padding: 10px 20px 30px;</code></td><td>10 px em cima; 20 px nas laterais; 30 px embaixo.</td></tr>
+                        <tr><td><code>padding: 10px 20px 30px 40px;</code></td><td>Topo, direita, base e esquerda, nessa ordem.</td></tr>
+                    </tbody>
+                </table>
+                <p>A mesma lógica de atalhos se aplica à propriedade <code>margin</code>.</p>
+                <h3 id="flexbox">11.2 Flexbox e seus eixos</h3>
+                <p><strong>Flexbox</strong> é um modelo de layout CSS que facilita a organização, o alinhamento e a distribuição de espaço entre elementos. Para ativá-lo, define-se <code>display: flex</code> no elemento pai, que passa a ser o <strong>flex container</strong>. Seus filhos diretos tornam-se <strong>flex items</strong>.</p>
+                <pre><code>.container {
+    display: flex;
+}</code></pre>
+                <p>O Flexbox trabalha com dois eixos:</p>
+                <ul>
+                    <li><strong>Eixo principal (main axis):</strong> direção em que os itens são organizados. Por padrão, é horizontal.</li>
+                    <li><strong>Eixo transversal (cross axis):</strong> eixo perpendicular ao principal.</li>
+                </ul>
+                <p>Por padrão, <code>flex-direction: row</code> organiza os itens em linha. Se for utilizado <code>column</code>, os itens serão organizados em coluna. A propriedade <code>justify-content</code> atua no eixo principal, enquanto <code>align-items</code> atua no eixo transversal.</p>
+                <h3 id="propriedades-flex">11.3 Propriedades do Flexbox</h3>
+                <table>
+                    <thead><tr><th>Propriedade</th><th>Função e valores comuns</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>flex-direction</code></td><td>Define a direção: <code>row</code>, <code>row-reverse</code>, <code>column</code> ou <code>column-reverse</code>.</td></tr>
+                        <tr><td><code>flex-wrap</code></td><td>Controla a quebra de linha: <code>nowrap</code> (padrão), <code>wrap</code> ou <code>wrap-reverse</code>.</td></tr>
+                        <tr><td><code>flex-flow</code></td><td>Atalho que combina <code>flex-direction</code> e <code>flex-wrap</code>.</td></tr>
+                        <tr><td><code>justify-content</code></td><td>Distribui os itens no eixo principal: <code>flex-start</code>, <code>flex-end</code>, <code>center</code>, <code>space-between</code>, <code>space-around</code> e <code>space-evenly</code>.</td></tr>
+                        <tr><td><code>align-items</code></td><td>Alinha os itens no eixo transversal: <code>stretch</code>, <code>center</code>, <code>flex-start</code>, <code>flex-end</code> e <code>baseline</code>.</td></tr>
+                        <tr><td><code>align-content</code></td><td>Distribui o conjunto de linhas no eixo transversal. É relevante quando há múltiplas linhas e espaço disponível.</td></tr>
+                        <tr><td><code>align-self</code></td><td>Permite alinhar individualmente um item, sobrescrevendo o alinhamento geral definido por <code>align-items</code>.</td></tr>
+                        <tr><td><code>gap</code></td><td>Define o espaço entre os itens sem precisar aplicar margens individualmente.</td></tr>
+                    </tbody>
+                </table>
+                <p>Exemplo de um conjunto de cards responsivos:</p>
+                <pre><code>.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 220px;
+}</code></pre>
+                <p>Nesse exemplo, os cards ficam lado a lado enquanto houver espaço e passam para novas linhas quando necessário. A propriedade <code>gap</code> controla a distância entre eles. Também é possível separar os espaços horizontal e vertical usando <code>column-gap</code> e <code>row-gap</code>.</p>
+                <p><strong>Atenção:</strong> <code>align-content</code> atua sobre as linhas como um conjunto, enquanto <code>align-items</code> alinha os itens dentro de cada linha. <code>align-self</code> altera o alinhamento de um item específico.</p>
+
+                <h2 id="pseudoclasses">12. Pseudoclasses em CSS</h2>
+                <p>As <strong>pseudoclasses</strong> selecionam elementos HTML de acordo com um estado, uma interação ou uma posição na estrutura do documento. Sua sintaxe utiliza dois-pontos (<code>:</code>) e não exige que a pseudoclasse seja adicionada ao atributo <code>class</code> do HTML.</p>
+                <pre><code>seletor:pseudoclasse {
+    propriedade: valor;
+}</code></pre>
+                <h3 id="pseudo-interacao">12.1 Estados de interação</h3>
+                <table>
+                    <thead><tr><th>Pseudoclasse</th><th>Quando é aplicada</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>:hover</code></td><td>Quando o ponteiro está sobre o elemento.</td></tr>
+                        <tr><td><code>:active</code></td><td>Durante a ativação do elemento, por exemplo, enquanto o botão do mouse está pressionado.</td></tr>
+                        <tr><td><code>:focus</code></td><td>Quando o elemento recebe foco, por exemplo, ao clicar em um campo ou navegar até ele com a tecla Tab.</td></tr>
+                        <tr><td><code>:focus-visible</code></td><td>Aplica estilo de foco quando o navegador entende que o indicador visual é especialmente necessário, como na navegação por teclado.</td></tr>
+                        <tr><td><code>:link</code></td><td>Seleciona links ainda não visitados.</td></tr>
+                        <tr><td><code>:visited</code></td><td>Seleciona links já visitados.</td></tr>
+                    </tbody>
+                </table>
+                <pre><code>button {
+    background-color: blue;
+    color: white;
+}
+
+button:hover {
+    background-color: green;
+}
+
+button:active {
+    background-color: red;
+    transform: scale(0.98);
+}
+
+input:focus {
+    border: 2px solid blue;
+    background-color: #e0f2fe;
+}
+
+a:link { color: blue; }
+a:visited { color: purple; }
+a:hover { color: green; }
+a:active { color: red; }</code></pre>
+                <p>A pseudoclasse <code>:active</code> representa um estado momentâneo durante a ativação; não significa que o elemento permanecerá selecionado depois do clique. Preserve sempre um indicador de foco visível para facilitar a navegação por teclado.</p>
+                <h3 id="pseudo-posicao">12.2 Pseudoclasses posicionais</h3>
+                <p>As pseudoclasses posicionais selecionam elementos conforme sua posição entre os filhos de um mesmo elemento pai.</p>
+                <table>
+                    <thead><tr><th>Pseudoclasse</th><th>Significado</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>:first-child</code></td><td>Seleciona o primeiro filho.</td></tr>
+                        <tr><td><code>:last-child</code></td><td>Seleciona o último filho.</td></tr>
+                        <tr><td><code>:nth-child(2)</code></td><td>Seleciona o segundo filho.</td></tr>
+                        <tr><td><code>:nth-child(even)</code></td><td>Seleciona os filhos em posições pares.</td></tr>
+                        <tr><td><code>:nth-child(odd)</code></td><td>Seleciona os filhos em posições ímpares.</td></tr>
+                        <tr><td><code>:nth-of-type(2)</code></td><td>Seleciona o segundo elemento daquele tipo entre os irmãos.</td></tr>
+                    </tbody>
+                </table>
+                <pre><code>li:first-child {
+    color: red;
+}
+
+li:last-child {
+    color: blue;
+}
+
+li:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+li:nth-child(odd) {
+    background-color: #ffffff;
+}</code></pre>
+                <p><strong>Diferença importante:</strong> <code>:nth-child()</code> considera a posição entre todos os filhos do mesmo pai. Já <code>:nth-of-type()</code> considera a posição entre os irmãos que possuem o mesmo tipo de elemento. Se houver um parágrafo antes de uma lista, por exemplo, o primeiro <code>li</code> poderá ser o segundo filho.</p>
+                <h3 id="pseudo-formularios">12.3 Pseudoclasses de formulários</h3>
+                <table>
+                    <thead><tr><th>Pseudoclasse</th><th>Aplicação</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>:required</code></td><td>Campo marcado como obrigatório.</td></tr>
+                        <tr><td><code>:valid</code></td><td>Campo cujo valor atende às regras de validação aplicáveis.</td></tr>
+                        <tr><td><code>:invalid</code></td><td>Campo cujo valor não atende às regras de validação.</td></tr>
+                        <tr><td><code>:disabled</code></td><td>Controle desabilitado.</td></tr>
+                        <tr><td><code>:checked</code></td><td>Checkbox ou radio selecionado.</td></tr>
+                    </tbody>
+                </table>
+                <pre><code>input:required {
+    border: 2px solid orange;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input:valid {
+    border-color: green;
+}
+
+input:checked {
+    accent-color: green;
+}
+
+input:disabled {
+    background-color: #eeeeee;
+}</code></pre>
+                <p>Um campo obrigatório vazio pode ser considerado inválido. A validação do navegador auxilia o usuário, mas não substitui a validação dos dados no servidor.</p>
+                <p><strong>Pseudoclasses e pseudoelementos:</strong> pseudoclasses selecionam elementos conforme estado ou posição, como <code>:hover</code> e <code>:first-child</code>. Pseudoelementos representam partes específicas de um elemento e normalmente utilizam dois-pontos duplos, como <code>::first-letter</code> e <code>::before</code>.</p>
+                <pre><code>p:hover {
+    color: blue;
+}
+
+p::first-letter {
+    font-size: 30px;
+}</code></pre>
+
+                <h2 id="media-queries">13. Media Queries e responsividade</h2>
+                <p><strong>Design responsivo</strong> é a criação de páginas que continuam legíveis e confortáveis de utilizar em diferentes tamanhos de tela, como celulares, tablets e computadores. A mesma página HTML pode apresentar estilos diferentes conforme a largura disponível.</p>
+                <p>As <strong>Media Queries</strong> são condições escritas no CSS. Quando a condição é atendida, as regras dentro do bloco são aplicadas. Quando não é atendida, continuam valendo os estilos gerais.</p>
+                <h3 id="media-sintaxe">13.1 Sintaxe e condições</h3>
+                <p>A sintaxe básica utiliza <code>@media</code> seguida de uma condição e de um bloco de declarações:</p>
+                <pre><code>@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+}</code></pre>
+                <ul>
+                    <li><strong><code>max-width</code>:</strong> aplica as regras até uma largura máxima. Por exemplo, <code>max-width: 600px</code> vale quando a área de visualização tem 600 px ou menos.</li>
+                    <li><strong><code>min-width</code>:</strong> aplica as regras a partir de uma largura mínima. Por exemplo, <code>min-width: 800px</code> vale quando a área de visualização tem 800 px ou mais.</li>
+                </ul>
+                <p>Os valores de 600 px e 800 px são exemplos. O ponto de quebra deve ser escolhido conforme o conteúdo e o comportamento do layout, e não apenas por um modelo fixo de aparelho.</p>
+                <p>Para que a página seja interpretada corretamente em dispositivos móveis, inclua a meta viewport no <code>head</code> do HTML:</p>
+                <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                <p>O HTML continua responsável pela estrutura; o CSS controla cores, fontes, tamanhos, espaçamentos e apresentação; e as Media Queries adaptam esses estilos conforme as condições da tela.</p>
+                <h3 id="media-exemplos">13.2 Exemplos práticos</h3>
+                <p><strong>Exemplo 1 — alterar cores e tamanho do título:</strong></p>
+                <pre><code>body {
+    background-color: #fef3c7;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+@media (max-width: 600px) {
+    body {
+        background-color: #dbeafe;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}</code></pre>
+                <p>Em telas maiores que 600 px, o fundo permanece amarelo-claro e o título tem 36 px. Em telas de até 600 px, o fundo passa a azul-claro e o título é reduzido para 24 px.</p>
+                <p><strong>Exemplo 2 — adaptar largura e espaçamento de uma caixa:</strong></p>
+                <pre><code>.caixa {
+    width: 70%;
+    padding: 40px;
+    background-color: #bbf7d0;
+}
+
+@media (max-width: 650px) {
+    .caixa {
+        width: 95%;
+        padding: 15px;
+        background-color: #fde68a;
+    }
+}</code></pre>
+                <p><strong>Exemplo 3 — transformar um menu horizontal em vertical:</strong></p>
+                <pre><code>nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2563eb;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+    }
+}</code></pre>
+                <p>Nesse exemplo, não é necessário alterar o HTML: os links ficam lado a lado em telas maiores e passam a ocupar linhas separadas em telas pequenas.</p>
+                <p><strong>Como testar:</strong> abra a página no Chrome ou Edge, pressione F12 para abrir as ferramentas do desenvolvedor e utilize a visualização de dispositivos móveis (Ctrl + Shift + M). Teste diferentes larguras, como 400 px, 600 px e 900 px. No limite exato definido por <code>max-width</code>, a regra também é aplicada.</p>
+                <p><strong>Erros comuns:</strong> esquecer o caractere <code>@</code> antes de <code>media</code>, não fechar corretamente as chaves do bloco ou esquecer de salvar o arquivo CSS. Se a regra não funcionar, confira também se o HTML está conectado ao arquivo CSS correto.</p>
+                <h3>Desafio de revisão — Biblioteca da Escola</h3>
+                <p>Considere uma página com cabeçalho, título, menu de navegação e uma caixa de aviso. Crie uma Media Query para telas de até 600 px e faça as seguintes alterações:</p>
+                <ol>
+                    <li>Mude o fundo da página para azul-claro.</li>
+                    <li>Reduza o título para 24 px.</li>
+                    <li>Coloque cada link do menu em uma linha separada.</li>
+                    <li>Reduza o padding da caixa de aviso para 15 px.</li>
+                </ol>
+                <p>O desafio pode ser resolvido apenas com CSS, sem modificar a estrutura HTML.</p>
+
+                <h2 id="referencias">14. Referências</h2>
+                <p>Materiais-base utilizados na organização deste conteúdo: slides da disciplina Desenvolvimento Web — HTML, listas, imagens, links, tabelas, formulários, atributos de formulários e elementos semânticos, da Profª Elaine P. Affonso / Profª Elaine Parra Affonso.</p>
+                <ul>
+                    <li><a href="https://www.w3.org/html/" target="_blank" rel="noopener noreferrer">World Wide Web Consortium (W3C) — HTML</a>.</li>
+                    <li><a href="https://www.w3.org/standards/webdesign/htmlcss" target="_blank" rel="noopener noreferrer">W3C — HTML e CSS</a>.</li>
+                    <li><a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener noreferrer">WHATWG — HTML Living Standard</a>.</li>
+                    <li><a href="https://www.w3.org/2009/cheatsheet/" target="_blank" rel="noopener noreferrer">W3C — HTML Cheat Sheet</a>.</li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener noreferrer">MDN Web Docs — HTML</a>.</li>
+                    <li><a href="https://www.w3schools.com/html/default.asp" target="_blank" rel="noopener noreferrer">W3Schools — HTML Tutorial</a>.</li>
+                    <li><a href="https://www.w3schools.com/html/html_forms.asp" target="_blank" rel="noopener noreferrer">W3Schools — HTML Forms</a>.</li>
+                    <li><a href="https://www.w3schools.com/html/html_form_attributes.asp" target="_blank" rel="noopener noreferrer">W3Schools — HTML Form Attributes</a>.</li>
+                    <li><a href="https://www.w3c.br/pub/Cursos/CursoHTML5/html5-web.pdf" target="_blank" rel="noopener noreferrer">W3C Brasil — Curso HTML5</a>.</li>
+                    <li><a href="https://www.caelum.com.br/apostila/apostila-html-css-javascript.pdf" target="_blank" rel="noopener noreferrer">Caelum — Apostila HTML, CSS e JavaScript</a>.</li>
+                    <li><a href="https://www.w3schools.com/css/css_specificity.asp" target="_blank" rel="noopener noreferrer">W3Schools — CSS Specificity</a>.</li>
+                    <li><a href="https://www.w3schools.com/css/css_important.asp" target="_blank" rel="noopener noreferrer">W3Schools — The !important Rule</a>.</li>
+                    <li>CASTRO, Elizabeth; HYSLOP, Bruce. <em>HTML5 e CSS3: guia prático e visual</em>. Editora Alta Books, 2013.</li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener noreferrer">MDN Web Docs — Flexbox</a>.</li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/flex-wrap" target="_blank" rel="noopener noreferrer">MDN Web Docs — flex-wrap</a>.</li>
+                    <li><a href="https://www.w3schools.com/css/css3_flexbox.asp" target="_blank" rel="noopener noreferrer">W3Schools — CSS Flexbox</a>.</li>
+                    <li><a href="https://www.devmedia.com.br/css3-flexbox-funcionamento-e-propriedades/29532" target="_blank" rel="noopener noreferrer">DevMedia — CSS3 Flexbox: Funcionamento e Propriedades</a>.</li>
+                    <li>Slides da disciplina Desenvolvimento Web — CSS: Box Model e Flexbox, Profª Elaine P. Affonso.</li>
+                    <li>Slides da disciplina Desenvolvimento Web — Pseudoclasses em CSS.</li>
+                    <li>Slides da disciplina Desenvolvimento Web — Media Queries.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+</html>
