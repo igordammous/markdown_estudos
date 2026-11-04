@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engenharia de Software I</title>
+    <title>Engenharia de Software</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -21,43 +21,72 @@
                 <li><a href="seguranca-informacao.html"><span class="icon">🔐</span> Segurança da Informação</a></li>
                 <li><a href="banco-de-dados.html"><span class="icon">🗄️</span> Banco de Dados I</a></li>
                 <li><a href="desenvolvimento-web.html"><span class="icon">🌐</span> Desenvolvimento Web</a></li>
-                <li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software I</a></li>
+                <li><a href="linguagem-programacao.html"><span class="icon">🐍</span> Linguagem de Programação I</a></li>
+                <li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software</a></li>
                 <li><a href="sistemas-operacionais.html"><span class="icon">🖥️</span> Sistemas Operacionais</a></li>
                 <li><a href="arquitetura-hardware.html"><span class="icon">💻</span> Arquitetura de Hardware</a></li>
                 <li><a href="arquitetura-hardware-codigo.html"><span class="icon">🔧</span> Arquitetura — Códigos</a></li>
                 <li><a href="comunicacao.html"><span class="icon">💬</span> Comunicação</a></li>
             </ul>
         </aside>
-
         <main class="main-content">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h1>⚙️ Engenharia de Software I</h1>
+                    <h1>⚙️ Engenharia de Software I & II</h1>
                     <div class="page-meta">
                         <span class="badge badge-blue">Ciclo de Vida</span>
                         <span class="badge badge-green">Requisitos</span>
                         <span class="badge badge-purple">IEEE 830</span>
                         <span class="badge badge-yellow">ISO 12207</span>
+                        <span class="badge badge-red">Casos de Uso</span>
+                        <span class="badge badge-green">Scrum</span>
+                        <span class="badge badge-blue">XP</span>
                     </div>
                 </div>
 
                 <div class="toc">
-                    <h3>Índice</h3>
+                    <h3>📘 Parte 1 — Engenharia de Software I</h3>
                     <ul>
                         <li class="toc-h2"><a href="#tipos-software">1. Tipos de softwares</a></li>
-                        <li class="toc-h2"><a href="#ciclo-vida">2. Etapa de Vida de um Software, teoria e na prática</a></li>
-                        <li class="toc-h2"><a href="#processos-gerais">3. Processos Gerais do Ciclo de Vida de um Software</a></li>
-                        <li class="toc-h2"><a href="#metodos-tradicionais">4. Métodos Tradicionais de Ciclo de Vida (Não Ágeis)</a></li>
-                        <li class="toc-h2"><a href="#requisitos">5. O que são Requisitos de Software e Regras de Negócio?</a></li>
-                        <li class="toc-h2"><a href="#ers">6. Especificação de Requisitos de Software (ERS)</a></li>
+                        <li class="toc-h2"><a href="#ciclo-vida">2. Etapa de Vida de um Software</a></li>
+                        <li class="toc-h2"><a href="#processos-gerais">3. Processos Gerais do Ciclo de Vida</a></li>
+                        <li class="toc-h2"><a href="#metodos-tradicionais">4. Métodos Tradicionais (Não Ágeis)</a></li>
+                        <li class="toc-h2"><a href="#requisitos">5. Requisitos de Software e Regras de Negócio</a></li>
+                        <li class="toc-h2"><a href="#ers">6. Especificação de Requisitos (ERS)</a></li>
                         <li class="toc-h2"><a href="#uod">7. Universo de Discurso (UoD)</a></li>
-                        <li class="toc-h2"><a href="#elicitacao">8. Técnicas de Levantamento de Requisitos</a></li>
+                        <li class="toc-h2"><a href="#elicitacao">8. Técnicas de Levantamento</a></li>
                         <li class="toc-h2"><a href="#viabilidade">9. Estudo de Viabilidade</a></li>
-                        <li class="toc-h2"><a href="#ieee830">10. A Norma IEEE 830</a></li>
+                        <li class="toc-h2"><a href="#ieee830">10. Norma IEEE 830</a></li>
                         <li class="toc-h2"><a href="#priorizacao">11. Priorização de Requisitos</a></li>
                         <li class="toc-h2"><a href="#iso12207">12. ISO 12207</a></li>
-                        <li class="toc-h2"><a href="#duvidas">Dúvidas</a></li>
+                        <li class="toc-h2"><a href="#duvidas-1">Dúvidas — Parte 1</a></li>
                     </ul>
+                
+                    <h3 style="margin-top: 24px !important;">📗 Parte 2 — Engenharia de Software II</h3>
+                    <ul>
+                        <li class="toc-h2"><a href="#levantamento-req">13. Levantamento de Requisitos</a></li>
+                        <li class="toc-h2"><a href="#cenarios">14. Cenários</a></li>
+                        <li class="toc-h2"><a href="#casos-uso-intro">15. Casos de Uso — Introdução</a></li>
+                        <li class="toc-h2"><a href="#modelo-casos-uso">16. Modelo de Casos de Uso</a></li>
+                        <li class="toc-h2"><a href="#formatos-casos-uso">17. Formatos de Casos de Uso</a></li>
+                        <li class="toc-h2"><a href="#identificacao">18. Identificação de Casos de Uso</a></li>
+                        <li class="toc-h2"><a href="#especificacao-expandida">19. Especificação Expandida</a></li>
+                        <li class="toc-h2"><a href="#diagrama-casos-uso">20. Diagrama de Casos de Uso</a></li>
+                        <li class="toc-h2"><a href="#include-extend">21. Include e Extend</a></li>
+                        <li class="toc-h2"><a href="#diagrama-atividades">22. Diagrama de Atividades</a></li>
+                        <li class="toc-h2"><a href="#metodologias-ageis">23. Metodologias Ágeis</a></li>
+                        <li class="toc-h2"><a href="#scrum">24. Scrum</a></li>
+                        <li class="toc-h2"><a href="#xp">25. XP (Extreme Programming)</a></li>
+                        <li class="toc-h2"><a href="#scrum-xp">26. Scrum x XP</a></li>
+                    </ul>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- 🔷 PARTE 1 — ENGENHARIA DE SOFTWARE I                          -->
+                <!-- ============================================================ -->
+                <div style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 20px 24px; border-radius: 8px; margin: 32px 0 24px;">
+                    <h2 style="margin: 0; color: white; border: none; padding: 0;">📘 Parte 1 — Engenharia de Software I</h2>
+                    <p style="margin: 8px 0 0; color: rgba(255,255,255,0.9); font-size: 0.95rem;">Fundamentos: ciclo de vida, requisitos, ERS, viabilidade, IEEE 830 e ISO 12207.</p>
                 </div>
 
                 <h2 id="tipos-software">1. Tipos de softwares</h2>
@@ -1702,8 +1731,8 @@ Implementação técnica (código, banco de dados, APIs)</code></pre>
                 <blockquote>
                     <p><strong>Protótipo de Papel (20min):</strong></p>
                     <ul>
-                                                    <li>(−) As respostas a essas perguntas consomem muito tempo, e podem trazer pouca informação</li>
-                        </ul>
+                        <li>(−) As respostas a essas perguntas consomem muito tempo, e podem trazer pouca informação</li>
+                    </ul>
                     </li>
                     <li><strong>Fechadas:</strong>
                         <ul>
@@ -1712,6 +1741,7 @@ Implementação técnica (código, banco de dados, APIs)</code></pre>
                         </ul>
                     </li>
                 </ul>
+                </blockquote>
 
                 <h4>8.1.1 Entrevista Estruturada</h4>
 
@@ -3250,10 +3280,993 @@ Implementação técnica (código, banco de dados, APIs)</code></pre>
                             <tr><td>Design/Protótipo</td><td>Figma, Coolors, Undraw</td></tr>
                         </tbody>
                     </table>
-                </div>
 
                 <p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
                     <em>Fim do conteúdo de Engenharia de Software I.</em>
+                </p>
+
+                <!-- ============================================================ -->
+                <!-- 🔶 PARTE 2 — ENGENHARIA DE SOFTWARE II                       -->
+                <!-- ============================================================ -->
+                <div style="background: linear-gradient(135deg, #27ae60, #1e8449); color: white; padding: 20px 24px; border-radius: 8px; margin: 64px 0 24px;">
+                    <h2 style="margin: 0; color: white; border: none; padding: 0;">📗 Parte 2 — Engenharia de Software II</h2>
+                    <p style="margin: 8px 0 0; color: rgba(255,255,255,0.9); font-size: 0.95rem;">Casos de Uso, Diagrama de Atividades e Metodologias Ágeis (Scrum e XP).</p>
+                </div>
+
+                <h2 id="levantamento-req">13. Levantamento de Requisitos</h2>
+
+                <p>Atividades envolvidas no levantamento e análise de requisitos:</p>
+
+                <ul>
+                    <li>Compreensão do domínio</li>
+                    <li>Coleta de requisitos</li>
+                    <li>Estruturação dos requisitos (classificação geral)</li>
+                    <li>Organização dos requisitos (sequência de execução)</li>
+                    <li>Resolução de conflitos</li>
+                    <li>Identificação dos requisitos prioritários</li>
+                    <li>Verificação e validação (consistentes, completos, de acordo com os stakeholders etc.)</li>
+                </ul>
+
+                <h2 id="cenarios">14. Cenários</h2>
+
+                <p><strong>Cenários</strong> descrevem situações de uso do sistema (sessões de interação entre usuários e sistemas), modelando eventos que ocorrem na fronteira do sistema (entre o sistema e o ambiente do cliente — mundo real).</p>
+
+                <blockquote>
+                    <p>Os cenários são uma coleção de <strong>narrativas</strong> de situações do domínio do sistema que auxiliam no <strong>levantamento de requisitos</strong>, na identificação de problemas e na antecipação das soluções.</p>
+                </blockquote>
+
+                <h3>14.1 Exemplo — Compra em um caixa de supermercado</h3>
+
+                <p>O cliente chega ao caixa de um supermercado com os itens que deseja comprar. À medida que ele entrega os produtos ao operador de caixa, este registra os produtos no sistema. Ao registrar cada produto, o sistema exibe a descrição e o preço do produto e o subtotal da venda. Após registrar todos os itens, o operador de caixa informa ao sistema a conclusão da venda; o sistema informa o valor total da venda e o operador de caixa repassa o valor ao cliente.</p>
+
+                <p>Neste cenário, o <strong>cliente</strong> e o <strong>operador de caixa</strong> são chamados de <strong>atores</strong>.</p>
+
+                <h3>14.2 Por que cenários são importantes?</h3>
+
+                <ul>
+                    <li>São largamente utilizados na Engenharia de Requisitos para descrever o comportamento do sistema de maneira independente do projeto de software.</li>
+                    <li>Ajudam a testar modelos e especificações durante a validação dos requisitos.</li>
+                    <li>Representam exemplos de como o sistema deve funcionar para que os objetivos dos usuários sejam alcançados.</li>
+                    <li>Em Engenharia de Software, os cenários são representados por meio de <strong>Casos de Uso</strong>.</li>
+                </ul>
+
+                <h2 id="casos-uso-intro">15. Casos de Uso — Introdução</h2>
+
+                <p>Os <strong>casos de uso</strong> captam os <strong>requisitos funcionais</strong> de um sistema. Um caso de uso é uma <strong>narrativa</strong> sobre como o sistema é utilizado por meio da descrição das interações entre os usuários de um sistema (ator) e o próprio sistema, para atingir um ou mais objetivos.</p>
+
+                <blockquote>
+                    <p><strong>Ator:</strong> pessoa, dispositivo físico, mecanismo ou subsistema que interage com o sistema alvo.</p>
+                </blockquote>
+
+                <p>Geralmente, o objetivo representa uma das funcionalidades do sistema. Os requisitos mais importantes são modelados em casos de uso.</p>
+
+                <p>Os casos de uso definem como o sistema é utilizado por meio de atores e sequência de ações. São uma <strong>ferramenta de comunicação</strong> que resume o comportamento do sistema e seus atores, representando um modelo da funcionalidade e do ambiente do sistema.</p>
+
+                <h2 id="modelo-casos-uso">16. Modelo de Casos de Uso</h2>
+
+                <p><strong>Modelo (ou Especificação) de Casos de Uso:</strong> conjunto de todos os casos de uso do sistema. Serve como ferramenta de comunicação que resume o comportamento do sistema e seus atores.</p>
+
+                <p>Cada caso de uso do modelo possui uma descrição do início ao fim de um processo relativamente grande, que inclui muitos passos ou transações.</p>
+
+                <h3>16.1 Cenário como instância de caso de uso</h3>
+
+                <p>Um cenário (instância de caso de uso) é uma sequência específica de ações e interações entre atores e o sistema. Assim:</p>
+
+                <blockquote>
+                    <p>Um caso de uso é uma <strong>coleção de cenários relacionados</strong> de sucesso e de fracasso, que descrevem um ator usando um sistema como meio para atingir um objetivo.</p>
+                </blockquote>
+
+                <p><strong>Exemplo — Tratar Devoluções:</strong></p>
+                <ul>
+                    <li><strong>Cenário de sucesso principal:</strong> um cliente chega a um posto de pagamento com itens a serem devolvidos. O caixa usa o sistema TPV (Terminal de Ponto de Vendas) para registrar cada item devolvido.</li>
+                    <li><strong>Cenários alternativos:</strong>
+                        <ul>
+                            <li>Cliente pagou a crédito e a transação de reembolso para estorno é rejeitada → informe o cliente e o reembolse com dinheiro.</li>
+                            <li>O identificador do item não foi encontrado → o sistema notifica o caixa e sugere entrar manualmente com o código.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2 id="formatos-casos-uso">17. Formatos de Casos de Uso</h2>
+
+                <h3>17.1 Alto Nível (resumido)</h3>
+
+                <p>Breve descrição de um processo, normalmente em duas ou três frases, deliberadamente vaga sobre decisões de projeto. Criados na fase inicial de requisitos.</p>
+
+                <p><strong>Exemplo:</strong></p>
+
+                <blockquote>
+                    <p><strong>Caso de uso:</strong> Comprar Itens<br>
+                    <strong>Atores:</strong> Cliente, Operador<br>
+                    <strong>Descrição:</strong> Um Cliente chega no caixa, com itens que deseja comprar. O Operador registra os itens de compra e recebe o pagamento. Ao final, o Cliente deixa a loja com os itens.</p>
+                </blockquote>
+
+                <h3>17.2 Expandido (completo)</h3>
+
+                <p>Descrição passo a passo dos eventos de um processo. Durante a fase de concepção, apenas os casos de uso mais importantes devem ser escritos nesse formato. Contém:</p>
+
+                <ul>
+                    <li>Cenário de sucesso principal (sequência típica de eventos)</li>
+                    <li>Sequências alternativas</li>
+                    <li>Outras seções (pré-condições, pós-condições, atores, interesses)</li>
+                </ul>
+
+                <p>Dois subtipos:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Fase</th><th>Característica</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Abstrato</td><td>Análise</td><td>Sem considerar muitos detalhes</td></tr>
+                            <tr><td>Concreto</td><td>Projeto</td><td>Com mais detalhes</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo — Caso de Uso Expandido: Emprestar Livro</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <tbody>
+                            <tr><td><strong>Caso de Uso</strong></td><td>Emprestar Livro</td></tr>
+                            <tr><td><strong>Ator Principal</strong></td><td>Atendente</td></tr>
+                            <tr><td><strong>Interessados e Interesses</strong></td><td>Atendente (registrar empréstimo); Leitor (emprestar livros rapidamente); Bibliotecário (controlar uso dos livros)</td></tr>
+                            <tr><td><strong>Pré-Condições</strong></td><td>O Atendente é identificado e autenticado</td></tr>
+                            <tr><td><strong>Garantia de Sucesso</strong></td><td>Os dados do novo empréstimo estão armazenados. Os livros emprestados possuem status "emprestado".</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Sequência Típica de Eventos:</strong></p>
+                <ol>
+                    <li>O Leitor chega ao balcão e diz ao atendente que deseja emprestar livros.</li>
+                    <li>O Atendente solicita ao leitor sua carteira de identificação.</li>
+                    <li>O Atendente informa ao sistema a identificação do leitor.</li>
+                    <li>O Sistema exibe o nome do leitor e sua situação.</li>
+                    <li>Para cada livro, informa ao sistema o código de identificação.</li>
+                    <li>O Sistema informa a data de devolução de cada livro.</li>
+                    <li>O Atendente solicita os livros a serem emprestados.</li>
+                    <li>O Atendente desbloqueia os livros para que possam sair da biblioteca.</li>
+                    <li>O Leitor sai com os livros.</li>
+                </ol>
+
+                <p><strong>Fluxos Alternativos:</strong></p>
+                <ul>
+                    <li>(1-8): A qualquer momento o Leitor desiste do empréstimo → Cancelar a operação.</li>
+                    <li>2: O Leitor esqueceu a carteira → busca pelo cadastro e confirmação por informação pessoal; retornar ao passo 3.</li>
+                    <li>3: O Leitor está impedido (situação irregular) → Cancelar a operação.</li>
+                    <li>6a: O Livro está reservado para outro leitor → informar e perguntar se deseja reservá-lo.</li>
+                    <li>6b: O Livro é reservado somente para consulta → Cancelar a operação.</li>
+                </ul>
+
+                <h2 id="identificacao">18. Identificação de Casos de Uso</h2>
+
+                <p><strong>Passo a passo:</strong></p>
+
+                <ol>
+                    <li>Identificar os <strong>atores principais</strong> — aqueles que têm objetivos satisfeitos por meio dos serviços do sistema.</li>
+                    <li>Para cada ator principal, identificar os <strong>objetivos</strong>.</li>
+                    <li>Definir casos de uso que satisfaçam os objetivos; nomeá-los de acordo com o objetivo.
+                        <ul>
+                            <li>Ex.: Objetivo = processar uma venda → Caso de Uso = Processar Venda.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <p><strong>Ator principal</strong> interage diretamente com o sistema computacional. <strong>Ator secundário</strong> interage com outros atores.</p>
+
+                <blockquote>
+                    <p><strong>Exemplo:</strong> Ao emprestar um livro, o <strong>Atendente</strong> é quem opera o computador e realiza a transação — portanto é o ator principal. O <strong>Leitor</strong> interage com o atendente — é o ator secundário.</p>
+                </blockquote>
+
+                <h3>18.1 Lista de atores e objetivos (Sistema TPV)</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Ator</th><th>Objetivo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Operador (caixa)</td><td>Processar vendas; Tratar devoluções de produtos</td></tr>
+                            <tr><td>Administrador do Sistema</td><td>Gerenciar usuários (Adicionar, Modificar, Excluir); Gerenciar segurança</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>18.2 A partir de um documento de requisitos — Biblioteca</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Requisito</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>R1</td><td>Leitores devem estar registrados e possuir cartão com número de identificação e foto.</td></tr>
+                            <tr><td>R2</td><td>Empréstimo de 1 semana a 6 meses, dependendo do tipo de leitor.</td></tr>
+                            <tr><td>R3</td><td>Leitor apto se não tiver livros vencidos e não ultrapassar o número máximo permitido (6/10/15 dependendo do tipo).</td></tr>
+                            <tr><td>R4</td><td>Devolução de livros, tornando-os novamente disponíveis.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Casos de uso candidatos:</strong> <code>Emprestar Livro</code> e <code>Devolver Livro</code>.</p>
+
+                <blockquote>
+                    <p>Um requisito pode referir-se a mais de um caso de uso; um caso de uso pode referir-se a mais de um requisito.</p>
+                </blockquote>
+
+                <h2 id="especificacao-expandida">19. Especificação Expandida — Exemplo Completo</h2>
+
+                <p><strong>Formato de duas colunas (conversacional)</strong> proposto por Rebecca Wirfs-Brock (1993) e defendido por Constantine e Lockwood (1999).</p>
+
+                <p><strong>Caso de uso:</strong> Comprar Itens com Dinheiro<br>
+                <strong>Atores:</strong> Cliente, Operador<br>
+                <strong>Finalidade:</strong> Capturar uma venda e seu pagamento em dinheiro.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Ação do Ator</th><th>Resposta do Sistema</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1. Cliente chega ao caixa (equipado com um TPV) com itens que deseja comprar.</td><td>—</td></tr>
+                            <tr><td>2. O Operador registra o identificador de cada item. Se houver mais de um exemplar, também pode informar a quantidade.</td><td>3. Determina o preço do item e adiciona informação à transação de venda corrente. Mostra a descrição e o preço do item corrente.</td></tr>
+                            <tr><td>4. Após processar o último item, o Operador indica ao TPV que a entrada terminou.</td><td>5. Calcula e mostra o valor total da venda.</td></tr>
+                            <tr><td>6. O Operador informa o total ao Cliente.</td><td>—</td></tr>
+                            <tr><td>7. O Cliente entrega um pagamento em dinheiro, possivelmente maior que o total.</td><td>—</td></tr>
+                            <tr><td>8. O Operador registra o valor recebido em dinheiro.</td><td>9. Mostra o troco devido e emite um recibo.</td></tr>
+                            <tr><td>10. O Operador deposita o dinheiro e retira o troco. Entrega o troco e o recibo ao Cliente.</td><td>11. Registra a venda no log de vendas completadas.</td></tr>
+                            <tr><td>12. O Cliente sai com os itens comprados.</td><td>—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Sequência alternativa:</strong> Linha 7 — Cliente não tem dinheiro suficiente. Cancelar transação.</p>
+
+                <h3>19.1 Caso de uso essencial vs. real</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Fase</th><th>Característica</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Essencial</td><td>Análise</td><td>Descrição em termos das atividades essenciais e motivação; livre de detalhes de implementação, decisões de projeto e uso de tecnologias.</td></tr>
+                            <tr><td>Real</td><td>Projeto</td><td>Descrição em termos do projeto real, comprometido com tecnologias de desenvolvimento, interfaces de entrada e saída.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Trecho essencial:</strong></p>
+                <blockquote>
+                    <p>2. O Operador registra o identificador de cada item. Se houver mais de um exemplar do mesmo item, o Operador também pode informar a quantidade.</p>
+                </blockquote>
+
+                <p><strong>Trecho real:</strong></p>
+                <blockquote>
+                    <p>2. Para cada item, o Operador digita o código universal de produto (UPC) na caixa de texto <code>CT_Codigo</code> da janela <code>J_VendaCaixa</code>. Ele então pressiona o botão <code>B_Adicionar</code> com o mouse ou pressiona a tecla <code>&lt;Enter&gt;</code>.</p>
+                </blockquote>
+
+                <h2 id="diagrama-casos-uso">20. Diagrama de Casos de Uso</h2>
+
+                <p>O <strong>Diagrama de Casos de Uso</strong> ilustra um conjunto de casos de uso e atores para um sistema, os atores e os relacionamentos entre eles.</p>
+
+                <ul>
+                    <li>Mostra a <strong>fronteira do sistema</strong> (o que está dentro ou fora dele).</li>
+                    <li>Fornece uma visão geral do comportamento do sistema — como ele é usado e por quem.</li>
+                    <li>É um dos diagramas da <strong>UML</strong> (Unified Modeling Language).</li>
+                </ul>
+
+                <h3>20.1 Notação UML</h3>
+
+                <ul>
+                    <li><strong>Ator:</strong> boneco palito com o nome abaixo.</li>
+                    <li><strong>Caso de Uso:</strong> elipse com o nome dentro, contida dentro da fronteira do sistema (retângulo).</li>
+                    <li><strong>Associação simples:</strong> linha contínua entre ator e caso de uso (não indica direção dos dados).</li>
+                    <li><strong>Associação direcional:</strong> seta indicando a direção dos dados (ator → caso de uso ou caso de uso → ator).</li>
+                    <li><strong>Generalização (herança):</strong> seta com triângulo vazado — pode ocorrer entre atores e entre casos de uso.</li>
+                    <li><strong>Comentário / Anotação:</strong> retângulo com canto dobrado.</li>
+                    <li><strong>Fronteira do sistema:</strong> retângulo que envolve os casos de uso.</li>
+                </ul>
+
+                <h3>20.2 Fronteiras de Sistemas</h3>
+
+                <p>Identificar os atores e casos de uso de um sistema requer a definição de seu <strong>limite de atuação</strong>. Alguns limites típicos incluem:</p>
+
+                <ul>
+                    <li>O software/hardware de um dispositivo ou sistema de computação.</li>
+                    <li>Um departamento de uma organização.</li>
+                    <li>Uma organização inteira.</li>
+                </ul>
+
+                <blockquote>
+                    <p>Limites diferentes podem resultar em diferentes conjuntos de atores e casos de uso.</p>
+                </blockquote>
+
+                <p><strong>Exemplo (TPV):</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Figura 1 (Web)</th><th>Figura 2 (TPV)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>O sistema realiza a auto-conclusão da venda em operação para uso direto pelo cliente. Atores: Cliente. Casos: Comprar Itens, Reembolsar Itens comprados.</td>
+                                <td>O sistema atende ao objetivo de um caixa treinado para processar a venda do cliente. Atores: Caixa, Cliente. Casos: Comprar Itens, Log In, Reembolsar Itens comprados.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="include-extend">21. Relacionamentos Include e Extend</h2>
+
+                <h3>21.1 Include (Inclusão)</h3>
+
+                <p>Uma associação <strong>include</strong> de um caso de uso A para um caso de uso B indica que uma instância de A <strong>inclui o comportamento</strong> especificado por B.</p>
+
+                <ul>
+                    <li>Útil para evitar a repetição de um fluxo de eventos várias vezes.</li>
+                    <li>Exibida com uma associação de dependência (seta tracejada) acrescida do estereótipo <code>&lt;&lt;include&gt;&gt;</code>.</li>
+                </ul>
+
+                <p><strong>Exemplo:</strong> <code>Sacar dinheiro</code> inclui <code>Validar usuário</code>.</p>
+
+                <h3>21.2 Extend (Extensão)</h3>
+
+                <p>Um caso de uso <strong>extend</strong> estende outro se ele <strong>adiciona comportamento</strong> ao caso de uso base.</p>
+
+                <ul>
+                    <li>Usada para modelar parte de um caso de uso que só é executada sob determinadas condições.</li>
+                    <li>Quando um fluxo alternativo é complexo e merece maior detalhamento, pode-se escrevê-lo na forma de uma extensão ao caso de uso base.</li>
+                    <li>Representada como uma dependência estereotipada com <code>&lt;&lt;extend&gt;&gt;</code> (seta apontando <strong>para o caso base</strong>).</li>
+                </ul>
+
+                <p><strong>Exemplo:</strong> <code>Tratar saque com saldo insuficiente</code> estende <code>Sacar dinheiro</code>.</p>
+
+                <h3>21.3 Include vs. Extend</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Aspecto</th><th>Include</th><th>Extend</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Direção</td><td>Caso base → caso incluído</td><td>Caso estendido → caso base</td></tr>
+                            <tr><td>Comportamento</td><td>Obrigatório — sempre executa</td><td>Opcional — só em condições específicas</td></tr>
+                            <tr><td>Motivação</td><td>Reutilização de fluxo comum</td><td>Modelagem de fluxo alternativo complexo</td></tr>
+                            <tr><td>Notação</td><td>Seta tracejada com <code>&lt;&lt;include&gt;&gt;</code></td><td>Seta tracejada com <code>&lt;&lt;extend&gt;&gt;</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="diagrama-atividades">22. Diagrama de Atividades</h2>
+
+                <p>O <strong>Diagrama de Atividades</strong> permite representar lógicas de processos, fluxos de trabalho, processos de negócio e casos de uso. Seu objetivo é <strong>visualizar o fluxo de atividades em um único processo</strong>.</p>
+
+                <p>As atividades são conectadas por meio de <strong>arcos (transições)</strong>, que representam as dependências entre elas. Na fase de análise, é possível utilizá-lo para modelar o contexto geral do sistema, mas o mais comum é modelar o contexto individual de cada caso de uso fundamental.</p>
+
+                <h3>22.1 Perspectivas de Modelagem</h3>
+
+                <p>O Diagrama de Atividades pertence à <strong>Perspectiva Externa</strong> — modela o contexto ou o ambiente do sistema (junto com o Diagrama de Contexto).</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Perspectiva</th><th>Foco</th><th>Exemplos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Externa</td><td>Contexto / ambiente do sistema</td><td>Diagrama de Contexto, Diagrama de Atividades</td></tr>
+                            <tr><td>Comportamental</td><td>Comportamento do sistema</td><td>Diagrama de Estados</td></tr>
+                            <tr><td>Estrutural</td><td>Estrutura estática</td><td>Diagrama de Classes</td></tr>
+                            <tr><td>Interação</td><td>Interação entre objetos</td><td>Diagrama de Sequência</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>22.2 Elementos da Notação</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Elemento</th><th>Símbolo</th><th>Função</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Início</td><td>Círculo preto preenchido</td><td>Ponto de partida do fluxo</td></tr>
+                            <tr><td>Final (terminador)</td><td>Círculo preto com borda</td><td>Encerra o fluxo</td></tr>
+                            <tr><td>Atividade / Ação</td><td>Retângulo arredondado</td><td>Uma atividade envia apenas 1 transição</td></tr>
+                            <tr><td>Transição</td><td>Seta</td><td>Liga uma atividade a outra</td></tr>
+                            <tr><td>Separação (Fork)</td><td>Barra horizontal/vertical grossa</td><td>Divide o fluxo em paralelo</td></tr>
+                            <tr><td>Junção (Join)</td><td>Barra horizontal/vertical grossa</td><td>Sincroniza fluxos paralelos</td></tr>
+                            <tr><td>Desvio (Branch)</td><td>Losango vazado</td><td>Fluxos condicionais (uma saída por vez)</td></tr>
+                            <tr><td>Intercalação (Merge)</td><td>Losango vazado</td><td>Final de um desvio ou recepção de várias transições</td></tr>
+                            <tr><td>Nó de Objeto</td><td>Retângulo</td><td>Objeto produzido ou utilizado pelas ações</td></tr>
+                            <tr><td>Sub-Atividade</td><td>Ícone de "+" no canto</td><td>Detalha uma atividade em outro diagrama</td></tr>
+                            <tr><td>Raias (Swimlanes)</td><td>Colunas verticais</td><td>Separam responsabilidades por ator/setor</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>22.3 Exemplo 1 — Remeter Pedido</h3>
+
+                <p><strong>Caso de Uso:</strong> Remeter Pedido<br>
+                <strong>Atores:</strong> SAC (Serviço de Atendimento ao Cliente), SA (Setor de Atendimento) e SF (Setor de Finanças)</p>
+
+                <p><strong>Cenário de sucesso principal:</strong></p>
+                <ol>
+                    <li>O SAC recebe um pedido a ser remetido.</li>
+                    <li>O SAC encaminha o pedido para o SA e envia a fatura correspondente ao SF.</li>
+                    <li>O SA preenche o pedido com os dados de entrega e providencia a entrega (normal ou rápida).</li>
+                    <li>O SF providencia o recebimento do pagamento.</li>
+                    <li>Após a entrega e o recebimento, o SAC encerra o pedido.</li>
+                </ol>
+
+                <p><strong>Estrutura do diagrama:</strong></p>
+                <ul>
+                    <li><strong>Início</strong> → Receber Pedido → <strong>Fork</strong></li>
+                    <li>Ramo paralelo 1: <em>Preencher Pedido</em> → <em>Entregar Pedido</em> (sub-atividade com desvio: <em>Entrega Normal</em> / <em>Entrega Rápida</em>)</li>
+                    <li>Ramo paralelo 2: <em>Enviar Fatura</em> → objeto [Fatura] → <em>Receber Pagamento</em></li>
+                    <li><strong>Join</strong> → Encerrar Pedido → <strong>Final</strong></li>
+                </ul>
+
+                <p>As três raias (Atendimento, SAC, Finanças) mostram claramente quem executa cada atividade.</p>
+
+                <h3>22.4 Exemplo 2 — Preparar Espaguete</h3>
+
+                <p>Ilustra o uso de <strong>fork/join</strong> com um <strong>thread condicional</strong>:</p>
+
+                <ul>
+                    <li><strong>Fork</strong> em três ramos: Cozinhar Espaguete (raia 1) || Preparar Molho (raia 1) || [a fim de um Refri.] Abrir Refrigerante (thread condicional)</li>
+                    <li>Cozinhar Espaguete + Preparar Molho → <strong>Join</strong> → Combinar</li>
+                    <li>Combinar + Abrir Refrigerante → <strong>Join</strong> final → <strong>Final</strong></li>
+                </ul>
+
+                <h3>22.5 Exemplo 3 — Consultar Conta</h3>
+
+                <p>Exemplo simples com desvio condicional:</p>
+
+                <ul>
+                    <li><strong>Início</strong> → Receber número da conta → Pesquisar conta → <strong>Branch</strong></li>
+                    <li>Se <strong>não encontrar</strong> → Emitir mensagem de conta inválida</li>
+                    <li>Se <strong>encontrar</strong> → Emitir mensagem de conta válida</li>
+                    <li>Ambos os fluxos → <strong>Merge</strong> → <strong>Final</strong></li>
+                </ul>
+
+                <h3>22.6 Exemplo 4 — Publicar Livro</h3>
+
+                <p>Quatro raias: <strong>Escritor, Editor, Revisor, Setor de Impressão</strong>.</p>
+
+                <ul>
+                    <li>Escritor: Elaborar Proposta → (aguarda)</li>
+                    <li>Editor: Receber Proposta → Analisar Proposta → Enviar Resposta → <strong>Branch</strong></li>
+                    <li>Se <strong>[Proposta Recusada]</strong> → Final</li>
+                    <li>Se <strong>[Proposta Aprovada]</strong> → Escritor: Escrever Livro → Enviar Original → Editor: Enviar para Revisão → Revisor: Revisar Original → Editor: Analisar Revisão → <strong>Branch</strong></li>
+                    <li>Se <strong>[Original Aprovado]</strong> → Setor de Impressão: Imprimir Livro → Final</li>
+                    <li>Senão → Escritor: Corrigir Original → volta para Análise de Revisão</li>
+                </ul>
+
+                <h3>22.7 Diretrizes de Modelagem</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Regra</th><th>O que fazer</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Fork bem usado</td><td>Todo fluxo separado por <strong>fork</strong> deve ser posteriormente unido por um <strong>join</strong> OU encerrado por um <strong>terminador</strong>.</td></tr>
+                            <tr><td>Branch bem usado</td><td>Todo fluxo separado por <strong>branch</strong> deve ser posteriormente unido por um <strong>merge</strong> OU encerrado por um <strong>terminador</strong>.</td></tr>
+                            <tr><td>Loops (while/for)</td><td>Condição de permanência representada por <strong>branch</strong>; mais de uma transição para a mesma atividade deve ser precedida por um <strong>merge</strong>.</td></tr>
+                            <tr><td>Loops (do-while)</td><td>O <strong>merge</strong> vem antes da atividade; o <strong>branch</strong> vem depois, fechando o ciclo.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote>
+                    <p><strong>Regra de ouro:</strong> um <strong>fork</strong> sempre combina com <strong>join</strong> (paralelismo); um <strong>branch</strong> sempre combina com <strong>merge</strong> (exclusividade). Nunca misture fork com merge nem branch com join.</p>
+                </blockquote>
+
+                <h3>22.8 Diagrama de Atividades × Casos de Uso</h3>
+
+                <p>Casos de Uso envolvem a análise de processos e fluxos de trabalho. Diagramas de Atividades são <strong>alternativas ou complementos úteis</strong> para representar o texto do caso de uso — especialmente para casos de uso de negócio que descrevem fluxos complexos com muitas partes e ações concorrentes.</p>
+
+                <h2 id="metodologias-ageis">23. Metodologias Ágeis</h2>
+
+                <h3>23.1 Abordagem Tradicional × Ágil</h3>
+
+                <p><strong>Tradicional:</strong> extremo rigor em planejamento e documentação (Cascata, RUP, Espiral).</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Abordagem Tradicional</th><th>Abordagem Ágil</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Planejamento rígido</td><td>Maior liberdade no planejamento</td></tr>
+                            <tr><td>Resistência a mudanças</td><td>Flexibilidade e postura positiva diante de mudanças</td></tr>
+                            <tr><td>Decisões top-down</td><td>Time toma decisões em conjunto</td></tr>
+                            <tr><td>Líderes dizem o que e como fazer</td><td>Equipes auto-organizáveis</td></tr>
+                            <tr><td>Longa fase de análise (parte da equipe fica de fora)</td><td>Reuniões diárias; time todo envolvido</td></tr>
+                            <tr><td>Forte enfoque em documentação</td><td>Pragmatismo com documentos</td></tr>
+                            <tr><td>Maior foco em processos</td><td>Ênfase no produto esperado</td></tr>
+                            <tr><td>Cliente envolvido só no início</td><td>Participação ativa do cliente durante todo o projeto</td></tr>
+                            <tr><td>Foco na antecipação</td><td>Ênfase na adaptação</td></tr>
+                            <tr><td>Centralização no gerente</td><td>Responsabilidade compartilhada</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>23.2 Modelagem Ágil</h3>
+
+                <p>Uma modelagem ágil é <strong>suficientemente boa</strong> quando:</p>
+                <ol>
+                    <li>Atende seu propósito;</li>
+                    <li>É inteligível;</li>
+                    <li>É suficientemente precisa;</li>
+                    <li>É suficientemente consistente;</li>
+                    <li>É suficientemente detalhada;</li>
+                    <li>Provê um valor positivo;</li>
+                    <li>É tão simples quanto possível.</li>
+                </ol>
+
+                <h3>23.3 Funcionamento geral</h3>
+
+                <ul>
+                    <li>O software é dividido em pequenas versões (<strong>incrementos</strong>).</li>
+                    <li>Cada incremento dura de <strong>1 a 4 semanas</strong>, passando por todas as etapas do desenvolvimento.</li>
+                    <li>A cada iteração são geradas pequenas versões para validação.</li>
+                    <li>Prioriza-se a <strong>comunicação face a face</strong> — todos na mesma sala.</li>
+                    <li>Um <strong>representante do cliente</strong> deve estar presente para tirar dúvidas.</li>
+                </ul>
+
+                <h3>23.4 Manifesto Ágil (2001)</h3>
+
+                <blockquote>
+                    <p>"Estamos descobrindo maneiras melhores de desenvolver software, fazendo-o nós mesmos e ajudando a outros a fazerem o mesmo. Através deste trabalho, passamos a valorizar:</p>
+                    <ul>
+                        <li><strong>Indivíduos e interações</strong> mais que processos e ferramentas;</li>
+                        <li><strong>Software em funcionamento</strong> mais que documentação abrangente;</li>
+                        <li><strong>Colaboração com o cliente</strong> mais que negociação de contratos;</li>
+                        <li><strong>Responder a mudanças</strong> mais que seguir um plano.</li>
+                    </ul>
+                    <p>Ou seja, mesmo havendo valor nos itens à direita, valorizamos mais os itens à esquerda."</p>
+                </blockquote>
+
+                <p>Métodos que ganharam destaque: <strong>Scrum</strong> e <strong>XP</strong>.</p>
+
+                <h3>23.5 User Stories</h3>
+
+                <p>Os requisitos são geralmente definidos por meio de <strong>User Stories</strong>, seguindo o modelo:</p>
+
+                <blockquote>
+                    <p><strong>Como um</strong> <span style="color: red;">ator</span>,<br>
+                    <strong>eu preciso/gostaria de</strong> <span style="color: green;">ação</span> <strong>para</strong> <span style="color: blue;">razão/benefício</span>.</p>
+                </blockquote>
+
+                <ul>
+                    <li><strong>Quem:</strong> proprietário da user story (usuário interessado na funcionalidade).</li>
+                    <li><strong>O quê:</strong> o que o ator quer fazer (resultado esperado).</li>
+                    <li><strong>Por quê:</strong> justificativa; por que o ator espera aquilo.</li>
+                </ul>
+
+                <p><strong>Exemplos:</strong></p>
+                <ul>
+                    <li>"Como um cliente, eu gostaria de consultar os filmes disponíveis para locação para que eu possa locá-los."</li>
+                    <li>"Como um cliente de negócio, eu gostaria de sacar dinheiro em qualquer caixa eletrônico para que não tenha que ir à agência bancária."</li>
+                    <li>"Como um paciente, eu gostaria de agendar minha consulta médica pela web para que não tenha que usar o telefone."</li>
+                    <li>"Como um gerente, eu preciso consultar os pagamentos realizados para controlar o faturamento da empresa."</li>
+                </ul>
+
+                <p><strong>Características (I.N.V.E.S.T.):</strong> <em>Independente, Negociável, Valorizável, Estimável, Small (pequena), Testável</em>.</p>
+
+                <p><strong>Aspectos importantes:</strong></p>
+                <ul>
+                    <li>Validar se a funcionalidade é realmente necessária antes de incluí-la.</li>
+                    <li>Foco nas necessidades reais e práticas do usuário.</li>
+                    <li>Ajuda a priorizar o que deve ser feito.</li>
+                    <li>Facilita estimar o esforço necessário.</li>
+                </ul>
+
+                <h2 id="scrum">24. Scrum</h2>
+
+                <h3>24.1 Introdução</h3>
+
+                <p>Scrum é um método simples para gerenciar projetos complexos. É uma metodologia ágil <strong>iterativa</strong> (Sprints) e <strong>incremental</strong> — um framework que facilita a visualização de problemas, mesmo os de elevada dificuldade.</p>
+
+                <ul>
+                    <li>Destina-se a equipes pequenas em ambientes complexos, onde os requisitos não são claros ou mudam com muita frequência.</li>
+                    <li>Não há prática de engenharia predefinida.</li>
+                    <li>Possui um conjunto de práticas e papéis predefinidos.</li>
+                </ul>
+
+                <p><strong>História:</strong> surgiu em 1986, inspirado nas equipes de rugby — formação coesa em que os jogadores trabalham juntos para levar a bola adiante. Se um falha, toda a jogada se compromete.</p>
+
+                <h3>24.2 Objetivo</h3>
+
+                <p>Agregar o máximo de valor ao negócio em menor tempo possível, focando no <strong>ROI (Return on Investment)</strong>, administrando complexidade, imprevisibilidade e mudança por meio de <strong>transparência, inspeção e adaptação</strong>.</p>
+
+                <h3>24.3 Papéis</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Papel</th><th>Funções</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Product Owner</strong></td>
+                                <td>Cliente ou representante. Representa os interesses dos stakeholders, maximiza o trabalho do time, define recursos, escolhe datas de lançamento, fornece feedback e garante que as regras sejam seguidas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Scrum Master</strong></td>
+                                <td>Líder, moderador, facilitador e coach. Protege a equipe de obstáculos, garante que o time siga os valores e práticas do Scrum, certifica que os membros não se comprometam além do que conseguem cumprir, gerencia o relacionamento com o Product Owner e orienta a auto-organização.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Scrum Team</strong></td>
+                                <td>Time de desenvolvimento (5 a 9 integrantes). Define tarefas e esforço para realizá-las com a qualidade desejada pelo Product Owner; constrói o produto a ser utilizado pelo cliente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>24.4 Ferramentas</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Ferramenta</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Product Backlog</strong></td><td>Documento com requisitos separados por prioridades indispensáveis ao produto. As prioridades são definidas pelo Product Owner.</td></tr>
+                            <tr><td><strong>Sprint Backlog</strong></td><td>Lista de tarefas que a equipe executará para transformar o backlog do produto em um incremento entregável ao cliente. Definidas a partir do Product Backlog.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>24.5 Eventos de Duração Fixa</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Evento</th><th>Descrição</th><th>Duração</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Visão do Produto</strong> (Planejamento da Versão)</td><td>O Product Owner define requisitos (funcionais e não funcionais), o Product Backlog, suas prioridades e a estimativa de esforço. Requisitos em User Stories.</td><td>—</td></tr>
+                            <tr><td><strong>Sprint Planning</strong></td><td>Requisitos apresentados à equipe e distribuídos de acordo com as habilidades de cada um.</td><td>3 a 12 horas</td></tr>
+                            <tr><td><strong>Sprint</strong></td><td>Requisitos desenvolvidos e implementados. Ao final, entrega-se um incremento funcional ao cliente.</td><td>2 a 4 semanas (média de 30 dias)</td></tr>
+                            <tr><td><strong>Daily Scrum</strong></td><td>Reunião diária (início do dia). Perguntas: O que realizou desde a última reunião? Quais problemas enfrentou? Em que trabalhará até a próxima?</td><td>24h (reunião curta)</td></tr>
+                            <tr><td><strong>Sprint Review</strong></td><td>Reunião onde os resultados são apresentados ao cliente.</td><td>Até 2 horas</td></tr>
+                            <tr><td><strong>Sprint Reflection</strong></td><td>Verificação de pontos positivos e negativos para correções em versões posteriores; atualização do Product Backlog.</td><td>—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Benefícios do Daily Scrum:</strong></p>
+                <ul>
+                    <li>Maior integração entre os membros da equipe</li>
+                    <li>Rápida solução de problemas</li>
+                    <li>Compartilhamento de conhecimento</li>
+                    <li>Progresso medido continuamente</li>
+                    <li>Minimização de riscos</li>
+                </ul>
+
+                <h3>24.6 Pilares do Scrum</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Pilar</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Transparência</strong></td>
+                                <td>Todos os stakeholders precisam ter uma visão comum, clara e objetiva de todo o processo. Iterações curtas e reuniões diárias promovem visibilidade. Linguagem objetiva para comunicação. O Kanban (não é artefato do Scrum) pode transparecer o trabalho realizado.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Inspeção</strong></td>
+                                <td>Averiguar com frequência os artefatos (Product Backlog, Sprint Backlog, burndown) e progressos do projeto para encontrar situações que passaram despercebidas. Cuidado: inspecionar mais que executar não ajuda.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adaptação</strong></td>
+                                <td>Se o responsável por inspecionar viu que algo saiu fora da rota, deve-se ajustar o mais rápido possível. O Scrum pode ser adaptado às necessidades da empresa.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>As 4 oportunidades de inspeção e adaptação (guia oficial):</strong></p>
+                <ol>
+                    <li>Reunião de Planejamento da Sprint</li>
+                    <li>Reunião Diária</li>
+                    <li>Reunião de Revisão da Sprint</li>
+                    <li>Retrospectiva da Sprint</li>
+                </ol>
+
+                <h3>24.7 Princípio Básico — Auto-Organização</h3>
+
+                <p>A equipe deve ser capaz de se organizar e dividir o trabalho. Não necessariamente todos precisam ser desenvolvedores sênior, mas a auto-organização requer comprometimento e responsabilidade desde o primeiro dia. Como no esporte, os membros são interdependentes e o Scrum Master faz todo o possível para manter a auto-organização — fator-chave para o sucesso do projeto.</p>
+
+                <h3>24.8 Vantagens</h3>
+
+                <ul>
+                    <li><strong>Foco no valor agregado:</strong> todo o trabalho é priorizado em função do valor de negócio percebido pelo cliente. Reduz desperdício de dinheiro e tempo.</li>
+                    <li><strong>Visibilidade do progresso:</strong> o trabalho é organizado de maneira simples, fácil de determinar o progresso. Todos sabem o que foi feito, o que está em execução e o que falta.</li>
+                    <li><strong>Mitigação de riscos:</strong> como o progresso é monitorado diariamente, dificuldades são prontamente comunicadas e tratadas.</li>
+                    <li><strong>Baixo custo de implantação:</strong> fácil de ensinar e não requer muitos recursos.</li>
+                </ul>
+
+                <h2 id="xp">25. XP (Extreme Programming)</h2>
+
+                <h3>25.1 Introdução</h3>
+
+                <p>A <strong>Programação Extrema</strong>, criada por <strong>Kent Beck</strong>, é uma das metodologias ágeis mais conhecidas, proposta a partir de boas práticas de desenvolvimento incremental.</p>
+
+                <ul>
+                    <li>Propõe o envolvimento do cliente <strong>ao extremo</strong> — deve estar disponível durante todo o desenvolvimento.</li>
+                    <li>"Metodologia ágil para equipes pequenas e médias desenvolvendo software com requisitos vagos e em constante mudança" (Kent Beck).</li>
+                    <li>Destina-se a times de <strong>até 10 desenvolvedores</strong> e a projetos de <strong>curto e médio prazo</strong>.</li>
+                    <li>Utiliza <strong>orientação a objetos</strong> como paradigma de desenvolvimento.</li>
+                    <li>Favorece o cumprimento das estimativas do software.</li>
+                    <li>Enfatiza o desenvolvimento rápido das aplicações, visando a satisfação do cliente.</li>
+                </ul>
+
+                <h3>25.2 Papéis Principais</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Papel</th><th>Função</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Desenvolvedores</strong></td><td>Foco central da metodologia, sem hierarquia.</td></tr>
+                            <tr><td><strong>Treinador (coach)</strong></td><td>Pessoa com mais experiência no time; responsável por lembrar os demais das regras, práticas e valores de XP. Não precisa ser o melhor desenvolvedor — mas o que mais entende da metodologia.</td></tr>
+                            <tr><td><strong>Acompanhador (tracker)</strong></td><td>Responsável por trazer dados, gráficos e informações que mostrem o andamento do projeto e ajudem a equipe a tomar decisões. Pode ser o próprio coach ou alguém escolhido pelo time.</td></tr>
+                            <tr><td><strong>Cliente</strong></td><td>Faz parte da equipe. Deve estar sempre presente e pronto para responder às dúvidas dos desenvolvedores.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>25.3 Proporção das Atividades</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Atividade</th><th>Proporção</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Codificação</td><td>50%</td></tr>
+                            <tr><td>Teste</td><td>25%</td></tr>
+                            <tr><td>Planejamento</td><td>12,5%</td></tr>
+                            <tr><td>Projeto</td><td>12,5%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>25.4 Modelo de Processo</h3>
+
+                <p>Quatro atividades fundamentais, em ciclo:</p>
+
+                <ol>
+                    <li><strong>Planejamento</strong> — histórias de usuário, priorização pelo cliente, estimativas, plano de releases e plano de iterações.</li>
+                    <li><strong>Projeto</strong> — princípio KIS (<em>Keep It Simple</em>), cartões CRC (Class-Responsibility-Collaborator), protótipos.</li>
+                    <li><strong>Codificação</strong> — testes unitários antes da implementação, programação em pares, refatoração, propriedade coletiva.</li>
+                    <li><strong>Testes</strong> — TDD (Test Driven Development), testes de aceitação, integração contínua.</li>
+                </ol>
+
+                <p><strong>Características gerais:</strong></p>
+                <ul>
+                    <li><strong>Pequenas releases</strong>: o espaço de tempo entre as releases é curto.</li>
+                    <li><strong>Novas versões</strong> do sistema podem ser compiladas várias vezes por dia.</li>
+                    <li><strong>Testes unitários automatizados</strong> após cada compilação.</li>
+                    <li><strong>Incrementos entregues</strong> ao cliente a cada <strong>2 semanas</strong>.</li>
+                </ul>
+
+                <h3>25.5 Planejamento</h3>
+
+                <ul>
+                    <li>Criação de um conjunto de <strong>histórias de usuários</strong>.</li>
+                    <li>O cliente atribui prioridade com base no <strong>valor de negócio</strong> global.</li>
+                    <li>As histórias são a base para estimativas de tempo usadas nas <strong>reuniões de planejamento de releases</strong>.</li>
+                    <li>O plano de releases direciona o plano de iterações.</li>
+                    <li>Membros da equipe avaliam cada história e atribuem um <strong>custo</strong> (medido em semanas de desenvolvimento).</li>
+                    <li>Se uma história precisar de <strong>mais de 3 semanas</strong>, pede-se ao cliente para dividi-la em histórias menores.</li>
+                    <li>Novas histórias podem ser escritas a qualquer momento.</li>
+                </ul>
+
+                <h3>25.6 Projeto — Cartões CRC</h3>
+
+                <p>O projeto XP segue rigorosamente o princípio <strong>KIS (Keep It Simple)</strong> e encoraja o uso de <strong>cartões CRC</strong> (Class-Responsibility-Collaborator) como mecanismo para raciocinar sobre o software no contexto orientado a objetos. Os cartões CRC identificam e organizam as classes relevantes para o incremento atual e são o único produto de trabalho do projeto XP.</p>
+
+                <p><strong>Estrutura de um cartão CRC:</strong></p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Classe</th><th>Responsabilidades</th><th>Colaboradores</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Conta Corrente</td>
+                                <td>Conhecer seu saldo; Conhecer seu cliente; Conhecer seu número; Manter histórico de transações; Realizar saques e depósitos</td>
+                                <td>Cliente; Histórico de Transações</td>
+                            </tr>
+                            <tr>
+                                <td>Cliente</td>
+                                <td>Conhecer seus dados pessoais; Validar data de nascimento; Validar CPF</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Pagamento</td>
+                                <td>Conhecer os dados de pagamento; Conhecer a conta de origem; Realizar pagamento</td>
+                                <td>Conta Corrente</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>Se um problema de projeto difícil é encontrado, o XP recomenda a criação imediata de um <strong>protótipo operacional</strong> daquela parte do projeto, para diminuir o risco na implementação verdadeira e validar as estimativas originais.</p>
+
+                <h3>25.7 Codificação</h3>
+
+                <p><strong>Programação em Pares (Pair Programming):</strong></p>
+                <ul>
+                    <li>Grande ênfase no trabalho em duplas.</li>
+                    <li>Enquanto um programador mais jovem trabalha, um mais experiente observa e revisa o código.</li>
+                    <li>Desenvolve a equipe, melhora a qualidade do código e discute oportunidades de refatoração.</li>
+                    <li>Os pares nem sempre são os mesmos — a alocação dinâmica favorece a propriedade coletiva do código.</li>
+                </ul>
+
+                <p><strong>Refatoração:</strong></p>
+                <ul>
+                                        <li>Conjunto de técnicas para modificar o código do sistema <strong>sem alterar nenhuma funcionalidade</strong>, com o objetivo de simplificar, melhorar e deixar o código mais fácil de entender e dar manutenção.</li>
+                    <li>O XP prega que modelar o sistema para mudanças futuras é um esforço inútil. Refatorações são constantemente aplicadas para permitir adaptações.</li>
+                    <li>Constante reestruturação de código.</li>
+                </ul>
+
+                <p><strong>Propriedade Coletiva:</strong></p>
+                <ul>
+                    <li>O código-fonte <strong>não pertence a um único desenvolvedor</strong> — todos da equipe são responsáveis.</li>
+                    <li>Não há ilha de conhecimento.</li>
+                    <li>Todos alteram código de todos.</li>
+                    <li>Sempre executando testes para certificar que o código continua funcionando corretamente.</li>
+                </ul>
+
+                <h3>25.8 Testes</h3>
+
+                <ul>
+                    <li>Todo desenvolvimento inclui testes. Kent Beck diz que <strong>código sem teste não existe</strong>.</li>
+                    <li>O XP é o método ágil que <strong>mais enfatiza</strong> as atividades de testes.</li>
+                    <li><strong>TDD (Test Driven Development):</strong> os testes devem ser escritos de preferência <strong>antes</strong> do desenvolvimento e sempre executados de maneira automatizada.</li>
+                    <li>O cliente também está envolvido na escrita e validação dos testes.</li>
+                </ul>
+
+                <h3>25.9 Incremento de Software</h3>
+
+                <p>Depois da entrega do primeiro incremento, a equipe XP calcula a <strong>velocidade do projeto</strong> (quantidade de histórias implementadas durante a iteração). A velocidade pode ser usada para:</p>
+
+                <ul>
+                    <li>Ajudar a estimar as datas de entrega e o cronograma para as versões subsequentes.</li>
+                    <li>Determinar se um comprometimento excessivo foi feito para todas as histórias.</li>
+                    <li>Se houver excesso, o conteúdo das versões (incrementos) será modificado ou as datas finais são alteradas.</li>
+                </ul>
+
+                <h3>25.10 Práticas Recomendadas</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Prática</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Reuniões em Pé (Standup Meeting)</strong></td>
+                                <td>Reunião diária, breve, geralmente pela manhã. Compartilha informações e prioriza atividades. O cliente deve participar sempre que possível. Realizada em pé para não perder o foco e não prolongar.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Integração Contínua</strong></td>
+                                <td>Depois de testada, cada nova funcionalidade deve ser imediatamente sincronizada entre todos os desenvolvedores. Quanto mais frequente, menores as chances de conflitos entre arquivos alterados simultaneamente.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Semana de 40 horas</strong></td>
+                                <td>Desenvolver software é uma atividade intensa; não rende o suficiente se o desenvolvedor não estiver descansado. 40 horas por semana, não mais que isso, é essencial para a saúde do time em um ritmo sustentável.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cliente sempre presente</strong></td>
+                                <td>O cliente é considerado membro da equipe. Deve estar sempre disponível para atender às dúvidas dos desenvolvedores.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Padronizações</strong></td>
+                                <td>Se todo o time seguir padrões preacordados de codificação, mais fácil será manter e entender o que já está feito. O uso de padrões reforça o valor comunicação.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Metáforas</strong></td>
+                                <td>Descrições de um software sem a utilização de termos técnicos, com o objetivo de guiar o desenvolvimento com a maior transparência possível para o cliente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>25.11 Valores do XP</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Valor</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Comunicação</strong></td>
+                                <td>Para um projeto de sucesso é necessária muita interação entre os membros da equipe (desenvolvedores, cliente, treinador). Qualidade nos canais de comunicação. Conversas presenciais são sempre melhores que telefonemas, e-mails, cartas ou fax. Contato diário face a face.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Feedback</strong></td>
+                                <td>Respostas às decisões devem ser rápidas e visíveis. Feedback do sistema (testes de unidade), do cliente (testes de aceitação) e da equipe (comunicação constante). Todos precisam saber o que está acontecendo a qualquer momento.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Coragem</strong></td>
+                                <td>Alterar código em produção sem causar bugs, com agilidade, exige coragem e responsabilidade. Não deixe para amanhã o que pode fazer agora. Não ficou bom? Refaça o quanto necessário. Se não precisa, jogue fora.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Simplicidade</strong></td>
+                                <td>Atender rapidamente às necessidades do cliente com o mais simples. O que o cliente quer normalmente é mais simples do que o que os desenvolvedores constroem. Não tente prever o futuro. Comece por soluções simples que funcionem; melhorias são adicionadas depois.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Respeito</strong></td>
+                                <td>Todos têm sua importância dentro da equipe e devem ser respeitados e valorizados. Ninguém modifica o código no repositório sem antes testá-lo. Todos buscam a melhor solução, o melhor projeto para poupar retrabalhos. Pessoas são valorizadas e ninguém é ignorado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="scrum-xp">26. Scrum × XP</h2>
+
+                <h3>26.1 Semelhanças</h3>
+
+                <ul>
+                    <li>Ambos <strong>não preveem o futuro</strong> — não definem todos os requisitos já de início.</li>
+                    <li>Ambos produzem <strong>software que funciona a cada iteração</strong>.</li>
+                    <li>A <strong>comunicação é essencial</strong> — reuniões diárias.</li>
+                </ul>
+
+                <h3>26.2 Diferenças</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Aspecto</th><th>Scrum</th><th>XP</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Papéis</td><td>Tem papéis pré-definidos (Product Owner, Scrum Master, Scrum Team)</td><td>Papéis mais fluidos (Desenvolvedores, Coach, Tracker, Cliente)</td></tr>
+                            <tr><td>Validação</td><td>Feita ao final de cada Sprint</td><td>Feita a todo instante (testes)</td></tr>
+                            <tr><td>Programação em par</td><td>Não prevê</td><td>Prática fundamental</td></tr>
+                            <tr><td>Foco</td><td>Mais abrangente — foco em gestão e organização</td><td>Foco em engenharia de software e práticas técnicas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>26.3 Considerações Finais</h3>
+
+                <p>Ambas as abordagens procuram resolver limitações dos métodos tradicionais:</p>
+                <ul>
+                    <li>Reduzir custos com mudanças de requisitos ao longo do desenvolvimento.</li>
+                    <li>Reduzir tempo de entrega do produto final ao cliente.</li>
+                </ul>
+
+                <p>Embora o Scrum seja mais abrangente, ambas dependem de uma avaliação do contexto para serem utilizadas. <strong>Scrum e XP são complementares</strong>: o Scrum provê práticas ágeis de <strong>gerenciamento</strong>, enquanto o XP provê práticas integradas de <strong>engenharia de software</strong>.</p>
+
+                <h3>26.4 Bibliografia da Parte 2</h3>
+
+                <ul>
+                    <li>LARMAN, C. <em>Utilizando UML e Padrões: Uma introdução à análise e ao projeto orientados a objetos e ao desenvolvimento iterativo</em>. 3ª Ed. Editora Bookman, 2007.</li>
+                    <li>PRESSMAN, R. S. <em>Engenharia de Software</em>. 6ª ed. São Paulo: McGraw-Hill, 2006.</li>
+                    <li>SOMMERVILLE, I. <em>Engenharia de Software</em>. 8ª ed. Editora Pearson Addison-Wesley, 2007.</li>
+                    <li><a href="http://agilemanifesto.org/iso/ptbr" target="_blank" rel="noopener noreferrer">Manifesto Ágil (pt-BR)</a>.</li>
+                    <li>Slides da disciplina Engenharia de Software II — IES-200, Prof. Me. Dione Ferrari / Prof. Me. Álvaro d'Arce (Fatec Presidente Prudente).</li>
+                </ul>
+
+                <p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
+                    <em>Fim do conteúdo de Engenharia de Software I & II.</em>
                 </p>
             </div>
         </main>

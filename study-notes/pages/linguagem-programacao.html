@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguagem de Programação I — Python</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button class="mobile-toggle" aria-label="Abrir menu">☰</button>
+    <div class="sidebar-overlay"></div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><a href="index.html">📚 Caderno de Estudos</a></h1>
+                <p>Análise e Desenvolvimento de Sistemas</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="../index.html"><span class="icon">🏠</span> Início</a></li>
+                <li><a href="seguranca-informacao.html"><span class="icon">🔐</span> Segurança da Informação</a></li>
+                <li><a href="banco-de-dados.html"><span class="icon">🗄️</span> Banco de Dados I</a></li>
+                <li><a href="desenvolvimento-web.html"><span class="icon">🌐</span> Desenvolvimento Web</a></li>
+                <li><a href="linguagem-programacao.html"><span class="icon">🐍</span> Linguagem de Programação I</a></li>
+                <li><a href="engenharia-software.html"><span class="icon">⚙️</span> Engenharia de Software</a></li>
+                <li><a href="sistemas-operacionais.html"><span class="icon">🖥️</span> Sistemas Operacionais</a></li>
+                <li><a href="arquitetura-hardware.html"><span class="icon">💻</span> Arquitetura de Hardware</a></li>
+                <li><a href="arquitetura-hardware-codigo.html"><span class="icon">🔧</span> Arquitetura — Códigos</a></li>
+                <li><a href="comunicacao.html"><span class="icon">💬</span> Comunicação</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1>🐍 Linguagem de Programação I — Python</h1>
+                    <div class="page-meta">
+                        <span class="badge badge-blue">Python 3</span>
+                        <span class="badge badge-green">Algoritmos</span>
+                        <span class="badge badge-purple">Funções</span>
+                        <span class="badge badge-yellow">Pandas</span>
+                    </div>
+                </div>
+
+                <div class="toc">
+                    <h3>Índice</h3>
+                    <ul>
+                        <li class="toc-h2"><a href="#panorama">1. Panorama da Disciplina</a></li>
+                        <li class="toc-h2"><a href="#paradigma">2. O Paradigma Central: Intenção → Ação</a></li>
+                        <li class="toc-h2"><a href="#dominios">3. Domínios da Programação</a></li>
+                        <li class="toc-h2"><a href="#geracoes">4. Gerações das Linguagens</a></li>
+                        <li class="toc-h2"><a href="#python">5. Por que Python?</a></li>
+                        <li class="toc-h2"><a href="#sintaxe-semantica">6. Sintaxe, Semântica e Tipos</a></li>
+                        <li class="toc-h2"><a href="#estruturas">7. Estruturas de Controle</a></li>
+                        <li class="toc-h2"><a href="#strings">8. Funções para <code>str</code></a></li>
+                        <li class="toc-h2"><a href="#vetores-matrizes">9. Vetores, Matrizes e Coleções</a></li>
+                        <li class="toc-h2"><a href="#funcoes">10. Funções</a></li>
+                        <li class="toc-h2"><a href="#estruturas-dados">11. Estruturas de Dados</a></li>
+                        <li class="toc-h2"><a href="#arquivos">12. Arquivos e Persistência</a></li>
+                        <li class="toc-h2"><a href="#pandas">13. Pandas e Análise de Dados</a></li>
+                        <li class="toc-h2"><a href="#graficos">14. Visualização de Dados</a></li>
+                        <li class="toc-h2"><a href="#type-hints">15. Type Hints</a></li>
+                        <li class="toc-h2"><a href="#exercicios">16. Exercícios Resolvidos</a></li>
+                        <li class="toc-h2"><a href="#referencias">17. Referências</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="panorama">1. Panorama da Disciplina</h2>
+
+                <p>A disciplina <strong>Linguagem de Programação I</strong> percorre a trilha do desenvolvimento de algoritmos em Python, partindo dos fundamentos até a manipulação de arquivos e análise de dados com Pandas.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Etapa</th><th>Conteúdo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1. Fundamentos</td><td>Variáveis, constantes, operadores e expressões.</td></tr>
+                            <tr><td>2. Lógica de Decisão</td><td>Estruturas de seleção (if/elif/else).</td></tr>
+                            <tr><td>3. Lógica Cíclica</td><td>Estruturas de repetição (while/for).</td></tr>
+                            <tr><td>4. Coleções Lineares</td><td>Vetores, matrizes e cadeia de caracteres.</td></tr>
+                            <tr><td>5. Arquitetura</td><td>Modularização de programas: passagem de parâmetros por valor e referência.</td></tr>
+                            <tr><td>6. Dados Complexos</td><td>Estruturas de dados heterogêneas.</td></tr>
+                            <tr><td>7. Persistência</td><td>Manipulação de arquivos.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="paradigma">2. O Paradigma Central: Intenção → Ação</h2>
+
+                <p>Uma linguagem de programação não é apenas código; é a <strong>ponte estruturada</strong> que permite ao cérebro humano instruir a máquina a realizar tarefas específicas.</p>
+
+                <ul>
+                    <li><strong>Vocabulário:</strong> palavras-chave que a máquina reconhece.</li>
+                    <li><strong>Sintaxe:</strong> regras gramaticais que organizam a lógica.</li>
+                </ul>
+
+                <blockquote>
+                    <p>Do lado esquerdo, a <strong>intenção humana</strong>. Do lado direito, a <strong>ação computacional</strong>. No meio, o vocabulário e a sintaxe traduzem uma na outra.</p>
+                </blockquote>
+
+                <h2 id="dominios">3. Domínios da Programação</h2>
+
+                <p>Devido à imensa diversidade de problemas no mundo real, linguagens com metas estruturais radicalmente diferentes foram desenvolvidas:</p>
+
+                <ul>
+                    <li><strong>Aplicações Científicas</strong> — ex.: MATLAB, R, Python (NumPy).</li>
+                    <li><strong>Aplicações Comerciais</strong> — ex.: COBOL, SQL, Java.</li>
+                    <li><strong>Linguagens de Scripting</strong> — ex.: Python, JavaScript, Bash.</li>
+                    <li><strong>Programação de Sistemas</strong> — ex.: C, C++, Rust.</li>
+                    <li><strong>Inteligência Artificial</strong> — ex.: LISP, Prolog, Python (TensorFlow/PyTorch).</li>
+                </ul>
+
+                <h2 id="geracoes">4. Gerações das Linguagens</h2>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Geração</th><th>Foco</th><th>Exemplos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1ª (Linguagem de Máquina)</td><td>Hardware puro. Binário executado nativamente pela CPU.</td><td>Código binário</td></tr>
+                            <tr><td>2ª (Assembly)</td><td>Mnemônicos. O primeiro passo acima do binário.</td><td>Assembly</td></tr>
+                            <tr><td>3ª (Alto Nível)</td><td>Legibilidade humana e tradutores agnósticos.</td><td>Python, C, Java</td></tr>
+                            <tr><td>4ª</td><td>Bancos de Dados (SQL) e Orientação a Objetos.</td><td>SQL, C++, Java</td></tr>
+                            <tr><td>5ª</td><td>Inteligência Artificial e Lógica Pura.</td><td>LISP, Prolog</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Compiladores vs. Interpretadores:</strong></p>
+
+                <ul>
+                    <li><strong>Compilador:</strong> tradução em lote (tudo ocorre <em>antes</em> da execução). Como traduzir um livro inteiro antes de publicá-lo.</li>
+                    <li><strong>Interpretador:</strong> tradução em tempo real (linha por linha, na hora). Como um intérprete traduzindo um discurso ao vivo.</li>
+                </ul>
+
+                <p>Python é <strong>interpretado</strong> — o código é executado linha por linha pela <em>Virtual Machine</em> (CPython).</p>
+
+                <h2 id="python">5. Por que Python?</h2>
+
+                <ul>
+                    <li><strong>Interpretada</strong> — não precisa compilar.</li>
+                    <li><strong>Altíssima legibilidade</strong> — filosofia focada no humano (<em>Zen of Python</em> / PEP-8).</li>
+                    <li>Criada em <strong>1989</strong> por Guido van Rossum.</li>
+                    <li>Devido a bibliotecas como NumPy e TensorFlow, tornou-se dominante tanto em <strong>Aplicações Científicas</strong> quanto em <strong>Inteligência Artificial</strong>.</li>
+                </ul>
+
+                <h2 id="sintaxe-semantica">6. Sintaxe, Semântica e Tipos</h2>
+
+                <p><strong>Sintaxe</strong> refere-se às regras que regem a composição de um conjunto de frases com significado numa linguagem de programação. <strong>Semântica</strong> expressa o significado associado dessas frases, descrevendo a relação entre o sentido do programa e o modelo computacional.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo de erro</th><th>Quando ocorre</th><th>Exemplo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sintático</td><td>Tratado no tempo de compilação/interpretação (escrita errada de comandos)</td><td><code>print("oi"</code> — falta o parêntese de fechamento</td></tr>
+                            <tr><td>Semântico</td><td>Difícil de encontrar. Envolve escopo, compatibilidade de tipos e unicidade de nomes.</td><td>Usar uma variável de escopo errado ou somar <code>str</code> com <code>int</code>.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>6.1 Palavras Reservadas</h3>
+
+                <p>As palavras reservadas definem as regras de sintaxe e estrutura da linguagem, e elas não podem ser usadas como nomes de variáveis:</p>
+
+                <blockquote>
+                    <p><code>False</code>, <code>None</code>, <code>True</code>, <code>and</code>, <code>as</code>, <code>assert</code>, <code>break</code>, <code>class</code>, <code>continue</code>, <code>def</code>, <code>del</code>, <code>elif</code>, <code>else</code>, <code>except</code>, <code>finally</code>, <code>for</code>, <code>from</code>, <code>global</code>, <code>if</code>, <code>import</code>, <code>in</code>, <code>is</code>, <code>lambda</code>, <code>nonlocal</code>, <code>not</code>, <code>or</code>, <code>pass</code>, <code>raise</code>, <code>return</code>, <code>try</code>, <code>while</code>, <code>with</code>, <code>yield</code></p>
+                </blockquote>
+
+                <h3>6.2 Operadores Relacionais</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Operador</th><th>Operação</th><th>Símbolo matemático</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>==</code></td><td>Igualdade</td><td>=</td></tr>
+                            <tr><td><code>&gt;</code></td><td>Maior que</td><td>&gt;</td></tr>
+                            <tr><td><code>&lt;</code></td><td>Menor que</td><td>&lt;</td></tr>
+                            <tr><td><code>!=</code></td><td>Diferente</td><td>≠</td></tr>
+                            <tr><td><code>&gt;=</code></td><td>Maior ou igual</td><td>≥</td></tr>
+                            <tr><td><code>&lt;=</code></td><td>Menor ou igual</td><td>≤</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>6.3 Operadores Lógicos</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Operador Python</th><th>Operação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>not</code></td><td>não</td></tr>
+                            <tr><td><code>and</code></td><td>e</td></tr>
+                            <tr><td><code>or</code></td><td>ou</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+<pre data-lang="python"><code>&gt;&gt;&gt; not True
+False
+&gt;&gt;&gt; not False
+True</code></pre>
+
+                <h3>6.4 Tipos de Variáveis</h3>
+
+                <p>A função <code>type(obj)</code>, com apenas um parâmetro, retorna o tipo (ou classe) de um objeto. Alguns tipos em Python:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Descrição</th><th>Exemplo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>int</code></td><td>Inteiro</td><td><code>a = 23</code></td></tr>
+                            <tr><td><code>float</code></td><td>Ponto flutuante</td><td><code>a = 2.3</code></td></tr>
+                            <tr><td><code>bool</code></td><td>Booleano</td><td><code>reservista = True</code></td></tr>
+                            <tr><td><code>complex</code></td><td>Complexo</td><td><code>n = 2+7j</code></td></tr>
+                            <tr><td><code>str</code></td><td>String</td><td><code>nome = "Fatec"</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+<pre data-lang="python"><code>&gt;&gt;&gt; a = 23
+&gt;&gt;&gt; type(a)
+&lt;class 'int'&gt;
+
+&gt;&gt;&gt; nota = 8
+&gt;&gt;&gt; media = 7
+&gt;&gt;&gt; situacao = nota &gt; media
+&gt;&gt;&gt; print(situacao)
+True</code></pre>
+
+                <h3>6.5 Entrada de Dados</h3>
+
+<pre data-lang="python"><code>no = input('Informe seu nome: ')
+print('Você digitou', no)
+print('Olá', no)
+
+# Informe seu nome: Paula
+# Você digitou Paula
+# Olá Paula!</code></pre>
+
+                <p><strong>Conversão da entrada:</strong></p>
+
+<pre data-lang="python"><code>anos = int(input("Anos de serviço: "))
+valor_por_ano = float(input("Valor por ano: "))</code></pre>
+
+                <h3>6.6 Operadores Aritméticos</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Operador</th><th>Resultado</th><th>Objetivo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>1 + 3</code></td><td>4</td><td>Soma</td></tr>
+                            <tr><td><code>4 - 1</code></td><td>3</td><td>Subtração</td></tr>
+                            <tr><td><code>10 * 2 + 1</code></td><td>21</td><td>Multiplicação</td></tr>
+                            <tr><td><code>10 / 5</code></td><td>2.0</td><td>Divisão</td></tr>
+                            <tr><td><code>10 % 3</code></td><td>1</td><td>Resto da divisão</td></tr>
+                            <tr><td><code>2 ** 8</code></td><td>256</td><td>Potência</td></tr>
+                            <tr><td><code>10 // 3</code></td><td>3</td><td>Divisão descartando parte fracionária</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>O operador <code>%</code> (módulo) retorna o resto da divisão. Ex.: <code>5 % 2 = 1</code>; <code>4 % 2 = 0</code>.</p>
+                                <h2 id="estruturas">7. Estruturas de Controle</h2>
+
+                <h3>7.1 Estrutura Condicional</h3>
+
+                <p>A estrutura condicional, ou de decisão, auxilia a decidir que partes do programa devem ser executadas com base no resultado de uma condição. A base dessas decisões consistirá em expressões lógicas que permitam representar escolhas em programas.</p>
+
+<pre data-lang="python"><code>if &lt;condição&gt;:
+    bloco verdadeiro
+
+if &lt;condição&gt;:
+    bloco verdadeiro
+else:
+    bloco falso</code></pre>
+
+                <p><strong>Exemplos:</strong></p>
+
+<pre data-lang="python"><code>a = int(input("Primeiro valor: "))
+b = int(input("Segundo valor: "))
+if a &gt; b:
+    print("O primeiro número é o maior!")
+
+idade = int(input("Digite a idade de seu carro: "))
+if idade &lt;= 3:
+    print("Seu carro é novo")
+else:
+    print("Seu carro é velho")</code></pre>
+
+                <h3>7.2 Estrutura Condicional Aninhada</h3>
+
+<pre data-lang="python"><code># Preço de telefone com três faixas de preço
+minutos = int(input("Quantos minutos você utilizou este mês: "))
+if minutos &lt; 200:
+    preco = 0.20
+elif minutos &lt; 400:
+    preco = 0.18
+else:
+    preco = 0.15
+print("Você vai pagar este mês: R$%6.2f" % (minutos * preco))</code></pre>
+
+                <h3>7.3 Expressão Condicional (Operador Ternário)</h3>
+
+                <p>Também conhecida como <strong>operador ternário</strong> em outras linguagens de programação. Sintaxe:</p>
+
+<pre data-lang="python"><code>&lt;expressão1&gt; if &lt;condição&gt; else &lt;expressão2&gt;
+
+# Exemplo
+&gt;&gt;&gt; x = 10
+&gt;&gt;&gt; print("par" if x % 2 == 0 else "impar")
+par</code></pre>
+
+                <h3>7.4 Estruturas de Repetição</h3>
+
+                <p>Utilizada para executar a mesma parte de um programa várias vezes, dependendo de uma condição.</p>
+
+<pre data-lang="python"><code>while &lt;condição&gt;:
+    Bloco
+
+for &lt;variável&gt; in range(quantidade):
+    Bloco
+
+# Exemplo com while
+x = 0
+while x &lt; 3:
+    print(x)
+    x += 1</code></pre>
+
+                <h3>7.5 Contador</h3>
+
+<pre data-lang="python"><code># Com while
+aprovados = 0
+x = 1
+while x &lt;= 5:
+    m = float(input('Informe a média: '))
+    if m &gt;= 6:
+        aprovados = aprovados + 1
+    x = x + 1
+print('Quantidade de aprovados:', aprovados)
+
+# Com for
+aprovados = 0
+for x in range(1, 6):
+    m = float(input('Informe a média: '))
+    if m &gt;= 6:
+        aprovados = aprovados + 1
+print('Quantidade de aprovados:', aprovados)</code></pre>
+
+                <h3>7.6 Acumulador</h3>
+
+<pre data-lang="python"><code># Com while
+n = 1
+soma = 0
+while n &lt;= 10:
+    x = int(input("Digite o %d número: " % n))
+    soma = soma + x
+    n = n + 1
+print("Soma: %d" % soma)
+
+# Com for
+soma = 0
+for n in range(1, 11):
+    x = int(input("Digite o %d número: " % n))
+    soma = soma + x
+print("Soma: %d" % soma)</code></pre>
+
+                <h3>7.7 Repetição Aninhada</h3>
+
+<pre data-lang="python"><code># Tabuadas do 5 ao 7
+tabuada = 5
+while tabuada &lt;= 7:
+    numero = 1
+    while numero &lt;= 10:
+        print("%d x %d = %d" % (tabuada, numero, tabuada * numero))
+        numero += 1
+    tabuada += 1
+
+# Versão com for
+for tabuada in range(1, 11):
+    for numero in range(1, 11):
+        print("%d x %d = %d" % (tabuada, numero, tabuada * numero))</code></pre>
+
+                <h2 id="strings">8. Funções para <code>str</code></h2>
+
+                <p>Armazenamento de nomes e textos em geral é realizado por variáveis do tipo string (<code>str</code>), que são cadeias de caracteres.</p>
+
+                <p>Cada caractere tem um índice, começando em 0:</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Conteúdo</th><th>O</th><th>L</th><th>A</th><th> </th><th>M</th><th>U</th><th>N</th><th>D</th><th>O</th></tr>
+                            <tr><th>Índice</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+                        </thead>
+                    </table>
+                </div>
+
+<pre data-lang="python"><code>endereco = 'Rua Terezina, 75, cep 19046-230'
+len(endereco)</code></pre>
+
+                <h3>8.1 Concatenação</h3>
+
+                <p>O operador <code>+</code> concatena strings:</p>
+
+<pre data-lang="python"><code>&gt;&gt;&gt; texto1 = 'Linguagem de Programação'
+&gt;&gt;&gt; texto2 = 'Python'
+&gt;&gt;&gt; texto1 + texto2
+'Linguagem de ProgramaçãoPython'</code></pre>
+
+                <h3>8.2 Multiplicação</h3>
+
+                <p>O operador <code>*</code> replica o conteúdo:</p>
+
+<pre data-lang="python"><code>&gt;&gt;&gt; texto1 = 'python'
+&gt;&gt;&gt; texto1 * 3
+'pythonpythonpython'</code></pre>
+
+                <h3>8.3 Fatiamento (Slice)</h3>
+
+                <p>Obtenção de parte de uma string. O número à esquerda dos dois pontos indica a posição de início da fatia; o da direita, do fim.</p>
+
+<pre data-lang="python"><code>&gt;&gt;&gt; s = "ABCDEFGHI"
+&gt;&gt;&gt; print(s[2:4])
+CD
+&gt;&gt;&gt; print(s[0:2])
+AB
+&gt;&gt;&gt; print(s[1:2])
+B
+&gt;&gt;&gt; print(s[0:5])
+ABCDE
+&gt;&gt;&gt; print(s[8])
+I</code></pre>
+
+                <h3>8.4 Principais Funções de String</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Função</th><th>Descrição</th><th>Exemplo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>upper()</code></td><td>Converte para maiúsculas</td><td><code>'python'.upper()</code> → <code>'PYTHON'</code></td></tr>
+                            <tr><td><code>lower()</code></td><td>Converte para minúsculas</td><td><code>'ALFA'.lower()</code> → <code>'alfa'</code></td></tr>
+                            <tr><td><code>islower()</code></td><td>Verifica se é minúscula</td><td>—</td></tr>
+                            <tr><td><code>isupper()</code></td><td>Verifica se é maiúscula</td><td>—</td></tr>
+                            <tr><td><code>capitalize()</code></td><td>Primeira letra maiúscula</td><td><code>'python'.capitalize()</code> → <code>'Python'</code></td></tr>
+                            <tr><td><code>title()</code></td><td>Primeira letra de cada palavra em maiúscula</td><td><code>'fatec prudente'.title()</code> → <code>'Fatec Prudente'</code></td></tr>
+                            <tr><td><code>str()</code></td><td>Converte número em string</td><td><code>str(123)</code> → <code>'123'</code></td></tr>
+                            <tr><td><code>strip()</code></td><td>Remove espaços no início e no fim</td><td><code>"  oi  ".strip()</code> → <code>'oi'</code></td></tr>
+                            <tr><td><code>join()</code></td><td>Junta itens com um delimitador</td><td><code>", ".join("abc")</code> → <code>'a, b, c'</code></td></tr>
+                            <tr><td><code>split()</code></td><td>Separa a string por um delimitador</td><td><code>'Rua Terezina'.split()</code> → <code>['Rua', 'Terezina']</code></td></tr>
+                            <tr><td><code>replace()</code></td><td>Troca o conteúdo</td><td><code>'python 2'.replace('2', '3')</code> → <code>'python 3'</code></td></tr>
+                            <tr><td><code>count()</code></td><td>Quantas vezes um caractere aparece</td><td><code>"maracana".count("a")</code> → 4</td></tr>
+                            <tr><td><code>startswith()</code></td><td>Começa com o caractere?</td><td><code>'python'.startswith('p')</code> → <code>True</code></td></tr>
+                            <tr><td><code>endswith()</code></td><td>Termina com o caractere?</td><td><code>'python'.endswith('n')</code> → <code>True</code></td></tr>
+                            <tr><td><code>isalpha()</code></td><td>Só letras?</td><td><code>"abc".isalpha()</code> → <code>True</code></td></tr>
+                            <tr><td><code>isdecimal()</code></td><td>Só dígitos numéricos Unicode?</td><td><code>"123".isdecimal()</code> → <code>True</code></td></tr>
+                            <tr><td><code>isdigit()</code></td><td>Só dígitos ASCII?</td><td><code>"21".isdigit()</code> → <code>True</code></td></tr>
+                            <tr><td><code>find()</code></td><td>Primeira ocorrência (índice)</td><td><code>"descobrimento1500".find("1500")</code> → 13</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo integrado (URL):</strong></p>
+
+<pre data-lang="python"><code>&gt;&gt;&gt; link = 'http://www.main.com/starwars/index.html'
+&gt;&gt;&gt; link[:4]
+'http'
+&gt;&gt;&gt; link[:4].upper()
+'HTTP'
+&gt;&gt;&gt; link.find('starwars')
+20
+&gt;&gt;&gt; link[20:27]
+'starwars'
+&gt;&gt;&gt; link.replace('starwars', 'guerranasestrelas')
+'http://www.main.com/guerranasestrelas/index.html'
+&gt;&gt;&gt; link.count('/')
+4
+&gt;&gt;&gt; link.split('/')
+['http:', '', 'www.main.com', 'starwars', 'index.html']</code></pre>
+
+                <h3>8.5 Codificações de Caracteres</h3>
+
+                <p>O computador não entende um texto. Os códigos são transformadores de texto em dados numéricos:</p>
+
+                <ul>
+                    <li><strong>ASCII</strong> — American Standard Code for Information Interchange, padrão americano.</li>
+                    <li><strong>UNICODE</strong> — representa todos os caracteres de diversos idiomas (2 bytes por caractere).</li>
+                    <li><strong>UTF-8 (PEP-393)</strong> — simples, feito em ASCII e, quando precisa de um caractere do UNICODE, usa um caractere especial.</li>
+                </ul>
+
+                <h2 id="vetores-matrizes">9. Vetores, Matrizes e Coleções</h2>
+
+                <h3>9.1 Lista / Vetor</h3>
+
+                <p>Uma lista é uma estrutura de dados composta por itens organizados de forma linear, na qual cada elemento pode ser acessado a partir de um índice (iniciando em zero).</p>
+
+<pre data-lang="python"><code>vet = []
+for x in range(5):
+    vet.append(input('Digite o valor de [' + str(x) + ']: '))</code></pre>
+
+                <h3>9.2 Funções para Vetor</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Função</th><th>Descrição</th><th>Exemplo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>min(lista)</code></td><td>Menor valor</td><td><code>min([16, 2, 77, 40, 12071])</code> → 2</td></tr>
+                            <tr><td><code>max(lista)</code></td><td>Maior valor</td><td><code>max([16, 2, 77, 40, 12071])</code> → 12071</td></tr>
+                            <tr><td><code>sum(lista)</code></td><td>Soma de todos os elementos</td><td><code>sum([16, 2, 77, 40, 12071])</code> → 12206</td></tr>
+                            <tr><td><code>append()</code></td><td>Insere no fim</td><td><code>vet.append(10)</code></td></tr>
+                            <tr><td><code>sort()</code></td><td>Ordena</td><td><code>vet.sort()</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>9.3 Matriz (Bidimensional)</h3>
+
+                <p>Matriz é uma variável composta multidimensional. Neste exemplo, a matriz tem duas dimensões (bidimensional), uma para a linha e outra para a coluna.</p>
+
+<pre data-lang="python"><code>matriz = []
+
+# Lendo a matriz
+for lin in range(2):
+    linha = []
+    for col in range(3):
+        linha.append(int(input('Digite o valor de [' + str(lin) + ',' + str(col) + ']: ')))
+    matriz.append(linha)
+
+# Apresentando a matriz
+for lin in range(2):
+    for col in range(3):
+        print(matriz[lin][col], end='\t')
+    print()</code></pre>
+
+                <h3>9.4 Funções de Matemática</h3>
+
+<pre data-lang="python"><code>import math
+num = 25
+
+print(math.sqrt(num))       # 5.0 — raiz quadrada
+print(math.pow(num, 1/2))   # 5.0
+print(num ** 0.5)           # 5.0
+
+# Outras funções:
+# math.cos(numero)     — cosseno em radiano
+# math.sin(numero)     — seno em radiano
+# math.tan(numero)     — tangente em radiano
+# math.radians(numero) — converte graus para radiano
+# math.hypot(x, y)     — hipotenusa dos catetos</code></pre>
+
+                <h3>9.5 Formatação de Strings no <code>print()</code></h3>
+
+                <p><strong>f-string (recomendado):</strong></p>
+
+<pre data-lang="python"><code>nome = 'Fulano'
+idade = 22
+grana = 31.4718
+
+print(f'{nome} tem {idade} anos e R$ {grana:.2f} no bolso.')
+# Fulano tem 22 anos e R$ 31.47 no bolso.</code></pre>
+
+                <p><strong>Método <code>%</code> (estilo antigo):</strong></p>
+
+<pre data-lang="python"><code>print("%s tem %i anos e R$%i no bolso." % (nome, idade, grana))
+print("%12s tem %5i anos e R$%15.2i no bolso." % (nome, idade, grana))
+print("%s tem %04i anos e R$%.2i no bolso." % (nome, idade, grana))
+print("%-12s tem %-3d anos e R$%-9.2i no bolso." % (nome, idade, grana))</code></pre>
+
+                <p><strong>Método <code>format()</code>:</strong></p>
+
+<pre data-lang="python"><code>nome = input('Entre com o nome do aluno: ')
+media = (nota1 + nota2) / 2
+
+print('{0} teve media igual a: {1:4.2f}'.format(nome, media))
+
+# Alinhamentos
+&gt;&gt;&gt; s = "print do python"
+&gt;&gt;&gt; print("{0:&gt;20}".format(s))   # alinha à direita
+&gt;&gt;&gt; print("{0:&lt;30}".format(s))   # alinha à esquerda
+&gt;&gt;&gt; print("{0:^30}".format(s))   # centraliza
+&gt;&gt;&gt; print("{0:.3}".format(s))     # apenas as 3 primeiras letras</code></pre>
+
+                <p><strong>Print sem pular linha:</strong></p>
+
+<pre data-lang="python"><code>print('texto qualquer', variavel1, 'texto qualquer', variavel2, end='')</code></pre>
+
+                <h2 id="funcoes">10. Funções</h2>
+
+                <p>Uma função é uma parte de um programa (ou um módulo) que pode efetuar diversas operações computacionais: entrada, processamento e saída. É criada para cumprir uma tarefa particular.</p>
+
+                <p><strong>Vantagens:</strong></p>
+                <ul>
+                    <li>Modularização</li>
+                    <li>Eliminação de redundância de código-fonte</li>
+                    <li>Agilidade de manutenção</li>
+                    <li>Reutilização de código-fonte</li>
+                    <li>Coesão de código, mais organizado e gerenciável</li>
+                </ul>
+
+                <p><strong>Estrutura geral:</strong></p>
+
+<pre data-lang="python"><code>def nome_da_funcao(parametros):
+    # corpo da função
+    # alguma lógica de programação
+    return valor_retorno</code></pre>
+
+                <h3>10.1 Formas de criação</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Forma</th><th>Exemplo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sem retorno, sem parâmetro</td><td><code>def mensagem(): ...</code></td></tr>
+                            <tr><td>Sem retorno, com parâmetro</td><td><code>def somar(n1, n2): ...</code></td></tr>
+                            <tr><td>Com retorno, sem parâmetro</td><td><code>def somar(): return r</code></td></tr>
+                            <tr><td>Com retorno, com parâmetro</td><td><code>def somar(n1, n2): return r</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Sem retorno, sem parâmetro:</strong></p>
+
+<pre data-lang="python"><code>def mensagem():
+    print('Olá, tudo bem?')
+
+def main():
+    mensagem()
+
+main()</code></pre>
+
+                <p><strong>Sem retorno, com parâmetro:</strong></p>
+
+<pre data-lang="python"><code>def somar(numero1, numero2):
+    r = numero1 + numero2
+    print("O resultado é", r)
+
+def main():
+    a = 5
+    b = 7
+    somar(a, b)
+
+main()</code></pre>
+
+                <p><strong>Com retorno, sem parâmetro:</strong></p>
+
+<pre data-lang="python"><code>def somar():
+    n1 = int(input('Digite o primeiro número: '))
+    n2 = int(input('Digite o segundo número: '))
+    resultado = n1 + n2
+    return resultado
+
+def main():
+    print('A soma é', somar())
+
+main()</code></pre>
+
+                <p><strong>Com retorno, com parâmetro:</strong></p>
+
+<pre data-lang="python"><code>def somar(n1, n2):
+    resultado = n1 + n2
+    return resultado
+
+def main():
+    a = int(input('Digite o primeiro número: '))
+    b = int(input('Digite o segundo número: '))
+    print('A soma é', somar(a, b))
+
+main()</code></pre>
+
+                <h3>10.2 Parâmetros x Argumentos</h3>
+
+                <p>Na chamada de uma função, são fornecidos valores concretos, chamados de <strong>argumentos</strong>, que serão repassados aos <strong>parâmetros</strong>.</p>
+
+                <blockquote>
+                    <p><strong>Parâmetro</strong> = variável declarada na função (ex.: <code>def somar(numero1, numero2)</code>).<br>
+                    <strong>Argumento</strong> = valor passado na chamada (ex.: <code>somar(a, b)</code>).</p>
+                </blockquote>
+
+                <h3>10.3 Valores Padronizados (Default)</h3>
+
+<pre data-lang="python"><code>def salario_descontado_imposto(salario, imposto=15):
+    res = salario - (salario * imposto / 100)
+    print('Salário líquido:', res)
+
+&gt;&gt;&gt; salario_descontado_imposto(5000)
+Salário líquido: 4250.0
+
+def somar(a, b=10):
+    res = a + b
+    print('A soma é', res)  # 12
+
+def main():
+    somar(2)
+
+main()</code></pre>
+
+                <blockquote>
+                    <p><strong>Importante:</strong> o valor padrão do parâmetro é avaliado no momento da declaração da função, e não na sua chamada.</p>
+                </blockquote>
+
+                <h3>10.4 Passagem por Valor vs. Referência</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Tipo</th><th>Comportamento</th><th>Tipos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Por valor</td><td>O valor é copiado. Alterações dentro da função não afetam a variável original.</td><td><code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code></td></tr>
+                            <tr><td>Por referência</td><td>O endereço de memória é passado. Alterações dentro da função afetam o objeto original.</td><td><code>list</code>, <code>tuple</code>, <code>dict</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo de passagem por referência:</strong></p>
+
+<pre data-lang="python"><code>def inserir_vetor(v):
+    v.append(56)
+    v.append(78)
+    v.append(99)
+
+def main():
+    vet = []
+    print(vet)          # []
+    inserir_vetor(vet)
+    print(vet)          # [56, 78, 99]
+
+main()</code></pre>
+
+                <h3>10.5 <code>return</code> com e sem valor</h3>
+
+                <p><strong><code>return</code> sem valor</strong> (encerra a função imediatamente):</p>
+
+<pre data-lang="python"><code>def dividir():
+    a = float(input("Informe um número: "))
+    b = float(input("Informe um número: "))
+    if b == 0.0:
+        print("Divisão por zero!")
+        return
+    print("Resultado da divisão: ", a / b)
+
+def main():
+    dividir()
+
+main()</code></pre>
+
+                <p><strong><code>return</code> com valor:</strong></p>
+
+<pre data-lang="python"><code>def dividir():
+    a = float(input("Informe um número: "))
+    b = float(input("Informe um número: "))
+    if b == 0.0:
+        print("Divisão por zero!")
+        return
+    else:
+        return a / b
+
+def main():
+    print('Resultado da divisão:', dividir())
+
+main()</code></pre>
+
+                <h2 id="estruturas-dados">11. Estruturas de Dados</h2>
+
+                <p>Estrutura de dados é uma maneira de organizar e armazenar dados de forma que possam ser acessados e modificados eficientemente. Dentre outras: <strong>Lista</strong>, <strong>Tupla</strong> e <strong>Dicionário</strong>.</p>
+
+                <h3>11.1 Lista</h3>
+
+                <p>Coleção ordenada e mutável de elementos.</p>
+
+<pre data-lang="python"><code>frutas = ["maçã", "banana", "laranja"]
+print(frutas)  # ['maçã', 'banana', 'laranja']
+
+frutas.append("uva")     # Adicionando
+frutas.remove("banana")  # Removendo
+frutas[0] = "morango"    # Modificando
+print(frutas)  # ['morango', 'laranja', 'uva']</code></pre>
+
+                <h3>11.2 Tupla</h3>
+
+                <p>Coleção ordenada e <strong>imutável</strong>. Vantagem: garante que os dados permaneçam constantes. Mais rápida que listas para leitura.</p>
+
+<pre data-lang="python"><code>cores = ("vermelho", "verde", "azul")
+print(cores)       # ('vermelho', 'verde', 'azul')
+print(cores[1])    # verde
+
+# cores[0] = "amarelo"  # TypeError: 'tuple' object does not support item assignment</code></pre>
+
+                <h3>11.3 Dicionário</h3>
+
+                <p>Coleção <strong>não ordenada</strong> de pares <strong>chave-valor</strong>. As chaves podem ser de qualquer tipo imutável (strings, números, tuplas).</p>
+
+<pre data-lang="python"><code>aluno = {'nome': 'João', 'idade': 20, 'curso': 'Engenharia'}
+print(aluno)  # {'nome': 'João', 'idade': 20, 'curso': 'Engenharia'}
+
+# Adicionando
+aluno['nota'] = 9.5
+
+# Removendo
+del aluno['idade']
+
+# Modificando
+aluno['curso'] = 'Matemática'
+
+# Métodos úteis
+aluno.keys()    # chaves
+aluno.values()  # valores
+aluno.items()   # pares chave-valor</code></pre>
+
+                <h3>11.4 List Comprehension</h3>
+
+                <p>Maneira concisa e eficiente de criar listas. Permite escrever loops <code>for</code> de forma mais compacta.</p>
+
+<pre data-lang="python"><code># Sem list comprehension
+squares = []
+for i in range(10):
+    squares.append(i**2)
+print(squares)
+
+# Com list comprehension
+squares = [i**2 for i in range(10)]
+print(squares)
+# [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</code></pre>
+
+                <h3>11.5 Loop <code>for</code> com funções auxiliares</h3>
+
+                <p><strong><code>zip()</code> — combina duas listas:</strong></p>
+
+<pre data-lang="python"><code>nomes = ["Ana", "Bruno", "Carlos"]
+idades = [25, 30, 35]
+
+for nome, idade in zip(nomes, idades):
+    print(f"{nome} tem {idade} anos.")
+# Ana tem 25 anos.
+# Bruno tem 30 anos.
+# Carlos tem 35 anos.</code></pre>
+
+                <p><strong><code>enumerate()</code> — adiciona um contador:</strong></p>
+
+<pre data-lang="python"><code>frutas = ["maçã", "banana", "cereja"]
+for i, fruta in enumerate(frutas):
+    print(f"{i}: {fruta}")
+# 0: maçã
+# 1: banana
+# 2: cereja</code></pre>
+
+                <p><strong><code>filter()</code> — filtra elementos com base em uma condição:</strong></p>
+
+<pre data-lang="python"><code>numeros = [3, 1, 4, 1, 5]
+for num in filter(lambda x: x &gt; 2, numeros):
+    print(num)
+# 3
+# 4
+# 5</code></pre>
+
+                <h3>11.6 Estrutura (Registro / Classe Simples)</h3>
+
+                <p>Uma estrutura (ou registro) é uma estrutura de dados utilizada para definir variáveis que armazenam tipos de dados diferentes (heterogêneos). As variáveis que compreendem a estrutura são chamadas de <strong>membros</strong>, <strong>atributos</strong> ou <strong>campos</strong>.</p>
+
+<pre data-lang="python"><code>class TipoAluno:
+    matricula = 0
+    nome = ''
+    p1 = 0.0
+    p2 = 0.0
+    media = 0.0
+
+def main():
+    aluno = TipoAluno()
+    aluno.matricula = int(input('Digite a matrícula: '))
+    aluno.nome = input('Digite o nome do aluno: ')
+    aluno.p1 = float(input('Digite a P1: '))
+    aluno.p2 = float(input('Digite a P2: '))
+    aluno.media = (aluno.p1 + aluno.p2) / 2
+
+    print('Matrícula:', aluno.matricula)
+    print('Nome:', aluno.nome)
+    print('Média:', aluno.media)
+
+main()</code></pre>
+
+                <p><strong>Estruturas aninhadas:</strong></p>
+
+<pre data-lang="python"><code>class TpEndereco:
+    logradouro = ''
+    numero = 0
+    bairro = ''
+    cep = ''
+
+class TpAluno:
+    matricula = 0
+    nome = ''
+    endereco = TpEndereco()
+    p1 = 0.0
+    p2 = 0.0
+    media = 0.0
+
+def main():
+    a = TpAluno()
+    a.nome = input('Digite o nome do aluno: ')
+    a.p1 = float(input('Digite a P1: '))
+    a.p2 = float(input('Digite a P2: '))
+    a.endereco = TpEndereco()
+    a.endereco.logradouro = 'Rua Terezinha'
+    a.endereco.numero = 75
+    a.media = (a.p1 + a.p2) / 2
+
+    print('Nome', a.nome, 'Média', a.media, 'Logradouro', a.endereco.logradouro)
+
+main()</code></pre>
+
+                <h2 id="arquivos">12. Arquivos e Persistência</h2>
+
+                <p>Arquivos são uma excelente forma de entrada e saída de dados para programas. Um arquivo é uma área em disco onde podemos ler e gravar informações, acessado por nome.</p>
+
+                <h3>12.1 Modos de abertura</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Modo</th><th>Operação</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>r</code></td><td>Leitura</td></tr>
+                            <tr><td><code>w</code></td><td>Escrita; apaga o conteúdo se já existir</td></tr>
+                            <tr><td><code>a</code></td><td>Escrita; preserva o conteúdo se já existir (append)</td></tr>
+                            <tr><td><code>b</code></td><td>Modo binário</td></tr>
+                            <tr><td><code>+</code></td><td>Atualização (leitura e escrita)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>Os modos podem ser combinados: <code>"r+"</code>, <code>"w+"</code>,
+
+                                <p>Os modos podem ser combinados: <code>"r+"</code>, <code>"w+"</code>, <code>"a+"</code>, <code>"r+b"</code>, <code>"w+b"</code>, <code>"a+b"</code>.</p>
+
+                <p>A função <code>open()</code> retorna um objeto do tipo <code>file</code>. A função <code>write()</code> grava dados no arquivo. A função <code>close()</code> fecha o arquivo.</p>
+
+                <blockquote>
+                    <p><strong>Ciclo obrigatório:</strong> Abrir → Ler → Fechar <strong>ou</strong> Abrir → Escrever → Fechar.</p>
+                </blockquote>
+
+                <p><strong>O fechamento é muito importante</strong>, pois cada arquivo aberto consome recursos do computador. Só o fechamento garante a liberação desses recursos e preserva a integridade dos dados do arquivo.</p>
+
+                <h3>12.2 Escrevendo em arquivo</h3>
+
+<pre data-lang="python"><code># Modo "w": apaga o conteúdo se já existir
+arquivo = open('numeros.txt', 'w')
+for linha in range(1, 21):
+    arquivo.write('%i\n' % linha)
+    # ou: arquivo.write(f'{linha}\n')
+arquivo.close()</code></pre>
+
+<pre data-lang="python"><code># Modo "a": preserva o conteúdo se já existir
+arquivo = open('numeros.txt', 'a')
+for linha in range(1, 11):
+    arquivo.write(f'{linha}\n')
+arquivo.close()</code></pre>
+
+                <h3>12.3 Lendo de arquivo</h3>
+
+<pre data-lang="python"><code># Modo "r": abre apenas para leitura
+arquivo = open('numeros.txt', 'r')
+for x in arquivo.readlines():
+    print(x)
+arquivo.close()
+
+# readlines() gera uma lista em que cada elemento é uma linha do arquivo</code></pre>
+
+                <h3>12.4 Trabalhando com dois arquivos</h3>
+
+<pre data-lang="python"><code># Gravação de números pares e ímpares em arquivos diferentes
+impares = open("impares.txt", "a")
+pares = open("pares.txt", "a")
+
+for n in range(1, 5):
+    if n % 2 == 0:
+        pares.write(f'{n}\n')
+    else:
+        impares.write(f'{n}\n')
+
+impares.close()
+pares.close()</code></pre>
+
+                <h3>12.5 Arquivo com estrutura</h3>
+
+<pre data-lang="python"><code>class TipoFuncionario:
+    matricula = 0
+    nome = ""
+    salario = 0.0
+
+def Cadastrar():
+    arquivo = open('arq_Funcionario.txt', 'a')
+    print('Cadastro de Funcionários...')
+    for i in range(3):
+        f = TipoFuncionario()
+        f.matricula = int(input('Digite a matrícula: '))
+        f.nome = input('Digite o nome: ')
+        f.salario = float(input('Digite o salário: '))
+        arquivo.write(f'{f.matricula} {f.nome} {f.salario:.2f}\n')
+    arquivo.close()
+
+def Mostrar():
+    arquivo = open('arq_Funcionario.txt', 'r')
+    print('Matrícula\tNome\tSalário')
+    for linha in arquivo.readlines():
+        mat, nome, sal = linha.strip().split(" ")
+        print(mat, '\t\t', nome, '\t', sal)
+    arquivo.close()</code></pre>
+
+                <h3>12.6 Bloco <code>with</code> (gerenciador de contexto)</h3>
+
+                <p>O bloco <code>with</code> é um <strong>gerenciador de contexto</strong>. Projetado para situações onde um recurso precisa ser configurado antes do uso e, em seguida, limpo após o uso. <strong>Vantagem:</strong> não esquece de fechar o arquivo.</p>
+
+<pre data-lang="python"><code># with já lida com o abrir e fechar do arquivo
+with open("meu_arquivo.txt", 'w') as arquivo:
+    arquivo.write("Olá, tudo bem?")
+
+# Também funciona para ler
+with open("meu_arquivo.txt", 'r') as arquivo:
+    print(arquivo.read())</code></pre>
+
+                <h3>12.7 Arquivos JSON</h3>
+
+                <p>Um arquivo <strong>JSON</strong> (JavaScript Object Notation) é amplamente utilizado para armazenar e transportar dados de maneira estruturada. Usos comuns:</p>
+
+                <ul>
+                    <li><strong>Armazenamento de configurações</strong> — muitos aplicativos usam JSON para salvar configurações.</li>
+                    <li><strong>Troca de dados entre sistemas</strong> — APIs geralmente retornam respostas em JSON.</li>
+                    <li><strong>Persistência de dados</strong> — pode substituir arquivos CSV ou bancos de dados simples.</li>
+                </ul>
+
+<pre data-lang="python"><code>import json
+
+dados = {"nome": "Maria", "idade": 25, "cidade": "São Paulo"}
+
+# Escrevendo
+with open("dados.json", "w") as arquivo:
+    json.dump(dados, arquivo, indent=4)
+
+# Lendo
+with open("dados.json", "r") as arquivo:
+    dados_carregados = json.load(arquivo)
+    print(dados_carregados)</code></pre>
+
+                <h3>12.8 JSON ou XML?</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Característica</th><th>JSON</th><th>XML</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sintaxe</td><td>Objetos e arrays, mais compacto</td><td>Baseada em tags, mais verboso</td></tr>
+                            <tr><td>Facilidade</td><td>Mais simples de interpretar</td><td>Requer mais processamento</td></tr>
+                            <tr><td>Compatibilidade</td><td>Melhor integrado com APIs REST modernas</td><td>Mais comum em aplicações antigas (SOAP)</td></tr>
+                            <tr><td>Legibilidade</td><td>Mais limpo, sem fechamento de tags</td><td>Mais detalhado e estruturado</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Exemplo:</strong></p>
+
+<pre data-lang="json"><code>{
+    "nome": "Maria",
+    "idade": 25,
+    "cidade": "São Paulo"
+}</code></pre>
+
+<pre data-lang="xml"><code>&lt;usuario&gt;
+    &lt;nome&gt;Maria&lt;/nome&gt;
+    &lt;idade&gt;25&lt;/idade&gt;
+    &lt;cidade&gt;São Paulo&lt;/cidade&gt;
+&lt;/usuario&gt;</code></pre>
+
+                <h3>12.9 Consumindo uma API que retorna JSON</h3>
+
+<pre data-lang="python"><code>import requests
+
+# URL da API pública (exemplo)
+url = "https://jsonplaceholder.typicode.com/users"
+
+# Fazendo a requisição GET
+resposta = requests.get(url)
+
+# Verificando se a resposta foi bem-sucedida (código 200)
+if resposta.status_code == 200:
+    dados = resposta.json()
+    for usuario in dados:
+        print(f"Nome: {usuario['name']}, Email: {usuario['email']}")
+else:
+    print(f"Erro na requisição: {resposta.status_code}")</code></pre>
+
+                <h2 id="pandas">13. Pandas e Análise de Dados</h2>
+
+                <p>Pandas é uma biblioteca Python criada por <strong>Wes McKinney</strong> em 2008, enquanto trabalhava na AQR Capital Management. Deriva do termo <em>panel data</em> (dados multidimensionais). Fornece ferramentas de análise de dados, estruturas de alta performance e fáceis de usar.</p>
+
+                <h3>13.1 Instalação</h3>
+
+                <pre data-lang="bash"><code>pip install pandas
+pip install numpy
+pip install openpyxl</code></pre>
+
+                <p>No Google Colab, o Pandas já vem instalado.</p>
+
+                <h3>13.2 DataFrame</h3>
+
+                <p><strong>DataFrame</strong> (<code>df</code>) é uma estrutura bidimensional (matriz) de dados, como uma planilha.</p>
+
+                <pre data-lang="python"><code>import pandas as pd
+
+funcionario = {
+    'Matricula': [110, 111, 112],
+    'Nome': ['Paul', 'Bill', 'Ada'],
+    'Salario': [2300, 3500, 4500]
+}
+df = pd.DataFrame(funcionario)
+print(df)
+
+#    Matricula  Nome  Salario
+# 0        110  Paul     2300
+# 1        111  Bill     3500
+# 2        112   Ada     4500</code></pre>
+
+                <h3>13.3 Lendo arquivos Excel e CSV</h3>
+
+<pre data-lang="python"><code>import pandas as pd
+
+# Excel
+df = pd.read_excel('Vendas.xlsx')
+print(df)
+
+# CSV
+df = pd.read_csv('Propaganda.csv')
+print(df)</code></pre>
+
+                <h3>13.4 Principais funções de exploração</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Função</th><th>Descrição</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>df.info()</code></td><td>Resumo completo do DataFrame: quantidade de linhas, colunas, tipos, uso de memória</td></tr>
+                            <tr><td><code>df.head()</code></td><td>Primeiras 5 linhas (ou <code>df.head(n)</code>)</td></tr>
+                            <tr><td><code>df.tail()</code></td><td>Últimas 5 linhas</td></tr>
+                            <tr><td><code>df.iloc[n]</code></td><td>Linha pelo índice</td></tr>
+                            <tr><td><code>df.iloc[a:b]</code></td><td>Intervalo de linhas</td></tr>
+                            <tr><td><code>df.describe()</code></td><td>Estatísticas descritivas das colunas numéricas</td></tr>
+                            <tr><td><code>df.describe(include='object')</code></td><td>Estatísticas das colunas categóricas</td></tr>
+                            <tr><td><code>df['coluna'].value_counts()</code></td><td>Conta ocorrências de cada valor</td></tr>
+                            <tr><td><code>df['coluna'].mean()</code></td><td>Média</td></tr>
+                            <tr><td><code>df['coluna'].sum()</code></td><td>Soma</td></tr>
+                            <tr><td><code>df['coluna'].min()</code> / <code>max()</code></td><td>Mínimo / Máximo</td></tr>
+                            <tr><td><code>df.sample(n)</code></td><td>Amostra aleatória</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>13.5 Seleção e filtros</h3>
+
+                <p><strong>Filtro com string:</strong></p>
+
+<pre data-lang="python"><code># Filtrar nomes que começam com a letra "A"
+filtro = df['Nome'].str.startswith('A')
+resultado = df[filtro]
+print(resultado)</code></pre>
+
+                <p><strong>Filtro com operadores relacionais:</strong></p>
+
+<pre data-lang="python"><code>filtro = df['Quantidade'] &gt; 2
+print(df[filtro])
+
+# Entre dois valores (use & e parênteses)
+filtro = (df['Valor Final'] &gt; 1000) &amp; (df['Valor Final'] &lt; 2000)
+print(df[filtro])</code></pre>
+
+                <blockquote>
+                    <p><strong>Atenção:</strong> o operador <code>and</code> não funciona diretamente em séries do Pandas. Para comparações, use <code>&amp;</code> e coloque cada condição entre parênteses.</p>
+                </blockquote>
+
+                <h3>13.6 Faturamento formatado</h3>
+
+<pre data-lang="python"><code>faturamento = df['Valor Final'].sum()
+print(f'Faturamento obtido R$ {faturamento:,.2f}')
+# Faturamento obtido R$ 2,892,968.00
+
+# Formatação brasileira (vírgula decimal, ponto de milhar)
+f_sem_formatar = f'{faturamento:_.2f}'
+f_formatado = f_sem_formatar.replace('.', ',').replace('_', '.')
+print('Faturamento obtido R$', f_formatado)
+# Faturamento obtido R$ 2.892.968,00</code></pre>
+
+                <h3>13.7 Conexão Google Drive com Colab</h3>
+
+<pre data-lang="python"><code>from google.colab import drive
+drive.mount('/content/drive')</code></pre>
+
+                <blockquote>
+                    <p><strong>Observação:</strong> execute estas duas linhas apenas UMA VEZ. É interessante que estejam em uma célula separada no seu Colab.</p>
+                </blockquote>
+
+                <h2 id="graficos">14. Visualização de Dados</h2>
+
+                <h3>14.1 Matplotlib — Histograma</h3>
+
+<pre data-lang="python"><code>import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv('Propaganda.csv')
+
+plt.hist(df['Radio'], 5, rwidth=0.8, color='red')
+plt.title('Propaganda Via Rádio')
+plt.xlabel('Custo')
+plt.ylabel('Frequência Absoluta')
+plt.show()</code></pre>
+
+                <p><strong>Gráfico de pizza:</strong></p>
+
+<pre data-lang="python"><code>import matplotlib.pyplot as plt
+
+rotulos = ['Gerente de TI', 'Desenvolvedor', 'Gerente BD', 'Diretor']
+tamanho = [12, 54, 19, 32]
+cores = ['red', 'pink', 'blue', 'yellow']
+
+fig, pizza = plt.subplots()
+pizza.pie(tamanho, labels=rotulos, colors=cores, autopct="%1.1f%%")
+pizza.set_title('Cargos')
+plt.show()</code></pre>
+
+                <h3>14.2 Plotly — Histograma interativo</h3>
+
+<pre data-lang="python"><code>import pandas as pd
+import plotly.express as px
+
+df = pd.read_csv('Propaganda.csv')
+fig = px.histogram(df, x='TV')
+fig.show()</code></pre>
+
+                <h2 id="type-hints">15. Type Hints</h2>
+
+                <p><strong>Type hints</strong> (ou anotações de tipo) foram introduzidos no Python 3.5. Permitem indicar os tipos esperados de variáveis, parâmetros e valores de retorno de funções. <strong>Não mudam o funcionamento do código</strong>, mas ajudam:</p>
+
+                <ul>
+                    <li>Na documentação do código</li>
+                    <li>Em ferramentas de análise estática (ex.: IDEs)</li>
+                    <li>Na legibilidade e manutenção</li>
+                </ul>
+
+                <h3>15.1 Variáveis</h3>
+
+<pre data-lang="python"><code>idade: int = 25
+nome: str = "Fatec"
+ativo: bool = True
+altura: float = 1.75
+
+numeros: list[int] = [1, 2, 3]
+dados: dict[str, int] = {"a": 8, "b": 3}
+coordenadas: tuple[float, float] = (10.5, 20.3)
+
+from typing import Optional
+idade_opcional: Optional[int] = None  # ausência de valor</code></pre>
+
+                <h3>15.2 Funções</h3>
+
+<pre data-lang="python"><code># SEM tipagem — implícita (tipagem dinâmica)
+def saudacao(nome, idade):
+    return f"Olá {nome}, você tem {idade} anos."
+
+# COM tipagem — explícita
+def saudacao(nome: str, idade: int) -&gt; str:
+    return f"Olá {nome}, você tem {idade} anos."</code></pre>
+
+                <pre data-lang="python"><code># Função que recebe uma lista de floats e retorna um float
+def media(notas: list[float]) -&gt; float:
+    return sum(notas) / len(notas)</code></pre>
+
+                <h2 id="exercicios">16. Exercícios Resolvidos</h2>
+
+                <p>Os notebooks da disciplina organizam os exercícios em quatro categorias de funções. Veja abaixo um exemplo resolvido de cada:</p>
+
+                <h3>16.1 Função sem retorno e sem parâmetro</h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Funcao_ss</code>, exercício 5):</strong> Faça uma função/método que leia um único valor representado em segundos, converta-o e apresente o resultado em horas, minutos e segundos.</p>
+                </blockquote>
+
+<pre data-lang="python"><code>def conversao_hora():
+    segundos = int(input("Digite a quantidade de segundos: "))
+    h = segundos // 3600
+    resto_h = segundos % 3600
+    m = resto_h // 60
+    s = resto_h % 60
+    print(f"{h}:{m}:{s}")
+
+def main():
+    conversao_hora()
+
+main()
+
+# Digite a quantidade de segundos: 86399
+# 23:59:59</code></pre>
+
+                <h3>16.2 Função sem retorno e com parâmetro</h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Funcao_sc</code>, exercício 10):</strong> Faça uma função/método para, a partir de um preço de um produto informado, calcular e apresentar o novo preço reajustado em 9%.</p>
+                </blockquote>
+
+<pre data-lang="python"><code>def reajuste(preco):
+    preco_reajustado = preco * 1.09
+    print(f"Preço reajustado = R${preco_reajustado}")
+
+def main():
+    preco = float(input("Digite o preço do produto: R$"))
+    reajuste(preco)
+
+main()
+
+# Digite o preço do produto: R$476
+# Preço reajustado = R$518.84</code></pre>
+
+                <h3>16.3 Função com retorno e sem parâmetro</h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Funcao_cs</code>, exercício 7):</strong> Faça uma função/método que retorne a quantidade de letras numa palavra que deve ser lida. Faça a chamada da função na main(). Não use função pronta do Python.</p>
+                </blockquote>
+
+<pre data-lang="python"><code>def contar_letra():
+    palavra = input("Digite a palavra: ")
+    qtde_letras = 0
+    for i in range(len(palavra)):
+        if palavra[i].isalpha():
+            qtde_letras += 1
+    return qtde_letras
+
+def main():
+    letras = contar_letra()
+    print(f"A quantidade de letras é {letras} letras.")
+
+main()
+
+# Digite a palavra: fatec157
+# A quantidade de letras é 5 letras.</code></pre>
+
+                <h3>16.4 Função com retorno e com parâmetro</h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Funcao_cc</code>, exercício 9):</strong> Crie uma função que, a partir dos parâmetros/coordenadas (x1, y1) e (x2, y2), calcule e retorne a distância entre estes dois pontos.</p>
+                </blockquote>
+
+<pre data-lang="python"><code>def distancia(x1, y1, x2, y2):
+    d = (((x2 - x1) ** 2) + ((y2 - y1) ** 2)) ** (1/2)
+    return d
+
+def main():
+    coord_x1 = int(input("Digite a coordenada x1: "))
+    coord_y1 = int(input("Digite a coordenada y1: "))
+    coord_x2 = int(input("Digite a coordenada x2: "))
+    coord_y2 = int(input("Digite a coordenada y2: "))
+
+    distancia_coord = distancia(coord_x1, coord_y1, coord_x2, coord_y2)
+    print(f"Distância entre os pontos {(coord_x1, coord_y1)} e {(coord_x2, coord_y2)} = {distancia_coord}")
+
+main()
+
+# Digite a coordenada x1: 4
+# Digite a coordenada y1: 5
+# Digite a coordenada x2: 3
+# Digite a coordenada y2: 5
+# Distância entre os pontos (4, 5) e (3, 5) = 1.0</code></pre>
+
+                <h3>16.5 Pandas — Exemplo de análise</h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Arquivo_Pandas</code>, exercício 10):</strong> Crie um programa que carregue o arquivo <code>Vendas.xlsx</code>, por meio da biblioteca Pandas. Calcule e apresente a média da coluna do arquivo 'Valor Unitário'.</p>
+                </blockquote>
+
+<pre data-lang="python"><code>import pandas as pd
+
+df = pd.read_excel("/content/drive/MyDrive/analise-de-sistemas/modulo-2/programacao/Vendas.xlsx")
+media = df['Valor Unitário'].mean()
+print(f"Média Valor Unitário: R${media:.2f}")
+
+# Média Valor Unitário: R$193.65</code></pre>
+
+                <h3>16.6 Pandas — Filtro com <code>str.startswith</code></h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Arquivo_Pandas</code>, exercício 6):</strong> Ler o arquivo <code>Vendas.xlsx</code>. Apresente os produtos começando com a letra "V".</p>
+                </blockquote>
+
+<pre data-lang="python"><code>import pandas as pd
+
+df = pd.read_excel("/content/drive/MyDrive/analise-de-sistemas/modulo-2/programacao/Vendas.xlsx")
+filtro = df['Produto'].str.startswith('V')
+resultado = df[filtro]
+print(resultado)
+
+# [370 rows x 7 columns]</code></pre>
+
+                <h3>16.7 Pandas — Histograma com Plotly</h3>
+
+                <blockquote>
+                    <p><strong>Enunciado (Notebook <code>Arquivo_Pandas</code>, exercício 14):</strong> Carregue o arquivo <code>Propaganda.csv</code>. Gere um histograma referente à coluna Rádio, utilizando a biblioteca Plotly.</p>
+                </blockquote>
+
+<pre data-lang="python"><code>import pandas as pd
+import plotly.express as px
+
+df = pd.read_csv('/content/drive/MyDrive/analise-de-sistemas/modulo-2/programacao/Propaganda.csv')
+fig = px.histogram(df, x="Radio")
+fig.show()</code></pre>
+
+                <h2 id="referencias">17. Referências</h2>
+
+                <p>Materiais-base utilizados na organização deste conteúdo: slides e notebooks da disciplina <strong>Linguagem de Programação I</strong>, da Profª Drª Giovana Angélica Ros (Fatec Presidente Prudente).</p>
+
+                <ul>
+                    <li><a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer">Python Documentation — The Python Tutorial</a>.</li>
+                    <li><a href="https://docs.python.org/3/library/" target="_blank" rel="noopener noreferrer">Python Documentation — The Python Standard Library</a>.</li>
+                    <li><a href="https://peps.python.org/pep-0008/" target="_blank" rel="noopener noreferrer">PEP 8 — Style Guide for Python Code</a>.</li>
+                    <li><a href="https://peps.python.org/pep-0484/" target="_blank" rel="noopener noreferrer">PEP 484 — Type Hints</a>.</li>
+                    <li><a href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener noreferrer">Pandas Documentation</a>.</li>
+                    <li><a href="https://matplotlib.org/stable/index.html" target="_blank" rel="noopener noreferrer">Matplotlib Documentation</a>.</li>
+                    <li><a href="https://plotly.com/python/" target="_blank" rel="noopener noreferrer">Plotly Python Documentation</a>.</li>
+                    <li><a href="https://docs.python.org/3/library/json.html" target="_blank" rel="noopener noreferrer">Python — json: JSON encoder and decoder</a>.</li>
+                    <li><a href="https://requests.readthedocs.io/" target="_blank" rel="noopener noreferrer">Requests Library Documentation</a>.</li>
+                    <li>Slides da disciplina Linguagem de Programação I — Aulas 1 a 5, Profª Drª Giovana Angélica Ros.</li>
+                </ul>
+
+                <p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;">
+                    <em>Fim do conteúdo de Linguagem de Programação I.</em>
+                </p>
+            </div>
+        </main>
+    </div>
+    <button aria-label="Voltar ao topo" class="back-to-top">↑</button>
+    <script src="../js/script.js"></script>
+</body>
+</html>
