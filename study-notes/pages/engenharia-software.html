@@ -3702,7 +3702,6 @@ Implementação técnica (código, banco de dados, APIs)</code></pre>
                     <li>O SF providencia o recebimento do pagamento.</li>
                     <li>Após a entrega e o recebimento, o SAC encerra o pedido.</li>
                 </ol>
-
                 <p><strong>Estrutura do diagrama:</strong></p>
                 <ul>
                     <li><strong>Início</strong> → Receber Pedido → <strong>Fork</strong></li>
@@ -3710,9 +3709,11 @@ Implementação técnica (código, banco de dados, APIs)</code></pre>
                     <li>Ramo paralelo 2: <em>Enviar Fatura</em> → objeto [Fatura] → <em>Receber Pagamento</em></li>
                     <li><strong>Join</strong> → Encerrar Pedido → <strong>Final</strong></li>
                 </ul>
-
+                
                 <p>As três raias (Atendimento, SAC, Finanças) mostram claramente quem executa cada atividade.</p>
-
+                
+                <p><img src="../images/DiagramadeAtividade-Exemplo1-RemeterPedido.png"></p>
+                <p><img src="../images/DiagramadeAtividade-Exemplo1-RemeterPedido-subativ.png"></p>
                 <h3>22.4 Exemplo 2 — Preparar Espaguete</h3>
 
                 <p>Ilustra o uso de <strong>fork/join</strong> com um <strong>thread condicional</strong>:</p>
@@ -3766,6 +3767,104 @@ Implementação técnica (código, banco de dados, APIs)</code></pre>
                 <blockquote>
                     <p><strong>Regra de ouro:</strong> um <strong>fork</strong> sempre combina com <strong>join</strong> (paralelismo); um <strong>branch</strong> sempre combina com <strong>merge</strong> (exclusividade). Nunca misture fork com merge nem branch com join.</p>
                 </blockquote>
+
+                <h4>22.7.1 Entendendo Fork/Join vs. Branch/Merge em profundidade</h4>
+
+                <p>Existem <strong>dois tipos de nós de controle</strong> em Diagramas de Atividades UML que parecem semelhantes visualmente (barras e losangos), mas têm <strong>semânticas completamente opostas</strong>. Confundir os dois é um dos erros mais comuns de modelagem — e gera diagramas logicamente inválidos.</p>
+
+                <h5>Fork / Join — Paralelismo (AND)</h5>
+
+                <ul>
+                    <li><strong>Fork</strong> (barra grossa): o fluxo se divide em múltiplos caminhos que executam <strong>SIMULTANEAMENTE</strong>. Todos os caminhos serão executados.</li>
+                    <li><strong>Join</strong> (barra grossa): aguarda <strong>TODOS</strong> os ramos terminarem antes de prosseguir.</li>
+                    <li><strong>Lógica:</strong> AND (todos executam).</li>
+                </ul>
+
+                <img src="../images/InfograficodeFork_JoinemParalelo.png">
+
+                <h5>Branch / Merge — Exclusividade (XOR)</h5>
+
+                <ul>
+                    <li><strong>Branch</strong> (losango vazado): o fluxo escolhe <strong>UM ÚNICO</strong> caminho entre os disponíveis, com base em uma condição.</li>
+                    <li><strong>Merge</strong> (losango vazado): prossegue com o <strong>primeiro</strong> que chegar — sem esperar os outros.</li>
+                    <li><strong>Lógica:</strong> XOR (apenas um executa).</li>
+                </ul>
+
+                <img src="../images/Infografico_Branch_Merge_XOR.png">
+
+                <h5>Por que nunca misturar?</h5>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Combinação errada</th><th>O que acontece</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Fork + Merge</strong></td><td>O merge prossegue assim que <strong>qualquer</strong> ramo chegar. O fluxo principal continua <strong>enquanto um dos ramos ainda está executando</strong>. O ramo "órfão" pode terminar depois que o fluxo principal já avançou — gerando condições de corrida, dependências quebradas e resultados inconsistentes.</td></tr>
+                            <tr><td><strong>Branch + Join</strong></td><td>O join espera que <strong>TODOS</strong> os ramos cheguem — mas o branch só executou <strong>UM</strong>. O fluxo <strong>trava para sempre</strong>, esperando um caminho que nunca virá. <strong>Deadlock lógico.</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5>Exemplo prático — Preparar Espaguete (fork/join)</h5>
+
+<pre data-lang="text"><code>        ●  (Início)
+        │
+      ═══════════════  ← FORK
+      │             │
+      ▼             │
+[Cozinhar]   [Preparar Molho]
+      │             │
+      ═══════════════  ← JOIN
+              │
+          [Combinar]
+              │
+              ●  (Final)</code></pre>
+
+                <p>Cozinhar e Preparar Molho acontecem <strong>em paralelo</strong>. Só depois que <strong>AMBOS</strong> terminam é que Combinar é executado. Se você substituísse o join por um <strong>merge</strong>, o "Combinar" poderia executar apenas com o espaguete pronto, sem o molho — o que é logicamente errado.</p>
+
+                <h5>Exemplo prático — Consultar Conta (branch/merge)</h5>
+
+                <img src="../images/Infografico_Consultar_Conta_Branch_Merge.png">
+
+                <p>O sistema verifica se a conta existe. <strong>OU</strong> emite mensagem de inválida <strong>OU</strong> emite mensagem de válida — nunca as duas. Depois, os dois caminhos se reconciliam no merge. Se você substituísse o merge por um <strong>join</strong>, o sistema <strong>travaria</strong>: o join esperaria que <strong>ambas</strong> as mensagens fossem emitidas, mas só uma foi executada.</p>
+
+                <h5>Tabela comparativa definitiva</h5>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Aspecto</th><th>Fork / Join</th><th>Branch / Merge</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Símbolo</strong></td><td>Barra grossa</td><td>Losango vazado (diamante)</td></tr>
+                            <tr><td><strong>Lógica</strong></td><td>AND (todos executam)</td><td>XOR (apenas um executa)</td></tr>
+                            <tr><td><strong>Semântica</strong></td><td>Paralelismo</td><td>Exclusividade condicional</td></tr>
+                            <tr><td><strong>Abertura</strong></td><td>Cria N caminhos que rodam <strong>simultaneamente</strong></td><td>Escolhe <strong>1</strong> caminho entre N</td></tr>
+                            <tr><td><strong>Fechamento</strong></td><td>Espera <strong>TODOS</strong> os N caminhos chegarem</td><td>Prossegue com o <strong>primeiro</strong> que chegar</td></tr>
+                            <tr><td><strong>Fechamento correto</strong></td><td>Fork → <strong>Join</strong></td><td>Branch → <strong>Merge</strong></td></tr>
+                            <tr><td><strong>Fechamento errado</strong></td><td>Fork → Merge (ramo órfão)</td><td>Branch → Join (deadlock)</td></tr>
+                            <tr><td><strong>Exemplo clássico</strong></td><td>Cozinhar espaguete + preparar molho</td><td>Verificar se conta existe (sim/não)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5>Regra mnemônica</h5>
+
+                <blockquote>
+                    <p><strong>"Fork junta no Join, Branch junta no Merge."</strong></p>
+                    <p>Ou ainda:</p>
+                    <ul>
+                        <li><strong>F</strong>ork → <strong>J</strong>oin (FJ, FJ... as iniciais rimam)</li>
+                        <li><strong>B</strong>ranch → <strong>M</strong>erge (BM, BM... também rimam)</li>
+                    </ul>
+                    <p>Outra forma de lembrar:</p>
+                    <ul>
+                        <li><strong>F</strong>ork <strong>J</strong>oin = <strong>F</strong>orça <strong>J</strong>unta (tudo junto, paralelo)</li>
+                        <li><strong>B</strong>ranch <strong>M</strong>erge = <strong>B</strong>ifurca <strong>M</strong>as <strong>E</strong>scolhe (um só caminho)</li>
+                    </ul>
+                </blockquote>
+                <!-- ▲▲▲ FIM DO BLOCO ADICIONADO ▲▲▲ -->
 
                 <h3>22.8 Diagrama de Atividades × Casos de Uso</h3>
 
