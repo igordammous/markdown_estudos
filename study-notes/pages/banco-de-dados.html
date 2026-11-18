@@ -822,7 +822,105 @@ COMMIT;
           <li><strong>Deadlock:</strong> transações ficam aguardando recursos bloqueados umas pelas outras, formando um ciclo de espera. O SGBD normalmente detecta a situação e aborta uma das transações.</li>
         </ul>
         <p>Os SGBDs utilizam mecanismos como bloqueios, controle de versões (MVCC), níveis de isolamento e logs para coordenar acessos. A recuperação também considera falhas de hardware, software, rede, energia e erros de execução. Backups e logs de transação ajudam a restaurar o banco a um estado consistente.</p>
-                        
+
+              <h3 id="exemplos-anomalias">4.7 Exemplos práticos das anomalias de concorrência</h3>
+
+        <p>Os três problemas clássicos de concorrência descritos na seção anterior podem ser visualizados com execuções entrelaçadas de duas transações. Abaixo, cada anomalia é apresentada com um cenário concreto e a sequência de operações que a produz.</p>
+
+        <h4>4.7.1 Atualização perdida (Lost Update)</h4>
+
+        <p><strong>Cenário:</strong> dois caixas eletrônicos sacam da mesma conta ao mesmo tempo. O saldo inicial é R$ 1.000,00 e cada saque é de R$ 100,00. O resultado correto deveria ser R$ 800,00; a anomalia produz R$ 900,00.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Tempo</th><th>Transação T1 (Caixa A)</th><th>Transação T2 (Caixa B)</th><th>Saldo no banco</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>t1</td><td>Lê saldo = 1000</td><td>—</td><td>1000</td></tr>
+              <tr><td>t2</td><td>—</td><td>Lê saldo = 1000</td><td>1000</td></tr>
+              <tr><td>t3</td><td>saldo = 1000 − 100 = 900</td><td>—</td><td>1000</td></tr>
+              <tr><td>t4</td><td>—</td><td>saldo = 1000 − 100 = 900</td><td>1000</td></tr>
+              <tr><td>t5</td><td>Grava saldo = 900</td><td>—</td><td>900</td></tr>
+              <tr><td>t6</td><td>COMMIT</td><td>—</td><td>900</td></tr>
+              <tr><td>t7</td><td>—</td><td>Grava saldo = 900</td><td>900</td></tr>
+              <tr><td>t8</td><td>—</td><td>COMMIT</td><td><strong>900 (errado!)</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>O que aconteceu:</strong> T2 leu o saldo antigo (1000) antes de T1 gravar sua alteração. Ao gravar 900 em t7, T2 sobrescreveu o valor calculado por T1 em t5. O saque de T1 foi <em>perdido</em>: o saldo final deveria ser 800 (dois saques de 100), mas ficou 900.</p>
+
+        <p><strong>Como evitar:</strong> bloqueio exclusivo na leitura para atualização (<code>SELECT ... FOR UPDATE</code>), controle de versões (MVCC) com verificação de versão no <code>UPDATE</code>, ou nível de isolamento <code>REPEATABLE READ</code>/<code>SERIALIZABLE</code>.</p>
+
+        <h4>4.7.2 Atualização temporária / leitura suja (Dirty Read)</h4>
+
+        <p><strong>Cenário:</strong> T1 transfere R$ 500,00 para a conta de T2 e, antes de confirmar, T2 consulta o saldo e decide fazer uma compra. T1 sofre <code>ROLLBACK</code> e o dinheiro nunca existiu.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Tempo</th><th>Transação T1 (Transferência)</th><th>Transação T2 (Consulta/Compra)</th><th>Saldo da conta de T2</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>t1</td><td>Debita R$ 500 da conta de origem</td><td>—</td><td>1000</td></tr>
+              <tr><td>t2</td><td>Credita R$ 500 na conta de T2 (não confirmado)</td><td>—</td><td>1500 (não confirmado)</td></tr>
+              <tr><td>t3</td><td>—</td><td>Lê saldo = 1500</td><td>1500 (não confirmado)</td></tr>
+              <tr><td>t4</td><td>—</td><td>Autoriza compra de R$ 1.200</td><td>1500 (não confirmado)</td></tr>
+              <tr><td>t5</td><td><strong>ROLLBACK</strong> (falha na transferência)</td><td>—</td><td><strong>1000 (valor real)</strong></td></tr>
+              <tr><td>t6</td><td>—</td><td>Compra já autorizada com base em 1500</td><td>1000 (insuficiente!)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>O que aconteceu:</strong> T2 leu um valor que T1 ainda não havia confirmado. Quando T1 sofreu <code>ROLLBACK</code>, o saldo voltou a 1000, mas T2 já havia tomado uma decisão (compra de R$ 1.200) baseada em um dado que nunca existiu oficialmente. Isso é a <em>leitura suja</em>: T2 "sujou-se" com um dado temporário.</p>
+
+        <p><strong>Como evitar:</strong> nível de isolamento mínimo <code>READ COMMITTED</code> (impede leitura de dados não confirmados); bloqueios de leitura compartilhada; MVCC com visibilidade apenas de versões confirmadas.</p>
+
+        <h4>4.7.3 Deadlock (impasse)</h4>
+
+        <p><strong>Cenário:</strong> duas transações precisam atualizar as mesmas duas contas, mas em ordens opostas. T1 bloqueia a Conta A e precisa da Conta B; T2 bloqueia a Conta B e precisa da Conta A. Nenhuma consegue prosseguir.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Tempo</th><th>Transação T1</th><th>Transação T2</th><th>Situação dos bloqueios</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>t1</td><td><code>UPDATE conta SET saldo = saldo - 100 WHERE id = 'A'</code></td><td>—</td><td>A bloqueada por T1</td></tr>
+              <tr><td>t2</td><td>—</td><td><code>UPDATE conta SET saldo = saldo - 200 WHERE id = 'B'</code></td><td>B bloqueada por T2</td></tr>
+              <tr><td>t3</td><td><code>UPDATE conta SET saldo = saldo + 100 WHERE id = 'B'</code> → <strong>espera</strong></td><td>—</td><td>T1 aguarda B (detida por T2)</td></tr>
+              <tr><td>t4</td><td>—</td><td><code>UPDATE conta SET saldo = saldo + 200 WHERE id = 'A'</code> → <strong>espera</strong></td><td>T2 aguarda A (detida por T1) → <strong>ciclo de espera</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pre data-lang="text"><code>T1 detém A, espera B
+        T2 detém B, espera A
+                ↺ ciclo de espera (deadlock)</code></pre>
+        
+        <p><strong>O que aconteceu:</strong> formou-se um ciclo de espera. Nenhuma transação pode avançar porque cada uma detém o recurso que a outra precisa. O SGBD detecta o ciclo (por grafo de espera ou timeout) e <strong>aborta uma das transações</strong> (por exemplo, T2), liberando seus bloqueios. T1 prossegue; T2 precisa ser reexecutada pela aplicação.</p>
+        
+        <p><strong>Como evitar:</strong> definir uma <em>ordem global</em> de aquisição de recursos (ex.: sempre atualizar contas em ordem crescente de <code>id</code>); manter transações curtas; usar <code>SELECT ... FOR UPDATE</code> com ordem consistente; configurar <code>innodb_lock_wait_timeout</code> (MySQL) ou <code>deadlock_timeout</code> (PostgreSQL) para detecção por timeout; tratar o erro de deadlock na aplicação com retry.</p>
+        
+        <h4>4.7.4 Quadro-resumo comparativo</h4>
+        
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Anomalia</th><th>Causa</th><th>Efeito</th><th>Prevenção</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Atualização perdida</td><td>Duas transações leem o mesmo valor e gravam por cima uma da outra</td><td>Uma das alterações desaparece</td><td><code>SELECT ... FOR UPDATE</code>, MVCC com versão, <code>REPEATABLE READ</code>/<code>SERIALIZABLE</code></td></tr>
+              <tr><td>Atualização temporária (leitura suja)</td><td>Uma transação lê dado não confirmado por outra que sofre <code>ROLLBACK</code></td><td>Decisão tomada com base em dado que nunca existiu</td><td><code>READ COMMITTED</code> ou superior; bloqueios de leitura</td></tr>
+              <tr><td>Deadlock</td><td>Ciclo de espera por recursos bloqueados mutuamente</td><td>Transações travadas; SGBD aborta uma</td><td>Ordem global de aquisição, transações curtas, timeout, retry</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <blockquote>
+          <p><strong>Conexão com ACID:</strong> as três anomalias são violações do <strong>Isolamento</strong>. As propriedades <strong>Atomicidade</strong> (<code>ROLLBACK</code> desfaz tudo) e <strong>Durabilidade</strong> (<code>COMMIT</code> persiste) são o que permitem ao SGBD recuperar o estado consistente após a detecção e o aborto de uma transação em deadlock.</p>
+        </blockquote>
         <h2 id="consultas-sql">5. DQL: consultas com SELECT</h2>
                         
         <h3 id="estrutura-select">5.1 Estrutura geral</h3>
@@ -1022,357 +1120,1000 @@ telefone PK
           <li>SILBERSCHATZ, A.; KORTH, H. F.; SUDARSHAN, S. <em>Sistema de Banco de Dados</em>. GEN LTC, 2020.</li>
         </ul>
                             
-        <h2 id="exercicios">10. Lista de exercícios</h2>
-        <p class="exercise-intro">Atividades transcritas do arquivo de exercícios fornecido. Os enunciados foram mantidos para estudo e resolução; os exercícios que dependem de arquivos externos (como escola.txt, venda.txt e eleicoes.mwb) exigem também esses modelos de dados.</p>
-                            
+        <h2 id="exercicios">10. Lista de exercícios (com resolução)</h2>
+              
+        <p class="exercise-intro">Atividades transcritas do arquivo de exercícios fornecido, agora acompanhadas de resolução comentada. Os exercícios que dependem de arquivos externos (como escola.txt, venda.txt e eleicoes.mwb) assumem os esquemas descritos no caderno.</p>
+              
         <h3 id="ex-introducao">10.1 Introdução</h3>
-                            
-        <h4>1) Uma organização de grande porte decidiu atualizar sua infraestrutura de TI, migrando o armazenamento de seus dados de arquivos planos em discos rígidos locais (HDDs) para uma estrutura distribuída em nuvem com novos métodos de indexação e compressão.  No paradigma antigo do Sistema Gerenciador de Arquivos (SGA), essa alteração na camada física exigiria a reescrita e a recompilação dos códigos-fonte de todas as aplicações que acessavam os dados. Com a adoção de um Sistema Gerenciador de Banco de Dados (SGBD), essa mudança pôde ser realizada na camada de armazenamento sem causar qualquer impacto ou necessidade de alteração nas aplicações existentes.</h4>
-                            
+              
+        <h4>1) Uma organização de grande porte decidiu atualizar sua infraestrutura de TI, migrando o armazenamento de seus dados de arquivos planos em discos rígidos locais (HDDs) para uma estrutura distribuída em nuvem com novos métodos de indexação e compressão. No paradigma antigo do Sistema Gerenciador de Arquivos (SGA), essa alteração na camada física exigiria a reescrita e a recompilação dos códigos-fonte de todas as aplicações que acessavam os dados. Com a adoção de um Sistema Gerenciador de Banco de Dados (SGBD), essa mudança pôde ser realizada na camada de armazenamento sem causar qualquer impacto ou necessidade de alteração nas aplicações existentes.</h4>
+              
         <p class="exercise-text">Qual recurso técnico do SGBD assegura a neutralidade das aplicações diante de mudanças na estrutura de armazenamento no disco?</p>
         <p class="exercise-item">A) Independência de dados</p>
         <p class="exercise-item">B) Dependência de dados</p>
         <p class="exercise-item">C) Gerenciamento de transações</p>
         <p class="exercise-item">D) Integridade nos dados</p>
         <p class="exercise-item">E) Facilidade no acesso aos dados</p>
-        
+              
+        <p class="exercise-text"><strong>Resolução: A) Independência de dados.</strong> A independência física de dados permite alterar a organização física (índices, arquivos, discos, compressão) sem reescrever as aplicações que usam o esquema lógico. É um dos principais benefícios do SGBD em relação ao SGA.</p>
+              
         <h4>2) No desenvolvimento de sistemas corporativos, a arquitetura de software e banco de dados é organizada em camadas com responsabilidades bem definidas. Em um sistema web construído em linguagens como C#, JavaScript ou PHP, a aplicação não manipula diretamente os blocos e setores de um disco rígido (HD ou SSD). Em vez disso, a camada de aplicação comunica-se com o Sistema Gerenciador de Banco de Dados (SGBD) — como MySQL, Oracle ou MongoDB —, que por sua vez se apoia no Sistema Operacional para realizar a persistência física.</h4>
-        
+              
         <p class="exercise-text">Considerando a arquitetura representada pela cadeia Aplicação -&gt; SGBD -&gt; Armazenamento, qual é o papel fundamental desempenhado pela camada intermediária (SGBD) nessa organização?</p>
         <p class="exercise-item">A) Executar diretamente o código das linguagens de programação de aplicação (como PHP ou C#), substituindo a necessidade de servidores web e interpretadores.</p>
         <p class="exercise-item">B) Atuar como camada de abstração e gerenciamento, isolando o código de aplicação dos detalhes de baixo nível do sistema operacional e dos dispositivos físicos de armazenamento.</p>
         <p class="exercise-item">C) Traduzir instruções de software em sinais elétricos diretos para o firmware do SSD/HD, eliminando a dependência do Sistema Operacional.</p>
         <p class="exercise-item">D) Unificar a aplicação e o armazenamento físico em um único bloco monolítico, tornando obrigatória a reescrita do sistema caso o banco de dados seja trocado.</p>
         <p class="exercise-item">E) Limitar as conexões de software apenas a modelos relacionais tradicionais (como MySQL e Oracle), inviabilizando a integração com tecnologias não relacionais (como MongoDB).</p>
-        
-        <h4>3) Ao planejar a infraestrutura de TI de um banco de dados, a equipe de arquitetura deve definir o tipo de SGBD a ser adotado quanto ao arranjo de processamento e armazenamento físico. As três abordagens clássicas de arquitetura são:</h4>
-        
+              
+        <p class="exercise-text"><strong>Resolução: B)</strong> O SGBD atua como camada de abstração e gerenciamento, isolando a aplicação dos detalhes de baixo nível (sistema operacional e dispositivos físicos). Ele interpreta comandos, otimiza consultas, verifica permissões e integridade, coordena transações e solicita ao SO as operações de leitura/gravação.</p>
+              
+        <h4>3) Ao planejar a infraestrutura de TI de um banco de dados, a equipe de arquitetura deve definir o tipo de SGBD a adotar quanto ao arranjo de processamento e armazenamento físico. As três abordagens clássicas de arquitetura são:</h4>
+              
         <p class="exercise-item">a) Centralizada: O SGBD e os dados residem em uma única máquina.</p>
         <p class="exercise-item">b) Paralela: Múltiplos processadores/discos trabalham de forma simultânea e fortemente acoplada para aumentar a velocidade de processamento de consultas.</p>
-        <p class="exercise-item">c) Distribuída: O banco de dados é dividido em múltiplos nós autônomos e geograficamente/fisicamente separados, conectados via rede de comunicação.
-        <p class="exercise-text">Considerando a diferenciação técnica entre essas três arquiteturas de SGBD, assinale a alternativa correta:
-        <p class="exercise-item">A) O SGBD distribuído caracteriza-se pelo acoplamento forte de hardware, onde múltiplos processadores obrigatoriamente compartilham o mesmo barramento e a mesma memória RAM física no mesmo gabinete.
-        <p class="exercise-item">B) O SGBD centralizado oferece alta disponibilidade nativa contra falhas de hardware, pois replica automaticamente as transações em múltiplos servidores distribuídos na rede.
-        <p class="exercise-item">C) O SGBD paralelo tem como objetivo principal utilizar a concorrência de múltiplos processadores/discos (em um ambiente de computação de alto desempenho) para acelerar a execução de consultas e o volume de transações por segundo.
-        <p class="exercise-item">D) O SGBD distribuído elimina a necessidade de transparência de localização, exigindo que o usuário final conheça o endereço IP exato do nó onde o dado solicitado está fisicamente armazenado.
-        <p class="exercise-item">E) O SGBD paralelo diferencia-se do distribuído por depender de uma rede de longa distância (WAN) para conectar nós de processamento autônomos localizados em diferentes cidades.
-        
+        <p class="exercise-item">c) Distribuída: O banco de dados é dividido em múltiplos nós autônomos e geograficamente/fisicamente separados, conectados via rede de comunicação.</p>
+              
+        <p class="exercise-text">Considerando a diferenciação técnica entre essas três arquiteturas de SGBD, assinale a alternativa correta:</p>
+        <p class="exercise-item">A) O SGBD distribuído caracteriza-se pelo acoplamento forte de hardware, onde múltiplos processadores obrigatoriamente compartilham o mesmo barramento e a mesma memória RAM física no mesmo gabinete.</p>
+        <p class="exercise-item">B) O SGBD centralizado oferece alta disponibilidade nativa contra falhas de hardware, pois replica automaticamente as transações em múltiplos servidores distribuídos na rede.</p>
+        <p class="exercise-item">C) O SGBD paralelo tem como objetivo principal utilizar a concorrência de múltiplos processadores/discos (em um ambiente de computação de alto desempenho) para acelerar a execução de consultas e o volume de transações por segundo.</p>
+        <p class="exercise-item">D) O SGBD distribuído elimina a necessidade de transparência de localização, exigindo que o usuário final conheça o endereço IP exato do nó onde o dado solicitado está fisicamente armazenado.</p>
+        <p class="exercise-item">E) O SGBD paralelo diferencia-se do distribuído por depender de uma rede de longa distância (WAN) para conectar nós de processamento autônomos localizados em diferentes cidades.</p>
+              
+        <p class="exercise-text"><strong>Resolução: C)</strong> O SGBD paralelo usa múltiplos processadores/discos em paralelo (acoplamento forte) para acelerar consultas e aumentar o throughput de transações. A alternativa A confunde paralelo com distribuído; B descreve falsamente a centralizada; D contradiz a transparência de localização; E inverte as características.</p>
+              
         <h4>4) Após a definição dos tipos de SGBD em relação à infraestrutura física e de processamento, a arquitetura de um sistema exige a escolha do modelo de dados. O modelo de dados é a abstração que fornece o conjunto de ferramentas conceituais, estruturais e notações para descrever como as informações são organizadas, como os elementos se relacionam entre si, qual é a semântica dos dados e quais restrições de integridade devem ser impostas. Ao longo da evolução da tecnologia de bancos de dados, diversos modelos foram propostos e adotados (tais como os modelos Hierárquico, em Rede, Relacional, Entidade-Relacionamento, Orientado a Objetos e NoSQL).</h4>
-        
-        <p class="exercise-text">Considerando a definição e a finalidade dos modelos de dados, assinale a alternativa correta:
-        <p class="exercise-item">A) O modelo de dados restringe-se à especificação dos componentes físicos de hardware (como arranjos de discos SSD e controladores de memória), não interferindo na forma lógica como os desenvolvedores visualizam os dados.
-        <p class="exercise-item">B) A adoção de um modelo de dados é um procedimento exclusivo de bancos de dados relacionais executados em arquitetura centralizada, sendo dispensável em SGBDs modernos.
-        <p class="exercise-item">C) O modelo de dados define unicamente os comandos de consulta em linguagem SQL, não abrangendo os níveis de modelagem conceitual ou lógica do sistema.
-        <p class="exercise-item">D) O modelo de dados atua como uma linguagem/framework de abstração que define as regras estruturais, os padrões de organização e as restrições lógicas aplicadas aos dados mantidos pelo SGBD.
-        <p class="exercise-item">E) Os modelos de dados eliminam a necessidade de definir tipos de dados para os atributos, permitindo que a aplicação grave informações no SGBD sem qualquer esquema conceitual.
-        
+              
+        <p class="exercise-text">Considerando a definição e a finalidade dos modelos de dados, assinale a alternativa correta:</p>
+        <p class="exercise-item">A) O modelo de dados restringe-se à especificação dos componentes físicos de hardware (como arranjos de discos SSD e controladores de memória), não interferindo na forma lógica como os desenvolvedores visualizam os dados.</p>
+        <p class="exercise-item">B) A adoção de um modelo de dados é um procedimento exclusivo de bancos de dados relacionais executados em arquitetura centralizada, sendo dispensável em SGBDs modernos.</p>
+        <p class="exercise-item">C) O modelo de dados define unicamente os comandos de consulta em linguagem SQL, não abrangendo os níveis de modelagem conceitual ou lógica do sistema.</p>
+        <p class="exercise-item">D) O modelo de dados atua como uma linguagem/framework de abstração que define as regras estruturais, os padrões de organização e as restrições lógicas aplicadas aos dados mantidos pelo SGBD.</p>
+        <p class="exercise-item">E) Os modelos de dados eliminam a necessidade de definir tipos de dados para os atributos, permitindo que a aplicação grave informações no SGBD sem qualquer esquema conceitual.</p>
+              
+        <p class="exercise-text"><strong>Resolução: D)</strong> O modelo de dados é uma abstração que define estruturas, relacionamentos, semântica e restrições de integridade — servindo de base para a modelagem conceitual, lógica e física, independentemente do SGBD ou arquitetura.</p>
+              
         <h4>5) Em um Sistema Gerenciador de Banco de Dados (SGBD) transacional, a execução de um conjunto de operações de leitura e escrita deve ser tratada como uma unidade lógica de trabalho. Para garantir a confiabilidade e o processamento correto dos dados, o SGBD implementa as quatro propriedades conhecidas pelo acrônimo ACID.</h4>
-        
-        <p class="exercise-text">Considere dois cenários operacionais em um sistema bancário:
-        <p class="exercise-text">Cenário 1: Uma transação de transferência bancária completa com sucesso e recebe a confirmação (commit). Segundos depois, ocorre uma queda abrupta de energia elétrica no datacenter. Ao religar o servidor, o SGBD garante que os saldos atualizados continuam gravados no banco de dados e não foram perdidos.
-        <p class="exercise-text">Cenário 2: Durante a execução de uma transferência de fundos, o valor é debitado da Conta A, mas o sistema falha antes de creditar a Conta B. O SGBD interfere e desfaz o débito parcial, assegurando que o sistema retorne ao estado original e a operação não fique gravada pela metade.
-        <p class="exercise-text">Os comportamentos descritos no Cenário 1 e no Cenário 2 exemplificam, respectivamente, quais propriedades ACID?
-        <p class="exercise-item">A) Atomicidade e Isolamento.
-        <p class="exercise-item">B) Consistência e Durabilidade.
-        <p class="exercise-item">C) Isolamento e Consistência.
-        <p class="exercise-item">D) Atomicidade e Durabilidade.
-        <p class="exercise-item">E) Durabilidade e Atomicidade.
-        
+              
+        <p class="exercise-text">Cenário 1: Uma transação de transferência bancária completa com sucesso e recebe a confirmação (commit). Segundos depois, ocorre uma queda abrupta de energia elétrica no datacenter. Ao religar o servidor, o SGBD garante que os saldos atualizados continuam gravados no banco de dados e não foram perdidos.</p>
+        <p class="exercise-text">Cenário 2: Durante a execução de uma transferência de fundos, o valor é debitado da Conta A, mas o sistema falha antes de creditar a Conta B. O SGBD interfere e desfaz o débito parcial, assegurando que o sistema retorne ao estado original e a operação não fique gravada pela metade.</p>
+              
+        <p class="exercise-text">Os comportamentos descritos no Cenário 1 e no Cenário 2 exemplificam, respectivamente, quais propriedades ACID?</p>
+        <p class="exercise-item">A) Atomicidade e Isolamento.</p>
+        <p class="exercise-item">B) Consistência e Durabilidade.</p>
+        <p class="exercise-item">C) Isolamento e Consistência.</p>
+        <p class="exercise-item">D) Atomicidade e Durabilidade.</p>
+        <p class="exercise-item">E) Durabilidade e Atomicidade.</p>
+              
+        <p class="exercise-text"><strong>Resolução: E) Durabilidade e Atomicidade.</strong> Cenário 1 → após o COMMIT, as alterações sobrevivem à falha (durabilidade). Cenário 2 → o débito parcial é desfeito, garantindo que a transação seja tudo ou nada (atomicidade).</p>
+              
         <h3 id="ex-modelagem">10.2 Modelagem de dados</h3>
+              
         <h4>6) Para cada situação a seguir, construa um diagrama de dados.</h4>
+              
         <p class="exercise-text"><strong>Situação 1 - Transportadora</strong></p>
-        <p class="exercise-text">Uma transportadora aérea pretende modelar uma base de dados com as seguintes informações:</p>
-        <ul>
-          <li class="exercise-text"> A transportadora tem vários aviões. Cada avião tem a matrícula, um nome, a marca do avião, o número de lugares e indicação da sua autonomia.</li>
-          <li class="exercise-text"> Na transportadora trabalham vários pilotos. Para os pilotos deseja-se armazenar nome e horas de voo.</li>
-          <li class="exercise-text"> Cada avião faz vários voos. Cada voo deve ter, pelo menos, a indicação da data e hora de partida e chegada, do local de partida e chegada.</li>
-          <li class="exercise-text"> Cada voo de um dado avião tem um piloto e um copiloto.</li>
-        </ul>
-                              
+        <p class="exercise-text">Uma transportadora aérea pretende modelar uma base de dados com as seguintes informações: a transportadora tem vários aviões (matrícula, nome, marca, número de lugares, autonomia); trabalham vários pilotos (nome, horas de voo); cada avião faz vários voos (data/hora de partida e chegada, local de partida e chegada); cada voo de um dado avião tem um piloto e um copiloto.</p>
+              
+        <p class="exercise-text"><strong>Resolução (modelo relacional):</strong></p>
+              
+        <pre data-lang="text"><code>AVIAO (matricula PK, nome, marca, num_lugares, autonomia)
+PILOTO (codigo PK, nome, horas_voo)
+VOO (codigo PK, data_hora_partida, data_hora_chegada,
+     local_partida, local_chegada,
+     matricula_aviao FK → AVIAO,
+     cod_piloto FK → PILOTO,
+     cod_copiloto FK → PILOTO)</code></pre>
+
+        <p class="exercise-text">Relacionamentos: AVIAO 1:N VOO (um avião faz vários voos); PILOTO 1:N VOO em dois papéis (piloto e copiloto), exigindo duas FKs para PILOTO na tabela VOO.</p>
+
         <p class="exercise-text"><strong>Situação 2 - Biblioteca</strong></p>
-        <p class="exercise-text">Pretende-se modelar uma base de dados para armazenar informações de uma biblioteca. Tal base de dados deverá conter pelo menos informações referentes:</p>
-        <ul>
-          <li class="exercise-text">aos livros existentes na biblioteca incluindo cada um deles, um código, o nome, o(s) autor(es), a editora, a classificação e localização na prateleira;
-          <li class="exercise-text">as editoras (como nome, telefone e e-mail);
-          <li class="exercise-text">aos leitores da biblioteca, cada um com um código, nome e endereço;
-          <li class="exercise-text">A biblioteca pretende controlar os empréstimos dos livros, efetuados pelo leitor. Os empréstimos devem conter a data do empréstimo e os livros emprestados devem conter data da devolução.
-        </ul>
+        <p class="exercise-text">Modelar uma base de dados com informações sobre livros (código, nome, autor(es), editora, classificação, localização na prateleira); editoras (nome, telefone, e-mail); leitores (código, nome, endereço); e empréstimos (data do empréstimo, livros emprestados e data da devolução).</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="text"><code>LIVRO (codigo PK, nome, classificacao, localizacao_prateleira, cod_editora FK)
+AUTOR (cod_autor PK, nome_autor)
+LIVRO_AUTOR (cod_livro PK/FK, cod_autor PK/FK)
+EDITORA (cod_editora PK, nome, telefone, email)
+LEITOR (codigo PK, nome, endereco)
+EMPRESTIMO (cod_emprestimo PK, cod_leitor FK, data_emprestimo)
+ITEM_EMPRESTIMO (cod_emprestimo PK/FK, cod_livro PK/FK, data_devolucao)</code></pre>
+
+        <p class="exercise-text">Um livro pode ter vários autores (N:N via LIVRO_AUTOR); um empréstimo pode conter vários livros (N:N via ITEM_EMPRESTIMO, que também guarda a data de devolução de cada livro).</p>
 
         <p class="exercise-text"><strong>Situação 3 - Estoque</strong></p>
-        <p class="exercise-text">Uma empresa pretende modelar uma base de dados para controlar o estoque. É preciso observar que:
-        <ul>
-          <li class="exercise-text">A empresa comercializa vários produtos, cada um com código, nome, preço e a quantidade.
-          <li class="exercise-text">Uma encomenda, que deve ter um número de encomenda e a data em que foi feita, pode ter vários produtos. Cada encomenda é feita de apenas um fornecedor. Os produtos da encomenda devem ter a quantidade encomendada.
-          <li class="exercise-text">De cada fornecedor a empresa deseja guardar a informação do seu nome, cnpj, endereço e forma de pagamento.
-        </ul>
-        
-        <p class="exercise-text"><strong>Situação 4 – Clínica</strong></p>
-        <p class="exercise-text">Uma clínica médica pretende informatizar os seus serviços. Para já, querem começar por informatizar os dados referentes a médicos, pacientes e a consultas.</p>
-        <ul>
-          <li class="exercise-text">Na clínica trabalham vários médicos, cada um com uma especialidade. De cada médico, identificado internamente pelo número do CRM, a clínica pretende armazenar o nome, especialidade, endereço e telefone.</li>
-          <li class="exercise-text">Como usual, os médicos dão consultas a pacientes. A clínica pretende ter sempre disponível a informação do nome, endereço e telefone dos seus pacientes.</li>
-          <li class="exercise-text">A cada consulta está associado um só médico e um só paciente. Da consulta pretende-se armazenar a data e hora em que ocorreu, bem como os vários remédios que foram receitados pelo médico.</li>
-        </ul>
-        
+        <p class="exercise-text">Empresa comercializa vários produtos (código, nome, preço, quantidade). Uma encomenda (número, data) pode ter vários produtos e é feita de apenas um fornecedor; os produtos da encomenda devem ter a quantidade encomendada. Do fornecedor guarda-se nome, CNPJ, endereço e forma de pagamento.</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="text"><code>PRODUTO (codigo PK, nome, preco, quantidade)
+FORNECEDOR (cnpj PK, nome, endereco, forma_pagamento)
+ENCOMENDA (numero PK, data, cnpj_fornecedor FK)
+ITEM_ENCOMENDA (numero_encomenda PK/FK, cod_produto PK/FK, quantidade_encomendada)</code></pre>
+
+        <p class="exercise-text">FORNECEDOR 1:N ENCOMENDA; ENCOMENDA N:N PRODUTO via ITEM_ENCOMENDA (que guarda a quantidade encomendada).</p>
+
+        <p class="exercise-text"><strong>Situação 4 - Clínica</strong></p>
+        <p class="exercise-text">Clínica quer informatizar médicos (CRM, nome, especialidade, endereço, telefone), pacientes (nome, endereço, telefone) e consultas. Cada consulta tem um só médico e um só paciente; da consulta guarda-se data/hora e os vários remédios receitados.</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="text"><code>MEDICO (crm PK, nome, especialidade, endereco, telefone)
+PACIENTE (codigo PK, nome, endereco, telefone)
+CONSULTA (codigo PK, data_hora, crm_medico FK, cod_paciente FK)
+RECEITA (cod_consulta PK/FK, cod_remedio PK, nome_remedio, posologia)</code></pre>
+
+        <p class="exercise-text">MEDICO 1:N CONSULTA; PACIENTE 1:N CONSULTA; CONSULTA 1:N RECEITA (vários remédios receitados por consulta).</p>
+
         <p class="exercise-text"><strong>Situação 5 - Imobiliária</strong></p>
-        <ul>
-          <li class="exercise-text">Uma empresa de compra e venda de imóveis pretende informatizar os seus serviços. A empresa tem várias casas para venda, cada uma pertencente a um cliente da empresa. Da casa a empresa quer ter disponível a zona de localização, o preço, a quantidade de andares e o ano de construção. Dos clientes deve ser armazenado o seu nome, endereço e número de telefone. Um cliente pode ter várias casas para venda na empresa.</li>
-          <li class="exercise-text">Há ainda os clientes da empresa que, em vez de quererem vender casas, querem comprar. Desses deve ser armazenado, para além da informação que se guarda dos outros clientes, a informação acerca dos interesses do cliente. Dos interesses faz parte a quantidade de andares e a zona de localização da casa que pretende comprar. Um cliente pode ter vários interesses e o interesse pode ser de outros clientes.</li>
-          <li class="exercise-text">De cada casa que esteja para venda na empresa, deve ainda ser armazenada a informação de quais clientes já a visitaram, e quando (data e hora).</li>
-        </ul>
+        <p class="exercise-text">Empresa de compra e venda de imóveis. Casas para venda (zona, preço, quantidade de andares, ano de construção), cada uma pertencente a um cliente (nome, endereço, telefone); um cliente pode ter várias casas. Há clientes compradores com interesses (quantidade de andares e zona); um cliente pode ter vários interesses e o interesse pode ser de outros clientes. De cada casa deve-se registrar quais clientes já a visitaram e quando (data e hora).</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="text"><code>CLIENTE (codigo PK, nome, endereco, telefone)
+CASA (codigo PK, zona_localizacao, preco, qtd_andares, ano_construcao, cod_cliente_vendedor FK)
+INTERESSE (cod_interesse PK, qtd_andares, zona_localizacao)
+CLIENTE_INTERESSE (cod_cliente PK/FK, cod_interesse PK/FK)
+VISITA (cod_casa PK/FK, cod_cliente PK/FK, data_hora PK)</code></pre>
+
+        <p class="exercise-text">CLIENTE 1:N CASA (como vendedor); CLIENTE N:N INTERESSE; CASA N:N CLIENTE via VISITA (com atributo data_hora).</p>
 
         <p class="exercise-text"><strong>Situação 6 - Seguradora de Veículos</strong></p>
-        <p class="exercise-text">A seguradora de veículos Anjo da Guarda deseja um sistema de informação para agilizar os serviços prestados pelas oficinas credenciadas nos veículos segurados pela empresa.
-        <ul>
-          <li class="exercise-text">Quando um novo cliente procura a seguradora, ele é encaminhado a um corretor, que cadastrará seus dados no sistema (nome, endereço, telefones, cpf ou cnpj). Para cada veículo a ser segurado, serão cadastrados: placa, marca, modelo, ano de fabricação, cor e número do chassi.</li>
-          <li class="exercise-text">Cada contrato de seguro é firmado para um único veículo; além de um número, o contrato terá datas de início e fim de vigência, além de uma descrição de características diversas registradas no sistema; estas características serão utilizadas pelo corretor para o cálculo do valor do contrato e dos futuros reembolsos (não gerenciados pelo sistema) que venham a ser realizados.</li>
-          <li class="exercise-text">Um corretor, além de receber comissão sobre os contratos realizados, deverá atender o cliente, em qualquer dúvida ou necessidade referente ao contrato. Por isso, em geral, um cliente faz todos os seus contratos de seguro com um mesmo corretor. No entanto, caso este não esteja disponível, outro corretor poderá atendê-lo.</li>
-          <li class="exercise-text">Cada contrato poderá ser parcelado em até dez vezes; para cada parcela deverão ser especificados a data de vencimento e o valor a receber; a cada recebimento que ocorrer, a data e o valor recebido, também serão registrados no sistema.</li>
-          <li class="exercise-text">Caso o veículo esteja sendo segurado pela primeira vez na empresa, ele deverá passar por uma vistoria, cuja data será registrada no sistema, juntamente com as observações relevantes. Uma nova vistoria será solicitada, a cada vez que o contrato vier a ser renovado.</li>
-          <li class="exercise-text">Ao vencer um contrato, mesmo sendo uma renovação, ele receberá um novo número, novas datas de vigência, novos valores e novos registros de pagamento. No entanto, para fins de agilização do sistema, cada renovação deverá fazer referência à anterior, inclusive para decidir sobre os descontos (bônus) a serem oferecidos. Uma renovação poderá ser feita por um corretor diferente do contrato anterior.</li>
-          <li class="exercise-text">Quando necessitar, o cliente poderá acionar o seguro e poderá levar seu veículo a uma oficina para reparos. A oficina, que deverá ser credenciada pela empresa e, portanto cadastrada no sistema (cnpj, nome, endereço, telefones, gerente ou responsável), fará um orçamento para o serviço pedido (número do serviço e descrição) e o encaminhará a seguradora, que o registrará, com data e valor total. Em geral, são pedidos orçamentos para o serviço em, pelo menos, três oficinas, para fins comparativos. De posse dos orçamentos pedidos, um fiscal é escalado e encaminhado às oficinas para verificar os valores orçados. A autorização do orçamento para realização do serviço, em uma das oficinas, deverá ser registrada no sistema, vinculada ao fiscal responsável, com a data da autorização.</li>
-          <li class="exercise-text">Tanto os corretores, como os fiscais da seguradora, são funcionários, devendo ser cadastrados com número de matrícula, nome e demais dados pessoais como salário e data de admissão. Para os fiscais o cadastro deve conter o nível de instrução, e para os corretores o tempo de serviço.</li>
-        </ul>
-                            
+        <p class="exercise-text">A seguradora Anjo da Guarda deseja um sistema para oficinas credenciadas. Clientes são cadastrados por um corretor (nome, endereço, telefones, CPF/CNPJ). Veículos (placa, marca, modelo, ano, cor, chassi). Contrato de seguro para um único veículo (número, datas de início/fim, descrição de características). Um corretor atende o cliente; em geral o cliente faz todos os contratos com o mesmo corretor, mas outro pode atendê-lo. Contrato parcelado em até 10 vezes (data de vencimento, valor); cada recebimento registra data e valor. Veículo segurado pela primeira vez passa por vistoria (data, observações); nova vistoria a cada renovação. Renovação gera novo número, novas datas/valores/pagamentos e referencia o contrato anterior; pode ser feita por corretor diferente. Cliente pode acionar o seguro e levar o veículo a uma oficina credenciada (CNPJ, nome, endereço, telefones, gerente); a oficina faz orçamento (número do serviço, descrição) e encaminha à seguradora, que o registra (data, valor total). Em geral, pedem-se orçamentos em pelo menos três oficinas. Um fiscal é escalado e encaminhado às oficinas para verificar os valores; a autorização do orçamento é registrada, vinculada ao fiscal responsável, com data. Corretores e fiscais são funcionários (matrícula, nome, salário, data de admissão); fiscais têm nível de instrução; corretores, tempo de serviço.</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="text"><code>FUNCIONARIO (matricula PK, nome, salario, data_admissao)
+CORRETOR (matricula PK/FK, tempo_servico)
+FISCAL (matricula PK/FK, nivel_instrucao)
+CLIENTE (codigo PK, nome, endereco, telefone, cpf_cnpj, matricula_corretor FK)
+VEICULO (placa PK, marca, modelo, ano_fabricacao, cor, num_chassi, cod_cliente FK)
+CONTRATO (numero PK, data_inicio, data_fim, descricao_caracteristicas,
+          placa_veiculo FK, cod_cliente FK, matricula_corretor FK,
+          numero_contrato_anterior FK → CONTRATO)
+PARCELA (numero_contrato PK/FK, num_parcela PK, data_vencimento, valor)
+RECEBIMENTO (numero_contrato PK/FK, num_parcela PK/FK, data_recebimento, valor_recebido)
+VISTORIA (codigo PK, data, observacoes, placa_veiculo FK, numero_contrato FK)
+OFICINA (cnpj PK, nome, endereco, telefone, gerente)
+ORCAMENTO (numero_servico PK, descricao, data, valor_total,
+           cnpj_oficina FK, placa_veiculo FK)
+AUTORIZACAO (codigo PK, data_autorizacao, numero_servico FK, matricula_fiscal FK)</code></pre>
+
+        <p class="exercise-text">CONTRATO tem auto-relacionamento (renovação referencia o contrato anterior). PARCELA e RECEBIMENTO são separadas porque nem toda parcela tem recebimento. A oficina pode ter vários orçamentos; o fiscal autoriza um orçamento.</p>
+
         <h3 id="ex-ddl-dml">10.3 SQL — DDL e DML</h3>
-        <h4>7) Utilizando os comandos SQL:</h4>
-        <p class="exercise-text">crie as seguintes tabelas:</p>
-        <ol type="a">
-          <li class="exercise-text"><pre data-lang = "sql">ALUNO (codigo (pk), nome, idade)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">CURSO (codigo (pk), nome, sala, horario)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">MATRICULA (codigo_alu (pk)(fk), codigo_cur (pk)(fk))</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">TEMP (cod, idade)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql" wrap="">Altere a tabela TEMP (adicione o atributo nome, altere o atributo cod para codigo e remova o atributo idade)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">Elimine a tabela TEMP</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql" wrap="">Insira na tabela ALUNO (1, “João da Silva”, 18), (2, “Pedro Costa”, 20), (3, “Ana Rita”, 21), (4, “Fabiano Oliveira”, 19)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql" wrap="">Insira na tabela CURSO (1, “Web Designer”, 10, “13:00”), (2, “Pacote Office”, 11, “15:00”), (3, “Internet”, 12, “17:00”)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">Insira na tabela MATRICULA (1, 1), (2, 1), (3, 1), (1, 2), (2, 3), (3, 3), (4, 2)</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">Altere o nome do curso Web Designer para Programação para Internet</pre></li>
-          <li class="exercise-text"><pre data-lang = "sql">Exclua da tabela MATRICULA, o aluno de código 1 do curso 1</pre></li>
-        </ol>
-        <h4>8) Considere o esquema de banco de dados relacional apresentado a seguir, formado por 4 relações (tabelas), que representa o conjunto de estudantes de uma universidade que podem, ou não, morar em repúblicas (moradias compartilhadas por estudantes). A relação Estudante foi modelada como um subconjunto da relação Pessoa. Considere que os atributos grifados correspondam à chave primária da respectiva relação e os atributos que são seguidos da palavra “referencia” sejam chaves estrangeiras.</h4>
-                            
+
+        <h4>7) Utilizando os comandos SQL, crie as seguintes tabelas:</h4>
+        <p class="exercise-text">a) <code>ALUNO (codigo (pk), nome, idade)</code></p>
+        <p class="exercise-text">b) <code>CURSO (codigo (pk), nome, sala, horario)</code></p>
+        <p class="exercise-text">c) <code>MATRICULA (codigo_alu (pk)(fk), codigo_cur (pk)(fk))</code></p>
+        <p class="exercise-text">d) <code>TEMP (cod, idade)</code></p>
+        <p class="exercise-text">e) Altere a tabela TEMP (adicione nome, altere cod para codigo e remova idade)</p>
+        <p class="exercise-text">f) Elimine a tabela TEMP</p>
+        <p class="exercise-text">g) Insira na tabela ALUNO (1, "João da Silva", 18), (2, "Pedro Costa", 20), (3, "Ana Rita", 21), (4, "Fabiano Oliveira", 19)</p>
+        <p class="exercise-text">h) Insira na tabela CURSO (1, "Web Designer", 10, "13:00"), (2, "Pacote Office", 11, "15:00"), (3, "Internet", 12, "17:00")</p>
+        <p class="exercise-text">i) Insira na tabela MATRICULA (1,1), (2,1), (3,1), (1,2), (2,3), (3,3), (4,2)</p>
+        <p class="exercise-text">j) Altere o nome do curso Web Designer para Programação para Internet</p>
+        <p class="exercise-text">k) Exclua da tabela MATRICULA o aluno de código 1 do curso 1</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="sql"><code>-- a)
+CREATE TABLE aluno (
+  codigo INT PRIMARY KEY,
+  nome VARCHAR(80) NOT NULL,
+  idade INT
+);
+
+-- b)
+CREATE TABLE curso (
+  codigo INT PRIMARY KEY,
+  nome VARCHAR(80) NOT NULL,
+  sala INT,
+  horario TIME
+);
+
+-- c)
+CREATE TABLE matricula (
+  codigo_alu INT,
+  codigo_cur INT,
+  PRIMARY KEY (codigo_alu, codigo_cur),
+  FOREIGN KEY (codigo_alu) REFERENCES aluno(codigo),
+  FOREIGN KEY (codigo_cur) REFERENCES curso(codigo)
+);
+
+-- d)
+CREATE TABLE temp (
+  cod INT,
+  idade INT
+);
+
+-- e)
+ALTER TABLE temp ADD nome VARCHAR(80);
+ALTER TABLE temp CHANGE cod codigo INT;
+ALTER TABLE temp DROP COLUMN idade;
+
+-- f)
+DROP TABLE temp;
+
+-- g)
+INSERT INTO aluno (codigo, nome, idade) VALUES
+(1, 'João da Silva', 18),
+(2, 'Pedro Costa', 20),
+(3, 'Ana Rita', 21),
+(4, 'Fabiano Oliveira', 19);
+
+-- h)
+INSERT INTO curso (codigo, nome, sala, horario) VALUES
+(1, 'Web Designer', 10, '13:00'),
+(2, 'Pacote Office', 11, '15:00'),
+(3, 'Internet', 12, '17:00');
+
+-- i)
+INSERT INTO matricula (codigo_alu, codigo_cur) VALUES
+(1,1),(2,1),(3,1),(1,2),(2,3),(3,3),(4,2);
+
+-- j)
+UPDATE curso SET nome = 'Programação para Internet' WHERE codigo = 1;
+
+-- k)
+DELETE FROM matricula WHERE codigo_alu = 1 AND codigo_cur = 1;</code></pre>
+
+        <h4>8) Considere o esquema de banco de dados relacional a seguir, formado por 4 relações que representam estudantes de uma universidade que podem, ou não, morar em repúblicas. A relação Estudante foi modelada como subconjunto da relação Pessoa. Os atributos grifados correspondem à chave primária; os seguidos de "referencia" são chaves estrangeiras.</h4>
+
         <p class="exercise-text">Pessoa (Id: int, Nome: varchar(40), Endereco: varchar(40))</p>
         <p class="exercise-text">FonePessoa (Pessoa_Id: int referencia Pessoa, DDD: char(3), Prefixo: char(4), Nro: char(4))</p>
         <p class="exercise-text">Republica (Id: int, Nome: varchar(30), Endereco: varchar(40))</p>
         <p class="exercise-text">Estudante (RA: int, Email: varchar(30), Pessoa_Id: int referencia Pessoa, Republica_Id: int referencia Republica)</p>
-        <p class="exercise-text">Suponha que existam as seguintes tuplas no banco de dados:</p>
-        <p class="exercise-text">Pessoa(1, “José Silva”, “Rua 1, 20”)</p>
-        <p class="exercise-text">Republica(20, “Movimentada”, “Rua Chaves, 2001”)</p>
-        <p class="exercise-text">Qual opção apresenta apenas tuplas válidas para esse esquema de banco de dados relacional?</p>
-        <p class="exercise-item">A) Estudante(10, “jsilva@ig.com.br”, null, 20); FonePessoa(10, “019”, “3761”, “1370”)</p>
-        <p class="exercise-item">B) Estudante(10, “jsilva@ig.com.br”, 1, null); FonePessoa(10, “019”, “3761”, “1370”)</p>
-        <p class="exercise-item">C) Estudante(10, “jsilva@ig.com.br”, 1, 20); FonePessoa(1, null, “3761”, “1370”)</p>
-        <p class="exercise-item">D) Estudante(10, “jsilva@ig.com.br”, 1, 50); FonePessoa(1, “019”, “3761”, “1370”)</p>
-        <p class="exercise-item">E) Estudante(10, “jsilva@ig.com.br”, 1, 20); FonePessoa(1, “019”, “3761”, “1370”)</p>
-                            
+        <p class="exercise-text">Tuplas existentes: Pessoa(1, "José Silva", "Rua 1, 20"); Republica(20, "Movimentada", "Rua Chaves, 2001").</p>
+        <p class="exercise-text">Qual opção apresenta apenas tuplas válidas para esse esquema?</p>
+        <p class="exercise-item">A) Estudante(10, "jsilva@ig.com.br", null, 20); FonePessoa(10, "019", "3761", "1370")</p>
+        <p class="exercise-item">B) Estudante(10, "jsilva@ig.com.br", 1, null); FonePessoa(10, "019", "3761", "1370")</p>
+        <p class="exercise-item">C) Estudante(10, "jsilva@ig.com.br", 1, 20); FonePessoa(1, null, "3761", "1370")</p>
+        <p class="exercise-item">D) Estudante(10, "jsilva@ig.com.br", 1, 50); FonePessoa(1, "019", "3761", "1370")</p>
+        <p class="exercise-item">E) Estudante(10, "jsilva@ig.com.br", 1, 20); FonePessoa(1, "019", "3761", "1370")</p>
+
+        <p class="exercise-text"><strong>Resolução: E.</strong> A FK <code>Pessoa_Id</code> referencia pessoa existente (id 1 = José Silva); a FK <code>Republica_Id</code> referencia república existente (id 20 = Movimentada); e a FK de FonePessoa referencia pessoa existente (id 1). A alternativa A usa <code>null</code> em FK obrigatória; C usa DDD nulo; D usa república 50 inexistente; B deixa a república nula (válida só se a regra permitir, mas a E é mais completa).</p>
+
         <p class="exercise-text">Ainda em relação a esse exercício, escreva os comandos SQL para:</p>
-        <p class="exercise-text">Criar a tabela Estudante</p>
-        <p class="exercise-text">Alterar a tabela Pessoa (adicione o atributo cidade)</p>
-        <p class="exercise-text">Atualizar o nome da república “Movimentada” para “Calmaria”</p>
-        <p class="exercise-text">Inserir a pessoa de id 2, chamada “Joice da Costa” que mora na “Av. Brasil, 1290”</p>
-        <p class="exercise-text">Excluir os telefones da pessoa de id igual a 1</p>
-        <p class="exercise-text">Eliminar a tabela Republica</p>
-                            
+        <p class="exercise-text">Criar a tabela Estudante; Alterar a tabela Pessoa (adicionar cidade); Atualizar o nome da república "Movimentada" para "Calmaria"; Inserir a pessoa de id 2, "Joice da Costa", que mora na "Av. Brasil, 1290"; Excluir os telefones da pessoa de id 1; Eliminar a tabela Republica.</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="sql"><code>-- Criar tabela Estudante
+CREATE TABLE estudante (
+  ra INT PRIMARY KEY,
+  email VARCHAR(30),
+  pessoa_id INT,
+  republica_id INT,
+  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id),
+  FOREIGN KEY (republica_id) REFERENCES republica(id)
+);
+
+-- Adicionar cidade em Pessoa
+ALTER TABLE pessoa ADD cidade VARCHAR(60);
+
+-- Atualizar nome da república
+UPDATE republica SET nome = 'Calmaria' WHERE nome = 'Movimentada';
+
+-- Inserir pessoa id 2
+INSERT INTO pessoa (id, nome, endereco)
+VALUES (2, 'Joice da Costa', 'Av. Brasil, 1290');
+
+-- Excluir telefones da pessoa id 1
+DELETE FROM fonepessoa WHERE pessoa_id = 1;
+
+-- Eliminar tabela Republica
+DROP TABLE republica;</code></pre>
+
+        <p class="exercise-text"><strong>Atenção:</strong> como <code>Estudante.republica_id</code> referencia <code>Republica</code>, o DROP pode falhar se houver registros dependentes. Seria necessário remover/alterar a FK antes (<code>ALTER TABLE estudante DROP FOREIGN KEY ...</code>) ou usar <code>DROP TABLE republica CASCADE</code> (quando suportado). Em MySQL, o padrão é RESTRICT.</p>
+
         <h3 id="ex-dcl-dtl">10.4 SQL — DCL e DTL</h3>
-        
+
         <h4>9) Utilizando a modelagem escola (arquivo escola.txt), execute os comandos a seguir:</h4>
-        
-        <p class="exercise-item">a) Atribua a permissão de consulta, inserção, alteração e exclusão de registros, em todas as tabelas, para o usuário jose.</p>
-        <p class="exercise-item">b) Revogue a permissão de exclusão de registros na tabela aluno do usuário jose.</p>
-        <p class="exercise-item">c) Atribua a permissão de alteração e eliminação de estrutura, nas tabelas aluno e curso, para o usuário maria.</p>
-        <p class="exercise-item">d) Revogue a permissão de eliminação de estrutura, na tabela curso, do usuário maria.</p>
-                            
-        <h4>10) Ainda sobre a modelagem escola (arquivo escola.txt), execute o script a seguir e analise o resultado obtido:</h4>
-                
-        <p><pre data-lang="sql"><code>set autocommit = 0;
+        <p class="exercise-text">a) Atribua a permissão de consulta, inserção, alteração e exclusão de registros, em todas as tabelas, para o usuário jose.</p>
+        <p class="exercise-text">b) Revogue a permissão de exclusão de registros na tabela aluno do usuário jose.</p>
+        <p class="exercise-text">c) Atribua a permissão de alteração e eliminação de estrutura, nas tabelas aluno e curso, para o usuário maria.</p>
+        <p class="exercise-text">d) Revogue a permissão de eliminação de estrutura, na tabela curso, do usuário maria.</p>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <pre data-lang="sql"><code>-- a)
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON escola.* TO 'jose'@'localhost';
+
+-- b)
+REVOKE DELETE ON escola.aluno FROM 'jose'@'localhost';
+
+-- c)
+GRANT ALTER, DROP ON escola.aluno TO 'maria'@'localhost';
+GRANT ALTER, DROP ON escola.curso TO 'maria'@'localhost';
+
+-- d)
+REVOKE DROP ON escola.curso FROM 'maria'@'localhost';</code></pre>
+
+        <h4>10) Ainda sobre a modelagem escola, execute o script a seguir e analise o resultado obtido:</h4>
+
+        <pre data-lang="sql"><code>set autocommit = 0;
 start transaction;
-insert into aluno values (6, “Victor”, 20);
-insert into aluno values (7, “Thiago”, 40);
+insert into aluno values (6, "Victor", 20);
+insert into aluno values (7, "Thiago", 40);
 commit;
 start transaction;
-insert into aluno values (8, “Amanda”, 23);
-update aluno set nome = “Hugo” where codigo = 1;
+insert into aluno values (8, "Amanda", 23);
+update aluno set nome = "Hugo" where codigo = 1;
 delete from aluno where codigo = 6;
 rollback;
 start transaction;
-update aluno set nome = “André” where codigo = 7;
-commit;</code></pre></p>
-   
-        <h4>11)</h4>
-                            
+update aluno set nome = "André" where codigo = 7;
+commit;</code></pre>
+
+        <p class="exercise-text"><strong>Resolução:</strong></p>
+
+        <p class="exercise-text">Passo a passo:</p>
+        <ul>
+          <li><code>insert</code> alunos 6 e 7 → <code>commit</code> → <strong>confirmados permanentemente</strong>.</li>
+          <li><code>insert</code> aluno 8, <code>update</code> aluno 1 para "Hugo", <code>delete</code> aluno 6 → <code>rollback</code> → <strong>tudo desfeito</strong>.</li>
+          <li><code>update</code> aluno 7 para "André" → <code>commit</code> → <strong>confirmado</strong>.</li>
+        </ul>
+
+        <p class="exercise-text">Resultado final da tabela ALUNO:</p>
+
         <div class="table-wrapper">
           <table>
-            <tr><th>T1</th></tr><tr><td>1 Leitura(X)</td></tr>
-            <tr><td>2 X = X – 100</td></tr>
-            <tr><td>3 Escrita(X)</td></tr>
-            <tr><td>4 Leitura(Y)</td></tr><tr><td>5 Y = Y + 100</td></tr>
-            <tr><td>6 Escrita(Y)</td></tr>
+            <thead><tr><th>codigo</th><th>nome</th><th>idade</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>João da Silva</td><td>18</td></tr>
+              <tr><td>2</td><td>Pedro Costa</td><td>20</td></tr>
+              <tr><td>3</td><td>Ana Rita</td><td>21</td></tr>
+              <tr><td>4</td><td>Fabiano Oliveira</td><td>19</td></tr>
+              <tr><td>6</td><td>Victor</td><td>20</td></tr>
+              <tr><td>7</td><td>André</td><td>40</td></tr>
+            </tbody>
           </table>
         </div>
-                            
-        <p class="exercise-text">Considere um sistema bancário simplificado e uma transação T1, que transfira R$ 100,00 da conta X para a conta Y e é definida pelas operações listadas acima. Considere ainda que uma transação T2 esteja sendo executada simultaneamente com T1. Caso a transação T2 realize a operação Escrita(Y) depois da execução da operação 4 e antes da execução da operação 6 por T1, qual propriedade de transações será violada no banco de dados do referido sistema bancário?</p>
+
+        <p class="exercise-text">Observações: o aluno 8 (Amanda) não existe (rollback); o aluno 6 permanece (rollback desfez o DELETE); o aluno 7 teve o nome alterado (commit confirmou); o aluno 1 manteve o nome original (rollback desfez o UPDATE).</p>
+
+        <h4>11) Considere um sistema bancário simplificado e uma transação T1, que transfere R$ 100,00 da conta X para a conta Y, definida pelas operações: 1 Leitura(X); 2 X = X – 100; 3 Escrita(X); 4 Leitura(Y); 5 Y = Y + 100; 6 Escrita(Y). Considere ainda que uma transação T2 esteja sendo executada simultaneamente com T1. Caso T2 realize a operação Escrita(Y) depois da execução da operação 4 e antes da execução da operação 6 por T1, qual propriedade de transações será violada?</h4>
+
         <p class="exercise-item">A) Atomicidade.</p>
         <p class="exercise-item">B) Isolamento.</p>
         <p class="exercise-item">C) Distributividade.</p>
         <p class="exercise-item">D) Consistência.</p>
         <p class="exercise-item">E) Durabilidade.</p>
-                            
-        <h4>12) A concorrência ocorre quando múltiplas transações são executadas simultaneamente em um SGBD. Quando duas ou mais transações tentam acessar ou modificar o mesmo dado ao mesmo tempo, a falta de controle de concorrência pode levar a inconsistências na base de dados.  Considere as duas situações de execução entrelaçada entre duas transações bancárias, T1 (Transferência) e T2 (Depósito):</h4>
-                
-        <p class="exercise-text">Situação I: T1 lê o valor da ContaX. Logo em seguida, antes que T1 termine, T2 também lê o valor inicial da ContaX. T1 realiza o débito e atualiza o saldo no banco. Na sequência, T2 efetua o crédito e grava o novo saldo na ContaX, sobrescrevendo a alteração que tinha sido realizada por T1 e fazendo com que o débito efetuado por T1 seja ignorado.</p>
-        <p class="exercise-text">Situação II: T1 altera o valor da ContaX. Em seguida, T2 lê esse novo saldo atualizado por T1 e o utiliza em seus cálculos. Contudo, antes de finalizar, T1 sofre uma falha e sua atualização na ContaX é desfeita (rollback). Como resultado, T2 realizou suas operações baseando-se em um valor que nunca foi confirmado definitivamente no banco de dados.</p>
+
+        <p class="exercise-text"><strong>Resolução: B) Isolamento.</strong> A transação T2 escreve em Y entre a leitura e a escrita de T1, interferindo em uma transação concorrente ainda não concluída. Isso caracteriza violação do isolamento (atualização perdida / interferência entre transações).</p>
+
+        <h4>12) A concorrência ocorre quando múltiplas transações são executadas simultaneamente em um SGBD. Quando duas ou mais transações tentam acessar ou modificar o mesmo dado ao mesmo tempo, a falta de controle de concorrência pode levar a inconsistências. Considere as duas situações de execução entrelaçada entre duas transações bancárias, T1 (Transferência) e T2 (Depósito):</h4>
+
+        <p class="exercise-text">Situação I: T1 lê o valor da ContaX. Logo em seguida, antes que T1 termine, T2 também lê o valor inicial da ContaX. T1 realiza o débito e atualiza o saldo. Na sequência, T2 efetua o crédito e grava o novo saldo na ContaX, sobrescrevendo a alteração de T1 e fazendo com que o débito de T1 seja ignorado.</p>
+        <p class="exercise-text">Situação II: T1 altera o valor da ContaX. Em seguida, T2 lê esse novo saldo atualizado por T1 e o utiliza em seus cálculos. Contudo, antes de finalizar, T1 sofre uma falha e sua atualização é desfeita (rollback). Como resultado, T2 realizou suas operações baseando-se em um valor que nunca foi confirmado definitivamente.</p>
+
         <p class="exercise-text">As anomalias descritas na Situação I e na Situação II correspondem, respectivamente, a quais problemas clássicos de concorrência?</p>
         <p class="exercise-item">A) Problema da Atualização Temporária e Problema da Atualização Perdida.</p>
         <p class="exercise-item">B) Problema do Deadlock e Problema da Atualização Perdida.</p>
         <p class="exercise-item">C) Problema da Atualização Perdida e Problema da Atualização Temporária.</p>
         <p class="exercise-item">D) Problema da Inconsistência de Dados e Problema da Falha de Hardware.</p>
         <p class="exercise-item">E) Problema da Atualização Perdida e Problema de Integridade Física.</p>
-                            
+
+        <p class="exercise-text"><strong>Resolução: C) Problema da Atualização Perdida e Problema da Atualização Temporária.</strong> Situação I → T2 sobrescreve a alteração de T1 (atualização perdida). Situação II → T2 lê valor não confirmado que sofre rollback (atualização temporária / leitura suja).</p>
+
         <h3 id="ex-dql">10.5 SQL — DQL</h3>
+
         <h4>13) Utilizando a modelagem escola (arquivo escola.txt), responda as perguntas abaixo:</h4>
-        <p class="exercise-text"><pre data-lang="sql" wrap=""><code>ALUNO (codigo (pk), nome, idade) 
-CURSO (codigo (pk), nome, sala, horario) 
-MATRICULA (codigo_alu (pk)(fk), codigo_cur (pk)(fk))</code></pre></p>
-                            
-        <ol type="a">
-          <li class="exercise-item">Qual o nome e a idade de todos os alunos?</li>
-          <li class="exercise-item">Qual o código, nome e idade dos alunos com idade superior a 18?</li>
-          <li class="exercise-item">Qual o nome dos alunos e código dos cursos, com matriculas no curso 1?</li>
-          <li class="exercise-item">Qual o nome e horário dos cursos do aluno Pedro Costa?</li>
-          <li class="exercise-item">Qual o nome dos alunos matriculados no curso 2 ou 3?</li>
-        </ol>              
-                
+
+        <pre data-lang="sql"><code>ALUNO (codigo (pk), nome, idade)
+CURSO (codigo (pk), nome, sala, horario)
+MATRICULA (codigo_alu (pk)(fk), codigo_cur (pk)(fk))</code></pre>
+
+        <p class="exercise-text">a) Qual o nome e a idade de todos os alunos?</p>
+
+        <pre data-lang="sql"><code>SELECT nome, idade FROM aluno;</code></pre>
+
+        <p class="exercise-text">b) Qual o código, nome e idade dos alunos com idade superior a 18?</p>
+
+        <pre data-lang="sql"><code>SELECT codigo, nome, idade
+FROM aluno
+WHERE idade > 18;</code></pre>
+
+        <p class="exercise-text">c) Qual o nome dos alunos e código dos cursos, com matrículas no curso 1?</p>
+
+        <pre data-lang="sql"><code>SELECT a.nome, m.codigo_cur
+FROM aluno a
+INNER JOIN matricula m ON m.codigo_alu = a.codigo
+WHERE m.codigo_cur = 1;</code></pre>
+
+        <p class="exercise-text">d) Qual o nome e horário dos cursos do aluno Pedro Costa?</p>
+
+        <pre data-lang="sql"><code>SELECT c.nome, c.horario
+FROM curso c
+INNER JOIN matricula m ON m.codigo_cur = c.codigo
+INNER JOIN aluno a ON a.codigo = m.codigo_alu
+WHERE a.nome = 'Pedro Costa';</code></pre>
+
+        <p class="exercise-text">e) Qual o nome dos alunos matriculados no curso 2 ou 3?</p>
+
+        <pre data-lang="sql"><code>SELECT DISTINCT a.nome
+FROM aluno a
+INNER JOIN matricula m ON m.codigo_alu = a.codigo
+WHERE m.codigo_cur IN (2, 3);</code></pre>
+
         <h4>14) Utilizando a modelagem venda (arquivo venda.txt), responda as perguntas abaixo:</h4>
-                            
-        <p class="exercise-text"><pre data-lang="sql"><code>VENDEDOR (codigo (pk), nome, idade, salario)
+
+        <pre data-lang="sql"><code>VENDEDOR (codigo (pk), nome, idade, salario)
 PEDIDO (numero (pk), codigo_ven (fk), codigo_cli (fk), quantidade)
-CLIENTE (codigo (pk), cidade, tipo)</code></pre></p>
+CLIENTE (codigo (pk), cidade, tipo)</code></pre>
 
-        <ol type="a">
-          <li>Qual o nome e a idade de todos os vendedores?</li>
-          <li>Qual o código e salário dos vendedores que realizaram algum pedido?</li>
-          <li>Qual o número do pedido e o nome do vendedor dos pedidos para clientes do tipo Indústria?</li>
-          <li>Qual a quantidade pedida, a idade do vendedor e o tipo do cliente dos pedidos do vendedor João?</li>
-          <li>Quais as cidades dos clientes? E sem repetições?</li>
-          <li>Qual é a maior idade entre os vendedores?</li>
-          <li>Qual é a média de salário dos vendedores?</li>
-          <li>Quantos pedidos cada vendedor realizou?</li>
-        </ol>          
-                
-        <h4>15) Observando os dados a seguir (arquivo venda.txt), apresente o resultado dos seguintes comandos:</h4>
-                            
+        <p class="exercise-text">a) Qual o nome e a idade de todos os vendedores?</p>
+
+        <pre data-lang="sql"><code>SELECT nome, idade FROM vendedor;</code></pre>
+
+        <p class="exercise-text">b) Qual o código e salário dos vendedores que realizaram algum pedido?</p>
+
+        <pre data-lang="sql"><code>SELECT DISTINCT v.codigo, v.salario
+FROM vendedor v
+INNER JOIN pedido p ON p.codigo_ven = v.codigo;</code></pre>
+
+        <p class="exercise-text">c) Qual o número do pedido e o nome do vendedor dos pedidos para clientes do tipo Indústria?</p>
+
+        <pre data-lang="sql"><code>SELECT p.numero, v.nome
+FROM pedido p
+INNER JOIN vendedor v ON v.codigo = p.codigo_ven
+INNER JOIN cliente c ON c.codigo = p.codigo_cli
+WHERE c.tipo = 'Indústria';</code></pre>
+
+        <p class="exercise-text">d) Qual a quantidade pedida, a idade do vendedor e o tipo do cliente dos pedidos do vendedor João?</p>
+
+        <pre data-lang="sql"><code>SELECT p.quantidade, v.idade, c.tipo
+FROM pedido p
+INNER JOIN vendedor v ON v.codigo = p.codigo_ven
+INNER JOIN cliente c ON c.codigo = p.codigo_cli
+WHERE v.nome = 'João';</code></pre>
+
+        <p class="exercise-text">e) Quais as cidades dos clientes? E sem repetições?</p>
+
+        <pre data-lang="sql"><code>-- Com repetição
+SELECT cidade FROM cliente;
+
+-- Sem repetição
+SELECT DISTINCT cidade FROM cliente;</code></pre>
+
+        <p class="exercise-text">f) Qual é a maior idade entre os vendedores?</p>
+
+        <pre data-lang="sql"><code>SELECT MAX(idade) AS maior_idade FROM vendedor;</code></pre>
+
+        <p class="exercise-text">g) Qual é a média de salário dos vendedores?</p>
+
+        <pre data-lang="sql"><code>SELECT AVG(salario) AS media_salario FROM vendedor;</code></pre>
+
+        <p class="exercise-text">h) Quantos pedidos cada vendedor realizou?</p>
+
+        <pre data-lang="sql"><code>SELECT v.nome, COUNT(*) AS total_pedidos
+FROM vendedor v
+INNER JOIN pedido p ON p.codigo_ven = v.codigo
+GROUP BY v.nome;</code></pre>
+
+        <h4>15) Observando os dados fornecidos, apresente o resultado dos seguintes comandos:</h4>
+
+        <p class="exercise-text"><strong>a) + b) + c)</strong></p>
+
+        <pre data-lang="sql"><code>SELECT p.numero, v.nome, c.cidade
+FROM pedido p
+INNER JOIN vendedor v ON p.codigo_ven = v.codigo
+INNER JOIN cliente c ON p.codigo_cli = c.codigo
+WHERE p.quantidade >= 25;</code></pre>
+
         <div class="table-wrapper">
           <table>
-            <tr><th>VENDEDOR</th><th>VENDEDOR</th><th>VENDEDOR</th><th>VENDEDOR</th></tr>
-            <tr><td>codigo (pk)</td><td>nome</td><td>idade</td><td>salario</td></tr>
-            <tr><td>1</td><td>João</td><td>25</td><td>3000</td></tr>
-            <tr><td>2</td><td>Maria</td><td>29</td><td>3500</td></tr>
-            <tr><td>3</td><td>Kelly</td><td>19</td><td>4000</td></tr>
-            <tr><td>4</td><td>Juliano</td><td>22</td><td>2900</td></tr>
-            <tr><td>5</td><td>Julia</td><td>20</td><td>2000</td></tr>
-          </table>
-        </div>
-                    
-        <div class="table-wrapper">
-          <table>
-            <tr><th>PEDIDO</th><th>PEDIDO</th><th>PEDIDO</th><th>PEDIDO</th></tr>
-            <tr><td>numero (pk)</td><td>codigo_ven (fk)</td><td>codigo_cli (fk)</td><td>quantidade</td></tr>
-            <tr><td>100</td><td>1</td><td>11</td><td>20</td></tr><tr><td>200</td><td>1</td><td>12</td><td>35</td></tr>
-            <tr><td>300</td><td>3</td><td>13</td><td>25</td></tr><tr><td>400</td><td>4</td><td>13</td><td>65</td></tr>
-            <tr><td>500</td><td>1</td><td>13</td><td>23</td></tr><tr><td>600</td><td>3</td><td>15</td><td>40</td></tr>
-            <tr><td>700</td><td>5</td><td>15</td><td>20</td></tr>
-          </table>
-        </div>
-                    
-        <div class="table-wrapper">
-          <table>
-            <tr><th>CLIENTE</th><th>CLIENTE</th><th>CLIENTE</th></tr>
-            <tr><td>codigo (pk)</td><td>cidade</td><td>tipo</td></tr>
-            <tr><td>11</td><td>São Paulo</td><td>Indústria</td></tr>
-            <tr><td>12</td><td>Pres. Prudente</td><td>Comércio</td></tr>
-            <tr><td>13</td><td>Pres. Prudente</td><td>Agronegócio</td></tr>
-            <tr><td>14</td><td>São Paulo</td><td>Comércio</td></tr>
-            <tr><td>15</td><td>São Paulo</td><td>Agronegócio</td></tr>
+            <thead><tr><th>numero</th><th>nome</th><th>cidade</th></tr></thead>
+            <tbody>
+              <tr><td>200</td><td>João</td><td>Pres. Prudente</td></tr>
+              <tr><td>300</td><td>Kelly</td><td>Pres. Prudente</td></tr>
+              <tr><td>400</td><td>Juliano</td><td>Pres. Prudente</td></tr>
+              <tr><td>600</td><td>Kelly</td><td>São Paulo</td></tr>
+            </tbody>
           </table>
         </div>
 
-        <ol type="a">
-          <li><pre data-lang="sql"><code>select p.numero, v.nome, c.cidade</code></pre></li>
-          <li><pre data-lang="sql" wrap=""><code>from pedido p inner join vendedor v on p.codigo_ven = v.codigo inner join cliente c on p.codigo_cli = c.codigo</code></pre></li>
-          <li><pre data-lang="sql"><code>where p.quantidade &gt;= 25</code></pre></li>
-          <li><pre data-lang="sql"><code>select *</code></pre></li>
-          <li><pre data-lang="sql"><code>from cliente</code></pre></li>
-          <li><pre data-lang="sql"><code>order by tipo</code></pre></li>
-          <li><pre data-lang="sql"><code>select cidade</code></pre></li>
-          <li><pre data-lang="sql"><code>from cliente</code></pre></li>
-          <li><pre data-lang="sql"><code>group by cidade</code></pre></li>
-          <li><pre data-lang="sql"><code>select v.nome, sum(p.quantidade)</code></pre></li>
-          <li><pre data-lang="sql"><code>from pedido p inner join vendedor v on p.codigo_ven = v.codigo</code></pre></li>
-          <li><pre data-lang="sql"><code>group by v.nome</code></pre></li>
-          <li><pre data-lang="sql"><code>select cidade, count(*)</code></pre></li>
-          <li><pre data-lang="sql"><code>from cliente</code></pre></li>
-          <li><pre data-lang="sql"><code>group by cidade</code></pre></li>
-          <li><pre data-lang="sql"><code>having count(*) &gt; 2</code></pre></li>
-        </ol>
-                
-        <h4>16) Os resultados a seguir foram obtidos dos dados da modelagem venda (arquivo venda.txt). Observando-os, apresente o comando respectivo comando select de cada letra:</h4>
-                            
-        <ol type="a">
-          <li class="exercise-text">nome, salario</li>
-          <li class="exercise-text">Kelly, 4000</li>
-          <li class="exercise-text">Maria, 3500</li>
-          <li class="exercise-text">Joao, 3000</li>
-          <li class="exercise-text">numero, cidade, quantidade</li>
-          <li class="exercise-text">100, São Paulo, 20</li>
-          <li class="exercise-text">200, Pres. Prudente	35</li>
-          <li class="exercise-text">300, Pres. Prudente	25</li>
-          <li class="exercise-text">codigo_ven	media qtd ped</li>
-          <li class="exercise-text">1, 26.0000</li>
-          <li class="exercise-text">3, 32.5000</li>
-        </ol>
-                
-        <h4>17) Para o texto a seguir:</h4>
+        <p class="exercise-text">Pedidos com quantidade ≥ 25: 200 (35), 300 (25), 400 (65), 600 (40). O pedido 100 (20), 500 (23) e 700 (20) ficam de fora.</p>
 
-        <p class="exercise-text">Controle de eleição municipal</p>
-        <p class="exercise-text">Sabe-se que cada município é dividido em várias zonas eleitorais que, por sua vez, são divididas em várias seções nas quais os eleitores estão vinculados.</p>
-        <p class="exercise-text">O candidato a um cargo público (prefeito ou vereadores) deve estar vinculado a um único partido político. Vale ressaltar que, segundo a legislação vigente, o voto é secreto.</p>
-        <p class="exercise-text">A modelagem está disponível no arquivo eleicoes.mwb. Escreva o comando select e o plano de execução para:</p>
-        <ul>                            
-          <li class="exercise-text">Nome do município, número da zona e número da seção eleitoral, ordenar por nome do município e número da zona</li>                                    
-          <li class="exercise-text">Nome do município e quantidade de zonas eleitorais possui cada município</li>
-          <li class="exercise-text">Número da zona e quantidade de seções possui cada zona eleitoral do município de “Presidente Prudente”</li>
-          <li class="exercise-text">Nome do município que inicie com “Pres”</li>
-          <li class="exercise-text">Nome dos municípios e nome dos candidatos a prefeito, ordenar por nome do município</li>
-          <li class="exercise-text">Nome dos candidatos a vereador e o nome do partido que eles estão vinculados</li>
-          <li class="exercise-text">Nome dos candidatos a prefeito e a quantidade de votos deles</li>
-          <li class="exercise-text">Sigla dos partidos políticos e a quantidade de votos deles</li>
-          <li class="exercise-text">Quantidade total de votos da eleição</li>
-          <li class="exercise-text">Nome dos candidatos e a quantidade de votos deles, ordenar por quantidade de votos decrescente</li>
-          <li class="exercise-text">Nome do eleitor, nome do município, número da zona e número da seção, ordenar pelo código do município</li>
-        </ul>
-                            
+        <p class="exercise-text"><strong>d)</strong></p>
+
+        <pre data-lang="sql"><code>SELECT * FROM cliente ORDER BY tipo;</code></pre>
+
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>codigo</th><th>cidade</th><th>tipo</th></tr></thead>
+            <tbody>
+              <tr><td>13</td><td>Pres. Prudente</td><td>Agronegócio</td></tr>
+              <tr><td>15</td><td>São Paulo</td><td>Agronegócio</td></tr>
+              <tr><td>12</td><td>Pres. Prudente</td><td>Comércio</td></tr>
+              <tr><td>14</td><td>São Paulo</td><td>Comércio</td></tr>
+              <tr><td>11</td><td>São Paulo</td><td>Indústria</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="exercise-text">Ordem alfabética por tipo: Agronegócio &lt; Comércio &lt; Indústria.</p>
+
+        <p class="exercise-text"><strong>e) + f)</strong></p>
+
+        <pre data-lang="sql"><code>SELECT cidade FROM cliente GROUP BY cidade;</code></pre>
+
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>cidade</th></tr></thead>
+            <tbody>
+              <tr><td>Pres. Prudente</td></tr>
+              <tr><td>São Paulo</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="exercise-text"><strong>g) + h) + i) + j)</strong></p>
+
+        <pre data-lang="sql"><code>SELECT v.nome, SUM(p.quantidade)
+FROM pedido p
+INNER JOIN vendedor v ON p.codigo_ven = v.codigo
+GROUP BY v.nome;</code></pre>
+
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>nome</th><th>SUM(quantidade)</th></tr></thead>
+            <tbody>
+              <tr><td>João</td><td>78</td></tr>
+              <tr><td>Kelly</td><td>65</td></tr>
+              <tr><td>Juliano</td><td>65</td></tr>
+              <tr><td>Julia</td><td>20</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="exercise-text">Maria não aparece porque não tem pedidos.</p>
+
+        <p class="exercise-text"><strong>k) + l)</strong></p>
+
+        <pre data-lang="sql"><code>SELECT cidade, COUNT(*)
+FROM cliente
+GROUP BY cidade
+HAVING COUNT(*) > 2;</code></pre>
+
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>cidade</th><th>COUNT(*)</th></tr></thead>
+            <tbody>
+              <tr><td>São Paulo</td><td>3</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="exercise-text">Pres. Prudente tem 2 clientes (12, 13), não passa no HAVING &gt; 2.</p>
+
+        <h4>16) Os resultados a seguir foram obtidos dos dados da modelagem venda. Observando-os, apresente o comando SELECT respectivo:</h4>
+
+        <p class="exercise-text">a) nome, salario</p>
+
+        <pre data-lang="sql"><code>SELECT nome, salario FROM vendedor;</code></pre>
+
+        <p class="exercise-text">b) Kelly, 4000</p>
+
+        <pre data-lang="sql"><code>SELECT nome, salario FROM vendedor WHERE nome = 'Kelly';</code></pre>
+
+        <p class="exercise-text">c) Maria, 3500</p>
+
+        <pre data-lang="sql"><code>SELECT nome, salario FROM vendedor WHERE nome = 'Maria';</code></pre>
+
+        <p class="exercise-text">d) João, 3000</p>
+
+        <pre data-lang="sql"><code>SELECT nome, salario FROM vendedor WHERE nome = 'João';</code></pre>
+
+        <p class="exercise-text">e) numero, cidade, quantidade</p>
+
+        <pre data-lang="sql"><code>SELECT p.numero, c.cidade, p.quantidade
+FROM pedido p
+INNER JOIN cliente c ON c.codigo = p.codigo_cli;</code></pre>
+
+        <p class="exercise-text">f) 100, São Paulo, 20</p>
+
+        <pre data-lang="sql"><code>SELECT p.numero, c.cidade, p.quantidade
+FROM pedido p
+INNER JOIN cliente c ON c.codigo = p.codigo_cli
+WHERE p.numero = 100;</code></pre>
+
+        <p class="exercise-text">g) 200, Pres. Prudente, 35</p>
+
+        <pre data-lang="sql"><code>SELECT p.numero, c.cidade, p.quantidade
+FROM pedido p
+INNER JOIN cliente c ON c.codigo = p.codigo_cli
+WHERE p.numero = 200;</code></pre>
+
+        <p class="exercise-text">h) 300, Pres. Prudente, 25</p>
+        <pre data-lang="sql"><code>SELECT p.numero, c.cidade, p.quantidade
+FROM pedido p
+INNER JOIN cliente c ON c.codigo = p.codigo_cli
+WHERE p.numero = 300;</code></pre>
+
+        <p class="exercise-text">i) código do vendedor, média de quantidade de pedidos</p>
+        <pre data-lang="sql"><code>SELECT codigo_ven, AVG(quantidade) AS media_qtd_ped
+FROM pedido
+GROUP BY codigo_ven;</code></pre>
+
+        <p class="exercise-text">j) 1, 26.0000</p>
+        <pre data-lang="sql"><code>SELECT codigo_ven, AVG(quantidade)
+FROM pedido
+WHERE codigo_ven = 1;</code></pre>
+
+        <p class="exercise-text">k) 3, 32.5000</p>
+        <pre data-lang="sql"><code>SELECT codigo_ven, AVG(quantidade)
+FROM pedido
+WHERE codigo_ven = 3;</code></pre>
+
+        <h4>17) Controle de eleição municipal — escreva o comando SELECT e o plano de execução para:</h4>
+
+        <p class="exercise-text">Premissas do modelo (eleicoes.mwb): MUNICIPIO, ZONA, SECAO, ELEITOR, PARTIDO, CANDIDATO, VOTO.</p>
+        <p class="exercise-text">a) Nome do município, número da zona e número da seção, ordenar por nome do município e número da zona</p>
+        <pre data-lang="sql"><code>SELECT m.nome, z.numero, s.numero
+FROM municipio m
+INNER JOIN zona z ON z.cod_municipio = m.codigo
+INNER JOIN secao s ON s.cod_zona = z.codigo
+ORDER BY m.nome, z.numero;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção (municipio ⋈ zona ⋈ secao) → projeção (nome, numero, numero) → ordenação (nome, numero).</p>
+        <p class="exercise-text">b) Nome do município e quantidade de zonas eleitorais de cada município</p>
+        <pre data-lang="sql"><code>SELECT m.nome, COUNT(z.codigo) AS qtd_zonas
+FROM municipio m
+LEFT JOIN zona z ON z.cod_municipio = m.codigo
+GROUP BY m.nome;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → agrupamento (por nome) → projeção.</p>
+        <p class="exercise-text">c) Número da zona e quantidade de seções de cada zona eleitoral do município de "Presidente Prudente"</p>
+        <pre data-lang="sql"><code>SELECT z.numero, COUNT(s.codigo) AS qtd_secoes
+FROM zona z
+INNER JOIN municipio m ON m.codigo = z.cod_municipio
+LEFT JOIN secao s ON s.cod_zona = z.codigo
+WHERE m.nome = 'Presidente Prudente'
+GROUP BY z.numero;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → seleção (nome = 'Presidente Prudente') → agrupamento (por z.numero) → projeção.</p>
+        <p class="exercise-text">d) Nome do município que inicie com "Pres"</p>
+        <pre data-lang="sql"><code>SELECT nome FROM municipio WHERE nome LIKE 'Pres%';</code></pre>
+        <p class="exercise-text"><strong>Plano:</strong> seleção (LIKE 'Pres%') → projeção (nome).</p>
+        <p class="exercise-text">e) Nome dos municípios e nome dos candidatos a prefeito, ordenar por nome do município</p>
+        <pre data-lang="sql"><code>SELECT m.nome AS municipio, c.nome AS candidato
+FROM candidato c
+INNER JOIN municipio m ON m.codigo = c.cod_municipio
+WHERE c.cargo = 'Prefeito'
+ORDER BY m.nome;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → seleção (cargo = 'Prefeito') → projeção → ordenação (m.nome).</p>
+        <p class="exercise-text">f) Nome dos candidatos a vereador e o nome do partido</p>
+        <pre data-lang="sql"><code>SELECT c.nome AS candidato, p.nome AS partido
+FROM candidato c
+INNER JOIN partido p ON p.codigo = c.cod_partido
+WHERE c.cargo = 'Vereador';</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → seleção (cargo = 'Vereador') → projeção.</p>
+        <p class="exercise-text">g) Nome dos candidatos a prefeito e a quantidade de votos deles</p>
+        <pre data-lang="sql"><code>SELECT c.nome, COUNT(v.codigo) AS qtd_votos
+FROM candidato c
+LEFT JOIN voto v ON v.cod_candidato = c.codigo
+WHERE c.cargo = 'Prefeito'
+GROUP BY c.nome;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → seleção → agrupamento → projeção.</p>
+        <p class="exercise-text">h) Sigla dos partidos políticos e a quantidade de votos deles</p>
+        <pre data-lang="sql"><code>SELECT p.sigla, COUNT(v.codigo) AS qtd_votos
+FROM partido p
+LEFT JOIN candidato c ON c.cod_partido = p.codigo
+LEFT JOIN voto v ON v.cod_candidato = c.codigo
+GROUP BY p.sigla;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → agrupamento → projeção.</p>        
+        <p class="exercise-text">i) Quantidade total de votos da eleição</p>        
+        <pre data-lang="sql"><code>SELECT COUNT(*) AS total_votos FROM voto;</code></pre>        
+        <p class="exercise-text"><strong>Plano:</strong> agregação (COUNT) sobre a relação VOTO.</p>        
+        <p class="exercise-text">j) Nome dos candidatos e a quantidade de votos deles, ordenar por quantidade de votos decrescente</p>        
+        <pre data-lang="sql"><code>SELECT c.nome, COUNT(v.codigo) AS qtd_votos
+FROM candidato c
+LEFT JOIN voto v ON v.cod_candidato = c.codigo
+GROUP BY c.nome
+ORDER BY qtd_votos DESC;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → agrupamento → projeção → ordenação (DESC).</p>
+        <p class="exercise-text">k) Nome do eleitor, nome do município, número da zona e número da seção, ordenar pelo código do município</p>
+        <pre data-lang="sql"><code>SELECT e.nome, m.nome, z.numero, s.numero
+FROM eleitor e
+INNER JOIN secao s ON s.codigo = e.cod_secao
+INNER JOIN zona z ON z.codigo = s.cod_zona
+INNER JOIN municipio m ON m.codigo = z.cod_municipio
+ORDER BY m.codigo;</code></pre>
+
+        <p class="exercise-text"><strong>Plano:</strong> junção → projeção → ordenação (m.codigo).</p>
+
         <h3 id="ex-algebra">10.6 Álgebra relacional</h3>
 
         <h4>18) Usando a notação das operações da álgebra relacional, elabore o plano de execução (árvore) dos exercícios 13 a 17.</h4>
-                            
+
+        <p class="exercise-text">Convenção do caderno: junção → seleção → agrupamento → seleção de grupo → projeção → ordenação.</p>
+
+        <p class="exercise-text"><strong>Exercício 13</strong></p>
+        <ul>
+          <li>13a) π <sub>nome, idade</sub> (ALUNO)</li>
+          <li>13b) π <sub>codigo, nome, idade</sub> (σ <sub>idade &gt; 18</sub> (ALUNO))</li>
+          <li>13c) π <sub>nome, codigo_cur</sub> (σ <sub>codigo_cur = 1</sub> (ALUNO ⋈ MATRICULA))</li>
+          <li>13d) π <sub>nome, horario</sub> (σ <sub>nome = 'Pedro Costa'</sub> (CURSO ⋈ MATRICULA ⋈ ALUNO))</li>
+          <li>13e) π <sub>nome</sub> (σ <sub>codigo_cur ∈ {2,3}</sub> (ALUNO ⋈ MATRICULA))</li>
+        </ul>
+
+        <p class="exercise-text"><strong>Exercício 14</strong></p>
+        <ul>
+          <li>14a) π <sub>nome, idade</sub> (VENDEDOR)</li>
+          <li>14b) π <sub>codigo, salario</sub> (VENDEDOR ⋈ PEDIDO)</li>
+          <li>14c) π <sub>numero, nome</sub> (σ <sub>tipo = 'Indústria'</sub> (PEDIDO ⋈ VENDEDOR ⋈ CLIENTE))</li>
+          <li>14d) π <sub>quantidade, idade, tipo</sub> (σ <sub>nome = 'João'</sub> (PEDIDO ⋈ VENDEDOR ⋈ CLIENTE))</li>
+          <li>14e) π <sub>cidade</sub> (CLIENTE) — com e sem eliminação de duplicatas</li>
+          <li>14f) γ <sub>MAX(idade)</sub> (VENDEDOR)</li>
+          <li>14g) γ <sub>AVG(salario)</sub> (VENDEDOR)</li>
+          <li>14h) γ <sub>nome; COUNT(*)</sub> (VENDEDOR ⋈ PEDIDO)</li>
+        </ul>
+
+        <p class="exercise-text"><strong>Exercício 15</strong></p>
+        <ul>
+          <li>15a) π <sub>numero, nome, cidade</sub> (σ <sub>quantidade ≥ 25</sub> (PEDIDO ⋈ VENDEDOR ⋈ CLIENTE))</li>
+          <li>15b) τ <sub>tipo</sub> (CLIENTE)</li>
+          <li>15c) γ <sub>cidade</sub> (CLIENTE)</li>
+          <li>15d) γ <sub>nome; SUM(quantidade)</sub> (PEDIDO ⋈ VENDEDOR)</li>
+          <li>15e) γ <sub>cidade; COUNT(*)</sub> (CLIENTE) com seleção de grupo COUNT(*) &gt; 2</li>
+        </ul>
+
+        <p class="exercise-text"><strong>Exercício 16</strong></p>
+        <ul>
+          <li>16a) π <sub>nome, salario</sub> (VENDEDOR)</li>
+          <li>16b) π <sub>nome, salario</sub> (σ <sub>nome = 'Kelly'</sub> (VENDEDOR))</li>
+          <li>16c) π <sub>nome, salario</sub> (σ <sub>nome = 'Maria'</sub> (VENDEDOR))</li>
+          <li>16d) π <sub>nome, salario</sub> (σ <sub>nome = 'João'</sub> (VENDEDOR))</li>
+          <li>16e) π <sub>numero, cidade, quantidade</sub> (PEDIDO ⋈ CLIENTE)</li>
+          <li>16f) π <sub>numero, cidade, quantidade</sub> (σ <sub>numero = 100</sub> (PEDIDO ⋈ CLIENTE))</li>
+          <li>16g) π <sub>numero, cidade, quantidade</sub> (σ <sub>numero = 200</sub> (PEDIDO ⋈ CLIENTE))</li>
+          <li>16h) π <sub>numero, cidade, quantidade</sub> (σ <sub>numero = 300</sub> (PEDIDO ⋈ CLIENTE))</li>
+          <li>16i) γ <sub>codigo_ven; AVG(quantidade)</sub> (PEDIDO)</li>
+          <li>16j) γ <sub>codigo_ven; AVG(quantidade)</sub> (σ <sub>codigo_ven = 1</sub> (PEDIDO))</li>
+          <li>16k) γ <sub>codigo_ven; AVG(quantidade)</sub> (σ <sub>codigo_ven = 3</sub> (PEDIDO))</li>
+        </ul>
+
+        <p class="exercise-text"><strong>Exercício 17</strong></p>
+        <ul>
+          <li>17a) τ <sub>nome, numero</sub> (π <sub>nome, numero, numero</sub> (MUNICIPIO ⋈ ZONA ⋈ SECAO))</li>
+          <li>17b) γ <sub>nome; COUNT(codigo)</sub> (MUNICIPIO ⟕ ZONA) — left join</li>
+          <li>17c) γ <sub>numero; COUNT(codigo)</sub> (σ <sub>nome = 'Presidente Prudente'</sub> (ZONA ⋈ MUNICIPIO ⟕ SECAO))</li>
+          <li>17d) π <sub>nome</sub> (σ <sub>nome LIKE 'Pres%'</sub> (MUNICIPIO))</li>
+          <li>17e) τ <sub>nome</sub> (π <sub>nome, nome</sub> (σ <sub>cargo = 'Prefeito'</sub> (CANDIDATO ⋈ MUNICIPIO)))</li>
+          <li>17f) π <sub>nome, nome</sub> (σ <sub>cargo = 'Vereador'</sub> (CANDIDATO ⋈ PARTIDO))</li>
+          <li>17g) γ <sub>nome; COUNT(codigo)</sub> (σ <sub>cargo = 'Prefeito'</sub> (CANDIDATO ⟕ VOTO))</li>
+          <li>17h) γ <sub>sigla; COUNT(codigo)</sub> (PARTIDO ⟕ CANDIDATO ⟕ VOTO)</li>
+          <li>17i) γ <sub>COUNT(*)</sub> (VOTO)</li>
+          <li>17j) τ <sub>qtd_votos DESC</sub> (γ <sub>nome; COUNT(codigo)</sub> (CANDIDATO ⟕ VOTO))</li>
+          <li>17k) τ <sub>codigo</sub> (π <sub>nome, nome, numero, numero</sub> (ELEITOR ⋈ SECAO ⋈ ZONA ⋈ MUNICIPIO))</li>
+        </ul>
+
         <h3 id="ex-normalizacao">10.7 Normalização</h3>
-                            
+
         <h4>19) Para cada uma das modelagens a seguir, aplique as formas normais necessárias.</h4>
-                            
-        <ol type="a">
-          <li>Vários alunos podem inscrever-se em um curso e este curso pode conter várias disciplinas. Tanto o aluno quanto a disciplina podem fazer parte de vários cursos. O aluno pode ter vários telefones para contato.</li>
-          <pre data-lang="sql" wrap="true">Curso (codigo_curso (pk), nome_curso, codigo_aluno, nome_aluno, telefone_aluno, codigo_disciplina, nome_disciplina).</pre>
-          <li>Somente um paciente deve ser alocado a um ou mais quartos e este quarto pode ser atendido por vários médicos. O mesmo médico pode atender a vários quartos. O médico pode conter vários telefones.</li>
-          <pre data-lang="sql" wrap="true">Quarto (num_quarto (pk), descricao_quarto, num_paciente, nome_paciente, cod_medico, nome_medico, fones_medico).</pre>
-          <li>Cada ordem de compra deve conter um fornecedor e pode conter vários materiais. O mesmo material pode fazer parte de várias ordens de compra.</li>
-          <pre data-lang="sql" wrap="true">OrdemCompra (nr_OrdCompra (pk), dt_EmissaoOC, cd_Fornecedor, nm_Fornecedor, end_Fornecedor, cd_Material, nm_Material, qt_AComprarMatOC, vl_UnitárioMatOC, vl_TotalMatOC, vl_TotalOC).</pre>
-          <li>Uma venda pode conter vários produtos que estão sendo vendidos. O mesmo produto pode estar em várias vendas. Um cliente e um vendedor devem estar associados a uma ou mais vendas. O cliente pode ter mais de um telefone.</li>
-          <pre data-lang="sql" wrap="true">Vendas (num_venda (pk), data_venda, cod_cliente, nome_cliente, num_fones_cliente, cod_vendedor, nome_vendedor, cod_produto, nome_produto, qtd_vendida_prod, vlr_unitario_prod, vlr_total_prod, vlr_total_venda).</pre>
-          <li>Cada funcionário deve estar associado à somente um departamento. O funcionário pode ter vários dependentes e também várias habilidades. A mesma habilidade pode ser de vários funcionários, entretanto, o dependente só pode ser de um funcionário.</li>
-          <li>A modelagem deve atender ao controle do histórico do cargo e do salário de cada funcionário.</li>
-          <pre data-lang="sql" wrap="true">Funcionario (cd_Funcionario (pk), nm_Funcionario, dt_Admissao, dt_NascFunc, cd_Cargo, nm_Cargo, vl_Salario, cd_Dependente, nm_Dependente, dt_NascDepend, nr_TotalDepend, cd_Departamento, nm_Departamento, cd_Habilidade, nm_Habilidade, dt_AdmissaoHab)</pre>
-        </ol>
+
+        <p class="exercise-text"><strong>Lembrete das formas normais:</strong></p>
+        <ul>
+          <li><strong>1FN:</strong> todos os atributos atômicos; sem grupos repetidos ou listas em uma célula.</li>
+          <li><strong>2FN:</strong> na 1FN e todo atributo não-chave depende da <strong>chave primária inteira</strong> (sem dependência parcial).</li>
+          <li><strong>3FN:</strong> na 2FN e sem <strong>dependência transitiva</strong> (atributo não-chave que depende de outro atributo não-chave).</li>
+          <li><strong>4FN:</strong> na 3FN e sem <strong>dependência multivalorada independente</strong> (dois ou mais atributos multivalorados que não se relacionam entre si).</li>
+        </ul>
+
+        <h5>a) Curso / Aluno / Disciplina</h5>
+
+        <p class="exercise-text"><strong>Relação original:</strong></p>
+        <pre data-lang="sql"><code>Curso (codigo_curso PK, nome_curso, codigo_aluno, nome_aluno,
+       telefone_aluno, codigo_disciplina, nome_disciplina)</code></pre>
+
+        <p class="exercise-text"><strong>Passo 1 — 1FN (eliminar grupos repetidos):</strong> um curso tem vários alunos e várias disciplinas; um aluno tem vários telefones. Tudo está "espremido" em uma única linha → grupos repetidos e atributo multivalorado (<code>telefone_aluno</code>).</p>
+
+        <p class="exercise-text"><strong>Ação:</strong></p>
+        <pre data-lang="sql"><code>CURSO (codigo_curso PK, nome_curso)
+ALUNO (codigo_aluno PK, nome_aluno)
+TELEFONE_ALUNO (codigo_aluno PK/FK, telefone PK)
+DISCIPLINA (codigo_disciplina PK, nome_disciplina)
+CURSO_ALUNO (codigo_curso PK/FK, codigo_aluno PK/FK)
+CURSO_DISCIPLINA (codigo_curso PK/FK, codigo_disciplina PK/FK)</code></pre>
+        <p class="exercise-text">Resultado: todas as relações têm atributos atômicos → <strong>1FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 2 — 2FN (eliminar dependências parciais):</strong> nas relações com chave composta (<code>CURSO_ALUNO</code>, <code>CURSO_DISCIPLINA</code>) não há atributos não-chave — logo, não há dependência parcial. Nas demais, a chave é simples. → <strong>2FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 3 — 3FN (eliminar dependências transitivas):</strong> <code>nome_aluno</code> depende de <code>codigo_aluno</code> (PK); <code>nome_disciplina</code> depende de <code>codigo_disciplina</code>; <code>nome_curso</code> depende de <code>codigo_curso</code>. Nenhuma dependência transitiva. → <strong>3FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 4 — 4FN (eliminar dependências multivaloradas independentes):</strong> o telefone multivalorado já foi isolado em <code>TELEFONE_ALUNO</code>; os multivalorados "alunos do curso" e "disciplinas do curso" estão em relações separadas, sem dependência entre si. → <strong>4FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Modelo final:</strong></p>
+        <pre data-lang="sql"><code>CURSO (codigo_curso PK, nome_curso)
+ALUNO (codigo_aluno PK, nome_aluno)
+TELEFONE_ALUNO (codigo_aluno PK/FK, telefone PK)
+DISCIPLINA (codigo_disciplina PK, nome_disciplina)
+CURSO_ALUNO (codigo_curso PK/FK, codigo_aluno PK/FK)
+CURSO_DISCIPLINA (codigo_curso PK/FK, codigo_disciplina PK/FK)</code></pre>
+
+        <h5>b) Quarto / Paciente / Médico</h5>
+
+        <p class="exercise-text"><strong>Relação original:</strong></p>
+        <pre data-lang="sql"><code>Quarto (num_quarto PK, descricao_quarto, num_paciente, nome_paciente,
+        cod_medico, nome_medico, fones_medico)</code></pre>
+
+        <p class="exercise-text"><strong>Passo 1 — 1FN:</strong> um quarto pode ter vários pacientes e vários médicos; um médico pode ter vários telefones. Tudo em uma linha → grupos repetidos e atributo multivalorado (<code>fones_medico</code>).</p>
+        <pre data-lang="sql"><code>QUARTO (num_quarto PK, descricao_quarto)
+PACIENTE (num_paciente PK, nome_paciente)
+MEDICO (cod_medico PK, nome_medico)
+TELEFONE_MEDICO (cod_medico PK/FK, telefone PK)
+PACIENTE_QUARTO (num_paciente PK/FK, num_quarto PK/FK)
+MEDICO_QUARTO (cod_medico PK/FK, num_quarto PK/FK)</code></pre>
+        <p class="exercise-text">→ <strong>1FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 2 — 2FN:</strong> as relações associativas (<code>PACIENTE_QUARTO</code>, <code>MEDICO_QUARTO</code>) só têm chaves; as demais têm chave simples. Sem dependência parcial. → <strong>2FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 3 — 3FN:</strong> <code>nome_paciente</code> depende de <code>num_paciente</code>; <code>nome_medico</code> de <code>cod_medico</code>; <code>descricao_quarto</code> de <code>num_quarto</code>. Nenhuma dependência transitiva. → <strong>3FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 4 — 4FN:</strong> os multivalorados "pacientes do quarto" e "médicos do quarto" estão em relações separadas; o multivalorado "telefones do médico" também está isolado. Não há dependência multivalorada independente na mesma relação. → <strong>4FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Modelo final:</strong></p>
+        <pre data-lang="sql"><code>QUARTO (num_quarto PK, descricao_quarto)
+PACIENTE (num_paciente PK, nome_paciente)
+MEDICO (cod_medico PK, nome_medico)
+TELEFONE_MEDICO (cod_medico PK/FK, telefone PK)
+PACIENTE_QUARTO (num_paciente PK/FK, num_quarto PK/FK)
+MEDICO_QUARTO (cod_medico PK/FK, num_quarto PK/FK)</code></pre>
+
+        <h5>c) Ordem de Compra</h5>
+
+        <p class="exercise-text"><strong>Relação original:</strong></p>
+        <pre data-lang="sql"><code>OrdemCompra (nr_OrdCompra PK, dt_EmissaoOC, cd_Fornecedor, nm_Fornecedor,
+             end_Fornecedor, cd_Material, nm_Material, qt_AComprarMatOC,
+             vl_UnitárioMatOC, vl_TotalMatOC, vl_TotalOC)</code></pre>
+
+        <p class="exercise-text"><strong>Passo 1 — 1FN:</strong> uma ordem de compra tem vários materiais; os dados do material estão repetidos na mesma linha → grupo repetido.</p>
+        <pre data-lang="sql"><code>ORDEM_COMPRA (nr_OrdCompra PK, dt_EmissaoOC, cd_Fornecedor,
+              nm_Fornecedor, end_Fornecedor, vl_TotalOC)
+ITEM_ORDEM_COMPRA (nr_OrdCompra PK/FK, cd_Material PK,
+                   nm_Material, qt_AComprarMatOC,
+                   vl_UnitarioMatOC, vl_TotalMatOC)</code></pre>
+        <p class="exercise-text">→ <strong>1FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 2 — 2FN:</strong> em <code>ITEM_ORDEM_COMPRA</code>, a chave é composta <code>(nr_OrdCompra, cd_Material)</code>. Mas <code>nm_Material</code> e <code>vl_UnitarioMatOC</code> dependem <strong>apenas de <code>cd_Material</code></strong> → dependência parcial.</p>
+        <pre data-lang="sql"><code>MATERIAL (cd_Material PK, nm_Material, vl_UnitarioMatOC)
+ITEM_ORDEM_COMPRA (nr_OrdCompra PK/FK, cd_Material PK/FK,
+                   qt_AComprarMatOC, vl_TotalMatOC)</code></pre>
+        <p class="exercise-text">→ <strong>2FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 3 — 3FN:</strong> em <code>ORDEM_COMPRA</code>, <code>nm_Fornecedor</code> e <code>end_Fornecedor</code> dependem de <code>cd_Fornecedor</code>, não de <code>nr_OrdCompra</code> → dependência transitiva.</p>
+        <pre data-lang="sql"><code>FORNECEDOR (cd_Fornecedor PK, nm_Fornecedor, end_Fornecedor)
+ORDEM_COMPRA (nr_OrdCompra PK, dt_EmissaoOC, cd_Fornecedor FK, vl_TotalOC)</code></pre>
+        <p class="exercise-text">→ <strong>3FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 4 — 4FN:</strong> não há dois multivalorados independentes na mesma relação. Os itens estão em <code>ITEM_ORDEM_COMPRA</code>; o fornecedor é único por ordem. → <strong>4FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Modelo final:</strong></p>
+        <pre data-lang="sql"><code>FORNECEDOR (cd_Fornecedor PK, nm_Fornecedor, end_Fornecedor)
+ORDEM_COMPRA (nr_OrdCompra PK, dt_EmissaoOC, cd_Fornecedor FK, vl_TotalOC)
+MATERIAL (cd_Material PK, nm_Material, vl_UnitarioMatOC)
+ITEM_ORDEM_COMPRA (nr_OrdCompra PK/FK, cd_Material PK/FK,
+                   qt_AComprarMatOC, vl_TotalMatOC)</code></pre>
+        <p class="exercise-text"><strong>Observação:</strong> <code>vl_TotalOC</code> pode ser derivado (<code>SUM(vl_TotalMatOC)</code>); mantê-lo é uma decisão de desempenho (desnormalização consciente), não uma violação de forma normal.</p>
+
+        <h5>d) Vendas</h5>
+
+        <p class="exercise-text"><strong>Relação original:</strong></p>
+        <pre data-lang="sql"><code>Vendas (num_venda PK, data_venda, cod_cliente, nome_cliente, num_fones_cliente,
+        cod_vendedor, nome_vendedor, cod_produto, nome_produto,
+        qtd_vendida_prod, vlr_unitario_prod, vlr_total_prod, vlr_total_venda)</code></pre>
+
+        <p class="exercise-text"><strong>Passo 1 — 1FN:</strong> uma venda tem vários produtos e o cliente pode ter vários telefones → grupos repetidos e atributo multivalorado.</p>
+        <pre data-lang="sql"><code>VENDA (num_venda PK, data_venda, cod_cliente, nome_cliente,
+       cod_vendedor, nome_vendedor, vlr_total_venda)
+ITEM_VENDA (num_venda PK/FK, cod_produto PK, nome_produto,
+            qtd_vendida_prod, vlr_unitario_prod, vlr_total_prod)
+TELEFONE_CLIENTE (cod_cliente PK, num_fone PK)</code></pre>
+        <p class="exercise-text">→ <strong>1FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 2 — 2FN:</strong> em <code>ITEM_VENDA</code>, <code>nome_produto</code> e <code>vlr_unitario_prod</code> dependem <strong>apenas de <code>cod_produto</code></strong>, não da chave composta <code>(num_venda, cod_produto)</code> → dependência parcial.</p>
+        <pre data-lang="sql"><code>PRODUTO (cod_produto PK, nome_produto, vlr_unitario_prod)
+ITEM_VENDA (num_venda PK/FK, cod_produto PK/FK,
+            qtd_vendida_prod, vlr_total_prod)</code></pre>
+        <p class="exercise-text">→ <strong>2FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 3 — 3FN:</strong> em <code>VENDA</code>, <code>nome_cliente</code> depende de <code>cod_cliente</code>; <code>nome_vendedor</code> depende de <code>cod_vendedor</code> → dependências transitivas.</p>
+        <pre data-lang="sql"><code>CLIENTE (cod_cliente PK, nome_cliente)
+VENDEDOR (cod_vendedor PK, nome_vendedor)
+VENDA (num_venda PK, data_venda, cod_cliente FK,
+       cod_vendedor FK, vlr_total_venda)</code></pre>
+        <p class="exercise-text">→ <strong>3FN atingida</strong>.</p>
+        
+        <p class="exercise-text"><strong>Passo 4 — 4FN:</strong> <code>TELEFONE_CLIENTE</code> tem apenas um multivalorado (telefone); não há dependência multivalorada independente na mesma relação. → <strong>4FN atingida</strong>.</p>
+        
+        <p class="exercise-text"><strong>Modelo final:</strong></p>
+        <pre data-lang="sql"><code>CLIENTE (cod_cliente PK, nome_cliente)
+TELEFONE_CLIENTE (cod_cliente PK/FK, num_fone PK)
+VENDEDOR (cod_vendedor PK, nome_vendedor)
+PRODUTO (cod_produto PK, nome_produto, vlr_unitario_prod)
+VENDA (num_venda PK, data_venda, cod_cliente FK,
+       cod_vendedor FK, vlr_total_venda)
+ITEM_VENDA (num_venda PK/FK, cod_produto PK/FK,
+            qtd_vendida_prod, vlr_total_prod)</code></pre>
+
+        <h5>e) e f) Funcionário / Departamento / Dependente / Habilidade (com histórico de cargo e salário)</h5>
+
+        <p class="exercise-text"><strong>Relação original:</strong></p>
+        <pre data-lang="sql"><code>Funcionario (cd_Funcionario PK, nm_Funcionario, dt_Admissao, dt_NascFunc,
+             cd_Cargo, nm_Cargo, vl_Salario, cd_Dependente, nm_Dependente,
+             dt_NascDepend, nr_TotalDepend, cd_Departamento, nm_Departamento,
+             cd_Habilidade, nm_Habilidade, dt_AdmissaoHab)</code></pre>
+
+        <p class="exercise-text"><strong>Passo 1 — 1FN:</strong> um funcionário tem vários dependentes e várias habilidades → grupos repetidos. O histórico de cargo/salário também exige múltiplas ocorrências por funcionário.</p>
+        <pre data-lang="sql"><code>FUNCIONARIO (cd_Funcionario PK, nm_Funcionario, dt_Admissao, dt_NascFunc,
+             cd_Cargo, nm_Cargo, vl_Salario,
+             cd_Departamento, nm_Departamento)
+DEPENDENTE (cd_Dependente PK, cd_Funcionario FK,
+            nm_Dependente, dt_NascDepend)
+HABILIDADE_FUNC (cd_Funcionario PK/FK, cd_Habilidade PK,
+                 nm_Habilidade, dt_AdmissaoHab)</code></pre>
+        <p class="exercise-text">→ <strong>1FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Passo 2 — 2FN:</strong> em <code>HABILIDADE_FUNC</code>, <code>nm_Habilidade</code> depende <strong>apenas de <code>cd_Habilidade</code></strong> → dependência parcial.</p>
+        <pre data-lang="sql"><code>HABILIDADE (cd_Habilidade PK, nm_Habilidade)
+FUNCIONARIO_HABILIDADE (cd_Funcionario PK/FK, cd_Habilidade PK/FK,
+                        dt_AdmissaoHab)</code></pre>
+        <p class="exercise-text">→ <strong>2FN atingida</strong>.</p>
+        
+        <p class="exercise-text"><strong>Passo 3 — 3FN:</strong> em <code>FUNCIONARIO</code>, <code>nm_Cargo</code> depende de <code>cd_Cargo</code>; <code>nm_Departamento</code> depende de <code>cd_Departamento</code> → dependências transitivas. Além disso, <code>vl_Salario</code> está ligado ao <strong>cargo exercido em um período</strong> (histórico), não diretamente ao funcionário.</p>
+        <pre data-lang="sql"><code>DEPARTAMENTO (cd_Departamento PK, nm_Departamento)
+CARGO (cd_Cargo PK, nm_Cargo)
+FUNCIONARIO (cd_Funcionario PK, nm_Funcionario, dt_Admissao,
+             dt_NascFunc, cd_Departamento FK)
+HISTORICO_CARGO_SALARIO (cd_Funcionario PK/FK, dt_Inicio PK,
+                         cd_Cargo FK, vl_Salario)</code></pre>
+        <p class="exercise-text">→ <strong>3FN atingida</strong>. <strong>Observação:</strong> <code>nr_TotalDepend</code> é derivável por <code>COUNT</code> em <code>DEPENDENTE</code>; mantê-lo seria redundância (desnormalização) — o ideal é não armazenar.</p>
+
+        <p class="exercise-text"><strong>Passo 4 — 4FN:</strong> dependentes e habilidades estão em relações separadas (<code>DEPENDENTE</code> e <code>FUNCIONARIO_HABILIDADE</code>), sem dependência multivalorada independente na mesma relação. O histórico de cargo/salário também está isolado. → <strong>4FN atingida</strong>.</p>
+
+        <p class="exercise-text"><strong>Modelo final:</strong></p>
+        <pre data-lang="sql"><code>DEPARTAMENTO (cd_Departamento PK, nm_Departamento)
+CARGO (cd_Cargo PK, nm_Cargo)
+FUNCIONARIO (cd_Funcionario PK, nm_Funcionario, dt_Admissao,
+             dt_NascFunc, cd_Departamento FK)
+HISTORICO_CARGO_SALARIO (cd_Funcionario PK/FK, dt_Inicio PK,
+                         cd_Cargo FK, vl_Salario)
+DEPENDENTE (cd_Dependente PK, cd_Funcionario FK,
+            nm_Dependente, dt_NascDepend)
+HABILIDADE (cd_Habilidade PK, nm_Habilidade)
+FUNCIONARIO_HABILIDADE (cd_Funcionario PK/FK, cd_Habilidade PK/FK,
+                        dt_AdmissaoHab)</code></pre>
+
+        <h5>Quadro-resumo das etapas</h5>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Item</th><th>1FN (o que foi separado)</th><th>2FN (dependência parcial removida)</th><th>3FN (dependência transitiva removida)</th><th>4FN (multivalorados isolados)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>a</td><td>telefones, alunos, disciplinas</td><td>— (chaves associativas sem atributos)</td><td>— (nomes dependem só da PK)</td><td>telefones e N:N em relações separadas</td></tr>
+              <tr><td>b</td><td>pacientes, médicos, telefones</td><td>—</td><td>—</td><td>pacientes, médicos e telefones isolados</td></tr>
+              <tr><td>c</td><td>itens da ordem</td><td><code>nm_Material</code>/<code>vl_Unitario</code> → MATERIAL</td><td><code>nm_Fornecedor</code>/<code>end_Fornecedor</code> → FORNECEDOR</td><td>—</td></tr>
+              <tr><td>d</td><td>itens da venda, telefones</td><td><code>nm_produto</code>/<code>vlr_unitario</code> → PRODUTO</td><td><code>nome_cliente</code> → CLIENTE; <code>nome_vendedor</code> → VENDEDOR</td><td>telefones isolados</td></tr>
+              <tr><td>e/f</td><td>dependentes, habilidades</td><td><code>nm_Habilidade</code> → HABILIDADE</td><td><code>nm_Cargo</code> → CARGO; <code>nm_Departamento</code> → DEPARTAMENTO; salário → HISTÓRICO</td><td>dependentes e habilidades em relações separadas</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <blockquote>
+          <p><strong>Conclusão geral:</strong> em todos os itens, a <strong>1FN</strong> elimina grupos repetidos e multivalorados; a <strong>2FN</strong> remove dependências parciais em chaves compostas; a <strong>3FN</strong> remove dependências transitivas (dados de fornecedor, cliente, vendedor, cargo, departamento); e a <strong>4FN</strong> garante que multivalorados independentes (telefones, dependentes, habilidades, pacientes/médicos) fiquem em relações próprias. O resultado é um conjunto de tabelas sem redundância desnecessária e sem anomalias de inserção, atualização e exclusão.</p>
+        </blockquote>
         <p class="source-note">Material organizado a partir dos slides da disciplina Banco de Dados I e da lista de exercícios disponibilizada para estudo.</p>
         <p style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem;"><em>Fim do conteúdo de Banco de Dados I.</em>
       </div>
