@@ -75,9 +75,44 @@
                         <li class="toc-h3"><a href="#pseudo-posicao">12.2 Pseudoclasses posicionais</a></li>
                         <li class="toc-h3"><a href="#pseudo-formularios">12.3 Pseudoclasses de formulários</a></li>
                         <li class="toc-h2"><a href="#media-queries">13. Media Queries e responsividade</a></li>
-                        <li class="toc-h3"><a href="#media-sintaxe">13.1 Sintaxe e condições</a></li>
-                        <li class="toc-h3"><a href="#media-exemplos">13.2 Exemplos práticos</a></li>
-                        <li class="toc-h2"><a href="#referencias">14. Referências</a></li>
+                        <li class="toc-h3"><a href="#media-porque">13.1 Por que o design responsivo importa</a></li>
+                        <li class="toc-h3"><a href="#media-sintaxe">13.2 Sintaxe e condições</a></li>
+                        <li class="toc-h3"><a href="#media-viewport">13.3 A meta viewport</a></li>
+                        <li class="toc-h3"><a href="#media-exemplos">13.4 Exemplos práticos</a></li>
+                        <li class="toc-h3"><a href="#media-como-testar">13.5 Como testar</a></li>
+                        <li class="toc-h3"><a href="#media-erros">13.6 Erros comuns</a></li>
+                        <li class="toc-h3"><a href="#media-desafio">13.7 Desafio de revisão</a></li>
+                        <li class="toc-h2"><a href="#flexbox-media">14. Media Queries + Flexbox</a></li>
+                        <li class="toc-h3"><a href="#flexbox-papeis">14.1 Cada recurso tem um papel</a></li>
+                        <li class="toc-h3"><a href="#flexbox-problema">14.2 O problema: a tela muda de tamanho</a></li>
+                        <li class="toc-h3"><a href="#flexbox-display">14.3 Passo 1 — display: flex</a></li>
+                        <li class="toc-h3"><a href="#flexbox-gap">14.4 Passo 2 — gap</a></li>
+                        <li class="toc-h3"><a href="#flexbox-direction">14.5 Passo 3 — flex-direction</a></li>
+                        <li class="toc-h3"><a href="#flexbox-juntando">14.6 Juntando Flexbox e Media Query</a></li>
+                        <li class="toc-h3"><a href="#flexbox-exemplo">14.7 Exemplo 1 — três caixas</a></li>
+                        <li class="toc-h3"><a href="#flexbox-cardapio">14.8 Exemplo 2 — menu e cartões de cursos</a></li>
+                        <li class="toc-h3"><a href="#flexbox-propriedades">14.9 Propriedades úteis em layouts responsivos</a></li>
+                        <li class="toc-h3"><a href="#flexbox-boas-praticas">14.10 Boas práticas</a></li>
+                        <li class="toc-h3"><a href="#flexbox-desafio">14.11 Desafio de revisão</a></li>
+                        <li class="toc-h2"><a href="#javascript">15. JavaScript: introdução e DOM</a></li>
+                        <li class="toc-h2"><a href="#dom">16. O DOM: Document Object Model</a></li>
+                        <li class="toc-h2"><a href="#js-estilos">17. Alterando estilos com JavaScript</a></li>
+                        <li class="toc-h2"><a href="#js-visibilidade">18. Mostrar, ocultar e destacar conteúdos</a></li>
+                        <li class="toc-h2"><a href="#js-validacao">19. Validação de formulários</a></li>
+                        <li class="toc-h2"><a href="#js-referencias">20. Referências</a></li>
+                        <li class="toc-h2"><a href="#exercicios">21. Banco de Exercícios — Análise de Código</a></li>
+                        <li class="toc-h3"><a href="#ex-especificidade">21.1 CSS: Especificidade</a></li>
+                        <li class="toc-h3"><a href="#ex-box-model">21.2 Box Model e Flexbox</a></li>
+                        <li class="toc-h3"><a href="#ex-pseudoclasses">21.3 Pseudoclasses em CSS</a></li>
+                        <li class="toc-h3"><a href="#ex-media-queries">21.4 Media Queries e responsividade</a></li>
+                        <li class="toc-h3"><a href="#ex-flexbox-media">21.5 Media Queries + Flexbox</a></li>
+                        <li class="toc-h3"><a href="#ex-javascript">21.6 JavaScript: introdução e DOM</a></li>
+                        <li class="toc-h3"><a href="#ex-dom">21.7 O DOM: tipos de nós</a></li>
+                        <li class="toc-h3"><a href="#ex-estilos-js">21.8 Alterando estilos com JavaScript</a></li>
+                        <li class="toc-h3"><a href="#ex-visibilidade">21.9 Mostrar, ocultar e destacar</a></li>
+                        <li class="toc-h3"><a href="#ex-validacao">21.10 Validação de formulários</a></li>
+                        <li class="toc-h3"><a href="#ex-gabarito">21.11 Gabarito resumido</a></li>
+                        <li class="toc-h2"><a href="#referencias">Referências</a></li>
                     </ul>
                 </div>
 
@@ -711,26 +746,111 @@ p::first-letter {
     font-size: 30px;
 }</code></pre>
 
+<!-- ===== INÍCIO DAS SEÇÕES 13, 14 e 15 — MEDIA QUERIES E FLEXBOX ===== -->
+
                 <h2 id="media-queries">13. Media Queries e responsividade</h2>
-                <p><strong>Design responsivo</strong> é a criação de páginas que continuam legíveis e confortáveis de utilizar em diferentes tamanhos de tela, como celulares, tablets e computadores. A mesma página HTML pode apresentar estilos diferentes conforme a largura disponível.</p>
-                <p>As <strong>Media Queries</strong> são condições escritas no CSS. Quando a condição é atendida, as regras dentro do bloco são aplicadas. Quando não é atendida, continuam valendo os estilos gerais.</p>
-                <h3 id="media-sintaxe">13.1 Sintaxe e condições</h3>
-                <p>A sintaxe básica utiliza <code>@media</code> seguida de uma condição e de um bloco de declarações:</p>
+
+                <p>Até aqui, o CSS foi usado para definir uma aparência única para a página. No entanto, um mesmo site pode ser aberto em celulares, tablets e computadores, que possuem <strong>larguras de visualização diferentes</strong>. A pergunta que orienta esta seção é: <em>"o título deve ter sempre o mesmo tamanho?"</em> A resposta é não — e as <strong>Media Queries</strong> são o recurso do CSS que permite adaptar a apresentação conforme o tamanho da tela.</p>
+
+                <p><strong>Design responsivo</strong> é a criação de páginas que continuam legíveis e confortáveis de utilizar em diferentes tamanhos de tela. A mesma página HTML pode apresentar aparências diferentes, sem duplicar o conteúdo.</p>
+
+                <h3 id="media-porque">13.1 Por que o design responsivo importa</h3>
+
+                <p>Os slides da Aula 14 destacam três preocupações centrais do design responsivo:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Preocupação</th>
+                            <th>O que significa</th>
+                            <th>Exemplo prático</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Texto legível</strong></td>
+                            <td>Em telas menores, um título muito grande pode ocupar espaço demais.</td>
+                            <td>Reduzir o <code>font-size</code> do <code>h1</code> em telas estreitas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Elementos adequados</strong></td>
+                            <td>Uma caixa pode ocupar mais largura no celular e ter menos espaço.</td>
+                            <td>Passar uma caixa de <code>width: 70%</code> para <code>width: 95%</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Menu acessível</strong></td>
+                            <td>Links podem passar de uma linha horizontal para uma lista vertical.</td>
+                            <td>Mudar <code>display: inline-block</code> para <code>display: block</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>A ideia central é que <strong>a mesma página HTML pode apresentar aparências diferentes</strong>. O HTML organiza o conteúdo; o CSS define a aparência; as Media Queries escolhem <strong>quando</strong> aplicar determinados estilos.</p>
+
+                <h3 id="media-sintaxe">13.2 Sintaxe e condições</h3>
+
+                <p>Uma Media Query é uma condição escrita no CSS. Ela diz: <em>"se acontecer isto, use estes estilos"</em>. A sintaxe básica utiliza <code>@media</code> seguida de uma condição entre parênteses e de um bloco de declarações:</p>
+
                 <pre><code>@media (max-width: 600px) {
     h1 {
         font-size: 24px;
     }
 }</code></pre>
+
+                <p>Nesse exemplo:</p>
                 <ul>
-                    <li><strong><code>max-width</code>:</strong> aplica as regras até uma largura máxima. Por exemplo, <code>max-width: 600px</code> vale quando a área de visualização tem 600 px ou menos.</li>
-                    <li><strong><code>min-width</code>:</strong> aplica as regras a partir de uma largura mínima. Por exemplo, <code>min-width: 800px</code> vale quando a área de visualização tem 800 px ou mais.</li>
+                    <li><strong>A condição</strong> é: a largura da tela é de 600 px ou menos.</li>
+                    <li><strong>A mudança</strong> é: o título passa a ter 24 px de tamanho.</li>
+                    <li>Quando a condição <strong>não</strong> é atendida, continuam valendo os estilos gerais definidos fora do bloco <code>@media</code>.</li>
                 </ul>
-                <p>Os valores de 600 px e 800 px são exemplos. O ponto de quebra deve ser escolhido conforme o conteúdo e o comportamento do layout, e não apenas por um modelo fixo de aparelho.</p>
-                <p>Para que a página seja interpretada corretamente em dispositivos móveis, inclua a meta viewport no <code>head</code> do HTML:</p>
+
+                <p>Os dois operadores principais são:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operador</th>
+                            <th>Quando aplica</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>max-width</code></td>
+                            <td>Aplica as regras <strong>até</strong> uma largura máxima. O limite está incluído.</td>
+                            <td><code>max-width: 600px</code> vale em telas de 600 px ou menos.</td>
+                        </tr>
+                        <tr>
+                            <td><code>min-width</code></td>
+                            <td>Aplica as regras <strong>a partir</strong> de uma largura mínima. O limite está incluído.</td>
+                            <td><code>min-width: 800px</code> vale em telas de 800 px ou mais.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Atenção:</strong> a Media Query <strong>não significa "celular"</strong>. Ela verifica uma largura. Uma tela de 400 px aplica a regra de <code>max-width: 600px</code>; uma tela de 900 px não aplica. O ponto de quebra (<em>breakpoint</em>) deve ser escolhido conforme o conteúdo e o comportamento do layout, e não apenas por um modelo fixo de aparelho.</p>
+
+                <h3 id="media-viewport">13.3 A meta viewport: configuração essencial no HTML</h3>
+
+                <p>Antes de escrever as Media Queries, é necessário configurar o <em>viewport</em> no <code>&lt;head&gt;</code> do HTML. Essa linha orienta o navegador do celular a usar a largura real da tela do dispositivo como referência, em vez de simular uma tela maior:</p>
+
                 <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+                <ul>
+                    <li><code>width=device-width</code> — informa que a largura deve ser a do dispositivo.</li>
+                    <li><code>initial-scale=1.0</code> — define o nível de zoom inicial.</li>
+                </ul>
+
+                <p>Sem essa configuração, as Media Queries podem não funcionar como esperado em dispositivos móveis. Além disso, o HTML deve conectar-se ao arquivo CSS por meio do elemento <code>&lt;link&gt;</code>:</p>
+
+                <pre><code>&lt;link rel="stylesheet" href="estilos.css"&gt;</code></pre>
+
                 <p>O HTML continua responsável pela estrutura; o CSS controla cores, fontes, tamanhos, espaçamentos e apresentação; e as Media Queries adaptam esses estilos conforme as condições da tela.</p>
-                <h3 id="media-exemplos">13.2 Exemplos práticos</h3>
-                <p><strong>Exemplo 1 — alterar cores e tamanho do título:</strong></p>
+
+                <h3 id="media-exemplos">13.4 Exemplos práticos de Media Queries</h3>
+
+                <h4>Exemplo 1 — alterar cores e tamanho do título</h4>
+
                 <pre><code>body {
     background-color: #fef3c7;
 }
@@ -748,8 +868,11 @@ h1 {
         font-size: 24px;
     }
 }</code></pre>
+
                 <p>Em telas maiores que 600 px, o fundo permanece amarelo-claro e o título tem 36 px. Em telas de até 600 px, o fundo passa a azul-claro e o título é reduzido para 24 px.</p>
-                <p><strong>Exemplo 2 — adaptar largura e espaçamento de uma caixa:</strong></p>
+
+                <h4>Exemplo 2 — adaptar largura e espaçamento de uma caixa</h4>
+
                 <pre><code>.caixa {
     width: 70%;
     padding: 40px;
@@ -763,7 +886,11 @@ h1 {
         background-color: #fde68a;
     }
 }</code></pre>
-                <p><strong>Exemplo 3 — transformar um menu horizontal em vertical:</strong></p>
+
+                <p>Em telas maiores, a caixa ocupa 70% da largura com bastante espaçamento interno. Em telas de até 650 px, ocupa 95% e o padding diminui, deixando mais espaço para o conteúdo.</p>
+
+                <h4>Exemplo 3 — transformar um menu horizontal em vertical</h4>
+
                 <pre><code>nav a {
     display: inline-block;
     padding: 10px 20px;
@@ -776,19 +903,1812 @@ h1 {
         display: block;
     }
 }</code></pre>
-                <p>Nesse exemplo, não é necessário alterar o HTML: os links ficam lado a lado em telas maiores e passam a ocupar linhas separadas em telas pequenas.</p>
-                <p><strong>Como testar:</strong> abra a página no Chrome ou Edge, pressione F12 para abrir as ferramentas do desenvolvedor e utilize a visualização de dispositivos móveis (Ctrl + Shift + M). Teste diferentes larguras, como 400 px, 600 px e 900 px. No limite exato definido por <code>max-width</code>, a regra também é aplicada.</p>
-                <p><strong>Erros comuns:</strong> esquecer o caractere <code>@</code> antes de <code>media</code>, não fechar corretamente as chaves do bloco ou esquecer de salvar o arquivo CSS. Se a regra não funcionar, confira também se o HTML está conectado ao arquivo CSS correto.</p>
-                <h3>Desafio de revisão — Biblioteca da Escola</h3>
+
+                <p>Nesse exemplo, <strong>não é necessário alterar o HTML</strong>: os links ficam lado a lado em telas maiores e passam a ocupar linhas separadas em telas pequenas.</p>
+
+                <h4>Exemplo 4 — juntando HTML e CSS completos</h4>
+
+                <p>Os slides apresentam um exemplo mínimo que reúne HTML e CSS. O HTML cria o título e o parágrafo:</p>
+
+                <pre><code>&lt;h1&gt;Olá, turma!&lt;/h1&gt;
+&lt;p&gt;Meu primeiro site.&lt;/p&gt;</code></pre>
+
+                <p>O CSS define a aparência geral e, depois, a adaptação para telas menores:</p>
+
+                <pre><code>h1 {
+    color: blue;
+    font-size: 36px;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+}</code></pre>
+
+                <p>Em telas maiores que 600 px, o título fica azul e com 36 px. Em telas de até 600 px, o título é reduzido para 24 px. A cor permanece azul, pois não foi alterada dentro da Media Query.</p>
+
+                <h3 id="media-como-testar">13.5 Como testar as Media Queries</h3>
+
+                <p>Para verificar o funcionamento das Media Queries:</p>
+                <ol>
+                    <li>Abra a página no Chrome ou Edge.</li>
+                    <li>Pressione <strong>F12</strong> para abrir as ferramentas do desenvolvedor.</li>
+                    <li>Utilize a visualização de dispositivos móveis (<strong>Ctrl + Shift + M</strong>).</li>
+                    <li>Teste diferentes larguras, como 400 px, 600 px e 900 px.</li>
+                </ol>
+                <p>No limite exato definido por <code>max-width</code> (por exemplo, 600 px), a regra <strong>também é aplicada</strong>, pois o limite está incluído.</p>
+
+                <h3 id="media-erros">13.6 Erros comuns</h3>
+
+                <ul>
+                    <li>Esquecer o caractere <code>@</code> antes de <code>media</code>.</li>
+                    <li>Não fechar corretamente as chaves do bloco <code>@media</code>.</li>
+                    <li>Esquecer de salvar o arquivo CSS.</li>
+                    <li>Não conferir se o HTML está conectado ao arquivo CSS correto.</li>
+                    <li>Esquecer a meta viewport no <code>&lt;head&gt;</code>.</li>
+                </ul>
+
+                <h3 id="media-desafio">13.7 Desafio de revisão — Biblioteca da Escola</h3>
+
                 <p>Considere uma página com cabeçalho, título, menu de navegação e uma caixa de aviso. Crie uma Media Query para telas de até 600 px e faça as seguintes alterações:</p>
+
                 <ol>
                     <li>Mude o fundo da página para azul-claro.</li>
                     <li>Reduza o título para 24 px.</li>
                     <li>Coloque cada link do menu em uma linha separada.</li>
                     <li>Reduza o padding da caixa de aviso para 15 px.</li>
                 </ol>
-                <p>O desafio pode ser resolvido apenas com CSS, sem modificar a estrutura HTML.</p>
 
+                <p>O desafio pode ser resolvido <strong>apenas com CSS</strong>, sem modificar a estrutura HTML.</p>
+
+                <pre><code>@media (max-width: 600px) {
+    body {
+        background-color: #dbeafe;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    nav a {
+        display: block;
+    }
+
+    .aviso {
+        padding: 15px;
+    }
+}</code></pre>
+
+                    <h2 id="flexbox-media">14. Media Queries + Flexbox: reorganizando o layout</h2>
+                    <p>As Media Queries sozinhas alteram estilos, mas muitas vezes o que se deseja é <strong>reorganizar</strong> os elementos na página. Para isso, o Flexbox é o parceiro natural das Media Queries. Enquanto o Flexbox organiza os elementos em linha ou coluna, a Media Query escolhe <strong>quando</strong> mudar essa organização.</p>
+
+                    <h3 id="flexbox-papeis">14.1 Cada recurso tem um papel</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Recurso</th>
+                                <th>Papel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>HTML</strong></td>
+                                <td>Cria a estrutura: caixas, títulos e links.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CSS</strong></td>
+                                <td>Define cores, espaços e aparência.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Flexbox</strong></td>
+                                <td>Organiza elementos em linha ou coluna.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Media Query</strong></td>
+                                <td>Escolhe quando mudar as regras de CSS.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="flexbox-problema">14.2 O problema: a tela muda de tamanho</h3>
+                    <p>Queremos o mesmo HTML, mas com uma organização melhor no celular. No computador, os elementos ficam em linha; no celular, devem ficar empilhados.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tela</th>
+                                <th>Organização desejada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Maior</strong></td>
+                                <td>Três caixas lado a lado (HTML, CSS, WEB).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Menor (≤ 600 px)</strong></td>
+                                <td>As mesmas caixas empilhadas verticalmente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>A solução combina três passos: ativar o Flexbox, definir o espaçamento e, dentro de uma Media Query, trocar a direção de linha para coluna.</p>
+                    <h3 id="flexbox-display">14.3 Passo 1 — display: flex</h3>                    
+                    <p>A propriedade <code>display: flex</code> organiza os elementos na mesma linha por padrão. Ela é aplicada ao <strong>elemento pai</strong>, que se torna um <em>flex container</em>; seus filhos diretos tornam-se <em>flex items</em>.</p>
+
+                    <pre><code>.caixas {
+    display: flex;
+}</code></pre>
+
+                    <p>Sem Media Query, as três caixas ficam lado a lado. Esse é o comportamento padrão do Flexbox.</p>
+
+                    <h3 id="flexbox-gap">14.4 Passo 2 — gap</h3>                    
+                    <p>A propriedade <code>gap</code> acrescenta espaço entre os elementos do Flexbox, sem precisar aplicar margens individuais a cada item.</p>
+                    <pre><code>.caixas {
+    display: flex;
+    gap: 10px;
+}</code></pre>
+
+                    <p>Nesse exemplo, <code>gap: 10px</code> significa 10 pixels de separação entre as caixas. Também é possível separar os espaços horizontal e vertical usando <code>column-gap</code> e <code>row-gap</code>.</p>
+
+                    <h3 id="flexbox-direction">14.5 Passo 3 — flex-direction</h3>
+                    <p>A propriedade <code>flex-direction</code> é a que vamos mudar no celular. Ela define a direção do eixo principal:</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Comportamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>row</code></td>
+                                <td>Itens em linha (padrão).</td>
+                            </tr>
+                            <tr>
+                                <td><code>row-reverse</code></td>
+                                <td>Itens em linha, na ordem inversa.</td>
+                            </tr>
+                            <tr>
+                                <td><code>column</code></td>
+                                <td>Itens em coluna (empilhados).</td>
+                            </tr>
+                            <tr>
+                                <td><code>column-reverse</code></td>
+                                <td>Itens em coluna, na ordem inversa.</td>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                    <pre><code>/* Linha */
+flex-direction: row;
+
+/* Coluna */
+flex-direction: column;</code></pre>
+
+                    <h3 id="flexbox-juntando">14.6 Juntando Flexbox e Media Query</h3>                    
+                    <p>Agora vamos juntar os dois recursos. O Flexbox organiza; a Media Query altera a direção quando a tela diminui.</p>
+                    <pre><code>.caixas {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .caixas {
+        flex-direction: column;
+    }
+}</code></pre>
+
+                    <p><strong>Funcionamento:</strong></p>
+                    <ul>
+                        <li>Acima de 600 px, o <code>display: flex</code> mantém as caixas em linha (padrão <code>row</code>).</li>
+                        <li>Até 600 px, a Media Query aplica <code>flex-direction: column</code>, empilhando as caixas.</li>
+                        <li>O <code>gap: 10px</code> continua valendo nos dois casos, agora como espaço vertical entre as caixas empilhadas.</li>
+                    </ul>
+
+                    <h3 id="flexbox-exemplo">14.7 Exemplo 1 — três caixas</h3>
+                    <p><strong>Objetivo:</strong> mudar de linha para coluna.</p>
+
+                    <h4>HTML</h4>
+                    <p>Apenas uma <code>div</code> para agrupar e três <code>div</code>s para as caixas:</p>
+
+                    <pre><code>&lt;h1&gt;Exemplo 1: três caixas&lt;/h1&gt;
+
+&lt;div class="caixas"&gt;
+    &lt;div class="caixa"&gt;Caixa 1&lt;/div&gt;
+    &lt;div class="caixa"&gt;Caixa 2&lt;/div&gt;
+    &lt;div class="caixa"&gt;Caixa 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                        <p><strong>Observação:</strong> <code>caixas</code> é a classe do grupo; <code>caixa</code> é a classe de cada item. Essa distinção é importante: o <code>display: flex</code> é aplicado ao grupo, não aos itens individuais.</p>                                            
+                        <h4>CSS</h4>                                            
+                        <pre><code>.caixas {
+    display: flex;
+    gap: 10px;
+}
+
+.caixa {
+    flex: 1;
+    padding: 20px;
+    background-color: #dbeafe;
+    border: 1px solid #93c5fd;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .caixas {
+        flex-direction: column;
+    }
+}</code></pre>
+
+                    <p><strong>Resultado:</strong></p>
+                    <ul>
+                        <li><strong>Tela maior:</strong> três caixas lado a lado, com espaçamento entre elas.</li>
+                        <li><strong>Tela menor (≤ 600 px):</strong> três caixas empilhadas verticalmente.</li>
+                    </ul>
+
+                    <h3 id="flexbox-cardapio">14.8 Exemplo 2 — menu e cartões de cursos</h3>
+
+                    <p>Os slides propõem montar uma página simples com menu e cursos. O mesmo HTML pode ser reorganizado com Flexbox e Media Query.</p>
+
+                    <h4>HTML</h4>
+
+                    <pre><code>&lt;nav class="menu"&gt;
+    &lt;a href="#"&gt;Início&lt;/a&gt;
+    &lt;a href="#"&gt;Cursos&lt;/a&gt;
+    &lt;a href="#"&gt;Contato&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;section class="cards"&gt;
+    &lt;article class="card"&gt;HTML&lt;/article&gt;
+    &lt;article class="card"&gt;CSS&lt;/article&gt;
+    &lt;article class="card"&gt;WEB&lt;/article&gt;
+&lt;/section&gt;</code></pre>
+
+                    <h4>CSS</h4>
+
+                    <pre><code>/* Menu horizontal em telas maiores */
+.menu {
+    display: flex;
+    gap: 20px;
+    background-color: #1e3a8a;
+    padding: 15px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Cartões lado a lado em telas maiores */
+.cards {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    flex: 1 1 220px;
+    padding: 40px;
+    background-color: #dbeafe;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Em telas pequenas: menu e cartões em coluna */
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+}</code></pre>
+
+                    <p><strong>Funcionamento:</strong></p>
+                    <ul>
+                        <li>Em telas maiores, o menu fica horizontal e os cartões ficam lado a lado.</li>
+                        <li>Em telas de até 600 px, o menu passa a ser uma lista vertical e os cartões são empilhados.</li>
+                        <li>O HTML permanece exatamente o mesmo nos dois casos.</li>
+                    </ul>
+
+                    <h3 id="flexbox-propriedades">14.9 Propriedades do Flexbox úteis em layouts responsivos</h3>
+
+                    <p>Além de <code>display</code>, <code>gap</code> e <code>flex-direction</code>, outras propriedades do Flexbox ajudam a construir layouts que se adaptam bem:</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Propriedade</th>
+                                <th>Função e valores comuns</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>flex-wrap</code></td>
+                                <td>Controla a quebra de linha: <code>nowrap</code> (padrão), <code>wrap</code> ou <code>wrap-reverse</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><code>justify-content</code></td>
+                                <td>Distribui os itens no eixo principal: <code>flex-start</code>, <code>flex-end</code>, <code>center</code>, <code>space-between</code>, <code>space-around</code> e <code>space-evenly</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><code>align-items</code></td>
+                                <td>Alinha os itens no eixo transversal: <code>stretch</code>, <code>center</code>, <code>flex-start</code>, <code>flex-end</code> e <code>baseline</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><code>align-content</code></td>
+                                <td>Distribui o conjunto de linhas no eixo transversal. É relevante quando há múltiplas linhas e espaço disponível.</td>
+                            </tr>
+                            <tr>
+                                <td><code>align-self</code></td>
+                                <td>Permite alinhar individualmente um item, sobrescrevendo o <code>align-items</code> do container.</td>
+                            </tr>
+                            <tr>
+                                <td><code>flex</code></td>
+                                <td>Atalho para <code>flex-grow</code>, <code>flex-shrink</code> e <code>flex-basis</code>. Exemplo: <code>flex: 1 1 220px</code>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Um exemplo de cartões responsivos que quebram linha automaticamente:</p>
+
+                    <pre><code>.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 220px;
+}</code></pre>
+
+                    <p>Nesse exemplo, os cartões ficam lado a lado enquanto houver espaço e passam para novas linhas quando necessário. A propriedade <code>gap</code> controla a distância entre eles.</p>
+
+                    <h3 id="flexbox-boas-praticas">14.10 Boas práticas ao combinar Flexbox e Media Queries</h3>
+
+                    <ul>
+                        <li><strong>Prefira reorganizar a empilhar:</strong> em telas pequenas, muitas vezes o melhor é empilhar os elementos em coluna, mantendo a legibilidade.</li>
+                        <li><strong>Não duplique o HTML:</strong> a mesma estrutura deve servir para todas as telas; a adaptação fica no CSS.</li>
+                        <li><strong>Escolha breakpoints pelo conteúdo:</strong> não escolha 600 px apenas porque é um número redondo; teste o layout e identifique onde ele começa a ficar desconfortável.</li>
+                        <li><strong>Use <code>gap</code> em vez de margens individuais:</strong> o espaçamento fica mais previsível e fácil de manter.</li>
+                        <li><strong>Combine com a meta viewport:</strong> sem ela, as Media Queries podem não funcionar corretamente em dispositivos móveis.</li>
+                        <li><strong>Teste as larguras de transição:</strong> verifique o comportamento exatamente no ponto de quebra (por exemplo, 600 px) para garantir que não haja saltos inesperados.</li>
+                    </ul>
+
+                    <h3 id="flexbox-desafio">14.11 Desafio de revisão — página de cursos</h3>
+
+                    <p>Considere uma página com um menu de navegação e três cartões de cursos (HTML, CSS e WEB). Crie o HTML e o CSS para que:</p>
+
+                    <ol>
+                        <li>Em telas maiores que 600 px, o menu fique horizontal e os cartões fiquem lado a lado.</li>
+                        <li>Em telas de até 600 px, o menu e os cartões fiquem empilhados em coluna.</li>
+                        <li>Haja espaçamento de 20 px entre os itens em ambos os casos.</li>
+                    </ol>
+
+                    <p>O desafio deve ser resolvido <strong>sem duplicar o HTML</strong>, usando apenas Flexbox e uma Media Query.</p>
+
+                    <pre><code>&lt;nav class="menu"&gt;
+    &lt;a href="#"&gt;Início&lt;/a&gt;
+    &lt;a href="#"&gt;Cursos&lt;/a&gt;
+    &lt;a href="#"&gt;Contato&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;section class="cards"&gt;
+    &lt;article class="card"&gt;HTML&lt;/article&gt;
+    &lt;article class="card"&gt;CSS&lt;/article&gt;
+    &lt;article class="card"&gt;WEB&lt;/article&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+    .menu,
+    .cards {
+        display: flex;
+        gap: 20px;
+    }
+
+    .card {
+        flex: 1;
+        padding: 40px;
+        background-color: #dbeafe;
+        text-align: center;
+    }
+
+    @media (max-width: 600px) {
+        .menu,
+        .cards {
+            flex-direction: column;
+        }
+    }
+                &lt;/style&gt;</code></pre>
+<!-- ===== INÍCIO DA SEÇÃO DE JAVASCRIPT ===== -->
+
+<h2 id="javascript">15. JavaScript: introdução e DOM</h2>
+<p>O <strong>JavaScript</strong> é a linguagem de programação da web. Enquanto o HTML estrutura o conteúdo e o CSS define a apresentação, o JavaScript acrescenta <strong>comportamento</strong>: calcula, valida dados, manipula o conteúdo, altera atributos, oculta e exibe elementos, e reage às ações do usuário.</p>
+<p>O JavaScript não substitui o HTML. As três tecnologias se complementam:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tecnologia</th>
+            <th>Papel</th>
+            <th>Pergunta que responde</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>HTML</strong></td>
+            <td>Estrutura</td>
+            <td>O que existe na página?</td>
+        </tr>
+        <tr>
+            <td><strong>CSS</strong></td>
+            <td>Apresentação</td>
+            <td>Como a página aparece?</td>
+        </tr>
+        <tr>
+            <td><strong>JavaScript</strong></td>
+            <td>Comportamento</td>
+            <td>O que acontece?</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="js-onde">15.1 Onde colocar JavaScript no HTML</h3>
+<p>O JavaScript pode ser incluído em um documento HTML de duas maneiras:</p>
+<ul>
+    <li><strong>Código interno:</strong> escrito diretamente dentro da tag <code>&lt;script&gt;</code>, que pode ser inserida no <code>&lt;head&gt;</code> ou no <code>&lt;body&gt;</code>.</li>
+    <li><strong>Código externo:</strong> escrito em um arquivo com extensão <code>.js</code> e vinculado ao HTML por meio da tag <code>&lt;script src="arquivo.js"&gt;&lt;/script&gt;</code>.</li>
+</ul>
+<p>Um documento HTML pode conter várias tags <code>&lt;script&gt;</code>, permitindo utilizar diferentes códigos ou arquivos JavaScript.</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Exemplo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Aprendendo JavaScript&lt;/h1&gt;
+    &lt;script&gt;
+        alert("Olá!");
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><strong>Importante:</strong> a tag <code>&lt;script&gt;</code> é HTML; o conteúdo entre ela e <code>&lt;/script&gt;</code> é JavaScript.</p>
+
+<h4>JavaScript em arquivo externo (.js)</h4>
+<p>Quando o código é extenso ou precisa ser reutilizado, recomenda-se separá-lo em um arquivo <code>.js</code>:</p>
+
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;script src="exemplo2.js" defer&gt;&lt;/script&gt;
+    &lt;title&gt;Exemplo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Aprendendo JavaScript&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+
+<p>Arquivo <code>exemplo2.js</code> (sem tags <code>&lt;script&gt;</code>):</p>
+<pre><code>alert("Olá!");</code></pre>
+
+<ul>
+    <li><code>src</code> indica o arquivo JavaScript a carregar.</li>
+    <li>O arquivo <code>.js</code> deve estar na mesma pasta do HTML ou o caminho deve ser ajustado.</li>
+    <li>O atributo <code>defer</code> adia a execução do script até que o HTML tenha sido analisado.</li>
+</ul>
+
+<h4>Duas posições possíveis</h4>
+<p>O mesmo arquivo <code>.js</code> pode ser chamado no fim do <code>&lt;body&gt;</code> ou no <code>&lt;head&gt;</code> com <code>defer</code>:</p>
+
+<pre><code>&lt;!-- Opção A: fim do body --&gt;
+&lt;body&gt;
+    &lt;h1&gt;Olá, turma!&lt;/h1&gt;
+    &lt;script src="exemplo2.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;!-- Opção B: head com defer --&gt;
+&lt;head&gt;
+    &lt;script src="exemplo2.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+<p>Em ambas as opções, o arquivo <code>exemplo2.js</code> é o mesmo. A posição da tag e o uso de <code>defer</code> mudam apenas o momento da execução. As duas formas são corretas e utilizadas atualmente.</p>
+
+<h3 id="js-primeiros-comandos">15.2 Primeiros comandos: alert() e console.log()</h3>
+
+<h4>alert()</h4>
+<p>O comando <code>alert()</code> abre uma janela de aviso no navegador com a mensagem especificada.</p>
+<pre><code>&lt;h1&gt;Olá, turma!&lt;/h1&gt;
+&lt;script&gt;
+    alert("Bem-vindos ao JavaScript!");
+&lt;/script&gt;</code></pre>
+<ul>
+    <li><code>alert</code> abre uma janela de aviso.</li>
+    <li>O texto deve estar entre aspas.</li>
+    <li>Os parênteses contêm a mensagem.</li>
+    <li>O aviso aparece ao carregar a página.</li>
+</ul>
+
+<h4>console.log()</h4>
+<p>O comando <code>console.log()</code> escreve uma informação no Console do navegador, sem inserir a mensagem na página HTML. Para visualizá-la, pressione <strong>F12</strong> e acesse a guia <strong>Console</strong>.</p>
+<pre><code>&lt;script&gt;
+    console.log("A página foi carregada!");
+&lt;/script&gt;</code></pre>
+<p>Esse recurso também ajuda a investigar problemas e acompanhar o fluxo de execução do código.</p>
+
+<h4>Anatomia de um comando</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Elemento</th>
+            <th>Função</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Nome</strong> (<code>alert</code> ou <code>console.log</code>)</td>
+            <td>Identifica a operação solicitada.</td>
+        </tr>
+        <tr>
+            <td><strong>Parênteses ( )</strong></td>
+            <td>Informam o valor que será usado pelo comando, como um texto.</td>
+        </tr>
+        <tr>
+            <td><strong>Aspas " "</strong></td>
+            <td>Delimitam o texto que queremos apresentar.</td>
+        </tr>
+        <tr>
+            <td><strong>Ponto e vírgula ;</strong></td>
+            <td>Marca o fim de uma instrução; é uma convenção recomendada nos exemplos.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="dom">16. O DOM: Document Object Model</h2>
+<p>O <strong>DOM</strong> (<em>Document Object Model</em> ou Modelo de Objeto de Documentos) é uma representação em objetos da estrutura da página. Ele permite que programas, como scripts JavaScript, acessem e modifiquem partes do documento.</p>
+<p>O navegador interpreta o HTML e disponibiliza a estrutura DOM enquanto processa a página. Cada parte do documento é um <strong>nó</strong> na árvore DOM.</p>
+
+<h3 id="dom-arvore">16.1 Do HTML à árvore DOM</h3>
+<p>Considere o HTML a seguir:</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;Minha página&lt;/h1&gt;
+    &lt;p&gt;Bem-vindo!&lt;/p&gt;
+    &lt;button&gt;Clique aqui&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>A árvore DOM simplificada fica assim:</p>
+<pre><code>document
+└── html
+    └── body
+        ├── h1
+        ├── p
+        └── button</code></pre>
+<p>O elemento <code>body</code> é pai dos elementos <code>h1</code>, <code>p</code> e <code>button</code>.</p>
+
+<h3 id="dom-nos">16.2 Tipos de nós</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Nó</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Documento</td>
+            <td>Proprietário de todos os nós no documento.</td>
+        </tr>
+        <tr>
+            <td><code>&lt;html&gt;</code></td>
+            <td>Nó de elemento.</td>
+        </tr>
+        <tr>
+            <td><code>&lt;head&gt;</code></td>
+            <td>Nó de elemento.</td>
+        </tr>
+        <tr>
+            <td><code>&lt;body&gt;</code></td>
+            <td>Nó de elemento.</td>
+        </tr>
+        <tr>
+            <td><code>&lt;a&gt;</code></td>
+            <td>Nó de elemento.</td>
+        </tr>
+        <tr>
+            <td><code>href</code></td>
+            <td>Nó de atributo.</td>
+        </tr>
+        <tr>
+            <td><code>&lt;h1&gt;</code></td>
+            <td>Nó de elemento.</td>
+        </tr>
+        <tr>
+            <td>Meu cabeçalho</td>
+            <td>Nó de texto.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="dom-html">16.3 HTML e DOM não são idênticos</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Aspecto</th>
+            <th>HTML</th>
+            <th>DOM</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Natureza</td>
+            <td>Código-fonte escrito no editor.</td>
+            <td>Estrutura atual disponível no navegador.</td>
+        </tr>
+        <tr>
+            <td>Alteração</td>
+            <td>Não é modificado por scripts.</td>
+            <td>Pode ser alterado por scripts.</td>
+        </tr>
+        <tr>
+            <td>Resultado</td>
+            <td>Define a estrutura inicial.</td>
+            <td>Reflete o que o navegador apresenta, considerando HTML, CSS e alterações feitas.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="dom-encontrar">16.4 Encontrando elementos</h3>
+<p>Para manipular elementos HTML com JavaScript, primeiro é necessário encontrá-los. Existem várias maneiras:</p>
+<ul>
+    <li>Por ID (<code>getElementById</code>).</li>
+    <li>Pelo nome da tag.</li>
+    <li>Pela classe (<code>class name</code>).</li>
+    <li>Por seletores CSS.</li>
+</ul>
+
+<h4>getElementById()</h4>
+<p>O atributo <code>id</code> funciona como um identificador único no documento HTML.</p>
+<pre><code>&lt;h1 id="titulo"&gt;Meu site&lt;/h1&gt;</code></pre>
+<p>No CSS, <code>#titulo</code> seleciona o elemento. No JavaScript, <code>getElementById("titulo")</code> localiza o mesmo elemento.</p>
+
+<pre><code>&lt;h1 id="titulo"&gt;Aprendendo DOM&lt;/h1&gt;
+&lt;script&gt;
+    console.log(document.getElementById("titulo"));
+&lt;/script&gt;</code></pre>
+
+<p><strong>Leitura passo a passo:</strong></p>
+<ul>
+    <li><code>document</code> — documento HTML em uso.</li>
+    <li><code>getElementById</code> — método que procura pelo ID.</li>
+    <li><code>"titulo"</code> — valor do atributo <code>id</code> procurado.</li>
+</ul>
+<p><strong>Cuidado:</strong> use <code>getElementById</code> com a capitalização exata e não coloque <code>#</code> dentro das aspas.</p>
+
+<h4>Alterando conteúdo com textContent</h4>
+<pre><code>&lt;p id="mensagem"&gt;Mensagem original.&lt;/p&gt;
+&lt;script&gt;
+    const paragrafo = document.getElementById("mensagem");
+    paragrafo.textContent = "O texto foi alterado pelo JavaScript!";
+    console.log(document.getElementById("mensagem"));
+&lt;/script&gt;</code></pre>
+
+<h4>Dois elementos, dois identificadores</h4>
+<pre><code>&lt;h1 id="titulo"&gt;Título&lt;/h1&gt;
+&lt;p id="aviso"&gt;Mensagem&lt;/p&gt;
+&lt;script&gt;
+    console.log(document.getElementById("titulo"));
+    console.log(document.getElementById("aviso"));
+&lt;/script&gt;</code></pre>
+<p>O Console mostra a referência a cada elemento localizado.</p>
+
+<h2 id="js-estilos">17. Alterando estilos com JavaScript</h2>
+<p>O DOM permite localizar um elemento e modificar sua aparência com JavaScript. Hoje vamos alterar a <strong>aparência</strong> do elemento, e não necessariamente seu texto.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tecnologia</th>
+            <th>Para que serve</th>
+            <th>Exemplo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>HTML</td>
+            <td>Cria um parágrafo</td>
+            <td><code>&lt;p id="aviso"&gt;Olá&lt;/p&gt;</code></td>
+        </tr>
+        <tr>
+            <td>CSS</td>
+            <td>Define estilo inicial</td>
+            <td><code>p { color: gray; }</code></td>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Modifica o estilo durante o uso</td>
+            <td><code>elemento.style.color = "blue"</code></td>
+        </tr>
+    </tbody>
+</table>
+<p>Modificar o estilo pelo DOM não reescreve o arquivo HTML salvo no computador.</p>
+
+<h3 id="js-style">17.1 Sintaxe: selecionar → acessar style → atribuir</h3>
+<pre><code>const aviso = document.getElementById("aviso");
+aviso.style.color = "#155e75";</code></pre>
+<ul>
+    <li><code>document</code> representa a página HTML atual.</li>
+    <li><code>getElementById("aviso")</code> encontra o elemento pelo ID.</li>
+    <li><code>style</code> acessa suas propriedades de apresentação.</li>
+    <li><code>color = "blue"</code> define a cor do texto.</li>
+</ul>
+
+<h3 id="js-camelcase">17.2 Atenção aos nomes das propriedades CSS</h3>
+<p>Em JavaScript, propriedades CSS compostas usam <strong>camelCase</strong> (sem hífen).</p>
+<table>
+    <thead>
+        <tr>
+            <th>No CSS</th>
+            <th>No JavaScript</th>
+            <th>Resultado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>color</code></td>
+            <td><code>style.color</code></td>
+            <td>Cor do texto</td>
+        </tr>
+        <tr>
+            <td><code>background-color</code></td>
+            <td><code>style.backgroundColor</code></td>
+            <td>Cor de fundo</td>
+        </tr>
+        <tr>
+            <td><code>font-size</code></td>
+            <td><code>style.fontSize</code></td>
+            <td>Tamanho da fonte</td>
+        </tr>
+        <tr>
+            <td><code>border-color</code></td>
+            <td><code>style.borderColor</code></td>
+            <td>Cor da borda</td>
+        </tr>
+    </tbody>
+</table>
+<p>Os valores devem estar entre aspas; medidas como tamanho da fonte exigem unidade: <code>"24px"</code>.</p>
+
+<h3 id="js-exemplo-aviso">17.3 Exemplo 01 — aviso de inscrições</h3>
+<pre><code>&lt;p id="aviso"&gt;Inscrições abertas para o curso!&lt;/p&gt;
+&lt;script&gt;
+    const aviso = document.getElementById("aviso");
+    aviso.style.color = "#155e75";
+    aviso.style.backgroundColor = "#cffafe";
+    aviso.style.fontSize = "24px";
+&lt;/script&gt;</code></pre>
+<p><strong>Resultado esperado:</strong> mensagem azul-petróleo, fundo azul-claro e fonte maior. O texto e a estrutura permanecem os mesmos.</p>
+
+<h3 id="js-exemplo-prazo">17.4 Exemplo 02 — destacar prazo de matrícula</h3>
+<pre><code>&lt;p id="mensagem"&gt;Prazo de matrícula: sexta-feira.&lt;/p&gt;
+&lt;button onclick="destacar()"&gt;Destacar&lt;/button&gt;
+&lt;script&gt;
+    function destacar() {
+        const msg = document.getElementById("mensagem");
+        msg.style.backgroundColor = "#ffedd5";
+        msg.style.color = "#9a3412";
+        msg.style.padding = "12px";
+        msg.style.border = "2px solid #f97316";
+    }
+&lt;/script&gt;</code></pre>
+<ul>
+    <li><code>onclick</code> indica o que fazer quando o botão é clicado.</li>
+    <li><code>destacar()</code> é uma função com as instruções.</li>
+    <li>Ao clicar, o navegador executa a função.</li>
+    <li>O JavaScript altera a aparência do parágrafo.</li>
+</ul>
+
+<h3 id="js-exemplo-status">17.5 Exemplo — mudar o status de uma tarefa</h3>
+<pre><code>&lt;p id="status"&gt;Atividade: pendente&lt;/p&gt;
+&lt;button onclick="concluir()"&gt;Concluir tarefa&lt;/button&gt;
+&lt;script&gt;
+    function concluir() {
+        const status = document.getElementById("status");
+        status.textContent = "Atividade: concluída";
+        status.style.color = "#166534";
+        status.style.fontWeight = "bold";
+    }
+&lt;/script&gt;</code></pre>
+<p><strong>Resultado:</strong> PENDENTE → CONCLUÍDA, com cor verde e negrito.</p>
+
+<h3 id="js-funcao">17.6 O que é uma função?</h3>
+<p>Uma função reúne instruções com um nome; elas são executadas quando a função é chamada.</p>
+<ul>
+    <li><code>function destacar() { ... }</code> define o conjunto de instruções.</li>
+    <li><code>onclick="destacar()"</code> chama a função quando ocorre o clique.</li>
+    <li>O navegador identifica o parágrafo e modifica suas propriedades de estilo.</li>
+    <li>Antes do clique, a aparência é a definida pelo HTML/CSS; depois, fica destacada.</li>
+</ul>
+
+<h3 id="js-externo">17.7 Revisão: JavaScript em arquivo externo</h3>
+<p>Você já pode separar HTML e JavaScript usando um arquivo <code>.js</code>.</p>
+<pre><code>&lt;!-- 11_js_externo.html (no head) --&gt;
+&lt;script src="11_estilo.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- 11_js_externo.html (no body) --&gt;
+&lt;p id="info"&gt;Esta mensagem será formatada pelo arquivo 11_estilo.js.&lt;/p&gt;</code></pre>
+
+<p>Arquivo <code>11_estilo.js</code> (sem tags <code>&lt;script&gt;</code>):</p>
+<pre><code>const info = document.getElementById("info");
+info.style.color = "#1d4ed8";</code></pre>
+<ul>
+    <li><code>src</code> indica qual arquivo JavaScript será carregado.</li>
+    <li><code>defer</code> adia a execução até o HTML ser analisado.</li>
+    <li>O arquivo <code>.js</code> deve estar no caminho informado.</li>
+    <li>Não se usam tags <code>&lt;script&gt;</code> dentro do arquivo <code>.js</code>.</li>
+</ul>
+
+<h2 id="js-visibilidade">18. Mostrar, ocultar e destacar conteúdos</h2>
+<p>A visibilidade pode ser controlada sem modificar o conteúdo original do HTML.</p>
+
+<h3 id="js-display-visibility">18.1 display e visibility não fazem a mesma coisa</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Instrução</th>
+            <th>O que acontece</th>
+            <th>Espaço na página</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>style.display = "none"</code></td>
+            <td>O elemento não é exibido.</td>
+            <td>Deixa de ocupar espaço.</td>
+        </tr>
+        <tr>
+            <td><code>style.display = "block"</code></td>
+            <td>O elemento é exibido como bloco.</td>
+            <td>Ocupa espaço novamente.</td>
+        </tr>
+        <tr>
+            <td><code>style.visibility = "hidden"</code></td>
+            <td>O elemento fica invisível.</td>
+            <td>O espaço é preservado.</td>
+        </tr>
+        <tr>
+            <td><code>style.visibility = "visible"</code></td>
+            <td>O elemento volta a aparecer.</td>
+            <td>O espaço permanece.</td>
+        </tr>
+    </tbody>
+</table>
+<p>Use <code>display = "block"</code> quando for adequado ao elemento; outras exibições possíveis incluem <code>inline</code> e <code>flex</code>.</p>
+
+<h3 id="js-exemplo-documentos">18.2 Exemplo 03 — documentos necessários</h3>
+<pre><code>&lt;p id="documentos" style="display: none"&gt;RG, CPF e comprovante de escolaridade.&lt;/p&gt;
+&lt;button onclick="mostrar()"&gt;Mostrar&lt;/button&gt;
+&lt;button onclick="ocultar()"&gt;Ocultar&lt;/button&gt;
+
+&lt;script&gt;
+    function mostrar() {
+        document.getElementById("documentos").style.display = "block";
+    }
+    function ocultar() {
+        document.getElementById("documentos").style.display = "none";
+    }
+&lt;/script&gt;</code></pre>
+<ul>
+    <li>Ambas as funções selecionam o mesmo elemento.</li>
+    <li><code>mostrar()</code> utiliza <code>display = "block"</code>.</li>
+    <li><code>ocultar()</code> utiliza <code>display = "none"</code>.</li>
+    <li>O conteúdo continua no HTML, mas sua exibição muda.</li>
+</ul>
+
+<h3 id="js-classlist">18.3 Alternativa: criar uma classe CSS com classList</h3>
+<p>O CSS pode concentrar a aparência, enquanto o JavaScript decide quando aplicá-la.</p>
+<pre><code>/* CSS */
+.destaque {
+    color: #9a3412;
+    background-color: #ffedd5;
+    border: 2px solid #f97316;
+    padding: 12px;
+}
+
+/* JavaScript */
+const elemento = document.getElementById("mensagem");
+elemento.classList.toggle("destaque");</code></pre>
+                <p><code>classList.toggle("destaque")</code> adiciona a classe se ela não existir e a remove em um próximo clique. Este é um aprofundamento opcional.</p>
+
+                <h2 id="js-validacao">19. Validação de formulários</h2>
+                <p>Formulários permitem coletar informações fornecidas pelo usuário. O JavaScript pode ser usado para validar esses dados antes do envio ao servidor.</p>
+
+                <h3 id="js-validacao-html">19.1 Validação nativa do HTML</h3>
+                <p>O HTML já oferece atributos de validação:</p>
+                <ul>
+                    <li><code>required</code> — o campo precisa ser preenchido.</li>
+                    <li><code>type="email"</code> — valida o formato básico de e-mail.</li>
+                    <li><code>min</code> e <code>max</code> — definem valores mínimo e máximo para tipos numéricos.</li>
+                    <li><code>maxlength</code> — número máximo de caracteres.</li>
+                    <li><code>pattern</code> — expressão regular para validar o formato.</li>
+                    <li><code>novalidate</code> no <code>&lt;form&gt;</code> — desativa a validação automática do navegador.</li>
+                </ul>
+
+                <pre><code>&lt;form action="/processar" method="post"&gt;
+    &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+    &lt;input type="text" id="nome" name="nome" required&gt;
+
+    &lt;label for="email"&gt;E-mail:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+                <h3 id="js-validacao-custom">19.2 Validação com JavaScript</h3>
+                <p>Além da validação nativa, é possível criar validações personalizadas com JavaScript:</p>
+                <pre><code>&lt;form id="meuForm" action="/processar" method="post"&gt;
+    &lt;label for="idade"&gt;Idade:&lt;/label&gt;
+    &lt;input type="number" id="idade" name="idade" required&gt;
+    &lt;span id="erro-idade" style="color: red;"&gt;&lt;/span&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+    const form = document.getElementById("meuForm");
+    const idade = document.getElementById("idade");
+    const erro = document.getElementById("erro-idade");
+
+    form.addEventListener("submit", function(event) {
+        const valor = Number(idade.value);
+        if (valor &lt; 16 || valor &gt; 100) {
+            event.preventDefault();
+            erro.textContent = "A idade deve estar entre 16 e 100.";
+            idade.style.borderColor = "red";
+        } else {
+            erro.textContent = "";
+            idade.style.borderColor = "green";
+        }
+    });
+&lt;/script&gt;</code></pre>
+
+                <h3 id="js-validacao-pseudoclasses">19.3 Pseudoclasses de validação em CSS</h3>
+                <p>O CSS também pode reagir ao estado de validação dos campos:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pseudoclasse</th>
+                            <th>Aplicação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>:required</code></td>
+                            <td>Campo marcado como obrigatório.</td>
+                        </tr>
+                        <tr>
+                            <td><code>:valid</code></td>
+                            <td>Campo cujo valor atende às regras de validação.</td>
+                        </tr>
+                        <tr>
+                            <td><code>:invalid</code></td>
+                            <td>Campo cujo valor não atende às regras de validação.</td>
+                        </tr>
+                        <tr>
+                            <td><code>:disabled</code></td>
+                            <td>Controle desabilitado.</td>
+                        </tr>
+                        <tr>
+                            <td><code>:checked</code></td>
+                            <td>Checkbox ou radio selecionado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <pre><code>input:invalid {
+    border-color: red;
+    background-color: #fee2e2;
+}
+
+input:valid {
+    border-color: green;
+    background-color: #dcfce7;
+}</code></pre>
+                <p><strong>Importante:</strong> um campo obrigatório vazio pode ser considerado inválido. A validação do navegador auxilia o usuário, mas <strong>não substitui a validação dos dados no servidor</strong>.</p>
+                
+                <h2 id="js-referencias">20. Referências</h2>
+                <ul>
+                    <li>Slides da disciplina Desenvolvimento Web — Introdução ao JavaScript e ao DOM: Manipulação de Elementos HTML.</li>
+                    <li>Slides da disciplina Desenvolvimento Web — Estilos com JavaScript e validação de formulários.</li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">MDN Web Docs — JavaScript</a>.</li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener noreferrer">MDN Web Docs — Document Object Model (DOM)</a>.</li>
+                    <li><a href="https://www.w3schools.com/js/default.asp" target="_blank" rel="noopener noreferrer">W3Schools — JavaScript Tutorial</a>.</li>
+                    <li><a href="https://www.w3schools.com/js/js_validation.asp" target="_blank" rel="noopener noreferrer">W3Schools — JavaScript Form Validation</a>.</li>
+                    <li><a href="https://www.w3schools.com/js/js_htmldom.asp" target="_blank" rel="noopener noreferrer">W3Schools — JavaScript HTML DOM</a>.</li>
+                </ul>
+                
+<!-- ===== FIM DA SEÇÃO DE JAVASCRIPT ===== -->
+ <!-- ===== INÍCIO DO BANCO DE EXERCÍCIOS ===== -->
+
+<h2 id="exercicios">21. Banco de Exercícios — Análise de Código</h2>
+
+<p>As questões abaixo seguem o formato mais comum em avaliações: <strong>analisar um trecho de código e identificar o uso correto dos atributos</strong>. Elas cobrem os capítulos 10 a 19, desde a especificidade em CSS até a validação de formulários com JavaScript. Clique em <em>"Ver resposta"</em> para conferir o gabarito comentado.</p>
+
+<!-- ========== CAPÍTULO 10 — ESPECIFICIDADE ========== -->
+
+<h3 id="ex-especificidade">21.1 CSS: Especificidade</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 1.</strong> Analise o código:</p>
+    <pre><code>p { color: red; }
+.destaque { color: green; }
+#aviso { color: blue; }</code></pre>
+    <pre><code>&lt;p id="aviso" class="destaque"&gt;Texto&lt;/p&gt;</code></pre>
+    <p>Qual cor será aplicada ao parágrafo?</p>
+    <ol type="a">
+        <li>Vermelho</li>
+        <li>Verde</li>
+        <li>Azul</li>
+        <li>Depende da ordem no arquivo</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> O seletor de ID (<code>#aviso</code> = 100 pontos) tem maior especificidade que classe (10) e elemento (1). A cor azul prevalece.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 2.</strong> Analise o código:</p>
+    <pre><code>p { color: red; }
+p { color: green; }
+p { color: blue; }</code></pre>
+    <p>Qual cor será aplicada?</p>
+    <ol type="a">
+        <li>Vermelho</li>
+        <li>Verde</li>
+        <li>Azul</li>
+        <li>Nenhuma</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> Quando a especificidade é igual, a <strong>última declaração</strong> no arquivo prevalece. Azul está por último.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 3.</strong> Analise o código:</p>
+    <pre><code>p { color: red !important; }
+#aviso { color: blue; }</code></pre>
+    <pre><code>&lt;p id="aviso"&gt;Texto&lt;/p&gt;</code></pre>
+    <p>Qual cor será aplicada?</p>
+    <ol type="a">
+        <li>Vermelho</li>
+        <li>Azul</li>
+        <li>Depende da ordem</li>
+        <li>Nenhuma</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa A.</strong> O <code>!important</code> faz a declaração prevalecer mesmo sobre seletores mais específicos. A cor vermelha vence.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 4.</strong> Analise os seletores:</p>
+    <pre><code>#menu p.destaque { color: red; }
+div p { color: blue; }</code></pre>
+    <p>Qual seletor tem maior especificidade?</p>
+    <ol type="a">
+        <li><code>#menu p.destaque</code> — 1 ID + 1 classe + 1 elemento</li>
+        <li><code>div p</code> — 2 elementos</li>
+        <li>Ambos têm a mesma especificidade</li>
+        <li>Depende da ordem</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa A.</strong> <code>#menu p.destaque</code> soma 100 (ID) + 10 (classe) + 1 (elemento) = 111. <code>div p</code> soma apenas 2. O primeiro prevalece.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 11 — BOX MODEL E FLEXBOX ========== -->
+
+<h3 id="ex-box-model">21.2 Box Model e Flexbox</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 5.</strong> Analise o código:</p>
+    <pre><code>.caixa {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+}</code></pre>
+    <p>Qual é a largura <strong>total</strong> ocupada horizontalmente pela caixa (sem considerar <code>box-sizing</code>)?</p>
+    <ol type="a">
+        <li>300 px</li>
+        <li>350 px</li>
+        <li>370 px</li>
+        <li>380 px</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> Largura total = 300 (conteúdo) + 40 (padding lateral) + 10 (bordas laterais) + 20 (margens laterais) = <strong>370 px</strong>. O cálculo de 350 px considera apenas conteúdo + padding + borda; as margens somam mais 20 px.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 6.</strong> Analise o código:</p>
+    <pre><code>* { box-sizing: border-box; }
+.caixa {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+}</code></pre>
+    <p>Qual é a largura total da caixa?</p>
+    <ol type="a">
+        <li>300 px</li>
+        <li>350 px</li>
+        <li>370 px</li>
+        <li>260 px</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa A.</strong> Com <code>border-box</code>, a largura declarada (300 px) já inclui conteúdo, padding e borda. A margem continua externa e não entra nesse cálculo.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 7.</strong> Analise o código:</p>
+    <pre><code>padding: 10px 20px 30px;</code></pre>
+    <p>Qual é a ordem de aplicação?</p>
+    <ol type="a">
+        <li>Topo, direita, base, esquerda</li>
+        <li>Topo, laterais (direita e esquerda), base</li>
+        <li>Laterais, topo, base</li>
+        <li>Topo, base, laterais</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> Com 3 valores: topo (10), laterais direita e esquerda (20), base (30). A esquerda recebe o mesmo que a direita.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 8.</strong> Analise o código:</p>
+    <pre><code>&lt;div class="container"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <pre><code>.container { display: flex; }</code></pre>
+    <p>O que acontece com os três itens?</p>
+    <ol type="a">
+        <li>Ficam empilhados em coluna.</li>
+        <li>Ficam lado a lado em linha (comportamento padrão <code>row</code>).</li>
+        <li>Desaparecem.</li>
+        <li>Ficam sobrepostos.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O <code>display: flex</code> aplicado ao container organiza os filhos em linha por padrão (<code>flex-direction: row</code>).</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 9.</strong> Analise o código:</p>
+    <pre><code>.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+    <p>O que essas propriedades fazem?</p>
+    <ol type="a">
+        <li><code>justify-content</code> alinha no eixo transversal; <code>align-items</code> no eixo principal.</li>
+        <li><code>justify-content</code> alinha no eixo principal (horizontal, por padrão); <code>align-items</code> no eixo transversal (vertical).</li>
+        <li>Ambas fazem a mesma coisa.</li>
+        <li>Só funcionam com <code>flex-direction: column</code>.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>justify-content</code> atua no <strong>eixo principal</strong> (main axis); <code>align-items</code> atua no <strong>eixo transversal</strong> (cross axis). Com <code>flex-direction: row</code>, o principal é horizontal e o transversal é vertical.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 10.</strong> Analise o código:</p>
+    <pre><code>.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card { flex: 1 1 220px; }</code></pre>
+    <p>O que <code>flex-wrap: wrap</code> faz?</p>
+    <ol type="a">
+        <li>Impede a quebra de linha.</li>
+        <li>Permite que os itens quebrem para novas linhas quando não couberem.</li>
+        <li>Inverte a ordem dos itens.</li>
+        <li>Centraliza os itens.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>wrap</code> permite que os itens passem para a linha seguinte quando não há espaço suficiente. O <code>flex: 1 1 220px</code> define que cada card tenta ter no mínimo 220 px e pode crescer.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 12 — PSEUDOCLASSES ========== -->
+
+<h3 id="ex-pseudoclasses">21.3 Pseudoclasses em CSS</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 11.</strong> Analise o código:</p>
+    <pre><code>button { background: blue; }
+button:hover { background: green; }
+button:active { background: red; }</code></pre>
+    <p>O que acontece ao interagir com o botão?</p>
+    <ol type="a">
+        <li>Fica verde permanentemente após o clique.</li>
+        <li>Fica verde ao passar o mouse; vermelho enquanto pressionado; volta ao azul ao soltar e sair.</li>
+        <li>Fica vermelho ao passar o mouse.</li>
+        <li>Nada muda.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>:hover</code> aplica quando o ponteiro está sobre o elemento; <code>:active</code> aplica durante a ativação (mouse pressionado). Ao soltar e sair, volta ao estado normal.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 12.</strong> Analise o código:</p>
+    <pre><code>&lt;div&gt;
+  &lt;p&gt;Parágrafo 1&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+    <pre><code>li:nth-child(2) { color: red; }
+li:nth-of-type(2) { color: blue; }</code></pre>
+    <p>Qual item recebe qual cor?</p>
+    <ol type="a">
+        <li>Item 1 fica vermelho; Item 2 fica azul.</li>
+        <li>Item 2 fica vermelho; Item 2 fica azul (mesmo item, azul prevalece por ordem).</li>
+        <li>Item 2 fica azul; Item 2 fica vermelho (vermelho prevalece por ordem).</li>
+        <li>Nenhum item é afetado.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> O Item 2 é o <strong>segundo filho</strong> do <code>&lt;ul&gt;</code> e também o <strong>segundo <code>&lt;li&gt;</code></strong> — ambos os seletores atingem o mesmo elemento. Como têm a mesma especificidade, a <strong>última regra</strong> (azul) prevalece.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 13.</strong> Analise o código:</p>
+    <pre><code>input:focus {
+  border: 2px solid blue;
+  background-color: #e0f2fe;
+}</code></pre>
+    <p>Quando esse estilo é aplicado?</p>
+    <ol type="a">
+        <li>Sempre que o input está visível.</li>
+        <li>Quando o input recebe foco (clique ou navegação por Tab).</li>
+        <li>Apenas quando o input está desabilitado.</li>
+        <li>Apenas quando o input está preenchido.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>:focus</code> aplica quando o elemento recebe foco. É importante manter indicadores visuais de foco para acessibilidade (navegação por teclado).</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 14.</strong> Analise o código:</p>
+    <pre><code>&lt;input type="email" required&gt;</code></pre>
+    <pre><code>input:invalid { border-color: red; }
+input:valid { border-color: green; }</code></pre>
+    <p>O que acontece quando o campo está vazio?</p>
+    <ol type="a">
+        <li>Borda verde.</li>
+        <li>Borda vermelha, pois um campo obrigatório vazio é inválido.</li>
+        <li>Borda neutra.</li>
+        <li>Nada.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> Campo <code>required</code> vazio não atende à validação, então <code>:invalid</code> se aplica. Ao preencher com e-mail válido, passa a <code>:valid</code>.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 13 — MEDIA QUERIES ========== -->
+
+<h3 id="ex-media-queries">21.4 Media Queries e responsividade</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 15.</strong> Analise o código:</p>
+    <pre><code>@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+}</code></pre>
+    <p>Em quais larguras a regra é aplicada?</p>
+    <ol type="a">
+        <li>Somente em 600 px.</li>
+        <li>Em 600 px ou mais.</li>
+        <li>Em 600 px ou menos.</li>
+        <li>Em qualquer largura.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> <code>max-width</code> aplica até o limite, incluindo-o. Vale para 600 px ou menos.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 16.</strong> Analise o código:</p>
+    <pre><code>@media (min-width: 800px) {
+  .container { width: 70%; }
+}</code></pre>
+    <p>Em uma tela de 700 px, qual largura o <code>.container</code> terá?</p>
+    <ol type="a">
+        <li>70% da tela.</li>
+        <li>A largura definida fora da Media Query (se houver) ou nenhuma.</li>
+        <li>100% automaticamente.</li>
+        <li>A página não carrega.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> Em 700 px, <code>min-width: 800px</code> não é atendida. Vale o estilo geral definido fora do <code>@media</code> (ou o padrão do navegador, se não houver).</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 17.</strong> Analise o <code>&lt;head&gt;</code>:</p>
+    <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Site&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+    <p>O que está faltando para as Media Queries funcionarem corretamente em celulares?</p>
+    <ol type="a">
+        <li>A tag <code>&lt;script&gt;</code>.</li>
+        <li>A meta viewport.</li>
+        <li>O atributo <code>lang</code>.</li>
+        <li>O <code>&lt;link&gt;</code> para o CSS.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> Falta <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>. Sem ela, o navegador móvel pode simular uma largura maior e as Media Queries não são aplicadas como esperado.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 18.</strong> Analise o código:</p>
+    <pre><code>@media (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+  }</code></pre>
+    <p>Qual é o erro?</p>
+    <ol type="a">
+        <li>Falta o <code>@</code>.</li>
+        <li>Falta fechar a chave <code>}</code> do bloco <code>@media</code>.</li>
+        <li><code>max-width</code> não existe.</li>
+        <li><code>font-size</code> não aceita px.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O bloco <code>@media</code> foi aberto com <code>{</code> mas não fechado com <code>}</code>. Isso quebra a regra e pode afetar todo o CSS seguinte.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 14 — MEDIA QUERIES + FLEXBOX ========== -->
+
+<h3 id="ex-flexbox-media">21.5 Media Queries + Flexbox</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 19.</strong> Analise o código:</p>
+    <pre><code>.caixas {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+
+@media (max-width: 600px) {
+  .caixas { flex-direction: column; }
+}</code></pre>
+    <p>O que acontece em 500 px e em 900 px?</p>
+    <ol type="a">
+        <li>500 px → linha; 900 px → coluna.</li>
+        <li>500 px → coluna; 900 px → linha.</li>
+        <li>Ambos em coluna.</li>
+        <li>Ambos em linha.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> Em 500 px (≤ 600), a Media Query aplica <code>column</code>. Em 900 px (> 600), vale o estilo geral <code>row</code>.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 20.</strong> Analise o código:</p>
+    <pre><code>&lt;div class="caixas"&gt;
+  &lt;div class="caixa"&gt;A&lt;/div&gt;
+  &lt;div class="caixa"&gt;B&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <pre><code>.caixa { display: flex; }</code></pre>
+    <p>Qual é o problema?</p>
+    <ol type="a">
+        <li>Nenhum; as caixas ficam lado a lado.</li>
+        <li>O <code>display: flex</code> foi aplicado aos itens, e não ao container; o correto seria <code>.caixas { display: flex; }</code>.</li>
+        <li><code>div</code> não aceita flex.</li>
+        <li>O código quebra.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O Flexbox deve ser aplicado ao <strong>container</strong> (<code>.caixas</code>) para organizar os filhos. Aplicado ao item, ele apenas transforma cada caixa em um container flex individual, sem organizar a linha.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 21.</strong> Analise o código:</p>
+    <pre><code>.caixas {
+  display: flex;
+  gap: 20px;
+}</code></pre>
+    <p>Qual é a vantagem do <code>gap</code> em relação ao <code>margin</code>?</p>
+    <ol type="a">
+        <li><code>gap</code> só funciona em colunas.</li>
+        <li><code>gap</code> adiciona espaço apenas <strong>entre</strong> os itens, sem margens nas extremidades.</li>
+        <li><code>gap</code> substitui <code>display: flex</code>.</li>
+        <li><code>gap</code> só funciona com <code>flex-wrap</code>.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O <code>gap</code> distribui o espaço entre os itens de forma uniforme, sem criar margens externas que precisariam ser tratadas separadamente.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 22.</strong> Analise o código:</p>
+    <pre><code>nav a {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+@media (max-width: 600px) {
+  nav a { display: block; }
+}</code></pre>
+    <p>Qual é o efeito em telas pequenas?</p>
+    <ol type="a">
+        <li>Os links ficam lado a lado.</li>
+        <li>Cada link ocupa uma linha separada, formando lista vertical.</li>
+        <li>Os links desaparecem.</li>
+        <li>Os links ficam sobrepostos.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>display: block</code> faz cada link ocupar toda a largura, empilhando-os verticalmente. É o padrão para menus responsivos.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 23.</strong> Analise o código:</p>
+    <pre><code>@media (max-width: 600px) { body { background: blue; } }
+@media (min-width: 600px) { body { background: green; } }</code></pre>
+    <p>Em uma tela de exatamente <strong>600 px</strong>, o que acontece?</p>
+    <ol type="a">
+        <li>Apenas azul.</li>
+        <li>Apenas verde.</li>
+        <li>Ambas as regras se aplicam; a última no arquivo prevalece.</li>
+        <li>Nenhuma.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> Tanto <code>max-width: 600px</code> quanto <code>min-width: 600px</code> incluem o limite, então ambas valem em 600 px. Como têm a mesma especificidade, a que vier <strong>por último</strong> vence. Recomenda-se usar <code>max-width: 599px</code> ou <code>min-width: 601px</code> para evitar sobreposição.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 15 — JAVASCRIPT E DOM ========== -->
+
+<h3 id="ex-javascript">21.6 JavaScript: introdução e DOM</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 24.</strong> Analise o código:</p>
+    <pre><code>&lt;body&gt;
+  &lt;script&gt;console.log(document.getElementById("titulo"));&lt;/script&gt;
+  &lt;h1 id="titulo"&gt;Título&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+    <p>Qual é o problema?</p>
+    <ol type="a">
+        <li>Nenhum.</li>
+        <li>O script executa antes do <code>&lt;h1&gt;</code> existir no DOM; <code>getElementById</code> retorna <code>null</code>.</li>
+        <li><code>console.log</code> não existe.</li>
+        <li>O <code>&lt;script&gt;</code> não pode ficar no <code>&lt;body&gt;</code>.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O script é executado imediatamente ao ser encontrado, antes do <code>&lt;h1&gt;</code>. Soluções: mover o script para o fim do <code>&lt;body&gt;</code> ou usar <code>defer</code>.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 25.</strong> Analise o código:</p>
+    <pre><code>const el = document.getElementById("#titulo");</code></pre>
+    <p>Qual é o erro?</p>
+    <ol type="a">
+        <li><code>getElementById</code> não existe.</li>
+        <li>O <code>#</code> não deve ser usado; o correto é <code>getElementById("titulo")</code>.</li>
+        <li>Precisa de aspas duplas apenas.</li>
+        <li>O <code>document</code> é opcional.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>getElementById</code> recebe apenas o valor do atributo <code>id</code>, <strong>sem</strong> o <code>#</code>. O <code>#</code> é usado em seletores CSS, não nesse método.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 26.</strong> Analise o código:</p>
+    <pre><code>&lt;p id="msg"&gt;Original&lt;/p&gt;
+&lt;script&gt;
+  document.getElementById("msg").textContent = "Novo";
+&lt;/script&gt;</code></pre>
+    <p>O que acontece?</p>
+    <ol type="a">
+        <li>O texto continua "Original".</li>
+        <li>O texto é substituído por "Novo" no DOM.</li>
+        <li>O arquivo HTML é reescrito.</li>
+        <li>Um novo parágrafo é criado.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O <code>textContent</code> altera o conteúdo textual do elemento no DOM. O arquivo HTML salvo no disco <strong>não</strong> é modificado.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 16 — TIPOS DE NÓS ========== -->
+
+<h3 id="ex-dom">21.7 O DOM: tipos de nós</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 27.</strong> Analise o código:</p>
+    <pre><code>&lt;a href="pagina.html"&gt;Link&lt;/a&gt;</code></pre>
+    <p>Qual é o tipo de nó do atributo <code>href</code>?</p>
+    <ol type="a">
+        <li>Nó de elemento.</li>
+        <li>Nó de atributo.</li>
+        <li>Nó de texto.</li>
+        <li>Nó de documento.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>href</code> é um <strong>nó de atributo</strong>. O <code>&lt;a&gt;</code> é nó de elemento; "Link" é nó de texto.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 28.</strong> Qual afirmativa está correta?</p>
+    <ol type="a">
+        <li>HTML e DOM são a mesma coisa.</li>
+        <li>O HTML é o código-fonte; o DOM é a estrutura atual no navegador, que pode ser alterada por scripts.</li>
+        <li>O DOM só existe no servidor.</li>
+        <li>O HTML é alterado quando um script modifica o DOM.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> O HTML é o arquivo salvo; o DOM é a representação viva no navegador. Alterações via JavaScript modificam o DOM, mas <strong>não</strong> o arquivo HTML original.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 17 — ESTILOS COM JS ========== -->
+
+<h3 id="ex-estilos-js">21.8 Alterando estilos com JavaScript</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 29.</strong> Analise o código:</p>
+    <pre><code>el.style.background-color = "blue";</code></pre>
+    <p>Qual é o erro?</p>
+    <ol type="a">
+        <li><code>style</code> não existe.</li>
+        <li><code>background-color</code> deve ser <code>backgroundColor</code> (camelCase).</li>
+        <li>O valor deve ser sem aspas.</li>
+        <li><code>el</code> não pode ser usado.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> Em JavaScript, propriedades CSS compostas usam camelCase: <code>backgroundColor</code>, <code>fontSize</code>, <code>borderColor</code>.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 30.</strong> Analise o código:</p>
+    <pre><code>document.getElementById("aviso").style.color = "#155e75";</code></pre>
+    <p>O que essa instrução faz?</p>
+    <ol type="a">
+        <li>Modifica o arquivo CSS.</li>
+        <li>Modifica o estilo do elemento no DOM, sem alterar o arquivo CSS.</li>
+        <li>Cria uma nova folha de estilos.</li>
+        <li>Remove o elemento.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> A alteração ocorre no DOM em tempo de execução. O arquivo CSS original permanece intacto.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 18 — VISIBILIDADE ========== -->
+
+<h3 id="ex-visibilidade">21.9 Mostrar, ocultar e destacar</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 31.</strong> Analise o código:</p>
+    <pre><code>el.style.display = "none";
+el.style.visibility = "hidden";</code></pre>
+    <p>Qual é a diferença?</p>
+    <ol type="a">
+        <li>São idênticas.</li>
+        <li><code>display: none</code> remove do fluxo (não ocupa espaço); <code>visibility: hidden</code> mantém o espaço reservado.</li>
+        <li><code>visibility: hidden</code> remove do DOM.</li>
+        <li><code>display: none</code> só funciona em parágrafos.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>display: none</code> faz o elemento deixar de ocupar espaço; <code>visibility: hidden</code> apenas o torna invisível, preservando o espaço.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 32.</strong> Analise o código:</p>
+    <pre><code>el.classList.toggle("destaque");</code></pre>
+    <p>O que acontece a cada clique?</p>
+    <ol type="a">
+        <li>A classe é adicionada sempre.</li>
+        <li>A classe é removida sempre.</li>
+        <li>A classe é adicionada se não existir e removida se existir.</li>
+        <li>O elemento é removido.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa C.</strong> <code>toggle</code> alterna: adiciona se ausente, remove se presente. É útil para alternar estados visuais via CSS.</p>
+    </details>
+</div>
+
+<!-- ========== CAPÍTULO 19 — VALIDAÇÃO ========== -->
+
+<h3 id="ex-validacao">21.10 Validação de formulários</h3>
+
+<div class="exercicio">
+    <p><strong>Questão 33.</strong> Analise o código:</p>
+    <pre><code>&lt;input type="email" required&gt;</code></pre>
+    <p>O que acontece ao tentar enviar o formulário com o campo vazio?</p>
+    <ol type="a">
+        <li>Envia normalmente.</li>
+        <li>O navegador bloqueia o envio e exibe mensagem de validação.</li>
+        <li>O campo é desabilitado.</li>
+        <li>O valor é enviado como <code>null</code>.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>required</code> exige preenchimento; <code>type="email"</code> valida o formato. O navegador impede o envio se o campo estiver vazio ou inválido.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 34.</strong> A validação HTML/JavaScript no navegador substitui a validação no servidor?</p>
+    <ol type="a">
+        <li>Sim, é suficiente.</li>
+        <li>Não; a validação no cliente pode ser contornada, portanto o servidor também deve validar.</li>
+        <li>Sim, se usar <code>required</code>.</li>
+        <li>Só substitui se o formulário usar <code>POST</code>.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> A validação no cliente melhora a experiência do usuário, mas <strong>não substitui</strong> a validação no servidor, que é essencial para segurança.</p>
+    </details>
+</div>
+
+<div class="exercicio">
+    <p><strong>Questão 35.</strong> Analise o código:</p>
+    <pre><code>form.addEventListener("submit", function(event) {
+  if (idade.value &lt; 16) {
+    event.preventDefault();
+  }
+});</code></pre>
+    <p>O que <code>event.preventDefault()</code> faz?</p>
+    <ol type="a">
+        <li>Envia o formulário mais rápido.</li>
+        <li>Impede o comportamento padrão (envio do formulário) quando a validação falha.</li>
+        <li>Fecha o navegador.</li>
+        <li>Remove o formulário.</li>
+    </ol>
+    <details>
+        <summary>Ver resposta</summary>
+        <p><strong>Alternativa B.</strong> <code>preventDefault()</code> cancela o envio do formulário, permitindo que a validação JavaScript exiba mensagens antes de enviar.</p>
+    </details>
+</div>
+
+<!-- ========== GABARITO RESUMIDO ========== -->
+
+<h3 id="ex-gabarito">21.11 Gabarito resumido</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Questão</th>
+            <th>Resposta</th>
+            <th>Questão</th>
+            <th>Resposta</th>
+            <th>Questão</th>
+            <th>Resposta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td><td>C</td>
+            <td>13</td><td>B</td>
+            <td>25</td><td>B</td>
+        </tr>
+        <tr>
+            <td>2</td><td>C</td>
+            <td>14</td><td>B</td>
+            <td>26</td><td>B</td>
+        </tr>
+        <tr>
+            <td>3</td><td>A</td>
+            <td>15</td><td>C</td>
+            <td>27</td><td>B</td>
+        </tr>
+        <tr>
+            <td>4</td><td>A</td>
+            <td>16</td><td>B</td>
+            <td>28</td><td>B</td>
+        </tr>
+        <tr>
+            <td>5</td><td>C</td>
+            <td>17</td><td>B</td>
+            <td>29</td><td>B</td>
+        </tr>
+        <tr>
+            <td>6</td><td>A</td>
+            <td>18</td><td>B</td>
+            <td>30</td><td>B</td>
+        </tr>
+        <tr>
+            <td>7</td><td>B</td>
+            <td>19</td><td>B</td>
+            <td>31</td><td>B</td>
+        </tr>
+        <tr>
+            <td>8</td><td>B</td>
+            <td>20</td><td>B</td>
+            <td>32</td><td>C</td>
+        </tr>
+        <tr>
+            <td>9</td><td>B</td>
+            <td>21</td><td>B</td>
+            <td>33</td><td>B</td>
+        </tr>
+        <tr>
+            <td>10</td><td>B</td>
+            <td>22</td><td>B</td>
+            <td>34</td><td>B</td>
+        </tr>
+        <tr>
+            <td>11</td><td>B</td>
+            <td>23</td><td>C</td>
+            <td>35</td><td>B</td>
+        </tr>
+        <tr>
+            <td>12</td><td>C</td>
+            <td>24</td><td>B</td>
+            <td>—</td><td>—</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ===== FIM DO BANCO DE EXERCÍCIOS ===== -->
                 <h2 id="referencias">14. Referências</h2>
                 <p>Materiais-base utilizados na organização deste conteúdo: slides da disciplina Desenvolvimento Web — HTML, listas, imagens, links, tabelas, formulários, atributos de formulários e elementos semânticos, da Profª Elaine P. Affonso / Profª Elaine Parra Affonso.</p>
                 <ul>
@@ -811,7 +2731,8 @@ h1 {
                     <li><a href="https://www.devmedia.com.br/css3-flexbox-funcionamento-e-propriedades/29532" target="_blank" rel="noopener noreferrer">DevMedia — CSS3 Flexbox: Funcionamento e Propriedades</a>.</li>
                     <li>Slides da disciplina Desenvolvimento Web — CSS: Box Model e Flexbox, Profª Elaine P. Affonso.</li>
                     <li>Slides da disciplina Desenvolvimento Web — Pseudoclasses em CSS.</li>
-                    <li>Slides da disciplina Desenvolvimento Web — Media Queries.</li>
+                    <li>Slides da disciplina Desenvolvimento Web — <em>Media Queries</em> (Aula 14).</li>
+                    <li>Slides da disciplina Desenvolvimento Web — <em>Media Queries + Flexbox</em> (Aula 15).</li>
                 </ul>
             </div>
         </main>
